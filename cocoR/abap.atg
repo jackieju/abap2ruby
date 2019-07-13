@@ -13,7 +13,7 @@ CHARACTERS
   macros   = ANY - eol .
 
 COMMENTS FROM "/*" TO "*/"
-COMMENTS FROM "//" TO eol
+COMMENTS FROM "\"" TO eol
 
 IGNORE
   tab + eol + CHR(13)
