@@ -40,34 +40,7 @@ PRODUCTIONS
 
     { Statements } EOF .
 
-  Type               = 
-
-( "var" | "mixed" )
-	|
-	 "short" [ "int" ]
-    | "long"  [ "int" | "float" ] 
-	| "unsigned" [ "char" | "int" | "long" ]
-	| "char"
-
-	| "int" 
-	
-	| "float"		
-
-
-	| "double" | "void"  | "string"
-
-	.
-
-
-
-
-
-
-
-
-
-   
-  
+    Type = identifier .
 
 
   Statement            = 
@@ -82,8 +55,72 @@ PRODUCTIONS
                            | WhileStatement ) 
  .
 
-VariableDefineStatement = "DATA" identifier ( "TYPE" Type "VALUE" Expression |
-"LIKE" Expression) "." .
+
+VariableDefineStatement =  "DATA" identifier[(number)] 
+            [
+                "TYPE"    
+                { 
+                      {identifier ["LENGTH" number] ["DECIMALS" string1]} 
+                      | {["LINE" "OF"] identifier ["BOXED"]} 
+                      | {"REF" "TO" identifier} 
+                      | { 
+                          {
+                              {["STANDARD"] "TABLE"} 
+                              |{"SORTED" "TABLE"} 
+                              |{"HASHED" "TABLE"}
+                          } 
+                          "OF" ["REF" "TO"] identifier 
+                          [
+                               {"WITH" ["UNIQUE"|"NON-UNIQUE"] 
+                                   {
+                                        {"KEY" [identifier ["ALIAS" identifier] "COMPONENTS"] {identifier}} 
+                                        | {"DEFAULT" "KEY"} 
+                                    }
+                                } 
+                                | {"WITH" "EMPTY" "KEY"}
+                          ] 
+                          { 
+                              [ 
+                                  "WITH" {"UNIQUE" "HASHED"}
+                                  | { {"UNIQUE"|"NON-UNIQUE"} "SORTED"} "KEY" identifier "COMPONENTS" {identifier}
+                              ] 
+                               
+                           } 
+                          ["INITIAL" "SIZE" number] 
+                          ["WITH" "HEADER" "LINE"]
+                         } 
+                       | {"RANGE" "OF" Type ["INITIAL" "SIZE" number] 
+                                         ["WITH" "HEADER" "LINE"]} 
+                       | { identifier 
+                            | identifier { "READER"|"LOCATOR"|{"LOB" "HANDLE"} } 
+                            | { "WRITER"|"LOCATOR" } "FOR" { "COLUMNS" {identifier} } 
+                            | { "ALL" ["OTHER"] ["BLOB"|"CLOB"] "COLUMNS" } 
+                          }
+                    } 
+                ] 
+              | ["LIKE" { {["LINE" "OF"] identifier} 
+                      | {"REF" "TO" identifier} 
+                      | { {{["STANDARD"] "TABLE"} 
+                          |{"SORTED" "TABLE"} 
+                          |{"HASHED" "TABLE"}} 
+                          "OF" ["REF" "TO"] identifier 
+                          [ {"WITH" ["UNIQUE"|"NON-UNIQUE"] 
+                               { {"KEY" [identifier ["ALIAS" identifier] 
+                                    "COMPONENTS"] {identifier}} 
+                               | {"DEFAULT" "KEY"} }} 
+                          | {"WITH" "EMPTY" "KEY"} ] 
+                          {
+                          ["WITH" {"UNIQUE" "HASHED"}|{{"UNIQUE"|"NON-UNIQUE"} "SORTED"} 
+                             "KEY" identifier "COMPONENTS" {identifier}] 
+                          } 
+                          ["INITIAL" "SIZE" number] 
+                          ["WITH" "HEADER" "LINE"]} 
+                        | {"RANGE" "OF" identifier ["INITIAL" "SIZE" number] 
+                                         ["WITH" "HEADER" "LINE"]} }] 
+                ["VALUE" { Expression | {"IS" "INITIAL"} }] 
+                ["READ-ONLY"]"." .
+
+
 
 WriteStatement = "WRITE" {["AT"] ["/"][number][(number|"*"|"**")]} identifier 
   ["UNDER" identifier] 

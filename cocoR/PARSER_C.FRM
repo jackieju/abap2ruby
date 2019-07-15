@@ -21,7 +21,7 @@
 
 -->Productions
 
-void -->ParserClass::Parse()
-{ Scanner->Reset(); Get();
-  -->ParseRoot
-}
+//void -->ParserClass::Parse()
+//{ Scanner->Reset(); Get();
+//  -->ParseRoot
+//}
