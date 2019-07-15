@@ -4,33 +4,47 @@
 def test(testall=false)
     s0=<<HERE
     *&---------------------------------------------------------------------*
-    *& Report  YCL_CH04_02_LIST_SYS_FIELDS
-    *&
-    *&---------------------------------------------------------------------*
-    *&
-    *&
-    *&---------------------------------------------------------------------*
+       *& Report  YCL_CH04_02_LIST_SYS_FIELDS
+       *&
+       *&---------------------------------------------------------------------*
+       *&
+       *&
+       *&---------------------------------------------------------------------*
 
-    REPORT  YCL_CH04_02_LIST_SYS_FIELDS.
+       REPORT  YCL_CH04_02_LIST_SYS_FIELDS.
 
-    **************************
-    * Output System Fields  **
-    **************************
+       **************************
+       * Output System Fields  **
+       **************************
 
-    WRITE:/5 'SY-ABCDE', SY-ABCDE, " / start output on new line
-          /5 'SY-DATUM', SY-DATUM, " 5 start the output from 5th column
-          /5 'SY-DBSYS', SY-DBSYS, " : & , are for chaining i.e. avoiding
-                                   " repetition of the key word WRITE
-          /5 'SY-HOST ', SY-HOST,  " text literals enclosed in single quote
-          /5 'SY-LANGU', SY-LANGU,
-          /5 'SY-MANDT', SY-MANDT,
-          /5 'SY-OPSYS', SY-OPSYS,
-          /5 'SY-REPID', SY-REPID,
-          /5 'SY-SAPRL', SY-SAPRL,
-          /5 'SY-SYSID', SY-SYSID,
-          /5 'SY-TCODE', SY-TCODE,
-          /5 'SY-UNAME', SY-UNAME,
-          /5 'SY-UZEIT', SY-UZEIT.
+       WRITE /5 'SY-ABCDE' .
+   WRITE  SY-ABCDE .
+   WRITE  /5 'SY-DATUM' .
+   WRITE  SY-DATUM .
+   WRITE  /5 'SY-DBSYS' .
+   WRITE  SY-DBSYS .
+   WRITE  /5 'SY-HOST ' .
+   WRITE  SY-HOST .
+   WRITE  /5 'SY-LANGU' .
+   WRITE  SY-LANGU .
+   WRITE  /5 'SY-MANDT' .
+   WRITE  SY-MANDT .
+   WRITE  /5 'SY-OPSYS' .
+   WRITE  SY-OPSYS .
+   WRITE  /5 'SY-REPID' .
+   WRITE  SY-REPID .
+   WRITE  /5 'SY-SAPRL' .
+   WRITE  SY-SAPRL .
+   WRITE  /5 'SY-SYSID' .
+   WRITE  SY-SYSID .
+   WRITE  /5 'SY-TCODE' .
+   WRITE  SY-TCODE .
+   WRITE  /5 'SY-UNAME' .
+   WRITE  SY-UNAME .
+   WRITE  /5 'SY-UZEIT' .
+   WRITE  SY-UZEIT .
+   .
+
 HERE
 
 #def dump_testcase

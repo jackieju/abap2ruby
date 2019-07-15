@@ -37,11 +37,14 @@ end
 
 class Parser < CRRParser
     attr_accessor :classdefs
-
+    
+    
+=begin
 
     #### copy start ####
     
     def C()
+        p("===>c1:")
        Expect(C_REPORTSym)
        Expect(C_identifierSym)
        Expect(C_PointSym)
@@ -221,6 +224,7 @@ class Parser < CRRParser
        Expect(C_PointSym)
     end
     def WriteStatement()
+        p("==>WriteStatement1")
        Expect(C_WRITESym)
        while (Sym==C_numberSym||Sym>=C_ATSym&&Sym<=C_StarStarSym)
           if Sym==C_ATSym
@@ -1230,7 +1234,9 @@ class Parser < CRRParser
     end
 
     #### copy end ####
+=end
 end  # class Parser
 
+load "cocoR/o/cparser.rb"
 
-#load 'cptest.rb'
+load 'cptest.rb'

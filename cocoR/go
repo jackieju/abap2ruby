@@ -1,3 +1,5 @@
+./cocor17new abap.atg 
+
 ./cocor17new -A -F -X -S -G -C -L -D abap.atg 
 #cp cs.c          output
 #cp cs.h          output
@@ -8,13 +10,15 @@
 mv cs.cpp        output
 cp cs.hpp        output
 mv cp.cpp        output
-#cp cp.hpp        output
+cp cp.hpp        output
 mv ce.hpp        output
 mv cc.hpp        output
 #cp c.cpp         output
 #cp abap.lst      output
 cp CR_SCAN.hpp output
 cp CR_ABS.hpp output
+cp CR_PARSE.hpp output
+
 dir=`pwd`
 cd /Users/i027910/Desktop/ju/projects/sap/cpp2ruby
 #ruby translate.rb -parse $dir/output/*.cpp -d $dir/o

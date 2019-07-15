@@ -57,13 +57,13 @@ PRODUCTIONS
 
 
 VariableDefineStatement =  "DATA" identifier[(number)] 
-            [
+            (
                 "TYPE"    
-                { 
-                      {identifier ["LENGTH" number] ["DECIMALS" string1]} 
-                      | {["LINE" "OF"] identifier ["BOXED"]} 
-                      | {"REF" "TO" identifier} 
-                      | { 
+                ( 
+                      identifier (["LENGTH" number] ["DECIMALS" string1] | { "READER"|"LOCATOR"|"LOB" "HANDLE" } )
+                      | ["LINE" "OF"] identifier ["BOXED"]
+                      | "REF" "TO" identifier 
+                      | 
                           {
                               {["STANDARD"] "TABLE"} 
                               |{"SORTED" "TABLE"} 
@@ -88,73 +88,105 @@ VariableDefineStatement =  "DATA" identifier[(number)]
                            } 
                           ["INITIAL" "SIZE" number] 
                           ["WITH" "HEADER" "LINE"]
+                         
+                       | "RANGE" "OF" Type ["INITIAL" "SIZE" number] ["WITH" "HEADER" "LINE"] 
+                       | { "WRITER"|"LOCATOR" } "FOR" { "COLUMNS" {identifier} } 
+                       |  "ALL" ["OTHER"] ["BLOB"|"CLOB"] "COLUMNS" 
+                 
+                          
+                ) 
+            
+              | 
+              [
+                  "LIKE" 
+                  {
+                 
+                      ["LINE" "OF"] identifier
+                     | "REF" "TO" identifier
+                     |  
+                         {
+                              ["STANDARD"] "TABLE" 
+                              |"SORTED" "TABLE"
+                              |"HASHED" "TABLE"
                          } 
-                       | {"RANGE" "OF" Type ["INITIAL" "SIZE" number] 
-                                         ["WITH" "HEADER" "LINE"]} 
-                       | { identifier 
-                            | identifier { "READER"|"LOCATOR"|{"LOB" "HANDLE"} } 
-                            | { "WRITER"|"LOCATOR" } "FOR" { "COLUMNS" {identifier} } 
-                            | { "ALL" ["OTHER"] ["BLOB"|"CLOB"] "COLUMNS" } 
-                          }
-                    } 
-                ] 
-              | ["LIKE" { {["LINE" "OF"] identifier} 
-                      | {"REF" "TO" identifier} 
-                      | { {{["STANDARD"] "TABLE"} 
-                          |{"SORTED" "TABLE"} 
-                          |{"HASHED" "TABLE"}} 
-                          "OF" ["REF" "TO"] identifier 
-                          [ {"WITH" ["UNIQUE"|"NON-UNIQUE"] 
-                               { {"KEY" [identifier ["ALIAS" identifier] 
-                                    "COMPONENTS"] {identifier}} 
-                               | {"DEFAULT" "KEY"} }} 
-                          | {"WITH" "EMPTY" "KEY"} ] 
-                          {
-                          ["WITH" {"UNIQUE" "HASHED"}|{{"UNIQUE"|"NON-UNIQUE"} "SORTED"} 
-                             "KEY" identifier "COMPONENTS" {identifier}] 
-                          } 
-                          ["INITIAL" "SIZE" number] 
-                          ["WITH" "HEADER" "LINE"]} 
-                        | {"RANGE" "OF" identifier ["INITIAL" "SIZE" number] 
-                                         ["WITH" "HEADER" "LINE"]} }] 
-                ["VALUE" { Expression | {"IS" "INITIAL"} }] 
-                ["READ-ONLY"]"." .
+                         "OF" ["REF" "TO"] identifier
+                         [
+                          
+                                  "WITH" ["UNIQUE"|"NON-UNIQUE"] 
+                                   {
+                                    "KEY" [identifier ["ALIAS" identifier] "COMPONENTS"] {identifier} 
+                                   |
+                                    "DEFAULT" "KEY"
+                                   }
+                          
+                              | "WITH" "EMPTY" "KEY"
+                         ] 
+                         {
+                              
+                              "WITH" {"UNIQUE" "HASHED"}
+                              |
+                              {
+                                  {"UNIQUE"|"NON-UNIQUE"} "SORTED"
+                                }
+                                "KEY" identifier "COMPONENTS" {identifier}
+                            
+                         } 
+                         ["INITIAL" "SIZE" number] 
+                         ["WITH" "HEADER" "LINE"]
+                    
+                      |  
+                     "RANGE" "OF" identifier ["INITIAL" "SIZE" number] ["WITH" "HEADER" "LINE"]
+                                         
+                   }
+             ] ["VALUE" { Expression | "IS" "INITIAL" }] 
+                ["READ-ONLY"] 
+            )
+                "." .
 
 
 
-WriteStatement = "WRITE" {["AT"] ["/"][number][(number|"*"|"**")]} identifier 
+WriteStatement = "WRITE" {["AT"] ["/"][number][(number|"*"|"**")]} Expression 
   ["UNDER" identifier] 
   ["NO-GAP"] 
   ["LEFT-JUSTIFIED"|"CENTERED"|"RIGHT-JUSTIFIED"] 
-  { { ["EXPONENT" Expression] 
+  { 
+    
+      ["EXPONENT" Expression] 
       ["NO-GROUPING"] 
       ["NO-SIGN"] 
       ["NO-ZERO"] 
       ["CURRENCY" string1] 
-      { { ["DECIMALS" string1] 
-          ["ROUND" number] } 
-        | ["UNIT" string1] } } 
+      { 
+           ["DECIMALS" string1] ["ROUND" number]  
+        | ["UNIT" string1] 
+        } 
+     
     | { ["ENVIRONMENT" "TIME" "FORMAT"] 
         ["TIME" "ZONE" string1] } 
-    ["STYLE" string1] } 
+    ["STYLE" string1] 
+  } 
   ["USING" { "NO" "EDIT" "MASK"| "EDIT" "MASK" string1}] 
   ["DD/MM/YY"|"MM/DD/YY"|"DD/MM/YYYY"|"MM/DD/YYYY"|"DDMMYY"|"MMDDYY"|"YYMMDD"] 
-  ["COLOR" { { ["="] { { Primary
-                   } ["ON"] } 
-                 | "OFF"} 
-                 
-         | {"=" number} }] 
+  ["COLOR" 
+      {
+         ["="] 
+            { { Primary } ["ON"] } 
+            | "OFF"
+              
+        |
+         "=" number
+     }
+  ] 
   ["INTENSIFIED" [ {"ON"|"OFF"} | {"=" string1} ]] 
   ["INVERSE"     [ {"ON"|"OFF"} | {"=" string1} ]] 
   ["HOTSPOT"     [ {"ON"|"OFF"} | {"=" string1} ]] 
   ["INPUT"       [ {"ON"|"OFF"} | {"=" string1} ]] 
   ["FRAMES"      [ {"ON"|"OFF"} | {"=" string1} ]] 
   ["RESET"] 
-  { ["AS" "CHECKBOX"] 
-  | ["AS" "ICON"] 
-  | ["AS" "SYMBOL"] 
-  | ["AS" "LINE"] } 
-  ["QUICKINFO" string1]".". 
+  { 
+      "AS" ("CHECKBOX" | "ICON" | "SYMBOL"  | "LINE")
+  } 
+  ["QUICKINFO" string1] "." . 
 
   AssignmentStatement =  Expression ";" .
 

@@ -1,8 +1,17 @@
 # process macro of c/c++
-load "cp.rb"
+load 'goto.rb'
+load 'sym.rb'
+load 'scanner.rb'
+load 'crr_parser.rb'
+load 'error.rb'
+load 'log.rb'
+load 'common.rb'
+load "crr_parser.rb"
 
+class PreParser < CRRParser
+end
 # hide_p_in_file(__FILE__)
-class Preprocessor < Parser
+class Preprocessor < PreParser
     attr_accessor :ifstack
      
     def Get()
