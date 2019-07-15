@@ -1,216 +1,185 @@
-=begin
-C_EOF_Sym =	0	# EOF */
-C_identifierSym =	1	# identifier */
-C_numberSym =	2	# number */
-C_hexnumberSym =	3	# hexnumber */
-C_stringD1Sym	= 4	# string1 */
-C_charD1Sym	= 5	# char1 */
-C_librarySym	= 6	# library */
-C_useSym	= 7	# "use" */
-C_PointSym	= 8	# "." */
-C_SemicolonSym	= 9	# ";" */
-C_loadSym	= 10	# "load" */
-C_EqualSym	= 11	# "=" */
-C_inheritSym	= 12	# "inherit" */
-C_classSym	= 13	# "class" */
-C_LbraceSym	= 14	# "{" */
-C_RbraceSym	= 15	# "}" */
-C_staticSym	= 16	# "static" */
-C_mySym = 	17	# "my" */
-C_functionSym	= 18	# "function" */
-C_objectSym	= 19	# "object" */
-C_varSym =	20	 # "var" */
-C_mixedSym	= 21	# "mixed" */
-C_shortSym	= 22	# "short" */
-C_intSym	= 23	# "int" */
-C_longSym	= 24	# "long" */
-C_floatSym	= 25	# "float" */
-C_unsignedSym	= 26	# "unsigned" */
-C_charSym	= 27	# "char" */
-C_doubleSym	= 28	# "double" */
-C_voidSym	= 29	# "void" */
-C_stringSym	= 30	# "string" */
-C_CommaSym	= 31	# "," */
-C_LbrackSym	= 32	# "[" */
-C_RbrackSym	= 33	# "]" */
-C_LparenSym	= 34	# "(" */
-C_RparenSym	= 35	# ")" */
-C_StarSym	= 36	# "*" */
-C_caseSym	= 37	# "case" */
-C_ColonSym	= 38	# ":" */
-C_defaultSym	= 39	# "default" */
-C_breakSym	= 40	# "break" */
-C_continueSym	= 41	# "continue" */
-C_doSym	= 42	# "do" */
-C_whileSym	= 43	# "while" */
-C_forSym	= 44	# "for" */
-C_ifSym	= 45	# "if" */
-C_elseSym	= 46	# "else" */
-C_returnSym	= 47	# "return" */
-C_switchSym	= 48	# "switch" */
-C_BarBarSym	= 49	# "||" */
-C_AndAndSym	= 50	# "&&" */
-C_BarSym	= 51	# "|" */
-C_UparrowSym	= 52	# "^" */
-C_AndSym	= 53	# "&" */
-C_EqualEqualSym	= 54	# "==" */
-C_BangEqualSym	= 55	# "!=" */
-C_LessSym	= 56	# "<" */
-C_GreaterSym	= 57	# ">" */
-C_LessEqualSym	= 58	# "<=" */
-C_GreaterEqualSym	= 59	# ">=" */
-C_LessLessSym	= 60	# "<<" */
-C_GreaterGreaterSym	= 61	# ">>" */
-C_PlusSym	= 62	# "+" */
-C_MinusSym	= 63	# "-" */
-C_SlashSym	= 64	# "/" */
-C_PercentSym	= 65	# "%" */
-C_PlusPlusSym	= 66	# "++" */
-C_MinusMinusSym	= 67	# "--" */
-C_MinusGreaterSym	= 68	# "->" */
-C_ColonColonSym	= 69	# "::" */
-C_newSym	= 70	# "new" */
-C_StarEqualSym	= 71	# "*=" */
-C_SlashEqualSym	= 72	# "/=" */
-C_PercentEqualSym	= 73	# "%=" */
-C_PlusEqualSym	= 74	# "+=" */
-C_MinusEqualSym	= 75	# "-=" */
-C_AndEqualSym	= 76	# "&=" */
-C_UparrowEqualSym	= 77	# "^=" */
-C_BarEqualSym	= 78	# "|=" */
-C_LessLessEqualSym	= 79	# "<<=" */
-C_GreaterGreaterEqualSym	= 80	# ">>=" */
-C_BangSym	= 81	# "!" */
-C_TildeSym	= 82	# "~" */
-C_No_Sym	= 83	# not */
-C_PreProcessorSym	= 84	# PreProcessor */
-C_MAXT    =  C_No_Sym   # Max Terminals */
-=end
-C_EOF_Sym	= 0	# EOF */
-C_identifierSym = 1	# identifier */
-C_numberSym = 2	# number */
-C_hexnumberSym = 3	# hexnumber */
-C_stringD1Sym = 4	# string1 */
-C_charD1Sym = 5	# char1 */
-C_librarySym = 6	# library */
-#C_useSym = 7	# "use" */
-C_SemicolonSym = 8	# ";" */
-#C_loadSym = 9	# "load" */
-C_packageSym = 10	# "package" */ TODO should not be cpp keyword
-C_SlashSym = 11	# "/" */
-C_inheritSym = 12	# "inherit" */
-C_LessSym = 13	# "<" */
-C_classSym = 14	# "class" */
-C_LbraceSym = 15	# "{" */
-C_RbraceSym = 16	# "}" */
-C_staticSym = 17	# "static" */
-C_constSym = 18   # "const" */
-C_mySym = 19	# "my" */
-C_externSym = 20	# "extern" */
-C_autoSym = 21	# "auto" */
-C_boolSym = 22	# "bool" */
-C_shortSym = 23	# "short" */
-C_intSym = 24	# "int" */
-C_longSym = 25	# "long" */
-C_floatSym = 26	# "float" */
-C_unsignedSym = 27	# "unsigned" */
-C_charSym = 28	# "char" */
-C_doubleSym = 29	# "double" */
-C_voidSym = 30	# "void" */
-#C_stringSym = 31	# keyword "string" */
-C_EqualSym = 32	# "=" */
-C_CommaSym = 33	# ",        " */
-C_LbrackSym =                   34	# "[" */
-C_RbrackSym =                   35	# "]" */
-C_LparenSym =                   36	# "(" */
-C_RparenSym =                   37	# ")" */
-C_StarSym =                     38	# "*" */
-C_caseSym =                     39	# "case" */
-C_ColonSym =                    40	# ":" */
-C_defaultSym =                  41	# "default" */
-C_breakSym =                    42	# "break" */
-C_continueSym =                 43	# "continue" */
-C_doSym =                       44	# "do" */
-C_whileSym =                    45	# "while" */
-C_forSym =                      46	# "for" */
-C_ifSym =                       47	# "if" */
-C_elseSym =                     48	# "else" */
-C_returnSym =                   49	# "return" */
-C_switchSym =                   50	# "switch" */
-C_BarBarSym =                   51	# "||" */
-C_AndAndSym =                   52	# "&&" */
-C_BarSym =                      53	# "|" */
-C_UparrowSym =                  54	# "^" */
-C_AndSym =                      55	# "&" */
-C_EqualEqualSym =               56	# "==" */
-C_BangEqualSym =                57	# "!=" */
-C_GreaterSym =                  58	# ">" */
-C_LessEqualSym =                59	# "<=" */
-C_GreaterEqualSym =             60	# ">=" */
-C_LessLessSym =                 61	# "<<" */
-C_GreaterGreaterSym =           62	# ">>" */
-C_PlusSym =                     63	# "+" */
-C_MinusSym =                    64	# "-" */
-C_PercentSym =                  65	# "%" */
-C_PlusPlusSym =                 66	# "++" */
-C_MinusMinusSym =               67	# "--" */
-C_PointSym =                    68	# "." */
-C_MinusGreaterSym =             69	# "->" */
-C_ColonColonSym =               70	# "::" */
-C_HashHashSym =                 71	# "##" */
-C_newSym =                      72	# "new" */
-C_DollarSym =                   73	# "$" */
-C_StarEqualSym =                74	# "*=" */
-C_SlashEqualSym =               75	# "/=" */
-C_PercentEqualSym =             76	# "%=" */
-C_PlusEqualSym =                77	# "+=" */
-C_MinusEqualSym =               78	# "-=" */
-C_AndEqualSym =                 79	# "&=" */
-C_UparrowEqualSym =             80	# "^=" */
-C_BarEqualSym =                 81	# "|=" */
-C_LessLessEqualSym =            82	# "<<=" */
-C_GreaterGreaterEqualSym =      83	# ">>=" */
-C_BangSym =                     84	# "!" */
-C_TildeSym =                    85	# "~" */
-C_EnumSym =                     86  # "enum"
-C_StructSym =                   87  # "struct"
-C_TypedefSym =                  88  # "typedef"
-C_QuestionMarkSym =             89  # "?"
-C_CRLF_Sym =                    90  # ""
-C_deleteSym =                   91  # "delete"
-C_throwSym =                    92  # "throw"
-C_sizeofSym =                   93  # "sizeof"
-C_INSym =                       94  # "IN"
-C_OUTSym =                      95  # "OUT"
-C_INOUTSym =                    96  # "INOUT"
-C_inlineSym =                   97  # "inline"
-C_PPPSym =                      98   # "..."
-C_namespaceSym =                99     # "..."
-C_usingSym =                    100    # "using"
-C_templateSym =                    101    # "template"
-C_operatorSym =                 102    # "operator"
-C_overrideSym =                 103    # "override"
-C_gotoSym =                     104    # "goto"
-C_unionSym =                     105    # "union"
-C_typenameSym =                   106 # "typename"
 
-#*** insert new sym here ***#   
-C_No_Sym =                      107	# not */
-C_PreProcessorSym =             108	# PreProcessor */
 
-C_MAXT = C_No_Sym	# Max Terminals */
+
+
+
 
 # how to add new sym
 # 1. add definition in above. e.g. 
-# C_OUTSym =                         95 
+# C_OUTSym =  =                         95 
 # 2. add entry in SYMS below
 # 3. add code in scanner.rb->CheckLiteral()
 # e.g.             
 #            when 'O'
-#                return C_OUTSym if EqualStr("OUT")
+#                return C_OUTSym =  if EqualStr("OUT")
 # 4. sometimes you need to add condition in cp.rb->C() to enter Definition()
 
 
+C_EOF_Sym = EOF_Sym = 	0	#  EOF */
+C_CRLF_Sym = 0.5
+
+C_identifierSym = 	1	# identifier */
+C_numberSym = 	2	# number */
+C_hexnumberSym = 	3	# hexnumber */
+C_stringD1Sym = 	4	# string1 */
+C_charSym = 	5	# char */
+C_ColonSym = 	6	# Colon */
+C_spaceD1Sym = 	7	# space1 */
+C_REPORTSym = 	8	# "REPORT" */
+C_PointSym = 	9	# "." */
+C_varSym = 	10	# "var" */
+C_mixedSym = 	11	# "mixed" */
+C_shortSym = 	12	# "short" */
+C_intSym = 	13	# "int" */
+C_longSym = 	14	# "long" */
+C_floatSym = 	15	# "float" */
+C_unsignedSym = 	16	# "unsigned" */
+C_charSym = 	17	# "char" */
+C_doubleSym = 	18	# "double" */
+C_voidSym = 	19	# "void" */
+C_stringSym = 	20	# "string" */
+C_DATASym = 	21	# "DATA" */
+C_TYPESym = 	22	# "TYPE" */
+C_VALUESym = 	23	# "VALUE" */
+C_LIKESym = 	24	# "LIKE" */
+C_WRITESym = 	25	# "WRITE" */
+C_ATSym = 	26	# "AT" */
+C_SlashSym = 	27	# "/" */
+C_StarSym = 	28	# "*" */
+C_StarStarSym = 	29	# "**" */
+C_UNDERSym = 	30	# "UNDER" */
+C_NOMinusGAPSym = 	31	# "NO-GAP" */
+C_LEFTMinusJUSTIFIEDSym = 	32	# "LEFT-JUSTIFIED" */
+C_CENTEREDSym = 	33	# "CENTERED" */
+C_RIGHTMinusJUSTIFIEDSym = 	34	# "RIGHT-JUSTIFIED" */
+C_EXPONENTSym = 	35	# "EXPONENT" */
+C_NOMinusGROUPINGSym = 	36	# "NO-GROUPING" */
+C_NOMinusSIGNSym = 	37	# "NO-SIGN" */
+C_NOMinusZEROSym = 	38	# "NO-ZERO" */
+C_CURRENCYSym = 	39	# "CURRENCY" */
+C_DECIMALSSym = 	40	# "DECIMALS" */
+C_ROUNDSym = 	41	# "ROUND" */
+C_UNITSym = 	42	# "UNIT" */
+C_ENVIRONMENTSym = 	43	# "ENVIRONMENT" */
+C_TIMESym = 	44	# "TIME" */
+C_FORMATSym = 	45	# "FORMAT" */
+C_ZONESym = 	46	# "ZONE" */
+C_STYLESym = 	47	# "STYLE" */
+C_USINGSym = 	48	# "USING" */
+C_NOSym = 	49	# "NO" */
+C_EDITSym = 	50	# "EDIT" */
+C_MASKSym = 	51	# "MASK" */
+C_DDSlashMMSlashYYSym = 	52	# "DD/MM/YY" */
+C_MMSlashDDSlashYYSym = 	53	# "MM/DD/YY" */
+C_DDSlashMMSlashYYYYSym = 	54	# "DD/MM/YYYY" */
+C_MMSlashDDSlashYYYYSym = 	55	# "MM/DD/YYYY" */
+C_DDMMYYSym = 	56	# "DDMMYY" */
+C_MMDDYYSym = 	57	# "MMDDYY" */
+C_YYMMDDSym = 	58	# "YYMMDD" */
+C_COLORSym = 	59	# "COLOR" */
+C_EqualSym = 	60	# "=" */
+C_ONSym = 	61	# "ON" */
+C_OFFSym = 	62	# "OFF" */
+C_INTENSIFIEDSym = 	63	# "INTENSIFIED" */
+C_INVERSESym = 	64	# "INVERSE" */
+C_HOTSPOTSym = 	65	# "HOTSPOT" */
+C_INPUTSym = 	66	# "INPUT" */
+C_FRAMESSym = 	67	# "FRAMES" */
+C_RESETSym = 	68	# "RESET" */
+C_ASSym = 	69	# "AS" */
+C_CHECKBOXSym = 	70	# "CHECKBOX" */
+C_ICONSym = 	71	# "ICON" */
+C_Sym = BOLSym = 	72	# "Sym = BOL" */
+C_LINESym = 	73	# "LINE" */
+C_QUICKINFOSym = 	74	# "QUICKINFO" */
+C_SemicolonSym = 	75	# ";" */
+C_breakSym = 	76	# "break" */
+C_CONTINUESym = 	77	# "CONTINUE" */
+C_doSym = 	78	# "do" */
+C_whileSym = 	79	# "while" */
+C_LparenSym = 	80	# "(" */
+C_RparenSym = 	81	# ")" */
+C_forSym = 	82	# "for" */
+C_IFSym = 	83	# "IF" */
+C_ELSEIFSym = 	84	# "ELSEIF" */
+C_ELSESym = 	85	# "ELSE" */
+C_ENDIFSym = 	86	# "ENDIF" */
+C_returnSym = 	87	# "return" */
+C_WHILESym = 	88	# "WHILE" */
+C_VARYSym = 	89	# "VARY" */
+C_FROMSym = 	90	# "FROM" */
+C_NEXTSym = 	91	# "NEXT" */
+C_RANGESym = 	92	# "RANGE" */
+C_ENDWHILESym = 	93	# "ENDWHILE" */
+C_BarBarSym = 	94	# "||" */
+C_ORSym = 	95	# "OR" */
+C_EQUIVSym = 	96	# "EQUIV" */
+C_AndAndSym = 	97	# "&&" */
+C_ANDSym = 	98	# "AND" */
+C_BarSym = 	99	# "|" */
+C_UparrowSym = 	100	# "^" */
+C_AndSym = 	101	# "&" */
+C_EQSym = 	102	# "EQ" */
+C_LessGreaterSym = 	103	# "<>" */
+C_NESym = 	104	# "NE" */
+C_LessSym = 	105	# "<" */
+C_LTSym = 	106	# "LT" */
+C_GreaterSym = 	107	# ">" */
+C_GTSym = 	108	# "GT" */
+C_LessEqualSym = 	109	# "<=" */
+C_LESym = 	110	# "LE" */
+C_GreaterEqualSym = 	111	# ">=" */
+C_GESym = 	112	# "GE" */
+C_COSym = 	113	# "CO" */
+C_CNSym = 	114	# "CN" */
+C_CASym = 	115	# "CA" */
+C_NASym = 	116	# "NA" */
+C_CSSym = 	117	# "CS" */
+C_NSSym = 	118	# "NS" */
+C_CPSym = 	119	# "CP" */
+C_NPSym = 	120	# "NP" */
+C_BYTEMinusCOSym = 	121	# "BYTE-CO" */
+C_BYTEMinusCNSym = 	122	# "BYTE-CN" */
+C_BYTEMinusCASym = 	123	# "BYTE-CA" */
+C_BYTEMinusNASym = 	124	# "BYTE-NA" */
+C_BYTEMinusCSSym = 	125	# "BYTE-CS" */
+C_BYTEMinusNSSym = 	126	# "BYTE-NS" */
+C_LessLessSym = 	127	# "<<" */
+C_GreaterGreaterSym = 	128	# ">>" */
+C_PlusSym = 	129	# "+" */
+C_MinusSym = 	130	# "-" */
+C_DIVSym = 	131	# "DIV" */
+C_PercentSym = 	132	# "%" */
+C_MODSym = 	133	# "MOD" */
+C_PlusPlusSym = 	134	# "++" */
+C_MinusMinusSym = 	135	# "--" */
+C_LbrackSym = 	136	# "[" */
+C_RbrackSym = 	137	# "]" */
+C_MinusGreaterSym = 	138	# "->" */
+C_CommaSym = 	139	# "," */
+C_StarEqualSym = 	140	# "*=" */
+C_SlashEqualSym = 	141	# "/=" */
+C_PercentEqualSym = 	142	# "%=" */
+C_PlusEqualSym = 	143	# "+=" */
+C_MinusEqualSym = 	144	# "-=" */
+C_AndEqualSym = 	145	# "&=" */
+C_UparrowEqualSym = 	146	# "^=" */
+C_BarEqualSym = 	147	# "|=" */
+C_LessLessEqualSym = 	148	# "<<=" */
+C_GreaterGreaterEqualSym = 	149	# ">>=" */
+C_BangSym = 	150	# "!" */
+C_TildeSym = 	151	# "~" */
+C_NOTSym = 	152	# "NOT" */
+No_Sym = 	153	# not */
+C_PreProcessorSym = 	154	# PreProcessor */
+MAXT =	No_Sym 	# Max Terminals */
+C_MAXT = MAXT
+
+
+
+
+
+# for error reporting
 SYMS=[                                                
 
 

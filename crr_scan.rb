@@ -283,6 +283,21 @@ def isWhitespace?(ch)
                       ch == ' ' # sp
 end
 
+class String
+    def ==(s)
+        if s.class == Integer
+            return self.ord == s
+        end
+        super
+    end
+    def <=(s)
+        if s.class == Integer
+            return self.ord <= s
+        end
+        super
+    end
+end
+
            MAX_IDENTIFIER_LENGTH = 1000
 class CRRScanner <  CRScanner
     

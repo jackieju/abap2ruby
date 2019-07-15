@@ -12,6 +12,7 @@ class Preprocessor < Parser
             @linestart = true
             while @sym == C_CRLF_Sym && @sym != C_EOF_Sym
                 super(false)
+                p "Get98:#{@sym}, #{@scanner.buffPos}"
             end
         else
             @linestart = false
@@ -1863,14 +1864,16 @@ class Preprocessor < Parser
          p "_preprocess1:@linestart  #{@sym  }"
         while (@sym != C_EOF_Sym)
             
-            p "@linestart  #{@linestart }"
+           
              keyword = curString()
-           if @linestart  && keyword[0]>='a' && keyword[0]<='z' && keyword[0]>='A' && keyword[0]<='Z'
+              p "@linestart  #{@linestart }, #{keyword}"
+           if @linestart  && ( keyword[0]>='a' && keyword[0]<='z' || keyword[0]>='A' && keyword[0]<='Z')
               
               
+               p "_preprocess13: #{@sym  }"
                
                p_start = @scanner.nextSym.pos
-             
+                 sym_pos = @scanner.nextSym.pos
                ar =[]
                Get()
                p "keyword #{keyword}"
@@ -1879,12 +1882,22 @@ class Preprocessor < Parser
                    begin
                        s = ""
                        Get()
-                       while (@sym != C_CommaSym && @sym != C_PointSym)
+                       while (@sym != C_EOF_Sym && @sym != C_CommaSym && @sym != C_PointSym)
+                           p("3313:#{@sym}, #{curString}") 
+                           if @scanner.currSym.pos + @scanner.currSym.len< @scanner.nextSym.pos
+                               s += " "
+                           end
                            s += curString()
+                           Get()
                        end
                        ar.push(s)
-                   end while (@sym != C_PointSym)
-                   
+                       p "===>push:#{s}"
+                   end while (@sym != C_PointSym && @sym != C_EOF_Sym)
+                   res = ""
+                   ar.each{|ss|
+                       res += "#{keyword} #{ss} .\n"
+                   }
+                   p "res:#{res}"
                    if ar.size >0
                        
                        p_end = @scanner.currSym.pos + @scanner.currSym.len - 1
@@ -2050,33 +2063,15 @@ class Preprocessor < Parser
                         end # if hasArg == _res[:hasArg] 
                
                     end #  if ifdefined?(idf)
-                elsif @sym == C_inlineSym #ignore inline statement
-                    __t = Time.now.to_f
-                    p_start = @scanner.nextSym.pos
-                    p_end = p_start + @scanner.nextSym.len
-                    Get()
-                   # p "p_start=#{p_start},p_end=#{p_end}"
-                    if p_start <= 0 
-                        s = @scanner.buffer[p_end..@scanner.buffer.size-1]
-                    else
-                        s = @scanner.buffer[0..p_start-1] + @scanner.buffer[p_end..@scanner.buffer.size-1]
-                    end
-                    old_size = @scanner.buffer.size
-                    # p "before replace:#{@scanner.buffer}"
-                    @scanner.buffer = s
-                    @scanner.buffPos += s.size()-old_size
-                    # p "after replace:#{@scanner.buffer}"
-                    p "@@@ remove inline cost #{Time.now.to_f - __t}"
-                    next
-                elsif @sym == C_classSym # to gather all classes name
-                    _n = GetNextSym().sym
-                    if _n != C_CommaSym && _n != C_GreaterSym # not as parameter in template. e.g. template<class A, class B>
-                        Get()
-                        $pre_classlist = {} if $pre_classlist == nil
-                        $pre_classlist[curString()]=1
-                    end
-                elsif @sym == C_templateSym
-                    filterTemplate(1)
+                
+               # elsif @sym == C_classSym # to gather all classes name
+               #     _n = GetNextSym().sym
+               #     if _n != C_CommaSym && _n != C_GreaterSym # not as parameter in template. e.g. template<class A, class B>
+               #         Get()
+               #         $pre_classlist = {} if $pre_classlist == nil
+               #         $pre_classlist[curString()]=1
+               #     end
+    
                 end
             end
             # if @sym == C_identifierSym

@@ -1,5 +1,10 @@
 class AbsToken 
     attr_accessor :len, :pos, :col, :line, :sym
+     alias :Len :len
+    alias :Len= :len=
+    alias :Pos :pos
+    
+    alias :Pos= :pos=
   public
     # virtual ~AbsToken() { }
     # int  Sym;              // Token Number
