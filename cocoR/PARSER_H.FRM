@@ -47,12 +47,6 @@ class CClassDes;
 
 
 
-//register
-#define _AX        1
-#define _BX        2
-#define _CX        3
-#define _DX        4
-#define _PSW       0
 
 typedef struct _tagExpressionOp
 {
@@ -270,13 +264,7 @@ private:
   private:
     -->ProdHeaders
 
-// added by jackie
-private: // function to generate code
-	bool doAssign();
-	bool doMove(long type1, long type2, long op1, long op2, TYPEDES& dt1, TYPEDES& dt2 );
-	void pushResultAX();
-	void doVarDecl(PTYPEDES type, char* szFirstName);
-	void doReturn();
+
 //<--
 };
 

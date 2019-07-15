@@ -17,16 +17,16 @@
 *****************************************/
 	
 //#include -->TokensHeader
-//#include -->ScanHeader
+#include -->ScanHeader
 //
-//#define Scan_Ch        Ch
-//#define Scan_NextCh    NextCh
-//#define Scan_ComEols   ComEols
-//#define Scan_CurrLine  CurrLine
-//#define Scan_CurrCol   CurrCol
-//#define Scan_LineStart LineStart
-//#define Scan_BuffPos   BuffPos
-//#define Scan_NextLen   NextSym.Len
+#define Scan_Ch        Ch
+#define Scan_NextCh    NextCh
+#define Scan_ComEols   ComEols
+#define Scan_CurrLine  CurrLine
+#define Scan_CurrCol   CurrCol
+#define Scan_LineStart LineStart
+#define Scan_BuffPos   BuffPos
+#define Scan_NextLen   NextSym.Len
 
 int -->ScanClass::STATE0[] = {-->State0};
 

@@ -1,0 +1,571 @@
+ADD dobj1 TO dobj2. 
+
+
+ADD-CORRESPONDING struc1 TO struc2.
+
+ADD { { dobj1 THEN dobj2 UNTIL dobj 
+      { {TO result} | {GIVING result [ACCORDING TO sel]} } } 
+    | { dobj FROM pos1 TO pos GIVING result } } 
+    [RANGE range]. 
+
+#aggregate
+... { AVG( [DISTINCT] col [AS dtype] ) 
+    | MAX( [DISTINCT] col|sql_exp ) 
+    | MIN( [DISTINCT] col|sql_exp ) 
+    | SUM( [DISTINCT] col|sql_exp ) 
+    | COUNT( DISTINCT col|sql_exp ) 
+    | COUNT( * ) 
+    | COUNT(*) } ... 
+ALIASES alias FOR intf~comp. 
+
+APPEND { wa 
+       | {INITIAL LINE} 
+       | {LINES OF jtab [FROM idx1] [TO idx2] [USING KEY key_name|(name)]} } 
+   TO itab [SORTED BY comp] 
+   [ {ASSIGNING <fs> [CASTING]} | {REFERENCE INTO dref} ]. 
+
+
+ASSERT [ [ID group [SUBKEY sub]] 
+         [FIELDS val1 val2 ...] 
+         CONDITION ] log_exp. 
+         
+ASSIGN { dobj[+off][(len)] 
+       | [TABLE FIELD] (name) 
+       | dref->* 
+       | {dobj INCREMENT inc} 
+       | {COMPONENT comp OF STRUCTURE struc} 
+       | oref->(attr_name) 
+       | {class|(class_name)}=>{attr|(attr_name)} 
+       | writable_exp } 
+  TO <fs> 
+  [ { CASTING [ {TYPE type|(name)} 
+              | {LIKE dobj} 
+              | {[TYPE p] DECIMALS dec} 
+              | {TYPE HANDLE handle} ] } 
+  | { {TYPE name} 
+    | {[TYPE name] DECIMALS dec} } ] 
+  [RANGE range]. 
+
+ASSIGN LOCAL COPY 
+  OF { {[INITIAL] { dobj[+off][(len)] 
+                  | (name) 
+                  | oref->(attr_name) 
+                  | {class|(class_name)}=>{attr|(attr_name)} 
+                  | dref->* } } 
+     | {INITIAL LINE OF {itab|(itab_name)}} } 
+  TO <fs> 
+  [CASTING ...]. 
+  
+  [AT FIRST. 
+     ... 
+  ENDAT.] 
+    [AT field_groupi [WITH field_groupj]. 
+      ... 
+    ENDAT.] 
+      [AT NEW comp1. 
+         ... 
+       ENDAT. 
+         ... 
+           [AT NEW comp2. 
+              ... 
+           ENDAT. 
+             [...]]] 
+               [ ... ] 
+           [[[...] 
+           AT END OF comp2. 
+                ... 
+             ENDAT.] 
+         ... 
+       AT END OF comp1. 
+         ... 
+       ENDAT.] 
+  [AT LAST. 
+      ...
+      ENDAT]. 
+      
+AT LINE-SELECTION. 
+
+ AT PFnn.  
+ 
+ AT SELECTION-SCREEN [ OUTPUT 
+                     | {ON {par|selcrit}} 
+                     | {ON END OF selcrit} 
+                     | {ON BLOCK block} 
+                     | {ON RADIOBUTTON GROUP group} 
+                     | {ON {HELP-REQUEST|VALUE-REQUEST} 
+                        FOR {par|selcrit-low|selcrit-high}} 
+                     | {ON EXIT-COMMAND} ].
+                     
+AT USER-COMMAND.                                       
+
+
+AUTHORITY-CHECK OBJECT auth_obj [FOR USER user] 
+                        ID id1 {FIELD val1}|DUMMY 
+                       [ID id2 {FIELD val2}|DUMMY] 
+                       ... 
+                       [ID id10 {FIELD val10}|DUMMY]. 
+ BACK.                       
+ 
+ bit_exp
+ ... { [BIT-NOT] operand1 
+       [{BIT-AND|BIT-OR|BIT-XOR} [BIT-NOT] operand2 
+       [{BIT-AND|BIT-OR|BIT-XOR} [BIT-NOT] operand3 
+       ...  ]] } ...        
+       
+       
+#BREAK-POINT [ {ID group} | {log_text} ].              
+
+CALL BADI badi->meth|badi->(meth_name) 
+          { [EXPORTING  p1 = a1 p2 = a2 ...] 
+            [IMPORTING p1 = a1 p2 = a2 ...] 
+            [CHANGING   p1 = a1 p2 = a2 ...] 
+            [RECEIVING r  = a ] 
+            [EXCEPTIONS [exc1 = n1 exc2 = n2 ...] 
+            [OTHERS = n_others]]} 
+        | {[PARAMETER-TABLE ptab] 
+            [EXCEPTION-TABLE etab] }.  
+ 
+ CALL DIALOG dialog [ {AND SKIP FIRST SCREEN} 
+                    | {USING bdc_tab [MODE mode]} ] 
+                    [EXPORTING p1 FROM a1 p2 FROM a2 ...] 
+                    [IMPORTING p1 TO a1 p2 TO a2 ...].
+ 
+ CALL FUNCTION func [ {IN UPDATE TASK} 
+                    | { [ {STARTING NEW TASK task} 
+                        | {IN BACKGROUND TASK [AS SEPARATE UNIT]} ] 
+                        [DESTINATION dest] } 
+                    | {IN BACKGROUND UNIT} ] 
+                    [{CALLING meth}|{PERFORMING subr} ON END OF TASK] 
+                    { [EXPORTING  p1 = a1 p2 = a2 ...] 
+                      [IMPORTING p1 = a1 p2 = a2 ...] 
+                      [TABLES t1 = itab1 t2 = itab2 ...] 
+                      [CHANGING   p1 = a1 p2 = a2 ...] 
+                      [EXCEPTIONS [exc1 = n1 exc2 = n2 ...] 
+                                  [error_message = n_error] 
+                                  [system_failure = ns 
+                                    [MESSAGE smess]] 
+                                  [communication_failure = nc 
+                                    [MESSAGE cmess]] 
+                                  [resource_failure = nc] 
+                                  [OTHERS = n_others]]} 
+                    | {[PARAMETER-TABLE ptab] 
+                        [EXCEPTION-TABLE etab] }.
+  
+CALL CUSTOMER-FUNCTION func 
+                       [EXPORTING  p1 = a1 p2 = a2 ...] 
+                       [IMPORTING p1 = a1 p2 = a2 ...] 
+                       [CHANGING   p1 = a1 p2 = a2 ...] 
+                       [TABLES t1 = itab1 t2 = itab2 ...] 
+                       [EXCEPTIONS [exc1 = n1 exc2 = n2 ...] 
+                                   [error_message = n_error] 
+                                   [OTHERS = n_others]]  . 
+                                     
+ CALL DATABASE PROCEDURE proxy|(prox_name) 
+     [CONNECTION con|(con_syntax)] 
+     { [EXPORTING  p1 = a1 p2 = a2 ...] 
+       [IMPORTING  p1 = a1 p2 = a2 ...] } 
+   | { [PARAMETER-TABLE ptab] }.
+   
+   
+   CALL METHOD {(meth_name) 
+               |oref->(meth_name) 
+               |(class_name)=>(meth_name) 
+               |class=>(meth_name) 
+               |(class_name)=>meth} 
+     [PARAMETER-TABLE ptab] 
+     [EXCEPTION-TABLE etab]. 
+   
+   CALL METHOD OF ole meth [= rc] 
+                  [EXPORTING p1 = f1 p2 = f2 ...] 
+                  [NO FLUSH] [QUEUE-ONLY].
+                  
+ CALL SCREEN dynnr 
+             [STARTING AT col1 lin1 
+             [ENDING   AT col2 lin2]].
+             
+ CALL SELECTION-SCREEN dynnr 
+                       [STARTING AT col1 lin1 
+                       [ENDING   AT col2 lin2]] 
+                       [USING SELECTION-SET variant].              
+   
+  CALL TRANSACTION ta WITH|WITHOUT AUTHORITY-CHECK 
+                      { [AND SKIP FIRST SCREEN] 
+                      | [USING bdc_tab 
+                               {{[MODE mode] 
+                                 [UPDATE upd]} 
+                                |[OPTIONS FROM opt]} 
+                               [MESSAGES INTO itab]] }.
+                               
+                               
+  CASE TYPE OF oref 
+    [WHEN TYPE class|intf [INTO target1]. 
+      [statement_block1]] 
+    [WHEN TYPE class|intf [INTO target2]. 
+      [statement_block2]] 
+    ... 
+    [WHEN OTHERS. 
+      [statement_blockn]] 
+  ENDCASE. 
+  
+  CATCH SYSTEM-EXCEPTIONS [exc1 = n1 exc2 = n2 ...] 
+                          [OTHERS = n_others]. 
+    [statement_block] 
+  ENDCATCH.                             
+         
+  CATCH SYSTEM-EXCEPTIONS [exc1 = n1 exc2 = n2 ...] 
+                          [OTHERS = n_others]. 
+    [statement_block] 
+  ENDCATCH. 
+  
+  CHECK log_exp|SELECT-OPTIONS.        
+  
+  CLASS class DEFINITION [INHERITING FROM superclass] 
+                         [ABSTRACT] 
+                         [FINAL] 
+                         [CREATE {PUBLIC|PROTECTED|PRIVATE}] 
+                         [SHARED MEMORY ENABLED] 
+                         [FOR TESTING 
+                           [RISK LEVEL {CRITICAL|DANGEROUS|HARMLESS}] 
+                           [DURATION   {SHORT|MEDIUM|LONG}] ] 
+                         [[GLOBAL] FRIENDS [class1 class2 ...] 
+                                           [intf1 intf2 ...] ]. 
+    [PUBLIC SECTION. 
+      [components]] 
+    [PROTECTED SECTION. 
+      [components]] 
+    [PRIVATE SECTION. 
+      [components]] 
+  ENDCLASS. 
+  
+  CLASS class DEFINITION {DEFERRED [PUBLIC]} | LOAD. 
+  
+  CLASS-DATA attr options. 
+  
+  CLASS-EVENTS evt options. 
+  
+  CLASS-METHODS meth options. 
+  
+  CLASS-POOL [MESSAGE-ID mid]. 
+  
+  CLEAR dobj [ {WITH val [IN {CHARACTER|BYTE } MODE]} 
+             | {WITH NULL} ].   
+                                
+CLOSE CURSOR @dbcur. 
+
+    CLOSE DATASET dset. 
+    
+COLLECT wa INTO itab { [ASSIGNING <fs> [CASTING]] 
+                     | [REFERENCE INTO dref] }.      
+                     
+COMMIT WORK [AND WAIT]. 
+
+COMMIT CONNECTION con. 
+
+
+COMMUNICATION { {INIT DESTINATION dest} 
+              | {ALLOCATE} 
+              | {ACCEPT} 
+              | {SEND BUFFER buf} 
+              | {RECEIVE BUFFER buf DATAINFO dat STATUSINFO stat} 
+              | {DEALLOCATE} } ID id 
+              [RETURNCODE rc] 
+              [LENGTH leng] 
+              [RECEIVED rec] 
+              [HOLD].            
+              
+COMPUTE [EXACT] lhs =|?= rhs. 
+
+CONCATENATE {dobj1 dobj2 ...}|{LINES OF itab} 
+            INTO result 
+            [IN {CHARACTER|BYTE} MODE] 
+            [SEPARATED BY sep] 
+            [RESPECTING BLANKS]. 
+            
+CONDENSE text [NO-GAPS].      
+
+CONSTANTS const options. 
+
+CONTEXTS con. 
+
+CONTINUE. 
+
+CONTROLS contrl TYPE { TABLEVIEW USING SCREEN dynnr } 
+                   | { TABSTRIP }.   
+                   
+CONVERT {DATE dat1 INTO INVERTED-DATE dat2} 
+      | {INVERTED-DATE dat1 INTO DATE dat2}. 
+      
+CONVERT TEXT text INTO SORTABLE CODE hex. 
+
+CONVERT { TIME STAMP time_stamp TIME ZONE tz 
+          INTO [DATE dat] [TIME tim] [DAYLIGHT SAVING TIME dst] } 
+      | { DATE dat [TIME tim [DAYLIGHT SAVING TIME dst]] 
+          INTO TIME STAMP time_stamp TIME ZONE tz }. 
+          
+CREATE DATA dref [ AREA HANDLE handle ] 
+                 [ TYPE { {abap_type|(name) 
+                           [LENGTH len] [DECIMALS dec]} 
+                        | {[LINE OF] type|(name)} 
+                        | {REF TO type|(name)} 
+                        | { {{[STANDARD] TABLE} 
+                           |{SORTED TABLE} 
+                           |{HASHED TABLE}} 
+                           OF [REF TO] {type|(name)} 
+                           [ {WITH [UNIQUE|NON-UNIQUE] 
+                                {KEY {comp1 comp2 ...}|(keytab)}|{DEFAULT KEY}} 
+                           | {WITH EMPTY KEY} ] 
+                           [INITIAL SIZE n]} 
+                        | {HANDLE handle} } ] 
+               | [ LIKE { {[LINE OF] dobj} 
+                        | {REF TO dobj} 
+                        | { {{[STANDARD] TABLE} 
+                           |{SORTED TABLE} 
+                           |{HASHED TABLE}} 
+                           OF dobj 
+                           [ {WITH [UNIQUE|NON-UNIQUE] 
+                                {KEY {comp1 comp2 ...}|(keytab)}|{DEFAULT KEY}} 
+                           | {WITH EMPTY KEY} ] 
+                           [INITIAL SIZE n]} } ]. 
+                           
+CREATE OBJECT oref [AREA HANDLE handle] 
+                   [ [TYPE class] 
+                      [EXPORTING  p1 = a1 p2 = a2 ...] 
+                      [EXCEPTIONS exc1 = n1 exc2 = n2 ... [OTHERS = n_others]] ] 
+                 | [ TYPE (name) 
+                     { [EXPORTING  p1 = a1 p2 = a2 ...] 
+                      [EXCEPTIONS exc1 = n1 exc2 = n2 ... [OTHERS = n_others]]} 
+                   | {[PARAMETER-TABLE ptab] 
+                      [EXCEPTION-TABLE etab]} ].        
+                        
+CREATE OBJECT ole class [NO FLUSH] [QUEUE-ONLY]. 
+ 
+DATA BEGIN OF struc [READ-ONLY] [OCCURS n]. 
+  ... 
+  INCLUDE ... 
+  ... 
+DATA END OF struc [VALID BETWEEN intlim1 AND intlim2]. 
+
+DATA BEGIN OF COMMON PART [name]. 
+  ... 
+  DATA ... 
+  ... 
+DATA END OF COMMON PART [name]. 
+
+  DATA itab { {TYPE [REF TO] type} 
+            | {LIKE [REF TO] dobj} } OCCURS n 
+            [WITH HEADER LINE]. 
+  
+  DEFINE macro. 
+    ... &1 ... &9 ... 
+  END-OF-DEFINITION.
+  
+  DELETE DATASET dset. 
+  
+  DELETE { { FROM dbtab|view|(target_syntax) 
+             [USING CLIENT clnt] | [CLIENT SPECIFIED] 
+             [CONNECTION con|(con_syntax)] 
+             [WHERE sql_cond] [ORDER BY ... [OFFSET o]] [UP TO n ROWS] } 
+         | { dbtab|view|(target_syntax) [CLIENT SPECIFIED] 
+                                        [CONNECTION con|(con_syntax)] } 
+             FROM wa|{TABLE itab} }.
+             
+ DELETE { { {TABLE itab 
+             {{FROM wa [USING KEY key_name|(name)]} 
+             |{WITH TABLE KEY [key_name|(name) COMPONENTS] 
+                              {comp_name1|(name1)} = dobj1 
+                              {comp_name2|(name2)} = dobj2 
+                              ... }}} 
+          | {itab INDEX idx [USING KEY key_name|(name)]} 
+          | {itab [USING KEY loop_key]} } 
+        | {itab [USING KEY key_name|(name)] 
+                [FROM idx1] [TO idx2] [WHERE log_exp]|(cond_syntax)} 
+        | {ADJACENT DUPLICATES FROM itab 
+            [ USING KEY key_name|(name) ] 
+            [COMPARING comp1 comp2 ...|{ALL FIELDS}]} }.
+            
+ DELETE FROM { {MEMORY ID id} 
+             | {DATABASE      dbtab(ar) [CLIENT cl] ID id} 
+             | {SHARED MEMORY dbtab(ar) [CLIENT cl] ID id} 
+             | {SHARED BUFFER dbtab(ar) [CLIENT cl] ID id} }.
+                        
+  DEMAND val1 = f1 val2 = f2 ... 
+         FROM CONTEXT context_ref 
+         [MESSAGES INTO itab]. 
+  
+  DESCRIBE DISTANCE BETWEEN dobj1 AND dobj2 INTO dst 
+                            IN {BYTE|CHARACTER} MODE.                                                                      
+DESCRIBE FIELD dobj 
+  [TYPE typ [COMPONENTS com]] 
+  [LENGTH ilen IN {BYTE|CHARACTER} MODE] 
+  [DECIMALS dec] 
+  [OUTPUT-LENGTH olen] 
+  [HELP-ID hlp] 
+  [EDIT MASK mask]. 
+  
+ DESCRIBE LIST { {NUMBER OF {LINES|PAGES} n} 
+               | {LINE linno PAGE page} 
+               | {PAGE pagno [LINE-SIZE width] 
+                             [LINE-COUNT page_lines] 
+                             [LINES lines] 
+                             [FIRST-LINE first_line] 
+                             [TOP-LINES top_lines] 
+                             [TITLE-LINES title_lines] 
+                             [HEAD-LINES header_lines] 
+                             [END-LINES footer_lines]} } 
+               [INDEX idx]. 
+ DESCRIBE TABLE itab [KIND knd] [LINES lin] [OCCURS n]. 
+ 
+ DETAIL. 
+ 
+ DIVIDE dobj1 BY dobj2. 
+ 
+ DIVIDE-CORRESPONDING struc1 BY struc2. 
+ 
+ DO [n TIMES] 
+    [VARYING dobj FROM dobj1 NEXT dobj2 [RANGE range] 
+    [VARYING ...]]. 
+   [statement_block] 
+ ENDDO. 
+  
+                                 
+  ##
+  CASE operand. 
+    [WHEN operand1 [OR operand2 [OR operand3 [...]]]. 
+      [statement_block1]] 
+    ... 
+    [WHEN OTHERS. 
+      [statement_blockn]] 
+  ENDCASE.
+                                                                                                               
+DATA var[(len)] [TYPE { {abap_type [LENGTH len] 
+                                   [DECIMALS dec]} 
+                      | {[LINE OF] type [BOXED]} 
+                      | {REF TO type} 
+                      | { {{[STANDARD] TABLE} 
+                          |{SORTED TABLE} 
+                          |{HASHED TABLE}} 
+                          OF [REF TO] type 
+                          [ {WITH [UNIQUE|NON-UNIQUE] 
+                               { {KEY [primary_key [ALIAS key_name] 
+                                    COMPONENTS] comp1 comp2 ...} 
+                               | {DEFAULT KEY} }} 
+                          | {WITH EMPTY KEY} ] 
+                          {[WITH {UNIQUE HASHED}|{{UNIQUE|NON-UNIQUE} SORTED} 
+                             KEY key_name1 COMPONENTS comp1 comp2 ...] 
+                           [WITH {UNIQUE HASHED}|{{UNIQUE|NON-UNIQUE} SORTED} 
+                             KEY key_name2 COMPONENTS comp1 comp2 ...] 
+                           ...} 
+                          [INITIAL SIZE n] 
+                          [WITH HEADER LINE]} 
+                        | {RANGE OF type [INITIAL SIZE n] 
+                                         [WITH HEADER LINE]} 
+                        | {dbtab|view 
+                            { READER|LOCATOR|{LOB HANDLE} } 
+                          | { WRITER|LOCATOR } FOR 
+                            { COLUMNS blob1 blob2 ...  clob1 clob2 ... } 
+                          | { ALL [OTHER] [BLOB|CLOB] COLUMNS } 
+                              [...]}} ] 
+              | [LIKE { {[LINE OF] dobj} 
+                      | {REF TO dobj} 
+                      | { {{[STANDARD] TABLE} 
+                          |{SORTED TABLE} 
+                          |{HASHED TABLE}} 
+                          OF [REF TO] dobj 
+                          [ {WITH [UNIQUE|NON-UNIQUE] 
+                               { {KEY [primary_key [ALIAS key_name] 
+                                    COMPONENTS] comp1 comp2 ...} 
+                               | {DEFAULT KEY} }} 
+                          | {WITH EMPTY KEY} ] 
+                          {[WITH {UNIQUE HASHED}|{{UNIQUE|NON-UNIQUE} SORTED} 
+                             KEY key_name1 COMPONENTS comp1 comp2 ...] 
+                           [WITH {UNIQUE HASHED}|{{UNIQUE|NON-UNIQUE} SORTED} 
+                             KEY key_name2 COMPONENTS comp1 comp2 ...] 
+                           ...} 
+                          [INITIAL SIZE n] 
+                          [WITH HEADER LINE]} 
+                        | {RANGE OF dobj [INITIAL SIZE n] 
+                                         [WITH HEADER LINE]} }] 
+                [VALUE { val | {IS INITIAL} }] 
+                [READ-ONLY]. 
+
+
+WRITE {[AT] [/][pos][(len|*|**)]} dobj 
+  [UNDER other_dobj] 
+  [NO-GAP] 
+  [LEFT-JUSTIFIED|CENTERED|RIGHT-JUSTIFIED] 
+  { { [EXPONENT exp] 
+      [NO-GROUPING] 
+      [NO-SIGN] 
+      [NO-ZERO] 
+      [CURRENCY cur] 
+      { { [DECIMALS dec] 
+          [ROUND scale] } 
+        | [UNIT unit] } } 
+    | { [ENVIRONMENT TIME FORMAT] 
+        [TIME ZONE tz] } 
+    [STYLE stl] } 
+  [USING { {NO EDIT MASK}|{EDIT MASK mask} }] 
+  [DD/MM/YY|MM/DD/YY|DD/MM/YYYY|MM/DD/YYYY|DDMMYY|MMDDYY|YYMMDD] 
+  [COLOR { { [=] { { COL_BACKGROUND 
+                   | {1 | COL_HEADING } 
+                   | {2 | COL_NORMAL } 
+                   | {3 | COL_TOTAL } 
+                   | {4 | COL_KEY } 
+                   | {5 | COL_POSITIVE } 
+                   | {6 | COL_NEGATIVE } 
+                   | {7 | COL_GROUP } } [ON] } 
+                 | OFF} 
+         | {= col} }] 
+  [INTENSIFIED [ {ON|OFF} | {= flag} ]] 
+  [INVERSE     [ {ON|OFF} | {= flag} ]] 
+  [HOTSPOT     [ {ON|OFF} | {= flag} ]] 
+  [INPUT       [ {ON|OFF} | {= flag} ]] 
+  [FRAMES      [ {ON|OFF} | {= flag} ]] 
+  [RESET] 
+  { [AS CHECKBOX] 
+  | [AS ICON] 
+  | [AS SYMBOL] 
+  | [AS LINE] } 
+  [QUICKINFO info]. 
+  
+IF log_exp1. 
+  [Statments] 
+{
+[ELSEIF log_exp2. 
+  [Statments]] 
+}
+[ELSE. 
+  [statement_blockn]] 
+ENDIF.   
+  
+WHILE log_exp 
+      {[VARY dobj FROM dobj1 NEXT dobj2 [RANGE range] 
+      ]}. 
+  [Statments] 
+ENDWHILE. 
+
+EXIT. 
+
+CONTINUE. 
+
+#arith_exp
+... { [+|-] operand1 
+      [{+|-|*|/|DIV|MOD|**} [+|-] operand2 
+      [{+|-|*|/|DIV|MOD|**} [+|-] operand3 
+      ... ]] } ... 
+      
+#log_exp
+{ {operand1 {=|EQ|<>|NE|>|GT|<|LT|>=|GE|<=|LE 
+                |CO|CN|CA|NA|CS|NS|CP|NP 
+                |BYTE-CO|BYTE-CN|BYTE-CA|BYTE-NA|BYTE-CS|BYTE-NS 
+                |O|Z|M} operand2 } 
+    | {operand [NOT] BETWEEN operand1 AND operand2} 
+    | {operand [NOT] IN seltab} 
+    | {operand IS [NOT] INITIAL} 
+    | {ref     IS [NOT] BOUND} 
+    | {oref    IS [NOT] INSTANCE OF class|intf} 
+    | {<fs>    IS [NOT] ASSIGNED} 
+    | {para    IS [NOT] SUPPLIED} 
+    | {para    IS [NOT] REQUESTED} 
+
+  | { [NOT] log_exp [AND|OR|EQUIV log_exp] }

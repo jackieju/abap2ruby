@@ -6,15 +6,17 @@
 #cp ce.h          output
 #cp cc.h          output
 mv cs.cpp        output
-#cp cs.hpp        output
+cp cs.hpp        output
 mv cp.cpp        output
 #cp cp.hpp        output
 mv ce.hpp        output
 mv cc.hpp        output
 #cp c.cpp         output
 #cp abap.lst      output
-
+cp CR_SCAN.hpp output
+cp CR_ABS.hpp output
 dir=`pwd`
 cd /Users/i027910/Desktop/ju/projects/sap/cpp2ruby
-ruby translate.rb -parse $dir/output/*.cpp -d $dir/o
+#ruby translate.rb -parse $dir/output/*.cpp -d $dir/o
+ruby translate.rb $dir/output/*.cpp -d $dir/o
 

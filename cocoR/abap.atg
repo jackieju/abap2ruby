@@ -22,11 +22,9 @@ TOKENS
   identifier = ( "_" | letter) { "_" | letter | digit } .
   number     = digit { digit } [ "." { digit }] [ "U" | "u" | "L" | "l" ] .
   hexnumber  = "0" ( "x" | "X" ) hexdigit { hexdigit } [ "U" | "u" | "L" | "l" ] .
-  string1     = '"' { strings } '"' .
- 
-  char1       = "'" [ "\\" ] chars "'" .
-  library    = "<" files { files } ">" .
-  
+  string1     = "'" { strings } "'" .
+  char       = '"' [ "\\" ] chars '"' .
+   
   
 
 PRAGMAS
@@ -34,73 +32,19 @@ PRAGMAS
   PreProcessor = "#" ( letter ) .
 		    
 
-
-
-
-
 PRODUCTIONS
 
 
-    C                    =      
-   [ Package ] { Import | LoadLib } [ Inheritance ] 
+    C                    =     "REPORT"  identifier "."
 
-    { Definition } EOF .
-
-  Import = "use" ClassFullName
-  ";" .
-  
-  LoadLib = "load" identifier 
-  
-   ";" .
-  
-
-	
-	
- 
-  Definition           = 
- ClassDef | Statements .
-	
-               
-  
-  
-  Package = "package" identifier 
-
-		{"/"identifier
-	  }";" .
- 
-  Inheritance              = ("inherit"|"<") identifier 
-   ";" .
-  
-
-	ClassDef			= "class" identifier  
- 
-{Inheritance}
-ClassBody	";" .
-	ClassBody			 = 
-	
-
-	"{" { Definition} "}" 
-	
-	
-	.
-
-
-  StorageClass         = 
-   "static" 
-   | "my" 
-   | "function"
-   .
+    { Statements } EOF .
 
   Type               = 
 
-
 ( "var" | "mixed" )
-
 	|
 	 "short" [ "int" ]
-
-    | "long"  [ "int" | "float" ]
- 
+    | "long"  [ "int" | "float" ] 
 	| "unsigned" [ "char" | "int" | "long" ]
 	| "char"
 
@@ -113,176 +57,108 @@ ClassBody	";" .
 
 	.
 
-  VarList = 
-  ArraySize
-    [ "=" Expression ] 
-{ ","  identifier
-
-
-ArraySize
-
- [  "=" Expression ] 
-  } .
-
-  ArraySize            = { "[" [ ConstExpression ] "]" } .
 
 
 
-  FunctionDefinition   = 
+
+
+
+
+
+   
   
-  FunctionHeader FunctionBody  
-  
-  .
-  FunctionHeader       = 
-  
-
-
-							"(" [ FormalParamList ] ")" 
-  .
-  FunctionBody         = CompoundStatement
-   .
-  FormalParamList      = FormalParameter { "," FormalParameter } .
-  FormalParameter      =  { 
-  	Type {  "*" 			 }  
-  }identifier  
-  
-  { ArraySize 
-  }
-
-  .
-
 
 
   Statement            = 
-{ Label }
                          ( 
-                         
+                         VariableDefineStatement|
+                         WriteStatement |
 						 AssignmentStatement | BreakStatement
                            | ContinueStatement
                            | DoStatement | ForStatement
                            | IfStatement  | NullStatement
-                           | ReturnStatement | SwitchStatement
+                           | ReturnStatement 
                            | WhileStatement ) 
  .
 
-  Label                = ("case" ConstExpression ":")  | ( "default" ":") .
+VariableDefineStatement = "DATA" identifier ( "TYPE" Type "VALUE" Expression |
+"LIKE" Expression) "." .
 
-
+WriteStatement = "WRITE" {["AT"] ["/"][number][(number|"*"|"**")]} identifier 
+  ["UNDER" identifier] 
+  ["NO-GAP"] 
+  ["LEFT-JUSTIFIED"|"CENTERED"|"RIGHT-JUSTIFIED"] 
+  { { ["EXPONENT" Expression] 
+      ["NO-GROUPING"] 
+      ["NO-SIGN"] 
+      ["NO-ZERO"] 
+      ["CURRENCY" string1] 
+      { { ["DECIMALS" string1] 
+          ["ROUND" number] } 
+        | ["UNIT" string1] } } 
+    | { ["ENVIRONMENT" "TIME" "FORMAT"] 
+        ["TIME" "ZONE" string1] } 
+    ["STYLE" string1] } 
+  ["USING" { "NO" "EDIT" "MASK"| "EDIT" "MASK" string1}] 
+  ["DD/MM/YY"|"MM/DD/YY"|"DD/MM/YYYY"|"MM/DD/YYYY"|"DDMMYY"|"MMDDYY"|"YYMMDD"] 
+  ["COLOR" { { ["="] { { Primary
+                   } ["ON"] } 
+                 | "OFF"} 
+                 
+         | {"=" number} }] 
+  ["INTENSIFIED" [ {"ON"|"OFF"} | {"=" string1} ]] 
+  ["INVERSE"     [ {"ON"|"OFF"} | {"=" string1} ]] 
+  ["HOTSPOT"     [ {"ON"|"OFF"} | {"=" string1} ]] 
+  ["INPUT"       [ {"ON"|"OFF"} | {"=" string1} ]] 
+  ["FRAMES"      [ {"ON"|"OFF"} | {"=" string1} ]] 
+  ["RESET"] 
+  { ["AS" "CHECKBOX"] 
+  | ["AS" "ICON"] 
+  | ["AS" "SYMBOL"] 
+  | ["AS" "LINE"] } 
+  ["QUICKINFO" string1]".". 
 
   AssignmentStatement =  Expression ";" .
 
-  BreakStatement       = "break"  
-  
-	";"
- .
- LocalDeclaration     = 
-							
- ( Type |  StorageClass  [Type] )
-  
-							
-  { "*"						
-  } 
-  
-  identifier				
- (FunctionDefinition | VarList";" ) 
- . 
+  BreakStatement       = "break"  ";" .
 
-  CompoundStatement    = "{" Statements "}" .
 
-  Statements = { LocalDeclaration | Statement } .
+  Statements = { Statement } .
 
-  ContinueStatement    = "continue"  
-  
-	";" 
-  .
+  ContinueStatement    = "CONTINUE"  "."  .
 
   DoStatement          = "do" Statement "while" "(" Expression ")" ";"  .
 
-  ForStatement         = "for"  "(" [ Expression ] ";" 
-  
-   
-  [ Expression ] 
-  
-  ";"  
-  
-  [ 
+  ForStatement         = "for"  "(" [ Expression ] ";"   [ Expression ]   ";"  [ Expression  ] ")" Statement .
 
-	Expression 
-
-  ] ")" Statement
-   .
-
-  IfStatement          = "if" "(" Expression ")" 
   
-  Statement   [
- 
-   "else" 
-  
-  Statement
-  
-   ]
-   
- .
+  IfStatement          = "IF" Expression "."
+                              [Statements] 
+                             { "ELSEIF" Expression "."
+                              [Statements]
+                              }
+                              [ "ELSE" "."   [Statements]   ]
+                              "ENDIF" "." 
+                              .
 
   NullStatement        = ";"   . 
 
-  ReturnStatement      = "return" [ Expression ] 
-  
-  ";"   .
+  ReturnStatement      = "return" [ Expression ]   ";"   .
                          
 
-  SwitchStatement      = "switch" "("
+  WhileStatement = "WHILE" Expression 
+      {["VARY" identifier "FROM" identifier "NEXT" identifier ["RANGE" identifier] ]}"." 
+      [Statements] 
+      "ENDWHILE" "."
+. 
 
-   Expression 
-
-   
-   ")" Statement 
-
-	.
-
-  WhileStatement       = "while" "(" 
-    
-	Expression 
-	   
-   ")" Statement 
-   
-     .
-
-
-
-
-
-
-
-  ConstExpression      = Expression .
-
-  Expression           = Conditional { AssignmentOperator Expression
-  
-   }.
+  Expression           = Conditional { AssignmentOperator Expression   }.
 
   Conditional          = LogORExp .
 
-  LogORExp             = LogANDExp   { "||"
-  
-  
-LogANDExp 
+  LogORExp             = LogANDExp   { ("||" | "OR" | "EQUIV") LogANDExp } .
 
-} 
-
-
-.
-
-  LogANDExp            =
- 
-
-InclORExp   { "&&" 
-
-
-
-InclORExp 
-
-
-}
+  LogANDExp            = InclORExp   { ("&&" | "AND") InclORExp }
 
 .
 
@@ -292,52 +168,26 @@ InclORExp
 
   ANDExp               = EqualExp    { "&" EqualExp } .
 
-  EqualExp             = 
-  
+  EqualExp             =   RelationExp { ( "="| "EQ"| "<>" | "NE"  ) RelationExp } .
 
-  RelationExp { ( "=="
-   
-| "!="
- ) RelationExp 
-
-
-} 
-
-
-.
-
-  RelationExp          = 
-  
-  ShiftExp    { ( "<"  | ">" | "<=" | ">=" ) 
-  ShiftExp
-  
-   }
-  
-  
-  
+  RelationExp          =   ShiftExp    { ( "<" | "LT"  | ">" | "GT" | "<=" | "LE" | ">=" | "GE"|"CO"|"CN"|"CA"|"NA"|"CS"|"NS"|"CP"|"NP" 
+                |"BYTE-CO"|"BYTE-CN"|"BYTE-CA"|"BYTE-NA"|"BYTE-CS"|"BYTE-NS"
+                )   ShiftExp   }
   .
 
   ShiftExp             = AddExp      { ( "<<" | ">>" ) AddExp } .
+              
+                
+                
+  AddExp               = MultExp     { ( "+"  | "-"  ) MultExp 
+} .
 
-  AddExp               = 
-MultExp     { ( "+"  | "-"  ) MultExp 
-
-
+  MultExp              =   CastExp  
+ { ( "*"   | "/" | "DIV"  | "%"  | "MOD" | "**" ) CastExp 
 
 } .
 
-  MultExp              = 
-  CastExp  
- { ( "*"   | "/"   | "%"   ) CastExp 
-
-} .
-
-  CastExp              = 
-  
-  UnaryExp 
-  
-  
-  .
+  CastExp              =  UnaryExp  .
 
 
 
@@ -348,117 +198,25 @@ MultExp     { ( "+"  | "-"  ) MultExp
 
 
 
-  PostFixExp           = 
-	Primary
+  PostFixExp           = Primary
                          { "[" Expression "]"
-
-                          | 
-FunctionCall
-
-                          | 
-
-"." 
-( 
-
-
-
-identifier
- | "{" Expression 
-
-"}"
-
-)				
-
-
-		{ 
-	
-						FunctionCall
-						}
-					          
-                         
-                         
-                          | (  "->" {"{"} identifier {"}"} 
-
-			)			  
-		
-						  
-						  
+                          | FunctionCall
+                          | "." identifier
+                          | "->" identifier
                           | "++"
-
-
                           | "--"
-
-						  
-                         } .
-                         
-
-
-
-  Creator = 
+                         } .   
   
-  ClassFullName
-  
+  Primary              = identifier | string1 | char | number | "(" Expression ")" .
 
- {FunctionCall} 
+  FunctionCall        = "("   [ ActualParameters] ")"   .
 
-   .
-   
-  ClassFullName= 
-  identifier 
-  {"::" 
-   identifier 
-   }  .
-  
-  Primary              = 
-
- identifier 
-
- 	{	("##" identifier
-				
-			) | ("::" identifier
-			
-			)
-			
-	}
-			
-			
-  | "new" Creator
-   
-	| "$"
-	
-  
-  | string1
-  
-
-| char1
-  
-  | number 
- 
-  | "(" Expression ")" 
-  
-  .
-
-  FunctionCall        = "("  
- 
-
-
- [ ActualParameters] ")" 
-  .
-
-  ActualParameters    = 
-  Expression 
-  
-  { "," Expression 
-  
-  
-  } 
-  
-  .
+  ActualParameters    =   Expression   { "," Expression   }   .
 
   AssignmentOperator   =   "="  | "*=" | "/=" | "%=" | "+=" | "-=" | "&="
                          | "^=" | "|=" | "<<=" | ">>=" .
 
-  UnaryOperator        = "+" | "-" | "*" | "!" | "&" | "~" .
+  UnaryOperator        = "+" | "-" | "*" | "!" | "&" | "~" | "NOT".
 
 
 END C.
