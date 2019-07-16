@@ -43,7 +43,8 @@ class CRParser {
     CRError    *Error;
     int        Sym;
 };
-
+class CRRParser : public CRParser{
+}
 #define GENERR(x) JUJU::CLog::Log("Compilation error ", __FILE__, __LINE__, 10, "LOG", "compiler");GenError(x);
 
 #endif // CR_PARSER_H

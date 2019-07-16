@@ -81,7 +81,8 @@ def dump_one_as_ruby(v, module_name=nil)
                 if v[:src] #&& v[:src].strip != ""
                     p "src:#{v[:src]}"
                     method_template =<<HERE
-                def #{method_name}#{v[:head]}#{v[:src]}
+                def #{method_name}#{v[:head]}
+                    #{v[:src]}
                 end
 HERE
                 else

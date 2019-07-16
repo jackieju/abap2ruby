@@ -211,7 +211,7 @@ WriteStatement = "WRITE" {["AT"] ["/"][number][(number|"*"|"**")]} Expression
                               "ENDIF" "." 
                               .
 
-  NullStatement        = ";"   . 
+  NullStatement        = "." . 
 
   ReturnStatement      = "return" [ Expression ]   ";"   .
                          
@@ -249,13 +249,10 @@ WriteStatement = "WRITE" {["AT"] ["/"][number][(number|"*"|"**")]} Expression
               
                 
                 
-  AddExp               = MultExp     { ( "+"  | "-"  ) MultExp 
-} .
+  AddExp               = MultExp     { ( "+"  | "-"  ) MultExp } .
 
   MultExp              =   CastExp  
- { ( "*"   | "/" | "DIV"  | "%"  | "MOD" | "**" ) CastExp 
-
-} .
+ { ( "*"   | "/" | "DIV"  | "%"  | "MOD" | "**" ) CastExp } .
 
   CastExp              =  UnaryExp  .
 
@@ -271,7 +268,6 @@ WriteStatement = "WRITE" {["AT"] ["/"][number][(number|"*"|"**")]} Expression
   PostFixExp           = Primary
                          { "[" Expression "]"
                           | FunctionCall
-                          | "." identifier
                           | "->" identifier
                           | "++"
                           | "--"

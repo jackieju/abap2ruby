@@ -38,7 +38,7 @@
 const int MAXSYM = -->MaxSymSets;
 const int MAXERROR = -->MaxErr;
 
-class -->ParserClass : public CRParser
+class -->ParserClass : public CRRParser
 {
 
 
