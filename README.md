@@ -4,7 +4,7 @@
 Run
 ===
 <pre>
-ruby translate cp_testcase.abap
+ruby translate.rb cp_testcase.abap
 </pre>
 
 Generate ABAP Parser
