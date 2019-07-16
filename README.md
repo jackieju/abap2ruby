@@ -16,8 +16,16 @@ cd cocoR
 ./go
 </pre>
 
+     Done
+
 Code
 ===
+
+cocoR/abap.atg:    The EBNF for ABAP
+
+cocoR/o/cparser.rb The generated ABAP parser
+
+cocoR/cocor17:     Source code cocoR
 
 
 
