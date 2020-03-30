@@ -43,18 +43,28 @@ PRODUCTIONS
     Type = identifier .
 
 
-  Statement            = 
+  Statement            = (. ret = "" .)
                          ( 
-                         VariableDefineStatement|
-                         WriteStatement |
-						 AssignmentStatement | BreakStatement
-                           | ContinueStatement
-                           | DoStatement | ForStatement
-                           | IfStatement  | NullStatement
-                           | ReturnStatement 
-                           | WhileStatement ) 
+                         (. ret += .) VariableDefineStatement|
+                         (. ret += .) WriteStatement |
+						 (. ret += .) AssignmentStatement | (. ret += .) BreakStatement
+                           | (. ret += .) ContinueStatement
+                           | (. ret += .) DoStatement | (. ret += .) ForStatement
+                           | (. ret += .) IfStatement  | NullStatement
+                           | (. ret += .) ReturnStatement 
+                           | (. ret += .) WhileStatement 
+                           | (. ret += .) LoopStatement 
+                           | (. ret += .) CaseStatement
+                           | (. ret += .) CallFunctionStatement
+                           | ClassStatement
+                           | ClassImplStatement
+                           | MethodStatement
+                           | MethodsStatement
+                         ) 
+                           (. return ret .)
  .
 
+LoopStatement = "LOOP" "." Statements "ENDLOOP" "." .
 
 VariableDefineStatement =  "DATA" identifier[(number)] 
             (
@@ -145,7 +155,7 @@ VariableDefineStatement =  "DATA" identifier[(number)]
 
 
 
-WriteStatement = "WRITE" {["AT"] ["/"][number][(number|"*"|"**")]} Expression 
+WriteStatement =  "WRITE" {["AT"] ["/"][number][ "(" (number | "*" | "**") ")" ]} Expression 
   ["UNDER" identifier] 
   ["NO-GAP"] 
   ["LEFT-JUSTIFIED"|"CENTERED"|"RIGHT-JUSTIFIED"] 
@@ -193,15 +203,54 @@ WriteStatement = "WRITE" {["AT"] ["/"][number][(number|"*"|"**")]} Expression
   BreakStatement       = "break"  ";" .
 
 
-  Statements = { Statement } .
+  Statements = (. s = "" .){ (.s += .) Statement } (. return s .).
 
   ContinueStatement    = "CONTINUE"  "."  .
 
-  DoStatement          = "do" Statement "while" "(" Expression ")" ";"  .
+  DoStatement          = "DO" [number "TIMES"] {"VARYING" identifier "FROM" identifier "NEXT" identifier ["RANGE" number] } "." 
+  Statements
+"ENDDO" "." .
+
+CaseStatement = 
+    "CASE" Expression "." 
+      {"WHEN" Expression {"OR" Expression } "." 
+        Statements} 
+      ["WHEN" "OTHERS" "." 
+        Statements] 
+    "ENDCASE" "." .
 
   ForStatement         = "for"  "(" [ Expression ] ";"   [ Expression ]   ";"  [ Expression  ] ")" Statement .
 
-  
+  CallFunctionStatement = "CALL" "FUNCTION" identifier 
+              [ {"IN" "UPDATE" "TASK"} 
+               | 
+                   {
+                    [ 
+                        {"STARTING" "NEW" "TASK" identifier} 
+                       |
+                        {"IN" "BACKGROUND" "TASK" ["AS" "SEPARATE" "UNIT"]}
+                    ] 
+                    ["DESTINATION" identifier]
+                   } 
+               | {"IN" "BACKGROUND" "UNIT"} 
+              ] 
+              [{"CALLING" identifier}|{"PERFORMING" identifier} "ON" "END" "OF" "TASK"] 
+              { ["EXPORTING"  {identifier "=" Expression }] 
+                ["IMPORTING" {identifier "=" Expression }] 
+                ["TABLES" {identifier "=" identifier }] 
+                ["CHANGING"   {identifier "=" Expression }] 
+                ["EXCEPTIONS" {identifier "=" Expression } 
+                            ["error_message" "=" string1] 
+                            ["system_failure" "=" string1  ["MESSAGE" string1]] 
+                            ["communication_failure" "=" string1 ["MESSAGE" string1]] 
+                            ["resource_failure" "=" string1] 
+                            ["OTHERS" "=" string1]
+                ]
+              } 
+              | {["PARAMETER-TABLE" identifier] 
+                  ["EXCEPTION-TABLE" identifier] } "." . 
+                       
+                       
   IfStatement          = "IF" Expression "."
                               [Statements] 
                              { "ELSEIF" Expression "."
@@ -221,6 +270,72 @@ WriteStatement = "WRITE" {["AT"] ["/"][number][(number|"*"|"**")]} Expression
       [Statements] 
       "ENDWHILE" "."
 . 
+
+ClassStatement = "CLASS" identifier "DEFINITION" ["INHERITING" "FROM" identifier] 
+                       ["ABSTRACT"] 
+                       ["FINAL"] 
+                       ["CREATE" {"PUBLIC"|"PROTECTED"|"PRIVATE"}] 
+                       ["SHARED" "MEMORY" "ENABLED"] 
+                       ["FOR" "TESTING" 
+                         ["RISK" "LEVEL" {"CRITICAL"|"DANGEROUS"|"HARMLESS"}] 
+                         ["DURATION"   {"SHORT"|"MEDIUM"|"LONG"}] ] 
+                       [
+                           ["GLOBAL"] "FRIENDS" identifier {identifier}
+
+                        ] "." 
+  ["PUBLIC" "SECTION" "." 
+    Statements
+  ] 
+  ["PROTECTED" "SECTION" "." 
+    Statements
+  ] 
+  ["PRIVATE" "SECTION" "." 
+    Statements
+  ] 
+"ENDCLASS" "." .
+
+
+ClassImplStatement = "CLASS" identifier "IMPLEMENTATION" "." 
+   Statements 
+"ENDCLASS" "." .
+
+MethodStatement = "METHOD" identifier "." 
+  Statements 
+"ENDMETHOD" ".".
+
+Typing = (
+        "TYPE" identifier  
+        | "LIKE" identifier 
+        |  "TYPE" ( ["LINE" "OF"] identifier | "REF" "TO" identifier ) 
+        |  "LIKE" ( ["LINE" "OF"] identifier 
+         | "REF" "TO" identifier) 
+         )
+ "." .
+         
+          
+MethodsStatement = "METHODS" identifier ["ABSTRACT"|"FINAL"] 
+            |["DEFAULT" ("IGNORE"|"FAIL")] 
+             ["FOR" "EVENT" identifier "OF" identifier] 
+  [ "IMPORTING" {
+                  ("VALUE" "(" identifier ")" | "REFERENCE" "(" identifier ")" | identifier )
+                   Typing [("OPTIONAL"|"DEFAULT") identifier] 
+                 } 
+              ["PREFERRED" "PARAMETER" identifier] ] 
+  [ "EXPORTING" {
+                  {"VALUE"(identifier)|"REFERENCE"(identifier)|identifier} Typing 
+                 }
+                  ] 
+  [ "CHANGING"  {
+              ("VALUE" "(" identifier ")" | "REFERENCE" "(" identifier ")" | identifier )
+               Typing [("OPTIONAL"|"DEFAULT") identifier]
+               } ] 
+  [ "RETURNING" {"VALUE"(identifier)} Typing ] 
+  [
+       {"RAISING" (identifier| "RESUMABLE" "(" identifier ")" ) } 
+           | 
+       {"EXCEPTIONS" identifier {identifier} }
+  ] "." . 
+
 
   Expression           = Conditional { AssignmentOperator Expression   }.
 

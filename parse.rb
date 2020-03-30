@@ -1,6 +1,6 @@
+load 'macro.rb'
 load 'cp.rb'
 #load 'preprocessor.rb'
-load 'macro.rb'
 
 def parse_block(s, method="FunctionBody")
     p "parse using #{method}, #{s}"

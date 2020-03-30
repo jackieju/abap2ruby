@@ -23,4 +23,6 @@ dir=`pwd`
 cd /Users/i027910/Desktop/ju/projects/sap/cpp2ruby
 #ruby translate.rb -parse $dir/output/*.cpp -d $dir/o
 ruby translate.rb $dir/output/*.cpp -d $dir/o
+cd $dir
+./gen_sym.rb
 

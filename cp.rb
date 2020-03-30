@@ -68,17 +68,8 @@ class Parser < CParser
        @root_class.add_method(fn_name, "()", [], s, "")
     end
     
-    def Statements()
-        s = ""
-       while (@sym>=C_identifierSym&&@sym<=C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_charSym||@sym==C_spaceD1Sym||@sym>=C_PointSym&&@sym<=C_DATASym||@sym==C_WRITESym||@sym==C_StarSym||@sym>=C_breakSym&&@sym<=C_doSym||@sym==C_LparenSym||@sym>=C_forSym&&@sym<=C_IFSym||@sym>=C_returnSym&&@sym<=C_WHILESym||@sym==C_AndSym||@sym>=C_PlusSym&&@sym<=C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym>=C_BangSym&&@sym<=C_NOTSym)
-           r = Statement()
-           p r
-          s +=r
-       end
-       return s
 
-    end
-    def Statement()
+    def Statement1()
         ret = ""
        case @sym
 

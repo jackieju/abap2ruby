@@ -862,6 +862,8 @@ public
            while (1)
               NextCh()
               (@nextSym.Len+=1;@nextSym.Len-2)
+              
+              p "@ch:#{@ch.class.name}"
               case state
 
               when 1
@@ -997,6 +999,7 @@ public
                  if @ch==39
                     state=25
                  else
+                     p "ch255:#{ch.class.name}"
                     if @ch>=' '&&@ch<='&'||@ch>='('&&@ch<=255
 
                     else
