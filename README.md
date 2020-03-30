@@ -105,7 +105,7 @@ So it will need very big efforts to convert ABAP ambigous grammar(https://help.s
 
 The first step is convert the syntax for the keyword you want to implement from https://help.sap.com/doc/abapdocu_751_index_htm/7.51/en-US/index.htm definition to EBNF(https://tomassetti.me/ebnf/), which is defined in cocoR/abap.atg.
 
-The second step is to generate parser based on your newly added syntax. Just ruby 
+The second step is to generate parser based on your newly added syntax. Just run 
 <pre>
 cd cocoR
 ./go
@@ -117,6 +117,14 @@ and run testcase to see if the generated code is OK.
 ruby translate.rb cp_testcase.abap
 </pre>
 
-But so far you just generated the parser and you need to generate real ruby code in nex step.
+But so far you just generated the parser and you need to generate real ruby code in next step.
 
-In cp.rb, you can override the function in cocoR/o/cparser.rb to generate code. You can see the example of generating code for "write" Keyword, which in written in function "WriteStatement" in cp.rb
+In cp.rb, you can override the function in cocoR/o/cparser.rb to generate code. You can see the example of generating code for "write" Keyword, which is written in function "WriteStatement" in cp.rb
+
+And then you can write you ABAP code for testing in xxx.abap, and run
+
+<pre>
+ruby translate.rb xxx.abap
+</pre>
+
+to test the parser.
