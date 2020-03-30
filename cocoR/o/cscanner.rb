@@ -401,6 +401,10 @@ class CScanner < CRScanner
             return C_INHERITINGSym
          end
 
+         if EqualStr("IMPLEMENTATION")
+            return C_IMPLEMENTATIONSym
+         end
+
          if EqualStr("IGNORE")
             return C_IGNORESym
          end

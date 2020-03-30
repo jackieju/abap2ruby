@@ -56,8 +56,8 @@ PRODUCTIONS
                            | (. ret += .) LoopStatement 
                            | (. ret += .) CaseStatement
                            | (. ret += .) CallFunctionStatement
-                           | ClassStatement
-                           | ClassImplStatement
+                           |( ClassStatement
+                           | ClassImplStatement)
                            | MethodStatement
                            | MethodsStatement
                          ) 
@@ -304,11 +304,9 @@ MethodStatement = "METHOD" identifier "."
 "ENDMETHOD" ".".
 
 Typing = (
-        "TYPE" identifier  
-        | "LIKE" identifier 
-        |  "TYPE" ( ["LINE" "OF"] identifier | "REF" "TO" identifier ) 
-        |  "LIKE" ( ["LINE" "OF"] identifier 
-         | "REF" "TO" identifier) 
+        "TYPE"    ( identifier | ["LINE" "OF"] identifier | "REF" "TO" identifier ) 
+        | "LIKE" [( ["LINE" "OF"] | "REF" "TO" )] identifier 
+      
          )
  "." .
          

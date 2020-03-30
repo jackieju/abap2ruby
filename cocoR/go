@@ -1,6 +1,12 @@
+set -e
+cpp2ruby_dir=/Users/i027910/Desktop/ju/projects/sap/cpp2ruby
+#test grammar
 ./cocor17new abap.atg 
 
+# generate parser in c
 ./cocor17new -A -F -X -S -G -C -L -D abap.atg 
+
+# cp or move generated parser to output for converting to ruby
 #cp cs.c          output
 #cp cs.h          output
 #cp cp.c          output
@@ -19,10 +25,14 @@ cp CR_SCAN.hpp output
 cp CR_ABS.hpp output
 cp CR_PARSE.hpp output
 
+# translate parser from c to ruby
 dir=`pwd`
-cd /Users/i027910/Desktop/ju/projects/sap/cpp2ruby
+echo current dir $dir
+cd $cpp2ruby_dir
 #ruby translate.rb -parse $dir/output/*.cpp -d $dir/o
 ruby translate.rb $dir/output/*.cpp -d $dir/o
 cd $dir
-./gen_sym.rb
+#./gen_sym.rb
+#cp o/cparser.rb ../
+
 
