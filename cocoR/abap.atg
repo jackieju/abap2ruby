@@ -36,37 +36,98 @@ PRAGMAS
 PRODUCTIONS
 
 
-    C                    =     "REPORT"  identifier "."
 
-    { Statements } EOF .
+    C                  =      (ReportDef | FunctionDef) .
+    
+    ReportDef          = "REPORT"  identifier "." (. s = "" .) { (. s+= .) Statements }
+                       
+                    EOF .
+
+
 
     Type = identifier .
 
 
   Statement            = (. ret = "" .)
-                         ( 
-                         (. ret += .) VariableDefineStatement|
-                         (. ret += .) WriteStatement |
-						 (. ret += .) AssignmentStatement | (. ret += .) BreakStatement
-                           | (. ret += .) ContinueStatement
-                           | (. ret += .) DoStatement | (. ret += .) ForStatement
-                           | (. ret += .) IfStatement  | NullStatement
-                           | (. ret += .) ReturnStatement 
-                           | (. ret += .) WhileStatement 
-                           | (. ret += .) LoopStatement 
-                           | (. ret += .) CaseStatement
-                           | (. ret += .) CallFunctionStatement
-                           |( ClassStatement
-                           | ClassImplStatement)
-                           | MethodStatement
-                           | MethodsStatement
+                         (
+                              VariableDefineStatement
+                             | (. ret += .) WriteStatement 
+                             | (. ret += .) AssignmentStatement 
+                             | (. ret += .) BreakStatement
+                             | (. ret += .) ContinueStatement
+                             | (. ret += .) DoStatement 
+                             | (. ret += .) ForStatement
+                             | (. ret += .) IfStatement  
+                             | NullStatement
+                             | (. ret += .) ReturnStatement 
+                             | (. ret += .) WhileStatement 
+                             | (. ret += .) LoopStatement 
+                             | (. ret += .) CaseStatement
+                             | (. ret += .) CallFunctionStatement
+                             | (
+                                  ClassStatement
+                                  | ClassImplStatement
+                                )
+                             | MethodStatement
+                             | MethodsStatement
+                             | FunctionDef
+                             | DescribeStatement
+                             | MessasgeStatement
                          ) 
                            (. return ret .)
  .
 
+
+FunctionDef = "FUNCTION" identifier "."  (. s = "" .)
+                { (. s+= .)  Statements } 
+              "ENDFUNCTION" EOF .
+
+DescribeStatement = "DESCRIBE" (
+          ( "FIELD" identifier 
+          ["TYPE" identifier ["COMPONENTS" identifier]] 
+          ["LENGTH" number "IN" {"BYTE"|"CHARACTER"} "MODE"] 
+          ["DECIMALS" string1] 
+          ["OUTPUT-LENGTH" number] 
+          ["HELP-ID" identifier] 
+          ["EDIT" "MASK" identifier]
+          )
+        | ("DISTANCE" "BETWEEN" identifier "AND" identifier "INTO" identifier 
+                          "IN" {"BYTE"|"CHARACTER"} "MODE" )
+
+        | ("LIST" { {"NUMBER" "OF" {"LINES"|"PAGES"} number} 
+              | {"LINE" number "PAGE" number} 
+              | {"PAGE" number ["LINE-SIZE" number] 
+                            ["LINE-COUNT" number] 
+                            ["LINES" number] 
+                            ["FIRST-LINE" number] 
+                            ["TOP-LINES" number] 
+                            ["TITLE-LINES" number] 
+                            ["HEAD-LINES" number] 
+                            ["END-LINES" number]} } 
+              ["INDEX" identifier]
+              )
+        | ( "TABLE" identifier ["KIND" identifier] ["LINES" number] ["OCCURS" number] )
+        )
+        .
+        
+MessasgeStatement = "MESSAGE"
+         {(
+         ( identifier [ ( "(" identifier ")" | (  "TYPE" identifier) ) ] )
+        | ( "ID" identifier "TYPE" identifier "NUMBER" number )
+        
+        | (string1 "TYPE" identifier)
+         )} 
+         
+        [(
+        (["DISPLAY" "LIKE" identifier] 
+            ["RAISING" identifier] )
+        | ("INTO" string1)
+        )]
+        ["WITH" identifier {identifier}]. 
+
 LoopStatement = "LOOP" "." Statements "ENDLOOP" "." .
 
-VariableDefineStatement =  "DATA" identifier[(number)] 
+VariableDefineStatement =  "DATA" identifier { "(" number  ")" }
             (
                 "TYPE"    
                 ( 

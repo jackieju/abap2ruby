@@ -32,7 +32,9 @@ cd $cpp2ruby_dir
 #ruby translate.rb -parse $dir/output/*.cpp -d $dir/o
 ruby translate.rb $dir/output/*.cpp -d $dir/o
 cd $dir
-#./gen_sym.rb
+cd ..
+./gen_sym.rb cocoR/output/cc.hpp
+
 #cp o/cparser.rb ../
 
 

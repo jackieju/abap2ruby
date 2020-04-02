@@ -572,7 +572,7 @@ def  parse_arg(arg, a)
         $g_search_dirs = $g_search_dirs.concat(a.split(";"))
     end
 end
-p $*.inspect
+p "command ine arguments:#{$*.inspect}"
 $mode = "translate"
 if $*.size >0
     #for i in 0..$*.size-1 

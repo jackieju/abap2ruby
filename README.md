@@ -1,4 +1,8 @@
 # abap2ruby
+Preparation
+===
+Ruby 2.6
+The project is developed/tested on macos. But since it's ruby project, should be smooth to run on linux or win.
 
 
 Run
@@ -29,12 +33,15 @@ cocoR/cocor17:     Source code of cocoR
 
 cp.rb:      subclass of cparser.rb for overriding, the real place to generate code to implement ABAP keyword functionality like "write"
 
+abaplib.rb:   Implemenation of ABAP keyword in ruby. like "write". You can definitly write your own lib to execute your translated abap program.
+
+abap/:  abap code for testing, from https://github.com/Apress/sap-abap 
 
 Trouble shooting
 ===
 1. In case you encounter problem of mulit "else" in generated cparser.rb, it's because you use wrong syntax for LL(1) generator.
 e.g.
-"Statment" is defined as:
+"Statement" is defined as:
 <pre> 
 
   Statement            = 
@@ -128,3 +135,37 @@ ruby translate.rb xxx.abap
 </pre>
 
 to test the parser.
+
+In case you add new keyword to abap.atg, the scanner(scanner.rb) will need to be changed:
+1. Set value of @@STATE0, copy the value from cocoR/output/cs.cpp
+<pre>
+int cScanner::STATE0[] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                  0,0,31,111,26,32,0,94,82,24,38,41,39,92,100,93,36,37,34,2,2,2,2,2,2,2,2,2,30,79,
+                  85,78,87,0,0,1,1,1,113,1,1,1,1,1,1,1,1,114,1,1,1,1,1,1,1,1,1,1,1,1,
+                  1,97,0,98,84,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+                  1,1,1,0,80,0,112,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                  0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                  0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                  0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                  0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+</pre>                  
+to scanner.rb
+<pre>
+
+   @@STATE0 = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                  0,0,31,111,26,32,0,94,82,24,38,41,39,92,100,93,36,37,34,2,2,2,2,2,2,2,2,2,30,79,
+                  85,78,87,0,0,1,1,1,113,1,1,1,1,1,1,1,1,114,1,1,1,1,1,1,1,1,1,1,1,1,
+                  1,97,0,98,84,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+                  1,1,1,0,80,0,112,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                  0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                  0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                  0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                  0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]                   
+</pre>                  
+
+2. copy content of method 'CheckLiteral', from cocoR/output/cscanner.rb
+
+3. copy part of body of method 'Get', from cocoR/output/cscanner.rb to scanner.rb
+    1) Copy the while loop after state=@sTATE0[@ch]
+    2) Change .Len .Pos to .len .pos 
+    

@@ -17,6 +17,10 @@ class CScanner < CRScanner
       case :c
 
       when 'A'
+         if EqualStr("AND")
+            return C_ANDSym
+         end
+
          if EqualStr("ALIAS")
             return C_ALIASSym
          end
@@ -37,12 +41,16 @@ class CScanner < CRScanner
             return C_ABSTRACTSym
          end
 
-         if EqualStr("AND")
-            return C_ANDSym
-         end
-
 
       when 'B'
+         if EqualStr("BYTE")
+            return C_BYTESym
+         end
+
+         if EqualStr("BETWEEN")
+            return C_BETWEENSym
+         end
+
          if EqualStr("BOXED")
             return C_BOXEDSym
          end
@@ -83,6 +91,10 @@ class CScanner < CRScanner
       when 'C'
          if EqualStr("COMPONENTS")
             return C_COMPONENTSSym
+         end
+
+         if EqualStr("CHARACTER")
+            return C_CHARACTERSym
          end
 
          if EqualStr("COLUMNS")
@@ -163,12 +175,24 @@ class CScanner < CRScanner
 
 
       when 'D'
-         if EqualStr("DATA")
-            return C_DATASym
+         if EqualStr("DESCRIBE")
+            return C_DESCRIBESym
          end
 
          if EqualStr("DECIMALS")
             return C_DECIMALSSym
+         end
+
+         if EqualStr("DISTANCE")
+            return C_DISTANCESym
+         end
+
+         if EqualStr("DISPLAY")
+            return C_DISPLAYSym
+         end
+
+         if EqualStr("DATA")
+            return C_DATASym
          end
 
          if EqualStr("DEFAULT")
@@ -205,6 +229,18 @@ class CScanner < CRScanner
 
 
       when 'E'
+         if EqualStr("ENDFUNCTION")
+            return C_ENDFUNCTIONSym
+         end
+
+         if EqualStr("EDIT")
+            return C_EDITSym
+         end
+
+         if EqualStr("END-LINES")
+            return C_ENDMinusLINESSym
+         end
+
          if EqualStr("ENDLOOP")
             return C_ENDLOOPSym
          end
@@ -219,10 +255,6 @@ class CScanner < CRScanner
 
          if EqualStr("ENVIRONMENT")
             return C_ENVIRONMENTSym
-         end
-
-         if EqualStr("EDIT")
-            return C_EDITSym
          end
 
          if EqualStr("ENDDO")
@@ -291,6 +323,18 @@ class CScanner < CRScanner
 
 
       when 'F'
+         if EqualStr("FUNCTION")
+            return C_FUNCTIONSym
+         end
+
+         if EqualStr("FIELD")
+            return C_FIELDSym
+         end
+
+         if EqualStr("FIRST-LINE")
+            return C_FIRSTMinusLINESym
+         end
+
          if EqualStr("FOR")
             return C_FORSym
          end
@@ -305,10 +349,6 @@ class CScanner < CRScanner
 
          if EqualStr("FROM")
             return C_FROMSym
-         end
-
-         if EqualStr("FUNCTION")
-            return C_FUNCTIONSym
          end
 
          if EqualStr("FINAL")
@@ -339,6 +379,14 @@ class CScanner < CRScanner
 
 
       when 'H'
+         if EqualStr("HELP-ID")
+            return C_HELPMinusIDSym
+         end
+
+         if EqualStr("HEAD-LINES")
+            return C_HEADMinusLINESSym
+         end
+
          if EqualStr("HANDLE")
             return C_HANDLESym
          end
@@ -361,6 +409,22 @@ class CScanner < CRScanner
 
 
       when 'I'
+         if EqualStr("IN")
+            return C_INSym
+         end
+
+         if EqualStr("INTO")
+            return C_INTOSym
+         end
+
+         if EqualStr("INDEX")
+            return C_INDEXSym
+         end
+
+         if EqualStr("ID")
+            return C_IDSym
+         end
+
          if EqualStr("INITIAL")
             return C_INITIALSym
          end
@@ -385,10 +449,6 @@ class CScanner < CRScanner
             return C_ICONSym
          end
 
-         if EqualStr("IN")
-            return C_INSym
-         end
-
          if EqualStr("IMPORTING")
             return C_IMPORTINGSym
          end
@@ -411,18 +471,46 @@ class CScanner < CRScanner
 
 
       when 'K'
+         if EqualStr("KIND")
+            return C_KINDSym
+         end
+
          if EqualStr("KEY")
             return C_KEYSym
          end
 
 
       when 'L'
-         if EqualStr("LOOP")
-            return C_LOOPSym
-         end
-
          if EqualStr("LENGTH")
             return C_LENGTHSym
+         end
+
+         if EqualStr("LIST")
+            return C_LISTSym
+         end
+
+         if EqualStr("LINES")
+            return C_LINESSym
+         end
+
+         if EqualStr("LINE")
+            return C_LINESym
+         end
+
+         if EqualStr("LINE-SIZE")
+            return C_LINEMinusSIZESym
+         end
+
+         if EqualStr("LINE-COUNT")
+            return C_LINEMinusCOUNTSym
+         end
+
+         if EqualStr("LIKE")
+            return C_LIKESym
+         end
+
+         if EqualStr("LOOP")
+            return C_LOOPSym
          end
 
          if EqualStr("LOCATOR")
@@ -431,14 +519,6 @@ class CScanner < CRScanner
 
          if EqualStr("LOB")
             return C_LOBSym
-         end
-
-         if EqualStr("LINE")
-            return C_LINESym
-         end
-
-         if EqualStr("LIKE")
-            return C_LIKESym
          end
 
          if EqualStr("LEFT-JUSTIFIED")
@@ -463,16 +543,20 @@ class CScanner < CRScanner
 
 
       when 'M'
+         if EqualStr("MODE")
+            return C_MODESym
+         end
+
          if EqualStr("MASK")
             return C_MASKSym
          end
 
-         if EqualStr("MMDDYY")
-            return C_MMDDYYSym
-         end
-
          if EqualStr("MESSAGE")
             return C_MESSAGESym
+         end
+
+         if EqualStr("MMDDYY")
+            return C_MMDDYYSym
          end
 
          if EqualStr("MEMORY")
@@ -497,6 +581,10 @@ class CScanner < CRScanner
 
 
       when 'N'
+         if EqualStr("NUMBER")
+            return C_NUMBERSym
+         end
+
          if EqualStr("NON-UNIQUE")
             return C_NONMinusUNIQUESym
          end
@@ -551,8 +639,16 @@ class CScanner < CRScanner
 
 
       when 'O'
+         if EqualStr("OUTPUT-LENGTH")
+            return C_OUTPUTMinusLENGTHSym
+         end
+
          if EqualStr("OF")
             return C_OFSym
+         end
+
+         if EqualStr("OCCURS")
+            return C_OCCURSSym
          end
 
          if EqualStr("OTHER")
@@ -581,6 +677,14 @@ class CScanner < CRScanner
 
 
       when 'P'
+         if EqualStr("PAGES")
+            return C_PAGESSym
+         end
+
+         if EqualStr("PAGE")
+            return C_PAGESym
+         end
+
          if EqualStr("PERFORMING")
             return C_PERFORMINGSym
          end
@@ -621,6 +725,10 @@ class CScanner < CRScanner
             return C_REPORTSym
          end
 
+         if EqualStr("RAISING")
+            return C_RAISINGSym
+         end
+
          if EqualStr("READER")
             return C_READERSym
          end
@@ -659,10 +767,6 @@ class CScanner < CRScanner
 
          if EqualStr("RETURNING")
             return C_RETURNINGSym
-         end
-
-         if EqualStr("RAISING")
-            return C_RAISINGSym
          end
 
          if EqualStr("RESUMABLE")
@@ -717,12 +821,20 @@ class CScanner < CRScanner
             return C_TYPESym
          end
 
-         if EqualStr("TO")
-            return C_TOSym
+         if EqualStr("TOP-LINES")
+            return C_TOPMinusLINESSym
+         end
+
+         if EqualStr("TITLE-LINES")
+            return C_TITLEMinusLINESSym
          end
 
          if EqualStr("TABLE")
             return C_TABLESym
+         end
+
+         if EqualStr("TO")
+            return C_TOSym
          end
 
          if EqualStr("TIME")
@@ -1196,6 +1308,10 @@ class CScanner < CRScanner
             when 36
                return C_PointSym
             when 37
+               return C_LparenSym
+            when 38
+               return C_RparenSym
+            when 39
                if @ch=='='
                   state=102
                else
@@ -1203,11 +1319,9 @@ class CScanner < CRScanner
                end
 
 
-            when 38
-               return C_LparenSym
-            when 39
+            when 40
                if @ch=='*'
-                  state=40
+                  state=41
                else
                   if @ch=='='
                      state=101
@@ -1218,10 +1332,8 @@ class CScanner < CRScanner
                end
 
 
-            when 40
-               return C_StarStarSym
             when 41
-               return C_RparenSym
+               return C_StarStarSym
             when 66
                if @ch=='Y'
                   state=67

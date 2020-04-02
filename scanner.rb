@@ -3,16 +3,17 @@ load "rubyutility.rb"
 load "log.rb"
 
 
-class String
-    def to_byte
-        # self.bytes[0] # not work for ruby 1.8.7
-        self[0].ord # to Decimal
-    end
-end
-COCO_WCHAR_MAX =65535
-MIN_BUFFER_LENGTH =1024
-MAX_BUFFER_LENGTH =(64*MIN_BUFFER_LENGTH)
-HEAP_BLOCK_SIZE =(64*1024)
+#class String
+#    def to_byte
+#        # self.bytes[0] # not work for ruby 1.8.7
+#        self[0].ord # to Decimal
+#    end
+#end
+#COCO_WCHAR_MAX =65535
+#MIN_BUFFER_LENGTH =1024
+#MAX_BUFFER_LENGTH =(64*MIN_BUFFER_LENGTH)
+#HEAP_BLOCK_SIZE =(64*1024)
+
 # COCO_CPP_NAMESPACE_SEPARATOR =L':'
 =begin
 # string handling, wide character
@@ -361,8 +362,8 @@ class CScanner <  CRRScanner
   # --- here need steps ---#
   # 1. @@STATE0 =  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
    @@STATE0 = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-                  0,0,31,111,26,32,0,94,82,24,78,79,38,92,100,93,36,37,34,2,2,2,2,2,2,2,2,2,30,77,
-                  85,76,87,0,0,1,1,1,113,1,1,1,1,1,1,1,1,114,1,1,1,1,1,1,1,1,1,1,1,1,
+                  0,0,31,111,26,32,0,94,82,24,37,38,40,92,100,93,36,39,34,2,2,2,2,2,2,2,2,2,30,79,
+                  85,78,87,0,0,1,1,1,113,1,1,1,1,1,1,1,1,114,1,1,1,1,1,1,1,1,1,1,1,1,
                   1,97,0,98,84,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
                   1,1,1,0,80,0,112,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
                   0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -381,7 +382,7 @@ public
   # 4. def Get(ignore_crlf=true), 
   #     copy the part after state=@sTATE0[@ch]
   #     change .Len .Pos to .len .pos
-  # 5. recopy sym from cc.hpp to sym.rb
+  # 5. recopy sym from cc.hpp to sym.rb (not needed, done by gen_sym.rb)
   def CheckLiteral(id)
      c=CurrentCh(@nextSym.Pos)
      if @ignoreCase
@@ -391,6 +392,14 @@ public
      case c
 
      when 'A'
+        if EqualStr("ALIAS")
+           return C_ALIASSym
+        end
+
+        if EqualStr("ALL")
+           return C_ALLSym
+        end
+
         if EqualStr("AT")
            return C_ATSym
         end
@@ -399,12 +408,74 @@ public
            return C_ASSym
         end
 
+        if EqualStr("ABSTRACT")
+           return C_ABSTRACTSym
+        end
+
         if EqualStr("AND")
            return C_ANDSym
         end
 
 
+     when 'B'
+        if EqualStr("BYTE")
+           return C_BYTESym
+        end
+
+        if EqualStr("BOXED")
+           return C_BOXEDSym
+        end
+
+        if EqualStr("BLOB")
+           return C_BLOBSym
+        end
+
+        if EqualStr("BACKGROUND")
+           return C_BACKGROUNDSym
+        end
+
+        if EqualStr("BYTE-CO")
+           return C_BYTEMinusCOSym
+        end
+
+        if EqualStr("BYTE-CN")
+           return C_BYTEMinusCNSym
+        end
+
+        if EqualStr("BYTE-CA")
+           return C_BYTEMinusCASym
+        end
+
+        if EqualStr("BYTE-NA")
+           return C_BYTEMinusNASym
+        end
+
+        if EqualStr("BYTE-CS")
+           return C_BYTEMinusCSSym
+        end
+
+        if EqualStr("BYTE-NS")
+           return C_BYTEMinusNSSym
+        end
+
+
      when 'C'
+        if EqualStr("COMPONENTS")
+           return C_COMPONENTSSym
+        end
+
+        if EqualStr("CHARACTER")
+           return C_CHARACTERSym
+        end
+
+        if EqualStr("COLUMNS")
+           return C_COLUMNSSym
+        end
+
+        if EqualStr("CLOB")
+           return C_CLOBSym
+        end
+
         if EqualStr("CENTERED")
            return C_CENTEREDSym
         end
@@ -423,6 +494,34 @@ public
 
         if EqualStr("CONTINUE")
            return C_CONTINUESym
+        end
+
+        if EqualStr("CASE")
+           return C_CASESym
+        end
+
+        if EqualStr("CALL")
+           return C_CALLSym
+        end
+
+        if EqualStr("CALLING")
+           return C_CALLINGSym
+        end
+
+        if EqualStr("CHANGING")
+           return C_CHANGINGSym
+        end
+
+        if EqualStr("CLASS")
+           return C_CLASSSym
+        end
+
+        if EqualStr("CREATE")
+           return C_CREATESym
+        end
+
+        if EqualStr("CRITICAL")
+           return C_CRITICALSym
         end
 
         if EqualStr("CO")
@@ -447,16 +546,48 @@ public
 
 
      when 'D'
-        if EqualStr("DATA")
-           return C_DATASym
+        if EqualStr("DESCRIBE")
+           return C_DESCRIBESym
         end
 
         if EqualStr("DECIMALS")
            return C_DECIMALSSym
         end
 
+        if EqualStr("DISTANCE")
+           return C_DISTANCESym
+        end
+
+        if EqualStr("DATA")
+           return C_DATASym
+        end
+
+        if EqualStr("DEFAULT")
+           return C_DEFAULTSym
+        end
+
         if EqualStr("DDMMYY")
            return C_DDMMYYSym
+        end
+
+        if EqualStr("DO")
+           return C_DOSym
+        end
+
+        if EqualStr("DESTINATION")
+           return C_DESTINATIONSym
+        end
+
+        if EqualStr("DEFINITION")
+           return C_DEFINITIONSym
+        end
+
+        if EqualStr("DANGEROUS")
+           return C_DANGEROUSSym
+        end
+
+        if EqualStr("DURATION")
+           return C_DURATIONSym
         end
 
         if EqualStr("DIV")
@@ -465,6 +596,22 @@ public
 
 
      when 'E'
+        if EqualStr("ENDFUNCTION")
+           return C_ENDFUNCTIONSym
+        end
+
+        if EqualStr("EDIT")
+           return C_EDITSym
+        end
+
+        if EqualStr("ENDLOOP")
+           return C_ENDLOOPSym
+        end
+
+        if EqualStr("EMPTY")
+           return C_EMPTYSym
+        end
+
         if EqualStr("EXPONENT")
            return C_EXPONENTSym
         end
@@ -473,8 +620,28 @@ public
            return C_ENVIRONMENTSym
         end
 
-        if EqualStr("EDIT")
-           return C_EDITSym
+        if EqualStr("ENDDO")
+           return C_ENDDOSym
+        end
+
+        if EqualStr("ENDCASE")
+           return C_ENDCASESym
+        end
+
+        if EqualStr("END")
+           return C_ENDSym
+        end
+
+        if EqualStr("EXPORTING")
+           return C_EXPORTINGSym
+        end
+
+        if EqualStr("EXCEPTIONS")
+           return C_EXCEPTIONSSym
+        end
+
+        if EqualStr("EXCEPTION-TABLE")
+           return C_EXCEPTIONMinusTABLESym
         end
 
         if EqualStr("ELSEIF")
@@ -493,6 +660,22 @@ public
            return C_ENDWHILESym
         end
 
+        if EqualStr("ENABLED")
+           return C_ENABLEDSym
+        end
+
+        if EqualStr("ENDCLASS")
+           return C_ENDCLASSSym
+        end
+
+        if EqualStr("ENDMETHOD")
+           return C_ENDMETHODSym
+        end
+
+        if EqualStr("EVENT")
+           return C_EVENTSym
+        end
+
         if EqualStr("EQUIV")
            return C_EQUIVSym
         end
@@ -503,6 +686,18 @@ public
 
 
      when 'F'
+        if EqualStr("FUNCTION")
+           return C_FUNCTIONSym
+        end
+
+        if EqualStr("FIELD")
+           return C_FIELDSym
+        end
+
+        if EqualStr("FOR")
+           return C_FORSym
+        end
+
         if EqualStr("FORMAT")
            return C_FORMATSym
         end
@@ -515,8 +710,24 @@ public
            return C_FROMSym
         end
 
+        if EqualStr("FINAL")
+           return C_FINALSym
+        end
+
+        if EqualStr("FRIENDS")
+           return C_FRIENDSSym
+        end
+
+        if EqualStr("FAIL")
+           return C_FAILSym
+        end
+
 
      when 'G'
+        if EqualStr("GLOBAL")
+           return C_GLOBALSym
+        end
+
         if EqualStr("GT")
            return C_GTSym
         end
@@ -527,12 +738,44 @@ public
 
 
      when 'H'
+        if EqualStr("HELP-ID")
+           return C_HELPMinusIDSym
+        end
+
+        if EqualStr("HANDLE")
+           return C_HANDLESym
+        end
+
+        if EqualStr("HASHED")
+           return C_HASHEDSym
+        end
+
+        if EqualStr("HEADER")
+           return C_HEADERSym
+        end
+
         if EqualStr("HOTSPOT")
            return C_HOTSPOTSym
         end
 
+        if EqualStr("HARMLESS")
+           return C_HARMLESSSym
+        end
+
 
      when 'I'
+        if EqualStr("IN")
+           return C_INSym
+        end
+
+        if EqualStr("INITIAL")
+           return C_INITIALSym
+        end
+
+        if EqualStr("IS")
+           return C_ISSym
+        end
+
         if EqualStr("INTENSIFIED")
            return C_INTENSIFIEDSym
         end
@@ -549,18 +792,72 @@ public
            return C_ICONSym
         end
 
+        if EqualStr("IMPORTING")
+           return C_IMPORTINGSym
+        end
+
         if EqualStr("IF")
            return C_IFSym
         end
 
+        if EqualStr("INHERITING")
+           return C_INHERITINGSym
+        end
+
+        if EqualStr("IMPLEMENTATION")
+           return C_IMPLEMENTATIONSym
+        end
+
+        if EqualStr("IGNORE")
+           return C_IGNORESym
+        end
+
+
+     when 'K'
+        if EqualStr("KEY")
+           return C_KEYSym
+        end
+
 
      when 'L'
-        if EqualStr("LIKE")
-           return C_LIKESym
+        if EqualStr("LENGTH")
+           return C_LENGTHSym
+        end
+
+        if EqualStr("LIST")
+           return C_LISTSym
+        end
+
+        if EqualStr("LOOP")
+           return C_LOOPSym
+        end
+
+        if EqualStr("LOCATOR")
+           return C_LOCATORSym
+        end
+
+        if EqualStr("LOB")
+           return C_LOBSym
         end
 
         if EqualStr("LINE")
            return C_LINESym
+        end
+
+        if EqualStr("LIKE")
+           return C_LIKESym
+        end
+
+        if EqualStr("LEFT-JUSTIFIED")
+           return C_LEFTMinusJUSTIFIEDSym
+        end
+
+        if EqualStr("LEVEL")
+           return C_LEVELSym
+        end
+
+        if EqualStr("LONG")
+           return C_LONGSym
         end
 
         if EqualStr("LT")
@@ -573,6 +870,10 @@ public
 
 
      when 'M'
+        if EqualStr("MODE")
+           return C_MODESym
+        end
+
         if EqualStr("MASK")
            return C_MASKSym
         end
@@ -581,18 +882,62 @@ public
            return C_MMDDYYSym
         end
 
+        if EqualStr("MESSAGE")
+           return C_MESSAGESym
+        end
+
+        if EqualStr("MEMORY")
+           return C_MEMORYSym
+        end
+
+        if EqualStr("MEDIUM")
+           return C_MEDIUMSym
+        end
+
+        if EqualStr("METHOD")
+           return C_METHODSym
+        end
+
+        if EqualStr("METHODS")
+           return C_METHODSSym
+        end
+
         if EqualStr("MOD")
            return C_MODSym
         end
 
 
      when 'N'
+        if EqualStr("NON-UNIQUE")
+           return C_NONMinusUNIQUESym
+        end
+
+        if EqualStr("NO-GAP")
+           return C_NOMinusGAPSym
+        end
+
+        if EqualStr("NO-GROUPING")
+           return C_NOMinusGROUPINGSym
+        end
+
+        if EqualStr("NO-SIGN")
+           return C_NOMinusSIGNSym
+        end
+
+        if EqualStr("NO-ZERO")
+           return C_NOMinusZEROSym
+        end
+
         if EqualStr("NO")
            return C_NOSym
         end
 
         if EqualStr("NEXT")
            return C_NEXTSym
+        end
+
+        if EqualStr("NEW")
+           return C_NEWSym
         end
 
         if EqualStr("NE")
@@ -617,6 +962,18 @@ public
 
 
      when 'O'
+        if EqualStr("OUTPUT-LENGTH")
+           return C_OUTPUTMinusLENGTHSym
+        end
+
+        if EqualStr("OF")
+           return C_OFSym
+        end
+
+        if EqualStr("OTHER")
+           return C_OTHERSym
+        end
+
         if EqualStr("ON")
            return C_ONSym
         end
@@ -627,6 +984,44 @@ public
 
         if EqualStr("OR")
            return C_ORSym
+        end
+
+        if EqualStr("OTHERS")
+           return C_OTHERSSym
+        end
+
+        if EqualStr("OPTIONAL")
+           return C_OPTIONALSym
+        end
+
+
+     when 'P'
+        if EqualStr("PERFORMING")
+           return C_PERFORMINGSym
+        end
+
+        if EqualStr("PARAMETER-TABLE")
+           return C_PARAMETERMinusTABLESym
+        end
+
+        if EqualStr("PUBLIC")
+           return C_PUBLICSym
+        end
+
+        if EqualStr("PROTECTED")
+           return C_PROTECTEDSym
+        end
+
+        if EqualStr("PRIVATE")
+           return C_PRIVATESym
+        end
+
+        if EqualStr("PREFERRED")
+           return C_PREFERREDSym
+        end
+
+        if EqualStr("PARAMETER")
+           return C_PARAMETERSym
         end
 
 
@@ -641,6 +1036,26 @@ public
            return C_REPORTSym
         end
 
+        if EqualStr("READER")
+           return C_READERSym
+        end
+
+        if EqualStr("REF")
+           return C_REFSym
+        end
+
+        if EqualStr("RANGE")
+           return C_RANGESym
+        end
+
+        if EqualStr("READ-ONLY")
+           return C_READMinusONLYSym
+        end
+
+        if EqualStr("RIGHT-JUSTIFIED")
+           return C_RIGHTMinusJUSTIFIEDSym
+        end
+
         if EqualStr("ROUND")
            return C_ROUNDSym
         end
@@ -649,12 +1064,40 @@ public
            return C_RESETSym
         end
 
-        if EqualStr("RANGE")
-           return C_RANGESym
+        if EqualStr("RISK")
+           return C_RISKSym
+        end
+
+        if EqualStr("REFERENCE")
+           return C_REFERENCESym
+        end
+
+        if EqualStr("RETURNING")
+           return C_RETURNINGSym
+        end
+
+        if EqualStr("RAISING")
+           return C_RAISINGSym
+        end
+
+        if EqualStr("RESUMABLE")
+           return C_RESUMABLESym
         end
 
 
      when 'S'
+        if EqualStr("STANDARD")
+           return C_STANDARDSym
+        end
+
+        if EqualStr("SORTED")
+           return C_SORTEDSym
+        end
+
+        if EqualStr("SIZE")
+           return C_SIZESym
+        end
+
         if EqualStr("STYLE")
            return C_STYLESym
         end
@@ -663,18 +1106,66 @@ public
            return C_SYMBOLSym
         end
 
+        if EqualStr("STARTING")
+           return C_STARTINGSym
+        end
+
+        if EqualStr("SEPARATE")
+           return C_SEPARATESym
+        end
+
+        if EqualStr("SHARED")
+           return C_SHAREDSym
+        end
+
+        if EqualStr("SHORT")
+           return C_SHORTSym
+        end
+
+        if EqualStr("SECTION")
+           return C_SECTIONSym
+        end
+
 
      when 'T'
         if EqualStr("TYPE")
            return C_TYPESym
         end
 
+        if EqualStr("TABLE")
+           return C_TABLESym
+        end
+
+        if EqualStr("TO")
+           return C_TOSym
+        end
+
         if EqualStr("TIME")
            return C_TIMESym
         end
 
+        if EqualStr("TIMES")
+           return C_TIMESSym
+        end
+
+        if EqualStr("TASK")
+           return C_TASKSym
+        end
+
+        if EqualStr("TABLES")
+           return C_TABLESSym
+        end
+
+        if EqualStr("TESTING")
+           return C_TESTINGSym
+        end
+
 
      when 'U'
+        if EqualStr("UNIQUE")
+           return C_UNIQUESym
+        end
+
         if EqualStr("UNDER")
            return C_UNDERSym
         end
@@ -687,10 +1178,18 @@ public
            return C_USINGSym
         end
 
+        if EqualStr("UPDATE")
+           return C_UPDATESym
+        end
+
 
      when 'V'
         if EqualStr("VALUE")
            return C_VALUESym
+        end
+
+        if EqualStr("VARYING")
+           return C_VARYINGSym
         end
 
         if EqualStr("VARY")
@@ -699,8 +1198,20 @@ public
 
 
      when 'W'
+        if EqualStr("WITH")
+           return C_WITHSym
+        end
+
+        if EqualStr("WRITER")
+           return C_WRITERSym
+        end
+
         if EqualStr("WRITE")
            return C_WRITESym
+        end
+
+        if EqualStr("WHEN")
+           return C_WHENSym
         end
 
         if EqualStr("WHILE")
@@ -727,84 +1238,36 @@ public
 
 
      when 'c'
-        if EqualStr("char")
-           return C_charSym
+        if EqualStr("communication_failure")
+           return C_communicationUnderscorefaiSym
         end
 
 
-     when 'd'
-        if EqualStr("double")
-           return C_doubleSym
-        end
-
-        if EqualStr("do")
-           return C_doSym
+     when 'e'
+        if EqualStr("error_message")
+           return C_errorUnderscoremessageSym
         end
 
 
      when 'f'
-        if EqualStr("float")
-           return C_floatSym
-        end
-
         if EqualStr("for")
            return C_forSym
         end
 
 
-     when 'i'
-        if EqualStr("int")
-           return C_intSym
-        end
-
-
-     when 'l'
-        if EqualStr("long")
-           return C_longSym
-        end
-
-
-     when 'm'
-        if EqualStr("mixed")
-           return C_mixedSym
-        end
-
-
      when 'r'
+        if EqualStr("resource_failure")
+           return C_resourceUnderscorefailureSym
+        end
+
         if EqualStr("return")
            return C_returnSym
         end
 
 
      when 's'
-        if EqualStr("short")
-           return C_shortSym
-        end
-
-        if EqualStr("string")
-           return C_stringSym
-        end
-
-
-     when 'u'
-        if EqualStr("unsigned")
-           return C_unsignedSym
-        end
-
-
-     when 'v'
-        if EqualStr("var")
-           return C_varSym
-        end
-
-        if EqualStr("void")
-           return C_voidSym
-        end
-
-
-     when 'w'
-        if EqualStr("while")
-           return C_whileSym
+        if EqualStr("system_failure")
+           return C_systemUnderscorefailureSym
         end
 
 
@@ -862,8 +1325,7 @@ public
            while (1)
               NextCh()
               (@nextSym.Len+=1;@nextSym.Len-2)
-              
-              p "@ch:#{@ch.class.name}"
+            #  p "@ch:#{@ch}, state:#{state}"
               case state
 
               when 1
@@ -999,7 +1461,6 @@ public
                  if @ch==39
                     state=25
                  else
-                     p "ch255:#{ch.class.name}"
                     if @ch>=' '&&@ch<='&'||@ch>='('&&@ch<=255
 
                     else
@@ -1102,6 +1563,10 @@ public
               when 36
                  return C_PointSym
               when 37
+                 return C_LparenSym
+              when 38
+                 return C_RparenSym
+              when 39
                  if @ch=='='
                     state=102
                  else
@@ -1109,9 +1574,9 @@ public
                  end
 
 
-              when 38
+              when 40
                  if @ch=='*'
-                    state=39
+                    state=41
                  else
                     if @ch=='='
                        state=101
@@ -1122,36 +1587,32 @@ public
                  end
 
 
-              when 39
+              when 41
                  return C_StarStarSym
-              when 64
+              when 66
                  if @ch=='Y'
-                    state=65
+                    state=67
                  else
                     return No_Sym
                  end
 
 
-              when 65
+              when 67
                  return C_DDSlashMMSlashYYYYSym
-              when 74
+              when 76
                  if @ch=='Y'
-                    state=75
+                    state=77
                  else
                     return No_Sym
                  end
 
 
-              when 75
-                 return C_MMSlashDDSlashYYYYSym
-              when 76
-                 return C_EqualSym
               when 77
-                 return C_SemicolonSym
+                 return C_MMSlashDDSlashYYYYSym
               when 78
-                 return C_LparenSym
+                 return C_EqualSym
               when 79
-                 return C_RparenSym
+                 return C_SemicolonSym
               when 80
                  if @ch=='|'
                     state=81
@@ -1452,7 +1913,7 @@ public
 
               when 127
                  if @ch=='Y'
-                    state=64
+                    state=66
                  else
                     return C_DDSlashMMSlashYYSym
                  end
@@ -1460,7 +1921,7 @@ public
 
               when 128
                  if @ch=='Y'
-                    state=74
+                    state=76
                  else
                     return C_MMSlashDDSlashYYSym
                  end
@@ -1471,6 +1932,9 @@ public
               end
 
            end
+ 
+        
+
 
    end
    
