@@ -44,6 +44,22 @@ class CRRParser < CRParser
             p "=====classdefs end====="
             
     end
+    
+    # print stats
+    def ps(msg =nil)
+        tr = ""
+        begin
+            raise Exception.new
+        rescue Exception=>e
+            tr =  e.backtrace[1]
+        end
+        if msg
+            p "#{msg} (sym:#{@sym}, #{curString()} @#{tr}"
+        else
+            p "sym:#{@sym}, #{curString()} @#{tr}"
+        end
+    end
+    
     def dump_buffer_to_file(fname)
         save_to_file(@scanner.buffer, fname)
     end

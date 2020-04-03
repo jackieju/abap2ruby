@@ -7,7 +7,7 @@ class CParser < CRRParser
          if @sym==C_FUNCTIONSym
             FunctionDef()
          else
-            GenError(278)
+            GenError(281)
          end
 
       end
@@ -18,7 +18,7 @@ class CParser < CRRParser
       Expect(C_identifierSym)
       Expect(C_PointSym)
       s=""
-      while (@sym>=C_identifierSym&&@sym<=C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_charSym||@sym==C_spaceD1Sym||@sym>=C_PointSym&&@sym<=C_FUNCTIONSym||@sym==C_DESCRIBESym||@sym>=C_MESSAGESym&&@sym<=C_LparenSym||@sym==C_RAISINGSym||@sym==C_LOOPSym||@sym==C_DATASym||@sym==C_DEFAULTSym||@sym==C_FORSym||@sym==C_WRITESym||@sym==C_StarSym||@sym>=C_breakSym&&@sym<=C_DOSym||@sym==C_CASESym||@sym>=C_forSym&&@sym<=C_CALLSym||@sym>=C_EXPORTINGSym&&@sym<=C_IMPORTINGSym||@sym>=C_CHANGINGSym&&@sym<=C_EXCEPTIONSSym||@sym>=C_PARAMETERMinusTABLESym&&@sym<=C_IFSym||@sym>=C_returnSym&&@sym<=C_WHILESym||@sym==C_CLASSSym||@sym==C_METHODSym||@sym==C_METHODSSym||@sym==C_RETURNINGSym||@sym==C_AndSym||@sym>=C_PlusSym&&@sym<=C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym>=C_BangSym&&@sym<=C_NOTSym)
+      while (@sym>=C_identifierSym&&@sym<=C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_charSym||@sym==C_spaceD1Sym||@sym>=C_PointSym&&@sym<=C_REFRESHSym||@sym==C_FUNCTIONSym||@sym==C_DESCRIBESym||@sym>=C_MESSAGESym&&@sym<=C_LparenSym||@sym==C_RAISINGSym||@sym==C_LOOPSym||@sym==C_DATASym||@sym==C_DEFAULTSym||@sym==C_FORSym||@sym==C_WRITESym||@sym==C_StarSym||@sym>=C_breakSym&&@sym<=C_DOSym||@sym==C_CASESym||@sym==C_forSym||@sym==C_CALLSym||@sym>=C_EXPORTINGSym&&@sym<=C_IMPORTINGSym||@sym>=C_CHANGINGSym&&@sym<=C_EXCEPTIONSSym||@sym>=C_PARAMETERMinusTABLESym&&@sym<=C_IFSym||@sym>=C_returnSym&&@sym<=C_WHILESym||@sym==C_CLASSSym||@sym==C_METHODSym||@sym==C_METHODSSym||@sym==C_RETURNINGSym||@sym==C_AndSym||@sym>=C_PlusSym&&@sym<=C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym>=C_BangSym&&@sym<=C_NOTSym)
          s+=
          Statements()
       end
@@ -30,7 +30,7 @@ class CParser < CRRParser
       Expect(C_identifierSym)
       Expect(C_PointSym)
       s=""
-      while (@sym>=C_identifierSym&&@sym<=C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_charSym||@sym==C_spaceD1Sym||@sym>=C_PointSym&&@sym<=C_FUNCTIONSym||@sym==C_DESCRIBESym||@sym>=C_MESSAGESym&&@sym<=C_LparenSym||@sym==C_RAISINGSym||@sym==C_LOOPSym||@sym==C_DATASym||@sym==C_DEFAULTSym||@sym==C_FORSym||@sym==C_WRITESym||@sym==C_StarSym||@sym>=C_breakSym&&@sym<=C_DOSym||@sym==C_CASESym||@sym>=C_forSym&&@sym<=C_CALLSym||@sym>=C_EXPORTINGSym&&@sym<=C_IMPORTINGSym||@sym>=C_CHANGINGSym&&@sym<=C_EXCEPTIONSSym||@sym>=C_PARAMETERMinusTABLESym&&@sym<=C_IFSym||@sym>=C_returnSym&&@sym<=C_WHILESym||@sym==C_CLASSSym||@sym==C_METHODSym||@sym==C_METHODSSym||@sym==C_RETURNINGSym||@sym==C_AndSym||@sym>=C_PlusSym&&@sym<=C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym>=C_BangSym&&@sym<=C_NOTSym)
+      while (@sym>=C_identifierSym&&@sym<=C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_charSym||@sym==C_spaceD1Sym||@sym>=C_PointSym&&@sym<=C_REFRESHSym||@sym==C_FUNCTIONSym||@sym==C_DESCRIBESym||@sym>=C_MESSAGESym&&@sym<=C_LparenSym||@sym==C_RAISINGSym||@sym==C_LOOPSym||@sym==C_DATASym||@sym==C_DEFAULTSym||@sym==C_FORSym||@sym==C_WRITESym||@sym==C_StarSym||@sym>=C_breakSym&&@sym<=C_DOSym||@sym==C_CASESym||@sym==C_forSym||@sym==C_CALLSym||@sym>=C_EXPORTINGSym&&@sym<=C_IMPORTINGSym||@sym>=C_CHANGINGSym&&@sym<=C_EXCEPTIONSSym||@sym>=C_PARAMETERMinusTABLESym&&@sym<=C_IFSym||@sym>=C_returnSym&&@sym<=C_WHILESym||@sym==C_CLASSSym||@sym==C_METHODSym||@sym==C_METHODSSym||@sym==C_RETURNINGSym||@sym==C_AndSym||@sym>=C_PlusSym&&@sym<=C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym>=C_BangSym&&@sym<=C_NOTSym)
          s+=
          Statements()
       end
@@ -40,7 +40,9 @@ class CParser < CRRParser
    end
    def Statements()
       s=""
-      while (@sym>=C_identifierSym&&@sym<=C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_charSym||@sym==C_spaceD1Sym||@sym>=C_PointSym&&@sym<=C_FUNCTIONSym||@sym==C_DESCRIBESym||@sym>=C_MESSAGESym&&@sym<=C_LparenSym||@sym==C_RAISINGSym||@sym==C_LOOPSym||@sym==C_DATASym||@sym==C_DEFAULTSym||@sym==C_FORSym||@sym==C_WRITESym||@sym==C_StarSym||@sym>=C_breakSym&&@sym<=C_DOSym||@sym==C_CASESym||@sym>=C_forSym&&@sym<=C_CALLSym||@sym>=C_EXPORTINGSym&&@sym<=C_IMPORTINGSym||@sym>=C_CHANGINGSym&&@sym<=C_EXCEPTIONSSym||@sym>=C_PARAMETERMinusTABLESym&&@sym<=C_IFSym||@sym>=C_returnSym&&@sym<=C_WHILESym||@sym==C_CLASSSym||@sym==C_METHODSym||@sym==C_METHODSSym||@sym==C_RETURNINGSym||@sym==C_AndSym||@sym>=C_PlusSym&&@sym<=C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym>=C_BangSym&&@sym<=C_NOTSym)
+      s+=
+      Statement()
+      while (@sym>=C_identifierSym&&@sym<=C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_charSym||@sym==C_spaceD1Sym||@sym>=C_PointSym&&@sym<=C_REFRESHSym||@sym==C_FUNCTIONSym||@sym==C_DESCRIBESym||@sym>=C_MESSAGESym&&@sym<=C_LparenSym||@sym==C_RAISINGSym||@sym==C_LOOPSym||@sym==C_DATASym||@sym==C_DEFAULTSym||@sym==C_FORSym||@sym==C_WRITESym||@sym==C_StarSym||@sym>=C_breakSym&&@sym<=C_DOSym||@sym==C_CASESym||@sym==C_forSym||@sym==C_CALLSym||@sym>=C_EXPORTINGSym&&@sym<=C_IMPORTINGSym||@sym>=C_CHANGINGSym&&@sym<=C_EXCEPTIONSSym||@sym>=C_PARAMETERMinusTABLESym&&@sym<=C_IFSym||@sym>=C_returnSym&&@sym<=C_WHILESym||@sym==C_CLASSSym||@sym==C_METHODSym||@sym==C_METHODSSym||@sym==C_RETURNINGSym||@sym==C_AndSym||@sym>=C_PlusSym&&@sym<=C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym>=C_BangSym&&@sym<=C_NOTSym)
          s+=
          Statement()
       end
@@ -52,6 +54,7 @@ class CParser < CRRParser
    end
    def Statement()
       ret=""
+      ps()
       case @sym
 
       when C_DATASym
@@ -61,21 +64,21 @@ class CParser < CRRParser
          ret+=
          WriteStatement()
 
-      when C_identifierSym
-      when C_numberSym
-      when C_stringD1Sym
-      when C_charSym
-      when C_spaceD1Sym
-      when C_LparenSym
-      when C_StarSym
-      when C_AndSym
-      when C_PlusSym
-      when C_MinusSym
-      when C_PlusPlusSym
-      when C_MinusMinusSym
-      when C_BangSym
-      when C_TildeSym
-      when C_NOTSym
+      when C_identifierSym,
+         C_numberSym,
+         C_stringD1Sym,
+         C_charSym,
+         C_spaceD1Sym,
+         C_LparenSym,
+         C_StarSym,
+         C_AndSym,
+         C_PlusSym,
+         C_MinusSym,
+         C_PlusPlusSym,
+         C_MinusMinusSym,
+         C_BangSym,
+         C_TildeSym,
+         C_NOTSym
          ret+=
          AssignmentStatement()
 
@@ -96,7 +99,6 @@ class CParser < CRRParser
          ForStatement()
 
       when C_IFSym
-         ret+=
          IfStatement()
 
       when C_PointSym
@@ -118,9 +120,9 @@ class CParser < CRRParser
          ret+=
          CaseStatement()
 
-      when C_CALLSym
-      when C_PARAMETERMinusTABLESym
-      when C_EXCEPTIONMinusTABLESym
+      when C_CALLSym,
+         C_PARAMETERMinusTABLESym,
+         C_EXCEPTIONMinusTABLESym
          ret+=
          CallFunctionStatement()
 
@@ -131,7 +133,7 @@ class CParser < CRRParser
             if 1
                ClassImplStatement()
             else
-               GenError(279)
+               GenError(282)
             end
 
          end
@@ -140,15 +142,15 @@ class CParser < CRRParser
       when C_METHODSym
          MethodStatement()
 
-      when C_RAISINGSym
-      when C_DEFAULTSym
-      when C_FORSym
-      when C_EXPORTINGSym
-      when C_IMPORTINGSym
-      when C_CHANGINGSym
-      when C_EXCEPTIONSSym
-      when C_METHODSSym
-      when C_RETURNINGSym
+      when C_RAISINGSym,
+         C_DEFAULTSym,
+         C_FORSym,
+         C_EXPORTINGSym,
+         C_IMPORTINGSym,
+         C_CHANGINGSym,
+         C_EXCEPTIONSSym,
+         C_METHODSSym,
+         C_RETURNINGSym
          MethodsStatement()
 
       when C_FUNCTIONSym
@@ -160,8 +162,11 @@ class CParser < CRRParser
       when C_MESSAGESym
          MessasgeStatement()
 
+      when C_REFRESHSym
+         RefreshStatement()
+
       else
-         GenError(280)
+         GenError(283)
 
       end
 
@@ -206,7 +211,7 @@ class CParser < CRRParser
                               Get()
                               Expect(C_HANDLESym)
                            else
-                              GenError(281)
+                              GenError(284)
                            end
 
                         end
@@ -216,7 +221,7 @@ class CParser < CRRParser
                   end
 
                else
-                  GenError(282)
+                  GenError(285)
                end
 
             end
@@ -239,13 +244,13 @@ class CParser < CRRParser
             Expect(C_TOSym)
             Expect(C_identifierSym)
 
-         when C_OFSym
-         when C_TABLESym
-         when C_STANDARDSym
-         when C_SORTEDSym
-         when C_HASHEDSym
+         when C_TABLESym,
+            C_OFSym,
+            C_STANDARDSym,
+            C_SORTEDSym,
+            C_HASHEDSym
             while (@sym==C_TABLESym||@sym>=C_STANDARDSym&&@sym<=C_HASHEDSym)
-               if @sym==C_OFSym||@sym==C_TABLESym||@sym>=C_STANDARDSym&&@sym<=C_HASHEDSym
+               if @sym==C_TABLESym||@sym==C_OFSym||@sym>=C_STANDARDSym&&@sym<=C_HASHEDSym
                   while (@sym==C_TABLESym||@sym==C_STANDARDSym)
                      if @sym==C_STANDARDSym
                         Get()
@@ -269,7 +274,7 @@ class CParser < CRRParser
                         end
 
                      else
-                        GenError(283)
+                        GenError(286)
                      end
 
                   end
@@ -296,7 +301,7 @@ class CParser < CRRParser
                            if @sym==C_NONMinusUNIQUESym
                               Get()
                            else
-                              GenError(284)
+                              GenError(287)
                            end
 
                         end
@@ -331,7 +336,7 @@ class CParser < CRRParser
                               end
 
                            else
-                              GenError(285)
+                              GenError(288)
                            end
 
                         end
@@ -349,7 +354,7 @@ class CParser < CRRParser
                      end
 
                   else
-                     GenError(286)
+                     GenError(289)
                   end
 
                end
@@ -374,7 +379,7 @@ class CParser < CRRParser
                               if @sym==C_NONMinusUNIQUESym
                                  Get()
                               else
-                                 GenError(287)
+                                 GenError(290)
                               end
 
                            end
@@ -392,7 +397,7 @@ class CParser < CRRParser
                      end
 
                   else
-                     GenError(288)
+                     GenError(291)
                   end
 
                end
@@ -429,9 +434,9 @@ class CParser < CRRParser
             end
 
 
-         when C_LOCATORSym
-         when C_WRITERSym
-         when C_FORSym
+         when C_LOCATORSym,
+            C_WRITERSym,
+            C_FORSym
             while (@sym==C_LOCATORSym||@sym==C_WRITERSym)
                if @sym==C_WRITERSym
                   Get()
@@ -439,7 +444,7 @@ class CParser < CRRParser
                   if @sym==C_LOCATORSym
                      Get()
                   else
-                     GenError(289)
+                     GenError(292)
                   end
 
                end
@@ -469,7 +474,7 @@ class CParser < CRRParser
                   if @sym==C_CLOBSym
                      Get()
                   else
-                     GenError(290)
+                     GenError(293)
                   end
 
                end
@@ -479,7 +484,7 @@ class CParser < CRRParser
             Expect(C_COLUMNSSym)
 
          else
-            GenError(291)
+            GenError(294)
 
          end
 
@@ -487,11 +492,11 @@ class CParser < CRRParser
          if @sym==C_PointSym||@sym==C_LIKESym||@sym==C_VALUESym||@sym==C_READMinusONLYSym
             if @sym==C_LIKESym
                Get()
-               while (@sym==C_identifierSym||@sym==C_OFSym||@sym==C_LINESym||@sym==C_TABLESym||@sym==C_REFSym||@sym>=C_STANDARDSym&&@sym<=C_HASHEDSym||@sym==C_RANGESym)
+               while (@sym==C_identifierSym||@sym==C_TABLESym||@sym==C_OFSym||@sym==C_LINESym||@sym==C_REFSym||@sym>=C_STANDARDSym&&@sym<=C_HASHEDSym||@sym==C_RANGESym)
                   case @sym
 
-                  when C_identifierSym
-                  when C_LINESym
+                  when C_identifierSym,
+                     C_LINESym
                      if @sym==C_LINESym
                         Get()
                         Expect(C_OFSym)
@@ -504,11 +509,11 @@ class CParser < CRRParser
                      Expect(C_TOSym)
                      Expect(C_identifierSym)
 
-                  when C_OFSym
-                  when C_TABLESym
-                  when C_STANDARDSym
-                  when C_SORTEDSym
-                  when C_HASHEDSym
+                  when C_TABLESym,
+                     C_OFSym,
+                     C_STANDARDSym,
+                     C_SORTEDSym,
+                     C_HASHEDSym
                      while (@sym==C_TABLESym||@sym>=C_STANDARDSym&&@sym<=C_HASHEDSym)
                         if @sym==C_TABLESym||@sym==C_STANDARDSym
                            if @sym==C_STANDARDSym
@@ -525,7 +530,7 @@ class CParser < CRRParser
                                  Get()
                                  Expect(C_TABLESym)
                               else
-                                 GenError(292)
+                                 GenError(295)
                               end
 
                            end
@@ -551,7 +556,7 @@ class CParser < CRRParser
                                  if @sym==C_NONMinusUNIQUESym
                                     Get()
                                  else
-                                    GenError(293)
+                                    GenError(296)
                                  end
 
                               end
@@ -580,7 +585,7 @@ class CParser < CRRParser
                                     Get()
                                     Expect(C_KEYSym)
                                  else
-                                    GenError(294)
+                                    GenError(297)
                                  end
 
                               end
@@ -593,7 +598,7 @@ class CParser < CRRParser
                               Expect(C_EMPTYSym)
                               Expect(C_KEYSym)
                            else
-                              GenError(295)
+                              GenError(298)
                            end
 
                         end
@@ -618,7 +623,7 @@ class CParser < CRRParser
                                        if @sym==C_NONMinusUNIQUESym
                                           Get()
                                        else
-                                          GenError(296)
+                                          GenError(299)
                                        end
 
                                     end
@@ -636,7 +641,7 @@ class CParser < CRRParser
                               end
 
                            else
-                              GenError(297)
+                              GenError(300)
                            end
 
                         end
@@ -674,7 +679,7 @@ class CParser < CRRParser
 
 
                   else
-                     GenError(298)
+                     GenError(301)
 
                   end
 
@@ -692,7 +697,7 @@ class CParser < CRRParser
                         Get()
                         Expect(C_INITIALSym)
                      else
-                        GenError(299)
+                        GenError(302)
                      end
 
                   end
@@ -737,7 +742,7 @@ class CParser < CRRParser
                   if @sym==C_StarStarSym
                      Get()
                   else
-                     GenError(300)
+                     GenError(303)
                   end
 
                end
@@ -769,7 +774,7 @@ class CParser < CRRParser
                if @sym==C_RIGHTMinusJUSTIFIEDSym
                   Get()
                else
-                  GenError(301)
+                  GenError(304)
                end
 
             end
@@ -822,7 +827,7 @@ class CParser < CRRParser
                      end
 
                   else
-                     GenError(302)
+                     GenError(305)
                   end
 
                end
@@ -852,7 +857,7 @@ class CParser < CRRParser
                end
 
             else
-               GenError(303)
+               GenError(306)
             end
 
          end
@@ -872,7 +877,7 @@ class CParser < CRRParser
                   Expect(C_MASKSym)
                   Expect(C_stringD1Sym)
                else
-                  GenError(304)
+                  GenError(307)
                end
 
             end
@@ -906,7 +911,7 @@ class CParser < CRRParser
             Get()
 
          else
-            GenError(305)
+            GenError(308)
 
          end
 
@@ -939,7 +944,7 @@ class CParser < CRRParser
                      Get()
                      Expect(C_numberSym)
                   else
-                     GenError(306)
+                     GenError(309)
                   end
 
                end
@@ -961,7 +966,7 @@ class CParser < CRRParser
                      if @sym==C_OFFSym
                         Get()
                      else
-                        GenError(307)
+                        GenError(310)
                      end
 
                   end
@@ -976,7 +981,7 @@ class CParser < CRRParser
                   end
 
                else
-                  GenError(308)
+                  GenError(311)
                end
 
             end
@@ -996,7 +1001,7 @@ class CParser < CRRParser
                      if @sym==C_OFFSym
                         Get()
                      else
-                        GenError(309)
+                        GenError(312)
                      end
 
                   end
@@ -1011,7 +1016,7 @@ class CParser < CRRParser
                   end
 
                else
-                  GenError(310)
+                  GenError(313)
                end
 
             end
@@ -1031,7 +1036,7 @@ class CParser < CRRParser
                      if @sym==C_OFFSym
                         Get()
                      else
-                        GenError(311)
+                        GenError(314)
                      end
 
                   end
@@ -1046,7 +1051,7 @@ class CParser < CRRParser
                   end
 
                else
-                  GenError(312)
+                  GenError(315)
                end
 
             end
@@ -1066,7 +1071,7 @@ class CParser < CRRParser
                      if @sym==C_OFFSym
                         Get()
                      else
-                        GenError(313)
+                        GenError(316)
                      end
 
                   end
@@ -1081,7 +1086,7 @@ class CParser < CRRParser
                   end
 
                else
-                  GenError(314)
+                  GenError(317)
                end
 
             end
@@ -1101,7 +1106,7 @@ class CParser < CRRParser
                      if @sym==C_OFFSym
                         Get()
                      else
-                        GenError(315)
+                        GenError(318)
                      end
 
                   end
@@ -1116,7 +1121,7 @@ class CParser < CRRParser
                   end
 
                else
-                  GenError(316)
+                  GenError(319)
                end
 
             end
@@ -1146,7 +1151,7 @@ class CParser < CRRParser
             Get()
 
          else
-            GenError(317)
+            GenError(320)
 
          end
 
@@ -1161,11 +1166,9 @@ class CParser < CRRParser
    end
    def AssignmentStatement()
       Expression()
-      Expect(C_SemicolonSym)
    end
    def BreakStatement()
       Expect(C_breakSym)
-      Expect(C_SemicolonSym)
    end
    def ContinueStatement()
       Expect(C_CONTINUESym)
@@ -1221,7 +1224,7 @@ class CParser < CRRParser
       Expect(C_IFSym)
       Expression()
       Expect(C_PointSym)
-      if @sym>=C_identifierSym&&@sym<=C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_charSym||@sym==C_spaceD1Sym||@sym>=C_PointSym&&@sym<=C_FUNCTIONSym||@sym==C_DESCRIBESym||@sym>=C_MESSAGESym&&@sym<=C_LparenSym||@sym==C_RAISINGSym||@sym==C_LOOPSym||@sym==C_DATASym||@sym==C_DEFAULTSym||@sym==C_FORSym||@sym==C_WRITESym||@sym==C_StarSym||@sym>=C_breakSym&&@sym<=C_DOSym||@sym==C_CASESym||@sym>=C_forSym&&@sym<=C_CALLSym||@sym>=C_EXPORTINGSym&&@sym<=C_IMPORTINGSym||@sym>=C_CHANGINGSym&&@sym<=C_EXCEPTIONSSym||@sym>=C_PARAMETERMinusTABLESym&&@sym<=C_IFSym||@sym>=C_returnSym&&@sym<=C_WHILESym||@sym==C_CLASSSym||@sym==C_METHODSym||@sym==C_METHODSSym||@sym==C_RETURNINGSym||@sym==C_AndSym||@sym>=C_PlusSym&&@sym<=C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym>=C_BangSym&&@sym<=C_NOTSym
+      if @sym>=C_identifierSym&&@sym<=C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_charSym||@sym==C_spaceD1Sym||@sym>=C_PointSym&&@sym<=C_REFRESHSym||@sym==C_FUNCTIONSym||@sym==C_DESCRIBESym||@sym>=C_MESSAGESym&&@sym<=C_LparenSym||@sym==C_RAISINGSym||@sym==C_LOOPSym||@sym==C_DATASym||@sym==C_DEFAULTSym||@sym==C_FORSym||@sym==C_WRITESym||@sym==C_StarSym||@sym>=C_breakSym&&@sym<=C_DOSym||@sym==C_CASESym||@sym==C_forSym||@sym==C_CALLSym||@sym>=C_EXPORTINGSym&&@sym<=C_IMPORTINGSym||@sym>=C_CHANGINGSym&&@sym<=C_EXCEPTIONSSym||@sym>=C_PARAMETERMinusTABLESym&&@sym<=C_IFSym||@sym>=C_returnSym&&@sym<=C_WHILESym||@sym==C_CLASSSym||@sym==C_METHODSym||@sym==C_METHODSSym||@sym==C_RETURNINGSym||@sym==C_AndSym||@sym>=C_PlusSym&&@sym<=C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym>=C_BangSym&&@sym<=C_NOTSym
          Statements()
       end
 
@@ -1229,7 +1232,7 @@ class CParser < CRRParser
          Get()
          Expression()
          Expect(C_PointSym)
-         if @sym>=C_identifierSym&&@sym<=C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_charSym||@sym==C_spaceD1Sym||@sym>=C_PointSym&&@sym<=C_FUNCTIONSym||@sym==C_DESCRIBESym||@sym>=C_MESSAGESym&&@sym<=C_LparenSym||@sym==C_RAISINGSym||@sym==C_LOOPSym||@sym==C_DATASym||@sym==C_DEFAULTSym||@sym==C_FORSym||@sym==C_WRITESym||@sym==C_StarSym||@sym>=C_breakSym&&@sym<=C_DOSym||@sym==C_CASESym||@sym>=C_forSym&&@sym<=C_CALLSym||@sym>=C_EXPORTINGSym&&@sym<=C_IMPORTINGSym||@sym>=C_CHANGINGSym&&@sym<=C_EXCEPTIONSSym||@sym>=C_PARAMETERMinusTABLESym&&@sym<=C_IFSym||@sym>=C_returnSym&&@sym<=C_WHILESym||@sym==C_CLASSSym||@sym==C_METHODSym||@sym==C_METHODSSym||@sym==C_RETURNINGSym||@sym==C_AndSym||@sym>=C_PlusSym&&@sym<=C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym>=C_BangSym&&@sym<=C_NOTSym
+         if @sym>=C_identifierSym&&@sym<=C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_charSym||@sym==C_spaceD1Sym||@sym>=C_PointSym&&@sym<=C_REFRESHSym||@sym==C_FUNCTIONSym||@sym==C_DESCRIBESym||@sym>=C_MESSAGESym&&@sym<=C_LparenSym||@sym==C_RAISINGSym||@sym==C_LOOPSym||@sym==C_DATASym||@sym==C_DEFAULTSym||@sym==C_FORSym||@sym==C_WRITESym||@sym==C_StarSym||@sym>=C_breakSym&&@sym<=C_DOSym||@sym==C_CASESym||@sym==C_forSym||@sym==C_CALLSym||@sym>=C_EXPORTINGSym&&@sym<=C_IMPORTINGSym||@sym>=C_CHANGINGSym&&@sym<=C_EXCEPTIONSSym||@sym>=C_PARAMETERMinusTABLESym&&@sym<=C_IFSym||@sym>=C_returnSym&&@sym<=C_WHILESym||@sym==C_CLASSSym||@sym==C_METHODSym||@sym==C_METHODSSym||@sym==C_RETURNINGSym||@sym==C_AndSym||@sym>=C_PlusSym&&@sym<=C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym>=C_BangSym&&@sym<=C_NOTSym
             Statements()
          end
 
@@ -1238,7 +1241,7 @@ class CParser < CRRParser
       if @sym==C_ELSESym
          Get()
          Expect(C_PointSym)
-         if @sym>=C_identifierSym&&@sym<=C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_charSym||@sym==C_spaceD1Sym||@sym>=C_PointSym&&@sym<=C_FUNCTIONSym||@sym==C_DESCRIBESym||@sym>=C_MESSAGESym&&@sym<=C_LparenSym||@sym==C_RAISINGSym||@sym==C_LOOPSym||@sym==C_DATASym||@sym==C_DEFAULTSym||@sym==C_FORSym||@sym==C_WRITESym||@sym==C_StarSym||@sym>=C_breakSym&&@sym<=C_DOSym||@sym==C_CASESym||@sym>=C_forSym&&@sym<=C_CALLSym||@sym>=C_EXPORTINGSym&&@sym<=C_IMPORTINGSym||@sym>=C_CHANGINGSym&&@sym<=C_EXCEPTIONSSym||@sym>=C_PARAMETERMinusTABLESym&&@sym<=C_IFSym||@sym>=C_returnSym&&@sym<=C_WHILESym||@sym==C_CLASSSym||@sym==C_METHODSym||@sym==C_METHODSSym||@sym==C_RETURNINGSym||@sym==C_AndSym||@sym>=C_PlusSym&&@sym<=C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym>=C_BangSym&&@sym<=C_NOTSym
+         if @sym>=C_identifierSym&&@sym<=C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_charSym||@sym==C_spaceD1Sym||@sym>=C_PointSym&&@sym<=C_REFRESHSym||@sym==C_FUNCTIONSym||@sym==C_DESCRIBESym||@sym>=C_MESSAGESym&&@sym<=C_LparenSym||@sym==C_RAISINGSym||@sym==C_LOOPSym||@sym==C_DATASym||@sym==C_DEFAULTSym||@sym==C_FORSym||@sym==C_WRITESym||@sym==C_StarSym||@sym>=C_breakSym&&@sym<=C_DOSym||@sym==C_CASESym||@sym==C_forSym||@sym==C_CALLSym||@sym>=C_EXPORTINGSym&&@sym<=C_IMPORTINGSym||@sym>=C_CHANGINGSym&&@sym<=C_EXCEPTIONSSym||@sym>=C_PARAMETERMinusTABLESym&&@sym<=C_IFSym||@sym>=C_returnSym&&@sym<=C_WHILESym||@sym==C_CLASSSym||@sym==C_METHODSym||@sym==C_METHODSSym||@sym==C_RETURNINGSym||@sym==C_AndSym||@sym>=C_PlusSym&&@sym<=C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym>=C_BangSym&&@sym<=C_NOTSym
             Statements()
          end
 
@@ -1276,7 +1279,7 @@ class CParser < CRRParser
       end
 
       Expect(C_PointSym)
-      if @sym>=C_identifierSym&&@sym<=C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_charSym||@sym==C_spaceD1Sym||@sym>=C_PointSym&&@sym<=C_FUNCTIONSym||@sym==C_DESCRIBESym||@sym>=C_MESSAGESym&&@sym<=C_LparenSym||@sym==C_RAISINGSym||@sym==C_LOOPSym||@sym==C_DATASym||@sym==C_DEFAULTSym||@sym==C_FORSym||@sym==C_WRITESym||@sym==C_StarSym||@sym>=C_breakSym&&@sym<=C_DOSym||@sym==C_CASESym||@sym>=C_forSym&&@sym<=C_CALLSym||@sym>=C_EXPORTINGSym&&@sym<=C_IMPORTINGSym||@sym>=C_CHANGINGSym&&@sym<=C_EXCEPTIONSSym||@sym>=C_PARAMETERMinusTABLESym&&@sym<=C_IFSym||@sym>=C_returnSym&&@sym<=C_WHILESym||@sym==C_CLASSSym||@sym==C_METHODSym||@sym==C_METHODSSym||@sym==C_RETURNINGSym||@sym==C_AndSym||@sym>=C_PlusSym&&@sym<=C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym>=C_BangSym&&@sym<=C_NOTSym
+      if @sym>=C_identifierSym&&@sym<=C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_charSym||@sym==C_spaceD1Sym||@sym>=C_PointSym&&@sym<=C_REFRESHSym||@sym==C_FUNCTIONSym||@sym==C_DESCRIBESym||@sym>=C_MESSAGESym&&@sym<=C_LparenSym||@sym==C_RAISINGSym||@sym==C_LOOPSym||@sym==C_DATASym||@sym==C_DEFAULTSym||@sym==C_FORSym||@sym==C_WRITESym||@sym==C_StarSym||@sym>=C_breakSym&&@sym<=C_DOSym||@sym==C_CASESym||@sym==C_forSym||@sym==C_CALLSym||@sym>=C_EXPORTINGSym&&@sym<=C_IMPORTINGSym||@sym>=C_CHANGINGSym&&@sym<=C_EXCEPTIONSSym||@sym>=C_PARAMETERMinusTABLESym&&@sym<=C_IFSym||@sym>=C_returnSym&&@sym<=C_WHILESym||@sym==C_CLASSSym||@sym==C_METHODSym||@sym==C_METHODSSym||@sym==C_RETURNINGSym||@sym==C_AndSym||@sym>=C_PlusSym&&@sym<=C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym>=C_BangSym&&@sym<=C_NOTSym
          Statements()
       end
 
@@ -1322,7 +1325,7 @@ class CParser < CRRParser
          Expect(C_FUNCTIONSym)
          Expect(C_identifierSym)
          if @sym==C_INSym||@sym==C_STARTINGSym||@sym==C_DESTINATIONSym
-            if @sym>=EOF_Sym&&@sym<=C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_charSym||@sym==C_spaceD1Sym||@sym>=C_PointSym&&@sym<=C_DESCRIBESym||@sym==C_INSym||@sym>=C_MESSAGESym&&@sym<=C_LparenSym||@sym==C_RAISINGSym||@sym>=C_LOOPSym&&@sym<=C_DATASym||@sym==C_DEFAULTSym||@sym==C_FORSym||@sym==C_WRITESym||@sym==C_StarSym||@sym==C_ONSym||@sym>=C_breakSym&&@sym<=C_DOSym||@sym>=C_ENDDOSym&&@sym<=C_WHENSym||@sym>=C_ENDCASESym&&@sym<=C_CALLSym||@sym>=C_CALLINGSym&&@sym<=C_PERFORMINGSym||@sym>=C_EXPORTINGSym&&@sym<=C_EXCEPTIONSSym||@sym>=C_PARAMETERMinusTABLESym&&@sym<=C_WHILESym||@sym>=C_ENDWHILESym&&@sym<=C_CLASSSym||@sym>=C_PROTECTEDSym&&@sym<=C_PRIVATESym||@sym==C_ENDCLASSSym||@sym>=C_METHODSym&&@sym<=C_METHODSSym||@sym==C_RETURNINGSym||@sym==C_AndSym||@sym>=C_PlusSym&&@sym<=C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym>=C_BangSym&&@sym<=C_NOTSym
+            if @sym>=EOF_Sym&&@sym<=C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_charSym||@sym==C_spaceD1Sym||@sym>=C_PointSym&&@sym<=C_REFRESHSym||@sym>=C_FUNCTIONSym&&@sym<=C_DESCRIBESym||@sym==C_INSym||@sym>=C_MESSAGESym&&@sym<=C_LparenSym||@sym==C_RAISINGSym||@sym>=C_LOOPSym&&@sym<=C_DATASym||@sym==C_DEFAULTSym||@sym==C_FORSym||@sym==C_WRITESym||@sym==C_StarSym||@sym==C_ONSym||@sym>=C_breakSym&&@sym<=C_DOSym||@sym>=C_ENDDOSym&&@sym<=C_WHENSym||@sym>=C_ENDCASESym&&@sym<=C_forSym||@sym==C_CALLSym||@sym>=C_CALLINGSym&&@sym<=C_PERFORMINGSym||@sym>=C_EXPORTINGSym&&@sym<=C_EXCEPTIONSSym||@sym>=C_PARAMETERMinusTABLESym&&@sym<=C_WHILESym||@sym>=C_ENDWHILESym&&@sym<=C_CLASSSym||@sym>=C_PROTECTEDSym&&@sym<=C_PRIVATESym||@sym==C_ENDCLASSSym||@sym>=C_METHODSym&&@sym<=C_METHODSSym||@sym==C_RETURNINGSym||@sym==C_AndSym||@sym>=C_PlusSym&&@sym<=C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym>=C_BangSym&&@sym<=C_NOTSym
                while (@sym==C_INSym)
                   Get()
                   Expect(C_UPDATESym)
@@ -1333,7 +1336,7 @@ class CParser < CRRParser
                if @sym==C_STARTINGSym||@sym==C_DESTINATIONSym
                   while (@sym==C_INSym||@sym==C_STARTINGSym||@sym==C_DESTINATIONSym)
                      if @sym==C_INSym||@sym==C_STARTINGSym
-                        if @sym>=EOF_Sym&&@sym<=C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_charSym||@sym==C_spaceD1Sym||@sym>=C_PointSym&&@sym<=C_DESCRIBESym||@sym==C_INSym||@sym>=C_MESSAGESym&&@sym<=C_LparenSym||@sym==C_RAISINGSym||@sym>=C_LOOPSym&&@sym<=C_DATASym||@sym==C_DEFAULTSym||@sym==C_FORSym||@sym==C_WRITESym||@sym==C_StarSym||@sym==C_ONSym||@sym>=C_breakSym&&@sym<=C_DOSym||@sym>=C_ENDDOSym&&@sym<=C_WHENSym||@sym>=C_ENDCASESym&&@sym<=C_CALLSym||@sym==C_STARTINGSym||@sym>=C_DESTINATIONSym&&@sym<=C_PERFORMINGSym||@sym>=C_EXPORTINGSym&&@sym<=C_EXCEPTIONSSym||@sym>=C_PARAMETERMinusTABLESym&&@sym<=C_WHILESym||@sym>=C_ENDWHILESym&&@sym<=C_CLASSSym||@sym>=C_PROTECTEDSym&&@sym<=C_PRIVATESym||@sym==C_ENDCLASSSym||@sym>=C_METHODSym&&@sym<=C_METHODSSym||@sym==C_RETURNINGSym||@sym==C_AndSym||@sym>=C_PlusSym&&@sym<=C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym>=C_BangSym&&@sym<=C_NOTSym
+                        if @sym>=EOF_Sym&&@sym<=C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_charSym||@sym==C_spaceD1Sym||@sym>=C_PointSym&&@sym<=C_REFRESHSym||@sym>=C_FUNCTIONSym&&@sym<=C_DESCRIBESym||@sym==C_INSym||@sym>=C_MESSAGESym&&@sym<=C_LparenSym||@sym==C_RAISINGSym||@sym>=C_LOOPSym&&@sym<=C_DATASym||@sym==C_DEFAULTSym||@sym==C_FORSym||@sym==C_WRITESym||@sym==C_StarSym||@sym==C_ONSym||@sym>=C_breakSym&&@sym<=C_DOSym||@sym>=C_ENDDOSym&&@sym<=C_WHENSym||@sym>=C_ENDCASESym&&@sym<=C_forSym||@sym==C_CALLSym||@sym==C_STARTINGSym||@sym>=C_DESTINATIONSym&&@sym<=C_PERFORMINGSym||@sym>=C_EXPORTINGSym&&@sym<=C_EXCEPTIONSSym||@sym>=C_PARAMETERMinusTABLESym&&@sym<=C_WHILESym||@sym>=C_ENDWHILESym&&@sym<=C_CLASSSym||@sym>=C_PROTECTEDSym&&@sym<=C_PRIVATESym||@sym==C_ENDCLASSSym||@sym>=C_METHODSym&&@sym<=C_METHODSSym||@sym==C_RETURNINGSym||@sym==C_AndSym||@sym>=C_PlusSym&&@sym<=C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym>=C_BangSym&&@sym<=C_NOTSym
                            while (@sym==C_STARTINGSym)
                               Get()
                               Expect(C_NEWSym)
@@ -1356,7 +1359,7 @@ class CParser < CRRParser
                               end
 
                            else
-                              GenError(318)
+                              GenError(321)
                            end
 
                         end
@@ -1379,7 +1382,7 @@ class CParser < CRRParser
                      end
 
                   else
-                     GenError(319)
+                     GenError(322)
                   end
 
                end
@@ -1389,7 +1392,7 @@ class CParser < CRRParser
          end
 
          if @sym==C_ONSym||@sym>=C_CALLINGSym&&@sym<=C_PERFORMINGSym
-            if @sym>=EOF_Sym&&@sym<=C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_charSym||@sym==C_spaceD1Sym||@sym>=C_PointSym&&@sym<=C_DESCRIBESym||@sym>=C_MESSAGESym&&@sym<=C_LparenSym||@sym==C_RAISINGSym||@sym>=C_LOOPSym&&@sym<=C_DATASym||@sym==C_DEFAULTSym||@sym==C_FORSym||@sym==C_WRITESym||@sym==C_StarSym||@sym>=C_breakSym&&@sym<=C_DOSym||@sym>=C_ENDDOSym&&@sym<=C_WHENSym||@sym>=C_ENDCASESym&&@sym<=C_CALLSym||@sym==C_CALLINGSym||@sym>=C_EXPORTINGSym&&@sym<=C_EXCEPTIONSSym||@sym>=C_PARAMETERMinusTABLESym&&@sym<=C_WHILESym||@sym>=C_ENDWHILESym&&@sym<=C_CLASSSym||@sym>=C_PROTECTEDSym&&@sym<=C_PRIVATESym||@sym==C_ENDCLASSSym||@sym>=C_METHODSym&&@sym<=C_METHODSSym||@sym==C_RETURNINGSym||@sym==C_AndSym||@sym>=C_PlusSym&&@sym<=C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym>=C_BangSym&&@sym<=C_NOTSym
+            if @sym>=EOF_Sym&&@sym<=C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_charSym||@sym==C_spaceD1Sym||@sym>=C_PointSym&&@sym<=C_REFRESHSym||@sym>=C_FUNCTIONSym&&@sym<=C_DESCRIBESym||@sym>=C_MESSAGESym&&@sym<=C_LparenSym||@sym==C_RAISINGSym||@sym>=C_LOOPSym&&@sym<=C_DATASym||@sym==C_DEFAULTSym||@sym==C_FORSym||@sym==C_WRITESym||@sym==C_StarSym||@sym>=C_breakSym&&@sym<=C_DOSym||@sym>=C_ENDDOSym&&@sym<=C_WHENSym||@sym>=C_ENDCASESym&&@sym<=C_forSym||@sym==C_CALLSym||@sym==C_CALLINGSym||@sym>=C_EXPORTINGSym&&@sym<=C_EXCEPTIONSSym||@sym>=C_PARAMETERMinusTABLESym&&@sym<=C_WHILESym||@sym>=C_ENDWHILESym&&@sym<=C_CLASSSym||@sym>=C_PROTECTEDSym&&@sym<=C_PRIVATESym||@sym==C_ENDCLASSSym||@sym>=C_METHODSym&&@sym<=C_METHODSSym||@sym==C_RETURNINGSym||@sym==C_AndSym||@sym>=C_PlusSym&&@sym<=C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym>=C_BangSym&&@sym<=C_NOTSym
                while (@sym==C_CALLINGSym)
                   Get()
                   Expect(C_identifierSym)
@@ -1407,7 +1410,7 @@ class CParser < CRRParser
                   Expect(C_OFSym)
                   Expect(C_TASKSym)
                else
-                  GenError(320)
+                  GenError(323)
                end
 
             end
@@ -1524,7 +1527,7 @@ class CParser < CRRParser
 
             Expect(C_PointSym)
          else
-            GenError(321)
+            GenError(324)
          end
 
       end
@@ -1560,7 +1563,7 @@ class CParser < CRRParser
                   if @sym==C_PRIVATESym
                      Get()
                   else
-                     GenError(322)
+                     GenError(325)
                   end
 
                end
@@ -1593,7 +1596,7 @@ class CParser < CRRParser
                      if @sym==C_HARMLESSSym
                         Get()
                      else
-                        GenError(323)
+                        GenError(326)
                      end
 
                   end
@@ -1616,7 +1619,7 @@ class CParser < CRRParser
                      if @sym==C_LONGSym
                         Get()
                      else
-                        GenError(324)
+                        GenError(327)
                      end
 
                   end
@@ -1695,7 +1698,7 @@ class CParser < CRRParser
                if @sym==C_FINALSym
                   Get()
                else
-                  GenError(325)
+                  GenError(328)
                end
 
             end
@@ -1712,7 +1715,7 @@ class CParser < CRRParser
                   if @sym==C_FAILSym
                      Get()
                   else
-                     GenError(326)
+                     GenError(329)
                   end
 
                end
@@ -1728,86 +1731,6 @@ class CParser < CRRParser
             end
 
             if @sym==C_IMPORTINGSym
-               Get()
-               while (@sym==C_identifierSym||@sym==C_VALUESym||@sym==C_REFERENCESym)
-                  if @sym==C_VALUESym
-                     Get()
-                     Expect(C_LparenSym)
-                     Expect(C_identifierSym)
-                     Expect(C_RparenSym)
-                  else
-                     if @sym==C_REFERENCESym
-                        Get()
-                        Expect(C_LparenSym)
-                        Expect(C_identifierSym)
-                        Expect(C_RparenSym)
-                     else
-                        if @sym==C_identifierSym
-                           Get()
-                        else
-                           GenError(327)
-                        end
-
-                     end
-
-                  end
-
-                  Typing()
-                  if @sym==C_DEFAULTSym||@sym==C_OPTIONALSym
-                     if @sym==C_OPTIONALSym
-                        Get()
-                     else
-                        if @sym==C_DEFAULTSym
-                           Get()
-                        else
-                           GenError(328)
-                        end
-
-                     end
-
-                     Expect(C_identifierSym)
-                  end
-
-               end
-
-               if @sym==C_PREFERREDSym
-                  Get()
-                  Expect(C_PARAMETERSym)
-                  Expect(C_identifierSym)
-               end
-
-            end
-
-            if @sym==C_EXPORTINGSym
-               Get()
-               while (@sym==C_identifierSym||@sym==C_TYPESym||@sym==C_LIKESym||@sym==C_VALUESym||@sym==C_REFERENCESym)
-                  while (@sym==C_identifierSym||@sym==C_VALUESym||@sym==C_REFERENCESym)
-                     if @sym==C_VALUESym
-                        Get()
-                        Expect(C_identifierSym)
-                     else
-                        if @sym==C_REFERENCESym
-                           Get()
-                           Expect(C_identifierSym)
-                        else
-                           if @sym==C_identifierSym
-                              Get()
-                           else
-                              GenError(329)
-                           end
-
-                        end
-
-                     end
-
-                  end
-
-                  Typing()
-               end
-
-            end
-
-            if @sym==C_CHANGINGSym
                Get()
                while (@sym==C_identifierSym||@sym==C_VALUESym||@sym==C_REFERENCESym)
                   if @sym==C_VALUESym
@@ -1850,6 +1773,86 @@ class CParser < CRRParser
 
                end
 
+               if @sym==C_PREFERREDSym
+                  Get()
+                  Expect(C_PARAMETERSym)
+                  Expect(C_identifierSym)
+               end
+
+            end
+
+            if @sym==C_EXPORTINGSym
+               Get()
+               while (@sym==C_identifierSym||@sym==C_TYPESym||@sym==C_LIKESym||@sym==C_VALUESym||@sym==C_REFERENCESym)
+                  while (@sym==C_identifierSym||@sym==C_VALUESym||@sym==C_REFERENCESym)
+                     if @sym==C_VALUESym
+                        Get()
+                        Expect(C_identifierSym)
+                     else
+                        if @sym==C_REFERENCESym
+                           Get()
+                           Expect(C_identifierSym)
+                        else
+                           if @sym==C_identifierSym
+                              Get()
+                           else
+                              GenError(332)
+                           end
+
+                        end
+
+                     end
+
+                  end
+
+                  Typing()
+               end
+
+            end
+
+            if @sym==C_CHANGINGSym
+               Get()
+               while (@sym==C_identifierSym||@sym==C_VALUESym||@sym==C_REFERENCESym)
+                  if @sym==C_VALUESym
+                     Get()
+                     Expect(C_LparenSym)
+                     Expect(C_identifierSym)
+                     Expect(C_RparenSym)
+                  else
+                     if @sym==C_REFERENCESym
+                        Get()
+                        Expect(C_LparenSym)
+                        Expect(C_identifierSym)
+                        Expect(C_RparenSym)
+                     else
+                        if @sym==C_identifierSym
+                           Get()
+                        else
+                           GenError(333)
+                        end
+
+                     end
+
+                  end
+
+                  Typing()
+                  if @sym==C_DEFAULTSym||@sym==C_OPTIONALSym
+                     if @sym==C_OPTIONALSym
+                        Get()
+                     else
+                        if @sym==C_DEFAULTSym
+                           Get()
+                        else
+                           GenError(334)
+                        end
+
+                     end
+
+                     Expect(C_identifierSym)
+                  end
+
+               end
+
             end
 
             if @sym==C_RETURNINGSym
@@ -1875,7 +1878,7 @@ class CParser < CRRParser
                            Expect(C_identifierSym)
                            Expect(C_RparenSym)
                         else
-                           GenError(332)
+                           GenError(335)
                         end
 
                      end
@@ -1894,7 +1897,7 @@ class CParser < CRRParser
                      end
 
                   else
-                     GenError(333)
+                     GenError(336)
                   end
 
                end
@@ -1903,7 +1906,7 @@ class CParser < CRRParser
 
             Expect(C_PointSym)
          else
-            GenError(334)
+            GenError(337)
          end
 
       end
@@ -1937,7 +1940,7 @@ class CParser < CRRParser
                   if @sym==C_CHARACTERSym
                      Get()
                   else
-                     GenError(335)
+                     GenError(338)
                   end
 
                end
@@ -1985,7 +1988,7 @@ class CParser < CRRParser
                if @sym==C_CHARACTERSym
                   Get()
                else
-                  GenError(336)
+                  GenError(339)
                end
 
             end
@@ -1997,7 +2000,7 @@ class CParser < CRRParser
       when C_LISTSym
          Get()
          while (@sym==C_NUMBERSym||@sym>=C_LINESym&&@sym<=C_PAGESym)
-            if @sym>=EOF_Sym&&@sym<=C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_charSym||@sym==C_spaceD1Sym||@sym>=C_PointSym&&@sym<=C_DESCRIBESym||@sym==C_NUMBERSym||@sym>=C_LINESym&&@sym<=C_PAGESym||@sym==C_INDEXSym||@sym>=C_MESSAGESym&&@sym<=C_LparenSym||@sym==C_RAISINGSym||@sym>=C_LOOPSym&&@sym<=C_DATASym||@sym==C_DEFAULTSym||@sym==C_FORSym||@sym==C_WRITESym||@sym==C_StarSym||@sym>=C_breakSym&&@sym<=C_DOSym||@sym>=C_ENDDOSym&&@sym<=C_WHENSym||@sym>=C_ENDCASESym&&@sym<=C_CALLSym||@sym>=C_EXPORTINGSym&&@sym<=C_IMPORTINGSym||@sym>=C_CHANGINGSym&&@sym<=C_EXCEPTIONSSym||@sym>=C_PARAMETERMinusTABLESym&&@sym<=C_WHILESym||@sym>=C_ENDWHILESym&&@sym<=C_CLASSSym||@sym>=C_PROTECTEDSym&&@sym<=C_PRIVATESym||@sym==C_ENDCLASSSym||@sym>=C_METHODSym&&@sym<=C_METHODSSym||@sym==C_RETURNINGSym||@sym==C_AndSym||@sym>=C_PlusSym&&@sym<=C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym>=C_BangSym&&@sym<=C_NOTSym
+            if @sym>=EOF_Sym&&@sym<=C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_charSym||@sym==C_spaceD1Sym||@sym>=C_PointSym&&@sym<=C_REFRESHSym||@sym>=C_FUNCTIONSym&&@sym<=C_DESCRIBESym||@sym==C_NUMBERSym||@sym>=C_LINESym&&@sym<=C_PAGESym||@sym==C_INDEXSym||@sym>=C_MESSAGESym&&@sym<=C_LparenSym||@sym==C_RAISINGSym||@sym>=C_LOOPSym&&@sym<=C_DATASym||@sym==C_DEFAULTSym||@sym==C_FORSym||@sym==C_WRITESym||@sym==C_StarSym||@sym>=C_breakSym&&@sym<=C_DOSym||@sym>=C_ENDDOSym&&@sym<=C_WHENSym||@sym>=C_ENDCASESym&&@sym<=C_forSym||@sym==C_CALLSym||@sym>=C_EXPORTINGSym&&@sym<=C_IMPORTINGSym||@sym>=C_CHANGINGSym&&@sym<=C_EXCEPTIONSSym||@sym>=C_PARAMETERMinusTABLESym&&@sym<=C_WHILESym||@sym>=C_ENDWHILESym&&@sym<=C_CLASSSym||@sym>=C_PROTECTEDSym&&@sym<=C_PRIVATESym||@sym==C_ENDCLASSSym||@sym>=C_METHODSym&&@sym<=C_METHODSSym||@sym==C_RETURNINGSym||@sym==C_AndSym||@sym>=C_PlusSym&&@sym<=C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym>=C_BangSym&&@sym<=C_NOTSym
                while (@sym==C_NUMBERSym)
                   Get()
                   Expect(C_OFSym)
@@ -2008,7 +2011,7 @@ class CParser < CRRParser
                         if @sym==C_PAGESSym
                            Get()
                         else
-                           GenError(337)
+                           GenError(340)
                         end
 
                      end
@@ -2075,7 +2078,7 @@ class CParser < CRRParser
                      end
 
                   else
-                     GenError(338)
+                     GenError(341)
                   end
 
                end
@@ -2110,7 +2113,7 @@ class CParser < CRRParser
 
 
       else
-         GenError(339)
+         GenError(342)
 
       end
 
@@ -2130,7 +2133,7 @@ class CParser < CRRParser
                      Get()
                      Expect(C_identifierSym)
                   else
-                     GenError(340)
+                     GenError(343)
                   end
 
                end
@@ -2151,7 +2154,7 @@ class CParser < CRRParser
                   Expect(C_TYPESym)
                   Expect(C_identifierSym)
                else
-                  GenError(341)
+                  GenError(344)
                end
 
             end
@@ -2161,7 +2164,7 @@ class CParser < CRRParser
       end
 
       if @sym==C_INTOSym||@sym==C_DISPLAYSym||@sym==C_RAISINGSym
-         if @sym>=EOF_Sym&&@sym<=C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_charSym||@sym==C_spaceD1Sym||@sym>=C_PointSym&&@sym<=C_DESCRIBESym||@sym>=C_MESSAGESym&&@sym<=C_LparenSym||@sym==C_DISPLAYSym||@sym>=C_RAISINGSym&&@sym<=C_DATASym||@sym==C_DEFAULTSym||@sym==C_FORSym||@sym==C_WRITESym||@sym==C_StarSym||@sym>=C_breakSym&&@sym<=C_DOSym||@sym>=C_ENDDOSym&&@sym<=C_WHENSym||@sym>=C_ENDCASESym&&@sym<=C_CALLSym||@sym>=C_EXPORTINGSym&&@sym<=C_IMPORTINGSym||@sym>=C_CHANGINGSym&&@sym<=C_EXCEPTIONSSym||@sym>=C_PARAMETERMinusTABLESym&&@sym<=C_WHILESym||@sym>=C_ENDWHILESym&&@sym<=C_CLASSSym||@sym>=C_PROTECTEDSym&&@sym<=C_PRIVATESym||@sym==C_ENDCLASSSym||@sym>=C_METHODSym&&@sym<=C_METHODSSym||@sym==C_RETURNINGSym||@sym==C_AndSym||@sym>=C_PlusSym&&@sym<=C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym>=C_BangSym&&@sym<=C_NOTSym
+         if @sym>=EOF_Sym&&@sym<=C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_charSym||@sym==C_spaceD1Sym||@sym>=C_PointSym&&@sym<=C_REFRESHSym||@sym>=C_FUNCTIONSym&&@sym<=C_DESCRIBESym||@sym>=C_MESSAGESym&&@sym<=C_LparenSym||@sym==C_DISPLAYSym||@sym>=C_RAISINGSym&&@sym<=C_DATASym||@sym==C_DEFAULTSym||@sym==C_FORSym||@sym==C_WRITESym||@sym==C_StarSym||@sym>=C_breakSym&&@sym<=C_DOSym||@sym>=C_ENDDOSym&&@sym<=C_WHENSym||@sym>=C_ENDCASESym&&@sym<=C_forSym||@sym==C_CALLSym||@sym>=C_EXPORTINGSym&&@sym<=C_IMPORTINGSym||@sym>=C_CHANGINGSym&&@sym<=C_EXCEPTIONSSym||@sym>=C_PARAMETERMinusTABLESym&&@sym<=C_WHILESym||@sym>=C_ENDWHILESym&&@sym<=C_CLASSSym||@sym>=C_PROTECTEDSym&&@sym<=C_PRIVATESym||@sym==C_ENDCLASSSym||@sym>=C_METHODSym&&@sym<=C_METHODSSym||@sym==C_RETURNINGSym||@sym==C_AndSym||@sym>=C_PlusSym&&@sym<=C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym>=C_BangSym&&@sym<=C_NOTSym
             if @sym==C_DISPLAYSym
                Get()
                Expect(C_LIKESym)
@@ -2178,7 +2181,7 @@ class CParser < CRRParser
                Get()
                Expect(C_stringD1Sym)
             else
-               GenError(342)
+               GenError(345)
             end
 
          end
@@ -2190,6 +2193,35 @@ class CParser < CRRParser
          Expect(C_identifierSym)
          while (@sym==C_identifierSym)
             Get()
+         end
+
+      end
+
+   end
+   def RefreshStatement()
+      Expect(C_REFRESHSym)
+      if @sym==C_CONTROLSym
+         Get()
+         Expect(C_identifierSym)
+         Expect(C_FROMSym)
+         Expect(C_SCREENSym)
+         Expect(C_identifierSym)
+      else
+         if @sym==C_identifierSym
+            Get()
+            if @sym==C_LbrackSym
+               Get()
+               Expect(C_RbrackSym)
+            end
+
+            if @sym==C_FROMSym
+               Get()
+               Expect(C_TABLESym)
+               Expect(C_identifierSym)
+            end
+
+         else
+            GenError(346)
          end
 
       end
@@ -2224,7 +2256,7 @@ class CParser < CRRParser
          Expect(C_RparenSym)
 
       else
-         GenError(343)
+         GenError(347)
 
       end
 
@@ -2248,7 +2280,7 @@ class CParser < CRRParser
                   Expect(C_TOSym)
                   Expect(C_identifierSym)
                else
-                  GenError(344)
+                  GenError(348)
                end
 
             end
@@ -2270,7 +2302,7 @@ class CParser < CRRParser
                      Get()
                      Expect(C_TOSym)
                   else
-                     GenError(345)
+                     GenError(349)
                   end
 
                end
@@ -2279,7 +2311,7 @@ class CParser < CRRParser
 
             Expect(C_identifierSym)
          else
-            GenError(346)
+            GenError(350)
          end
 
       end
@@ -2326,7 +2358,7 @@ class CParser < CRRParser
          Get()
 
       else
-         GenError(347)
+         GenError(351)
 
       end
 
@@ -2343,7 +2375,7 @@ class CParser < CRRParser
                if @sym==C_EQUIVSym
                   Get()
                else
-                  GenError(348)
+                  GenError(352)
                end
 
             end
@@ -2363,7 +2395,7 @@ class CParser < CRRParser
             if @sym==C_ANDSym
                Get()
             else
-               GenError(349)
+               GenError(353)
             end
 
          end
@@ -2414,7 +2446,7 @@ class CParser < CRRParser
             Get()
 
          else
-            GenError(350)
+            GenError(354)
 
          end
 
@@ -2494,7 +2526,7 @@ class CParser < CRRParser
             Get()
 
          else
-            GenError(351)
+            GenError(355)
 
          end
 
@@ -2511,7 +2543,7 @@ class CParser < CRRParser
             if @sym==C_GreaterGreaterSym
                Get()
             else
-               GenError(352)
+               GenError(356)
             end
 
          end
@@ -2529,7 +2561,7 @@ class CParser < CRRParser
             if @sym==C_MinusSym
                Get()
             else
-               GenError(353)
+               GenError(357)
             end
 
          end
@@ -2562,7 +2594,7 @@ class CParser < CRRParser
             Get()
 
          else
-            GenError(354)
+            GenError(358)
 
          end
 
@@ -2584,7 +2616,7 @@ class CParser < CRRParser
                if @sym==C_MinusMinusSym
                   Get()
                else
-                  GenError(355)
+                  GenError(359)
                end
 
             end
@@ -2595,7 +2627,7 @@ class CParser < CRRParser
                UnaryOperator()
                CastExp()
             else
-               GenError(356)
+               GenError(360)
             end
 
          end
@@ -2605,7 +2637,7 @@ class CParser < CRRParser
    end
    def PostFixExp()
       Primary()
-      while (@sym==C_LparenSym||@sym>=C_PlusPlusSym&&@sym<=C_LbrackSym||@sym==C_MinusGreaterSym)
+      while (@sym==C_LbrackSym||@sym==C_LparenSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusGreaterSym)
          case @sym
 
          when C_LbrackSym
@@ -2627,7 +2659,7 @@ class CParser < CRRParser
             Get()
 
          else
-            GenError(357)
+            GenError(361)
 
          end
 
@@ -2640,8 +2672,8 @@ class CParser < CRRParser
       when C_PlusSym
          Get()
 
-      when C_spaceD1Sym
-      when C_MinusSym
+      when C_spaceD1Sym,
+         C_MinusSym
          MinusOperator()
 
       when C_StarSym
@@ -2660,7 +2692,7 @@ class CParser < CRRParser
          Get()
 
       else
-         GenError(358)
+         GenError(362)
 
       end
 
@@ -2690,7 +2722,7 @@ class CParser < CRRParser
             Get()
             Expect(C_spaceD1Sym)
          else
-            GenError(359)
+            GenError(363)
          end
 
       end

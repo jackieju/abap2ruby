@@ -362,10 +362,10 @@ class CScanner <  CRRScanner
   # --- here need steps ---#
   # 1. @@STATE0 =  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
    @@STATE0 = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-                  0,0,31,111,26,32,0,94,82,24,37,38,40,92,100,93,36,39,34,2,2,2,2,2,2,2,2,2,30,79,
-                  85,78,87,0,0,1,1,1,113,1,1,1,1,1,1,1,1,114,1,1,1,1,1,1,1,1,1,1,1,1,
-                  1,97,0,98,84,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-                  1,1,1,0,80,0,112,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                  0,0,31,111,26,32,0,96,84,24,39,40,42,94,100,95,36,41,34,2,2,2,2,2,2,2,2,2,30,81,
+                  87,80,89,0,0,1,1,1,113,1,1,1,1,1,1,1,1,114,1,1,1,1,1,1,1,1,1,1,1,1,
+                  1,37,0,38,86,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+                  1,1,1,0,82,0,112,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
                   0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
                   0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
                   0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -392,6 +392,10 @@ public
      case c
 
      when 'A'
+        if EqualStr("AND")
+           return C_ANDSym
+        end
+
         if EqualStr("ALIAS")
            return C_ALIASSym
         end
@@ -412,14 +416,14 @@ public
            return C_ABSTRACTSym
         end
 
-        if EqualStr("AND")
-           return C_ANDSym
-        end
-
 
      when 'B'
         if EqualStr("BYTE")
            return C_BYTESym
+        end
+
+        if EqualStr("BETWEEN")
+           return C_BETWEENSym
         end
 
         if EqualStr("BOXED")
@@ -460,6 +464,10 @@ public
 
 
      when 'C'
+        if EqualStr("CONTROL")
+           return C_CONTROLSym
+        end
+
         if EqualStr("COMPONENTS")
            return C_COMPONENTSSym
         end
@@ -558,6 +566,10 @@ public
            return C_DISTANCESym
         end
 
+        if EqualStr("DISPLAY")
+           return C_DISPLAYSym
+        end
+
         if EqualStr("DATA")
            return C_DATASym
         end
@@ -602,6 +614,10 @@ public
 
         if EqualStr("EDIT")
            return C_EDITSym
+        end
+
+        if EqualStr("END-LINES")
+           return C_ENDMinusLINESSym
         end
 
         if EqualStr("ENDLOOP")
@@ -686,12 +702,20 @@ public
 
 
      when 'F'
+        if EqualStr("FROM")
+           return C_FROMSym
+        end
+
         if EqualStr("FUNCTION")
            return C_FUNCTIONSym
         end
 
         if EqualStr("FIELD")
            return C_FIELDSym
+        end
+
+        if EqualStr("FIRST-LINE")
+           return C_FIRSTMinusLINESym
         end
 
         if EqualStr("FOR")
@@ -704,10 +728,6 @@ public
 
         if EqualStr("FRAMES")
            return C_FRAMESSym
-        end
-
-        if EqualStr("FROM")
-           return C_FROMSym
         end
 
         if EqualStr("FINAL")
@@ -742,6 +762,10 @@ public
            return C_HELPMinusIDSym
         end
 
+        if EqualStr("HEAD-LINES")
+           return C_HEADMinusLINESSym
+        end
+
         if EqualStr("HANDLE")
            return C_HANDLESym
         end
@@ -766,6 +790,18 @@ public
      when 'I'
         if EqualStr("IN")
            return C_INSym
+        end
+
+        if EqualStr("INTO")
+           return C_INTOSym
+        end
+
+        if EqualStr("INDEX")
+           return C_INDEXSym
+        end
+
+        if EqualStr("ID")
+           return C_IDSym
         end
 
         if EqualStr("INITIAL")
@@ -814,6 +850,10 @@ public
 
 
      when 'K'
+        if EqualStr("KIND")
+           return C_KINDSym
+        end
+
         if EqualStr("KEY")
            return C_KEYSym
         end
@@ -828,6 +868,26 @@ public
            return C_LISTSym
         end
 
+        if EqualStr("LINES")
+           return C_LINESSym
+        end
+
+        if EqualStr("LINE")
+           return C_LINESym
+        end
+
+        if EqualStr("LINE-SIZE")
+           return C_LINEMinusSIZESym
+        end
+
+        if EqualStr("LINE-COUNT")
+           return C_LINEMinusCOUNTSym
+        end
+
+        if EqualStr("LIKE")
+           return C_LIKESym
+        end
+
         if EqualStr("LOOP")
            return C_LOOPSym
         end
@@ -838,14 +898,6 @@ public
 
         if EqualStr("LOB")
            return C_LOBSym
-        end
-
-        if EqualStr("LINE")
-           return C_LINESym
-        end
-
-        if EqualStr("LIKE")
-           return C_LIKESym
         end
 
         if EqualStr("LEFT-JUSTIFIED")
@@ -878,12 +930,12 @@ public
            return C_MASKSym
         end
 
-        if EqualStr("MMDDYY")
-           return C_MMDDYYSym
-        end
-
         if EqualStr("MESSAGE")
            return C_MESSAGESym
+        end
+
+        if EqualStr("MMDDYY")
+           return C_MMDDYYSym
         end
 
         if EqualStr("MEMORY")
@@ -908,6 +960,10 @@ public
 
 
      when 'N'
+        if EqualStr("NUMBER")
+           return C_NUMBERSym
+        end
+
         if EqualStr("NON-UNIQUE")
            return C_NONMinusUNIQUESym
         end
@@ -970,6 +1026,10 @@ public
            return C_OFSym
         end
 
+        if EqualStr("OCCURS")
+           return C_OCCURSSym
+        end
+
         if EqualStr("OTHER")
            return C_OTHERSym
         end
@@ -996,6 +1056,14 @@ public
 
 
      when 'P'
+        if EqualStr("PAGES")
+           return C_PAGESSym
+        end
+
+        if EqualStr("PAGE")
+           return C_PAGESym
+        end
+
         if EqualStr("PERFORMING")
            return C_PERFORMINGSym
         end
@@ -1034,6 +1102,14 @@ public
      when 'R'
         if EqualStr("REPORT")
            return C_REPORTSym
+        end
+
+        if EqualStr("REFRESH")
+           return C_REFRESHSym
+        end
+
+        if EqualStr("RAISING")
+           return C_RAISINGSym
         end
 
         if EqualStr("READER")
@@ -1076,16 +1152,16 @@ public
            return C_RETURNINGSym
         end
 
-        if EqualStr("RAISING")
-           return C_RAISINGSym
-        end
-
         if EqualStr("RESUMABLE")
            return C_RESUMABLESym
         end
 
 
      when 'S'
+        if EqualStr("SCREEN")
+           return C_SCREENSym
+        end
+
         if EqualStr("STANDARD")
            return C_STANDARDSym
         end
@@ -1128,12 +1204,20 @@ public
 
 
      when 'T'
+        if EqualStr("TABLE")
+           return C_TABLESym
+        end
+
         if EqualStr("TYPE")
            return C_TYPESym
         end
 
-        if EqualStr("TABLE")
-           return C_TABLESym
+        if EqualStr("TOP-LINES")
+           return C_TOPMinusLINESSym
+        end
+
+        if EqualStr("TITLE-LINES")
+           return C_TITLEMinusLINESSym
         end
 
         if EqualStr("TO")
@@ -1272,6 +1356,7 @@ public
 
 
      end
+
 
      return id
   end
@@ -1563,10 +1648,14 @@ public
               when 36
                  return C_PointSym
               when 37
-                 return C_LparenSym
+                 return C_LbrackSym
               when 38
-                 return C_RparenSym
+                 return C_RbrackSym
               when 39
+                 return C_LparenSym
+              when 40
+                 return C_RparenSym
+              when 41
                  if @ch=='='
                     state=102
                  else
@@ -1574,9 +1663,9 @@ public
                  end
 
 
-              when 40
+              when 42
                  if @ch=='*'
-                    state=41
+                    state=43
                  else
                     if @ch=='='
                        state=101
@@ -1587,35 +1676,35 @@ public
                  end
 
 
-              when 41
+              when 43
                  return C_StarStarSym
-              when 66
+              when 68
                  if @ch=='Y'
-                    state=67
+                    state=69
                  else
                     return No_Sym
                  end
 
 
-              when 67
+              when 69
                  return C_DDSlashMMSlashYYYYSym
-              when 76
+              when 78
                  if @ch=='Y'
-                    state=77
+                    state=79
                  else
                     return No_Sym
                  end
 
 
-              when 77
-                 return C_MMSlashDDSlashYYYYSym
-              when 78
-                 return C_EqualSym
               when 79
-                 return C_SemicolonSym
+                 return C_MMSlashDDSlashYYYYSym
               when 80
+                 return C_EqualSym
+              when 81
+                 return C_SemicolonSym
+              when 82
                  if @ch=='|'
-                    state=81
+                    state=83
                  else
                     if @ch=='='
                        state=108
@@ -1626,11 +1715,11 @@ public
                  end
 
 
-              when 81
+              when 83
                  return C_BarBarSym
-              when 82
+              when 84
                  if @ch=='&'
-                    state=83
+                    state=85
                  else
                     if @ch=='='
                        state=106
@@ -1641,9 +1730,9 @@ public
                  end
 
 
-              when 83
+              when 85
                  return C_AndAndSym
-              when 84
+              when 86
                  if @ch=='='
                     state=107
                  else
@@ -1651,15 +1740,15 @@ public
                  end
 
 
-              when 85
+              when 87
                  if @ch=='>'
-                    state=86
+                    state=88
                  else
                     if @ch=='='
-                       state=88
+                       state=90
                     else
                        if @ch=='<'
-                          state=90
+                          state=92
                        else
                           return C_LessSym
                        end
@@ -1669,14 +1758,14 @@ public
                  end
 
 
-              when 86
+              when 88
                  return C_LessGreaterSym
-              when 87
+              when 89
                  if @ch=='='
-                    state=89
+                    state=91
                  else
                     if @ch=='>'
-                       state=91
+                       state=93
                     else
                        return C_GreaterSym
                     end
@@ -1684,11 +1773,11 @@ public
                  end
 
 
-              when 88
-                 return C_LessEqualSym
-              when 89
-                 return C_GreaterEqualSym
               when 90
+                 return C_LessEqualSym
+              when 91
+                 return C_GreaterEqualSym
+              when 92
                  if @ch=='='
                     state=109
                  else
@@ -1696,7 +1785,7 @@ public
                  end
 
 
-              when 91
+              when 93
                  if @ch=='='
                     state=110
                  else
@@ -1704,9 +1793,9 @@ public
                  end
 
 
-              when 92
+              when 94
                  if @ch=='+'
-                    state=95
+                    state=97
                  else
                     if @ch=='='
                        state=104
@@ -1717,9 +1806,9 @@ public
                  end
 
 
-              when 93
+              when 95
                  if @ch=='-'
-                    state=96
+                    state=98
                  else
                     if @ch=='>'
                        state=99
@@ -1735,7 +1824,7 @@ public
                  end
 
 
-              when 94
+              when 96
                  if @ch=='='
                     state=103
                  else
@@ -1743,14 +1832,10 @@ public
                  end
 
 
-              when 95
-                 return C_PlusPlusSym
-              when 96
-                 return C_MinusMinusSym
               when 97
-                 return C_LbrackSym
+                 return C_PlusPlusSym
               when 98
-                 return C_RbrackSym
+                 return C_MinusMinusSym
               when 99
                  return C_MinusGreaterSym
               when 100
@@ -1913,7 +1998,7 @@ public
 
               when 127
                  if @ch=='Y'
-                    state=66
+                    state=68
                  else
                     return C_DDSlashMMSlashYYSym
                  end
@@ -1921,7 +2006,7 @@ public
 
               when 128
                  if @ch=='Y'
-                    state=76
+                    state=78
                  else
                     return C_MMSlashDDSlashYYSym
                  end
@@ -1932,7 +2017,7 @@ public
               end
 
            end
- 
+
         
 
 

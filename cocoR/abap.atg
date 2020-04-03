@@ -49,6 +49,8 @@ PRODUCTIONS
 
 
   Statement            = (. ret = "" .)
+  (. ps() .)
+  
                          (
                               VariableDefineStatement
                              | (. ret += .) WriteStatement 
@@ -57,7 +59,7 @@ PRODUCTIONS
                              | (. ret += .) ContinueStatement
                              | (. ret += .) DoStatement 
                              | (. ret += .) ForStatement
-                             | (. ret += .) IfStatement  
+                             |  IfStatement  
                              | NullStatement
                              | (. ret += .) ReturnStatement 
                              | (. ret += .) WhileStatement 
@@ -73,11 +75,14 @@ PRODUCTIONS
                              | FunctionDef
                              | DescribeStatement
                              | MessasgeStatement
-                         ) 
+                             | RefreshStatement
+                         )
                            (. return ret .)
  .
 
-
+RefreshStatement = "REFRESH" ("CONTROL" identifier "FROM" "SCREEN" identifier
+ | identifier["[""]"] ["FROM" "TABLE" identifier] ).
+ 
 FunctionDef = "FUNCTION" identifier "."  (. s = "" .)
                 { (. s+= .)  Statements } 
               "ENDFUNCTION" EOF .
@@ -85,7 +90,7 @@ FunctionDef = "FUNCTION" identifier "."  (. s = "" .)
 DescribeStatement = "DESCRIBE" (
           ( "FIELD" identifier 
           ["TYPE" identifier ["COMPONENTS" identifier]] 
-          ["LENGTH" number "IN" {"BYTE"|"CHARACTER"} "MODE"] 
+          ["LENGTH" Expression "IN" {"BYTE"|"CHARACTER"} "MODE"] 
           ["DECIMALS" string1] 
           ["OUTPUT-LENGTH" number] 
           ["HELP-ID" identifier] 
@@ -259,12 +264,12 @@ WriteStatement =  "WRITE" {["AT"] ["/"][number][ "(" (number | "*" | "**") ")" ]
   } 
   ["QUICKINFO" string1] "." . 
 
-  AssignmentStatement =  Expression ";" .
+  AssignmentStatement =  Expression  .
 
-  BreakStatement       = "break"  ";" .
+  BreakStatement       = "break"   .
 
 
-  Statements = (. s = "" .){ (.s += .) Statement } (. return s .).
+  Statements = (. s = "" .)(.s += .) Statement { (.s += .) Statement } (. return s .).
 
   ContinueStatement    = "CONTINUE"  "."  .
 
