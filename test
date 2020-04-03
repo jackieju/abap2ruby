@@ -1,0 +1,2 @@
+ruby translate.rb cp_testcase.abap
+ruby translate.rb abap/YCL*.txt
