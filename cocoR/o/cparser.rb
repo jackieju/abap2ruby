@@ -79,23 +79,18 @@ class CParser < CRRParser
          C_BangSym,
          C_TildeSym,
          C_NOTSym
-         ret+=
          AssignmentStatement()
 
       when C_breakSym
-         ret+=
          BreakStatement()
 
       when C_CONTINUESym
-         ret+=
          ContinueStatement()
 
       when C_DOSym
-         ret+=
          DoStatement()
 
       when C_forSym
-         ret+=
          ForStatement()
 
       when C_IFSym
@@ -1931,7 +1926,7 @@ class CParser < CRRParser
 
          if @sym==C_LENGTHSym
             Get()
-            Expect(C_numberSym)
+            Expression()
             Expect(C_INSym)
             while (@sym>=C_BYTESym&&@sym<=C_CHARACTERSym)
                if @sym==C_BYTESym

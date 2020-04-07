@@ -54,12 +54,12 @@ PRODUCTIONS
                          (
                               VariableDefineStatement
                              | (. ret += .) WriteStatement 
-                             | (. ret += .) AssignmentStatement 
-                             | (. ret += .) BreakStatement
-                             | (. ret += .) ContinueStatement
-                             | (. ret += .) DoStatement 
-                             | (. ret += .) ForStatement
-                             |  IfStatement  
+                             | AssignmentStatement 
+                             | BreakStatement
+                             | ContinueStatement
+                             | DoStatement 
+                             | ForStatement
+                             | IfStatement  
                              | NullStatement
                              | (. ret += .) ReturnStatement 
                              | (. ret += .) WhileStatement 
@@ -417,10 +417,10 @@ MethodsStatement = "METHODS" identifier ["ABSTRACT"|"FINAL"]
 
   ANDExp               = EqualExp    { "&" EqualExp } .
 
-  EqualExp             =   RelationExp { ( "="| "EQ"| "<>" | "NE"  ) RelationExp } .
+  EqualExp             =   RelationExp { ( "="| "EQ"| "<>" | "NE" | "IS" ["NOT"] ) RelationExp } .
 
   RelationExp          =   ShiftExp    { ( "<" | "LT"  | ">" | "GT" | "<=" | "LE" | ">=" | "GE"|"CO"|"CN"|"CA"|"NA"|"CS"|"NS"|"CP"|"NP" 
-                |"BYTE-CO"|"BYTE-CN"|"BYTE-CA"|"BYTE-NA"|"BYTE-CS"|"BYTE-NS"
+                |"BYTE-CO"|"BYTE-CN"|"BYTE-CA"|"BYTE-NA"|"BYTE-CS"|"BYTE-NS"| "O" | "Z" | "M"
                 )   ShiftExp   }
   .
 
