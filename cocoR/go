@@ -1,5 +1,8 @@
 set -e
-cpp2ruby_dir=/Users/i027910/Desktop/ju/projects/sap/cpp2ruby
+#cpp2ruby_dir=/Users/i027910/Desktop/ju/projects/sap/cpp2ruby
+
+cpp2ruby_dir=/Users/i027910/Desktop/ju/projects/sap/CPP2Ruby_github
+
 #test grammar
 ./cocor17new abap.atg 
 

@@ -76,16 +76,41 @@ PRODUCTIONS
                              | DescribeStatement
                              | MessasgeStatement
                              | RefreshStatement
+                             | SearchStatement
+                             | CONCATENATE
+                             | APPEND
                          )
                            (. return ret .)
  .
+ 
+APPEND = "APPEND" (identifier 
+        | {"INITIAL" "LINE"} 
+        | {"LINES" "OF" identifier ["FROM" identifier] ["TO" identifier] ["USING" "KEY" string1]}
+         )
+    "TO" identifier 
+    ["SORTED" "BY" string1] 
+    [ ("ASSIGNING" string1 ["CASTING"] | "REFERENCE" "INTO" identifier ) ] "." .
+ 
+ CONCATENATE = "CONCATENATE" (identifier {identifier}
+             | "LINES" "OF" identifier
+             )
+             "INTO" identifier 
+             ["IN" ("CHARACTER"|"BYTE") "MODE"] 
+             ["SEPARATED" "BY" string1] 
+             ["RESPECTING" "BLANKS"] ".".
+ 
+ SearchStatement = "SEARCH" identifier "FOR" string1 
+      ["IN" ("CHARACTER"|"BYTE") "MODE"] 
+      ["STARTING" "AT" Expression] ["ENDING" "AT" Expression] 
+      ["ABBREVIATED"] 
+      ["AND" "MARK"] "." . 
 
 RefreshStatement = "REFRESH" ("CONTROL" identifier "FROM" "SCREEN" identifier
  | identifier["[""]"] ["FROM" "TABLE" identifier] ).
  
 FunctionDef = "FUNCTION" identifier "."  (. s = "" .)
                 { (. s+= .)  Statements } 
-              "ENDFUNCTION" EOF .
+              "ENDFUNCTION" EOF  .
 
 DescribeStatement = "DESCRIBE" (
           ( "FIELD" identifier 
@@ -113,7 +138,7 @@ DescribeStatement = "DESCRIBE" (
               )
         | ( "TABLE" identifier ["KIND" identifier] ["LINES" number] ["OCCURS" number] )
         )
-        .
+        "." .
         
 MessasgeStatement = "MESSAGE"
          {(
@@ -128,7 +153,7 @@ MessasgeStatement = "MESSAGE"
             ["RAISING" identifier] )
         | ("INTO" string1)
         )]
-        ["WITH" identifier {identifier}]. 
+        ["WITH" identifier {identifier}] "." . 
 
 LoopStatement = "LOOP" "." Statements "ENDLOOP" "." .
 
@@ -417,11 +442,11 @@ MethodsStatement = "METHODS" identifier ["ABSTRACT"|"FINAL"]
 
   ANDExp               = EqualExp    { "&" EqualExp } .
 
-  EqualExp             =   RelationExp { ( "="| "EQ"| "<>" | "NE" | "IS" ["NOT"] ) RelationExp } .
+  EqualExp             =   RelationExp { ( "="| "EQ"| "<>" | "NE" | "IS" ["NOT"] ) RelationExp } |
+  RelationExp ["NOT"] "BETWEEN" RelationExp "AND" RelationExp 
+  .
 
-  RelationExp          =   ShiftExp    { ( "<" | "LT"  | ">" | "GT" | "<=" | "LE" | ">=" | "GE"|"CO"|"CN"|"CA"|"NA"|"CS"|"NS"|"CP"|"NP" 
-                |"BYTE-CO"|"BYTE-CN"|"BYTE-CA"|"BYTE-NA"|"BYTE-CS"|"BYTE-NS"| "O" | "Z" | "M"
-                )   ShiftExp   }
+  RelationExp          =   ShiftExp    { ( "<" | "LT"  | ">" | "GT" | "<=" | "LE" | ">=" | "GE" | "CO" | "CN" | "CA" | "NA" | "CS" | "NS" | "CP" | "NP" |"BYTE-CO" | "BYTE-CN" | "BYTE-CA" | "BYTE-NA" | "BYTE-CS" | "BYTE-NS" )   ShiftExp   }
   .
 
   ShiftExp             = AddExp      { ( "<<" | ">>" ) AddExp } .
@@ -452,7 +477,7 @@ MethodsStatement = "METHODS" identifier ["ABSTRACT"|"FINAL"]
                           | "--"
                          } .   
   
-  Primary              = identifier | string1 | char | number | "(" Expression ")" .
+  Primary              = identifier | string1 | char | number | "(" Expression ")" |PredefinedConstant.
 
   FunctionCall        = "("   [ ActualParameters] ")"   .
 
@@ -461,11 +486,11 @@ MethodsStatement = "METHODS" identifier ["ABSTRACT"|"FINAL"]
   AssignmentOperator   =   "="  | "*=" | "/=" | "%=" | "+=" | "-=" | "&="
                          | "^=" | "|=" | "<<=" | ">>=" .
 
-  UnaryOperator        = "+" | MinusOperator | "*" | "!" | "&" | "~" | "NOT".
+  UnaryOperator        = "+" | MinusOperator | "*" | "!" | "&" | "~" | "NOT" |  "INSTANCE" "OF" | "IN" .
 
   MinusOperator = space1 "-" | "-" space1 .
 
-
+  PredefinedConstant = "INITIAL" | "BOUND" | "ASSIGNED" | "SUPPLIED" | "REQUESTED" .
 END C.
 
 

@@ -157,13 +157,13 @@ end
 
 p s
 
-scanner = CScanner.new(s, false)
+scanner = Scanner.new(s, false)
 error = MyError.new("whaterver", scanner)
 parser = Preprocessor.new(scanner, error)
 s = parser.Preprocess
     
 
-scanner = CScanner.new(s, false)
+scanner = Scanner.new(s, false)
 p "===>scanner =#{scanner}"
 p "==>#{scanner.nextSym}"
 $sc = scanner

@@ -1,4 +1,8 @@
 load "cr_scan.rb"
+
+load 'cocoR/o/cscanner.rb'
+load 'cocoR/o/_global_.rb'
+
 load "rubyutility.rb"
 load "log.rb"
 
@@ -299,7 +303,7 @@ class String
 end
 
            MAX_IDENTIFIER_LENGTH = 1000
-class CRRScanner <  CRScanner
+class CRRScanner <  CScanner
     
     attr_accessor :currLine, :currCol, :include_stack
    def Scan_NextCh    
@@ -365,7 +369,7 @@ class CRRScanner <  CRScanner
     end
     
     def clone()
-        sc = CScanner.new
+        sc = CRRScanner.new
         sc.set(@buffer, @ignoreCase, @currSym, @nextSym, @currLine, @currCol, @lineStart, @buffPos, @ch, @comEols)
         return sc
     end

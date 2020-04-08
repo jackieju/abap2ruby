@@ -131,7 +131,7 @@ If you translate it into other langauge, you will find that it became a lot of f
 
 So shall we translate ABAP or just run it directly in a function like "run_abap(...)".
 
-I think ABAP's problem is it over-use the syntax. So for those syntax and functionality like SQL select statement, we can keep it and just run it in function "run_apap('...')". And for other syntax which is most case, for example variable define, if statement, loop statement... we could translate them into morden langauge, which will be more clear and neat.
+I think ABAP's problem is it over-use the syntax, or say mix the functionality with syntax. So the basic priciple is, only translate non-function syntax like expression, if statement, loop statment... and do not translate the "function" like select statement, search statement .... In another word, for these syntax and functionality like SQL select statement, we can keep it and just run it in function "run_apap('SEARCH OBJ FOR ...')". And for other syntax which is most case, for example variable define, if statement, loop statement... we could translate them into morden langauge, which will be clearer and neater.
 
 So it will need very big efforts to convert ABAP ambigous grammar(https://help.sap.com/doc/abapdocu_751_index_htm/7.51/en-US/index.htm) to EBNF. It will be a very big EBNF.
 
@@ -165,10 +165,10 @@ In case you add new keyword to abap.atg, the scanner(scanner.rb) will need to be
 1. Set value of @@STATE0, copy the value from cocoR/output/cs.cpp
 <pre>
 int cScanner::STATE0[] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-                  0,0,31,111,26,32,0,94,82,24,38,41,39,92,100,93,36,37,34,2,2,2,2,2,2,2,2,2,30,79,
-                  85,78,87,0,0,1,1,1,113,1,1,1,1,1,1,1,1,114,1,1,1,1,1,1,1,1,1,1,1,1,
-                  1,97,0,98,84,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-                  1,1,1,0,80,0,112,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                  0,0,31,111,26,32,0,96,84,24,39,40,42,94,100,95,36,41,34,2,2,2,2,2,2,2,2,2,30,81,
+                  87,80,89,0,0,1,1,1,113,1,1,1,1,1,1,1,1,114,1,1,1,1,1,1,1,1,1,1,1,1,
+                  1,37,0,38,86,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+                  1,1,1,0,82,0,112,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
                   0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
                   0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
                   0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -188,9 +188,9 @@ to scanner.rb
                   0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]                   
 </pre>                  
 
-2. copy content of method 'CheckLiteral', from cocoR/output/cscanner.rb
+2. copy content of method 'CheckLiteral', from cocoR/o/cscanner.rb
 
-3. copy part of body of method 'Get', from cocoR/output/cscanner.rb to scanner.rb
+3. copy part of body of method 'Get', from cocoR/o/cscanner.rb to scanner.rb
     1) Copy the while loop after state=@sTATE0[@ch]
     2) Change .Len .Pos to .len .pos 
     

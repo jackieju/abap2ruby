@@ -31,12 +31,12 @@
 class -->ScanClass : public SCANNER
 {
   public:
-    -->ScanClass(int SrcFile, int ignoreCase) : SCANNER(SrcFile, ignoreCase) {};
+   /* -->ScanClass(int SrcFile, int ignoreCase) : SCANNER(SrcFile, ignoreCase) {};
     	char* GetName(){
 		szName[0] = 0;
 		CRScanner::GetName(&CurrSym, szName, MAX_IDENTIFIER_LENGTH-1);//µÃµ½Ãû³Æ;
 		return szName;
-	}
+	}*/
   protected:
     static int STATE0[];
     int CheckLiteral(int id);

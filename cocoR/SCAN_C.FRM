@@ -50,7 +50,19 @@ int -->ScanClass::Comment()
   return 0;
 }
 
-int -->ScanClass::Get()
+int -->ScanClass::UpdateState()
+{
+    state = STATE0[Ch.to_byte()];
+    while(1) {
+      Scan_NextCh(); NextSym.Len++;
+      switch (state) {
+      -->GetDFA
+      default: return No_Sym; /* Scan_NextCh already done */
+      }
+    }
+}
+
+int -->ScanClass::Get1()
 { int state, ctx;
 
   start:

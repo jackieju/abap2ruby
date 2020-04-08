@@ -281,7 +281,7 @@ end # end Scanner
 
 
            MAX_IDENTIFIER_LENGTH = 1000
-class CScanner <  CRRScanner
+class Scanner <  CRRScanner
     
     attr_accessor :currLine, :currCol, :include_stack
   
@@ -361,15 +361,15 @@ class CScanner <  CRRScanner
 
   # --- here need steps ---#
   # 1. @@STATE0 =  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-   @@STATE0 = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-                  0,0,31,111,26,32,0,96,84,24,39,40,42,94,100,95,36,41,34,2,2,2,2,2,2,2,2,2,30,81,
-                  87,80,89,0,0,1,1,1,113,1,1,1,1,1,1,1,1,114,1,1,1,1,1,1,1,1,1,1,1,1,
-                  1,37,0,38,86,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-                  1,1,1,0,82,0,112,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-                  0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-                  0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-                  0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-                  0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+   #@@STATE0 = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+   #               0,0,31,111,26,32,0,96,84,24,39,40,42,94,100,95,36,41,34,2,2,2,2,2,2,2,2,2,30,81,
+   #               87,80,89,0,0,1,1,1,113,1,1,1,1,1,1,1,1,114,1,1,1,1,1,1,1,1,1,1,1,1,
+   #               1,37,0,38,86,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+   #               1,1,1,0,82,0,112,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+   #               0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+   #               0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+   #               0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+   #               0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
   # the index of the array is the character's acsii code (ch.to_byte), value of array element is the status code.                 
   # 2. method def CheckLiteral( id)
   # 3. comments (this step not needed now)
@@ -383,6 +383,7 @@ public
   #     copy the part after state=@sTATE0[@ch]
   #     change .Len .Pos to .len .pos
   # 5. recopy sym from cc.hpp to sym.rb (not needed, done by gen_sym.rb)
+=begin
   def CheckLiteral(id)
      c=CurrentCh(@nextSym.Pos)
      if @ignoreCase
@@ -414,6 +415,10 @@ public
 
         if EqualStr("ABSTRACT")
            return C_ABSTRACTSym
+        end
+
+        if EqualStr("ASSIGNED")
+           return C_ASSIGNEDSym
         end
 
 
@@ -460,6 +465,10 @@ public
 
         if EqualStr("BYTE-NS")
            return C_BYTEMinusNSSym
+        end
+
+        if EqualStr("BOUND")
+           return C_BOUNDSym
         end
 
 
@@ -848,6 +857,10 @@ public
            return C_IGNORESym
         end
 
+        if EqualStr("INSTANCE")
+           return C_INSTANCESym
+        end
+
 
      when 'K'
         if EqualStr("KIND")
@@ -1000,6 +1013,10 @@ public
            return C_NESym
         end
 
+        if EqualStr("NOT")
+           return C_NOTSym
+        end
+
         if EqualStr("NA")
            return C_NASym
         end
@@ -1010,10 +1027,6 @@ public
 
         if EqualStr("NP")
            return C_NPSym
-        end
-
-        if EqualStr("NOT")
-           return C_NOTSym
         end
 
 
@@ -1156,6 +1169,10 @@ public
            return C_RESUMABLESym
         end
 
+        if EqualStr("REQUESTED")
+           return C_REQUESTEDSym
+        end
+
 
      when 'S'
         if EqualStr("SCREEN")
@@ -1200,6 +1217,10 @@ public
 
         if EqualStr("SECTION")
            return C_SECTIONSym
+        end
+
+        if EqualStr("SUPPLIED")
+           return C_SUPPLIEDSym
         end
 
 
@@ -1360,9 +1381,10 @@ public
 
      return id
   end
-   def Get(ignore_crlf=true)
-       # int state, ctx
-
+=end
+  
+   def skip(ignore_crlf)
+       
        return C_EOF_Sym if @ch == nil
        
         # filter white space and comments
@@ -1389,636 +1411,43 @@ public
            
          end while ((@ch == '*' || @ch == '"') && Comment()==1) 
           
-
-           @currSym = nextSym.clone
+         if (@ch == nil || @ch.to_byte == EOF_CHAR  ) 
+             return C_EOF_Sym
+         end
+         p "Get5:#{@ch}, #{@ch.to_byte}"
+         if !ignore_crlf &&  ( @ch.to_byte == 13|| ch.to_byte == 10)
+             return C_CRLF_Sym
+         end
+         return nil
+          
+   end
+   
+   def Get(ignore_crlf=true)
+       # int state, ctx
+       r = skip(ignore_crlf)
+       return r if r
  
-           nextSym.init(0, @currLine, @currCol - 1, @buffPos, 0)
-           nextSym.len  = 0
-            ctx = 0
-            
-           if (@ch == nil || @ch.to_byte == EOF_CHAR  ) 
-               return C_EOF_Sym
-           end
-           p "Get5:#{@ch}, #{@ch.to_byte}"
-           if !ignore_crlf &&  ( @ch.to_byte == 13|| ch.to_byte == 10)
-               return C_CRLF_Sym
-           end
-           
-           state = @@STATE0[@ch.to_byte]
-           
-           # copy from generated ruby from cpp code
-           while (1)
-              NextCh()
-              (@nextSym.Len+=1;@nextSym.Len-2)
-            #  p "@ch:#{@ch}, state:#{state}"
-              case state
 
-              when 1
-                 if @ch=='-'||@ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
-
-                 else
-                    return CheckLiteral(C_identifierSym)
-                 end
-
-
-              when 2
-                 if @ch=='U'
-                    state=5
-                 else
-                    if @ch=='u'
-                       state=6
-                    else
-                       if @ch=='L'
-                          state=7
-                       else
-                          if @ch=='l'
-                             state=8
-                          else
-                             if @ch=='.'
-                                state=4
-                             else
-                                if @ch>='0'&&@ch<='9'
-
-                                else
-                                   return C_numberSym
-                                end
-
-                             end
-
-                          end
-
-                       end
-
-                    end
-
-                 end
-
-
-              when 4
-                 if @ch=='U'
-                    state=13
-                 else
-                    if @ch=='u'
-                       state=14
-                    else
-                       if @ch=='L'
-                          state=15
-                       else
-                          if @ch=='l'
-                             state=16
-                          else
-                             if @ch>='0'&&@ch<='9'
-
-                             else
-                                return C_numberSym
-                             end
-
-                          end
-
-                       end
-
-                    end
-
-                 end
-
-
-              when 5
-                 return C_numberSym
-              when 6
-                 return C_numberSym
-              when 7
-                 return C_numberSym
-              when 8
-                 return C_numberSym
-              when 13
-                 return C_numberSym
-              when 14
-                 return C_numberSym
-              when 15
-                 return C_numberSym
-              when 16
-                 return C_numberSym
-              when 18
-                 if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='F'||@ch>='a'&&@ch<='f'
-                    state=19
-                 else
-                    return No_Sym
-                 end
-
-
-              when 19
-                 if @ch=='U'
-                    state=20
-                 else
-                    if @ch=='u'
-                       state=21
-                    else
-                       if @ch=='L'
-                          state=22
-                       else
-                          if @ch=='l'
-                             state=23
-                          else
-                             if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='F'||@ch>='a'&&@ch<='f'
-
-                             else
-                                return C_hexnumberSym
-                             end
-
-                          end
-
-                       end
-
-                    end
-
-                 end
-
-
-              when 20
-                 return C_hexnumberSym
-              when 21
-                 return C_hexnumberSym
-              when 22
-                 return C_hexnumberSym
-              when 23
-                 return C_hexnumberSym
-              when 24
-                 if @ch==39
-                    state=25
-                 else
-                    if @ch>=' '&&@ch<='&'||@ch>='('&&@ch<=255
-
-                    else
-                       return No_Sym
-                    end
-
-                 end
-
-
-              when 25
-                 return C_stringD1Sym
-              when 26
-                 if @ch>=' '&&@ch<='!'||@ch>='#'&&@ch<='['||@ch>=']'&&@ch<=255
-                    state=28
-                 else
-                    if @ch==92
-                       state=35
-                    else
-                       return No_Sym
-                    end
-
-                 end
-
-
-              when 28
-                 if @ch=='"'
-                    state=29
-                 else
-                    return No_Sym
-                 end
-
-
-              when 29
-                 return C_charSym
-              when 30
-                 return C_ColonSym
-              when 31
-                 return C_spaceD1Sym
-              when 32
-                 if @ch>='A'&&@ch<='Z'||@ch>='a'&&@ch<='z'
-                    state=33
-                 else
-                    return No_Sym
-                 end
-
-
-              when 33
-                 return C_PreProcessorSym
-              when 34
-                 if @ch=='U'
-                    state=5
-                 else
-                    if @ch=='u'
-                       state=6
-                    else
-                       if @ch=='L'
-                          state=7
-                       else
-                          if @ch=='l'
-                             state=8
-                          else
-                             if @ch=='.'
-                                state=4
-                             else
-                                if @ch>='0'&&@ch<='9'
-                                   state=2
-                                else
-                                   if @ch=='X'||@ch=='x'
-                                      state=18
-                                   else
-                                      return C_numberSym
-                                   end
-
-                                end
-
-                             end
-
-                          end
-
-                       end
-
-                    end
-
-                 end
-
-
-              when 35
-                 if @ch>=' '&&@ch<='!'||@ch>='#'&&@ch<=255
-                    state=28
-                 else
-                    if @ch=='"'
-                       state=29
-                    else
-                       return No_Sym
-                    end
-
-                 end
-
-
-              when 36
-                 return C_PointSym
-              when 37
-                 return C_LbrackSym
-              when 38
-                 return C_RbrackSym
-              when 39
-                 return C_LparenSym
-              when 40
-                 return C_RparenSym
-              when 41
-                 if @ch=='='
-                    state=102
-                 else
-                    return C_SlashSym
-                 end
-
-
-              when 42
-                 if @ch=='*'
-                    state=43
-                 else
-                    if @ch=='='
-                       state=101
-                    else
-                       return C_StarSym
-                    end
-
-                 end
-
-
-              when 43
-                 return C_StarStarSym
-              when 68
-                 if @ch=='Y'
-                    state=69
-                 else
-                    return No_Sym
-                 end
-
-
-              when 69
-                 return C_DDSlashMMSlashYYYYSym
-              when 78
-                 if @ch=='Y'
-                    state=79
-                 else
-                    return No_Sym
-                 end
-
-
-              when 79
-                 return C_MMSlashDDSlashYYYYSym
-              when 80
-                 return C_EqualSym
-              when 81
-                 return C_SemicolonSym
-              when 82
-                 if @ch=='|'
-                    state=83
-                 else
-                    if @ch=='='
-                       state=108
-                    else
-                       return C_BarSym
-                    end
-
-                 end
-
-
-              when 83
-                 return C_BarBarSym
-              when 84
-                 if @ch=='&'
-                    state=85
-                 else
-                    if @ch=='='
-                       state=106
-                    else
-                       return C_AndSym
-                    end
-
-                 end
-
-
-              when 85
-                 return C_AndAndSym
-              when 86
-                 if @ch=='='
-                    state=107
-                 else
-                    return C_UparrowSym
-                 end
-
-
-              when 87
-                 if @ch=='>'
-                    state=88
-                 else
-                    if @ch=='='
-                       state=90
-                    else
-                       if @ch=='<'
-                          state=92
-                       else
-                          return C_LessSym
-                       end
-
-                    end
-
-                 end
-
-
-              when 88
-                 return C_LessGreaterSym
-              when 89
-                 if @ch=='='
-                    state=91
-                 else
-                    if @ch=='>'
-                       state=93
-                    else
-                       return C_GreaterSym
-                    end
-
-                 end
-
-
-              when 90
-                 return C_LessEqualSym
-              when 91
-                 return C_GreaterEqualSym
-              when 92
-                 if @ch=='='
-                    state=109
-                 else
-                    return C_LessLessSym
-                 end
-
-
-              when 93
-                 if @ch=='='
-                    state=110
-                 else
-                    return C_GreaterGreaterSym
-                 end
-
-
-              when 94
-                 if @ch=='+'
-                    state=97
-                 else
-                    if @ch=='='
-                       state=104
-                    else
-                       return C_PlusSym
-                    end
-
-                 end
-
-
-              when 95
-                 if @ch=='-'
-                    state=98
-                 else
-                    if @ch=='>'
-                       state=99
-                    else
-                       if @ch=='='
-                          state=105
-                       else
-                          return C_MinusSym
-                       end
-
-                    end
-
-                 end
-
-
-              when 96
-                 if @ch=='='
-                    state=103
-                 else
-                    return C_PercentSym
-                 end
-
-
-              when 97
-                 return C_PlusPlusSym
-              when 98
-                 return C_MinusMinusSym
-              when 99
-                 return C_MinusGreaterSym
-              when 100
-                 return C_CommaSym
-              when 101
-                 return C_StarEqualSym
-              when 102
-                 return C_SlashEqualSym
-              when 103
-                 return C_PercentEqualSym
-              when 104
-                 return C_PlusEqualSym
-              when 105
-                 return C_MinusEqualSym
-              when 106
-                 return C_AndEqualSym
-              when 107
-                 return C_UparrowEqualSym
-              when 108
-                 return C_BarEqualSym
-              when 109
-                 return C_LessLessEqualSym
-              when 110
-                 return C_GreaterGreaterEqualSym
-              when 111
-                 return C_BangSym
-              when 112
-                 return C_TildeSym
-              when 113
-                 if @ch=='-'||@ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='C'||@ch>='E'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
-                    state=1
-                 else
-                    if @ch=='D'
-                       state=115
-                    else
-                       return CheckLiteral(C_identifierSym)
-                    end
-
-                 end
-
-
-              when 114
-                 if @ch=='-'||@ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='L'||@ch>='N'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
-                    state=1
-                 else
-                    if @ch=='M'
-                       state=116
-                    else
-                       return CheckLiteral(C_identifierSym)
-                    end
-
-                 end
-
-
-              when 115
-                 if @ch=='-'||@ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
-                    state=1
-                 else
-                    if @ch=='/'
-                       state=117
-                    else
-                       return CheckLiteral(C_identifierSym)
-                    end
-
-                 end
-
-
-              when 116
-                 if @ch=='-'||@ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
-                    state=1
-                 else
-                    if @ch=='/'
-                       state=118
-                    else
-                       return CheckLiteral(C_identifierSym)
-                    end
-
-                 end
-
-
-              when 117
-                 if @ch=='M'
-                    state=119
-                 else
-                    return No_Sym
-                 end
-
-
-              when 118
-                 if @ch=='D'
-                    state=120
-                 else
-                    return No_Sym
-                 end
-
-
-              when 119
-                 if @ch=='M'
-                    state=121
-                 else
-                    return No_Sym
-                 end
-
-
-              when 120
-                 if @ch=='D'
-                    state=122
-                 else
-                    return No_Sym
-                 end
-
-
-              when 121
-                 if @ch=='/'
-                    state=123
-                 else
-                    return No_Sym
-                 end
-
-
-              when 122
-                 if @ch=='/'
-                    state=124
-                 else
-                    return No_Sym
-                 end
-
-
-              when 123
-                 if @ch=='Y'
-                    state=125
-                 else
-                    return No_Sym
-                 end
-
-
-              when 124
-                 if @ch=='Y'
-                    state=126
-                 else
-                    return No_Sym
-                 end
-
-
-              when 125
-                 if @ch=='Y'
-                    state=127
-                 else
-                    return No_Sym
-                 end
-
-
-              when 126
-                 if @ch=='Y'
-                    state=128
-                 else
-                    return No_Sym
-                 end
-
-
-              when 127
-                 if @ch=='Y'
-                    state=68
-                 else
-                    return C_DDSlashMMSlashYYSym
-                 end
-
-
-              when 128
-                 if @ch=='Y'
-                    state=78
-                 else
-                    return C_MMSlashDDSlashYYSym
-                 end
-
-
-              else
-                 return No_Sym
-              end
-
-           end
-
-        
+          @currSym = nextSym.clone
+         
+          nextSym.init(0, @currLine, @currCol - 1, @buffPos, 0)
+          nextSym.len  = 0
+           ctx = 0
+         #
+         #  
+         #  state = @@STATE0[@ch.to_byte]
+         #  
+         #  # copy from generated ruby from cpp code
+         #  while (1)
+         #     NextCh()
+         #     (@nextSym.Len+=1;@nextSym.Len-2)
+         #   #  p "@ch:#{@ch}, state:#{state}"
+         #
+         #       state = UpdateState(state)
+         #
+         #  end
+
+            return UpdateState()
 
 
    end

@@ -54,9 +54,9 @@ class CRRParser < CRParser
             tr =  e.backtrace[1]
         end
         if msg
-            p "#{msg} (sym:#{@sym}, #{curString()} @#{tr}"
+            p "==>st:#{msg} (sym:#{@sym}, #{curString()} @#{tr}"
         else
-            p "sym:#{@sym}, #{curString()} @#{tr}"
+            p "==>st:sym:#{@sym}, #{curString()} @#{tr}"
         end
     end
     
