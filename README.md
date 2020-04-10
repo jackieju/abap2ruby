@@ -117,7 +117,8 @@ How to contribute
 ===
 As you know, abap has very complicated syntax, because actually it put all functionality/Constant into syntax. For example, in c++, the syntax only defines the way to declare and call a function, but in abap, every function has different syntax, so "printf(xxx....)" is written in syntax...
 
-Abap will include constant those happen in other language as user defined constant as keyword.
+In ABAP syntax, those which are user defined constant in other language, are keywords.
+<pre>
 e.g.
 in of logical expresion of abap, the syntax include.
     | {operand IS [NOT] INITIAL} 
@@ -126,6 +127,7 @@ in of logical expresion of abap, the syntax include.
     | {<fs>    IS [NOT] ASSIGNED} 
     | {para    IS [NOT] SUPPLIED} 
     | {para    IS [NOT] REQUESTED}
+</pre>
 But in other language "INITAL" "BOUND" ... will be user defined constant, and the syntax will be like
     identifier IS [NOT] Expression
     ...
