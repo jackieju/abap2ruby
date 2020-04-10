@@ -1,4 +1,5 @@
-# 1. abap2ruby
+#  abap2ruby
+A Translator/compiler to convert SAP ABAP code to ruby code
 
 Overview
 ===
