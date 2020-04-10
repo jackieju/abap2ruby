@@ -148,11 +148,11 @@ So it will need very big efforts to convert ABAP ambigous grammar(https://help.s
 
 So now let's do your contribution.
 
-###1. Write EBNF
+### 1. Write EBNF
 
 The first step is convert the syntax for the keyword you want to implement from https://help.sap.com/doc/abapdocu_751_index_htm/7.51/en-US/index.htm definition to EBNF(https://tomassetti.me/ebnf/), which is defined in cocoR/abap.atg.
 
-###2. Generate parser
+### 2. Generate parser
 
 The second step is to generate parser based on your newly added syntax. Just run 
 <pre>
@@ -167,7 +167,7 @@ ruby translate.rb cp_testcase.abap
 
 But so far you just generated the parser and you need to generate real ruby code in next step.
 
-###3. Generate Ruby code in Parser
+### 3. Generate Ruby code in Parser
 
 The old way is:
 
