@@ -1,4 +1,4 @@
-# abap2ruby
+# 1. abap2ruby
 
 Overview
 ===
@@ -138,15 +138,21 @@ Imaging you use java or c++ or python to write a module replacing SQL's select s
 (That's why I like ruby rails, because they aware of this very early and did not use over-OR-mapping framework like a lot of other language, but provide the way just run SQL statement directly and return ruby Objects. (of course ruby rails also provide basic OR map functionality.))
 
 Another reason for this struggling translate ABAP or SQL language is: 
-If you translate it into other langauge, you will find that it became a lot of functions with very complicated parameters, for example, if you replace SQL select statement with a function "select(from, table, orderby, desc, groupby, in , limit, ...)", in the implementation of this function, you will need to check all this parameters again to find the real combined case, there will be so much logical branch, it's just like you parse the SQL statment again, even more complicated, which dose not make sense.
+If you translate it into other langauge, you will find that it became a lot of functions with very complicated parameters, for example, if you replace SQL select statement with a function "select(from, table, orderby, desc, groupby, in , limit, ...)", in the implementation of this function, you will need to check all this parameters again to find the real combined case, there will be so much logical branches, it's just like you parse the SQL statment again, even more complicated, which dose not make sense.
 
 So shall we translate ABAP or just run it directly in a function like "run_abap(...)".
 
-I think ABAP's problem is it over-use the syntax, or say mix the functionality with syntax. So the basic priciple is, only translate non-function syntax like expression, if statement, loop statment... and do not translate the "function" like select statement, search statement .... In another word, for these syntax and functionality like SQL select statement, we can keep it and just run it in function "run_apap('SEARCH OBJ FOR ...')". And for other syntax which is most case, for example variable define, if statement, loop statement... we could translate them into morden langauge, which will be clearer and neater.
+I think ABAP's problem is it over-use the syntax, or say mix the functionality with syntax. So the basic priciple is, only translate non-function syntax like expression, if statement, loop statment... and do not translate the "function" like select statement, search statement .... In another word, for these syntax and functionality like SQL select statement, we can keep it and just run it in function "run_apap('SEARCH OBJ FOR ...')". And for other syntax which is most case, for example, variable define, if statement, loop statement... we could translate them into morden langauge, which will be clearer and neater.
 
 So it will need very big efforts to convert ABAP ambigous grammar(https://help.sap.com/doc/abapdocu_751_index_htm/7.51/en-US/index.htm) to EBNF. It will be a very big EBNF.
 
+So now let's do your contribution.
+
+###1. Write EBNF
+
 The first step is convert the syntax for the keyword you want to implement from https://help.sap.com/doc/abapdocu_751_index_htm/7.51/en-US/index.htm definition to EBNF(https://tomassetti.me/ebnf/), which is defined in cocoR/abap.atg.
+
+###2. Generate parser
 
 The second step is to generate parser based on your newly added syntax. Just run 
 <pre>
@@ -155,14 +161,122 @@ cd cocoR
 </pre>
 and run testcase to see if the generated code is OK.
 
-
 <pre>
 ruby translate.rb cp_testcase.abap
 </pre>
 
 But so far you just generated the parser and you need to generate real ruby code in next step.
 
+###3. Generate Ruby code in Parser
+
+The old way is:
+
 In cp.rb, you can override the function in cocoR/o/cparser.rb to generate code. You can see the example of generating code for "write" Keyword, which is written in function "WriteStatement" in cp.rb
+
+The recommened ways is:
+
+Write your code-generating code (ruby) in atg file, between (. and .)
+
+e.g.
+<pre>
+                       
+    IfStatement = (. ret = stmts = ""  .)
+                 "IF" Expression (. exp = lus .)  "."
+                       [Statements (. stmts = lus .)] 
+                       (.  ret += "if #{exp}\n#{stmts}\n" .)
+                      { "ELSEIF" Expression (. exp = lus .) "."
+                       [Statements (. stmts = lus .) ]
+                       (.  ret += "elsif #{exp}\n#{stmts}\n" .)
+                       }
+                       [ "ELSE" "."   [Statements(. stmts = lus .)]   (.  ret += "else #{exp}\n#{stmts}\n" .) ]
+                       "ENDIF"
+                        (. 
+                           ret += "\nend" 
+                           src(ret)
+                        .)
+                         "." 
+                                .
+</pre>
+Then in generated cocoR/o/cparser.rb:
+
+<pre>
+    def IfStatement()
+       _in_()
+
+
+       ret=stmts=""
+     
+
+       Expect(C_IFSym)
+       Expression()
+
+       exp=lus;
+
+       Expect(C_PointSym)
+       if @sym>=C_identifierSym&&@sym<=C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_charSym||@sym==C_spaceD1Sym||@sym>=C_PointSym&&@sym<=C_FUNCTIONSym||@sym>=C_APPENDSym&&@sym<=C_INITIALSym||@sym>=C_CONCATENATESym&&@sym<=C_INSym||@sym>=C_SEARCHSym&&@sym<=C_FORSym||@sym==C_REFRESHSym||@sym==C_DESCRIBESym||@sym==C_RAISESym||@sym==C_EXPORTINGSym||@sym>=C_MESSAGESym&&@sym<=C_LparenSym||@sym==C_RAISINGSym||@sym==C_LOOPSym||@sym==C_DEFAULTSym||@sym==C_DATASym||@sym>=C_CONSTANTSSym&&@sym<=C_WRITESym||@sym==C_StarSym||@sym>=C_breakSym&&@sym<=C_DOSym||@sym==C_CASESym||@sym==C_forSym||@sym==C_CALLSym||@sym==C_IMPORTINGSym||@sym>=C_CHANGINGSym&&@sym<=C_EXCEPTIONSSym||@sym>=C_PARAMETERMinusTABLESym&&@sym<=C_IFSym||@sym>=C_returnSym&&@sym<=C_WHILESym||@sym==C_CLASSSym||@sym==C_METHODSym||@sym==C_METHODSSym||@sym>=C_RETURNINGSym&&@sym<=C_SPLITSym||@sym==C_AndSym||@sym==C_NOTSym||@sym>=C_PlusSym&&@sym<=C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym>=C_BangSym&&@sym<=C_REQUESTEDSym
+          Statements()
+
+          stmts=lus;
+
+       end
+
+
+       ret+="if #{exp}\n#{stmts}\n";
+
+       while (@sym==C_ELSEIFSym)
+          Get()
+          Expression()
+
+          exp=lus;
+
+          Expect(C_PointSym)
+          if @sym>=C_identifierSym&&@sym<=C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_charSym||@sym==C_spaceD1Sym||@sym>=C_PointSym&&@sym<=C_FUNCTIONSym||@sym>=C_APPENDSym&&@sym<=C_INITIALSym||@sym>=C_CONCATENATESym&&@sym<=C_INSym||@sym>=C_SEARCHSym&&@sym<=C_FORSym||@sym==C_REFRESHSym||@sym==C_DESCRIBESym||@sym==C_RAISESym||@sym==C_EXPORTINGSym||@sym>=C_MESSAGESym&&@sym<=C_LparenSym||@sym==C_RAISINGSym||@sym==C_LOOPSym||@sym==C_DEFAULTSym||@sym==C_DATASym||@sym>=C_CONSTANTSSym&&@sym<=C_WRITESym||@sym==C_StarSym||@sym>=C_breakSym&&@sym<=C_DOSym||@sym==C_CASESym||@sym==C_forSym||@sym==C_CALLSym||@sym==C_IMPORTINGSym||@sym>=C_CHANGINGSym&&@sym<=C_EXCEPTIONSSym||@sym>=C_PARAMETERMinusTABLESym&&@sym<=C_IFSym||@sym>=C_returnSym&&@sym<=C_WHILESym||@sym==C_CLASSSym||@sym==C_METHODSym||@sym==C_METHODSSym||@sym>=C_RETURNINGSym&&@sym<=C_SPLITSym||@sym==C_AndSym||@sym==C_NOTSym||@sym>=C_PlusSym&&@sym<=C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym>=C_BangSym&&@sym<=C_REQUESTEDSym
+             Statements()
+
+             stmts=lus;
+
+          end
+
+
+          ret+="elsif #{exp}\n#{stmts}\n";
+
+       end
+
+       if @sym==C_ELSESym
+          Get()
+          Expect(C_PointSym)
+          if @sym>=C_identifierSym&&@sym<=C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_charSym||@sym==C_spaceD1Sym||@sym>=C_PointSym&&@sym<=C_FUNCTIONSym||@sym>=C_APPENDSym&&@sym<=C_INITIALSym||@sym>=C_CONCATENATESym&&@sym<=C_INSym||@sym>=C_SEARCHSym&&@sym<=C_FORSym||@sym==C_REFRESHSym||@sym==C_DESCRIBESym||@sym==C_RAISESym||@sym==C_EXPORTINGSym||@sym>=C_MESSAGESym&&@sym<=C_LparenSym||@sym==C_RAISINGSym||@sym==C_LOOPSym||@sym==C_DEFAULTSym||@sym==C_DATASym||@sym>=C_CONSTANTSSym&&@sym<=C_WRITESym||@sym==C_StarSym||@sym>=C_breakSym&&@sym<=C_DOSym||@sym==C_CASESym||@sym==C_forSym||@sym==C_CALLSym||@sym==C_IMPORTINGSym||@sym>=C_CHANGINGSym&&@sym<=C_EXCEPTIONSSym||@sym>=C_PARAMETERMinusTABLESym&&@sym<=C_IFSym||@sym>=C_returnSym&&@sym<=C_WHILESym||@sym==C_CLASSSym||@sym==C_METHODSym||@sym==C_METHODSSym||@sym>=C_RETURNINGSym&&@sym<=C_SPLITSym||@sym==C_AndSym||@sym==C_NOTSym||@sym>=C_PlusSym&&@sym<=C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym>=C_BangSym&&@sym<=C_REQUESTEDSym
+             Statements()
+
+             stmts=lus;
+
+          end
+
+
+          ret+="else #{exp}\n#{stmts}\n";
+
+       end
+
+       Expect(C_ENDIFSym)
+
+
+       ret+="\nend"
+       src(ret);
+
+       Expect(C_PointSym)
+       _out_()
+    end
+</pre>
+
+There are some method you will use:
+
+```
+  lus:     The last unterminator's return value
+  src(x):  Set x as return value of current statemet
+  src:     Current value of of current parsing statement
+```
+
+You can also check all samples in abap.atg
 
 And then you can write you ABAP code for testing in xxx.abap, and run
 
