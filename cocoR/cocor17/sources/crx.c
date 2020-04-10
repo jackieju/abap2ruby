@@ -67,8 +67,12 @@ static void GenSemCode(int tab, long pos, int len, int line, int col, int gencom
 	while (len > 0 && buff[len - 1] == ' ') len--;
 	buff[len] = '\0';
 
+    // generate embeded ruby directive
+    GenCode(fparser, "__embedded__ RUBY$$");
 	while ((sb = GetFormatLine(sb, temp_str)) != NULL) {
 		s = temp_str;
+        printf("===>####%s###\n", s);
+        
 		if (!firstline) {
 			GenCode(fparser, "$$");
 			i = col - 1;  /* skip spaces (max col + 2) */
@@ -78,6 +82,7 @@ static void GenSemCode(int tab, long pos, int len, int line, int col, int gencom
 		GenCode(fparser, "%I", tab);
 		while (*s != 0) {
 			GenCode(fparser, "%c", *s);
+            printf("===>####%s###\n", s);
 			if (*s == ';') Comma = FALSE; else
 			if (*s != ' ') Comma = TRUE;
 			s++;
@@ -85,6 +90,8 @@ static void GenSemCode(int tab, long pos, int len, int line, int col, int gencom
 		firstline = 0;
 	}
 	if (Comma && gencomma) GenCode(fparser, ";");
+    GenCode(fparser, "$$__embedend__");
+    
 	GenCode(fparser, "$$");
 	free(buff);
 }
@@ -144,13 +151,13 @@ static void GenFuncHeader(PNTermNode n, int header_only)
 		p = GetGraphP(n->sem);
 		GenSemCode(4, p->SEMPOS, p->SEMLEN, p->SEMLINE, p->SEMCOL + 2, TRUE);
 	}
-	GenCode(fparser, "{$$in();$$");
+	GenCode(fparser, "{$$_in_();$$");
 }
 
 /* generate function trailer */
 static void GenFuncTrailer(void)
 {
-	GenCode(fparser, "out();$$}$$$$");
+	GenCode(fparser, "_out_();$$}$$$$");
 }
 
 /* return number of alternatives in node 'n' */

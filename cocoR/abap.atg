@@ -39,21 +39,28 @@ PRODUCTIONS
 
     C                  =      (ReportDef | FunctionDef) .
     
-    ReportDef          = "REPORT"  identifier "." (. s = "" .) { (. s+= .) Statements }
-                       
+    ReportDef          = "REPORT" (.  fn_name=curString() .) identifier "." (. src("") .) { Statements }
+                       (.
+                         @root_class.add_method(fn_name, "()", [], src, "")
+                       .)
                     EOF .
 
-
+    FunctionDef = "FUNCTION" (.  fn_name=curString() .) identifier "."  (. src("") .) 
+                    {  Statements } 
+                  (.
+                             @root_class.add_method(fn_name, "()", [], src, "")
+                  .)
+                    "ENDFUNCTION" "." .
 
     Type = identifier .
 
 
-  Statement            = (. ret = "" .)
+  Statement            = 
   (. ps() .)
   
                          (
                               VariableDefineStatement
-                             | (. ret += .) WriteStatement 
+                             |  WriteStatement 
                              | AssignmentStatement 
                              | BreakStatement
                              | ContinueStatement
@@ -61,11 +68,11 @@ PRODUCTIONS
                              | ForStatement
                              | IfStatement  
                              | NullStatement
-                             | (. ret += .) ReturnStatement 
-                             | (. ret += .) WhileStatement 
-                             | (. ret += .) LoopStatement 
-                             | (. ret += .) CaseStatement
-                             | (. ret += .) CallFunctionStatement
+                             |  ReturnStatement 
+                             |  WhileStatement 
+                             |  LoopStatement 
+                             |  CaseStatement
+                             |  CallFunctionStatement
                              | (
                                   ClassStatement
                                   | ClassImplStatement
@@ -81,8 +88,9 @@ PRODUCTIONS
                              | APPEND
                              | SPLIT
                              | RAISE
+                             | CONSTANTS
                          )
-                           (. return ret .)
+                           
  .
  
 APPEND = "APPEND" (identifier 
@@ -110,9 +118,7 @@ APPEND = "APPEND" (identifier
 RefreshStatement = "REFRESH" ("CONTROL" identifier "FROM" "SCREEN" identifier
  | identifier["[""]"] ["FROM" "TABLE" identifier] ).
  
-FunctionDef = "FUNCTION" identifier "."  (. s = "" .)
-                { (. s+= .)  Statements } 
-              "ENDFUNCTION" "."   .
+
 
 DescribeStatement = "DESCRIBE" (
           ( "FIELD" identifier 
@@ -216,12 +222,9 @@ LoopStatement = "LOOP" [
             Statements 
         "ENDLOOP" "." .
 
-
-VariableDefineStatement =  "DATA" identifier { "(" number  ")" }
-            (
-                "TYPE"    
-                ( 
-                      identifier (["LENGTH" number] ["DECIMALS" string1] | { "READER"|"LOCATOR"|"LOB" "HANDLE" } )
+TypeDes = "TYPE"    
+                
+                      identifier (["LENGTH" number] ["DECIMALS" number] | { "READER"|"LOCATOR"|"LOB" "HANDLE" } )
                       | ["LINE" "OF"] identifier ["BOXED"]
                       | "REF" "TO" identifier 
                       | 
@@ -253,15 +256,9 @@ VariableDefineStatement =  "DATA" identifier { "(" number  ")" }
                        | "RANGE" "OF" Type ["INITIAL" "SIZE" number] ["WITH" "HEADER" "LINE"] 
                        | { "WRITER"|"LOCATOR" } "FOR" { "COLUMNS" {identifier} } 
                        |  "ALL" ["OTHER"] ["BLOB"|"CLOB"] "COLUMNS" 
-                 
-                          
-                ) 
-            
-              | 
-              [
-                  "LIKE" 
-                  {
-                 
+                 .
+LikeDes =        "LIKE" 
+                  (
                       ["LINE" "OF"] identifier
                      | "REF" "TO" identifier
                      |  
@@ -298,15 +295,30 @@ VariableDefineStatement =  "DATA" identifier { "(" number  ")" }
                       |  
                      "RANGE" "OF" identifier ["INITIAL" "SIZE" number] ["WITH" "HEADER" "LINE"]
                                          
-                   }
-             ] ["VALUE" { Expression | "IS" "INITIAL" }] 
+                   ).
+                 
+VariableDefineStatement =  "DATA" identifier { "(" number  ")" }
+            
+                ( TypeDes
+              | 
+                  LikeDes
+                )
+              ["VALUE" { Expression | "IS" "INITIAL" }] 
                 ["READ-ONLY"] 
-            )
+            
                 "." .
 
+CONSTANTS = "CONSTANTS" identifier ( TypeDes | 
+               LikeDes
+                ) "VALUE" { Expression | "IS" "INITIAL" } "." .
 
 
-WriteStatement =  "WRITE" {["AT"] ["/"][number][ "(" (number | "*" | "**") ")" ]} Expression 
+WriteStatement =   (. param_hash = {} .) "WRITE" {["AT"] ["/"][number 
+ (. param_hash["col"] = curString().to_i .)
+ ][ "(" (number | "*" | "**") ")" ]} Expression 
+ (.
+     param_hash["s"] = popv
+ .)
   ["UNDER" identifier] 
   ["NO-GAP"] 
   ["LEFT-JUSTIFIED"|"CENTERED"|"RIGHT-JUSTIFIED"] 
@@ -347,14 +359,23 @@ WriteStatement =  "WRITE" {["AT"] ["/"][number][ "(" (number | "*" | "**") ")" ]
   { 
       "AS" ("CHECKBOX" | "ICON" | "SYMBOL"  | "LINE")
   } 
-  ["QUICKINFO" string1] "." . 
+  ["QUICKINFO" string1] "." 
+  (.
+  
+  params = []
+  param_hash.each{|k,v|
+      params.push "#{k}: #{v}"
+  }
+  src("write(#{params.join(", ")})\n")
+  .)
+  . 
 
   AssignmentStatement =  Expression  .
 
   BreakStatement       = "break"   .
 
 
-  Statements = (. s = "" .)(.s += .) Statement { (.s += .) Statement } (. return s .).
+  Statements =  Statement { Statement } .
 
   ContinueStatement    = "CONTINUE"  "."  .
 
@@ -402,13 +423,25 @@ CaseStatement =
                   ["EXCEPTION-TABLE" identifier] } "." . 
                        
                        
-  IfStatement          = "IF" Expression "."
-                              [Statements] 
-                             { "ELSEIF" Expression "."
-                              [Statements]
+  IfStatement          = (. 
+                          ret = ""
+                          stmts = "" 
+                          
+                          .)
+                      "IF" Expression (. exp = lus .)  "."
+                              [Statements (. stmts = lus .)] 
+                              (.  ret += "if #{exp}\n#{stmts}\n" .)
+                             { "ELSEIF" Expression (. exp = lus .) "."
+                              [Statements (. stmts = lus .) ]
+                              (.  ret += "elsif #{exp}\n#{stmts}\n" .)
                               }
-                              [ "ELSE" "."   [Statements]   ]
-                              "ENDIF" "." 
+                              [ "ELSE" "."   [Statements(. stmts = lus .)]   (.  ret += "else #{exp}\n#{stmts}\n" .) ]
+                              "ENDIF"
+                               (. 
+                                ret += "\nend" 
+                                  src(ret)
+                               .)
+                                "." 
                               .
 
   NullStatement        = "." . 
@@ -489,70 +522,70 @@ SPLIT = "SPLIT" identifier "AT" Expression "INTO"
       ( identifier{identifier } | "TABLE" identifier )
       ["IN" {"CHARACTER"|"BYTE"} "MODE"] . 
       
-  Expression           = (. trc() .) Conditional { AssignmentOperator Expression   } (. trco() .) .
+  Expression           =  Conditional { AssignmentOperator Expression   }  .
 
-  Conditional          =(. trc() .)  LogORExp (. trco() .) .
+  Conditional          =  LogORExp  .
 
-  LogORExp             = (. trc() .) LogANDExp   { ("||" | "OR" | "EQUIV") LogANDExp } (. trco() .) .
+  LogORExp             =  LogANDExp   { ("||" | "OR" | "EQUIV") LogANDExp }  .
 
-  LogANDExp            = (. trc() .) InclORExp   { ("&&" | "AND") InclORExp }
-(. trco() .) 
+  LogANDExp            =  InclORExp   { ("&&" | "AND") InclORExp }
+ 
 .
 
-  InclORExp            = (. trc() .) ExclORExp   { "|" ExclORExp } (. trco() .)  .
+  InclORExp            =  ExclORExp   { "|" ExclORExp }   .
 
-  ExclORExp            = (. trc() .) ANDExp      { "^" ANDExp } (. trco() .)   .
+  ExclORExp            =  ANDExp      { "^" ANDExp }    .
 
-  ANDExp               = (. trc() .) EqualExp    { "&" EqualExp } (. trco() .)   .
+  ANDExp               =  EqualExp    { "&" EqualExp }    .
 
-  EqualExp             =   (. trc() .) RelationExp { ( "="| "EQ"| "<>" | "NE" | "IS" ["NOT"] ) RelationExp } |
+  EqualExp             =    RelationExp { ( "="| "EQ"| "<>" | "NE" | "IS" ["NOT"] ) RelationExp } |
   RelationExp ["NOT"] "BETWEEN" RelationExp "AND" RelationExp  
   .
 
-  RelationExp          =   (. trc() .) ShiftExp    { 
+  RelationExp          =    ShiftExp    { 
                               ( "<" | "LT"  | ">" | "GT" | "<=" | "LE" | ">=" | "GE" | "CO" | "CN" | "CA" | "NA" | "CS" | "NS" | "CP" | "NP" |"BYTE-CO" | "BYTE-CN" | "BYTE-CA" | "BYTE-NA" | "BYTE-CS" | "BYTE-NS" )  
-                               ShiftExp   } (. trco() .)  .
+                               ShiftExp   }   .
 
-  ShiftExp             = (. trc() .) AddExp      { ( "<<" | ">>" ) AddExp }  (. trco() .)   (. trco() .)  .
+  ShiftExp             =  AddExp      { ( "<<" | ">>" ) AddExp }       .
               
                 
                 
-  AddExp               = (. trc() .) MultExp     { ( "+"  | "-"  ) MultExp }  (. trco() .)  .
+  AddExp               =  MultExp     { ( "+"  | "-"  ) MultExp }    .
 
   MultExp              =   CastExp  
- { ( "*"   | "/" | "DIV"  | "%"  | "MOD" | "**" ) CastExp }  (. trco() .)  .
+ { ( "*"   | "/" | "DIV"  | "%"  | "MOD" | "**" ) CastExp }    .
 
-  CastExp              =  (. trc() .) UnaryExp  (. trco() .)   .
+  CastExp              =   UnaryExp     .
 
 
 
-  UnaryExp             = (. trc() .) PostFixExp
+  UnaryExp             =  PostFixExp
                          | ( "++" | "--" ) UnaryExp
                          | UnaryOperator CastExp 	
-                          (. trco() .)  
+                            
 					.
 
 
 
-  PostFixExp           = (. trc() .) Primary
+  PostFixExp           =  Primary
                          { "[" Expression "]"
                           | FunctionCall
                           | "->" identifier
                           | "=>" identifier
                           | "++"
                           | "--"
-                         }  (. trco() .)  .   
+                         }    .   
   
-  Primary              = (. trc() .) ( identifier | string1 | char | number | "(" Expression ")" |PredefinedConstant ) (. trco() .)  .
+  Primary              =  ( identifier | string1 | char | number | "(" Expression ")" |PredefinedConstant )   .
 
-  FunctionCall        = (. trc() .) "("   [ ActualParameters] ")"    (. trco() .)  .
+  FunctionCall        =  "("   [ ActualParameters] ")"      .
 
-  ActualParameters    =   (. trc() .) Expression   { "," Expression   }   (. trco() .)   .
+  ActualParameters    =    Expression   { "," Expression   }      .
 
-  AssignmentOperator   =  (. trc() .)  "="  | "*=" | "/=" | "%=" | "+=" | "-=" | "&="
-                         | "^=" | "|=" | "<<=" | ">>=" (. trco() .)   .
+  AssignmentOperator   =    "="  | "*=" | "/=" | "%=" | "+=" | "-=" | "&="
+                         | "^=" | "|=" | "<<=" | ">>="    .
 
-  UnaryOperator        = (. trc() .) "+" | MinusOperator | "*" | "!" | "&" | "~" | "NOT" |  "INSTANCE" "OF" | "IN" (. trco() .)   .
+  UnaryOperator        =  "+" | MinusOperator | "*" | "!" | "&" | "~" | "NOT" |  "INSTANCE" "OF" | "IN"    .
 
   MinusOperator = space1 "-" | "-" space1 .
 

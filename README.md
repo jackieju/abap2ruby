@@ -177,3 +177,11 @@ cd cocoR
 </pre>
 
     
+Rebuild cocoR
+===
+In case you want to rebuild cocoR:
+<pre>
+    cd cocoR/cocor17/sources
+    make -f unix.mk new
+    cp cocor ../../
+</pre>

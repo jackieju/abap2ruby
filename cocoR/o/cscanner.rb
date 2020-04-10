@@ -149,6 +149,10 @@ class CScanner < CRScanner
             return C_CLOBSym
          end
 
+         if EqualStr("CONSTANTS")
+            return C_CONSTANTSSym
+         end
+
          if EqualStr("CENTERED")
             return C_CENTEREDSym
          end
@@ -239,12 +243,12 @@ class CScanner < CRScanner
             return C_DESCENDINGSym
          end
 
-         if EqualStr("DATA")
-            return C_DATASym
-         end
-
          if EqualStr("DEFAULT")
             return C_DEFAULTSym
+         end
+
+         if EqualStr("DATA")
+            return C_DATASym
          end
 
          if EqualStr("DDMMYY")
@@ -277,12 +281,12 @@ class CScanner < CRScanner
 
 
       when 'E'
-         if EqualStr("ENDING")
-            return C_ENDINGSym
-         end
-
          if EqualStr("ENDFUNCTION")
             return C_ENDFUNCTIONSym
+         end
+
+         if EqualStr("ENDING")
+            return C_ENDINGSym
          end
 
          if EqualStr("EDIT")
@@ -379,16 +383,16 @@ class CScanner < CRScanner
 
 
       when 'F'
+         if EqualStr("FUNCTION")
+            return C_FUNCTIONSym
+         end
+
          if EqualStr("FROM")
             return C_FROMSym
          end
 
          if EqualStr("FOR")
             return C_FORSym
-         end
-
-         if EqualStr("FUNCTION")
-            return C_FUNCTIONSym
          end
 
          if EqualStr("FIELD")

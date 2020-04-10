@@ -62,6 +62,49 @@ allclasses.each_line{|line|
 }
 end
 
+# stack for parsing
+# every function for unterminator will have on _in() and out()
+class ParseStack
+    attr_accessor :cur
+    def initialize()
+        _in
+        @last_pop_v = "" # last popuped value
+    end
+    
+    def _in
+        @last_unterminator_src = nil        
+        n = {:src=>"", :parent=>@cur, :auto_append=>true}
+        @cur = n
+    end
+    
+    def out
+        
+        r = @cur
+        @cur = @cur[:parent]
+        @last_pop_v  = r[:src]
+        @last_unterminator_src = r[:src]
+        if @cur[:auto_append]
+            if !@last_pop_v.start_with?(" ")
+                @cur[:src] += " "+@last_pop_v+ " "
+            else
+                 @cur[:src] += @last_pop_v 
+            end
+        end
+        return r
+    end
+    
+    def lus
+        @last_unterminator_src
+    end
+
+    # pop stack value
+    def popv
+        r = @last_pop_v 
+        @last_pop_v  = ""
+        return r
+    end
+
+end
 
 class Parser < CParser
     attr_accessor :classdefs
@@ -76,30 +119,79 @@ class Parser < CParser
         @classdefs = $g_classdefs
         @root_class = $g_root_moddef
         
+        @output_src = ""
+        @parse_stack = ParseStack.new
+        
+        
         p "init end"
         pclass
     end
-    def trc() 
+    # stack_pos is the pos of trace stack, for the function name you want to print
+    # set it to 0 will show "trc" as function name
+    def trc(stack_pos=1) 
         fn = ""
         begin
             raise Exception.new
         rescue Exception=>e
-            e.backtrace[1].scan(/in `(.*?)'/){|m|
+            e.backtrace[stack_pos].scan(/in `(.*?)'/){|m|
             fn = m[0]
         }
         end
         pdebug("===>#{fn}:#{@sym}(#{SYMS[@sym]}), #{curString()}")
     end
-    def trco() 
+    def trco(stack_pos=1) 
         fn = ""
         begin
             raise Exception.new
         rescue Exception=>e
-            e.backtrace[1].scan(/in `(.*?)'/){|m|
+            e.backtrace[stack_pos].scan(/in `(.*?)'/){|m|
             fn = m[0]
         }
         end
-        pdebug("<===#{fn}0:#{@sym}(#{SYMS[@sym]}), #{curString()}")
+        pdebug("<===#{fn}0:#{@sym}(#{SYMS[@sym]}), #{curString()}, src=#{@parse_stack.cur[:src]}")
+    end
+    def _in_()
+        trc(2)
+        @parse_stack._in
+    end
+    def _out_()
+        trco(2)
+        r = @parse_stack.out
+        return r[:src]
+    end
+    def lus
+        @parse_stack.lus
+    end
+    def Get(ignore_crlf=true)
+        if  @sym == C_PointSym
+            @parse_stack.cur[:src] += "\n"
+        else
+            @parse_stack.cur[:src] += " "+curString()
+        end
+        
+        super
+
+    end
+    def stop_autosrc
+        @parse_stack.cur[:auto_append] = false
+    end
+    
+    def start_autosrc
+        @parse_stack.cur[:auto_append] = true
+    end
+    
+    def src(r=nil)
+        if r
+            @parse_stack.cur[:src] = r
+        end
+        return  @parse_stack.cur[:src]
+    end
+    def add_src(r)
+        @parse_stack.cur[:src] += r
+    end
+    
+    def popv
+        @parse_stack.popv
     end
     #### copy/override start ####
    #def C()
@@ -117,7 +209,7 @@ class Parser < CParser
    #   @root_class.add_method(fn_name, "()", [], s, "")
    #end
     
-   def ReportDef()
+   def ReportDef1()
       Expect(C_REPORTSym)
       fn_name=curString()
       
@@ -125,15 +217,16 @@ class Parser < CParser
       Expect(C_PointSym)
       s=""
       while (@sym>=C_identifierSym&&@sym<=C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_charSym||@sym==C_spaceD1Sym||@sym>=C_PointSym&&@sym<=C_FUNCTIONSym||@sym==C_LOOPSym||@sym==C_DATASym||@sym==C_DEFAULTSym||@sym==C_FORSym||@sym==C_WRITESym||@sym>=C_LparenSym&&@sym<=C_StarSym||@sym>=C_breakSym&&@sym<=C_DOSym||@sym==C_CASESym||@sym>=C_forSym&&@sym<=C_CALLSym||@sym>=C_EXPORTINGSym&&@sym<=C_IMPORTINGSym||@sym>=C_CHANGINGSym&&@sym<=C_EXCEPTIONSSym||@sym>=C_PARAMETERMinusTABLESym&&@sym<=C_IFSym||@sym>=C_returnSym&&@sym<=C_WHILESym||@sym==C_CLASSSym||@sym==C_METHODSym||@sym==C_METHODSSym||@sym>=C_RETURNINGSym&&@sym<=C_RAISINGSym||@sym==C_AndSym||@sym>=C_PlusSym&&@sym<=C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym>=C_BangSym&&@sym<=C_NOTSym)
-         s+=
+         
          Statements()
+         s+= popv
       end
 
       Expect(EOF_Sym)
       @root_class.add_method(fn_name, "()", [], s, "")
       
    end
-   def FunctionDef()
+   def FunctionDef1()
       Expect(C_FUNCTIONSym)
       fn_name=curString()
       
@@ -141,8 +234,9 @@ class Parser < CParser
       Expect(C_PointSym)
       s=""
       while (@sym>=C_identifierSym&&@sym<=C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_charSym||@sym==C_spaceD1Sym||@sym>=C_PointSym&&@sym<=C_INITIALSym||@sym>=C_CONCATENATESym&&@sym<=C_INSym||@sym>=C_SEARCHSym&&@sym<=C_FORSym||@sym==C_REFRESHSym||@sym==C_FUNCTIONSym||@sym==C_DESCRIBESym||@sym>=C_MESSAGESym&&@sym<=C_LparenSym||@sym==C_RAISINGSym||@sym==C_LOOPSym||@sym==C_DATASym||@sym==C_DEFAULTSym||@sym==C_WRITESym||@sym==C_StarSym||@sym>=C_breakSym&&@sym<=C_DOSym||@sym==C_CASESym||@sym==C_forSym||@sym==C_CALLSym||@sym>=C_EXPORTINGSym&&@sym<=C_IMPORTINGSym||@sym>=C_CHANGINGSym&&@sym<=C_EXCEPTIONSSym||@sym>=C_PARAMETERMinusTABLESym&&@sym<=C_IFSym||@sym>=C_returnSym&&@sym<=C_WHILESym||@sym==C_CLASSSym||@sym==C_METHODSym||@sym==C_METHODSSym||@sym==C_RETURNINGSym||@sym==C_SPLITSym||@sym==C_AndSym||@sym==C_NOTSym||@sym>=C_PlusSym&&@sym<=C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym>=C_BangSym&&@sym<=C_REQUESTEDSym)
-         s+=
          Statements()
+         s+= popv
+         
       end
 
       Expect(C_ENDFUNCTIONSym)
@@ -211,7 +305,7 @@ class Parser < CParser
        end
        return ret
     end
-    def WriteStatement()
+    def WriteStatement1()
        Expect(C_WRITESym)
        param_hash = {}
        while (@sym==C_numberSym||@sym>=C_ATSym&&@sym<=C_StarStarSym)
