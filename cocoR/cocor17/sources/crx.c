@@ -144,13 +144,13 @@ static void GenFuncHeader(PNTermNode n, int header_only)
 		p = GetGraphP(n->sem);
 		GenSemCode(4, p->SEMPOS, p->SEMLEN, p->SEMLINE, p->SEMCOL + 2, TRUE);
 	}
-	GenCode(fparser, "{$$");
+	GenCode(fparser, "{$$in();$$");
 }
 
 /* generate function trailer */
 static void GenFuncTrailer(void)
 {
-	GenCode(fparser, "}$$$$");
+	GenCode(fparser, "out();$$}$$$$");
 }
 
 /* return number of alternatives in node 'n' */
