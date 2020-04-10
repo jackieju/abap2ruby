@@ -3,11 +3,14 @@ set -e
 
 cpp2ruby_dir=/Users/i027910/Desktop/ju/projects/sap/CPP2Ruby_github
 
+cocor=./cocor17new
+cocor=./cocor
+
 #test grammar
-./cocor17new abap.atg 
+$cocor abap.atg 
 
 # generate parser in c
-./cocor17new -A -F -X -S -G -C -L -D abap.atg 
+$cocor -A -F -X -S -G -C -L -D abap.atg 
 
 # cp or move generated parser to output for converting to ruby
 #cp cs.c          output

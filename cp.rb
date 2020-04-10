@@ -7,6 +7,34 @@ load 'log.rb'
 load 'common.rb'
 load 'cocoR/o/cparser.rb'
 
+def pdebug(s, stack=0)
+    depth = 0
+    sp = ""
+    begin
+        raise Exception.new
+    rescue Exception=>e
+        e.backtrace.each{|b|
+            if b =~ /in `C'/
+                # p "====got botoom====total #{e.backtrace.size}"
+                break
+            else
+                depth += 1
+                sp += "-+"
+            end
+        }
+        
+    end
+    
+    m = "{#{sp}#{depth}}#{s}"
+    if stack>0
+        m = format_msg(m, "", stack)
+    end
+    
+    debug(m)
+    
+end
+
+
 # when translate multiple file, will share one class tree
 $g_classdefs = {} if $g_classdefs == nil
 $g_root_moddef = ModuleDef.new("::")
@@ -51,7 +79,28 @@ class Parser < CParser
         p "init end"
         pclass
     end
-
+    def trc() 
+        fn = ""
+        begin
+            raise Exception.new
+        rescue Exception=>e
+            e.backtrace[1].scan(/in `(.*?)'/){|m|
+            fn = m[0]
+        }
+        end
+        pdebug("===>#{fn}:#{@sym}(#{SYMS[@sym]}), #{curString()}")
+    end
+    def trco() 
+        fn = ""
+        begin
+            raise Exception.new
+        rescue Exception=>e
+            e.backtrace[1].scan(/in `(.*?)'/){|m|
+            fn = m[0]
+        }
+        end
+        pdebug("<===#{fn}0:#{@sym}(#{SYMS[@sym]}), #{curString()}")
+    end
     #### copy/override start ####
    #def C()
    #   Expect(C_REPORTSym)
@@ -91,13 +140,13 @@ class Parser < CParser
       Expect(C_identifierSym)
       Expect(C_PointSym)
       s=""
-      while (@sym>=C_identifierSym&&@sym<=C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_charSym||@sym==C_spaceD1Sym||@sym>=C_PointSym&&@sym<=C_FUNCTIONSym||@sym==C_LOOPSym||@sym==C_DATASym||@sym==C_DEFAULTSym||@sym==C_FORSym||@sym==C_WRITESym||@sym>=C_LparenSym&&@sym<=C_StarSym||@sym>=C_breakSym&&@sym<=C_DOSym||@sym==C_CASESym||@sym>=C_forSym&&@sym<=C_CALLSym||@sym>=C_EXPORTINGSym&&@sym<=C_IMPORTINGSym||@sym>=C_CHANGINGSym&&@sym<=C_EXCEPTIONSSym||@sym>=C_PARAMETERMinusTABLESym&&@sym<=C_IFSym||@sym>=C_returnSym&&@sym<=C_WHILESym||@sym==C_CLASSSym||@sym==C_METHODSym||@sym==C_METHODSSym||@sym>=C_RETURNINGSym&&@sym<=C_RAISINGSym||@sym==C_AndSym||@sym>=C_PlusSym&&@sym<=C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym>=C_BangSym&&@sym<=C_NOTSym)
+      while (@sym>=C_identifierSym&&@sym<=C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_charSym||@sym==C_spaceD1Sym||@sym>=C_PointSym&&@sym<=C_INITIALSym||@sym>=C_CONCATENATESym&&@sym<=C_INSym||@sym>=C_SEARCHSym&&@sym<=C_FORSym||@sym==C_REFRESHSym||@sym==C_FUNCTIONSym||@sym==C_DESCRIBESym||@sym>=C_MESSAGESym&&@sym<=C_LparenSym||@sym==C_RAISINGSym||@sym==C_LOOPSym||@sym==C_DATASym||@sym==C_DEFAULTSym||@sym==C_WRITESym||@sym==C_StarSym||@sym>=C_breakSym&&@sym<=C_DOSym||@sym==C_CASESym||@sym==C_forSym||@sym==C_CALLSym||@sym>=C_EXPORTINGSym&&@sym<=C_IMPORTINGSym||@sym>=C_CHANGINGSym&&@sym<=C_EXCEPTIONSSym||@sym>=C_PARAMETERMinusTABLESym&&@sym<=C_IFSym||@sym>=C_returnSym&&@sym<=C_WHILESym||@sym==C_CLASSSym||@sym==C_METHODSym||@sym==C_METHODSSym||@sym==C_RETURNINGSym||@sym==C_SPLITSym||@sym==C_AndSym||@sym==C_NOTSym||@sym>=C_PlusSym&&@sym<=C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym>=C_BangSym&&@sym<=C_REQUESTEDSym)
          s+=
          Statements()
       end
 
       Expect(C_ENDFUNCTIONSym)
-      Expect(EOF_Sym)
+      Expect(C_PointSym)
       @root_class.add_method(fn_name, "()", [], s, "")
       
    end 

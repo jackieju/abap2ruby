@@ -21,7 +21,7 @@ IGNORE
 
 TOKENS
   identifier = ( "_" | letter) { "_" | "-" | letter | digit } .
-  number     = digit { digit } [ "." { digit }] [ "U" | "u" | "L" | "l" ] .
+  number     = digit { digit } [ "U" | "u" | "L" | "l" ] .
   hexnumber  = "0" ( "x" | "X" ) hexdigit { hexdigit } [ "U" | "u" | "L" | "l" ] .
   string1     = "'" { strings } "'" .
   char       = '"' [ "\\" ] chars '"' .
@@ -79,6 +79,8 @@ PRODUCTIONS
                              | SearchStatement
                              | CONCATENATE
                              | APPEND
+                             | SPLIT
+                             | RAISE
                          )
                            (. return ret .)
  .
@@ -87,7 +89,7 @@ APPEND = "APPEND" (identifier
         | {"INITIAL" "LINE"} 
         | {"LINES" "OF" identifier ["FROM" identifier] ["TO" identifier] ["USING" "KEY" string1]}
          )
-    "TO" identifier 
+    "TO" identifier {"[""]"}
     ["SORTED" "BY" string1] 
     [ ("ASSIGNING" string1 ["CASTING"] | "REFERENCE" "INTO" identifier ) ] "." .
  
@@ -110,7 +112,7 @@ RefreshStatement = "REFRESH" ("CONTROL" identifier "FROM" "SCREEN" identifier
  
 FunctionDef = "FUNCTION" identifier "."  (. s = "" .)
                 { (. s+= .)  Statements } 
-              "ENDFUNCTION" EOF  .
+              "ENDFUNCTION" "."   .
 
 DescribeStatement = "DESCRIBE" (
           ( "FIELD" identifier 
@@ -139,7 +141,24 @@ DescribeStatement = "DESCRIBE" (
         | ( "TABLE" identifier ["KIND" identifier] ["LINES" number] ["OCCURS" number] )
         )
         "." .
-        
+
+RAISE = "RAISE" (identifier
+|  "EVENT" identifier ["EXPORTING" Expression {Expression}]
+| ["RESUMABLE"] "EXCEPTION" 
+  [  
+      ( "TYPE" identifier 
+          [ 
+              "MESSAGE" identifier "(" identifier ")" 
+              | { "ID" identifier "TYPE" identifier "NUMBER" Expression }   ["WITH" identifier {identifier} ]
+          ] 
+         ["EXPORTING" Expression {Expression}] 
+       
+     | identifier
+     )
+ ]
+)
+.
+
 MessasgeStatement = "MESSAGE"
          {(
          ( identifier [ ( "(" identifier ")" | (  "TYPE" identifier) ) ] )
@@ -155,7 +174,48 @@ MessasgeStatement = "MESSAGE"
         )]
         ["WITH" identifier {identifier}] "." . 
 
-LoopStatement = "LOOP" "." Statements "ENDLOOP" "." .
+
+GroupBy = "GROUP" "BY" (identifier 
+                        | ( Expression {Expression} [ identifier "=" "GROUP" "SIZE"] [ identifier "=" "GROUP" "INDEX"]) 
+                        )
+                            [("ASCENDING"|"DESCENDING") ["AS" "TEXT"]] 
+                            ["WITHOUT" "MEMBERS"] 
+                            [ "INTO" identifier 
+                              | "ASSIGNING" identifier
+                              | "REFERENCE" "INTO" identifier
+                            ] .
+                            
+LoopStatement = "LOOP" [ 
+            "AT" ( 
+                  ( identifier ["VERSION" string1]
+                    | (
+                       identifier ( 
+                                   "INTO" identifier  
+                                 |  "ASSIGNING" identifier ["CASTING"] 
+                                 |  "REFERENCE" "INTO" identifier 
+                                 |  "TRANSPORTING" "NO" "FIELDS" 
+                                  )
+                          [ "USING" "KEY" (identifier|"("identifier")" )] 
+                          [ "FROM" identifier] ["TO" identifier] ["WHERE" Expression ] 
+                          [ GroupBy
+                         ]
+                      )
+                  )
+                |
+                 "GROUP" identifier ( 
+                               "INTO" identifier  
+                             |  "ASSIGNING" identifier ["CASTING"] 
+                             |  "REFERENCE" "INTO" identifier 
+                             |  "TRANSPORTING" "NO" "FIELDS" 
+                              )
+                                   ["WHERE" Expression] 
+                                   [GroupBy]
+                | "SCREEN" "INTO" identifier
+               )
+             ] "." 
+            Statements 
+        "ENDLOOP" "." .
+
 
 VariableDefineStatement =  "DATA" identifier { "(" number  ")" }
             (
@@ -425,68 +485,74 @@ MethodsStatement = "METHODS" identifier ["ABSTRACT"|"FINAL"]
        {"EXCEPTIONS" identifier {identifier} }
   ] "." . 
 
+SPLIT = "SPLIT" identifier "AT" Expression "INTO" 
+      ( identifier{identifier } | "TABLE" identifier )
+      ["IN" {"CHARACTER"|"BYTE"} "MODE"] . 
+      
+  Expression           = (. trc() .) Conditional { AssignmentOperator Expression   } (. trco() .) .
 
-  Expression           = Conditional { AssignmentOperator Expression   }.
+  Conditional          =(. trc() .)  LogORExp (. trco() .) .
 
-  Conditional          = LogORExp .
+  LogORExp             = (. trc() .) LogANDExp   { ("||" | "OR" | "EQUIV") LogANDExp } (. trco() .) .
 
-  LogORExp             = LogANDExp   { ("||" | "OR" | "EQUIV") LogANDExp } .
-
-  LogANDExp            = InclORExp   { ("&&" | "AND") InclORExp }
-
+  LogANDExp            = (. trc() .) InclORExp   { ("&&" | "AND") InclORExp }
+(. trco() .) 
 .
 
-  InclORExp            = ExclORExp   { "|" ExclORExp } .
+  InclORExp            = (. trc() .) ExclORExp   { "|" ExclORExp } (. trco() .)  .
 
-  ExclORExp            = ANDExp      { "^" ANDExp } .
+  ExclORExp            = (. trc() .) ANDExp      { "^" ANDExp } (. trco() .)   .
 
-  ANDExp               = EqualExp    { "&" EqualExp } .
+  ANDExp               = (. trc() .) EqualExp    { "&" EqualExp } (. trco() .)   .
 
-  EqualExp             =   RelationExp { ( "="| "EQ"| "<>" | "NE" | "IS" ["NOT"] ) RelationExp } |
-  RelationExp ["NOT"] "BETWEEN" RelationExp "AND" RelationExp 
+  EqualExp             =   (. trc() .) RelationExp { ( "="| "EQ"| "<>" | "NE" | "IS" ["NOT"] ) RelationExp } |
+  RelationExp ["NOT"] "BETWEEN" RelationExp "AND" RelationExp  
   .
 
-  RelationExp          =   ShiftExp    { ( "<" | "LT"  | ">" | "GT" | "<=" | "LE" | ">=" | "GE" | "CO" | "CN" | "CA" | "NA" | "CS" | "NS" | "CP" | "NP" |"BYTE-CO" | "BYTE-CN" | "BYTE-CA" | "BYTE-NA" | "BYTE-CS" | "BYTE-NS" )   ShiftExp   }
-  .
+  RelationExp          =   (. trc() .) ShiftExp    { 
+                              ( "<" | "LT"  | ">" | "GT" | "<=" | "LE" | ">=" | "GE" | "CO" | "CN" | "CA" | "NA" | "CS" | "NS" | "CP" | "NP" |"BYTE-CO" | "BYTE-CN" | "BYTE-CA" | "BYTE-NA" | "BYTE-CS" | "BYTE-NS" )  
+                               ShiftExp   } (. trco() .)  .
 
-  ShiftExp             = AddExp      { ( "<<" | ">>" ) AddExp } .
+  ShiftExp             = (. trc() .) AddExp      { ( "<<" | ">>" ) AddExp }  (. trco() .)   (. trco() .)  .
               
                 
                 
-  AddExp               = MultExp     { ( "+"  | "-"  ) MultExp } .
+  AddExp               = (. trc() .) MultExp     { ( "+"  | "-"  ) MultExp }  (. trco() .)  .
 
   MultExp              =   CastExp  
- { ( "*"   | "/" | "DIV"  | "%"  | "MOD" | "**" ) CastExp } .
+ { ( "*"   | "/" | "DIV"  | "%"  | "MOD" | "**" ) CastExp }  (. trco() .)  .
 
-  CastExp              =  UnaryExp  .
+  CastExp              =  (. trc() .) UnaryExp  (. trco() .)   .
 
 
 
-  UnaryExp             = PostFixExp
+  UnaryExp             = (. trc() .) PostFixExp
                          | ( "++" | "--" ) UnaryExp
                          | UnaryOperator CastExp 	
+                          (. trco() .)  
 					.
 
 
 
-  PostFixExp           = Primary
+  PostFixExp           = (. trc() .) Primary
                          { "[" Expression "]"
                           | FunctionCall
                           | "->" identifier
+                          | "=>" identifier
                           | "++"
                           | "--"
-                         } .   
+                         }  (. trco() .)  .   
   
-  Primary              = identifier | string1 | char | number | "(" Expression ")" |PredefinedConstant.
+  Primary              = (. trc() .) ( identifier | string1 | char | number | "(" Expression ")" |PredefinedConstant ) (. trco() .)  .
 
-  FunctionCall        = "("   [ ActualParameters] ")"   .
+  FunctionCall        = (. trc() .) "("   [ ActualParameters] ")"    (. trco() .)  .
 
-  ActualParameters    =   Expression   { "," Expression   }   .
+  ActualParameters    =   (. trc() .) Expression   { "," Expression   }   (. trco() .)   .
 
-  AssignmentOperator   =   "="  | "*=" | "/=" | "%=" | "+=" | "-=" | "&="
-                         | "^=" | "|=" | "<<=" | ">>=" .
+  AssignmentOperator   =  (. trc() .)  "="  | "*=" | "/=" | "%=" | "+=" | "-=" | "&="
+                         | "^=" | "|=" | "<<=" | ">>=" (. trco() .)   .
 
-  UnaryOperator        = "+" | MinusOperator | "*" | "!" | "&" | "~" | "NOT" |  "INSTANCE" "OF" | "IN" .
+  UnaryOperator        = (. trc() .) "+" | MinusOperator | "*" | "!" | "&" | "~" | "NOT" |  "INSTANCE" "OF" | "IN" (. trco() .)   .
 
   MinusOperator = space1 "-" | "-" space1 .
 
