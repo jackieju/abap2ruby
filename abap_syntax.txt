@@ -1,8 +1,4 @@
 
-CATCH SYSTEM-EXCEPTIONS [exc1 = n1 exc2 = n2 ...] 
-                        [OTHERS = n_others]. 
-  [statement_block] 
-ENDCATCH. 
 
 
 CREATE DATA dref [ AREA HANDLE handle ] 
@@ -29,6 +25,176 @@ CREATE DATA dref [ AREA HANDLE handle ]
                                 {KEY {comp1 comp2 ...}|(keytab)}|{DEFAULT KEY}} 
                            | {WITH EMPTY KEY} ] 
                            [INITIAL SIZE n]} } ]. 
+                           
+# C
+
+CALL BADI badi->meth|badi->(meth_name) 
+          { [EXPORTING  p1 = a1 p2 = a2 ...] 
+            [IMPORTING p1 = a1 p2 = a2 ...] 
+            [CHANGING   p1 = a1 p2 = a2 ...] 
+            [RECEIVING r  = a ] 
+            [EXCEPTIONS [exc1 = n1 exc2 = n2 ...] 
+            [OTHERS = n_others]]} 
+        | {[PARAMETER-TABLE ptab] 
+            [EXCEPTION-TABLE etab] }. 
+             
+CALL DIALOG dialog [ {AND SKIP FIRST SCREEN} 
+                   | {USING bdc_tab [MODE mode]} ] 
+                   [EXPORTING p1 FROM a1 p2 FROM a2 ...] 
+                   [IMPORTING p1 TO a1 p2 TO a2 ...]. 
+
+CALL CUSTOMER-FUNCTION func 
+                       [EXPORTING  p1 = a1 p2 = a2 ...] 
+                       [IMPORTING p1 = a1 p2 = a2 ...] 
+                       [CHANGING   p1 = a1 p2 = a2 ...] 
+                       [TABLES t1 = itab1 t2 = itab2 ...] 
+                       [EXCEPTIONS [exc1 = n1 exc2 = n2 ...] 
+                                   [error_message = n_error] 
+                                   [OTHERS = n_others]]  . 
+                                   
+CALL DATABASE PROCEDURE proxy|(prox_name) 
+    [CONNECTION con|(con_syntax)] 
+    { [EXPORTING  p1 = a1 p2 = a2 ...] 
+      [IMPORTING  p1 = a1 p2 = a2 ...] } 
+  | { [PARAMETER-TABLE ptab] }. 
+
+CALL METHOD {(meth_name) 
+            |oref->(meth_name) 
+            |(class_name)=>(meth_name) 
+            |class=>(meth_name) 
+            |(class_name)=>meth} 
+  [PARAMETER-TABLE ptab] 
+  [EXCEPTION-TABLE etab]. 
+  
+CALL METHOD OF ole meth [= rc] 
+               [EXPORTING p1 = f1 p2 = f2 ...] 
+               [NO FLUSH] [QUEUE-ONLY]. 
+               
+CALL SCREEN dynnr 
+            [STARTING AT col1 lin1 
+            [ENDING   AT col2 lin2]]. 
+
+CALL SELECTION-SCREEN dynnr 
+                      [STARTING AT col1 lin1 
+                      [ENDING   AT col2 lin2]] 
+                      [USING SELECTION-SET variant]. 
+
+CALL TRANSACTION ta WITH|WITHOUT AUTHORITY-CHECK 
+                    { [AND SKIP FIRST SCREEN] 
+                    | [USING bdc_tab 
+                             {{[MODE mode] 
+                               [UPDATE upd]} 
+                              |[OPTIONS FROM opt]} 
+               
+CALL TRANSFORMATION {trans|(name)} 
+                    [PARAMETERS {p1 = e1 p2 = e2 ...}|(ptab)] 
+                    [OBJECTS    {o1 = e1 o2 = e2 ...}|(otab)] 
+                    [OPTIONS    {a1 = e1 a2 = e2 ...}] 
+                    SOURCE {XML src_xml} 
+                         | {{bn1 = e1 bn2 = e2 ...}|(stab)} 
+                    RESULT {XML rslt_xml} 
+                         | { {bn1 = f1 bn2 = f2 ...}|(rtab) 
+                             [AREA HANDLE handle] }. 
+                             
+CASE TYPE OF oref 
+  [WHEN TYPE class|intf [INTO target1]. 
+    [statement_block1]] 
+  [WHEN TYPE class|intf [INTO target2]. 
+    [statement_block2]] 
+  ... 
+  [WHEN OTHERS. 
+    [statement_blockn]] 
+ENDCASE. 
+
+ 
+CATCH SYSTEM-EXCEPTIONS [exc1 = n1 exc2 = n2 ...] 
+                        [OTHERS = n_others]. 
+  [statement_block] 
+ENDCATCH. 
+
+CHECK Expression|SELECT-OPTIONS. 
+
+             
+# D
+
+DEFINE macro. 
+  ... &1 ... &9 ... 
+END-OF-DEFINITION. 
+
+DELETE DATASET dset. 
+
+
+DELETE { { FROM dbtab|view|(target_syntax) 
+           [USING CLIENT clnt] | [CLIENT SPECIFIED] 
+           [CONNECTION con|(con_syntax)] 
+           [WHERE sql_cond] [ORDER BY ... [OFFSET o]] [UP TO n ROWS] } 
+       | { dbtab|view|(target_syntax) [CLIENT SPECIFIED] 
+                                      [CONNECTION con|(con_syntax)] } 
+           FROM wa|{TABLE itab} }. 
+
+DELETE { { {TABLE itab 
+            {{FROM wa [USING KEY key_name|(name)]} 
+            |{WITH TABLE KEY [key_name|(name) COMPONENTS] 
+                             {comp_name1|(name1)} = dobj1 
+                             {comp_name2|(name2)} = dobj2 
+                             ... }}} 
+         | {itab INDEX idx [USING KEY key_name|(name)]} 
+         | {itab [USING KEY loop_key]} } 
+       | {itab [USING KEY key_name|(name)] 
+               [FROM idx1] [TO idx2] [WHERE log_exp]|(cond_syntax)} 
+       | {ADJACENT DUPLICATES FROM itab 
+           [ USING KEY key_name|(name) ] 
+           [COMPARING comp1 comp2 ...|{ALL FIELDS}]} }. 
+
+DELETE FROM { {MEMORY ID id} 
+            | {DATABASE      dbtab(ar) [CLIENT cl] ID id} 
+            | {SHARED MEMORY dbtab(ar) [CLIENT cl] ID id} 
+            | {SHARED BUFFER dbtab(ar) [CLIENT cl] ID id} }. 
+            
+DEMAND val1 = f1 val2 = f2 ... 
+       FROM CONTEXT context_ref 
+       [MESSAGES INTO itab]. 
+
+DESCRIBE DISTANCE BETWEEN dobj1 AND dobj2 INTO dst 
+                          IN {BYTE|CHARACTER} MODE. 
+
+DESCRIBE FIELD dobj 
+  [TYPE typ [COMPONENTS com]] 
+  [LENGTH ilen IN {BYTE|CHARACTER} MODE] 
+  [DECIMALS dec] 
+  [OUTPUT-LENGTH olen] 
+  [HELP-ID hlp] 
+  [EDIT MASK mask]. 
+  
+ 
+DESCRIBE LIST { {NUMBER OF {LINES|PAGES} n} 
+              | {LINE linno PAGE page} 
+              | {PAGE pagno [LINE-SIZE width] 
+                            [LINE-COUNT page_lines] 
+                            [LINES lines] 
+                            [FIRST-LINE first_line] 
+                            [TOP-LINES top_lines] 
+                            [TITLE-LINES title_lines] 
+                            [HEAD-LINES header_lines] 
+                            [END-LINES footer_lines]} } 
+              [INDEX idx]. 
+
+DESCRIBE TABLE itab [KIND knd] [LINES lin] [OCCURS n]. 
+ 
+
+DETAIL. 
+
+DIVIDE dobj1 BY dobj2. 
+
+DIVIDE-CORRESPONDING struc1 BY struc2. 
+
+DO [n TIMES] 
+   [VARYING dobj FROM dobj1 NEXT dobj2 [RANGE range] 
+   [VARYING ...]]. 
+  [statement_block] 
+ENDDO. 
+
+
                            
 # E
 
@@ -69,6 +235,20 @@ EXIT.
 
 EXIT FROM SQL. 
 
+EXIT FROM STEP-LOOP. 
+
+EXPORT { {p1 = dobj1 p2 = dobj2 ...} 
+       | {p1 FROM dobj1 p2 FROM dobj2 ...} 
+       | (ptab) } 
+    TO { { DATA BUFFER xstr } 
+       | { INTERNAL TABLE itab } 
+       | { MEMORY ID id } 
+       | { DATABASE      dbtab(ar) [FROM wa] [CLIENT cl] ID id } 
+       | { SHARED MEMORY dbtab(ar) [FROM wa] [CLIENT cl] ID id } 
+       | { SHARED BUFFER dbtab(ar) [FROM wa] [CLIENT cl] ID id }  } 
+       [ COMPRESSION { ON | OFF } ]. 
+
+EXTRACT [ header | field_group ]. 
 
 # F
 

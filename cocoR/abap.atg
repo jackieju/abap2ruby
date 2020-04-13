@@ -342,7 +342,8 @@ VariableDefineStatement =  "DATA" ( identifier { "(" number  ")" }
                 "END" "OF" (identifier ["VALID" "BETWEEN" Expression "AND" Expression] | "COMMON" "PART" identifier )
                 )
                     "." .
-TYPEDS = "TYPES" dtype[(len)] {"TYPE" { {abap_type ["LENGTH" len] 
+                    
+TYPES = "TYPES" dtype[(len)] {"TYPE" { {abap_type ["LENGTH" len] 
                                       ["DECIMALS" dec]} 
                          | {["LINE" "OF"] type} 
                          | {"REF" "TO" type} 
@@ -459,7 +460,7 @@ WriteStatement =   (. param_hash = {} .) "WRITE" {["AT"] ["/"][number
   BreakStatement       = "break"   .
 
 
-  Statements =  Statement { Statement } .
+  Statements =  Statement { Statement } x
 
   ContinueStatement    = "CONTINUE"  "."  .
 
