@@ -39,7 +39,14 @@ PRODUCTIONS
 
     C                  =      (ReportDef | FunctionDef) .
     
-    ReportDef          = "REPORT" (.  fn_name=curString() .) identifier "." (. src("") .) { Statements }
+    ReportDef          = "REPORT" (.  fn_name=curString() .) identifier  (. src("") .) 
+    ["NO" "STANDARD" "PAGE" "HEADING"] 
+               ["LINE-SIZE" number] 
+               ["LINE-COUNT" number["("number")"]] 
+               ["MESSAGE-ID" identifier] 
+               ["DEFINING" "DATABASE" identifier] 
+               ["REDUCED" "FUNCTIONALITY"] "."
+    { Statements }
                        (.
                          @root_class.add_method(fn_name, "()", [], src, "")
                        .)
@@ -89,9 +96,35 @@ PRODUCTIONS
                              | SPLIT
                              | RAISE
                              | CONSTANTS
+                             | NN
+                             | MOVE
                          )
                            
  .
+ 
+SELECT = "SELECT" ".".
+
+WITHLINE =  "+" identifier [( identifier {"," identifier} )] "AS" identifier {"," "+" identifier [( identifier {"," identifier} )] "AS" identifier}
+   SELECT "." . 
+
+WITH = "WITH" 
+  WITHLINE { WITHLINE }
+ 
+"ENDWITH".
+ 
+ 
+TABLES = "TABLES" ["*"] identifier "." . 
+
+ 
+MOVE =  "MOVE" 
+          ["EXACT"] Expression  ["TO"|"?TO"] Expression
+     [  "PERCENTAGE" Expression ["LEFT"|"RIGHT"] ]
+        
+    . 
+    
+    
+NN = "AA" "at" (["PPP"] number ["LEFT"|"CENTER"] string1  | CC ).
+CC =  identifier ["RIGHT"] .
  
 APPEND = "APPEND" (identifier 
         | {"INITIAL" "LINE"} 
@@ -186,7 +219,8 @@ GroupBy = "GROUP" "BY" (identifier
                         )
                             [("ASCENDING"|"DESCENDING") ["AS" "TEXT"]] 
                             ["WITHOUT" "MEMBERS"] 
-                            [ "INTO" identifier 
+                            [ 
+                                "INTO" identifier 
                               | "ASSIGNING" identifier
                               | "REFERENCE" "INTO" identifier
                             ] .
@@ -296,17 +330,67 @@ LikeDes =        "LIKE"
                      "RANGE" "OF" identifier ["INITIAL" "SIZE" number] ["WITH" "HEADER" "LINE"]
                                          
                    ).
+ 
                  
-VariableDefineStatement =  "DATA" identifier { "(" number  ")" }
-            
-                ( TypeDes
-              | 
-                  LikeDes
-                )
-              ["VALUE" { Expression | "IS" "INITIAL" }] 
+VariableDefineStatement =  "DATA" ( identifier { "(" number  ")" }
+                ( TypeDes | LikeDes)
+                ["VALUE" { Expression | "IS" "INITIAL" }] 
                 ["READ-ONLY"] 
-            
-                "." .
+                |
+                "BEGIN" "OF" ( identifier ["READ-ONLY"] ["OCCURS" number] | "COMMON" "PART" identifier)
+                |
+                "END" "OF" (identifier ["VALID" "BETWEEN" Expression "AND" Expression] | "COMMON" "PART" identifier )
+                )
+                    "." .
+TYPEDS = "TYPES" dtype[(len)] {"TYPE" { {abap_type ["LENGTH" len] 
+                                      ["DECIMALS" dec]} 
+                         | {["LINE" "OF"] type} 
+                         | {"REF" "TO" type} 
+                         | { {{["STANDARD"] "TABLE"} 
+                             | {"SORTED" "TABLE"} 
+                             |{"HASHED" "TABLE"}} 
+                             "OF" ["REF" "TO"] type 
+                             [ {"WITH" ["UNIQUE"|"NON-UNIQUE"] 
+                                  { {"KEY" [primary_key ["ALIAS" key_name] 
+                                       "COMPONENTS"] comp1 comp2 ...} 
+                                  | {"DEFAULT" "KEY"} }  } 
+                             | {"WITH" "EMPTY" "KEY"} ] 
+                             {["WITH" {"UNIQUE" "HASHED"}|{{"UNIQUE"|"NON-UNIQUE"} "SORTED"} 
+                                "KEY" key_name1 "COMPONENTS" comp1 comp2 ...] 
+                              ["WITH" {"UNIQUE" "HASHED"}|{{"UNIQUE"|"NON-UNIQUE"} "SORTED"} 
+                                "KEY" key_name2 "COMPONENTS" comp1 comp2 ...] 
+                              ...} 
+                             [{"WITH"|"WITHOUT"} "FURTHER" "SECONDARY" "KEYS"] 
+                             ["INITIAL" "SIZE" n]} 
+                           | {"RANGE" "OF" type ["INITIAL" "SIZE" n]} } 
+                           | {dbtab|view 
+                               { "READER"|"LOCATOR"|{"LOB" "HANDLE"} } 
+                             | { "WRITER"|"LOCATOR" } "FOR" 
+                               { "COLUMNS" blob1 blob2 ...  clob1 clob2 ... } 
+                             | { "ALL" ["OTHER"] ["BLOB"|"CLOB"] "COLUMNS" } 
+                                 [...]}} 
+                 | {"LIKE" { {["LINE" "OF"] dobj} 
+                         | {"REF" "TO" dobj} 
+                         | { {{["STANDARD"] "TABLE"} 
+                             |{"SORTED" "TABLE"} 
+                             |{"HASHED" "TABLE"} 
+                             |{"ANY" "TABLE"} 
+                             |{"INDEX" "TABLE"}} 
+                             "OF" ["REF" "TO"] dobj 
+                             [ {"WITH" ["UNIQUE"|"NON-UNIQUE"] 
+                                  { {"KEY" [primary_key ["ALIAS" key_name] 
+                                       "COMPONENTS"] comp1 comp2 ...} 
+                                  | {"DEFAULT" "KEY"} }} 
+                             | {"WITH" "EMPTY" "KEY"} ] 
+                             {["WITH" {"UNIQUE" "HASHED"}|{{"UNIQUE"|"NON-UNIQUE"} "SORTED"} 
+                                "KEY" key_name1 "COMPONENTS" comp1 comp2 ...] 
+                              ["WITH" {"UNIQUE" "HASHED"}|{{"UNIQUE"|"NON-UNIQUE"} "SORTED"} 
+                                "KEY" key_name2 "COMPONENTS" comp1 comp2 ...] 
+                              ...} 
+                             [{"WITH"|"WITHOUT"} "FURTHER" "SECONDARY" "KEYS"] 
+                             ["INITIAL" "SIZE" n]} 
+                           | {"RANGE" "OF" dobj ["INITIAL" "SIZE" n]} }}. 
+
 
 CONSTANTS = "CONSTANTS" identifier ( TypeDes | 
                LikeDes
@@ -495,7 +579,9 @@ Typing = (
  "." .
          
           
-MethodsStatement = "METHODS" identifier ["ABSTRACT"|"FINAL"] 
+MethodsStatement = "METHODS" identifier ( ["ABSTRACT"|"FINAL"] 
+            | "FOR" "TESTING" 
+            | ["FINAL"] "REDEFINITION"
             |["DEFAULT" ("IGNORE"|"FAIL")] 
              ["FOR" "EVENT" identifier "OF" identifier] 
   [ "IMPORTING" {

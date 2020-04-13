@@ -116,7 +116,7 @@ are equal, and usually we take the second form.
 
 How to contribute
 ===
-As you know, abap has very complicated syntax, because actually it put all functionality/Constant into syntax. For example, in c++, the syntax only defines the way to declare and call a function, but in abap, every function has different syntax, so "printf(xxx....)" is written in syntax...
+As you know, abap has very complicated syntax, because actually it put all functionality/Constant into syntax. For example, in c++, the syntax only defines the way to declare and call a function, but in abap, every function has different syntax, so "printf(xxx....)" is written in syntax... Or in a short word, ABAP syntax is mixed with semantic. When he introduce the syntax, he also introduce the semantic.
 
 In ABAP syntax, those which are user defined constant in other language, are keywords.
 <pre>
@@ -146,6 +146,12 @@ So shall we translate ABAP or just run it directly in a function like "run_abap(
 I think ABAP's problem is it over-use the syntax, or say mix the functionality with syntax. So the basic priciple is, only translate non-function syntax like expression, if statement, loop statment... and do not translate the "function" like select statement, search statement .... In another word, for these syntax and functionality like SQL select statement, we can keep it and just run it in function "run_apap('SEARCH OBJ FOR ...')". And for other syntax which is most case, for example, variable define, if statement, loop statement... we could translate them into morden langauge, which will be clearer and neater.
 
 So it will need very big efforts to convert ABAP ambigous grammar(https://help.sap.com/doc/abapdocu_751_index_htm/7.51/en-US/index.htm) to EBNF. It will be a very big EBNF.
+
+### Why we are not using AST(abstract syntax tree)
+
+1. Generate AST from code and then generate target code from AST will make it difficult to do troubleshooting. But in cocoR way, we can find the problem quickly.
+
+2.
 
 So now let's do your contribution.
 
@@ -306,4 +312,104 @@ In case you want to rebuild cocoR:
     cd cocoR/cocor17/sources
     make -f unix.mk new
     cp cocor ../../
+</pre>
+
+Tips for EBNF
+===
+1. If the generated parser include code like 
+<pre>
+    if 1
+    ...
+</pre>
+It indicate EBNF has problem, usually duplicated.
+e.g.
+<pre>
+ NN =  (AA | BB| CC ).
+ AA = "AA" "at" identifier ["RIGHT"].
+ BB = "AA" "at" number ["LEFT"] .
+ CC = "AA" "at" string1 .
+</pre>
+will generate code :
+<pre>
+    def NN()
+...
+       if @sym==C_AASym
+          AA()
+       else
+          if 1
+             BB()
+          else
+             if 1
+                CC()
+             else
+                GenError(386)
+             end
+
+          end
+
+       end
+...
+    end
+</pre>
+You should change the syntax to:
+<pre>
+     NN = "AA" "at" (identifier ["RIGHT"] |  number ["LEFT"] | string1 ) .
+</pre>
+
+Another sample:
+
+<pre>
+    NN = "AA" "at" (["PPP"] number ["LEFT"] string1 | number ["CENTER"] string1 | CC ).
+    CC =  identifier ["RIGHT"] .
+</pre>
+
+will generate code:
+<pre>
+    def NN()
+...
+       Expect(C_AASym)
+       Expect(C_atSym)
+       if @sym==C_numberSym||@sym==C_PPPSym
+          if @sym==C_PPPSym
+             Get()
+          end
+
+          Expect(C_numberSym)
+          if @sym==C_LEFTSym
+             Get()
+          end
+
+          Expect(C_stringD1Sym)
+       else
+          if 1
+             Get()
+             if @sym==C_CENTERSym
+                Get()
+             end
+
+             Expect(C_stringD1Sym)
+          else
+             if @sym==C_identifierSym
+                CC()
+             else
+                GenError(388)
+             end
+
+          end
+
+       end
+...
+    end
+</pre>
+Becuase parser will be confused if encounter number after AA At, because it's a LL(1) gramma parser, which can only decide by looking forward one token.
+So it should be changed to:
+<pre>
+    NN = "AA" "at" (["PPP"] number ["LEFT"|"CENTER"] string1  | CC ).
+</pre>
+And check the consistent manually by your code, instead of by gramma.
+
+2. In syntax from https://help.sap.com/doc/abapdocu_751_index_htm/7.51/en-US/index.htm
+<pre>
+{}: Actually like () in EBNF, and in most case it can be ignored
+...: means repeat
 </pre>

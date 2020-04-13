@@ -1,0 +1,4 @@
+cp $1  ttt
+gsed -Ei "s/^\"([A-Z\-]+)/\"\1\"/g" ttt
+
+gsed -Ei "s/(len|n)/number/g" ttt
