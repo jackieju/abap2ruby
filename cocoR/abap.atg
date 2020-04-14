@@ -540,7 +540,11 @@ CaseStatement =
       "ENDWHILE" "."
 . 
 
-ClassStatement = "CLASS" identifier "DEFINITION" ["INHERITING" "FROM" identifier] 
+ClassStatement = "CLASS" identifier "DEFINITION" 
+                    ( 
+                       "DEFERRED" ["PUBLIC"]
+                      |
+                       ["INHERITING" "FROM" identifier] 
                        ["ABSTRACT"] 
                        ["FINAL"] 
                        ["CREATE" {"PUBLIC"|"PROTECTED"|"PRIVATE"}] 
@@ -551,7 +555,10 @@ ClassStatement = "CLASS" identifier "DEFINITION" ["INHERITING" "FROM" identifier
                        [
                            ["GLOBAL"] "FRIENDS" identifier {identifier}
 
-                        ] "." 
+                        ]
+                    ) "." 
+                        
+                
   ["PUBLIC" "SECTION" "." 
     Statements
   ] 
@@ -580,7 +587,7 @@ Typing = (
  "." .
          
           
-MethodsStatement = "METHODS" identifier ( ["ABSTRACT"|"FINAL"] 
+MethodsStatement = ("METHODS" | "CLASS-METHODS") identifier ( ["ABSTRACT"|"FINAL"] 
             | "FOR" "TESTING" 
             | ["FINAL"] "REDEFINITION"
             |["DEFAULT" ("IGNORE"|"FAIL")] 

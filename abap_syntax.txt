@@ -1,31 +1,101 @@
+# A
 
+ADD dobj1 TO dobj2. 
 
+ADD-CORRESPONDING struc1 TO struc2. 
 
-CREATE DATA dref [ AREA HANDLE handle ] 
-                 [ TYPE { {abap_type|(name) 
-                           [LENGTH len] [DECIMALS dec]} 
-                        | {[LINE OF] type|(name)} 
-                        | {REF TO type|(name)} 
-                        | { {{[STANDARD] TABLE} 
-                           |{SORTED TABLE} 
-                           |{HASHED TABLE}} 
-                           OF [REF TO] {type|(name)} 
-                           [ {WITH [UNIQUE|NON-UNIQUE] 
-                                {KEY {comp1 comp2 ...}|(keytab)}|{DEFAULT KEY}} 
-                           | {WITH EMPTY KEY} ] 
-                           [INITIAL SIZE n]} 
-                        | {HANDLE handle} } ] 
-               | [ LIKE { {[LINE OF] dobj} 
-                        | {REF TO dobj} 
-                        | { {{[STANDARD] TABLE} 
-                           |{SORTED TABLE} 
-                           |{HASHED TABLE}} 
-                           OF dobj 
-                           [ {WITH [UNIQUE|NON-UNIQUE] 
-                                {KEY {comp1 comp2 ...}|(keytab)}|{DEFAULT KEY}} 
-                           | {WITH EMPTY KEY} ] 
-                           [INITIAL SIZE n]} } ]. 
-                           
+ADD { { dobj1 THEN dobj2 UNTIL dobj 
+      { {TO result} | {GIVING result [ACCORDING TO sel]} } } 
+    | { dobj FROM pos1 TO pos GIVING result } } 
+    [RANGE range]. 
+
+ALIASES alias FOR intf~comp. 
+
+ASSERT [ [ID group [SUBKEY sub]] 
+         [FIELDS val1 val2 ...] 
+         CONDITION ] log_exp. 
+         
+ASSIGN { dobj[+off][(len)] 
+       | [TABLE FIELD] (name) 
+       | dref->* 
+       | {dobj INCREMENT inc} 
+       | {COMPONENT comp OF STRUCTURE struc} 
+       | oref->(attr_name) 
+       | {class|(class_name)}=>{attr|(attr_name)} 
+       | writable_exp } 
+  TO <fs> 
+  [ { CASTING [ {TYPE type|(name)} 
+              | {LIKE dobj} 
+              | {[TYPE p] DECIMALS dec} 
+              | {TYPE HANDLE handle} ] } 
+  | { {TYPE name} 
+    | {[TYPE name] DECIMALS dec} } ] 
+  [RANGE range]. 
+
+ASSIGN LOCAL COPY 
+  OF { {[INITIAL] { dobj[+off][(len)] 
+                  | (name) 
+                  | oref->(attr_name) 
+                  | {class|(class_name)}=>{attr|(attr_name)} 
+                  | dref->* } } 
+     | {INITIAL LINE OF {itab|(itab_name)}} } 
+  TO <fs> 
+  [CASTING ...]. 
+  
+[AT FIRST. 
+   ... 
+ENDAT.] 
+  [AT field_groupi [WITH field_groupj]. 
+    ... 
+  ENDAT.] 
+    [AT NEW comp1. 
+       ... 
+     ENDAT. 
+       ... 
+         [AT NEW comp2. 
+            ... 
+         ENDAT. 
+           [...]]] 
+             [ ... ] 
+         [[[...] 
+         AT END OF comp2. 
+              ... 
+           ENDAT.] 
+       ... 
+     AT END OF comp1. 
+       ... 
+     ENDAT.] 
+[AT LAST. 
+    ... 
+ENDAT]. 
+
+AT LINE-SELECTION. 
+
+AT PFnn. 
+
+AT SELECTION-SCREEN [ OUTPUT 
+                    | {ON {par|selcrit}} 
+                    | {ON END OF selcrit} 
+                    | {ON BLOCK block} 
+                    | {ON RADIOBUTTON GROUP group} 
+                    | {ON {HELP-REQUEST|VALUE-REQUEST} 
+                       FOR {par|selcrit-low|selcrit-high}} 
+                    | {ON EXIT-COMMAND} ]. 
+    
+AT USER-COMMAND.
+
+AUTHORITY-CHECK OBJECT auth_obj [FOR USER user] 
+                        ID id1 {FIELD val1}|DUMMY 
+                       [ID id2 {FIELD val2}|DUMMY] 
+                       ... 
+                       [ID id10 {FIELD val10}|DUMMY]. 
+                    
+# B
+
+BACK. 
+
+BREAK-POINT [ {ID group} | {log_text} ]. 
+
 # C
 
 CALL BADI badi->meth|badi->(meth_name) 
@@ -114,7 +184,104 @@ ENDCATCH.
 
 CHECK Expression|SELECT-OPTIONS. 
 
-             
+CLASS-DATA attr options. 
+
+CLASS-EVENTS evt options. 
+
+CLASS-POOL [MESSAGE-ID mid]. 
+
+CLEAR dobj [ {WITH val [IN {CHARACTER|BYTE } MODE]} 
+           | {WITH NULL} ]. 
+           
+CLOSE CURSOR @dbcur. 
+
+CLOSE DATASET identifier.
+
+COLLECT wa INTO itab { [ASSIGNING <fs> [CASTING]] 
+                     | [REFERENCE INTO dref] }. 
+
+COMMIT WORK [AND WAIT]. 
+
+COMMIT CONNECTION con. 
+
+COMMUNICATION { {INIT DESTINATION dest} 
+              | {ALLOCATE} 
+              | {ACCEPT} 
+              | {SEND BUFFER buf} 
+              | {RECEIVE BUFFER buf DATAINFO dat STATUSINFO stat} 
+              | {DEALLOCATE} } ID id 
+              [RETURNCODE rc] 
+              [LENGTH leng] 
+              [RECEIVED rec] 
+              [HOLD]. 
+
+COMPUTE [EXACT] lhs =|?= rhs. 
+
+CONCATENATE {dobj1 dobj2 ...}|{LINES OF itab} 
+            INTO result 
+            [IN {CHARACTER|BYTE} MODE] 
+            [SEPARATED BY sep] 
+            [RESPECTING BLANKS]. 
+
+CONDENSE text [NO-GAPS]. 
+
+
+CONSTANTS const options. 
+
+CONTROLS contrl TYPE { TABLEVIEW USING SCREEN dynnr } 
+                   | { TABSTRIP }.   
+
+CONVERT {DATE dat1 INTO INVERTED-DATE dat2} 
+      | {INVERTED-DATE dat1 INTO DATE dat2}. 
+
+CONVERT TEXT text INTO SORTABLE CODE hex. 
+
+CONVERT { TIME STAMP time_stamp TIME ZONE tz 
+          INTO [DATE dat] [TIME tim] [DAYLIGHT SAVING TIME dst] } 
+      | { DATE dat [TIME tim [DAYLIGHT SAVING TIME dst]] 
+          INTO TIME STAMP time_stamp TIME ZONE tz }. 
+
+          
+##CONTEXTS con. 
+
+CREATE DATA dref [ AREA HANDLE handle ] 
+                 [ TYPE { {abap_type|(name) 
+                           [LENGTH len] [DECIMALS dec]} 
+                        | {[LINE OF] type|(name)} 
+                        | {REF TO type|(name)} 
+                        | { {{[STANDARD] TABLE} 
+                           |{SORTED TABLE} 
+                           |{HASHED TABLE}} 
+                           OF [REF TO] {type|(name)} 
+                           [ {WITH [UNIQUE|NON-UNIQUE] 
+                                {KEY {comp1 comp2 ...}|(keytab)}|{DEFAULT KEY}} 
+                           | {WITH EMPTY KEY} ] 
+                           [INITIAL SIZE n]} 
+                        | {HANDLE handle} } ] 
+               | [ LIKE { {[LINE OF] dobj} 
+                        | {REF TO dobj} 
+                        | { {{[STANDARD] TABLE} 
+                           |{SORTED TABLE} 
+                           |{HASHED TABLE}} 
+                           OF dobj 
+                           [ {WITH [UNIQUE|NON-UNIQUE] 
+                                {KEY {comp1 comp2 ...}|(keytab)}|{DEFAULT KEY}} 
+                           | {WITH EMPTY KEY} ] 
+                           [INITIAL SIZE n]} } ]. 
+                           
+CREATE OBJECT oref [AREA HANDLE handle] 
+                   [ [TYPE class] 
+                      [EXPORTING  p1 = a1 p2 = a2 ...] 
+                      [EXCEPTIONS exc1 = n1 exc2 = n2 ... [OTHERS = n_others]] ] 
+                 | [ TYPE (name) 
+                     { [EXPORTING  p1 = a1 p2 = a2 ...] 
+                      [EXCEPTIONS exc1 = n1 exc2 = n2 ... [OTHERS = n_others]]} 
+                   | {[PARAMETER-TABLE ptab] 
+                      [EXCEPTION-TABLE etab]} ]. 
+                      
+CREATE OBJECT ole class [NO FLUSH] [QUEUE-ONLY]. 
+
+
 # D
 
 DEFINE macro. 
