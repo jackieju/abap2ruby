@@ -295,7 +295,33 @@ CREATE OBJECT ole class [NO FLUSH] [QUEUE-ONLY].
 DELETE DATASET dset. 
 
 
+DELETE { { FROM dbtab|view|(target_syntax) 
+           [USING CLIENT clnt] | [CLIENT SPECIFIED] 
+           [CONNECTION con|(con_syntax)] 
+           [WHERE sql_cond] [ORDER BY ... [OFFSET o]] [UP TO n ROWS] } 
+       | { dbtab|view|(target_syntax) [CLIENT SPECIFIED] 
+                                      [CONNECTION con|(con_syntax)] } 
+           FROM wa|{TABLE itab} }. 
 
+DELETE { { {TABLE itab 
+            {{FROM wa [USING KEY key_name|(name)]} 
+            |{WITH TABLE KEY [key_name|(name) COMPONENTS] 
+                             {comp_name1|(name1)} = dobj1 
+                             {comp_name2|(name2)} = dobj2 
+                             ... }}} 
+         | {itab INDEX idx [USING KEY key_name|(name)]} 
+         | {itab [USING KEY loop_key]} } 
+       | {itab [USING KEY key_name|(name)] 
+               [FROM idx1] [TO idx2] [WHERE log_exp]|(cond_syntax)} 
+       | {ADJACENT DUPLICATES FROM itab 
+           [ USING KEY key_name|(name) ] 
+           [COMPARING comp1 comp2 ...|{ALL FIELDS}]} }. 
+
+DELETE FROM { {MEMORY ID id} 
+            | {DATABASE      dbtab(ar) [CLIENT cl] ID id} 
+            | {SHARED MEMORY dbtab(ar) [CLIENT cl] ID id} 
+            | {SHARED BUFFER dbtab(ar) [CLIENT cl] ID id} }. 
+            
 DEMAND val1 = f1 val2 = f2 ... 
        FROM CONTEXT context_ref 
        [MESSAGES INTO itab]. 
@@ -333,6 +359,13 @@ DIVIDE dobj1 BY dobj2.
 
 DIVIDE-CORRESPONDING struc1 BY struc2. 
 
+DO [n TIMES] 
+   [VARYING dobj FROM dobj1 NEXT dobj2 [RANGE range] 
+   [VARYING ...]]. 
+  [statement_block] 
+ENDDO. 
+
+
                            
 # E
 
@@ -344,31 +377,30 @@ END-OF-PAGE.
 
 END-OF-SELECTION. 
 
-### not supported
-##ENHANCEMENT id. 
-##  ... 
-##ENDENHANCEMENT. 
-##
-##ENHANCEMENT-POINT enh_id SPOTS spot1 spot2 ... 
-##                  [STATIC] 
-##                  [INCLUDE BOUND]. 
-##                  
-##ENHANCEMENT-SECTION enh_id SPOTS spot1 spot2 ... 
-##                    [STATIC] 
-##                    [INCLUDE BOUND]. 
-##  ... 
-##END-ENHANCEMENT-SECTION. 
 
-#EVENTS evt [ EXPORTING VALUE(p1) typing 
-#                         [OPTIONAL|{DEFAULT def1}] 
-#                       VALUE(p2) typing 
-#                         [OPTIONAL|{DEFAULT def2}] 
-#                        ... ]. 
+ENHANCEMENT id. 
+  ... 
+ENDENHANCEMENT. 
 
-### not supported                        
-##EXEC SQL [PERFORMING subr]. 
-##  ... 
-##ENDEXEC. 
+ENHANCEMENT-POINT enh_id SPOTS spot1 spot2 ... 
+                  [STATIC] 
+                  [INCLUDE BOUND]. 
+                  
+ENHANCEMENT-SECTION enh_id SPOTS spot1 spot2 ... 
+                    [STATIC] 
+                    [INCLUDE BOUND]. 
+  ... 
+END-ENHANCEMENT-SECTION. 
+
+EVENTS evt [ EXPORTING VALUE(p1) typing 
+                         [OPTIONAL|{DEFAULT def1}] 
+                       VALUE(p2) typing 
+                         [OPTIONAL|{DEFAULT def2}] 
+                        ... ]. 
+                        
+EXEC SQL [PERFORMING subr]. 
+  ... 
+ENDEXEC. 
                         
 EXIT. 
 
@@ -391,7 +423,11 @@ EXTRACT [ header | field_group ].
 
 # F
 
-
+FETCH NEXT CURSOR dbcur 
+    { { INTO { {[CORRESPONDING FIELDS OF] wa} | (dobj1, dobj2, ...) } } 
+    | { INTO|APPENDING [CORRESPONDING FIELDS OF] TABLE itab 
+                       [PACKAGE SIZE n] } } 
+      [ EXTENDED RESULT @oref ]. 
 
 FIELD-GROUPS [ header | field_group ]. 
 
@@ -641,7 +677,30 @@ MAXIMUM dobj.
 
 MINIMUM dobj. 
 
+MODIFY dbtab|view|(target_syntax) 
+       [USING CLIENT clnt] | [CLIENT SPECIFIED] 
+       [CONNECTION con|(con_syntax)] 
+       FROM { wa|{TABLE itab} }. 
 
+MODIFY { { { {TABLE itab}|{itab INDEX idx} 
+             [USING KEY key_name|(name)] } 
+         | { itab [USING KEY loop_key] } 
+           FROM wa 
+           [TRANSPORTING comp1 comp2 ...] 
+           [{ASSIGNING <fs> [CASTING]}|{REFERENCE INTO dref}] } 
+       | {itab FROM wa [USING KEY key_name|(name)] 
+                       TRANSPORTING comp1 comp2 ... 
+                       WHERE log_exp|(cond_syntax)} }. 
+                       
+MODIFY { {LINE line [OF {PAGE page}|{CURRENT PAGE}] [INDEX idx]} 
+       | {CURRENT LINE} } 
+       [LINE VALUE FROM wa] 
+       [FIELD VALUE dobj1 [FROM wa1] dobj2 [FROM wa2] ...] 
+       [LINE FORMAT ext_format_options] 
+       [FIELD FORMAT dobj1 ext_format_options1 
+                     dobj2 ext_format_options2 ...]. 
+                     
+MODIFY SCREEN FROM wa. 
 
 MODULE mod {OUTPUT|[INPUT]}. 
   {Statements}
@@ -674,42 +733,45 @@ NODES node [TYPE type].
 
 # O
 
+ON CHANGE OF dobj [OR dobj1 [OR dobj2] ...]. 
+  statement_block 
+ENDON. 
 
-##OPEN CURSOR [WITH HOLD] @dbcur FOR 
-##  [WITH 
-##    +cte1 AS subquery[, 
-##    +cte2 AS subquery 
-##    ...]] 
-##  SELECT { ... 
-##           FROM ... } 
-##       | { FROM ... 
-##           FIELDS ... } 
-##         [[FOR ALL ENTRIES IN itab] WHERE sql_cond] 
-##         [GROUP BY ...] [HAVING sql_cond] 
-##         [ORDER BY ...] 
-##         [OFFSET o] 
-##         [UP TO n ROWS] 
-##         [BYPASSING BUFFER] 
-##         [CONNECTION con|(con_syntax)]. 
-##
-##OPEN DATASET dset 
-##  FOR { INPUT | OUTPUT | APPENDING | UPDATE } 
-##  IN { { BINARY MODE } 
-##     | { TEXT MODE ENCODING { DEFAULT 
-##                            | {UTF-8 [SKIPPING|WITH BYTE-ORDER MARK]} 
-##                            | NON-UNICODE } 
-##                   [WITH {NATIVE|SMART|UNIX|WINDOWS} LINEFEED]  } 
-##     | { LEGACY BINARY MODE [{BIG|LITTLE} ENDIAN] 
-##                            [CODE PAGE cp] } 
-##     | { LEGACY TEXT MODE [{BIG|LITTLE} ENDIAN] 
-##                          [CODE PAGE cp] 
-##                          [WITH {NATIVE|SMART|UNIX|WINDOWS} LINEFEED] } } 
-##  [AT POSITION pos] 
-##  [TYPE attr] 
-##  [FILTER opcom] 
-##  [MESSAGE msg] 
-##  [IGNORING CONVERSION ERRORS] 
-##  [REPLACEMENT CHARACTER rc]. 
+OPEN CURSOR [WITH HOLD] @dbcur FOR 
+  [WITH 
+    +cte1 AS subquery[, 
+    +cte2 AS subquery 
+    ...]] 
+  SELECT { ... 
+           FROM ... } 
+       | { FROM ... 
+           FIELDS ... } 
+         [[FOR ALL ENTRIES IN itab] WHERE sql_cond] 
+         [GROUP BY ...] [HAVING sql_cond] 
+         [ORDER BY ...] 
+         [OFFSET o] 
+         [UP TO n ROWS] 
+         [BYPASSING BUFFER] 
+         [CONNECTION con|(con_syntax)]. 
+
+OPEN DATASET dset 
+  FOR { INPUT | OUTPUT | APPENDING | UPDATE } 
+  IN { { BINARY MODE } 
+     | { TEXT MODE ENCODING { DEFAULT 
+                            | {UTF-8 [SKIPPING|WITH BYTE-ORDER MARK]} 
+                            | NON-UNICODE } 
+                   [WITH {NATIVE|SMART|UNIX|WINDOWS} LINEFEED]  } 
+     | { LEGACY BINARY MODE [{BIG|LITTLE} ENDIAN] 
+                            [CODE PAGE cp] } 
+     | { LEGACY TEXT MODE [{BIG|LITTLE} ENDIAN] 
+                          [CODE PAGE cp] 
+                          [WITH {NATIVE|SMART|UNIX|WINDOWS} LINEFEED] } } 
+  [AT POSITION pos] 
+  [TYPE attr] 
+  [FILTER opcom] 
+  [MESSAGE msg] 
+  [IGNORING CONVERSION ERRORS] 
+  [REPLACEMENT CHARACTER rc]. 
 
 
 OVERLAY text1 WITH text2 [ONLY mask]. 
@@ -761,22 +823,21 @@ PROGRAM prog [NO STANDARD PAGE HEADING]
              [MESSAGE-ID mid] 
              [REDUCED FUNCTIONALITY]. 
              
-##PROVIDE FIELDS {*|{comp1 comp2 ...}} 
-##               FROM itab1 INTO wa1 VALID flag1 ... 
-##               BOUNDS intliml1 AND intlimu1 
-##               [WHERE log_exp1] 
-##        FIELDS {*|{comp1 comp2 ...}} 
-##               FROM itab2 INTO wa2 VALID flag2 
-##               BOUNDS intliml2 AND intlimu2 
-##               [WHERE log_exp2] 
-##               ... 
-##        BETWEEN extliml AND extlimu 
-##        [INCLUDING GAPS]. 
-##  ... 
-##ENDPROVIDE. 
+PROVIDE FIELDS {*|{comp1 comp2 ...}} 
+               FROM itab1 INTO wa1 VALID flag1 ... 
+               BOUNDS intliml1 AND intlimu1 
+               [WHERE log_exp1] 
+        FIELDS {*|{comp1 comp2 ...}} 
+               FROM itab2 INTO wa2 VALID flag2 
+               BOUNDS intliml2 AND intlimu2 
+               [WHERE log_exp2] 
+               ... 
+        BETWEEN extliml AND extlimu 
+        [INCLUDING GAPS]. 
+  ... 
+ENDPROVIDE. 
 
-### Obsolete
-##PUT { node | <node> }. 
+PUT { node | <node> }. 
 
 
 
@@ -785,6 +846,43 @@ PROGRAM prog [NO STANDARD PAGE HEADING]
 
 RANGES rtab FOR dobj [OCCURS n]. 
 
+READ DATASET dset INTO dobj [MAXIMUM LENGTH mlen] 
+                            [[ACTUAL] LENGTH alen]. 
+
+READ { {LINE line [{OF PAGE page}|{OF CURRENT PAGE}] 
+                  [INDEX idx]} 
+     | {CURRENT LINE} } 
+     [LINE VALUE INTO wa] 
+     [FIELD VALUE dobj1 [INTO wa1] dobj2 [INTO wa2] ...]. 
+
+
+READ REPORT prog INTO itab [MAXIMUM WIDTH INTO wid]. 
+
+READ TABLE dbtab [WITH KEY key] 
+                 [SEARCH {FKEQ|FKGE|GKEQ|GKGE}] 
+                 [VERSION vers]. 
+
+
+READ TABLE itab 
+           { {{FROM wa [USING KEY key_name|(name)]} 
+             |{WITH TABLE KEY [key_name|(name) COMPONENTS] 
+                              {comp_name1|(name1)} = dobj1 
+                              {comp_name2|(name2)} = dobj2 
+                              ...} 
+             | {WITH KEY comp1 = dobj1 comp2 = dobj2 ... [BINARY SEARCH]} 
+             | {WITH KEY key_name|(name) 
+                         COMPONENTS comp1 = dobj1 comp2 = dobj2 ... } 
+             | {INDEX idx [USING KEY key_name|(name)]} } 
+             | {WITH KEY dobj [BINARY SEARCH]} 
+             | {WITH KEY = dobj [BINARY SEARCH]} } 
+           { {INTO wa 
+              [COMPARING { {comp1 comp2 ...}|{ALL FIELDS}|{NO FIELDS} }] 
+              [TRANSPORTING { {comp1 comp2 ...}|{ALL FIELDS} }]} 
+           | { ASSIGNING <fs> [CASTING] } 
+           | { REFERENCE INTO dref } 
+           | {TRANSPORTING NO FIELDS} }. 
+
+READ TEXTPOOL prog INTO itab LANGUAGE lang. 
 
 RECEIVE RESULTS FROM FUNCTION func 
                 [KEEPING TASK] 
@@ -850,56 +948,56 @@ SCROLL LIST [ { TO COLUMN col }
               | { {FORWARD|BACKWARD} [n PAGES] } ] 
             [INDEX idx].                           
 
-### not supported
-##SELECT [SINGLE [FOR UPDATE]] 
-##       { [DISTINCT] { * 
-##                    | { ..., data_source~*, ..., 
-##                        col| aggregate( [DISTINCT] col )| sql_exp} [AS alias], ... } 
-##                    | (column_syntax) 
-##         FROM { { {data_source [AS tabalias]} 
-##                | { [(] {data_source [AS tabalias]}|join 
-##                      {[INNER] JOIN}|{LEFT|RIGHT [OUTER] JOIN}|{CROSS JOIN} 
-##                         {data_source [AS tabalias]}|join [ON join_cond]  [)] } 
-##                | (source_syntax) [AS tabalias] } 
-##                [ {USING CLIENT clnt} 
-##                | {CLIENT SPECIFIED [entity1~clnt] [, entity2~clnt] ...} ] } } 
-##     | { FROM { { {data_source [AS tabalias]} 
-##                | { [(] {data_source [AS tabalias]}|join 
-##                      {[INNER] JOIN}|{LEFT|RIGHT [OUTER] JOIN}|{CROSS JOIN} 
-##                         {data_source [AS tabalias]}|join [ON join_cond]  [)] } 
-##                | (source_syntax) [AS tabalias] } 
-##                [ {USING CLIENT clnt} 
-##                | {CLIENT SPECIFIED [entity1~clnt] [, entity2~clnt] ...} ] } 
-##         FIELDS [DISTINCT] 
-##                { * 
-##                | { ..., data_source~*, ..., 
-##                    col|aggregate( [DISTINCT] col )| sql_exp} [AS alias], ... } 
-##                | (column_syntax) } 
-##       [[FOR ALL ENTRIES IN itab] WHERE sql_cond] 
-##       [GROUP BY {col1| sql_exp1, col2| sql_exp2, ...}|(column_syntax)] 
-##       [HAVING sql_cond] 
-##       [UNION ALL|DISTINCT SELECT ...] 
-##       [ORDER BY { {PRIMARY KEY} 
-##                 |{{{col1|a1} [ASCENDING|DESCENDING],} 
-##                   {{col2|a2} [ASCENDING|DESCENDING],} 
-##                   ... } 
-##                 | (column_syntax) }]. 
-##       { { INTO {[CORRESPONDING FIELDS OF] wa}|(dobj1, dobj2, ...) } 
-##       | { INTO|APPENDING [CORRESPONDING FIELDS OF] TABLE itab 
-##                          [PACKAGE SIZE n] } 
-##       | { INTO @DATA(wa) } 
-##       | { INTO TABLE @DATA(itab) [PACKAGE SIZE n] } } 
-##       [ EXTENDED RESULT @oref ] 
-##       [ CREATING {  READER|LOCATOR FOR { COLUMNS col1 col2 ... } 
-##                                 | { ALL [OTHER] [BLOB|CLOB] COLUMNS } 
-##                    [READER|LOCATOR FOR ...] } 
-##                | {  (crea_syntax) } ] 
-##       [OFFSET o] 
-##       [UP TO n ROWS] 
-##       [BYPASSING BUFFER] 
-##       [CONNECTION con|(con_syntax)] 
-##  ... 
-##[ENDSELECT.] 
+
+SELECT [SINGLE [FOR UPDATE]] 
+       { [DISTINCT] { * 
+                    | { ..., data_source~*, ..., 
+                        col| aggregate( [DISTINCT] col )| sql_exp} [AS alias], ... } 
+                    | (column_syntax) 
+         FROM { { {data_source [AS tabalias]} 
+                | { [(] {data_source [AS tabalias]}|join 
+                      {[INNER] JOIN}|{LEFT|RIGHT [OUTER] JOIN}|{CROSS JOIN} 
+                         {data_source [AS tabalias]}|join [ON join_cond]  [)] } 
+                | (source_syntax) [AS tabalias] } 
+                [ {USING CLIENT clnt} 
+                | {CLIENT SPECIFIED [entity1~clnt] [, entity2~clnt] ...} ] } } 
+     | { FROM { { {data_source [AS tabalias]} 
+                | { [(] {data_source [AS tabalias]}|join 
+                      {[INNER] JOIN}|{LEFT|RIGHT [OUTER] JOIN}|{CROSS JOIN} 
+                         {data_source [AS tabalias]}|join [ON join_cond]  [)] } 
+                | (source_syntax) [AS tabalias] } 
+                [ {USING CLIENT clnt} 
+                | {CLIENT SPECIFIED [entity1~clnt] [, entity2~clnt] ...} ] } 
+         FIELDS [DISTINCT] 
+                { * 
+                | { ..., data_source~*, ..., 
+                    col|aggregate( [DISTINCT] col )| sql_exp} [AS alias], ... } 
+                | (column_syntax) } 
+       [[FOR ALL ENTRIES IN itab] WHERE sql_cond] 
+       [GROUP BY {col1| sql_exp1, col2| sql_exp2, ...}|(column_syntax)] 
+       [HAVING sql_cond] 
+       [UNION ALL|DISTINCT SELECT ...] 
+       [ORDER BY { {PRIMARY KEY} 
+                 |{{{col1|a1} [ASCENDING|DESCENDING],} 
+                   {{col2|a2} [ASCENDING|DESCENDING],} 
+                   ... } 
+                 | (column_syntax) }]. 
+       { { INTO {[CORRESPONDING FIELDS OF] wa}|(dobj1, dobj2, ...) } 
+       | { INTO|APPENDING [CORRESPONDING FIELDS OF] TABLE itab 
+                          [PACKAGE SIZE n] } 
+       | { INTO @DATA(wa) } 
+       | { INTO TABLE @DATA(itab) [PACKAGE SIZE n] } } 
+       [ EXTENDED RESULT @oref ] 
+       [ CREATING {  READER|LOCATOR FOR { COLUMNS col1 col2 ... } 
+                                 | { ALL [OTHER] [BLOB|CLOB] COLUMNS } 
+                    [READER|LOCATOR FOR ...] } 
+                | {  (crea_syntax) } ] 
+       [OFFSET o] 
+       [UP TO n ROWS] 
+       [BYPASSING BUFFER] 
+       [CONNECTION con|(con_syntax)] 
+  ... 
+[ENDSELECT.] 
 
 SELECT-OPTIONS selcrit FOR {dobj|(name)} 
               [OBLIGATORY|NO-DISPLAY] 
@@ -914,78 +1012,77 @@ SELECT-OPTIONS selcrit FOR {dobj|(name)}
               [NO DATABASE SELECTION] 
               [HELP-REQUEST  [FOR {LOW|HIGH}]] 
               [VALUE-REQUEST [FOR {LOW|HIGH}]]. 
+        
+SELECTION-SCREEN  { { COMMENT [/][pos|POS_LOW|POS_HIGH](len) 
+                      { text | {[text] FOR FIELD sel} } 
+                      [VISIBLE LENGTH vlen] 
+                      [MODIF ID modid] } 
+                  | { FUNCTION KEY n } 
+                  | { POSITION {pos|POS_LOW|POS_HIGH} } 
+                  | { PUSHBUTTON [/][pos|POS_LOW|POS_HIGH](len) 
+                      button_text USER-COMMAND fcode 
+                      [VISIBLE LENGTH vlen] 
+                      [MODIF ID modid] } 
+                  | { SKIP [n] } 
+                  | { ULINE [[/][pos|POS_LOW|POS_HIGH](len)] 
+                      [MODIF ID modid] } } 
+                  [FOR {TABLE|NODE} node [ID id]]. 
 
-### not supported       
-##SELECTION-SCREEN  { { COMMENT [/][pos|POS_LOW|POS_HIGH](len) 
-##                      { text | {[text] FOR FIELD sel} } 
-##                      [VISIBLE LENGTH vlen] 
-##                      [MODIF ID modid] } 
-##                  | { FUNCTION KEY n } 
-##                  | { POSITION {pos|POS_LOW|POS_HIGH} } 
-##                  | { PUSHBUTTON [/][pos|POS_LOW|POS_HIGH](len) 
-##                      button_text USER-COMMAND fcode 
-##                      [VISIBLE LENGTH vlen] 
-##                      [MODIF ID modid] } 
-##                  | { SKIP [n] } 
-##                  | { ULINE [[/][pos|POS_LOW|POS_HIGH](len)] 
-##                      [MODIF ID modid] } } 
-##                  [FOR {TABLE|NODE} node [ID id]]. 
-##
-##SELECTION-SCREEN BEGIN OF SCREEN dynnr { { [TITLE title] 
-##                                           [AS WINDOW] } 
-##                                       | { AS SUBSCREEN 
-##                                           [NO INTERVALS] 
-##                                           [NESTING LEVEL n] } }. 
-##... 
-##SELECTION-SCREEN END OF SCREEN dynnr. 
-##
-##
-##SELECTION-SCREEN BEGIN OF BLOCK block 
-##                                [WITH FRAME [TITLE title]] 
-##                                [NO INTERVALS]. 
-##... 
-##SELECTION-SCREEN END OF BLOCK block. 
-##
-##SELECTION-SCREEN BEGIN OF LINE. 
-##... 
-##SELECTION-SCREEN END OF LINE. 
-##
-##SELECTION-SCREEN BEGIN OF TABBED BLOCK tblock FOR n LINES [NO INTERVALS]. 
-##... 
-##SELECTION-SCREEN END OF BLOCK tblock.
-##
-##SELECTION-SCREEN BEGIN OF VERSION vers text. 
-##... 
-##SELECTION-SCREEN END OF VERSION vers. 
-##
-##SELECTION-SCREEN DYNAMIC SELECTIONS 
-##                 FOR {NODE|TABLE} node [ID id]. 
-##                 
-##SELECTION-SCREEN EXCLUDE { {PARAMETERS parameter} 
-##                         | {SELECT-OPTIONS selcrit} 
-##                         | {RADIOBUTTON GROUPS group} 
-##                         | {BLOCKS block} 
-##                         | {IDS id} }. 
-##                         
-##SELECTION-SCREEN FIELD SELECTION 
-##                 FOR {NODE|TABLE} node [ID id]. 
-##
-##SELECTION-SCREEN INCLUDE { { PARAMETERS parameter 
-##                             [OBLIGATORY [OFF]] 
-##                             [MODIF ID modid] } 
-##                         | { SELECT-OPTIONS selcrit 
-##                             [OBLIGATORY [OFF]] 
-##                             [NO INTERVALS [OFF]] 
-##                             [NO-EXTENSION [OFF]] 
-##                             [MODIF ID modid] } 
-##                         | { COMMENT [/][pos](len) text 
-##                             [FOR FIELD sel] 
-##                             [MODIF ID modid] } 
-##                         | { PUSHBUTTON [/][pos](len) button_text 
-##                             [USER-COMMAND fcode] 
-##                             [MODIF ID modid] } 
-##                         | { BLOCKS block } } 
-##                         [ID id]. 
+SELECTION-SCREEN BEGIN OF SCREEN dynnr { { [TITLE title] 
+                                           [AS WINDOW] } 
+                                       | { AS SUBSCREEN 
+                                           [NO INTERVALS] 
+                                           [NESTING LEVEL n] } }. 
+... 
+SELECTION-SCREEN END OF SCREEN dynnr. 
+
+
+SELECTION-SCREEN BEGIN OF BLOCK block 
+                                [WITH FRAME [TITLE title]] 
+                                [NO INTERVALS]. 
+... 
+SELECTION-SCREEN END OF BLOCK block. 
+
+SELECTION-SCREEN BEGIN OF LINE. 
+... 
+SELECTION-SCREEN END OF LINE. 
+
+SELECTION-SCREEN BEGIN OF TABBED BLOCK tblock FOR n LINES [NO INTERVALS]. 
+... 
+SELECTION-SCREEN END OF BLOCK tblock.
+
+SELECTION-SCREEN BEGIN OF VERSION vers text. 
+... 
+SELECTION-SCREEN END OF VERSION vers. 
+
+SELECTION-SCREEN DYNAMIC SELECTIONS 
+                 FOR {NODE|TABLE} node [ID id]. 
+                 
+SELECTION-SCREEN EXCLUDE { {PARAMETERS parameter} 
+                         | {SELECT-OPTIONS selcrit} 
+                         | {RADIOBUTTON GROUPS group} 
+                         | {BLOCKS block} 
+                         | {IDS id} }. 
+                         
+SELECTION-SCREEN FIELD SELECTION 
+                 FOR {NODE|TABLE} node [ID id]. 
+
+SELECTION-SCREEN INCLUDE { { PARAMETERS parameter 
+                             [OBLIGATORY [OFF]] 
+                             [MODIF ID modid] } 
+                         | { SELECT-OPTIONS selcrit 
+                             [OBLIGATORY [OFF]] 
+                             [NO INTERVALS [OFF]] 
+                             [NO-EXTENSION [OFF]] 
+                             [MODIF ID modid] } 
+                         | { COMMENT [/][pos](len) text 
+                             [FOR FIELD sel] 
+                             [MODIF ID modid] } 
+                         | { PUSHBUTTON [/][pos](len) button_text 
+                             [USER-COMMAND fcode] 
+                             [MODIF ID modid] } 
+                         | { BLOCKS block } } 
+                         [ID id]. 
 
 SELECTION-SCREEN TAB (len) tab USER-COMMAND fcode 
                 [DEFAULT [PROGRAM prog] SCREEN dynnr] 
@@ -1057,19 +1154,49 @@ SHIFT dobj [ { [ {BY num PLACES} | {UP TO substring} ]
            
 SKIP { [n] 
      | {TO LINE line} }. 
+     
+SORT [ASCENDING|DESCENDING] 
+     [AS TEXT] 
+     [STABLE] 
+     [BY {field1 [ASCENDING|DESCENDING] [AS TEXT]} 
+         {field2 [ASCENDING|DESCENDING] [AS TEXT]} 
+         ...]. 
 
-### obsolete      
-##SORT [ASCENDING|DESCENDING] 
-##     [AS TEXT] 
-##     [STABLE] 
-##     [BY {field1 [ASCENDING|DESCENDING] [AS TEXT]} 
-##         {field2 [ASCENDING|DESCENDING] [AS TEXT]} 
-##         ...]. 
-
+SORT itab [STABLE] 
+          { { [ASCENDING|DESCENDING] 
+              [AS TEXT] 
+              [BY {comp1 [ASCENDING|DESCENDING] [AS TEXT]} 
+                  {comp2 [ASCENDING|DESCENDING] [AS TEXT]} 
+                  ... ] } 
+          | { [BY (otab)] } 
+          | { [BY expr] } }. 
 
 STATICS dobj options. 
 
 STOP. 
+
+SUBMIT {rep|(name)} 
+  [USING SELECTION-SCREEN dynnr] 
+  [VIA SELECTION-SCREEN] 
+  [USING SELECTION-SET variant] 
+  [USING SELECTION-SETS OF PROGRAM prog] 
+  [WITH SELECTION-TABLE rspar] 
+{ [WITH sel1 { {{EQ|NE|CP|NP|GE|LT|LE|GT} dobj [SIGN sign]} 
+              | {[NOT] BETWEEN dobj1 AND dobj2 [SIGN sign]} 
+              | {IN rtab} }] 
+  [WITH sel2 { {{EQ|NE|CP|NP|GE|LT|LE|GT} dobj [SIGN sign]} 
+              | {[NOT] BETWEEN dobj1 AND dobj2 [SIGN sign]} 
+              | {IN rtab} }] 
+   ... } 
+  [WITH FREE SELECTIONS texpr] 
+  [LINE-SIZE width] 
+  [LINE-COUNT page_lines] 
+  { [EXPORTING LIST TO MEMORY] 
+  | [TO SAP-SPOOL SPOOL PARAMETERS pri_params 
+                  [ARCHIVE PARAMETERS arc_params] 
+                  WITHOUT SPOOL DYNPRO] } 
+  [[USER user] VIA JOB job NUMBER n [LANGUAGE lang]] 
+  [AND RETURN]. 
   
 SUBTRACT dobj1 FROM dobj2. 
 
@@ -1116,7 +1243,14 @@ TRANSLATE dobj {TO {UPPER|LOWER} CASE}
              
 TRUNCATE DATASET dset AT {CURRENT POSITION}|{POSITION pos}.      
      
-
+TRY. 
+    [try_block] 
+  [CATCH [BEFORE UNWIND] cx_class1 cx_class2 ... [INTO oref]. 
+    [catch_block]] 
+    ... 
+  [CLEANUP [INTO oref]. 
+    [cleanup_block]] 
+ENDTRY. 
       
 TYPE-POOL tpool. 
 
