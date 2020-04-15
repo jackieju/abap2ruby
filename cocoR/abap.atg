@@ -46,14 +46,14 @@ PRODUCTIONS
                ["MESSAGE-ID" identifier] 
                ["DEFINING" "DATABASE" identifier] 
                ["REDUCED" "FUNCTIONALITY"] "."
-    { Statements }
+    {Statement}
                        (.
                          @root_class.add_method(fn_name, "()", [], src, "")
                        .)
                     EOF .
 
     FunctionDef = "FUNCTION" (.  fn_name=curString() .) identifier "."  (. src("") .) 
-                    {  Statements } 
+                    {Statement}
                   (.
                              @root_class.add_method(fn_name, "()", [], src, "")
                   .)
@@ -71,12 +71,12 @@ PRODUCTIONS
                              | AssignmentStatement 
                              | BreakStatement
                              | ContinueStatement
-                             | DoStatement 
+                             | DO
                              | ForStatement
                              | IfStatement  
                              | NullStatement
                              |  ReturnStatement 
-                             |  WhileStatement 
+                             |  WHILE 
                              |  LoopStatement 
                              |  CaseStatement
                              |  CallFunctionStatement
@@ -98,6 +98,25 @@ PRODUCTIONS
                              | CONSTANTS
                              | NN
                              | MOVE
+                             | WITH
+                             | TABLES
+                             | AUTHORITY_CHECK
+                             | DELETE
+                             | EVENTS
+                             | MODIFY
+                             | ON
+                             | OPEN
+                             | FETCH
+                             | PROVIDE
+                             | READ
+                             | SORT
+                             | SUBMIT
+                             | INCLUDE
+                             | TRY
+                       /*      | STRUCTURE
+                             | BASE
+                             | TYPE
+                             | UPDATE*/
                          )
                            
  .
@@ -253,7 +272,7 @@ LoopStatement = "LOOP" [
                 | "SCREEN" "INTO" identifier
                )
              ] "." 
-            Statements 
+            {Statement} 
         "ENDLOOP" "." .
 
 TypeDes = "TYPE"    identifier (["LENGTH" number] ["DECIMALS" number] | { "READER"|"LOCATOR"|"LOB" "HANDLE" } )
@@ -396,7 +415,26 @@ WriteStatement =   (. param_hash = {} .) "WRITE" {["AT"] ["/"][number
   { 
       "AS" ("CHECKBOX" | "ICON" | "SYMBOL"  | "LINE")
   } 
-  ["QUICKINFO" string1] "." 
+  ["QUICKINFO" string1] 
+  
+  |
+  
+    (identifier|"("identifier")") "TO" identifier 
+  ["LEFT-JUSTIFIED"|"CENTERED"|"RIGHT-JUSTIFIED"] 
+  ( ( ["EXPONENT" Expression] 
+      ["NO-GROUPING"] 
+      ["NO-SIGN"] 
+      ["NO-ZERO"] 
+      ["CURRENCY" string1] 
+      ( ( ["DECIMALS" number] 
+          ["ROUND" number] ) 
+        | ["UNIT" string1] ) ) 
+    | ( ["ENVIRONMENT" "TIME" "FORMAT"] 
+        ["TIME" "ZONE" string1] ) 
+    ["STYLE" string1] ) 
+  ["USING" ( ("NO" "EDIT" "MASK")|("EDIT" "MASK" identifier) )] 
+  ["DD/MM/YY"|"MM/DD/YY"|"DD/MM/YYYY"|"MM/DD/YYYY"|"DDMMYY"|"MMDDYY"|"YYMMDD"] 
+    "." 
   (.
   
   params = []
@@ -412,103 +450,115 @@ WriteStatement =   (. param_hash = {} .) "WRITE" {["AT"] ["/"][number
   BreakStatement       = "break"   .
 
 
-  Statements =  Statement { Statement } x
+  Statements =  Statement { Statement } .
 
   ContinueStatement    = "CONTINUE"  "."  .
 
+/*
   DoStatement          = "DO" [number "TIMES"] {"VARYING" identifier "FROM" identifier "NEXT" identifier ["RANGE" number] } "." 
-  Statements
+  {Statement}
 "ENDDO" "." .
+*/
 
 CaseStatement = 
     "CASE" Expression "." 
       {"WHEN" Expression {"OR" Expression } "." 
-        Statements} 
+        {Statement}} 
       ["WHEN" "OTHERS" "." 
-        Statements] 
+        {Statement}] 
     "ENDCASE" "." .
 
-AUTHORITY-CHECK-ITEM =  "ID" identifier ("FIELD" Expression)|"DUMMY" .
+AUTHORITY_CHECK_ITEM = "ID" identifier ("FIELD" Expression|"DUMMY") .
 
-AUTHORITY-CHECK = "AUTHORITY-CHECK" "OBJECT" identifier ["FOR" "USER" string1] 
-                     AUTHORITY-CHECK-ITEM { AUTHORITY-CHECK-ITEM }
+AUTHORITY_CHECK = "AUTHORITY-CHECK" "OBJECT" identifier ["FOR" "USER" string1] 
+                     AUTHORITY_CHECK_ITEM { AUTHORITY_CHECK_ITEM }
                       "." .
                       
-DELETE = "DELETE"(  "DATASET" identifier". |  ( ( "FROM" identifier|identifier|(target_syntax) 
-           ["USING" "CLIENT" clnt] | ["CLIENT" "SPECIFIED"] 
-           ["CONNECTION" con|(con_syntax)] 
-           ["WHERE" sql_cond] ["ORDER" "BY" identifier{,identifier} ["OFFSET" o]] ["UP" "TO" number "ROWS"] ) 
-       | ( identifier|identifier|(target_syntax) ["CLIENT" "SPECIFIED"] 
-                                      ["CONNECTION" con|(con_syntax)] ) 
-           "FROM" wa|("TABLE" identifier) )". |  ( ( ("TABLE" identifier 
-            (("FROM" wa ["USING" "KEY" identifier|(name)]) 
-            |("WITH" "TABLE" "KEY" [identifier|(name) "COMPONENTS"] 
-                             (comp_name1|(name1)) = identifier 
-                             (comp_name2|(name2)) = identifier 
+DELETE = "DELETE"(  "DATASET" identifier |  ( ( "FROM" Expression
+           ["USING" "CLIENT" identifier] | ["CLIENT" "SPECIFIED"] 
+           ["CONNECTION" (identifier|"("Expression")")] 
+           ["WHERE" Expression] ["ORDER" "BY" identifier{"," identifier} ["OFFSET" number]] ["UP" "TO" number "ROWS"] ) 
+       | ( ( identifier|"(" Expression ")") ["CLIENT" "SPECIFIED"] 
+                                      ["CONNECTION" (identifier|"("Expression")")] ) 
+           "FROM" identifier |("TABLE" identifier) ) |  ( ( ("TABLE" identifier 
+            (("FROM" identifier ["USING" "KEY" (identifier|"("identifier")")]) 
+            |("WITH" "TABLE" "KEY" [(identifier|"("identifier")")"COMPONENTS"] 
+                             ["("] identifier [")"] "=" identifier 
                               ))) 
-         | (identifier "INDEX" identifier ["USING" "KEY" identifier|(name)]) 
-         | (identifier ["USING" "KEY" loop_key]) ) 
-       | (identifier ["USING" "KEY" identifier|(name)] 
-               ["FROM" identifier] ["TO" identifier] ["WHERE" log_exp]|(cond_syntax)) 
+         | (identifier "INDEX" identifier ["USING" "KEY" ["("] identifier [")"]]) 
+         | (identifier ["USING" "KEY" identifier]) ) 
+       | (identifier ["USING" "KEY" ["("] identifier [")"]] 
+               ["FROM" identifier] ["TO" identifier] ["WHERE" ["("] Expression [")"]] 
        | ("ADJACENT" "DUPLICATES" "FROM" identifier 
-           [ "USING" "KEY" identifier|(name) ] 
-           ["COMPARING" identifier |("ALL" "FIELDS")]) )". |  "FROM" ( ("MEMORY" "ID" id) 
-            | ("DATABASE"      identifier(ar) ["CLIENT" cl] "ID" id) 
-            | ("SHARED" "MEMORY" identifier(ar) ["CLIENT" cl] "ID" id) 
-            | ("SHARED" "BUFFER" identifier(ar) ["CLIENT" cl] "ID" id) )". ) "."
+           [ "USING" "KEY" ["("] identifier [")"]] 
+           ["COMPARING" identifier |("ALL" "FIELDS")]) ) |  "FROM" ( ("MEMORY" "ID" number) 
+            | ("DATABASE"      identifier"("identifier")" ["CLIENT" identifier] "ID" number) 
+            | ("SHARED" "MEMORY" identifier"("identifier")" ["CLIENT" identifier] "ID" number) 
+            | ("SHARED" "BUFFER" identifier"("identifier")" ["CLIENT" identifier] "ID" number) ) ) ) ".".
 
-VARYING = "VARYING" identifier "FROM" identifier "NEXT" identifier ["RANGE" range] .
+VARYING = "VARYING" identifier "FROM" identifier "NEXT" identifier ["RANGE" Expression] .
 
 DO = "DO" [number "TIMES"] {VARYING} "." 
-  Statements
-"ENDDO""."
+  {Statement}
+"ENDDO"".".
 
 EVENT_EXP_ITEM = "VALUE"(Expression) Typing 
                          ["OPTIONAL"|("DEFAULT" Expression)] .
                          
 EVENTS = "EVENTS" identifier [ "EXPORTING" EVENT_EXP_ITEM {EVENT_EXP_ITEM}
-                       ]"."
+                       ]".".
 
 
-MODIFY = "MODIFY"(  identifier|identifier|(target_syntax) 
+MODIFY = "MODIFY"(  identifier|"("Expression")" 
        ["USING" "CLIENT" identifier] | ["CLIENT" "SPECIFIED"] 
-       ["CONNECTION" con|(con_syntax)] 
-       "FROM" ( wa|("TABLE" identifier) )". |  ( ( ( ("TABLE" identifier)|(identifier "INDEX" identifier) 
-             ["USING" "KEY" identifier|(name)] ) 
-         | ( identifier ["USING" "KEY" loop_key] ) 
-           "FROM" wa 
+       ["CONNECTION" (identifier|"("Expression")")] 
+       "FROM" ( identifier|("TABLE" identifier) ) 
+       |
+         ( ( ( ("TABLE" identifier)|(identifier "INDEX" identifier) 
+             ["USING" "KEY" ["("] identifier [")"]] ) 
+             | ( identifier ["USING" "KEY" identifier] ) 
+           "FROM" identifier 
            ["TRANSPORTING" identifier ] 
-           [("ASSIGNING" <fs> ["CASTING"])|("REFERENCE" "INTO" identifier)] ) 
-       | (identifier "FROM" wa ["USING" "KEY" identifier|(name)] 
+           [("ASSIGNING" string1 ["CASTING"])|("REFERENCE" "INTO" identifier)] ) 
+           | (identifier "FROM" identifier ["USING" "KEY" ["("] identifier [")"]] 
                        "TRANSPORTING" identifier  
-                       "WHERE" log_exp|(cond_syntax)) )". |  ( ("LINE" number ["OF" ("PAGE" page)|("CURRENT" "PAGE")] ["INDEX" identifier]) 
-       | ("CURRENT" "LINE") ) 
-       ["LINE" "VALUE" "FROM" wa] 
-       ["FIELD" "VALUE" identifier ["FROM" identifier] {identifier ["FROM" identifier]}] 
-       ["LINE" "FORMAT" ext_format_options] 
-       ["FIELD" "FORMAT" ext_format_options2 ]". |  "SCREEN" "FROM" wa". ) "."
+                       "WHERE" "("Expression")") ) 
+       |  
+         ( 
+             ("LINE" number ["OF" ("PAGE" number)|("CURRENT" "PAGE")] ["INDEX" identifier]) 
+             |
+            ("CURRENT" "LINE") ) 
+           ["LINE" "VALUE" "FROM" identifier] 
+           ["FIELD" "VALUE" identifier ["FROM" identifier] {identifier ["FROM" identifier]}] 
+           ["LINE" "FORMAT" Format_options] 
+           ["FIELD" "FORMAT" identifier Format_options {identifier Format_options} ] 
+       |
+         "SCREEN" "FROM" identifier ) ".".
 
 ON = "ON" "CHANGE" "OF" identifier {"OR" identifier }"." 
   Statements 
-"ENDON""."
+"ENDON"".".
 
 SQLCondition = Expression .
 
-OPEN = "OPEN"(  "CURSOR" ["WITH" "HOLD"] "@"identifier "FOR" 
-  ["WITH" 
-    ("+" identifier "AS" identifier) {,"+" identifier "AS" identifier}
-    ]
-  "SELECT" ( Expression{"," Expression} 
-           "FROM" identifier{"," identifier} 
-       |  "FROM" identifier{"," identifier}
-           "FIELDS"  Expression{"," Expression} ) 
+OPEN = "OPEN" ( 
+     "CURSOR" ["WITH" "HOLD"] "@"identifier "FOR" 
+      [ "WITH"    ("+" identifier "AS" identifier) {"," "+" identifier "AS" identifier} ]
+  "SELECT" (
+           Expression{"," Expression} "FROM" identifier{"," identifier} 
+           | 
+           "FROM" identifier{"," identifier} "FIELDS"  Expression{"," Expression}
+          ) 
          [["FOR" "ALL" "ENTRIES" "IN" identifier] "WHERE" SQLCondition] 
          [GroupBy] ["HAVING" SQLCondition] 
-         ["ORDER" "BY" identifier{,identifier} ] 
+         ["ORDER" "BY" identifier{","identifier} ] 
          ["OFFSET" number] 
          ["UP" "TO" number "ROWS"] 
          ["BYPASSING" "BUFFER"] 
-         ["CONNECTION" con|(con_syntax)]". |  "DATASET" identifier 
+         ["CONNECTION" identifier|"(" Expression ")"]
+          | 
+         
+         "DATASET" identifier 
   "FOR" ( "INPUT" | "OUTPUT" | "APPENDING" | "UPDATE" ) 
   "IN" ( ( "BINARY" "MODE" ) 
      | ( "TEXT" "MODE" "ENCODING" ( "DEFAULT" 
@@ -525,60 +575,68 @@ OPEN = "OPEN"(  "CURSOR" ["WITH" "HOLD"] "@"identifier "FOR"
   ["FILTER" identifier] 
   ["MESSAGE" string1] 
   ["IGNORING" "CONVERSION" "ERRORS"] 
-  ["REPLACEMENT" "CHARACTER" char]". ) "."
+  ["REPLACEMENT" "CHARACTER" char] ) ".".
 
 FETCH = "FETCH" "NEXT" "CURSOR" identifier 
-    ( ( "INTO" ( (["CORRESPONDING" "FIELDS" "OF"] wa) | identifier{"," identifier} ) ) 
+    ( ( "INTO" ( (["CORRESPONDING" "FIELDS" "OF"] identifier) | identifier{"," identifier} ) ) 
     | ( "INTO"|"APPENDING" ["CORRESPONDING" "FIELDS" "OF"] "TABLE" identifier 
                        ["PACKAGE" "SIZE" number] ) ) 
-      [ "EXTENDED" "RESULT" @identifier ]"."
-    
+      [ "EXTENDED" "RESULT" "@"identifier ]".".
+
 ProvideFields = "FIELDS" ("*"| identifier {identifier}) 
                "FROM" identifier "INTO" identifier "VALID" identifier  
                "BOUNDS" number "AND" number 
                ["WHERE" Expression] .
+
+
                
 PROVIDE = "PROVIDE" ProvideFields {ProvideFields}
        
         "BETWEEN" number "AND" number 
         ["INCLUDING" "GAPS"]"." 
   Statements 
-"ENDPROVIDE""."
+"ENDPROVIDE"".".
                        
-READ = "READ"(  "DATASET" identifier "INTO" identifier ["MAXIMUM" "LENGTH" mlen] 
-                            [["ACTUAL"] "LENGTH" alen]""." |  ( ("LINE" number [("OF" "PAGE" page)|("OF" "CURRENT" "PAGE")] 
-                  ["INDEX" identifier]) 
-     | ("CURRENT" "LINE") ) 
-     ["LINE" "VALUE" "INTO" wa] 
-     ["FIELD" "VALUE" identifier ["INTO" identifier] {identifier ["INTO" identifier] }]" |  "REPORT" identifier "INTO" identifier ["MAXIMUM" "WIDTH" "INTO" wid]" |  "TABLE" identifier ["WITH" "KEY" key] 
+READ = "READ" (
+      "DATASET" identifier "INTO" identifier ["MAXIMUM" "LENGTH" number] 
+                            [["ACTUAL"] "LENGTH" number] |  ( ("LINE" number [("OF" "PAGE" number)|("OF" "CURRENT" "PAGE")] ["INDEX" identifier]) 
+                                                            | ("CURRENT" "LINE") ) 
+                                                                    ["LINE" "VALUE" "INTO" identifier] 
+     ["FIELD" "VALUE" identifier ["INTO" identifier] {identifier ["INTO" identifier] }]
+      |  "REPORT" identifier "INTO" identifier ["MAXIMUM" "WIDTH" "INTO" number]
+       |
+         "TABLE" identifier ["WITH" "KEY" identifier] 
                  ["SEARCH" ("FKEQ"|"FKGE"|"GKEQ"|"GKGE")] 
-                 ["VERSION" vers]". |  "TABLE" identifier 
-           ( (("FROM" wa ["USING" "KEY" identifier|(name)]) 
-             |("WITH" "TABLE" "KEY" [identifier|(name) "COMPONENTS"] 
-                              (comp_name1|(name1)) = identifier 
-                              (comp_name2|(name2)) = identifier 
+                 ["VERSION" string1]
+       |
+        "TABLE" identifier 
+           ( (("FROM" identifier ["USING" "KEY" ["("] identifier [")"]]) 
+             |("WITH" "TABLE" "KEY" [identifier|"("identifier")" "COMPONENTS"] 
+                              ["("]identifier[")"] "=" identifier { ["("]identifier[")"] "=" identifier }
+                              
                               ) 
-             | ("WITH" "KEY" identifier = identifier identifier = identifier  ["BINARY" "SEARCH"]) 
-             | ("WITH" "KEY" identifier|(name) 
-                         "COMPONENTS" identifier = identifier identifier = identifier  ) 
-             | ("INDEX" identifier ["USING" "KEY" identifier|(name)]) ) 
-             | ("WITH" "KEY" identifier ["BINARY" "SEARCH"]) 
-             | ("WITH" "KEY" = identifier ["BINARY" "SEARCH"]) ) 
-           ( ("INTO" wa 
-              ["COMPARING" ( (identifier )|("ALL" "FIELDS")|("NO" "FIELDS") )] 
-              ["TRANSPORTING" ( (identifier )|("ALL" "FIELDS") )]) 
-           | ( "ASSIGNING" <fs> ["CASTING"] ) 
+             | ("WITH" "KEY" identifier "=" identifier {identifier "=" identifier} ["BINARY" "SEARCH"]) 
+             | ("WITH" "KEY" ["("] identifier [")"] 
+                         "COMPONENTS" identifier "=" identifier {identifier "=" identifier } ) 
+             | ("INDEX" identifier ["USING" "KEY" ["("]identifier[")"] ]) ) 
+             | ("WITH" "KEY" ["="]identifier ["BINARY" "SEARCH"]) 
+            ) 
+           ( ("INTO" identifier 
+              ["COMPARING" ( (identifier{identifier} )|("ALL" "FIELDS")|("NO" "FIELDS") )] 
+              ["TRANSPORTING" ( (identifier{identifier} )|("ALL" "FIELDS") )]) 
+           | ( "ASSIGNING" identifier ["CASTING"] ) 
            | ( "REFERENCE" "INTO" identifier ) 
-           | ("TRANSPORTING" "NO" "FIELDS") )" |  "TEXTPOOL" identifier "INTO" identifier "LANGUAGE" identifier" ) "."
+           | ("TRANSPORTING" "NO" "FIELDS") )
+    |
+     "TEXTPOOL" identifier "INTO" identifier "LANGUAGE" identifier ) ".".
        
 
 SORT = "SORT" identifier ["STABLE"] 
           ( ( ["ASCENDING"|"DESCENDING"] 
               ["AS" "TEXT"] 
-              ["BY" (identifier ["ASCENDING"|"DESCENDING"] ["AS" "TEXT"]) {identifier ["ASCENDING"|"DESCENDING"] ["AS" "TEXT"]
-                   ] ) 
+              ["BY" (identifier ["ASCENDING"|"DESCENDING"] ["AS" "TEXT"]) {identifier ["ASCENDING"|"DESCENDING"] ["AS" "TEXT"]}] ) 
           | ( ["BY" (identifier)] ) 
-          | ( ["BY" Expresion] ) )"."
+          | ( ["BY" Expression] ) )".".
 
 SUBMIT = "SUBMIT" (identifier|"("identifier")") 
   ["USING" "SELECTION-SCREEN" identifier] 
@@ -587,36 +645,45 @@ SUBMIT = "SUBMIT" (identifier|"("identifier")")
   ["USING" "SELECTION-SETS" "OF" "PROGRAM" identifier] 
   ["WITH" "SELECTION-TABLE" identifier] 
   {
-      "WITH" identifier ( (("EQ"|"NE"|"CP"|"NP"|"GE"|"LT"|"LE"|"GT") identifier ["SIGN" sign]) 
-              | (["NOT"] "BETWEEN" identifier "AND" identifier ["SIGN" sign]) 
+      "WITH" identifier ( (("EQ"|"NE"|"CP"|"NP"|"GE"|"LT"|"LE"|"GT") identifier ["SIGN" string1]) 
+              | (["NOT"] "BETWEEN" identifier "AND" identifier ["SIGN" string1]) 
               | ("IN" identifier) )
   }
-  ["WITH" "FREE" "SELECTIONS" texpr] 
+  ["WITH" "FREE" "SELECTIONS" string1] 
   ["LINE-SIZE" number] 
-  ["LINE-COUNT" page_lines] 
+  ["LINE-COUNT" number] 
   ( ["EXPORTING" "LIST" "TO" "MEMORY"] 
-  | ["TO" "SAP-SPOOL" "SPOOL" "PARAMETERS" pri_params 
-                  ["ARCHIVE" "PARAMETERS" arc_params] 
+  | ["TO" "SAP-SPOOL" "SPOOL" "PARAMETERS" identifier 
+                  ["ARCHIVE" "PARAMETERS" identifier] 
                   "WITHOUT" "SPOOL" "DYNPRO"] ) 
-  [["USER" user] "VIA" "JOB" job "NUMBER" number ["LANGUAGE" identifier]] 
-  ["AND" "RETURN"]"."
+  [["USER" string1] "VIA" "JOB" identifier "NUMBER" number ["LANGUAGE" identifier]] 
+  ["AND" "RETURN"]".".
   
 TRY = "TRY""." 
-    Statements
+    {Statement}
   {
-      "CATCH" ["BEFORE" "UNWIND"] cx_class2  ["INTO" identifier]"." 
-        Statements
+      "CATCH" ["BEFORE" "UNWIND"] identifier  ["INTO" identifier]"." 
+        {Statement}
   }
   
   ["CLEANUP" ["INTO" identifier]"." 
-    Statements] 
-"ENDTRY""."
+    {Statement}] 
+"ENDTRY"".".
 
 Lob_handle_type =  ( "READER"|"LOCATOR"|"LOB" "HANDLE"|"WRITER" ) 
                    "FOR" 
                    ( "COLUMNS" identifier {identifier}  |  "ALL" ["OTHER"] ["BLOB"|"CLOB"] "COLUMNS" ) .
                                
-
+ASSOCIATION = "ASSOCIATION" identifier "TO" identifier "ON" identifier "=" identifier 
+                                          { "AND" identifier "=" identifier }
+                                          ["USING" "KEY" identifier] .
+Types_mesh_stmt =   "TYPES"  identifier ( 
+                  "TYPE" (["REF" "TO"] identifier)|identifier 
+                  | 
+                  "LIKE" (["REF" "TO"] identifier      )|identifier     ) 
+               {ASSOCIATION} 
+               "." .
+                                                         
 TYPES = "TYPES"(  identifier[(number)] ("TYPE" ( (identifier ["LENGTH" number] 
                                       ["DECIMALS" number]) 
                          | (["LINE" "OF"] identifier) 
@@ -636,7 +703,7 @@ TYPES = "TYPES"(  identifier[(number)] ("TYPE" ( (identifier ["LENGTH" number]
                              [("WITH"|"WITHOUT") "FURTHER" "SECONDARY" "KEYS"] 
                              ["INITIAL" "SIZE" number]) 
                            | ("RANGE" "OF" identifier ["INITIAL" "SIZE" number]) ) 
-                           | identifier Lob_handle_type {Lob_handle_type
+                           | identifier Lob_handle_type {Lob_handle_type}
                                
                             ) 
                  | ("LIKE" ( (["LINE" "OF"] identifier) 
@@ -656,28 +723,45 @@ TYPES = "TYPES"(  identifier[(number)] ("TYPE" ( (identifier ["LENGTH" number]
                                 "KEY" identifier "COMPONENTS" identifier }  
                              [("WITH"|"WITHOUT") "FURTHER" "SECONDARY" "KEYS"] 
                              ["INITIAL" "SIZE" number]) 
-                           | ("RANGE" "OF" identifier ["INITIAL" "SIZE" number]) )) |  "BEGIN" "OF" struc_type "." 
+                           | ("RANGE" "OF" identifier ["INITIAL" "SIZE" number]) )) |  "BEGIN" "OF" identifier "." 
   {TYPES|INCLUDE}
  
  
-"DATA" "END" "OF" identifier |  "BEGIN" "OF" "ENUM" identifier ["."".""."]"." 
-  val1 ["."".""."], val2 ["."".""."], "."".""." 
-"TYPES" "END" "OF" "ENUM" enum_type ["."".""."] |  "BEGIN" "OF" "MESH" mesh_type"." 
-  "."".""." 
-  "TYPES"  snode ( "TYPE" (["REF" "TO"] table_type)|ref_type ) 
-             | ( "LIKE" (["REF" "TO"] identifier      )|identifier     ) 
-               ["ASSOCIATION" _assoc "TO" tnode "ON" tcomp1 = scomp1 
-                                          ["AND" tcomp2 = scomp2 
-                                          ["AND" "."".""." ]] 
-                                          ["USING" "KEY" identifier]] 
-               ["."".""."]"." 
-  "."".""." 
-"DATA" "END" "OF" "MESH" mesh_type |  identifier ( ("TYPE" ["REF" "TO"] identifier) 
-            | ("LIKE" ["REF" "TO"] identifier) ) "OCCURS" number ) "."
+"DATA" "END" "OF" identifier
+         |
+          "BEGIN" "OF" "ENUM" identifier  [STRUCTURE identifier] 
+              [BASE TYPE identifier] "." 
+  "TYPES" identifier "VALUE" (Expression |"IS" "INITIAL"){"," "TYPES" identifier "VALUE" (Expression |"IS" "INITIAL")} 
+"TYPES" "END" "OF" "ENUM" identifier [STRUCTURE identifier] 
+        | 
+         "BEGIN" "OF" "MESH" identifier"." 
+         {Types_mesh_stmt}
+         "DATA" "END" "OF" "MESH" identifier 
+        |  identifier ( ("TYPE" ["REF" "TO"] identifier) 
+            | ("LIKE" ["REF" "TO"] identifier) ) "OCCURS" number ) "." .
             
                  
   ForStatement         = "for"  "(" [ Expression ] ";"   [ Expression ]   ";"  [ Expression  ] ")" Statement .
 
+
+UPDATE = "UPDATE" Expression
+       ["USING" "CLIENT" identifier] | ["CLIENT" "SPECIFIED"] 
+       ["CONNECTION" Expression] 
+       ( 
+            "SET" identifier "=" Expression {"," identifier "=" Expression}
+               ["WHERE" Expression]  
+       | 
+           ( "FROM" identifier|("TABLE" identifier) )
+       )".".
+       
+WHILE = "WHILE" Expression 
+      {
+          "VARY" identifier "FROM" identifier "NEXT" identifier ["RANGE" Expression] 
+      }"." 
+  {Statement} 
+"ENDWHILE"".".
+
+       
   CallFunctionStatement = "CALL" "FUNCTION" identifier 
               [ {"IN" "UPDATE" "TASK"} 
                | 
@@ -714,13 +798,13 @@ TYPES = "TYPES"(  identifier[(number)] ("TYPE" ( (identifier ["LENGTH" number]
                           
                           .)
                       "IF" Expression (. exp = lus .)  "."
-                              [Statements (. stmts = lus .)] 
+                              [{Statement} (. stmts = lus .)] 
                               (.  ret += "if #{exp}\n#{stmts}\n" .)
                              { "ELSEIF" Expression (. exp = lus .) "."
-                              [Statements (. stmts = lus .) ]
+                              [{Statement} (. stmts = lus .) ]
                               (.  ret += "elsif #{exp}\n#{stmts}\n" .)
                               }
-                              [ "ELSE" "."   [Statements(. stmts = lus .)]   (.  ret += "else #{exp}\n#{stmts}\n" .) ]
+                              [ "ELSE" "."   [{Statement}(. stmts = lus .)]   (.  ret += "else #{exp}\n#{stmts}\n" .) ]
                               "ENDIF"
                                (. 
                                 ret += "\nend" 
@@ -733,12 +817,13 @@ TYPES = "TYPES"(  identifier[(number)] ("TYPE" ( (identifier ["LENGTH" number]
 
   ReturnStatement      = "return" [ Expression ]   ";"   .
                          
-
-  WhileStatement = "WHILE" Expression 
+/*
+WhileStatement = "WHILE" Expression 
       {["VARY" identifier "FROM" identifier "NEXT" identifier ["RANGE" identifier] ]}"." 
-      [Statements] 
+      {Statement}
       "ENDWHILE" "."
 . 
+*/
 
 ClassStatement = "CLASS" identifier "DEFINITION" 
                     ( 
@@ -760,23 +845,23 @@ ClassStatement = "CLASS" identifier "DEFINITION"
                         
                 
   ["PUBLIC" "SECTION" "." 
-    Statements
+    {Statement}
   ] 
   ["PROTECTED" "SECTION" "." 
-    Statements
+    {Statement}
   ] 
   ["PRIVATE" "SECTION" "." 
-    Statements
+    {Statement}
   ] 
 "ENDCLASS" "." .
 
 
 ClassImplStatement = "CLASS" identifier "IMPLEMENTATION" "." 
-   Statements 
+   {Statement} 
 "ENDCLASS" "." .
 
 MethodStatement = "METHOD" identifier "." 
-  Statements 
+  {Statement} 
 "ENDMETHOD" ".".
 
 Typing = (
@@ -807,10 +892,16 @@ MethodsStatement = ("METHODS" | "CLASS-METHODS") identifier ( ["ABSTRACT"|"FINAL
                } ] 
   [ "RETURNING" {"VALUE"(identifier)} Typing ] 
   [
-       {"RAISING" (identifier| "RESUMABLE" "(" identifier ")" ) } 
+       {"RAISING" (identifier| "RESUMABLE" "(" identifier ")" ) { (identifier| "RESUMABLE" "(" identifier ")" )}} 
            | 
        {"EXCEPTIONS" identifier {identifier} }
-  ] "." . 
+  ]
+  | 
+  "FOR" "TESTING"
+  |
+  ["FINAL"] "REDEFINITION"
+  )
+  "." . 
 
 SPLIT = "SPLIT" identifier "AT" Expression "INTO" 
       ( identifier{identifier } | "TABLE" identifier )

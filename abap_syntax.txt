@@ -1123,81 +1123,7 @@ TYPE-POOL tpool.
 TYPE-POOLS tpool. 
 
                            
-TYPES dtype[(len)] {TYPE { {abap_type [LENGTH len] 
-                                      [DECIMALS dec]} 
-                         | {[LINE OF] type} 
-                         | {REF TO type} 
-                         | { {{[STANDARD] TABLE} 
-                             | {SORTED TABLE} 
-                             |{HASHED TABLE}} 
-                             OF [REF TO] type 
-                             [ {WITH [UNIQUE|NON-UNIQUE] 
-                                  { {KEY [primary_key [ALIAS key_name] 
-                                       COMPONENTS] comp1 comp2 ...} 
-                                  | {DEFAULT KEY} }  } 
-                             | {WITH EMPTY KEY} ] 
-                             {[WITH {UNIQUE HASHED}|{{UNIQUE|NON-UNIQUE} SORTED} 
-                                KEY key_name1 COMPONENTS comp1 comp2 ...] 
-                              [WITH {UNIQUE HASHED}|{{UNIQUE|NON-UNIQUE} SORTED} 
-                                KEY key_name2 COMPONENTS comp1 comp2 ...] 
-                              ...} 
-                             [{WITH|WITHOUT} FURTHER SECONDARY KEYS] 
-                             [INITIAL SIZE n]} 
-                           | {RANGE OF type [INITIAL SIZE n]} } 
-                           | {dbtab|view 
-                               { READER|LOCATOR|{LOB HANDLE} } 
-                             | { WRITER|LOCATOR } FOR 
-                               { COLUMNS blob1 blob2 ...  clob1 clob2 ... } 
-                             | { ALL [OTHER] [BLOB|CLOB] COLUMNS } 
-                                 [...]}} 
-                 | {LIKE { {[LINE OF] dobj} 
-                         | {REF TO dobj} 
-                         | { {{[STANDARD] TABLE} 
-                             |{SORTED TABLE} 
-                             |{HASHED TABLE} 
-                             |{ANY TABLE} 
-                             |{INDEX TABLE}} 
-                             OF [REF TO] dobj 
-                             [ {WITH [UNIQUE|NON-UNIQUE] 
-                                  { {KEY [primary_key [ALIAS key_name] 
-                                       COMPONENTS] comp1 comp2 ...} 
-                                  | {DEFAULT KEY} }} 
-                             | {WITH EMPTY KEY} ] 
-                             {[WITH {UNIQUE HASHED}|{{UNIQUE|NON-UNIQUE} SORTED} 
-                                KEY key_name1 COMPONENTS comp1 comp2 ...] 
-                              [WITH {UNIQUE HASHED}|{{UNIQUE|NON-UNIQUE} SORTED} 
-                                KEY key_name2 COMPONENTS comp1 comp2 ...] 
-                              ...} 
-                             [{WITH|WITHOUT} FURTHER SECONDARY KEYS] 
-                             [INITIAL SIZE n]} 
-                           | {RANGE OF dobj [INITIAL SIZE n]} }}.                         
 
-TYPES BEGIN OF struc_type. 
-  ... 
-  TYPES   ... [BOXED]. 
-  INCLUDE ... 
-  ... 
-DATA END OF struc_type. 
-
-TYPES BEGIN OF ENUM enum_type [...]. 
-  val1 [...], val2 [...], ... 
-TYPES END OF ENUM enum_type [...]. 
-
-TYPES BEGIN OF MESH mesh_type. 
-  ... 
-  TYPES  snode { TYPE {[REF TO] table_type}|ref_type } 
-             | { LIKE {[REF TO] itab      }|dref     } 
-               [ASSOCIATION _assoc TO tnode ON tcomp1 = scomp1 
-                                          [AND tcomp2 = scomp2 
-                                          [AND ... ]] 
-                                          [USING KEY key_name]] 
-               [...]. 
-  ... 
-DATA END OF MESH mesh_type. 
-
-TYPES dtype { {TYPE [REF TO] type} 
-            | {LIKE [REF TO] dobj} } OCCURS n. 
-            
 # U
 
 ULINE {[AT] [/][pos][(len)]} [NO-GAP]. 
@@ -1206,15 +1132,7 @@ UNASSIGN.
 
 UNPACK source TO destination. 
 
-UPDATE dbtab|view|(target_syntax) 
-       [USING CLIENT clnt] | [CLIENT SPECIFIED] 
-       [CONNECTION con|(con_syntax)] 
-       { { SET {col1 = f}|{col1 = col1 + f}|{col1 = col1 - f}|{(expr_syntax1)}, 
-               {col2 = f}|{col2 = col2 + f}|{col2 = col2 - f}|{(expr_syntax2)}, 
-                ... 
-               [WHERE sql_cond] } 
-       | { FROM wa|{TABLE itab} } }. 
-       
+
 # W
 
 WAIT {UP TO t SECONDS} 
@@ -1222,32 +1140,11 @@ WAIT {UP TO t SECONDS}
           [MESSAGING CHANNELS UNTIL log_exp [UP TO t SECONDS]] 
           [PUSH CHANNELS UNTIL log_exp [UP TO t SECONDS]]}. 
           
-WHILE log_exp 
-      [VARY dobj FROM dobj1 NEXT dobj2 [RANGE range] 
-      [VARY ...]]. 
-  [statement_block] 
-ENDWHILE. 
 
 WINDOW STARTING AT col1 lin1 
        [ENDING  AT col2 lin2]. 
 
 
-WRITE {source|(source_name)} TO destination 
-  [LEFT-JUSTIFIED|CENTERED|RIGHT-JUSTIFIED] 
-  { { [EXPONENT exp] 
-      [NO-GROUPING] 
-      [NO-SIGN] 
-      [NO-ZERO] 
-      [CURRENCY cur] 
-      { { [DECIMALS dec] 
-          [ROUND scale] } 
-        | [UNIT unit] } } 
-    | { [ENVIRONMENT TIME FORMAT] 
-        [TIME ZONE tz] } 
-    [STYLE stl] } 
-  [USING { {NO EDIT MASK}|{EDIT MASK mask} }] 
-  [DD/MM/YY|MM/DD/YY|DD/MM/YYYY|MM/DD/YYYY|DDMMYY|MMDDYY|YYMMDD]. 
-  
-  
-WRITE dobj TO itab[+off][(len)] INDEX idx 
-        [int_format_options].
+### Obsolete  
+##WRITE dobj TO itab[+off][(len)] INDEX idx 
+##        [int_format_options].

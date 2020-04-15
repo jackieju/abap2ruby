@@ -68,7 +68,7 @@ def convert(str)
         print("==>#{keyword}:#{s}\n")
         s = s.gsub(".", "\".\"")
         
-        s = s.gsub(/,\@\~\*\+/, '"\1"')
+        s = s.gsub(/,\@\~\*\+=/, '"\1"')
         print("==>2#{keyword}:#{s}\n")
         
         list[keyword].push(s)
@@ -91,9 +91,9 @@ def convert(str)
                  l = l.gsub(/\"\.\"$/,"")
                  t += l[k.size+2..l.size-1]
              }
-            ret.push("#{k} = \"#{k}\"( #{t} ) \".\"")
+            ret.push("#{k} = \"#{k}\"( #{t} ) \".\".")
         else
-            ret.push("#{k} = #{v[0]}")
+            ret.push("#{k} = #{v[0]}.")
          end
      
      }
