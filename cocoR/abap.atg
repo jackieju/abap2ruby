@@ -1287,13 +1287,14 @@ FORMAT = "FORMAT" ["COLOR"
             ( ["="] 
                 ( 
                     ( "COL_BACKGROUND" 
-                        | ("1" | "COL_HEADING" ) 
+                    /*    | ("1" | "COL_HEADING" ) 
                         | ("2" | "COL_NORMAL" ) 
                         | ("3" | "COL_TOTAL" ) 
                         | ("4" | "COL_KEY" ) 
                         | ("5" | "COL_POSITIVE" ) 
                         | ("6" | "COL_NEGATIVE" ) 
-                        | ("7" | "COL_GROUP" ) 
+                        | ("7" | "COL_GROUP" ) */
+                        "COL_HEADING" | "COL_NORMAL" | "COL_TOTAL" | "COL_KEY"  | "COL_POSITIVE" | "COL_NEGATIVE" | "COL_GROUP" |number
                     ) ["ON"] 
                 ) 
                 | "OFF"
