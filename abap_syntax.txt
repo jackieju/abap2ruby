@@ -73,7 +73,8 @@ ASSIGN { dobj[+off][(len)]
 
 AT LINE-SELECTION. 
 
-AT PFnn. 
+## Obsoleted
+##AT PFnn. 
 
 AT SELECTION-SCREEN [ OUTPUT 
                     | {ON {par|selcrit}} 

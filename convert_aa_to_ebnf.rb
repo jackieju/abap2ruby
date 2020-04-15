@@ -76,7 +76,10 @@ def convert(str)
      ret = []
      
      # merge rule of same keyword
+     rulelist = []
      list.each{|k,v|
+         rulename= k.gsub("-", "_")
+         rulelist.push(rulename)
          if v.size >1
              t=""
              v.each{|l|
@@ -91,12 +94,16 @@ def convert(str)
                  l = l.gsub(/\"\.\"$/,"")
                  t += l[k.size+2..l.size-1]
              }
-            ret.push("#{k} = \"#{k}\"( #{t} ) \".\".")
+            ret.push("#{rulename} = \"#{k}\"( #{t} ) \".\".")
         else
-            ret.push("#{k} = #{v[0]}.")
+            ret.push("#{rulename} = #{v[0]}.")
          end
      
      }
+     # list keywords
+     print "key list:\n"
+     print rulelist.join("\n| ")
+     print("\n")
      
     return ret
 end
@@ -105,3 +112,5 @@ p "==== result ===="
 r = convert(s).join("\n\n")
 
 save_to_file(r, "convert_result")
+
+
