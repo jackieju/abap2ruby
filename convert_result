@@ -1,0 +1,615 @@
+ADD = "ADD"(  identifier "TO" identifier |  ( ( identifier "THEN" identifier "UNTIL" identifier 
+      ( ("TO" result) | ("GIVING" result ["ACCORDING" "TO" sel]) ) ) 
+    | ( identifier "FROM" number "TO" number "GIVING" result ) ) 
+    ["RANGE" range] ) ".".
+
+ADD_CORRESPONDING = "ADD-CORRESPONDING" identifier "TO" identifier".".
+
+ALIASES = "ALIASES" alias "FOR" intf~identifier".".
+
+ASSERT = "ASSERT" [ ["ID" identifier ["SUBKEY" sub]] 
+         ["FIELDS" val2 ] 
+         "CONDITION" ] log_exp".".
+
+ASSIGN = "ASSIGN" ( identifier[+off][(number)] 
+       | ["TABLE" "FIELD"] (name) 
+       | identifier->* 
+       | (identifier "INCREMENT" inc) 
+       | ("COMPONENT" identifier "OF" "STRUCTURE" identifier) 
+       | identifier->(attr_name) 
+       | (class|(class_name))=>(attr|(attr_name)) 
+       | writable_exp ) 
+  "TO" <fs> 
+  [ ( "CASTING" [ ("TYPE" identifier|(name)) 
+              | ("LIKE" identifier) 
+              | (["TYPE" p] "DECIMALS" number) 
+              | ("TYPE" "HANDLE" handle) ] ) 
+  | ( ("TYPE" name) 
+    | (["TYPE" name] "DECIMALS" number) ) ] 
+  ["RANGE" range]".".
+
+AT = "AT"(  "LINE-SELECTION" |  PFnn |  "SELECTION-SCREEN" [ "OUTPUT" 
+                    | ("ON" (par|selcrit)) 
+                    | ("ON" "END" "OF" selcrit) 
+                    | ("ON" "BLOCK" block) 
+                    | ("ON" "RADIOBUTTON" "GROUP" identifier) 
+                    | ("ON" ("HELP-REQUEST"|"VALUE-REQUEST") 
+                       "FOR" (par|selcrit-low|selcrit-high)) 
+                    | ("ON" "EXIT-COMMAND") ] |  "USER-COMMAND" ) ".".
+
+BACK = "BACK"".".
+
+BREAK_POINT = "BREAK-POINT" [ ("ID" identifier) | (log_text) ]".".
+
+CALL = "CALL"(  "BADI" badi->meth|badi->(meth_name) 
+          ( ["EXPORTING"  p1 = a1 p2 = a2 ] 
+            ["IMPORTING" p1 = a1 p2 = a2 ] 
+            ["CHANGING"   p1 = a1 p2 = a2 ] 
+            ["RECEIVING" r  = a ] 
+            ["EXCEPTIONS" [exc1 = number exc2 = number ] 
+            ["OTHERS" = n_others]]) 
+        | (["PARAMETER-TABLE" identifier] 
+            ["EXCEPTION-TABLE" etab] ) |  "DIALOG" dialog [ ("AND" "SKIP" "FIRST" "SCREEN") 
+                   | ("USING" identifier ["MODE" mode]) ] 
+                   ["EXPORTING" p1 "FROM" a1 p2 "FROM" a2 ] 
+                   ["IMPORTING" p1 "TO" a1 p2 "TO" a2 ] |  "CUSTOMER-FUNCTION" func 
+                       ["EXPORTING"  p1 = a1 p2 = a2 ] 
+                       ["IMPORTING" p1 = a1 p2 = a2 ] 
+                       ["CHANGING"   p1 = a1 p2 = a2 ] 
+                       ["TABLES" t1 = identifier t2 = identifier ] 
+                       ["EXCEPTIONS" [exc1 = number exc2 = number ] 
+                                   [error_message = n_error] 
+                                   ["OTHERS" = n_others]]   |  "DATABASE" "PROCEDURE" proxy|(prox_name) 
+    ["CONNECTION" con|(con_syntax)] 
+    ( ["EXPORTING"  p1 = a1 p2 = a2 ] 
+      ["IMPORTING"  p1 = a1 p2 = a2 ] ) 
+  | ( ["PARAMETER-TABLE" identifier] ) |  "METHOD" ((meth_name) 
+            |identifier->(meth_name) 
+            |(class_name)=>(meth_name) 
+            |class=>(meth_name) 
+            |(class_name)=>meth) 
+  ["PARAMETER-TABLE" identifier] 
+  ["EXCEPTION-TABLE" etab] |  "METHOD" "OF" ole meth [= rc] 
+               ["EXPORTING" p1 = f1 p2 = f2 ] 
+               ["NO" "FLUSH"] ["QUEUE-ONLY"] |  "SCREEN" identifier 
+            ["STARTING" "AT" string1 lin1 
+            ["ENDING"   "AT" string1 lin2]] |  "SELECTION-SCREEN" identifier 
+                      ["STARTING" "AT" string1 lin1 
+                      ["ENDING"   "AT" string1 lin2]] 
+                      ["USING" "SELECTION-SET" identifier] |  "TRANSACTION" ta "WITH"|"WITHOUT" "AUTHORITY-CHECK" 
+                    ( ["AND" "SKIP" "FIRST" "SCREEN"] 
+                    | ["USING" identifier 
+                             ((["MODE" mode] 
+                               ["UPDATE" upd]) 
+                              |["OPTIONS" "FROM" opt]) 
+                             ["MESSAGES" "INTO" identifier]] ) |  "TRANSFORMATION" (trans|(name)) 
+                    ["PARAMETERS" (p1 = e1 p2 = e2 )|(identifier)] 
+                    ["OBJECTS"    (o1 = e1 o2 = e2 )|(identifier)] 
+                    ["OPTIONS"    (a1 = e1 a2 = e2 )] 
+                    "SOURCE" ("XML" src_xml) 
+                         | ((bn1 = e1 bn2 = e2 )|(identifier)) 
+                    "RESULT" ("XML" rslt_xml) 
+                         | ( (bn1 = f1 bn2 = f2 )|(identifier) 
+                             ["AREA" "HANDLE" handle] ) ) ".".
+
+CATCH = "CATCH" "SYSTEM-EXCEPTIONS" [exc1 = number exc2 = number ] 
+                        ["OTHERS" = n_others]"." 
+  [Statements] 
+"ENDCATCH"".".
+
+CHECK = "CHECK" Expression|"SELECT-OPTIONS"".".
+
+CLASS_DATA = "CLASS-DATA" attr options".".
+
+CLASS_EVENTS = "CLASS-EVENTS" identifier options".".
+
+CLASS_POOL = "CLASS-POOL" ["MESSAGE-ID" mid]".".
+
+CLEAR = "CLEAR" identifier [ ("WITH" val ["IN" ("CHARACTER"|"BYTE" ) "MODE"]) 
+           | ("WITH" "NULL") ]".".
+
+CLOSE = "CLOSE"(  "CURSOR" @identifier |  "DATASET" identifier ) ".".
+
+COLLECT = "COLLECT" identifier "INTO" identifier ( ["ASSIGNING" <fs> ["CASTING"]] 
+                     | ["REFERENCE" "INTO" identifier] )".".
+
+COMMIT = "COMMIT"(  "WORK" ["AND" "WAIT"] |  "CONNECTION" con ) ".".
+
+COMMUNICATION = "COMMUNICATION" ( ("INIT" "DESTINATION" dest) 
+              | ("ALLOCATE") 
+              | ("ACCEPT") 
+              | ("SEND" "BUFFER" buf) 
+              | ("RECEIVE" "BUFFER" buf "DATAINFO" dat "STATUSINFO" stat) 
+              | ("DEALLOCATE") ) "ID" id 
+              ["RETURNCODE" rc] 
+              ["LENGTH" leng] 
+              ["RECEIVED" rec] 
+              ["HOLD"]".".
+
+COMPUTE = "COMPUTE" ["EXACT"] lhs =|?= rhs".".
+
+CONCATENATE = "CONCATENATE" (identifier )|("LINES" "OF" identifier) 
+            "INTO" result 
+            ["IN" ("CHARACTER"|"BYTE") "MODE"] 
+            ["SEPARATED" "BY" sep] 
+            ["RESPECTING" "BLANKS"]".".
+
+CONDENSE = "CONDENSE" string1 ["NO-GAPS"]".".
+
+CONSTANTS = "CONSTANTS" const options".".
+
+CONTROLS = "CONTROLS" contrl "TYPE" ( "TABLEVIEW" "USING" "SCREEN" identifier ) 
+                   | ( "TABSTRIP" )".".
+
+CONVERT = "CONVERT"(  ("DATE" dat1 "INTO" "INVERTED-DATE" dat2) 
+      | ("INVERTED-DATE" dat1 "INTO" "DATE" dat2) |  "TEXT" string1 "INTO" "SORTABLE" "CODE" hex |  ( "TIME" "STAMP" time_stamp "TIME" "ZONE" tz 
+          "INTO" ["DATE" dat] ["TIME" tim] ["DAYLIGHT" "SAVING" "TIME" dst] ) 
+      | ( "DATE" dat ["TIME" tim ["DAYLIGHT" "SAVING" "TIME" dst]] 
+          "INTO" "TIME" "STAMP" time_stamp "TIME" "ZONE" tz ) ) ".".
+
+CREATE = "CREATE"(  "DATA" identifier [ "AREA" "HANDLE" handle ] 
+                 [ "TYPE" ( (identifier|(name) 
+                           ["LENGTH" number] ["DECIMALS" number]) 
+                        | (["LINE" "OF"] identifier|(name)) 
+                        | ("REF" "TO" identifier|(name)) 
+                        | ( ((["STANDARD"] "TABLE") 
+                           |("SORTED" "TABLE") 
+                           |("HASHED" "TABLE")) 
+                           "OF" ["REF" "TO"] (identifier|(name)) 
+                           [ ("WITH" ["UNIQUE"|"NON-UNIQUE"] 
+                                ("KEY" (identifier )|(keytab))|("DEFAULT" "KEY")) 
+                           | ("WITH" "EMPTY" "KEY") ] 
+                           ["INITIAL" "SIZE" number]) 
+                        | ("HANDLE" handle) ) ] 
+               | [ "LIKE" ( (["LINE" "OF"] identifier) 
+                        | ("REF" "TO" identifier) 
+                        | ( ((["STANDARD"] "TABLE") 
+                           |("SORTED" "TABLE") 
+                           |("HASHED" "TABLE")) 
+                           "OF" identifier 
+                           [ ("WITH" ["UNIQUE"|"NON-UNIQUE"] 
+                                ("KEY" (identifier )|(keytab))|("DEFAULT" "KEY")) 
+                           | ("WITH" "EMPTY" "KEY") ] 
+                           ["INITIAL" "SIZE" number]) ) ] |  "OBJECT" identifier ["AREA" "HANDLE" handle] 
+                   [ ["TYPE" class] 
+                      ["EXPORTING"  p1 = a1 p2 = a2 ] 
+                      ["EXCEPTIONS" exc1 = number exc2 = number  ["OTHERS" = n_others]] ] 
+                 | [ "TYPE" (name) 
+                     ( ["EXPORTING"  p1 = a1 p2 = a2 ] 
+                      ["EXCEPTIONS" exc1 = number exc2 = number  ["OTHERS" = n_others]]) 
+                   | (["PARAMETER-TABLE" identifier] 
+                      ["EXCEPTION-TABLE" etab]) ] |  "OBJECT" ole class ["NO" "FLUSH"] ["QUEUE-ONLY"] ) ".".
+
+DELETE = "DELETE" "DATASET" identifier".".
+
+DEMAND = "DEMAND" val1 = f1 val2 = f2  
+       "FROM" "CONTEXT" context_ref 
+       ["MESSAGES" "INTO" identifier]".".
+
+DESCRIBE = "DESCRIBE"(  "DISTANCE" "BETWEEN" identifier "AND" identifier "INTO" dst 
+                          "IN" ("BYTE"|"CHARACTER") "MODE" |  "FIELD" identifier 
+  ["TYPE" typ ["COMPONENTS" com]] 
+  ["LENGTH" ilen "IN" ("BYTE"|"CHARACTER") "MODE"] 
+  ["DECIMALS" number] 
+  ["OUTPUT-LENGTH" olen] 
+  ["HELP-ID" hlp] 
+  ["EDIT" "MASK" mask] |  "LIST" ( ("NUMBER" "OF" ("LINES"|"PAGES") number) 
+              | ("LINE" linno "PAGE" page) 
+              | ("PAGE" pagno ["LINE-SIZE" number] 
+                            ["LINE-COUNT" page_lines] 
+                            ["LINES" lines] 
+                            ["FIRST-LINE" first_line] 
+                            ["TOP-LINES" top_lines] 
+                            ["TITLE-LINES" title_lines] 
+                            ["HEAD-LINES" header_lines] 
+                            ["END-LINES" footer_lines]) ) 
+              ["INDEX" identifier] |  "TABLE" identifier ["KIND" knd] ["LINES" lin] ["OCCURS" number] ) ".".
+
+DETAIL = "DETAIL"".".
+
+DIVIDE = "DIVIDE" identifier "BY" identifier".".
+
+DIVIDE_CORRESPONDING = "DIVIDE-CORRESPONDING" identifier "BY" identifier".".
+
+EDITOR_CALL = "EDITOR-CALL" "FOR" ( ("REPORT" identifier ["DISPLAY-MODE"]) 
+                | (identifier ["TITLE" string1] 
+                        [("DISPLAY-MODE")|("BACKUP" "INTO" jtab)]) )".".
+
+END_OF_PAGE = "END-OF-PAGE"".".
+
+END_OF_SELECTION = "END-OF-SELECTION"".".
+
+EXIT = "EXIT"(  "FROM" "SQL" |  "FROM" "STEP-LOOP" ) ".".
+
+EXPORT = "EXPORT" ( (p1 = identifier p2 = identifier ) 
+       | (p1 "FROM" identifier p2 "FROM" identifier ) 
+       | (identifier) ) 
+    "TO" ( ( "DATA" "BUFFER" xstr ) 
+       | ( "INTERNAL" "TABLE" identifier ) 
+       | ( "MEMORY" "ID" id ) 
+       | ( "DATABASE"      identifier(ar) ["FROM" identifier] ["CLIENT" cl] "ID" id ) 
+       | ( "SHARED" "MEMORY" identifier(ar) ["FROM" identifier] ["CLIENT" cl] "ID" id ) 
+       | ( "SHARED" "BUFFER" identifier(ar) ["FROM" identifier] ["CLIENT" cl] "ID" id )  ) 
+       [ "COMPRESSION" ( "ON" | "OFF" ) ]".".
+
+EXTRACT = "EXTRACT" [ header | field_group ]".".
+
+FIELD_GROUPS = "FIELD-GROUPS" [ header | field_group ]".".
+
+FIELD_SYMBOLS = "FIELD-SYMBOLS" <fs> ( Typing | ( "STRUCTURE" identifier "DEFAULT" identifier ) )".".
+
+FIELDS = "FIELDS" identifier".".
+
+FIND = "FIND" [("FIRST" "OCCURRENCE")|("ALL" "OCCURRENCES") "OF"] 
+     (["SUBSTRING"] substring) | ("REGEX" regex) "IN" 
+     ( (["SECTION" ["OFFSET" off] ["LENGTH" number] "OF"] identifier) 
+     | ("TABLE" identifier ["FROM" lin1 ["OFFSET" off1]] 
+                   ["TO"   lin2 ["OFFSET" off2]]) ) 
+     ["IN" ("CHARACTER"|"BYTE") "MODE"] 
+     [("RESPECTING"|"IGNORING") "CASE"] 
+     ["MATCH" "COUNT"  mcnt] 
+     ( (["MATCH" "LINE"   mlin] 
+        ["MATCH" "OFFSET" moff] 
+        ["MATCH" "LENGTH" mlen]) 
+     | ["RESULTS" result_tab|result_wa] ) 
+     ["SUBMATCHES" s2 ]".".
+
+FORMAT = "FORMAT" ["COLOR" ( ( [=] ( ( "COL_BACKGROUND" 
+                        | (1 | "COL_HEADING" ) 
+                        | (2 | "COL_NORMAL" ) 
+                        | (3 | "COL_TOTAL" ) 
+                        | (4 | "COL_KEY" ) 
+                        | (5 | "COL_POSITIVE" ) 
+                        | (6 | "COL_NEGATIVE" ) 
+                        | (7 | "COL_GROUP" ) ) ["ON"] ) 
+                      | "OFF") 
+              | (= string1) )] 
+       ["INTENSIFIED" [("ON"|"OFF")|(= flag)]] 
+       ["INVERSE"     [("ON"|"OFF")|(= flag)]] 
+       ["HOTSPOT"     [("ON"|"OFF")|(= flag)]] 
+       ["INPUT"       [("ON"|"OFF")|(= flag)]] 
+       ["FRAMES"      [("ON"|"OFF")|(= flag)]] 
+       ["RESET"]".".
+
+FREE = "FREE"(  identifier |  "MEMORY" "ID" id |  "OBJECT" ole ["NO" "FLUSH"] ) ".".
+
+FUNCTION_POOL = "FUNCTION-POOL" fpool ["NO" "STANDARD" "PAGE" "HEADING"] 
+                    ["LINE-SIZE" number] 
+                    ["LINE-COUNT" page_lines[(footer_lines)]] 
+                    ["MESSAGE-ID" mid]".".
+
+GENERATE = "GENERATE" "SUBROUTINE" "POOL" identifier "NAME" identifier 
+  ["MESSAGE" mess] 
+  ["INCLUDE" incl] 
+  ["LINE" lin] 
+  ["WORD" wrd] 
+  ["OFFSET" off] 
+  ["MESSAGE-ID" mid] 
+  ["SHORTDUMP-ID" sid]".".
+
+GET = "GET"(  node ["LATE"] ["FIELDS" f2 ] |  "BADI" ( badi ["FILTERS" f1 = x1 f2 = x2 ] ) 
+       | ( badi "TYPE" (name) 
+              [ ("FILTERS" f1 = x1 f2 = x2 ) 
+              | ("FILTER-TABLE" ftab)] ) 
+              ["CONTEXT" con] |  "BIT" bitpos "OF" byte_string "INTO" val |  "CURSOR" ( ( "FIELD" field 
+                ["VALUE" val] 
+                ["LENGTH" number] 
+                [["DISPLAY"|"MEMORY"] "OFFSET" off] 
+                ["LINE" number] 
+                ["AREA" area] ) 
+           | ( "LINE" number 
+                ["VALUE" val] 
+                ["LENGTH" number] 
+                [["DISPLAY"|"MEMORY"] "OFFSET" off] ) ) |  "DATASET" identifier ["POSITION" number] ["ATTRIBUTES" attr] |  "LOCALE" "LANGUAGE" identifier "COUNTRY" string1 "MODIFIER" string1 |  "PARAMETER" "ID" pid "FIELD" identifier |  "PF-STATUS" status ["PROGRAM" identifier] [EXCLUDINGfcode] |  "PROPERTY" "OF" ole attr = identifier ["NO" "FLUSH"] ["QUEUE-ONLY"] 
+                                ["EXPORTING" p1 = f1 p2 = f2 ] |  "REFERENCE" "OF" identifier "INTO" identifier |  "RUN" "TIME" "FIELD" rtime |  "TIME" ["FIELD" tim] |  "TIME" "STAMP" "FIELD" time_stamp ) ".".
+
+HIDE = "HIDE" identifier".".
+
+IMPORT = "IMPORT"(  ( (p1 = identifier p2 = identifier ) 
+       | (p1 "TO" identifier  p2 "TO" identifier ) 
+       | (identifier) ) 
+  "FROM" ( ( "DATA" "BUFFER" xstr ) 
+       | ( "INTERNAL" "TABLE" identifier ) 
+       | ( "MEMORY" "ID" id ) 
+       | ( "DATABASE"      identifier(ar) ["TO" identifier] ["CLIENT" cl] 
+                                   ("ID" id)|("MAJOR-ID" id1 ["MINOR-ID" id2]) ) 
+       | ( "SHARED" "MEMORY" identifier(ar) ["TO" identifier] ["CLIENT" cl] "ID" id ) 
+       | ( "SHARED" "BUFFER" identifier(ar) ["TO" identifier] ["CLIENT" cl] "ID" id ) ) 
+       [ ( ( ( (["ACCEPTING" "PADDING"] ["ACCEPTING" "TRUNCATION"]) 
+             |  ["IGNORING" "STRUCTURE" "BOUNDARIES"] ) 
+             [ "IGNORING" "CONVERSION" "ERRORS" 
+               ["REPLACEMENT" "CHARACTER" rc] ] ) 
+         | ["IN" "CHAR-TO-HEX" "MODE"] ) ] 
+       ["CODE" "PAGE" "INTO" cp] 
+       ["ENDIAN" "INTO" endian] |  "DIRECTORY" "INTO" identifier 
+  "FROM" "DATABASE" identifier(ar) ["TO" identifier] ["CLIENT" cl] "ID" id ) ".".
+
+INCLUDE = "INCLUDE"(  incl ["IF" "FOUND"] |  ( ("TYPE" struc_type) | ("STRUCTURE" identifier) ) 
+        ["AS" name ["RENAMING" "WITH" "SUFFIX" suffix]] ) ".".
+
+INFOTYPES = "INFOTYPES" nnnn ["NAME" name] 
+               ["OCCURS" number] 
+               ["MODE" N] 
+               ["VALID" "FROM" intlim1 "TO" intlim2] 
+               ["AS" "PERSON" "TABLE"]".".
+
+INITIALIZATION = "INITIALIZATION"".".
+
+INPUT = "INPUT"".".
+
+INSERT = "INSERT"(  ( ("INTO" identifier|identifier|(target_syntax) 
+          ["USING" "CLIENT" identifier] | ["CLIENT" "SPECIFIED"] 
+          ["CONNECTION" con|(con_syntax)] 
+          "VALUES" identifier) 
+       | ( identifier|identifier|(target_syntax) 
+           ["USING" "CLIENT" identifier] | ["CLIENT" "SPECIFIED"] 
+           ["CONNECTION" con|(con_syntax)] 
+           "FROM" identifier|("TABLE" identifier ["ACCEPTING" "DUPLICATE" "KEYS"])|( "SELECT" subquery_clauses ) ) ) |  identifier  "INTO" ( header | field_group ) |  ( identifier 
+       | ("INITIAL" "LINE") 
+       | ("LINES" "OF" jtab ["FROM" identifier] ["TO" identifier] ["USING" "KEY" identifier|(name)]) ) 
+  "INTO" ( ("TABLE" identifier) 
+       | (identifier "INDEX" identifier) 
+       | (identifier) ) 
+       [ ("ASSIGNING" <fs> ["CASTING"]) | ("REFERENCE" "INTO" identifier ) ] |  "REPORT" identifier "FROM" identifier 
+              ["MAXIMUM" "WIDTH" "INTO" wid] 
+              ( ["KEEPING" "DIRECTORY" "ENTRY"] 
+              | ( ["PROGRAM" "TYPE" pt] 
+                  ["FIXED-POINT" "ARITHMETIC" fp] 
+                  ["VERSION"|("UNICODE" "ENABLING") vs] ) 
+              | ["DIRECTORY" "ENTRY" dir] ) |  "TEXTPOOL" identifier "FROM" identifier "LANGUAGE" identifier ) ".".
+
+INTERFACE = "INTERFACE"(  intf"." 
+  [components] 
+"ENDINTERFACE" |  intf ("DEFERRED" ["PUBLIC"]) | "LOAD" ) ".".
+
+INTERFACE_POOL = "INTERFACE-POOL"".".
+
+INTERFACES = "INTERFACES" intf 
+  ["PARTIALLY" "IMPLEMENTED"] 
+  ( ( ["ABSTRACT" "METHODS" meth2 ] 
+      ["FINAL" "METHODS" meth2 ] ) 
+    | ["ALL" "METHODS" ("ABSTRACT"|"FINAL")] ) 
+  ["DATA" "VALUES" attr1 = val1 attr2 = val2 ]".".
+
+LEAVE = "LEAVE"(  "LIST-PROCESSING" |  "PROGRAM" |  ( "SCREEN" | ("TO" "SCREEN" identifier) ) |  "TO" "LIST-PROCESSING" ["AND" "RETURN" "TO" "SCREEN" identifier] |  "TO" ( ("TRANSACTION" ta) | ("CURRENT" "TRANSACTION") ) 
+         ["AND" "SKIP" "FIRST" "SCREEN"] ) ".".
+
+LOAD_OF_PROGRAM = "LOAD-OF-PROGRAM"".".
+
+LOCAL = "LOCAL" identifier".".
+
+LOG_POINT = "LOG-POINT" "ID" identifier 
+          ["SUBKEY" sub] 
+          ["FIELDS" val2 ]".".
+
+MAXIMUM = "MAXIMUM" identifier".".
+
+MINIMUM = "MINIMUM" identifier".".
+
+MODULE = "MODULE" string1 ("OUTPUT"|["INPUT"])"." 
+  (Statements)
+"ENDMODULE"".".
+
+MULTIPLY = "MULTIPLY" identifier "BY" identifier".".
+
+MULTIPLY_CORRESPONDING = "MULTIPLY-CORRESPONDING" identifier "BY" identifier".".
+
+NEW_LINE = "NEW-LINE" ["NO-SCROLLING"|"SCROLLING"]".".
+
+NEW_PAGE = "NEW-PAGE" ["WITH-TITLE"|"NO-TITLE"] 
+         ["WITH-HEADING"|"NO-HEADING"] 
+         ["LINE-COUNT" page_lines] 
+         ["LINE-SIZE" number] 
+         ["NO-TOPOFPAGE"] 
+         [ ( "PRINT" "ON" ["NEW-SECTION"] 
+                       "PARAMETERS" pri_params 
+                      ["ARCHIVE" "PARAMETERS" arc_params] 
+                       "NO" "DIALOG" ) 
+         | ( "PRINT" "OFF" ) ]".".
+
+NEW_SECTION = "NEW-SECTION"".".
+
+NODES = "NODES" node ["TYPE" identifier]".".
+
+OVERLAY = "OVERLAY" string1 "WITH" string1 ["ONLY" mask]".".
+
+PACK = "PACK" source "TO" destination".".
+
+PARAMETERS = "PARAMETERS" ( (para[(number)]) | (para ["LENGTH" number]) ) 
+           [ ("TYPE" identifier ["DECIMALS" number]) 
+           | ("LIKE" identifier) 
+           | ("LIKE" (name)) ] 
+           [ (["OBLIGATORY"|"NO-DISPLAY"] ["VISIBLE" "LENGTH" vlen]) 
+           | ("AS" "CHECKBOX" ["USER-COMMAND" fcode]) 
+           | ("RADIOBUTTON" "GROUP" identifier ["USER-COMMAND" fcode]) 
+           | ("AS" "LISTBOX" "VISIBLE" "LENGTH" vlen 
+                ["USER-COMMAND" fcode] ["OBLIGATORY"]) ] 
+           ["MODIF" "ID" modid] 
+           ["DEFAULT" val] 
+           ["LOWER" "CASE"] 
+           ["MATCHCODE" "OBJECT" search_help] 
+           ["MEMORY" "ID" pid] 
+           ["VALUE" "CHECK"] 
+           ["FOR" ("TABLE"|"NODE") node 
+              ["HELP-REQUEST"] 
+              ["VALUE-REQUEST"] 
+              ["AS" "SEARCH" "PATTERN"]]".".
+
+PERFORM = "PERFORM" ( ( ( subr 
+            | (subr|(sname) "IN" "PROGRAM" [identifier|(pname)] ["IF" "FOUND"]) 
+            | (number "OF" subr2 ) 
+            | (subr(identifier) ["IF" "FOUND"]) ) 
+            ["TABLES" identifier ] 
+            ["USING" a2 ] 
+            ["CHANGING" a2 ] ) 
+        | ( "ON" ( ("COMMIT" ["LEVEL" identifier]) 
+               | "ROLLBACK" ) ) )".".
+
+POSITION = "POSITION" number".".
+
+PRINT_CONTROL = "PRINT-CONTROL"   ( "INDEX-LINE" index_line ) 
+              | ( formats|("FUNCTION" code) 
+                  ["LINE" number] ["POSITION" string1] )".".
+
+PROGRAM = "PROGRAM" identifier ["NO" "STANDARD" "PAGE" "HEADING"] 
+             ["LINE-SIZE" number] 
+             ["LINE-COUNT" page_lines[(footer_lines)]] 
+             ["MESSAGE-ID" mid] 
+             ["REDUCED" "FUNCTIONALITY"]".".
+
+RANGES = "RANGES" identifier "FOR" identifier ["OCCURS" number]".".
+
+RECEIVE = "RECEIVE" "RESULTS" "FROM" "FUNCTION" func 
+                ["KEEPING" "TASK"] 
+                ["IMPORTING" p1 = a1 p2 = a2 ] 
+                ["TABLES" t1 = identifier t2 = identifier ] 
+                ["EXCEPTIONS" [exc1 = number exc2 = number ] 
+                            [system_failure = ns ["MESSAGE" smess]] 
+                            [communication_failure = nc ["MESSAGE" cmess]] 
+                            ["OTHERS" = n_others]]  ".".
+
+REFRESH = "REFRESH"(  identifier |  "CONTROL" contrl "FROM" "SCREEN" identifier |  identifier "FROM" "TABLE" identifier ) ".".
+
+REJECT = "REJECT" [node]".".
+
+REPLACE = "REPLACE"(  ( ( [("FIRST" "OCCURRENCE")|("ALL" "OCCURRENCES" "OF")] 
+            (["SUBSTRING"] substring) | ("REGEX" regex) "IN" 
+            ( (["SECTION" ["OFFSET" off] ["LENGTH" number] "OF"] identifier) 
+            | ("TABLE" identifier ["FROM" lin1 ["OFFSET" off1]] 
+                          ["TO"   lin2 ["OFFSET" off2]]) ) 
+            "WITH" new 
+            ["IN" ("CHARACTER"|"BYTE") "MODE"] 
+            [("RESPECTING"|"IGNORING") "CASE"] 
+            ["REPLACEMENT" "COUNT"  rcnt] 
+            ( (["REPLACEMENT" "OFFSET" roff] 
+               ["REPLACEMENT" "LENGTH" rlen] 
+               ["REPLACEMENT" "LINE"   rlin]) 
+            | ["RESULTS" result_tab|result_wa] ) ) 
+        | ( "SECTION" ["OFFSET" off] ["LENGTH" number] "OF" identifier 
+            "WITH" new 
+            ["IN" ("CHARACTER"|"BYTE") "MODE"] ) ) |  substring "WITH" new "INTO" identifier 
+        ["IN" ("BYTE"|"CHARACTER") "MODE"] 
+        ["LENGTH" number] ) ".".
+
+RESERVE = "RESERVE" number "LINES"".".
+
+RESUME = "RESUME"".".
+
+RETRY = "RETRY"".".
+
+RETURN = "RETURN"".".
+
+ROLLBACK = "ROLLBACK"(  "WORK" |  "CONNECTION" identifier ) ".".
+
+SCROLL = "SCROLL" "LIST" [ ( "TO" "COLUMN" string1 ) 
+            | ( ("LEFT"|"RIGHT") ["BY" number "PLACES"] ) ] 
+            [ ( "TO" ( ("FIRST" "PAGE") 
+                   | ("LAST" "PAGE") 
+                   | ("PAGE" pag) ) 
+                   ["LINE" lin] ) 
+              | ( ("FORWARD"|"BACKWARD") [number "PAGES"] ) ] 
+            ["INDEX" identifier]".".
+
+SELECT_OPTIONS = "SELECT-OPTIONS" selcrit "FOR" (identifier|(name)) 
+              ["OBLIGATORY"|"NO-DISPLAY"] 
+              ["VISIBLE" "LENGTH" vlen] 
+              ["NO-EXTENSION"] 
+              ["NO" "INTERVALS"] 
+              ["MODIF" "ID" modid] 
+              ["DEFAULT" val1 ["TO" val2] ["OPTION" opt] ["SIGN" sign]] 
+              ["LOWER" "CASE"] 
+              ["MATCHCODE" "OBJECT" search_help] 
+              ["MEMORY" "ID" pid] 
+              ["NO" "DATABASE" "SELECTION"] 
+              ["HELP-REQUEST"  ["FOR" ("LOW"|"HIGH")]] 
+              ["VALUE-REQUEST" ["FOR" ("LOW"|"HIGH")]]".".
+
+SELECTION_SCREEN = "SELECTION-SCREEN" "TAB" (number) tab "USER-COMMAND" fcode 
+                ["DEFAULT" ["PROGRAM" identifier] "SCREEN" identifier] 
+                ["MODIF" "ID" modid] 
+                ["FOR" ("TABLE"|"NODE") node ["ID" id]]".".
+
+SET = "SET"(  "ASSOCIATION" mesh_path ( = identifier ) 
+                        | ( "LIKE" identifier    ) 
+                        | ( "INITIAL" ) |  "BIT" bitpos "OF" byte_string ["TO" val] |  "BLANK" "LINES" ("ON"|"OFF") |  "COUNTRY" string1 |  "CURSOR" ( ( "FIELD" field ["LINE" number] 
+                     [["DISPLAY"|"MEMORY"] "OFFSET" off] ) 
+           | ( "LINE" number 
+                    [["DISPLAY"|"MEMORY"] "OFFSET" off] ) 
+           | ( string1 lin ) ) |  "DATASET" dest ["POSITION" (number|("END" "OF" "FILE"))] 
+                 ["ATTRIBUTES" attr] |  "EXTENDED" "CHECK" ("ON"|"OFF") |  "HANDLER" handler2  
+            ["FOR" identifier|("ALL" "INSTANCES")] 
+            ["ACTIVATION" act] |  "HOLD" "DATA" ("ON"|"OFF") |  "LANGUAGE" identifier |  "LEFT" "SCROLL-BOUNDARY" ["COLUMN" string1] |  "LOCALE" "LANGUAGE" identifier ["COUNTRY" string1] ["MODIFIER" string1] |  "MARGIN" macol [marow] |  "PARAMETER" "ID" pid "FIELD" identifier |  "PF-STATUS" status ["OF" "PROGRAM" identifier] 
+                     ["EXCLUDING" fcode] 
+                     ["IMMEDIATELY"] |  "PROPERTY" "OF" ole attr = identifier ["NO" "FLUSH"] 
+                                ["EXPORTING" p1 = f1 p2 = f2 ] |  "RUN" "TIME" "ANALYZER" ("ON"|"OFF") |  "RUN" "TIME" "CLOCK" "RESOLUTION" ("HIGH"|"LOW") |  "SCREEN" identifier |  "TITLEBAR" string1 ["OF" "PROGRAM" identifier] 
+                   ["WITH" string1  string1] |  "UPDATE" "TASK" "LOCAL" |  "USER-COMMAND" fcode ) ".".
+
+SHIFT = "SHIFT" identifier [ ( [ ("BY" num "PLACES") | ("UP" "TO" substring) ] 
+                 ["LEFT"|"RIGHT"] ["CIRCULAR"] ) 
+           | ( ("LEFT" "DELETING" "LEADING") 
+             | ("RIGHT" "DELETING" "TRAILING") mask) ] 
+           ["IN" ("CHARACTER"|"BYTE") "MODE"]".".
+
+SKIP = "SKIP" ( [number] 
+     | ("TO" "LINE" number) )".".
+
+STATICS = "STATICS" identifier options".".
+
+STOP = "STOP"".".
+
+SUBTRACT = "SUBTRACT" identifier "FROM" identifier".".
+
+SUBTRACT_CORRESPONDING = "SUBTRACT-CORRESPONDING" identifier "FROM" identifier".".
+
+SUM = "SUM"".".
+
+SUMMARY = "SUMMARY"".".
+
+SUMMING = "SUMMING" identifier".".
+
+SUPPLY = "SUPPLY" key1 = f1 key2 = f2  "TO" "CONTEXT" context_ref".".
+
+SUPPRESS = "SUPPRESS" "DIALOG"".".
+
+SYNTAX_CHECK = "SYNTAX-CHECK" "FOR" identifier "MESSAGE" mess "LINE" lin "WORD" wrd 
+                 ["PROGRAM" identifier] ["DIRECTORY" "ENTRY" dir] 
+                 ["WITH" "CURRENT" "SWITCHSTATES"] 
+                 ["INCLUDE" incl] 
+                 ["OFFSET" off] 
+                 ["MESSAGE-ID" mid]".".
+
+TEST_INJECTION = "TEST-INJECTION" seam"." 
+  [Statements] 
+"END-TEST-INJECTION"".".
+
+TEST_SEAM = "TEST-SEAM" seam"." 
+  [Statements] 
+"END-TEST-SEAM"".".
+
+TOP_OF_PAGE = "TOP-OF-PAGE" ["DURING" "LINE-SELECTION"]".".
+
+TRANSFER = "TRANSFER" identifier "TO" identifier ["LENGTH" number] 
+                      ["NO" "END" "OF" "LINE"]".".
+
+TRANSLATE = "TRANSLATE" identifier ("TO" ("UPPER"|"LOWER") "CASE") 
+             | ("USING" mask)".".
+
+TRUNCATE = "TRUNCATE" "DATASET" identifier "AT" ("CURRENT" "POSITION")|("POSITION" number)".".
+
+TYPE_POOL = "TYPE-POOL" tpool".".
+
+TYPE_POOLS = "TYPE-POOLS" tpool".".
+
+ULINE = "ULINE" (["AT"] [/][number][(number)]) ["NO-GAP"]".".
+
+UNASSIGN = "UNASSIGN"".".
+
+UNPACK = "UNPACK" source "TO" destination".".
+
+WAIT = "WAIT" ("UP" "TO" t "SECONDS") 
+   | ("FOR" ["ASYNCHRONOUS" "TASKS" "UNTIL" log_exp ["UP" "TO" t "SECONDS"]] 
+          ["MESSAGING" "CHANNELS" "UNTIL" log_exp ["UP" "TO" t "SECONDS"]] 
+          ["PUSH" "CHANNELS" "UNTIL" log_exp ["UP" "TO" t "SECONDS"]])".".
+
+WINDOW = "WINDOW" "STARTING" "AT" string1 lin1 
+       ["ENDING"  "AT" string1 lin2]".".

@@ -4,7 +4,7 @@ require_relative "rubyutility.rb"
 
 
 $map ={
-    "identifier"=>"(wa|clnt|entity|dbcur|evt|itab|itab_type|struc|bdc_tab|rtab|stab|variant|ptab|group|dref|idx|lang|dynnr|prog|otab|dset|oref|dobj|dtype|blob|clob|abap_type|type|comp|key_name|didentifier|primary_key|dbtab|view)",
+    "identifier"=>"(field|attr|etab|ole|meth|wa|clnt|entity|dbcur|evt|itab|itab_type|struc|bdc_tab|rtab|stab|variant|ptab|group|dref|idx|lang|dynnr|prog|otab|dset|oref|dobj|dtype|blob|clob|abap_type|type|comp|key_name|didentifier|primary_key|dbtab|view)",
     "number"=>"(width|pos|len|dec|n|line|dynnr)",
     "Expresion"=>"(expr)",
     "string1"=>"(text|title|cntry|mod|col)",

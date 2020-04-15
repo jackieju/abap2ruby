@@ -35,8 +35,10 @@ PRAGMAS
 
 PRODUCTIONS
 
-
-
+    Exps =  Expression{Expression} .
+    
+    NameOrRef = identifier|"("identifier")" .
+    
     C                  =      (ReportDef | FunctionDef) .
     
     ReportDef          = "REPORT" (.  fn_name=curString() .) identifier  (. src("") .) 
@@ -1083,16 +1085,16 @@ CALL = "CALL"(  "BADI" identifier"->" "(" identifier ")"
                                    [string1 "=" identifier] 
                                    ["OTHERS" "=" Expression]]   |  "DATABASE" "PROCEDURE" "("identifier")" 
     ["CONNECTION" (identifier|"("Expression")")] 
-    ( ["EXPORTING"  p1 = a1 p2 = a2 ] 
-      ["IMPORTING"  p1 = a1 p2 = a2 ] ) 
+    ( ["EXPORTING"  {Expression} ] 
+      ["IMPORTING"  {Expression}  ] ) 
   | ( ["PARAMETER-TABLE" identifier] ) |  "METHOD" ((meth_name) 
-            |identifier->(meth_name) 
-            |(class_name)=>(meth_name) 
-            |class=>(meth_name) 
-            |(class_name)=>meth) 
+            |identifier "->" "(" identifier ")" 
+            |"(" identifier")" "=>" "("identifier ")" 
+            |identifier "=>" "(" identifier ")" 
+            |"(" identifier ")" "=>"identifier) 
   ["PARAMETER-TABLE" identifier] 
-  ["EXCEPTION-TABLE" etab] |  "METHOD" "OF" ole meth [= rc] 
-               ["EXPORTING" p1 = f1 p2 = f2 ] 
+  ["EXCEPTION-TABLE" identifier] |  "METHOD" "OF" identifier identifier ["=" identifier] 
+               ["EXPORTING" {Expression} ] 
                ["NO" "FLUSH"] ["QUEUE-ONLY"] |  "SCREEN" identifier 
             ["STARTING" "AT" string1 lin1 
             ["ENDING"   "AT" string1 lin2]] |  "SELECTION-SCREEN" identifier 
@@ -1105,18 +1107,18 @@ CALL = "CALL"(  "BADI" identifier"->" "(" identifier ")"
                                ["UPDATE" upd]) 
                               |["OPTIONS" "FROM" opt]) 
                              ["MESSAGES" "INTO" identifier]] ) |  "TRANSFORMATION" (trans|(name)) 
-                    ["PARAMETERS" (p1 = e1 p2 = e2 )|(identifier)] 
-                    ["OBJECTS"    (o1 = e1 o2 = e2 )|(identifier)] 
-                    ["OPTIONS"    (a1 = e1 a2 = e2 )] 
-                    "SOURCE" ("XML" src_xml) 
-                         | ((bn1 = e1 bn2 = e2 )|(identifier)) 
+                    ["PARAMETERS" ({Expression} |"("identifier")") ] 
+                    ["OBJECTS"    ({Expression} |"("identifier")") ] 
+                    ["OPTIONS"    {Expression} ] 
+                    "SOURCE" ("XML" identifier) 
+                         | (({Expression} |"("identifier")")) 
                     "RESULT" ("XML" rslt_xml) 
-                         | ( (bn1 = f1 bn2 = f2 )|(identifier) 
-                             ["AREA" "HANDLE" handle] ) ) ".".
+                         | ( ({Expression} |"("identifier")")) 
+                             ["AREA" "HANDLE" identifier ] ) ".".
 
-CATCH = "CATCH" "SYSTEM-EXCEPTIONS" [exc1 = number exc2 = number ] 
-                        ["OTHERS" = n_others]"." 
-  [Statements] 
+CATCH = "CATCH" "SYSTEM-EXCEPTIONS" {Expression}
+                        ["OTHERS" "=" identifier]"." 
+  [Statements]
 "ENDCATCH"".".
 
 CHECK = "CHECK" Expression|"SELECT-OPTIONS"".".
@@ -1130,35 +1132,35 @@ CLASS_POOL = "CLASS-POOL" ["MESSAGE-ID" mid]".".
 CLEAR = "CLEAR" identifier [ ("WITH" val ["IN" ("CHARACTER"|"BYTE" ) "MODE"]) 
            | ("WITH" "NULL") ]".".
 
-CLOSE = "CLOSE"(  "CURSOR" @identifier |  "DATASET" identifier ) ".".
+CLOSE = "CLOSE"(  "CURSOR" "@"identifier |  "DATASET" identifier ) ".".
 
-COLLECT = "COLLECT" identifier "INTO" identifier ( ["ASSIGNING" <fs> ["CASTING"]] 
+COLLECT = "COLLECT" identifier "INTO" identifier ( ["ASSIGNING" identifier ["CASTING"]] 
                      | ["REFERENCE" "INTO" identifier] )".".
 
 COMMIT = "COMMIT"(  "WORK" ["AND" "WAIT"] |  "CONNECTION" con ) ".".
 
-COMMUNICATION = "COMMUNICATION" ( ("INIT" "DESTINATION" dest) 
+COMMUNICATION = "COMMUNICATION" ( ("INIT" "DESTINATION" identifier) 
               | ("ALLOCATE") 
               | ("ACCEPT") 
               | ("SEND" "BUFFER" buf) 
-              | ("RECEIVE" "BUFFER" buf "DATAINFO" dat "STATUSINFO" stat) 
-              | ("DEALLOCATE") ) "ID" id 
-              ["RETURNCODE" rc] 
+              | ("RECEIVE" "BUFFER" identifier "DATAINFO" identifier "STATUSINFO" identifier) 
+              | ("DEALLOCATE") ) "ID" identifier 
+              ["RETURNCODE" identifier] 
               ["LENGTH" leng] 
-              ["RECEIVED" rec] 
+              ["RECEIVED" identifier] 
               ["HOLD"]".".
 
-COMPUTE = "COMPUTE" ["EXACT"] lhs =|?= rhs".".
+COMPUTE = "COMPUTE" ["EXACT"] identifier ["?"] "=" identifier".".
 
-CONCATENATE = "CONCATENATE" (identifier )|("LINES" "OF" identifier) 
-            "INTO" result 
+/*CONCATENATE = "CONCATENATE" ( identifier{identifier} |"LINES" "OF" identifier) 
+            "INTO" identifier 
             ["IN" ("CHARACTER"|"BYTE") "MODE"] 
             ["SEPARATED" "BY" sep] 
-            ["RESPECTING" "BLANKS"]".".
+            ["RESPECTING" "BLANKS"]".".*/
 
 CONDENSE = "CONDENSE" string1 ["NO-GAPS"]".".
 
-CONSTANTS = "CONSTANTS" const options".".
+/*CONSTANTS = "CONSTANTS" const options".".*/
 
 CONTROLS = "CONTROLS" contrl "TYPE" ( "TABLEVIEW" "USING" "SCREEN" identifier ) 
                    | ( "TABSTRIP" )".".
@@ -1194,17 +1196,17 @@ CREATE = "CREATE"(  "DATA" identifier [ "AREA" "HANDLE" handle ]
                            | ("WITH" "EMPTY" "KEY") ] 
                            ["INITIAL" "SIZE" number]) ) ] |  "OBJECT" identifier ["AREA" "HANDLE" handle] 
                    [ ["TYPE" class] 
-                      ["EXPORTING"  p1 = a1 p2 = a2 ] 
-                      ["EXCEPTIONS" exc1 = number exc2 = number  ["OTHERS" = n_others]] ] 
+                      ["EXPORTING"  Expression{Expression} ] 
+                      ["EXCEPTIONS" Expression{Expression}  ["OTHERS" "=" identifier]] ] 
                  | [ "TYPE" (name) 
-                     ( ["EXPORTING"  p1 = a1 p2 = a2 ] 
-                      ["EXCEPTIONS" exc1 = number exc2 = number  ["OTHERS" = n_others]]) 
+                     ( ["EXPORTING"  Expression{Expression}  ] 
+                      ["EXCEPTIONS" Expression{Expression}   ["OTHERS" "=" identifier]]) 
                    | (["PARAMETER-TABLE" identifier] 
-                      ["EXCEPTION-TABLE" etab]) ] |  "OBJECT" ole class ["NO" "FLUSH"] ["QUEUE-ONLY"] ) ".".
+                      ["EXCEPTION-TABLE" identifier]) ] |  "OBJECT" identifier identifier ["NO" "FLUSH"] ["QUEUE-ONLY"] ) ".".
 
-DELETE = "DELETE" "DATASET" identifier".".
+/*DELETE = "DELETE" "DATASET" identifier".".*/
 
-DEMAND = "DEMAND" val1 = f1 val2 = f2  
+DEMAND = "DEMAND" Expression{Expression}  
        "FROM" "CONTEXT" context_ref 
        ["MESSAGES" "INTO" identifier]".".
 
@@ -1231,7 +1233,7 @@ DETAIL = "DETAIL"".".
 
 DIVIDE = "DIVIDE" identifier "BY" identifier".".
 
-DIVIDE_CORRESPONDING = "DIVIDE-CORRESPONDING" identifier "BY" identifier".".
+DIVIDE_CORRESPONDING = "DIVIDE-CORRESPONDING" identifier "BY" identifier ".".
 
 EDITOR_CALL = "EDITOR-CALL" "FOR" ( ("REPORT" identifier ["DISPLAY-MODE"]) 
                 | (identifier ["TITLE" string1] 
@@ -1243,22 +1245,26 @@ END_OF_SELECTION = "END-OF-SELECTION"".".
 
 EXIT = "EXIT"(  "FROM" "SQL" |  "FROM" "STEP-LOOP" ) ".".
 
-EXPORT = "EXPORT" ( (p1 = identifier p2 = identifier ) 
-       | (p1 "FROM" identifier p2 "FROM" identifier ) 
-       | (identifier) ) 
-    "TO" ( ( "DATA" "BUFFER" xstr ) 
-       | ( "INTERNAL" "TABLE" identifier ) 
-       | ( "MEMORY" "ID" id ) 
-       | ( "DATABASE"      identifier(ar) ["FROM" identifier] ["CLIENT" cl] "ID" id ) 
-       | ( "SHARED" "MEMORY" identifier(ar) ["FROM" identifier] ["CLIENT" cl] "ID" id ) 
-       | ( "SHARED" "BUFFER" identifier(ar) ["FROM" identifier] ["CLIENT" cl] "ID" id )  ) 
-       [ "COMPRESSION" ( "ON" | "OFF" ) ]".".
+EXPORT = "EXPORT" ( 
+            Expression{Expression}
+       | identifier "FROM" identifier {identifier "FROM" identifier }
+       | "("identifier")" 
+       ) 
+            "TO" (
+              ( "DATA" "BUFFER" identifier ) 
+           | ( "INTERNAL" "TABLE" identifier ) 
+           | ( "MEMORY" "ID" identifier ) 
+           | ( "DATABASE"      identifier"("identifier")" ["FROM" identifier] identifier "ID" identifier ) 
+           | ( "SHARED" "MEMORY" identifier"("identifier")" ["FROM" identifier] ["CLIENT" identifier] "ID" identifier ) 
+           | ( "SHARED" "BUFFER" identifier"("identifier")" ["FROM" identifier] ["CLIENT" identifier] "ID" identifier )
+          ) 
+           [ "COMPRESSION" ( "ON" | "OFF" ) ]".".
 
-EXTRACT = "EXTRACT" [ header | field_group ]".".
+EXTRACT = "EXTRACT" ( identifier | identifier )".".
 
-FIELD_GROUPS = "FIELD-GROUPS" [ header | field_group ]".".
+FIELD_GROUPS = "FIELD-GROUPS" ( identifier | identifier ) ".".
 
-FIELD_SYMBOLS = "FIELD-SYMBOLS" <fs> ( Typing | ( "STRUCTURE" identifier "DEFAULT" identifier ) )".".
+FIELD_SYMBOLS = "FIELD-SYMBOLS" identifier ( Typing | ( "STRUCTURE" identifier "DEFAULT" identifier ) )".".
 
 FIELDS = "FIELDS" identifier".".
 
@@ -1276,21 +1282,29 @@ FIND = "FIND" [("FIRST" "OCCURRENCE")|("ALL" "OCCURRENCES") "OF"]
      | ["RESULTS" result_tab|result_wa] ) 
      ["SUBMATCHES" s2 ]".".
 
-FORMAT = "FORMAT" ["COLOR" ( ( [=] ( ( "COL_BACKGROUND" 
-                        | (1 | "COL_HEADING" ) 
-                        | (2 | "COL_NORMAL" ) 
-                        | (3 | "COL_TOTAL" ) 
-                        | (4 | "COL_KEY" ) 
-                        | (5 | "COL_POSITIVE" ) 
-                        | (6 | "COL_NEGATIVE" ) 
-                        | (7 | "COL_GROUP" ) ) ["ON"] ) 
-                      | "OFF") 
-              | (= string1) )] 
-       ["INTENSIFIED" [("ON"|"OFF")|(= flag)]] 
-       ["INVERSE"     [("ON"|"OFF")|(= flag)]] 
-       ["HOTSPOT"     [("ON"|"OFF")|(= flag)]] 
-       ["INPUT"       [("ON"|"OFF")|(= flag)]] 
-       ["FRAMES"      [("ON"|"OFF")|(= flag)]] 
+FORMAT = "FORMAT" ["COLOR" 
+        ( 
+            ( ["="] 
+                ( 
+                    ( "COL_BACKGROUND" 
+                        | ("1" | "COL_HEADING" ) 
+                        | ("2" | "COL_NORMAL" ) 
+                        | ("3" | "COL_TOTAL" ) 
+                        | ("4" | "COL_KEY" ) 
+                        | ("5" | "COL_POSITIVE" ) 
+                        | ("6" | "COL_NEGATIVE" ) 
+                        | ("7" | "COL_GROUP" ) 
+                    ) ["ON"] 
+                ) 
+                | "OFF"
+            ) 
+            | "=" string1
+         )] 
+       ["INTENSIFIED" [ ("ON"|"OFF")|("=" identifier) ] ] 
+       ["INVERSE"     [("ON"|"OFF")|("=" identifier)]] 
+       ["HOTSPOT"     [("ON"|"OFF")|("=" identifier)]] 
+       ["INPUT"       [("ON"|"OFF")|("=" identifier)]] 
+       ["FRAMES"      [("ON"|"OFF")|("=" identifier)]] 
        ["RESET"]".".
 
 FREE = "FREE"(  identifier |  "MEMORY" "ID" id |  "OBJECT" ole ["NO" "FLUSH"] ) ".".
@@ -1309,11 +1323,13 @@ GENERATE = "GENERATE" "SUBROUTINE" "POOL" identifier "NAME" identifier
   ["MESSAGE-ID" mid] 
   ["SHORTDUMP-ID" sid]".".
 
-GET = "GET"(  node ["LATE"] ["FIELDS" f2 ] |  "BADI" ( badi ["FILTERS" f1 = x1 f2 = x2 ] ) 
+
+
+GET = "GET"(  identifier ["LATE"] ["FIELDS" identifier ] |  "BADI" ( identifier ["FILTERS" Expression{Expression} ] ) 
        | ( badi "TYPE" (name) 
-              [ ("FILTERS" f1 = x1 f2 = x2 ) 
+              [ ("FILTERS" Exps ) 
               | ("FILTER-TABLE" ftab)] ) 
-              ["CONTEXT" con] |  "BIT" bitpos "OF" byte_string "INTO" val |  "CURSOR" ( ( "FIELD" field 
+              ["CONTEXT" con] |  "BIT" bitpos "OF" byte_string "INTO" identifier |  "CURSOR" ( ( "FIELD" identifier 
                 ["VALUE" val] 
                 ["LENGTH" number] 
                 [["DISPLAY"|"MEMORY"] "OFFSET" off] 
@@ -1322,37 +1338,37 @@ GET = "GET"(  node ["LATE"] ["FIELDS" f2 ] |  "BADI" ( badi ["FILTERS" f1 = x1 f
            | ( "LINE" number 
                 ["VALUE" val] 
                 ["LENGTH" number] 
-                [["DISPLAY"|"MEMORY"] "OFFSET" off] ) ) |  "DATASET" identifier ["POSITION" number] ["ATTRIBUTES" attr] |  "LOCALE" "LANGUAGE" identifier "COUNTRY" string1 "MODIFIER" string1 |  "PARAMETER" "ID" pid "FIELD" identifier |  "PF-STATUS" status ["PROGRAM" identifier] [EXCLUDINGfcode] |  "PROPERTY" "OF" ole attr = identifier ["NO" "FLUSH"] ["QUEUE-ONLY"] 
-                                ["EXPORTING" p1 = f1 p2 = f2 ] |  "REFERENCE" "OF" identifier "INTO" identifier |  "RUN" "TIME" "FIELD" rtime |  "TIME" ["FIELD" tim] |  "TIME" "STAMP" "FIELD" time_stamp ) ".".
+                [["DISPLAY"|"MEMORY"] "OFFSET" number] ) ) |  "DATASET" identifier ["POSITION" number] ["ATTRIBUTES" identifier] |  "LOCALE" "LANGUAGE" identifier "COUNTRY" string1 "MODIFIER" string1 |  "PARAMETER" "ID" pid "FIELD" identifier |  "PF-STATUS" status ["PROGRAM" identifier] [EXCLUDINGfcode] |  "PROPERTY" "OF" identifier identifier "=" identifier ["NO" "FLUSH"] ["QUEUE-ONLY"] 
+                                ["EXPORTING" Exps ] |  "REFERENCE" "OF" identifier "INTO" identifier |  "RUN" "TIME" "FIELD" identifier |  "TIME" ["FIELD" identifier] |  "TIME" "STAMP" "FIELD" identifier ) ".".
 
 HIDE = "HIDE" identifier".".
 
-IMPORT = "IMPORT"(  ( (p1 = identifier p2 = identifier ) 
-       | (p1 "TO" identifier  p2 "TO" identifier ) 
+IMPORT = "IMPORT"(  ( Exps 
+       | ( identifier "TO" identifier  {identifier "TO" identifier} ) 
        | (identifier) ) 
   "FROM" ( ( "DATA" "BUFFER" xstr ) 
        | ( "INTERNAL" "TABLE" identifier ) 
        | ( "MEMORY" "ID" id ) 
-       | ( "DATABASE"      identifier(ar) ["TO" identifier] ["CLIENT" cl] 
-                                   ("ID" id)|("MAJOR-ID" id1 ["MINOR-ID" id2]) ) 
-       | ( "SHARED" "MEMORY" identifier(ar) ["TO" identifier] ["CLIENT" cl] "ID" id ) 
-       | ( "SHARED" "BUFFER" identifier(ar) ["TO" identifier] ["CLIENT" cl] "ID" id ) ) 
+       | ( "DATABASE"      identifier(ar) ["TO" identifier] ["CLIENT" identifier] 
+                                   ("ID" id)|("MAJOR-ID" id1 ["MINOR-ID" identifier]) ) 
+       | ( "SHARED" "MEMORY" identifier"("identifier")" ["TO" identifier] ["CLIENT" identifier] "ID" identifier ) 
+       | ( "SHARED" "BUFFER" identifier"("identifier")" ["TO" identifier] ["CLIENT" identifier] "ID" identifier ) ) 
        [ ( ( ( (["ACCEPTING" "PADDING"] ["ACCEPTING" "TRUNCATION"]) 
              |  ["IGNORING" "STRUCTURE" "BOUNDARIES"] ) 
              [ "IGNORING" "CONVERSION" "ERRORS" 
-               ["REPLACEMENT" "CHARACTER" rc] ] ) 
+               ["REPLACEMENT" "CHARACTER" identifier] ] ) 
          | ["IN" "CHAR-TO-HEX" "MODE"] ) ] 
-       ["CODE" "PAGE" "INTO" cp] 
+       ["CODE" "PAGE" "INTO" identifier] 
        ["ENDIAN" "INTO" endian] |  "DIRECTORY" "INTO" identifier 
-  "FROM" "DATABASE" identifier(ar) ["TO" identifier] ["CLIENT" cl] "ID" id ) ".".
+  "FROM" "DATABASE" identifier"("identifier")" ["TO" identifier] ["CLIENT" identifier] "ID" identifier ) ".".
 
-INCLUDE = "INCLUDE"(  incl ["IF" "FOUND"] |  ( ("TYPE" struc_type) | ("STRUCTURE" identifier) ) 
-        ["AS" name ["RENAMING" "WITH" "SUFFIX" suffix]] ) ".".
+INCLUDE = "INCLUDE"(  identifier ["IF" "FOUND"] |  ( ("TYPE" identifier) | ("STRUCTURE" identifier) ) 
+        ["AS" name ["RENAMING" "WITH" "SUFFIX" string1]] ) ".".
 
-INFOTYPES = "INFOTYPES" nnnn ["NAME" name] 
+INFOTYPES = "INFOTYPES" identifier ["NAME" identifier] 
                ["OCCURS" number] 
-               ["MODE" N] 
-               ["VALID" "FROM" intlim1 "TO" intlim2] 
+               ["MODE" identifier] 
+               ["VALID" "FROM" Expression "TO" Expression] 
                ["AS" "PERSON" "TABLE"]".".
 
 INITIALIZATION = "INITIALIZATION"".".
@@ -1372,13 +1388,13 @@ INSERT = "INSERT"(  ( ("INTO" (identifier|"("Expression")")
   "INTO" ( ("TABLE" identifier) 
        | (identifier "INDEX" identifier) 
        | (identifier) ) 
-       [ ("ASSIGNING" <fs> ["CASTING"]) | ("REFERENCE" "INTO" identifier ) ] |  "REPORT" identifier "FROM" identifier 
-              ["MAXIMUM" "WIDTH" "INTO" wid] 
+       [ ("ASSIGNING" identifier ["CASTING"]) | ("REFERENCE" "INTO" identifier ) ] |  "REPORT" identifier "FROM" identifier 
+              ["MAXIMUM" "WIDTH" "INTO" identifier] 
               ( ["KEEPING" "DIRECTORY" "ENTRY"] 
               | ( ["PROGRAM" "TYPE" pt] 
                   ["FIXED-POINT" "ARITHMETIC" fp] 
-                  ["VERSION"|("UNICODE" "ENABLING") vs] ) 
-              | ["DIRECTORY" "ENTRY" dir] ) |  "TEXTPOOL" identifier "FROM" identifier "LANGUAGE" identifier ) ".".
+                  ["VERSION"|("UNICODE" "ENABLING") identifier ] ) 
+              | ["DIRECTORY" "ENTRY" string1] ) |  "TEXTPOOL" identifier "FROM" identifier "LANGUAGE" identifier ) ".".
 
 INTERFACE = "INTERFACE"(  identifier"." 
   [components] 
@@ -1391,7 +1407,7 @@ INTERFACES = "INTERFACES" intf
   ( ( ["ABSTRACT" "METHODS" meth2 ] 
       ["FINAL" "METHODS" meth2 ] ) 
     | ["ALL" "METHODS" ("ABSTRACT"|"FINAL")] ) 
-  ["DATA" "VALUES" attr1 = val1 attr2 = val2 ]".".
+  ["DATA" "VALUES" Exps ]".".
 
 LEAVE = "LEAVE"(  "LIST-PROCESSING" |  "PROGRAM" |  ( "SCREEN" | ("TO" "SCREEN" identifier) ) |  "TO" "LIST-PROCESSING" ["AND" "RETURN" "TO" "SCREEN" identifier] |  "TO" ( ("TRANSACTION" ta) | ("CURRENT" "TRANSACTION") ) 
          ["AND" "SKIP" "FIRST" "SCREEN"] ) ".".
@@ -1475,20 +1491,20 @@ PRINT_CONTROL = "PRINT-CONTROL"   ( "INDEX-LINE" index_line )
 
 PROGRAM = "PROGRAM" identifier ["NO" "STANDARD" "PAGE" "HEADING"] 
              ["LINE-SIZE" number] 
-             ["LINE-COUNT" page_lines[(footer_lines)]] 
+             ["LINE-COUNT" number["("number")"]] 
              ["MESSAGE-ID" mid] 
              ["REDUCED" "FUNCTIONALITY"]".".
 
 RANGES = "RANGES" identifier "FOR" identifier ["OCCURS" number]".".
 
-RECEIVE = "RECEIVE" "RESULTS" "FROM" "FUNCTION" func 
+RECEIVE = "RECEIVE" "RESULTS" "FROM" "FUNCTION" identifier 
                 ["KEEPING" "TASK"] 
-                ["IMPORTING" p1 = a1 p2 = a2 ] 
-                ["TABLES" t1 = identifier t2 = identifier ] 
-                ["EXCEPTIONS" [exc1 = number exc2 = number ] 
-                            [system_failure = ns ["MESSAGE" smess]] 
-                            [communication_failure = nc ["MESSAGE" cmess]] 
-                            ["OTHERS" = n_others]]  ".".
+                ["IMPORTING" Exps ] 
+                ["TABLES" Exps ] 
+                ["EXCEPTIONS" {Expression} 
+                            [identifier "=" identifier ["MESSAGE" string1]] 
+                            [identifier "=" identifier ["MESSAGE" string1]] 
+                            ["OTHERS" "=" identifier]]  ".".
 
 REFRESH = "REFRESH"(  identifier |  "CONTROL" contrl "FROM" "SCREEN" identifier |  identifier "FROM" "TABLE" identifier ) ".".
 
@@ -1532,41 +1548,41 @@ SCROLL = "SCROLL" "LIST" [ ( "TO" "COLUMN" string1 )
               | ( ("FORWARD"|"BACKWARD") [number "PAGES"] ) ] 
             ["INDEX" identifier]".".
 
-SELECT_OPTIONS = "SELECT-OPTIONS" selcrit "FOR" (identifier|(name)) 
+SELECT_OPTIONS = "SELECT-OPTIONS" selcrit "FOR" NameOrRef
               ["OBLIGATORY"|"NO-DISPLAY"] 
               ["VISIBLE" "LENGTH" vlen] 
               ["NO-EXTENSION"] 
               ["NO" "INTERVALS"] 
               ["MODIF" "ID" modid] 
-              ["DEFAULT" val1 ["TO" val2] ["OPTION" opt] ["SIGN" sign]] 
+              ["DEFAULT" val1 ["TO" identifier] ["OPTION" opt] ["SIGN" identifier]] 
               ["LOWER" "CASE"] 
-              ["MATCHCODE" "OBJECT" search_help] 
+              ["MATCHCODE" "OBJECT" identifier] 
               ["MEMORY" "ID" pid] 
               ["NO" "DATABASE" "SELECTION"] 
               ["HELP-REQUEST"  ["FOR" ("LOW"|"HIGH")]] 
               ["VALUE-REQUEST" ["FOR" ("LOW"|"HIGH")]]".".
 
-SELECTION_SCREEN = "SELECTION-SCREEN" "TAB" (number) tab "USER-COMMAND" fcode 
+SELECTION_SCREEN = "SELECTION-SCREEN" "TAB" (number) identifier "USER-COMMAND" identifier 
                 ["DEFAULT" ["PROGRAM" identifier] "SCREEN" identifier] 
-                ["MODIF" "ID" modid] 
-                ["FOR" ("TABLE"|"NODE") node ["ID" id]]".".
+                ["MODIF" "ID" identifier] 
+                ["FOR" ("TABLE"|"NODE") identifier ["ID" identifier]]".".
 
-SET = "SET"(  "ASSOCIATION" mesh_path ( = identifier ) 
+SET = "SET"(  "ASSOCIATION" identifier ( "=" identifier ) 
                         | ( "LIKE" identifier    ) 
-                        | ( "INITIAL" ) |  "BIT" bitpos "OF" byte_string ["TO" val] |  "BLANK" "LINES" ("ON"|"OFF") |  "COUNTRY" string1 |  "CURSOR" ( ( "FIELD" field ["LINE" number] 
-                     [["DISPLAY"|"MEMORY"] "OFFSET" off] ) 
+                        | ( "INITIAL" ) |  "BIT" number "OF" string1 ["TO" identifier] |  "BLANK" "LINES" ("ON"|"OFF") |  "COUNTRY" string1 |  "CURSOR" ( ( "FIELD" identifier ["LINE" number] 
+                     [["DISPLAY"|"MEMORY"] "OFFSET" identifier] ) 
            | ( "LINE" number 
-                    [["DISPLAY"|"MEMORY"] "OFFSET" off] ) 
+                    [["DISPLAY"|"MEMORY"] "OFFSET" identifier] ) 
            | ( string1 lin ) ) |  "DATASET" dest ["POSITION" (number|("END" "OF" "FILE"))] 
-                 ["ATTRIBUTES" attr] |  "EXTENDED" "CHECK" ("ON"|"OFF") |  "HANDLER" handler2  
+                 ["ATTRIBUTES" attr] |  "EXTENDED" "CHECK" ("ON"|"OFF") |  "HANDLER" identifier  
             ["FOR" identifier|("ALL" "INSTANCES")] 
             ["ACTIVATION" act] |  "HOLD" "DATA" ("ON"|"OFF") |  "LANGUAGE" identifier |  "LEFT" "SCROLL-BOUNDARY" ["COLUMN" string1] |  "LOCALE" "LANGUAGE" identifier ["COUNTRY" string1] ["MODIFIER" string1] |  "MARGIN" macol [marow] |  "PARAMETER" "ID" pid "FIELD" identifier |  "PF-STATUS" status ["OF" "PROGRAM" identifier] 
                      ["EXCLUDING" fcode] 
                      ["IMMEDIATELY"] |  "PROPERTY" "OF" ole attr = identifier ["NO" "FLUSH"] 
                                 ["EXPORTING" p1 = f1 p2 = f2 ] |  "RUN" "TIME" "ANALYZER" ("ON"|"OFF") |  "RUN" "TIME" "CLOCK" "RESOLUTION" ("HIGH"|"LOW") |  "SCREEN" identifier |  "TITLEBAR" string1 ["OF" "PROGRAM" identifier] 
-                   ["WITH" string1  string1] |  "UPDATE" "TASK" "LOCAL" |  "USER-COMMAND" fcode ) ".".
+                   ["WITH" string1  string1] |  "UPDATE" "TASK" "LOCAL" |  "USER-COMMAND" identifier ) ".".
 
-SHIFT = "SHIFT" identifier [ ( [ ("BY" num "PLACES") | ("UP" "TO" substring) ] 
+SHIFT = "SHIFT" identifier [ ( [ ("BY" number "PLACES") | ("UP" "TO" string1) ] 
                  ["LEFT"|"RIGHT"] ["CIRCULAR"] ) 
            | ( ("LEFT" "DELETING" "LEADING") 
              | ("RIGHT" "DELETING" "TRAILING") mask) ] 
@@ -1575,7 +1591,7 @@ SHIFT = "SHIFT" identifier [ ( [ ("BY" num "PLACES") | ("UP" "TO" substring) ]
 SKIP = "SKIP" ( [number] 
      | ("TO" "LINE" number) )".".
 
-STATICS = "STATICS" identifier options".".
+STATICS = "STATICS" identifier options ".".
 
 STOP = "STOP"".".
 
