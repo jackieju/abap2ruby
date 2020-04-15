@@ -253,17 +253,15 @@ WITH = "WITH"
 TABLES = "TABLES" ["*"] identifier "." . 
 
  
-MOVE =  "MOVE" 
+stMOVE =  "MOVE" 
           ["EXACT"] Expression  ["TO"|"?TO"] Expression
      [  "PERCENTAGE" Expression ["LEFT"|"RIGHT"] ]
         
     . 
     
-    
-NN = "AA" "at" (["PPP"] number ["LEFT"|"CENTER"] string1  | CC ).
-CC =  identifier ["RIGHT"] .
+
  
-APPEND = "APPEND" (identifier 
+stAPPEND = "APPEND" (identifier 
         | {"INITIAL" "LINE"} 
         | {"LINES" "OF" identifier ["FROM" identifier] ["TO" identifier] ["USING" "KEY" string1]}
          )
@@ -588,11 +586,11 @@ CaseStatement =
 
 AUTHORITY_CHECK_ITEM = "ID" identifier ("FIELD" Expression|"DUMMY") .
 
-AUTHORITY_CHECK = "AUTHORITY-CHECK" "OBJECT" identifier ["FOR" "USER" string1] 
+stAUTHORITY_CHECK = "AUTHORITY-CHECK" "OBJECT" identifier ["FOR" "USER" string1] 
                      AUTHORITY_CHECK_ITEM { AUTHORITY_CHECK_ITEM }
                       "." .
                       
-DELETE = "DELETE"(  "DATASET" identifier |  ( ( "FROM" Expression
+stDELETE = "DELETE"(  "DATASET" identifier |  ( ( "FROM" Expression
            ["USING" "CLIENT" identifier] | ["CLIENT" "SPECIFIED"] 
            ["CONNECTION" (identifier|"("Expression")")] 
            ["WHERE" Expression] ["ORDER" "BY" identifier{"," identifier} ["OFFSET" number]] ["UP" "TO" number "ROWS"] ) 
@@ -616,18 +614,19 @@ DELETE = "DELETE"(  "DATASET" identifier |  ( ( "FROM" Expression
 
 VARYING = "VARYING" identifier "FROM" identifier "NEXT" identifier ["RANGE" Expression] .
 
-DO = "DO" [number "TIMES"] {VARYING} "." 
+stDO = "DO" [number "TIMES"] {VARYING} "." 
   {Statement}
 "ENDDO"".".
 
-EVENT_EXP_ITEM = "VALUE"(Expression) Typing 
+stEVENT_EXP_ITEM = "VALUE"(Expression) Typing 
                          ["OPTIONAL"|("DEFAULT" Expression)] .
     
 Event_options = "EXPORTING" EVENT_EXP_ITEM {EVENT_EXP_ITEM} .
-EVENTS = "EVENTS" identifier [ Event_options ]".".
+
+stEVENTS = "EVENTS" identifier [ Event_options ]".".
 
 
-MODIFY = "MODIFY"(  identifier|"("Expression")" 
+stMODIFY = "MODIFY"(  identifier|"("Expression")" 
        ["USING" "CLIENT" identifier] | ["CLIENT" "SPECIFIED"] 
        ["CONNECTION" (identifier|"("Expression")")] 
        "FROM" ( identifier|("TABLE" identifier) ) 
@@ -653,13 +652,13 @@ MODIFY = "MODIFY"(  identifier|"("Expression")"
        |
          "SCREEN" "FROM" identifier ) ".".
 
-ON = "ON" "CHANGE" "OF" identifier {"OR" identifier }"." 
+stON = "ON" "CHANGE" "OF" identifier {"OR" identifier }"." 
   Statements 
 "ENDON"".".
 
-SQLCondition = Expression .
+stSQLCondition = Expression .
 
-OPEN = "OPEN" ( 
+stOPEN = "OPEN" ( 
      "CURSOR" ["WITH" "HOLD"] "@"identifier "FOR" 
       [ "WITH"    ("+" identifier "AS" identifier) {"," "+" identifier "AS" identifier} ]
   "SELECT" (
@@ -695,27 +694,27 @@ OPEN = "OPEN" (
   ["IGNORING" "CONVERSION" "ERRORS"] 
   ["REPLACEMENT" "CHARACTER" char] ) ".".
 
-FETCH = "FETCH" "NEXT" "CURSOR" identifier 
+stFETCH = "FETCH" "NEXT" "CURSOR" identifier 
     ( ( "INTO" ( (["CORRESPONDING" "FIELDS" "OF"] identifier) | identifier{"," identifier} ) ) 
     | ( "INTO"|"APPENDING" ["CORRESPONDING" "FIELDS" "OF"] "TABLE" identifier 
                        ["PACKAGE" "SIZE" number] ) ) 
       [ "EXTENDED" "RESULT" "@"identifier ]".".
 
-ProvideFields = "FIELDS" ("*"| identifier {identifier}) 
+stProvideFields = "FIELDS" ("*"| identifier {identifier}) 
                "FROM" identifier "INTO" identifier "VALID" identifier  
                "BOUNDS" number "AND" number 
                ["WHERE" Expression] .
 
 
                
-PROVIDE = "PROVIDE" ProvideFields {ProvideFields}
+stPROVIDE = "PROVIDE" ProvideFields {ProvideFields}
        
         "BETWEEN" number "AND" number 
         ["INCLUDING" "GAPS"]"." 
   Statements 
 "ENDPROVIDE"".".
                        
-READ = "READ" (
+stREAD = "READ" (
       "DATASET" identifier "INTO" identifier ["MAXIMUM" "LENGTH" number] 
                             [["ACTUAL"] "LENGTH" number] |  ( ("LINE" number [("OF" "PAGE" number)|("OF" "CURRENT" "PAGE")] ["INDEX" identifier]) 
                                                             | ("CURRENT" "LINE") ) 
@@ -749,14 +748,14 @@ READ = "READ" (
      "TEXTPOOL" identifier "INTO" identifier "LANGUAGE" identifier ) ".".
        
 
-SORT = "SORT" identifier ["STABLE"] 
+stSORT = "SORT" identifier ["STABLE"] 
           ( ( ["ASCENDING"|"DESCENDING"] 
               ["AS" "TEXT"] 
               ["BY" (identifier ["ASCENDING"|"DESCENDING"] ["AS" "TEXT"]) {identifier ["ASCENDING"|"DESCENDING"] ["AS" "TEXT"]}] ) 
           | ( ["BY" (identifier)] ) 
           | ( ["BY" Expression] ) )".".
 
-SUBMIT = "SUBMIT" (identifier|"("identifier")") 
+stSUBMIT = "SUBMIT" (identifier|"("identifier")") 
   ["USING" "SELECTION-SCREEN" identifier] 
   ["VIA" "SELECTION-SCREEN"] 
   ["USING" "SELECTION-SET" identifier] 
@@ -777,7 +776,7 @@ SUBMIT = "SUBMIT" (identifier|"("identifier")")
   [["USER" string1] "VIA" "JOB" identifier "NUMBER" number ["LANGUAGE" identifier]] 
   ["AND" "RETURN"]".".
   
-TRY = "TRY""." 
+stTRY = "TRY""." 
     {Statement}
   {
       "CATCH" ["BEFORE" "UNWIND"] identifier  ["INTO" identifier]"." 
@@ -792,7 +791,7 @@ Lob_handle_type =  ( "READER"|"LOCATOR"|"LOB" "HANDLE"|"WRITER" )
                    "FOR" 
                    ( "COLUMNS" identifier {identifier}  |  "ALL" ["OTHER"] ["BLOB"|"CLOB"] "COLUMNS" ) .
                                
-ASSOCIATION = "ASSOCIATION" identifier "TO" identifier "ON" identifier "=" identifier 
+stASSOCIATION = "ASSOCIATION" identifier "TO" identifier "ON" identifier "=" identifier 
                                           { "AND" identifier "=" identifier }
                                           ["USING" "KEY" identifier] .
 Types_mesh_stmt =   "TYPES"  identifier ( 
@@ -802,7 +801,7 @@ Types_mesh_stmt =   "TYPES"  identifier (
                {ASSOCIATION} 
                "." .
                                                          
-TYPES = "TYPES"(  identifier[(number)] ("TYPE" ( (identifier ["LENGTH" number] 
+stTYPES = "TYPES"(  identifier[(number)] ("TYPE" ( (identifier ["LENGTH" number] 
                                       ["DECIMALS" number]) 
                          | (["LINE" "OF"] identifier) 
                          | ("REF" "TO" identifier) 
@@ -862,7 +861,7 @@ TYPES = "TYPES"(  identifier[(number)] ("TYPE" ( (identifier ["LENGTH" number]
   ForStatement         = "for"  "(" [ Expression ] ";"   [ Expression ]   ";"  [ Expression  ] ")" Statement .
 
 
-UPDATE = "UPDATE" Expression
+stUPDATE = "UPDATE" Expression
        ["USING" "CLIENT" identifier] | ["CLIENT" "SPECIFIED"] 
        ["CONNECTION" Expression] 
        ( 
@@ -872,7 +871,7 @@ UPDATE = "UPDATE" Expression
            ( "FROM" identifier|("TABLE" identifier) )
        )".".
        
-WHILE = "WHILE" Expression 
+stWHILE = "WHILE" Expression 
       {
           "VARY" identifier "FROM" identifier "NEXT" identifier ["RANGE" Expression] 
       }"." 
@@ -1386,7 +1385,7 @@ INSERT = "INSERT"(  ( ("INTO" (identifier|"("Expression")")
        | ( (identifier|"("Expression")")
            ["USING" "CLIENT" identifier] | ["CLIENT" "SPECIFIED"] 
            ["CONNECTION" (identifier|"("Expression")")] 
-           "FROM" identifier|("TABLE" identifier ["ACCEPTING" "DUPLICATE" "KEYS"])|( "SELECT" subquery_clauses ) ) ) |  identifier  "INTO"  identifier  |  ( identifier 
+           "FROM" identifier|("TABLE" identifier ["ACCEPTING" "DUPLICATE" "KEYS"])|( SELECT ) ) ) |  identifier  "INTO"  identifier  |  ( identifier 
        | ("INITIAL" "LINE") 
        | ("LINES" "OF" identifier ["FROM" identifier] ["TO" identifier] ["USING" "KEY" NameOrRef]) ) 
   "INTO" ( ("TABLE" identifier) 
@@ -1558,7 +1557,7 @@ SELECT_OPTIONS = "SELECT-OPTIONS" identifier "FOR" NameOrRef
               ["NO-EXTENSION"] 
               ["NO" "INTERVALS"] 
               ["MODIF" "ID" identifier] 
-              ["DEFAULT" string1 ["TO" identifier] ["OPTION" opt] ["SIGN" identifier]] 
+              ["DEFAULT" string1 ["TO" identifier] ["OPTION" Expression] ["SIGN" identifier]] 
               ["LOWER" "CASE"] 
               ["MATCHCODE" "OBJECT" identifier] 
               ["MEMORY" "ID" identifier] 
