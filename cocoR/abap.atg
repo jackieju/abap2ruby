@@ -69,16 +69,16 @@ PRODUCTIONS
   
                          (
                               VariableDefineStatement
-                             |  WriteStatement 
+                             | WriteStatement 
                              | AssignmentStatement 
                              | BreakStatement
                              | ContinueStatement
-                             | DO
+                             | stDO
                              | ForStatement
                              | IfStatement  
                              | NullStatement
                              |  ReturnStatement 
-                             |  WHILE 
+                             |  stWHILE 
                              |  LoopStatement 
                              |  CaseStatement
                              |  CallFunctionStatement
@@ -93,164 +93,164 @@ PRODUCTIONS
                              | MessasgeStatement
                              | RefreshStatement
                              | SearchStatement
-                             | CONCATENATE
-                             | APPEND
-                             | SPLIT
-                             | RAISE
-                             | CONSTANTS
-                             | NN
-                             | MOVE
-                             | WITH
-                             | TABLES
-                             | AUTHORITY_CHECK
-                             | DELETE
-                             | EVENTS
-                             | MODIFY
-                             | ON
-                             | OPEN
-                             | FETCH
-                             | PROVIDE
-                             | READ
-                             | SORT
-                             | SUBMIT
-                             | INCLUDE
-                             | TRY
-                       /*      | STRUCTURE
-                             | TYPE
-                             | UPDATE*/
-                             | ADD
-                             | ADD_CORRESPONDING
-                             | ALIASES
-                             | ASSERT
-                             | ASSIGN
-                            /* | AT*/
-                             | BACK
-                             | BREAK_POINT
-                             | CALL
-                             | CATCH
-                             | CHECK
-                             | CLASS_DATA
-                             | CLASS_EVENTS
-                             | CLASS_POOL
-                             | CLEAR
-                             | CLOSE
-                             | COLLECT
-                             | COMMIT
-                           /*  | COMMUNICATION*/
-                             | COMPUTE
-                             | CONCATENATE
-                             | CONDENSE
-                             | CONSTANTS
-                             | CONTROLS
-                             | CONVERT
-                             | CREATE
-                             | DELETE
-                             | DEMAND
-                             | DESCRIBE
-                             | DETAIL
-                             | DIVIDE
-                             | DIVIDE_CORRESPONDING
-                             | EDITOR_CALL
-                             | END_OF_PAGE
-                             | END_OF_SELECTION
-                             | EXIT
-                             | EXPORT
-                             | EXTRACT
-                             | FIELD_GROUPS
-                             | FIELD_SYMBOLS
-                             | FIELDS
-                             | FIND
-                             | FORMAT
-                             | FREE
-                             | FUNCTION_POOL
-                             | GENERATE
-                             | GET
-                             | HIDE
-                             | IMPORT
-                             | INCLUDE
-                             | INFOTYPES
-                             | INITIALIZATION
-                             | INPUT
-                             | INSERT
-                             | INTERFACE
-                             | INTERFACE_POOL
-                             | INTERFACES
-                             | LEAVE
-                             | LOAD_OF_PROGRAM
-                             | LOCAL
-                             | LOG_POINT
-                             | MAXIMUM
-                             | MINIMUM
-                             | MODULE
-                             | MULTIPLY
-                             | MULTIPLY_CORRESPONDING
-                             | NEW_LINE
-                             | NEW_PAGE
-                             | NEW_SECTION
-                             | NODES
-                             | OVERLAY
-                             | PACK
-                             | PARAMETERS
-                             | PERFORM
-                             | POSITION
-                             | PRINT_CONTROL
-                             | PROGRAM
-                             | RANGES
-                             | RECEIVE
-                             | REFRESH
-                             | REJECT
-                             | REPLACE
-                             | RESERVE
-                             | RESUME
-                             | RETRY
-                             | RETURN
-                             | ROLLBACK
-                             | SCROLL
-                             | SELECT_OPTIONS
-                             | SELECTION_SCREEN
-                             | SET
-                             | SHIFT
-                             | SKIP
-                             | STATICS
-                             | STOP
-                             | SUBTRACT
-                             | SUBTRACT_CORRESPONDING
-                             | SUM
-                             | SUMMARY
-                             | SUMMING
-                             | SUPPLY
-                             | SUPPRESS
-                             | SYNTAX_CHECK
-                             | TEST_INJECTION
-                             | TEST_SEAM
-                             | TOP_OF_PAGE
-                             | TRANSFER
-                             | TRANSLATE
-                             | TRUNCATE
-                             | TYPE_POOL
-                             | TYPE_POOLS
-                             | ULINE
-                             | UNASSIGN
-                             | UNPACK
-                             | UPDATE
-                             | WAIT
-                             | WINDOW
+                             | stCONCATENATE
+                             | stAPPEND
+                             | stSPLIT
+                             | stRAISE
+                             | stCONSTANTS
+                             | stMOVE
+                             | stWITH
+                             | stTABLES
+                             | stAUTHORITY_CHECK
+                             | stDELETE
+                             | stEVENTS
+                             | stMODIFY
+                             | stON
+                             | stOPEN
+                             | stFETCH
+                             | stPROVIDE
+                             | stREAD
+                             | stSORT
+                             | stSUBMIT
+                             | stINCLUDE
+                             | stTRY
+                       /*    | STRUCTURE
+                             | stTYPE
+                             | stUPDATE*/
+                             | stADD
+                             | stADD_CORRESPONDING
+                             | stALIASES
+                             | stASSERT
+                             | stASSIGN
+                            /* |AT*/
+                             | stBACK
+                             | stBREAK_POINT
+                             | stCALL
+                             | stCATCH
+                             | stCHECK
+                             | stCLASS_DATA
+                             | stCLASS_EVENTS
+                             | stCLASS_POOL
+                             | stCLEAR
+                             | stCLOSE
+                             | stCOLLECT
+                             | stCOMMIT
+                           /* | COMMUNICATION*/
+                             | stCOMPUTE
+                             | stCONCATENATE
+                             | stCONDENSE
+                             | stCONSTANTS
+                             | stCONTROLS
+                             | stCONVERT
+                             | stCREATE
+                             | stDELETE
+                             | stDEMAND
+                             | stDESCRIBE
+                             | stDETAIL
+                             | stDIVIDE
+                             | stDIVIDE_CORRESPONDING
+                             | stEDITOR_CALL
+                             | stEND_OF_PAGE
+                             | stEND_OF_SELECTION
+                             | stEXIT
+                             | stEXPORT
+                             | stEXTRACT
+                             | stFIELD_GROUPS
+                             | stFIELD_SYMBOLS
+                             | stFIELDS
+                             | stFIND
+                             | stFORMAT
+                             | stFREE
+                             | stFUNCTION_POOL
+                             | stGENERATE
+                             | stGET
+                             | stHIDE
+                             | stIMPORT
+                             | stINCLUDE
+                             | stINFOTYPES
+                             | stINITIALIZATION
+                             | stINPUT
+                             | stINSERT
+                             | stINTERFACE
+                             | stINTERFACE_POOL
+                             | stINTERFACES
+                             | stLEAVE
+                             | stLOAD_OF_PROGRAM
+                             | stLOCAL
+                             | stLOG_POINT
+                             | stMAXIMUM
+                             | stMINIMUM
+                             | stMODULE
+                             | stMULTIPLY
+                             | stMULTIPLY_CORRESPONDING
+                             | stNEW_LINE
+                             | stNEW_PAGE
+                             | stNEW_SECTION
+                             | stNODES
+                             | stOVERLAY
+                             | stPACK
+                             | stPARAMETERS
+                             | stPERFORM
+                             | stPOSITION
+                             | stPRINT_CONTROL
+                             | stPROGRAM
+                             | stRANGES
+                             | stRECEIVE
+                             | stREFRESH
+                             | stREJECT
+                             | stREPLACE
+                             | stRESERVE
+                             | stRESUME
+                             | stRETRY
+                             | stRETURN
+                             | stROLLBACK
+                             | stSCROLL
+                             | stSELECT_OPTIONS
+                             | stSELECTION_SCREEN
+                             | stSET
+                             | stSHIFT
+                             | stSKIP
+                             | stSTATICS
+                             | stSTOP
+                             | stSUBTRACT
+                             | stSUBTRACT_CORRESPONDING
+                             | stSUM
+                             | stSUMMARY
+                             | stSUMMING
+                             | stSUPPLY
+                             | stSUPPRESS
+                             | stSYNTAX_CHECK
+                             | stTEST_INJECTION
+                             | stTEST_SEAM
+                             | stTOP_OF_PAGE
+                             | stTRANSFER
+                             | stTRANSLATE
+                             | stTRUNCATE
+                             | stTYPE_POOL
+                             | stTYPE_POOLS
+                             | stULINE
+                             | stUNASSIGN
+                             | stUNPACK
+                             | stUPDATE
+                             | stWAIT
+                             | stWINDOW
+                             | stSELECT
                          )
                            
  .
  
-SELECT = "SELECT" ".".
+stSELECT = "SELECT" ".".
 
-WITHLINE =  "+" identifier [( identifier {"," identifier} )] "AS" identifier {"," "+" identifier [( identifier {"," identifier} )] "AS" identifier}
+Withline =  "+" identifier [( identifier {"," identifier} )] "AS" identifier {"," "+" identifier [( identifier {"," identifier} )] "AS" identifier}
    SELECT "." . 
 
-WITH = "WITH" 
-  WITHLINE { WITHLINE }
+stWITH = "WITH" 
+  Withline { Withline }
  
 "ENDWITH".
  
  
-TABLES = "TABLES" ["*"] identifier "." . 
+stTABLES = "TABLES" ["*"] identifier "." . 
 
  
 stMOVE =  "MOVE" 
@@ -269,7 +269,7 @@ stAPPEND = "APPEND" (identifier
     ["SORTED" "BY" string1] 
     [ ("ASSIGNING" string1 ["CASTING"] | "REFERENCE" "INTO" identifier ) ] "." .
  
- CONCATENATE = "CONCATENATE" (identifier {identifier}
+stCONCATENATE = "CONCATENATE" (identifier {identifier}
              | "LINES" "OF" identifier
              )
              "INTO" identifier 
@@ -277,7 +277,7 @@ stAPPEND = "APPEND" (identifier
              ["SEPARATED" "BY" string1] 
              ["RESPECTING" "BLANKS"] ".".
  
- SearchStatement = "SEARCH" identifier "FOR" string1 
+SearchStatement = "SEARCH" identifier "FOR" string1 
       ["IN" ("CHARACTER"|"BYTE") "MODE"] 
       ["STARTING" "AT" Expression] ["ENDING" "AT" Expression] 
       ["ABBREVIATED"] 
@@ -316,7 +316,7 @@ DescribeStatement = "DESCRIBE" (
         )
         "." .
 
-RAISE = "RAISE" (identifier
+stRAISE = "RAISE" (identifier
 |  "EVENT" identifier ["EXPORTING" Expression {Expression}]
 | ["RESUMABLE"] "EXCEPTION" 
   [  
@@ -480,7 +480,7 @@ VariableDefineStatement =  ("DATA"|"STATICS" ) ( identifier { "(" number  ")" }
 
 
 
-CONSTANTS = "CONSTANTS" identifier ( TypeDes | 
+stCONSTANTS = "CONSTANTS" identifier ( TypeDes | 
                LikeDes
                 ) "VALUE" { Expression | "IS" "INITIAL" } "." .
 
@@ -618,10 +618,10 @@ stDO = "DO" [number "TIMES"] {VARYING} "."
   {Statement}
 "ENDDO"".".
 
-stEVENT_EXP_ITEM = "VALUE"(Expression) Typing 
+Event_exp_item = "VALUE"(Expression) Typing 
                          ["OPTIONAL"|("DEFAULT" Expression)] .
     
-Event_options = "EXPORTING" EVENT_EXP_ITEM {EVENT_EXP_ITEM} .
+Event_options = "EXPORTING" Event_exp_item {Event_exp_item} .
 
 stEVENTS = "EVENTS" identifier [ Event_options ]".".
 
@@ -656,7 +656,7 @@ stON = "ON" "CHANGE" "OF" identifier {"OR" identifier }"."
   Statements 
 "ENDON"".".
 
-stSQLCondition = Expression .
+SQLCondition = Expression .
 
 stOPEN = "OPEN" ( 
      "CURSOR" ["WITH" "HOLD"] "@"identifier "FOR" 
@@ -700,7 +700,7 @@ stFETCH = "FETCH" "NEXT" "CURSOR" identifier
                        ["PACKAGE" "SIZE" number] ) ) 
       [ "EXTENDED" "RESULT" "@"identifier ]".".
 
-stProvideFields = "FIELDS" ("*"| identifier {identifier}) 
+ProvideFields = "FIELDS" ("*"| identifier {identifier}) 
                "FROM" identifier "INTO" identifier "VALID" identifier  
                "BOUNDS" number "AND" number 
                ["WHERE" Expression] .
@@ -791,17 +791,17 @@ Lob_handle_type =  ( "READER"|"LOCATOR"|"LOB" "HANDLE"|"WRITER" )
                    "FOR" 
                    ( "COLUMNS" identifier {identifier}  |  "ALL" ["OTHER"] ["BLOB"|"CLOB"] "COLUMNS" ) .
                                
-stASSOCIATION = "ASSOCIATION" identifier "TO" identifier "ON" identifier "=" identifier 
+Association = "ASSOCIATION" identifier "TO" identifier "ON" identifier "=" identifier 
                                           { "AND" identifier "=" identifier }
                                           ["USING" "KEY" identifier] .
 Types_mesh_stmt =   "TYPES"  identifier ( 
                   "TYPE" (["REF" "TO"] identifier)|identifier 
                   | 
                   "LIKE" (["REF" "TO"] identifier      )|identifier     ) 
-               {ASSOCIATION} 
+               {Association} 
                "." .
                                                          
-stTYPES = "TYPES"(  identifier[(number)] ("TYPE" ( (identifier ["LENGTH" number] 
+Types = "TYPES"(  identifier[(number)] ("TYPE" ( (identifier ["LENGTH" number] 
                                       ["DECIMALS" number]) 
                          | (["LINE" "OF"] identifier) 
                          | ("REF" "TO" identifier) 
@@ -841,7 +841,7 @@ stTYPES = "TYPES"(  identifier[(number)] ("TYPE" ( (identifier ["LENGTH" number]
                              [("WITH"|"WITHOUT") "FURTHER" "SECONDARY" "KEYS"] 
                              ["INITIAL" "SIZE" number]) 
                            | ("RANGE" "OF" identifier ["INITIAL" "SIZE" number]) )) |  "BEGIN" "OF" identifier "." 
-  {TYPES|INCLUDE}
+  {Types|stINCLUDE}
  
  
 "DATA" "END" "OF" identifier
@@ -1021,20 +1021,20 @@ MethodsStatement = ("METHODS" | "CLASS-METHODS") identifier ( ["ABSTRACT"|"FINAL
   "." . 
   
   /*** copy from convert_result ***/
-ADD = "ADD"(  identifier "TO" identifier |  ( ( identifier "THEN" identifier "UNTIL" identifier 
+stADD = "ADD"(  identifier "TO" identifier |  ( ( identifier "THEN" identifier "UNTIL" identifier 
       ( ("TO" identifier) | ("GIVING" identifier ["ACCORDING" "TO" identifier]) ) ) 
     | ( identifier "FROM" number "TO" number "GIVING" identifier ) ) 
     ["RANGE" Expression] ) ".".
 
-ADD_CORRESPONDING = "ADD-CORRESPONDING" identifier "TO" identifier".".
+stADD_CORRESPONDING = "ADD-CORRESPONDING" identifier "TO" identifier".".
 
-ALIASES = "ALIASES" identifier "FOR" identifier"~"identifier".".
+stALIASES = "ALIASES" identifier "FOR" identifier"~"identifier".".
 
-ASSERT = "ASSERT" [ ["ID" identifier ["SUBKEY" identifier]] 
+stASSERT = "ASSERT" [ ["ID" identifier ["SUBKEY" identifier]] 
          ["FIELDS" identifier ] 
          "CONDITION" ] Expression ".".
 
-ASSIGN = "ASSIGN" ( identifier["+" number]["("number")"] 
+stASSIGN = "ASSIGN" ( identifier["+" number]["("number")"] 
        | ["TABLE" "FIELD"] "("identifier")" 
        | identifier"->""*" 
        | (identifier "INCREMENT" identifier) 
@@ -1060,11 +1060,11 @@ ASSIGN = "ASSIGN" ( identifier["+" number]["("number")"]
                        "FOR" (par|selcrit-low|selcrit-high)) 
                     | ("ON" "EXIT-COMMAND") ] |  "USER-COMMAND" ) ".".*/
 
-BACK = "BACK"".".
+stBACK = "BACK"".".
 
-BREAK_POINT = "BREAK-POINT" [ ("ID" identifier) | "("string1")" ]".".
+stBREAK_POINT = "BREAK-POINT" [ ("ID" identifier) | "("string1")" ]".".
 
-CALL = "CALL"(  "BADI" identifier"->" "(" identifier ")"
+stCALL = "CALL"(  "BADI" identifier"->" "(" identifier ")"
           ( ["EXPORTING"  Expression{Expression}] 
             ["IMPORTING" Expression{Expression} ] 
             ["CHANGING"   Expression{Expression} ] 
@@ -1115,28 +1115,28 @@ CALL = "CALL"(  "BADI" identifier"->" "(" identifier ")"
                          | ( ({Expression} |"("identifier")")) 
                              ["AREA" "HANDLE" identifier ] ) ".".
 
-CATCH = "CATCH" "SYSTEM-EXCEPTIONS" {Expression}
+stCATCH = "CATCH" "SYSTEM-EXCEPTIONS" {Expression}
                         ["OTHERS" "=" identifier]"." 
   [Statements]
 "ENDCATCH"".".
 
-CHECK = "CHECK" Expression|"SELECT-OPTIONS"".".
+stCHECK = "CHECK" Expression|"SELECT-OPTIONS"".".
 
-CLASS_DATA = "CLASS-DATA" identifier Event_options ".".
+stCLASS_DATA = "CLASS-DATA" identifier Event_options ".".
 
-CLASS_EVENTS = "CLASS-EVENTS" identifier Event_options ".".
+stCLASS_EVENTS = "CLASS-EVENTS" identifier Event_options ".".
 
-CLASS_POOL = "CLASS-POOL" ["MESSAGE-ID" identifier]".".
+stCLASS_POOL = "CLASS-POOL" ["MESSAGE-ID" identifier]".".
 
-CLEAR = "CLEAR" identifier [ ("WITH" identifier ["IN" ("CHARACTER"|"BYTE" ) "MODE"]) 
+stCLEAR = "CLEAR" identifier [ ("WITH" identifier ["IN" ("CHARACTER"|"BYTE" ) "MODE"]) 
            | ("WITH" "NULL") ]".".
 
-CLOSE = "CLOSE"(  "CURSOR" "@"identifier |  "DATASET" identifier ) ".".
+stCLOSE = "CLOSE"(  "CURSOR" "@"identifier |  "DATASET" identifier ) ".".
 
-COLLECT = "COLLECT" identifier "INTO" identifier ( ["ASSIGNING" identifier ["CASTING"]] 
+stCOLLECT = "COLLECT" identifier "INTO" identifier ( ["ASSIGNING" identifier ["CASTING"]] 
                      | ["REFERENCE" "INTO" identifier] )".".
 
-COMMIT = "COMMIT"(  "WORK" ["AND" "WAIT"] |  "CONNECTION" identifier ) ".".
+stCOMMIT = "COMMIT"(  "WORK" ["AND" "WAIT"] |  "CONNECTION" identifier ) ".".
 
 /*COMMUNICATION = "COMMUNICATION" ( ("INIT" "DESTINATION" identifier) 
               | ("ALLOCATE") 
@@ -1149,7 +1149,7 @@ COMMIT = "COMMIT"(  "WORK" ["AND" "WAIT"] |  "CONNECTION" identifier ) ".".
               ["RECEIVED" identifier] 
               ["HOLD"]".".
 */
-COMPUTE = "COMPUTE" ["EXACT"] identifier ["?"] "=" identifier".".
+stCOMPUTE = "COMPUTE" ["EXACT"] identifier ["?"] "=" identifier".".
 
 /*CONCATENATE = "CONCATENATE" ( identifier{identifier} |"LINES" "OF" identifier) 
             "INTO" identifier 
@@ -1157,20 +1157,20 @@ COMPUTE = "COMPUTE" ["EXACT"] identifier ["?"] "=" identifier".".
             ["SEPARATED" "BY" sep] 
             ["RESPECTING" "BLANKS"]".".*/
 
-CONDENSE = "CONDENSE" string1 ["NO-GAPS"]".".
+stCONDENSE = "CONDENSE" string1 ["NO-GAPS"]".".
 
 /*CONSTANTS = "CONSTANTS" const options".".*/
 
-CONTROLS = "CONTROLS" identifier "TYPE" ( "TABLEVIEW" "USING" "SCREEN" identifier ) 
+stCONTROLS = "CONTROLS" identifier "TYPE" ( "TABLEVIEW" "USING" "SCREEN" identifier ) 
                    | ( "TABSTRIP" )".".
 
-CONVERT = "CONVERT"(  ("DATE" string1 "INTO" "INVERTED-DATE" string1) 
+stCONVERT = "CONVERT"(  ("DATE" string1 "INTO" "INVERTED-DATE" string1) 
       | ("INVERTED-DATE" string1 "INTO" "DATE" string1) |  "TEXT" string1 "INTO" "SORTABLE" "CODE" string1 |  ( "TIME" "STAMP" string1 "TIME" "ZONE" string1 
           "INTO" ["DATE" string1] ["TIME" string1] ["DAYLIGHT" "SAVING" "TIME" string1] ) 
       | ( "DATE" string1 ["TIME" string1 ["DAYLIGHT" "SAVING" "TIME" string1]] 
           "INTO" "TIME" "STAMP" string1 "TIME" "ZONE" string1 ) ) ".".
 
-CREATE = "CREATE"(  "DATA" identifier [ "AREA" "HANDLE" identifier ] 
+stCREATE = "CREATE"(  "DATA" identifier [ "AREA" "HANDLE" identifier ] 
                  [ "TYPE" ( (NameOrRef
                            ["LENGTH" number] ["DECIMALS" number]) 
                         | (["LINE" "OF"] NameOrRef) 
@@ -1205,11 +1205,11 @@ CREATE = "CREATE"(  "DATA" identifier [ "AREA" "HANDLE" identifier ]
 
 /*DELETE = "DELETE" "DATASET" identifier".".*/
 
-DEMAND = "DEMAND" Expression{Expression}  
+stDEMAND = "DEMAND" Expression{Expression}  
        "FROM" "CONTEXT" identifier 
        ["MESSAGES" "INTO" identifier]".".
 
-DESCRIBE = "DESCRIBE"(  "DISTANCE" "BETWEEN" identifier "AND" identifier "INTO" identifier 
+stDESCRIBE = "DESCRIBE"(  "DISTANCE" "BETWEEN" identifier "AND" identifier "INTO" identifier 
                           "IN" ("BYTE"|"CHARACTER") "MODE" |  "FIELD" identifier 
   ["TYPE" identifier ["COMPONENTS" identifier]] 
   ["LENGTH" number "IN" ("BYTE"|"CHARACTER") "MODE"] 
@@ -1228,23 +1228,23 @@ DESCRIBE = "DESCRIBE"(  "DISTANCE" "BETWEEN" identifier "AND" identifier "INTO" 
                             ["END-LINES" number]) ) 
               ["INDEX" identifier] |  "TABLE" identifier ["KIND" identifier] ["LINES" number] ["OCCURS" number] ) ".".
 
-DETAIL = "DETAIL"".".
+stDETAIL = "DETAIL"".".
 
-DIVIDE = "DIVIDE" identifier "BY" identifier".".
+stDIVIDE = "DIVIDE" identifier "BY" identifier".".
 
-DIVIDE_CORRESPONDING = "DIVIDE-CORRESPONDING" identifier "BY" identifier ".".
+stDIVIDE_CORRESPONDING = "DIVIDE-CORRESPONDING" identifier "BY" identifier ".".
 
-EDITOR_CALL = "EDITOR-CALL" "FOR" ( ("REPORT" identifier ["DISPLAY-MODE"]) 
+stEDITOR_CALL = "EDITOR-CALL" "FOR" ( ("REPORT" identifier ["DISPLAY-MODE"]) 
                 | (identifier ["TITLE" string1] 
                         [("DISPLAY-MODE")|("BACKUP" "INTO" identifier)]) )".".
 
-END_OF_PAGE = "END-OF-PAGE"".".
+stEND_OF_PAGE = "END-OF-PAGE"".".
 
-END_OF_SELECTION = "END-OF-SELECTION"".".
+stEND_OF_SELECTION = "END-OF-SELECTION"".".
 
-EXIT = "EXIT"(  "FROM" "SQL" |  "FROM" "STEP-LOOP" ) ".".
+stEXIT = "EXIT"(  "FROM" "SQL" |  "FROM" "STEP-LOOP" ) ".".
 
-EXPORT = "EXPORT" ( 
+stEXPORT = "EXPORT" ( 
             Expression{Expression}
        | identifier "FROM" identifier {identifier "FROM" identifier }
        | "("identifier")" 
@@ -1259,15 +1259,15 @@ EXPORT = "EXPORT" (
           ) 
            [ "COMPRESSION" ( "ON" | "OFF" ) ]".".
 
-EXTRACT = "EXTRACT" ( identifier | identifier )".".
+stEXTRACT = "EXTRACT" ( identifier | identifier )".".
 
-FIELD_GROUPS = "FIELD-GROUPS" identifier   ".".
+stFIELD_GROUPS = "FIELD-GROUPS" identifier   ".".
 
-FIELD_SYMBOLS = "FIELD-SYMBOLS" identifier ( Typing | ( "STRUCTURE" identifier "DEFAULT" identifier ) )".".
+stFIELD_SYMBOLS = "FIELD-SYMBOLS" identifier ( Typing | ( "STRUCTURE" identifier "DEFAULT" identifier ) )".".
 
-FIELDS = "FIELDS" identifier".".
+stFIELDS = "FIELDS" identifier".".
 
-FIND = "FIND" [("FIRST" "OCCURRENCE")|("ALL" "OCCURRENCES") "OF"] 
+stFIND = "FIND" [("FIRST" "OCCURRENCE")|("ALL" "OCCURRENCES") "OF"] 
      (["SUBSTRING"] string1) | ("REGEX" string1) "IN" 
      ( (["SECTION" ["OFFSET" number] ["LENGTH" number] "OF"] identifier) 
      | ("TABLE" identifier ["FROM" number ["OFFSET" number]] 
@@ -1281,7 +1281,7 @@ FIND = "FIND" [("FIRST" "OCCURRENCE")|("ALL" "OCCURRENCES") "OF"]
      | ["RESULTS" identifier] ) 
      ["SUBMATCHES" string1 ]".".
 
-Format_options = ["COLOR" 
+stFormat_options = ["COLOR" 
         ( 
             ( ["="] 
                 ( 
@@ -1308,16 +1308,16 @@ Format_options = ["COLOR"
        ["RESET"]
        .
 
-FORMAT = "FORMAT" Format_options ".".
+stFORMAT = "FORMAT" Format_options ".".
 
-FREE = "FREE"(  identifier |  "MEMORY" "ID" identifier |  "OBJECT" identifier ["NO" "FLUSH"] ) ".".
+stFREE = "FREE"(  identifier |  "MEMORY" "ID" identifier |  "OBJECT" identifier ["NO" "FLUSH"] ) ".".
 
-FUNCTION_POOL = "FUNCTION-POOL" identifier ["NO" "STANDARD" "PAGE" "HEADING"] 
+stFUNCTION_POOL = "FUNCTION-POOL" identifier ["NO" "STANDARD" "PAGE" "HEADING"] 
                     ["LINE-SIZE" number] 
                     ["LINE-COUNT" number["("number")"]] 
                     ["MESSAGE-ID" identifier]".".
 
-GENERATE = "GENERATE" "SUBROUTINE" "POOL" identifier "NAME" identifier 
+stGENERATE = "GENERATE" "SUBROUTINE" "POOL" identifier "NAME" identifier 
   ["MESSAGE" string1] 
   ["INCLUDE" string1] 
   ["LINE" number] 
@@ -1328,7 +1328,7 @@ GENERATE = "GENERATE" "SUBROUTINE" "POOL" identifier "NAME" identifier
 
 
 
-GET = "GET"(  identifier ["LATE"] ["FIELDS" identifier ] |  "BADI" ( identifier ["FILTERS" Expression{Expression} ] ) 
+stGET = "GET"(  identifier ["LATE"] ["FIELDS" identifier ] |  "BADI" ( identifier ["FILTERS" Expression{Expression} ] ) 
        | ( identifier "TYPE" "("identifier")" 
               [ ("FILTERS" Exps ) 
               | ("FILTER-TABLE" identifier)] ) 
@@ -1344,9 +1344,9 @@ GET = "GET"(  identifier ["LATE"] ["FIELDS" identifier ] |  "BADI" ( identifier 
                 [["DISPLAY"|"MEMORY"] "OFFSET" number] ) ) |  "DATASET" identifier ["POSITION" number] ["ATTRIBUTES" identifier] |  "LOCALE" "LANGUAGE" identifier "COUNTRY" string1 "MODIFIER" string1 |  "PARAMETER" "ID" identifier "FIELD" identifier |  "PF-STATUS" string1 ["PROGRAM" identifier] ["EXCLUDING" identifier] |  "PROPERTY" "OF" identifier identifier "=" identifier ["NO" "FLUSH"] ["QUEUE-ONLY"] 
                                 ["EXPORTING" Exps ] |  "REFERENCE" "OF" identifier "INTO" identifier |  "RUN" "TIME" "FIELD" identifier |  "TIME" ["FIELD" identifier] |  "TIME" "STAMP" "FIELD" identifier ) ".".
 
-HIDE = "HIDE" identifier".".
+stHIDE = "HIDE" identifier".".
 
-IMPORT = "IMPORT"(  ( Exps 
+stIMPORT = "IMPORT"(  ( Exps 
        | ( identifier "TO" identifier  {identifier "TO" identifier} ) 
        | (identifier) ) 
   "FROM" ( ( "DATA" "BUFFER" identifier ) 
@@ -1365,20 +1365,20 @@ IMPORT = "IMPORT"(  ( Exps
        ["ENDIAN" "INTO" identifier] |  "DIRECTORY" "INTO" identifier 
   "FROM" "DATABASE" identifier"("identifier")" ["TO" identifier] ["CLIENT" identifier] "ID" identifier ) ".".
 
-INCLUDE = "INCLUDE"(  identifier ["IF" "FOUND"] |  ( ("TYPE" identifier) | ("STRUCTURE" identifier) ) 
+stINCLUDE = "INCLUDE"(  identifier ["IF" "FOUND"] |  ( ("TYPE" identifier) | ("STRUCTURE" identifier) ) 
         ["AS" identifier ["RENAMING" "WITH" "SUFFIX" string1]] ) ".".
 
-INFOTYPES = "INFOTYPES" identifier ["NAME" identifier] 
+stINFOTYPES = "INFOTYPES" identifier ["NAME" identifier] 
                ["OCCURS" number] 
                ["MODE" identifier] 
                ["VALID" "FROM" Expression "TO" Expression] 
                ["AS" "PERSON" "TABLE"]".".
 
-INITIALIZATION = "INITIALIZATION"".".
+stINITIALIZATION = "INITIALIZATION"".".
 
-INPUT = "INPUT"".".
+stINPUT = "INPUT"".".
 
-INSERT = "INSERT"(  ( ("INTO" (identifier|"("Expression")")
+stINSERT = "INSERT"(  ( ("INTO" (identifier|"("Expression")")
           ["USING" "CLIENT" identifier] | ["CLIENT" "SPECIFIED"] 
           ["CONNECTION" (identifier|"("Expression")")] 
           "VALUES" identifier) 
@@ -1399,45 +1399,45 @@ INSERT = "INSERT"(  ( ("INTO" (identifier|"("Expression")")
                   ["VERSION"|("UNICODE" "ENABLING") identifier ] ) 
               | ["DIRECTORY" "ENTRY" string1] ) |  "TEXTPOOL" identifier "FROM" identifier "LANGUAGE" identifier ) ".".
 
-INTERFACE = "INTERFACE"(  identifier"." 
+stINTERFACE = "INTERFACE"(  identifier"." 
   [identifier] 
 "ENDINTERFACE" |  identifier ("DEFERRED" ["PUBLIC"]) | "LOAD" ) ".".
 
-INTERFACE_POOL = "INTERFACE-POOL"".".
+stINTERFACE_POOL = "INTERFACE-POOL"".".
 
-INTERFACES = "INTERFACES" identifier 
+stINTERFACES = "INTERFACES" identifier 
   ["PARTIALLY" "IMPLEMENTED"] 
   ( ( ["ABSTRACT" "METHODS" identifier ] 
       ["FINAL" "METHODS" identifier ] ) 
     | ["ALL" "METHODS" ("ABSTRACT"|"FINAL")] ) 
   ["DATA" "VALUES" Exps ]".".
 
-LEAVE = "LEAVE"(  "LIST-PROCESSING" |  "PROGRAM" |  ( "SCREEN" | ("TO" "SCREEN" identifier) ) |  "TO" "LIST-PROCESSING" ["AND" "RETURN" "TO" "SCREEN" identifier] |  "TO" ( ("TRANSACTION" identifier) | ("CURRENT" "TRANSACTION") ) 
+stLEAVE = "LEAVE"(  "LIST-PROCESSING" |  "PROGRAM" |  ( "SCREEN" | ("TO" "SCREEN" identifier) ) |  "TO" "LIST-PROCESSING" ["AND" "RETURN" "TO" "SCREEN" identifier] |  "TO" ( ("TRANSACTION" identifier) | ("CURRENT" "TRANSACTION") ) 
          ["AND" "SKIP" "FIRST" "SCREEN"] ) ".".
 
-LOAD_OF_PROGRAM = "LOAD-OF-PROGRAM"".".
+stLOAD_OF_PROGRAM = "LOAD-OF-PROGRAM"".".
 
-LOCAL = "LOCAL" identifier".".
+stLOCAL = "LOCAL" identifier".".
 
-LOG_POINT = "LOG-POINT" "ID" identifier 
+stLOG_POINT = "LOG-POINT" "ID" identifier 
           ["SUBKEY" identifier] 
           ["FIELDS" identifier ]".".
 
-MAXIMUM = "MAXIMUM" identifier".".
+stMAXIMUM = "MAXIMUM" identifier".".
 
-MINIMUM = "MINIMUM" identifier".".
+stMINIMUM = "MINIMUM" identifier".".
 
-MODULE = "MODULE" string1 ("OUTPUT"|["INPUT"])"." 
+stMODULE = "MODULE" string1 ("OUTPUT"|["INPUT"])"." 
   (Statements)
 "ENDMODULE"".".
 
-MULTIPLY = "MULTIPLY" identifier "BY" identifier".".
+stMULTIPLY = "MULTIPLY" identifier "BY" identifier".".
 
-MULTIPLY_CORRESPONDING = "MULTIPLY-CORRESPONDING" identifier "BY" identifier".".
+stMULTIPLY_CORRESPONDING = "MULTIPLY-CORRESPONDING" identifier "BY" identifier".".
 
-NEW_LINE = "NEW-LINE" ["NO-SCROLLING"|"SCROLLING"]".".
+stNEW_LINE = "NEW-LINE" ["NO-SCROLLING"|"SCROLLING"]".".
 
-NEW_PAGE = "NEW-PAGE" ["WITH-TITLE"|"NO-TITLE"] 
+stNEW_PAGE = "NEW-PAGE" ["WITH-TITLE"|"NO-TITLE"] 
          ["WITH-HEADING"|"NO-HEADING"] 
          ["LINE-COUNT" number] 
          ["LINE-SIZE" number] 
@@ -1448,15 +1448,15 @@ NEW_PAGE = "NEW-PAGE" ["WITH-TITLE"|"NO-TITLE"]
                        "NO" "DIALOG" ) 
          | ( "PRINT" "OFF" ) ]".".
 
-NEW_SECTION = "NEW-SECTION"".".
+stNEW_SECTION = "NEW-SECTION"".".
 
-NODES = "NODES" identifier ["TYPE" identifier]".".
+stNODES = "NODES" identifier ["TYPE" identifier]".".
 
-OVERLAY = "OVERLAY" string1 "WITH" string1 ["ONLY" string1]".".
+stOVERLAY = "OVERLAY" string1 "WITH" string1 ["ONLY" string1]".".
 
-PACK = "PACK" identifier "TO" identifier ".".
+stPACK = "PACK" identifier "TO" identifier ".".
 
-PARAMETERS = "PARAMETERS" ( identifier [("("number")" |  "LENGTH" number)] ) 
+stPARAMETERS = "PARAMETERS" ( identifier [("("number")" |  "LENGTH" number)] ) 
            [ ("TYPE" identifier ["DECIMALS" number]) 
            | ("LIKE" identifier) 
            | ("LIKE" "("identifier")") ] 
@@ -1476,7 +1476,7 @@ PARAMETERS = "PARAMETERS" ( identifier [("("number")" |  "LENGTH" number)] )
               ["VALUE-REQUEST"] 
               ["AS" "SEARCH" "PATTERN"]]".".
 
-PERFORM = "PERFORM" ( ( ( identifier 
+stPERFORM = "PERFORM" ( ( ( identifier 
             | (NameOrRef "IN" "PROGRAM" [NameOrRef] ["IF" "FOUND"]) 
             | (number "OF" identifier ) 
             | (identifier"("identifier")" ["IF" "FOUND"]) ) 
@@ -1486,21 +1486,21 @@ PERFORM = "PERFORM" ( ( ( identifier
         | ( "ON" ( ("COMMIT" ["LEVEL" identifier]) 
                | "ROLLBACK" ) ) )".".
 
-POSITION = "POSITION" number".".
+stPOSITION = "POSITION" number".".
 
-PRINT_CONTROL = "PRINT-CONTROL"   ( "INDEX-LINE" number ) 
+stPRINT_CONTROL = "PRINT-CONTROL"   ( "INDEX-LINE" number ) 
               | ( formats|("FUNCTION" identifier) 
                   ["LINE" number] ["POSITION" string1] )".".
 
-PROGRAM = "PROGRAM" identifier ["NO" "STANDARD" "PAGE" "HEADING"] 
+stPROGRAM = "PROGRAM" identifier ["NO" "STANDARD" "PAGE" "HEADING"] 
              ["LINE-SIZE" number] 
              ["LINE-COUNT" number["("number")"]] 
              ["MESSAGE-ID" identifier] 
              ["REDUCED" "FUNCTIONALITY"]".".
 
-RANGES = "RANGES" identifier "FOR" identifier ["OCCURS" number]".".
+stRANGES = "RANGES" identifier "FOR" identifier ["OCCURS" number]".".
 
-RECEIVE = "RECEIVE" "RESULTS" "FROM" "FUNCTION" identifier 
+stRECEIVE = "RECEIVE" "RESULTS" "FROM" "FUNCTION" identifier 
                 ["KEEPING" "TASK"] 
                 ["IMPORTING" Exps ] 
                 ["TABLES" Exps ] 
@@ -1509,11 +1509,11 @@ RECEIVE = "RECEIVE" "RESULTS" "FROM" "FUNCTION" identifier
                             [identifier "=" identifier ["MESSAGE" string1]] 
                             ["OTHERS" "=" identifier]]  ".".
 
-REFRESH = "REFRESH"(  identifier |  "CONTROL" identifier "FROM" "SCREEN" identifier |  identifier "FROM" "TABLE" identifier ) ".".
+stREFRESH = "REFRESH"(  identifier |  "CONTROL" identifier "FROM" "SCREEN" identifier |  identifier "FROM" "TABLE" identifier ) ".".
 
-REJECT = "REJECT" "["identifier"]" ".".
+stREJECT = "REJECT" "["identifier"]" ".".
 
-REPLACE = "REPLACE"(  ( ( [("FIRST" "OCCURRENCE")|("ALL" "OCCURRENCES" "OF")] 
+stREPLACE = "REPLACE"(  ( ( [("FIRST" "OCCURRENCE")|("ALL" "OCCURRENCES" "OF")] 
             (["SUBSTRING"] string1) | ("REGEX" string1) "IN" 
             ( (["SECTION" ["OFFSET" number] ["LENGTH" number] "OF"] identifier) 
             | ("TABLE" identifier ["FROM" number ["OFFSET" number]] 
@@ -1532,17 +1532,17 @@ REPLACE = "REPLACE"(  ( ( [("FIRST" "OCCURRENCE")|("ALL" "OCCURRENCES" "OF")]
         ["IN" ("BYTE"|"CHARACTER") "MODE"] 
         ["LENGTH" number] ) ".".
 
-RESERVE = "RESERVE" number "LINES"".".
+stRESERVE = "RESERVE" number "LINES"".".
 
-RESUME = "RESUME"".".
+stRESUME = "RESUME"".".
 
-RETRY = "RETRY"".".
+stRETRY = "RETRY"".".
 
-RETURN = "RETURN"".".
+stRETURN = "RETURN"".".
 
-ROLLBACK = "ROLLBACK"(  "WORK" |  "CONNECTION" identifier ) ".".
+stROLLBACK = "ROLLBACK"(  "WORK" |  "CONNECTION" identifier ) ".".
 
-SCROLL = "SCROLL" "LIST" [ ( "TO" "COLUMN" string1 ) 
+stSCROLL = "SCROLL" "LIST" [ ( "TO" "COLUMN" string1 ) 
             | ( ("LEFT"|"RIGHT") ["BY" number "PLACES"] ) ] 
             [ ( "TO" ( ("FIRST" "PAGE") 
                    | ("LAST" "PAGE") 
@@ -1551,7 +1551,7 @@ SCROLL = "SCROLL" "LIST" [ ( "TO" "COLUMN" string1 )
               | ( ("FORWARD"|"BACKWARD") [number "PAGES"] ) ] 
             ["INDEX" identifier]".".
 
-SELECT_OPTIONS = "SELECT-OPTIONS" identifier "FOR" NameOrRef
+stSELECT_OPTIONS = "SELECT-OPTIONS" identifier "FOR" NameOrRef
               ["OBLIGATORY"|"NO-DISPLAY"] 
               ["VISIBLE" "LENGTH" number] 
               ["NO-EXTENSION"] 
@@ -1565,12 +1565,12 @@ SELECT_OPTIONS = "SELECT-OPTIONS" identifier "FOR" NameOrRef
               ["HELP-REQUEST"  ["FOR" ("LOW"|"HIGH")]] 
               ["VALUE-REQUEST" ["FOR" ("LOW"|"HIGH")]]".".
 
-SELECTION_SCREEN = "SELECTION-SCREEN" "TAB" (number) identifier "USER-COMMAND" identifier 
+stSELECTION_SCREEN = "SELECTION-SCREEN" "TAB" (number) identifier "USER-COMMAND" identifier 
                 ["DEFAULT" ["PROGRAM" identifier] "SCREEN" identifier] 
                 ["MODIF" "ID" identifier] 
                 ["FOR" ("TABLE"|"NODE") identifier ["ID" identifier]]".".
 
-SET = "SET"(  "ASSOCIATION" identifier ( "=" identifier ) 
+stSET = "SET"(  "ASSOCIATION" identifier ( "=" identifier ) 
                         | ( "LIKE" identifier    ) 
                         | ( "INITIAL" ) |  "BIT" number "OF" string1 ["TO" identifier] |  "BLANK" "LINES" ("ON"|"OFF") |  "COUNTRY" string1 |  "CURSOR" ( ( "FIELD" identifier ["LINE" number] 
                      [["DISPLAY"|"MEMORY"] "OFFSET" identifier] ) 
@@ -1585,80 +1585,81 @@ SET = "SET"(  "ASSOCIATION" identifier ( "=" identifier )
                                 ["EXPORTING" Exps ] |  "RUN" "TIME" "ANALYZER" ("ON"|"OFF") |  "RUN" "TIME" "CLOCK" "RESOLUTION" ("HIGH"|"LOW") |  "SCREEN" identifier |  "TITLEBAR" string1 ["OF" "PROGRAM" identifier] 
                    ["WITH" string1  string1] |  "UPDATE" "TASK" "LOCAL" |  "USER-COMMAND" identifier ) ".".
 
-SHIFT = "SHIFT" identifier [ ( [ ("BY" number "PLACES") | ("UP" "TO" string1) ] 
+stSHIFT = "SHIFT" identifier [ ( [ ("BY" number "PLACES") | ("UP" "TO" string1) ] 
                  ["LEFT"|"RIGHT"] ["CIRCULAR"] ) 
            | ( ("LEFT" "DELETING" "LEADING") 
              | ("RIGHT" "DELETING" "TRAILING") string1) ] 
            ["IN" ("CHARACTER"|"BYTE") "MODE"]".".
 
-SKIP = "SKIP" ( [number] 
+stSKIP = "SKIP" ( [number] 
      | ("TO" "LINE" number) )".".
 
-STATICS = "STATICS" identifier options ".".
+stSTATICS = "STATICS" identifier options ".".
 
-STOP = "STOP"".".
+stSTOP = "STOP"".".
 
-SUBTRACT = "SUBTRACT" identifier "FROM" identifier".".
+stSUBTRACT = "SUBTRACT" identifier "FROM" identifier".".
 
-SUBTRACT_CORRESPONDING = "SUBTRACT-CORRESPONDING" identifier "FROM" identifier".".
+stSUBTRACT_CORRESPONDING = "SUBTRACT-CORRESPONDING" identifier "FROM" identifier".".
 
-SUM = "SUM"".".
+stSUM = "SUM"".".
 
-SUMMARY = "SUMMARY"".".
+stSUMMARY = "SUMMARY"".".
 
-SUMMING = "SUMMING" identifier".".
+stSUMMING = "SUMMING" identifier".".
 
-SUPPLY = "SUPPLY" Exps  "TO" "CONTEXT" identifier ".".
+stSUPPLY = "SUPPLY" Exps  "TO" "CONTEXT" identifier ".".
 
-SUPPRESS = "SUPPRESS" "DIALOG"".".
+stSUPPRESS = "SUPPRESS" "DIALOG"".".
 
-SYNTAX_CHECK = "SYNTAX-CHECK" "FOR" identifier "MESSAGE" string1 "LINE" number "WORD" string1 
+stSYNTAX_CHECK = "SYNTAX-CHECK" "FOR" identifier "MESSAGE" string1 "LINE" number "WORD" string1 
                  ["PROGRAM" identifier] ["DIRECTORY" "ENTRY" string1] 
                  ["WITH" "CURRENT" "SWITCHSTATES"] 
                  ["INCLUDE" string1] 
                  ["OFFSET" number] 
                  ["MESSAGE-ID" identifier]".".
 
-TEST_INJECTION = "TEST-INJECTION" identifier "." 
+stTEST_INJECTION = "TEST-INJECTION" identifier "." 
   [Statements] 
 "END-TEST-INJECTION"".".
 
-TEST_SEAM = "TEST-SEAM" identifier"." 
+stTEST_SEAM = "TEST-SEAM" identifier"." 
   [Statements] 
 "END-TEST-SEAM"".".
 
-TOP_OF_PAGE = "TOP-OF-PAGE" ["DURING" "LINE-SELECTION"]".".
+stTOP_OF_PAGE = "TOP-OF-PAGE" ["DURING" "LINE-SELECTION"]".".
 
-TRANSFER = "TRANSFER" identifier "TO" identifier ["LENGTH" number] 
+stTRANSFER = "TRANSFER" identifier "TO" identifier ["LENGTH" number] 
                       ["NO" "END" "OF" "LINE"]".".
 
-TRANSLATE = "TRANSLATE" identifier ("TO" ("UPPER"|"LOWER") "CASE") 
+stTRANSLATE = "TRANSLATE" identifier ("TO" ("UPPER"|"LOWER") "CASE") 
              | ("USING" mask)".".
 
-TRUNCATE = "TRUNCATE" "DATASET" identifier "AT" ("CURRENT" "POSITION")|("POSITION" number)".".
+stTRUNCATE = "TRUNCATE" "DATASET" identifier "AT" ("CURRENT" "POSITION")|("POSITION" number)".".
 
-TYPE_POOL = "TYPE-POOL" identifier ".".
+stTYPE_POOL = "TYPE-POOL" identifier ".".
 
-TYPE_POOLS = "TYPE-POOLS" identifier ".".
+stTYPE_POOLS = "TYPE-POOLS" identifier ".".
 
-ULINE = "ULINE" (["AT"] ["/"] [number] [ "("number")"]) ["NO-GAP"]".".
+stULINE = "ULINE" (["AT"] ["/"] [number] [ "("number")"]) ["NO-GAP"]".".
 
-UNASSIGN = "UNASSIGN"".".
+stUNASSIGN = "UNASSIGN"".".
 
-UNPACK = "UNPACK" identifier "TO" identifier ".".
+stUNPACK = "UNPACK" identifier "TO" identifier ".".
 
-WAIT = "WAIT" ("UP" "TO" number "SECONDS") 
+stWAIT = "WAIT" ("UP" "TO" number "SECONDS") 
    | ("FOR" ["ASYNCHRONOUS" "TASKS" "UNTIL" Expression ["UP" "TO" number "SECONDS"]] 
           ["MESSAGING" "CHANNELS" "UNTIL" Expression ["UP" "TO" number "SECONDS"]] 
           ["PUSH" "CHANNELS" "UNTIL" Expression ["UP" "TO" number "SECONDS"]])".".
 
-WINDOW = "WINDOW" "STARTING" "AT" string1 number 
+stWINDOW = "WINDOW" "STARTING" "AT" string1 number 
        ["ENDING"  "AT" string1 number]".".  
   
+
   
   /********************************/
 
-SPLIT = "SPLIT" identifier "AT" Expression "INTO" 
+stSPLIT = "SPLIT" identifier "AT" Expression "INTO" 
       ( identifier{identifier } | "TABLE" identifier )
       ["IN" {"CHARACTER"|"BYTE"} "MODE"] . 
       
