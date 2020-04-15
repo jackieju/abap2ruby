@@ -1576,10 +1576,10 @@ SET = "SET"(  "ASSOCIATION" identifier ( "=" identifier )
            | ( string1 lin ) ) |  "DATASET" dest ["POSITION" (number|("END" "OF" "FILE"))] 
                  ["ATTRIBUTES" attr] |  "EXTENDED" "CHECK" ("ON"|"OFF") |  "HANDLER" identifier  
             ["FOR" identifier|("ALL" "INSTANCES")] 
-            ["ACTIVATION" act] |  "HOLD" "DATA" ("ON"|"OFF") |  "LANGUAGE" identifier |  "LEFT" "SCROLL-BOUNDARY" ["COLUMN" string1] |  "LOCALE" "LANGUAGE" identifier ["COUNTRY" string1] ["MODIFIER" string1] |  "MARGIN" macol [marow] |  "PARAMETER" "ID" pid "FIELD" identifier |  "PF-STATUS" status ["OF" "PROGRAM" identifier] 
+            ["ACTIVATION" act] |  "HOLD" "DATA" ("ON"|"OFF") |  "LANGUAGE" identifier |  "LEFT" "SCROLL-BOUNDARY" ["COLUMN" string1] |  "LOCALE" "LANGUAGE" identifier ["COUNTRY" string1] ["MODIFIER" string1] |  "MARGIN" macol [marow] |  "PARAMETER" "ID" identifier "FIELD" identifier |  "PF-STATUS" status ["OF" "PROGRAM" identifier] 
                      ["EXCLUDING" fcode] 
-                     ["IMMEDIATELY"] |  "PROPERTY" "OF" ole attr = identifier ["NO" "FLUSH"] 
-                                ["EXPORTING" p1 = f1 p2 = f2 ] |  "RUN" "TIME" "ANALYZER" ("ON"|"OFF") |  "RUN" "TIME" "CLOCK" "RESOLUTION" ("HIGH"|"LOW") |  "SCREEN" identifier |  "TITLEBAR" string1 ["OF" "PROGRAM" identifier] 
+                     ["IMMEDIATELY"] |  "PROPERTY" "OF" identifier identifier "=" identifier ["NO" "FLUSH"] 
+                                ["EXPORTING" Exps ] |  "RUN" "TIME" "ANALYZER" ("ON"|"OFF") |  "RUN" "TIME" "CLOCK" "RESOLUTION" ("HIGH"|"LOW") |  "SCREEN" identifier |  "TITLEBAR" string1 ["OF" "PROGRAM" identifier] 
                    ["WITH" string1  string1] |  "UPDATE" "TASK" "LOCAL" |  "USER-COMMAND" identifier ) ".".
 
 SHIFT = "SHIFT" identifier [ ( [ ("BY" number "PLACES") | ("UP" "TO" string1) ] 
@@ -1605,7 +1605,7 @@ SUMMARY = "SUMMARY"".".
 
 SUMMING = "SUMMING" identifier".".
 
-SUPPLY = "SUPPLY" key1 = f1 key2 = f2  "TO" "CONTEXT" context_ref".".
+SUPPLY = "SUPPLY" Exps  "TO" "CONTEXT" identifier ".".
 
 SUPPRESS = "SUPPRESS" "DIALOG"".".
 
@@ -1638,19 +1638,19 @@ TYPE_POOL = "TYPE-POOL" tpool".".
 
 TYPE_POOLS = "TYPE-POOLS" tpool".".
 
-ULINE = "ULINE" (["AT"] [/][number][(number)]) ["NO-GAP"]".".
+ULINE = "ULINE" (["AT"] ["/"] [number] [ "("number")"]) ["NO-GAP"]".".
 
 UNASSIGN = "UNASSIGN"".".
 
 UNPACK = "UNPACK" source "TO" destination".".
 
-WAIT = "WAIT" ("UP" "TO" t "SECONDS") 
-   | ("FOR" ["ASYNCHRONOUS" "TASKS" "UNTIL" log_exp ["UP" "TO" t "SECONDS"]] 
-          ["MESSAGING" "CHANNELS" "UNTIL" log_exp ["UP" "TO" t "SECONDS"]] 
-          ["PUSH" "CHANNELS" "UNTIL" log_exp ["UP" "TO" t "SECONDS"]])".".
+WAIT = "WAIT" ("UP" "TO" number "SECONDS") 
+   | ("FOR" ["ASYNCHRONOUS" "TASKS" "UNTIL" log_exp ["UP" "TO" number "SECONDS"]] 
+          ["MESSAGING" "CHANNELS" "UNTIL" log_exp ["UP" "TO" number "SECONDS"]] 
+          ["PUSH" "CHANNELS" "UNTIL" log_exp ["UP" "TO" number "SECONDS"]])".".
 
-WINDOW = "WINDOW" "STARTING" "AT" string1 lin1 
-       ["ENDING"  "AT" string1 lin2]".".  
+WINDOW = "WINDOW" "STARTING" "AT" string1 number 
+       ["ENDING"  "AT" string1 number]".".  
   
   
   /********************************/
@@ -1727,6 +1727,7 @@ SPLIT = "SPLIT" identifier "AT" Expression "INTO"
   MinusOperator = space1 "-" | "-" space1 .
 
   PredefinedConstant = "INITIAL" | "BOUND" | "ASSIGNED" | "SUPPLIED" | "REQUESTED" .
+
 END C.
 
 
