@@ -208,16 +208,17 @@ COMMIT WORK [AND WAIT].
 
 COMMIT CONNECTION con. 
 
-COMMUNICATION { {INIT DESTINATION dest} 
-              | {ALLOCATE} 
-              | {ACCEPT} 
-              | {SEND BUFFER buf} 
-              | {RECEIVE BUFFER buf DATAINFO dat STATUSINFO stat} 
-              | {DEALLOCATE} } ID id 
-              [RETURNCODE rc] 
-              [LENGTH leng] 
-              [RECEIVED rec] 
-              [HOLD]. 
+### Obsoleted
+##COMMUNICATION { {INIT DESTINATION dest} 
+##              | {ALLOCATE} 
+##              | {ACCEPT} 
+##              | {SEND BUFFER buf} 
+##              | {RECEIVE BUFFER buf DATAINFO dat STATUSINFO stat} 
+##              | {DEALLOCATE} } ID id 
+##              [RETURNCODE rc] 
+##              [LENGTH leng] 
+##              [RECEIVED rec] 
+##              [HOLD]. 
 
 COMPUTE [EXACT] lhs =|?= rhs. 
 
