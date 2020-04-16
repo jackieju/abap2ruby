@@ -2,9 +2,16 @@ def Upcase(c)
    return (c>='a'&&c<='z') ? c-32 : c
 end
 
-MAXSYM=45
+MAXSYM=44
 
-MAXERROR=1058
+MAXERROR=1030
+
+
+
+
+
+
+
 
 
 

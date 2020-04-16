@@ -235,9 +235,9 @@ CONSTANTS const options.
 
 CONTROLS contrl TYPE { TABLEVIEW USING SCREEN dynnr } 
                    | { TABSTRIP }.   
-
-CONVERT {DATE dat1 INTO INVERTED-DATE dat2} 
-      | {INVERTED-DATE dat1 INTO DATE dat2}. 
+### obsoleted
+##CONVERT {DATE dat1 INTO INVERTED-DATE dat2} 
+##      | {INVERTED-DATE dat1 INTO DATE dat2}. 
 
 CONVERT TEXT text INTO SORTABLE CODE hex. 
 
@@ -476,8 +476,9 @@ GENERATE SUBROUTINE POOL itab NAME prog
   [OFFSET off] 
   [MESSAGE-ID mid] 
   [SHORTDUMP-ID sid]. 
-  
-GET node [LATE] [FIELDS f1 f2 ...]. 
+
+### Obsoleted  
+##GET node [LATE] [FIELDS f1 f2 ...]. 
 
 GET BADI { badi [FILTERS f1 = x1 f2 = x2 ...] } 
        | { badi TYPE (name) 
@@ -572,7 +573,8 @@ INSERT { {INTO dbtab|view|(target_syntax)
            [CONNECTION con|(con_syntax)] 
            FROM wa|{TABLE itab [ACCEPTING DUPLICATE KEYS]}|( SELECT subquery_clauses ) } }. 
 
-INSERT dobj1 dobj2 ... INTO { header | field_group }. 
+### obsoleted
+##INSERT dobj1 dobj2 ... INTO { header | field_group }. 
 
 INSERT { wa 
        | {INITIAL LINE} 

@@ -77,10 +77,6 @@ class CScanner < CRScanner
             return C_ASSOCIATIONSym
          end
 
-         if EqualStr("ANY")
-            return C_ANYSym
-         end
-
          if EqualStr("ABSTRACT")
             return C_ABSTRACTSym
          end
@@ -935,20 +931,8 @@ class CScanner < CRScanner
             return C_FETCHSym
          end
 
-         if EqualStr("FKEQ")
-            return C_FKEQSym
-         end
-
-         if EqualStr("FKGE")
-            return C_FKGESym
-         end
-
          if EqualStr("FREE")
             return C_FREESym
-         end
-
-         if EqualStr("FURTHER")
-            return C_FURTHERSym
          end
 
          if EqualStr("FINAL")
@@ -1023,14 +1007,6 @@ class CScanner < CRScanner
 
          if EqualStr("GAPS")
             return C_GAPSSym
-         end
-
-         if EqualStr("GKEQ")
-            return C_GKEQSym
-         end
-
-         if EqualStr("GKGE")
-            return C_GKGESym
          end
 
          if EqualStr("GE")
@@ -1189,10 +1165,6 @@ class CScanner < CRScanner
             return C_INCREMENTSym
          end
 
-         if EqualStr("INVERTED-DATE")
-            return C_INVERTEDMinusDATESym
-         end
-
          if EqualStr("INTERNAL")
             return C_INTERNALSym
          end
@@ -1265,12 +1237,12 @@ class CScanner < CRScanner
             return C_KEYSym
          end
 
-         if EqualStr("KEYS")
-            return C_KEYSSym
-         end
-
          if EqualStr("KIND")
             return C_KINDSym
+         end
+
+         if EqualStr("KEYS")
+            return C_KEYSSym
          end
 
          if EqualStr("KEEPING")
@@ -1357,10 +1329,6 @@ class CScanner < CRScanner
 
          if EqualStr("LONG")
             return C_LONGSym
-         end
-
-         if EqualStr("LATE")
-            return C_LATESym
          end
 
          if EqualStr("LOCALE")
@@ -2143,10 +2111,6 @@ class CScanner < CRScanner
 
          if EqualStr("SPOOL")
             return C_SPOOLSym
-         end
-
-         if EqualStr("SECONDARY")
-            return C_SECONDARYSym
          end
 
          if EqualStr("STRUCTURE")

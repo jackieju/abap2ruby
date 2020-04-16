@@ -222,6 +222,7 @@ PRODUCTIONS
                              | stTRUNCATE
                              | stTYPE_POOL
                              | stTYPE_POOLS
+                             | stTYPES
                              | stULINE
                              | stUNASSIGN
                              | stUNPACK
@@ -729,7 +730,7 @@ stREAD = "READ" (
      ["FIELD" "VALUE" identifier ["INTO" identifier] {identifier ["INTO" identifier] }]
       |  /* READ REPORT */
       "REPORT" identifier "INTO" identifier ["MAXIMUM" "WIDTH" "INTO" number]
-       | /* READ TABLE */
+       | /* READ TABLE /
        "TABLE" identifier(
            ["WITH" "KEY" identifier] 
                  ["SEARCH" ("FKEQ"|"FKGE"|"GKEQ"|"GKGE")] 
@@ -762,7 +763,7 @@ stREAD = "READ" (
            | ( "ASSIGNING" identifier ["CASTING"] ) 
            | ( "REFERENCE" "INTO" identifier ) 
            | ("TRANSPORTING" "NO" "FIELDS") )
-    )
+    )*/
     |/* READ TEXTPOOL */
      "TEXTPOOL" identifier "INTO" identifier "LANGUAGE" identifier ) ".".
        
@@ -806,21 +807,24 @@ stTRY = "TRY""."
     {Statement}] 
 "ENDTRY"".".
 
+/*
 Lob_handle_type =  ( "READER"|"LOCATOR"|"LOB" "HANDLE"|"WRITER" ) 
                    "FOR" 
                    ( "COLUMNS" identifier {identifier}  |  "ALL" ["OTHER"] ["BLOB"|"CLOB"] "COLUMNS" ) .
+  */
                                
 Association = "ASSOCIATION" identifier "TO" identifier "ON" identifier "=" identifier 
                                           { "AND" identifier "=" identifier }
                                           ["USING" "KEY" identifier] .
+
 Types_mesh_stmt =   "TYPES"  identifier ( 
-                  "TYPE" (["REF" "TO"] identifier)|identifier 
+                  "TYPE" ["REF" "TO"] identifier 
                   | 
-                  "LIKE" (["REF" "TO"] identifier      )|identifier     ) 
+                  "LIKE" ["REF" "TO"] identifier    ) 
                {Association} 
                "." .
                                                          
-Types = "TYPES"(  identifier[(number)] ("TYPE" ( (identifier ["LENGTH" number] 
+stTYPES = "TYPES"(  identifier["("number")"] /*("TYPE" ( (identifier ["LENGTH" number] 
                                       ["DECIMALS" number]) 
                          | (["LINE" "OF"] identifier) 
                          | ("REF" "TO" identifier) 
@@ -859,22 +863,27 @@ Types = "TYPES"(  identifier[(number)] ("TYPE" ( (identifier ["LENGTH" number]
                                 "KEY" identifier "COMPONENTS" identifier }  
                              [("WITH"|"WITHOUT") "FURTHER" "SECONDARY" "KEYS"] 
                              ["INITIAL" "SIZE" number]) 
-                           | ("RANGE" "OF" identifier ["INITIAL" "SIZE" number]) )) |  "BEGIN" "OF" identifier "." 
-  {Types|stINCLUDE}
- 
- 
-"DATA" "END" "OF" identifier
-         |
-          "BEGIN" "OF" "ENUM" identifier  ["STRUCTURE" identifier] 
-              ["BASE" "TYPE" identifier] "." 
-  "TYPES" identifier "VALUE" (Expression |"IS" "INITIAL"){"," "TYPES" identifier "VALUE" (Expression |"IS" "INITIAL")} 
-"TYPES" "END" "OF" "ENUM" identifier ["STRUCTURE" identifier] 
-        | 
-         "BEGIN" "OF" "MESH" identifier"." 
-         {Types_mesh_stmt}
-         "DATA" "END" "OF" "MESH" identifier 
-        |  identifier ( ("TYPE" ["REF" "TO"] identifier) 
-            | ("LIKE" ["REF" "TO"] identifier) ) "OCCURS" number ) "." .
+                           | ("RANGE" "OF" identifier ["INITIAL" "SIZE" number]) ))*/ 
+                    (TypeDes|LikeDes)
+         
+        |
+          "BEGIN" "OF"(
+              identifier "." 
+                              { "TYPES" identifier["("number")"] (TypeDes|LikeDes) ["BOXED"]  "." }
+                                  {stINCLUDE}
+                              "DATA" "END" "OF" identifier
+            |
+              "ENUM" identifier  ["STRUCTURE" identifier] 
+                            ["BASE" "TYPE" identifier] "." 
+                "TYPES" identifier "VALUE" (Expression |"IS" "INITIAL"){"," "TYPES" identifier "VALUE" (Expression |"IS" "INITIAL")} 
+              "TYPES" "END" "OF" "ENUM" identifier ["STRUCTURE" identifier]
+            | 
+              "MESH" identifier"." 
+                       {Types_mesh_stmt}
+                       "DATA" "END" "OF" "MESH" identifier
+          )  
+           )       
+      "." .
             
                  
   ForStatement         = "for"  "(" [ Expression ] ";"   [ Expression ]   ";"  [ Expression  ] ")" Statement .
@@ -1054,21 +1063,23 @@ stASSERT = "ASSERT" [ ["ID" identifier ["SUBKEY" identifier]]
          ["FIELDS" identifier ] 
          "CONDITION" ] Expression ".".
 
-stASSIGN = "ASSIGN" ( identifier["+" number]["("number")"] 
+stASSIGN = "ASSIGN" ( 
+        NameOrRef (
+            ["+" number]["("number")"] 
+            | ("->"|"=>") ["*"|NameOrRef]
+            | "INCREMENT" number
+        )
        | ["TABLE" "FIELD"] "("identifier")" 
-       | identifier"->""*" 
-       | (identifier "INCREMENT" identifier) 
        | ("COMPONENT" identifier "OF" "STRUCTURE" identifier) 
-       | identifier"->""("identifier")" 
-       | (identifier|"("identifier")")"=>"(identifier|"("identifier")") 
        | Expression ) 
   "TO" identifier 
-  [ ( "CASTING" [ ("TYPE" NameOrRef) 
+  [ ( "CASTING" [ 
+  
+              ["TYPE" ["HANDLE"] NameOrRef] ["DECIMALS" number ]
               | ("LIKE" identifier) 
-              | (["TYPE" identifier] "DECIMALS" number) 
-              | ("TYPE" "HANDLE" identifier) ] ) 
-  | ( ("TYPE" identifier) 
-    | (["TYPE" identifier] "DECIMALS" number) ) ] 
+              
+              ] ) 
+  |  (["TYPE" identifier] ["DECIMALS" number]) ] 
   ["RANGE" Expression]".".
 
 /*AT = "AT"(  "LINE-SELECTION"  |  "SELECTION-SCREEN" [ "OUTPUT" 
@@ -1084,8 +1095,68 @@ stBACK = "BACK"".".
 
 stBREAK_POINT = "BREAK-POINT" [ ("ID" identifier) | "("string1")" ]".".
 
-stCALL = "CALL" (CallFunction | CallBadi) .
+stCALL = "CALL" (CallFunction | CallBadi | CallDialog | CallCustomerFunction | CallDatabaseProcedure | CallMethod | CallScreen
+            | CallSelectionScreen
+            | CallTransation
+            | CallTransformation
+            ) .
 
+CallCustomerFunction = "CUSTOMER-FUNCTION" identifier 
+                       ["EXPORTING"  Expression{Expression} ] 
+                       ["IMPORTING" Expression{Expression}] 
+                       ["CHANGING"  Expression{Expression}] 
+                       ["TABLES" Expression{Expression}] 
+                       ["EXCEPTIONS" {Expression}
+                                   [string1 "=" identifier] 
+                                   ["OTHERS" "=" Expression]]   .
+
+CallDialog =  "DIALOG" identifier [ ("AND" "SKIP" "FIRST" "SCREEN") 
+                   | ("USING" identifier ["MODE" identifier]) ] 
+                   ["EXPORTING" identifier "FROM" identifier  { identifier "FROM" identifier}] 
+                   ["IMPORTING"  identifier "TO" identifier { identifier "TO" identifier}] .
+
+CallDatabaseProcedure =  "DATABASE" "PROCEDURE" "("identifier")" 
+            ["CONNECTION" (identifier|"("Expression")")] 
+              (   ["EXPORTING"  {Expression} ] 
+                    ["IMPORTING"  {Expression}  ] 
+        |  ["PARAMETER-TABLE" identifier]  ) .
+        
+CallMethod =  "METHOD" ( 
+            (
+                ["("]identifier[")" ] ("->"|"=>") ["("]identifier[")" ]
+          
+             ) 
+            ["PARAMETER-TABLE" identifier] 
+            ["EXCEPTION-TABLE" identifier] 
+            |"OF" identifier identifier ["=" identifier] 
+               ["EXPORTING" {Expression} ] 
+               ["NO" "FLUSH"] ["QUEUE-ONLY"] ).
+CallScreen =       "SCREEN" identifier 
+            ["STARTING" "AT" string1 number 
+            ["ENDING"   "AT" string1 number]] .
+            
+CallSelectionScreen = "SELECTION-SCREEN" identifier 
+                                    ["STARTING" "AT" string1 number 
+                                    ["ENDING"   "AT" string1 number]] 
+                                    ["USING" "SELECTION-SET" identifier] .
+CallTransation =  "TRANSACTION" identifier "WITH"|"WITHOUT" "AUTHORITY-CHECK" 
+                    ( ["AND" "SKIP" "FIRST" "SCREEN"] 
+                    | ["USING" identifier 
+                             ((["MODE" string1] 
+                               ["UPDATE" identifier]) 
+                              |["OPTIONS" "FROM" identifier]) 
+                             ["MESSAGES" "INTO" identifier]] ).
+
+CallTransformation = "TRANSFORMATION" (NameOrRef) 
+                    ["PARAMETERS" ({Expression} |"("identifier")") ] 
+                    ["OBJECTS"    ({Expression} |"("identifier")") ] 
+                    ["OPTIONS"    {Expression} ] 
+                    "SOURCE" ("XML" identifier) 
+                         | (({Expression} |"("identifier")")) 
+                    "RESULT" ("XML" identifier) 
+                         | ( ({Expression} |"("identifier")")) 
+                             ["AREA" "HANDLE" identifier ] .
+                                                                             
 CallBadi = (  "BADI" identifier"->" "(" identifier ")"
           ( ["EXPORTING"  Expression{Expression}] 
             ["IMPORTING" Expression{Expression} ] 
@@ -1094,48 +1165,8 @@ CallBadi = (  "BADI" identifier"->" "(" identifier ")"
             ["EXCEPTIONS" {Expression}
             ["OTHERS" "=" Expression]]) 
         | (["PARAMETER-TABLE" identifier] 
-            ["EXCEPTION-TABLE" identifier] ) |  "DIALOG" identifier [ ("AND" "SKIP" "FIRST" "SCREEN") 
-                   | ("USING" identifier ["MODE" identifier]) ] 
-                   ["EXPORTING" identifier "FROM" identifier  { identifier "FROM" identifier}] 
-                   ["IMPORTING"  identifier "TO" identifier { identifier "TO" identifier}] |  "CUSTOMER-FUNCTION" identifier 
-                       ["EXPORTING"  Expression{Expression} ] 
-                       ["IMPORTING" Expression{Expression}] 
-                       ["CHANGING"  Expression{Expression}] 
-                       ["TABLES" Expression{Expression}] 
-                       ["EXCEPTIONS" {Expression}
-                                   [string1 "=" identifier] 
-                                   ["OTHERS" "=" Expression]]   |  "DATABASE" "PROCEDURE" "("identifier")" 
-    ["CONNECTION" (identifier|"("Expression")")] 
-    ( ["EXPORTING"  {Expression} ] 
-      ["IMPORTING"  {Expression}  ] ) 
-  | ( ["PARAMETER-TABLE" identifier] ) |  "METHOD" ("("identifier")" 
-            |identifier "->" "(" identifier ")" 
-            |"(" identifier")" "=>" "("identifier ")" 
-            |identifier "=>" "(" identifier ")" 
-            |"(" identifier ")" "=>"identifier) 
-  ["PARAMETER-TABLE" identifier] 
-  ["EXCEPTION-TABLE" identifier] |  "METHOD" "OF" identifier identifier ["=" identifier] 
-               ["EXPORTING" {Expression} ] 
-               ["NO" "FLUSH"] ["QUEUE-ONLY"] |  "SCREEN" identifier 
-            ["STARTING" "AT" string1 number 
-            ["ENDING"   "AT" string1 number]] |  "SELECTION-SCREEN" identifier 
-                      ["STARTING" "AT" string1 number 
-                      ["ENDING"   "AT" string1 number]] 
-                      ["USING" "SELECTION-SET" identifier] |  "TRANSACTION" identifier "WITH"|"WITHOUT" "AUTHORITY-CHECK" 
-                    ( ["AND" "SKIP" "FIRST" "SCREEN"] 
-                    | ["USING" identifier 
-                             ((["MODE" string1] 
-                               ["UPDATE" identifier]) 
-                              |["OPTIONS" "FROM" identifier]) 
-                             ["MESSAGES" "INTO" identifier]] ) |  "TRANSFORMATION" (NameOrRef) 
-                    ["PARAMETERS" ({Expression} |"("identifier")") ] 
-                    ["OBJECTS"    ({Expression} |"("identifier")") ] 
-                    ["OPTIONS"    {Expression} ] 
-                    "SOURCE" ("XML" identifier) 
-                         | (({Expression} |"("identifier")")) 
-                    "RESULT" ("XML" identifier) 
-                         | ( ({Expression} |"("identifier")")) 
-                             ["AREA" "HANDLE" identifier ] ) ".".
+            ["EXCEPTION-TABLE" identifier] ) 
+         ) ".".
 
 stCATCH = "CATCH" "SYSTEM-EXCEPTIONS" {Expression}
                         ["OTHERS" "=" identifier]"." 
@@ -1186,8 +1217,10 @@ stCONDENSE = "CONDENSE" string1 ["NO-GAPS"]".".
 stCONTROLS = "CONTROLS" identifier "TYPE" ( "TABLEVIEW" "USING" "SCREEN" identifier ) 
                    | ( "TABSTRIP" )".".
 
-stCONVERT = "CONVERT"(  ("DATE" string1 "INTO" "INVERTED-DATE" string1) 
-      | ("INVERTED-DATE" string1 "INTO" "DATE" string1) |  "TEXT" string1 "INTO" "SORTABLE" "CODE" string1 |  ( "TIME" "STAMP" string1 "TIME" "ZONE" string1 
+stCONVERT = "CONVERT"(
+  
+      |  "TEXT" string1 "INTO" "SORTABLE" "CODE" string1 
+      |  ( "TIME" "STAMP" string1 "TIME" "ZONE" string1 
           "INTO" ["DATE" string1] ["TIME" string1] ["DAYLIGHT" "SAVING" "TIME" string1] ) 
       | ( "DATE" string1 ["TIME" string1 ["DAYLIGHT" "SAVING" "TIME" string1]] 
           "INTO" "TIME" "STAMP" string1 "TIME" "ZONE" string1 ) ) ".".
@@ -1276,8 +1309,7 @@ stEXPORT = "EXPORT" (
            | ( "INTERNAL" "TABLE" identifier ) 
            | ( "MEMORY" "ID" identifier ) 
            | ( "DATABASE"      identifier"("identifier")" ["FROM" identifier] identifier "ID" identifier ) 
-           | ( "SHARED" "MEMORY" identifier"("identifier")" ["FROM" identifier] ["CLIENT" identifier] "ID" identifier ) 
-           | ( "SHARED" "BUFFER" identifier"("identifier")" ["FROM" identifier] ["CLIENT" identifier] "ID" identifier )
+           | ( ("SHARED" "MEMORY"|"BUFFER") identifier"("identifier")" ["FROM" identifier] ["CLIENT" identifier] "ID" identifier ) 
           ) 
            [ "COMPRESSION" ( "ON" | "OFF" ) ]".".
 
@@ -1350,7 +1382,8 @@ stGENERATE = "GENERATE" "SUBROUTINE" "POOL" identifier "NAME" identifier
 
 
 
-stGET = "GET"(  identifier ["LATE"] ["FIELDS" identifier ] |  "BADI" ( identifier ["FILTERS" Expression{Expression} ] ) 
+stGET = "GET"( 
+   "BADI" ( identifier ["FILTERS" Expression{Expression} ] ) 
        | ( identifier "TYPE" "("identifier")" 
               [ ("FILTERS" Exps ) 
               | ("FILTER-TABLE" identifier)] ) 
@@ -1364,7 +1397,7 @@ stGET = "GET"(  identifier ["LATE"] ["FIELDS" identifier ] |  "BADI" ( identifie
                 ["VALUE" string1] 
                 ["LENGTH" number] 
                 [["DISPLAY"|"MEMORY"] "OFFSET" number] ) ) |  "DATASET" identifier ["POSITION" number] ["ATTRIBUTES" identifier] |  "LOCALE" "LANGUAGE" identifier "COUNTRY" string1 "MODIFIER" string1 |  "PARAMETER" "ID" identifier "FIELD" identifier |  "PF-STATUS" string1 ["PROGRAM" identifier] ["EXCLUDING" identifier] |  "PROPERTY" "OF" identifier identifier "=" identifier ["NO" "FLUSH"] ["QUEUE-ONLY"] 
-                                ["EXPORTING" Exps ] |  "REFERENCE" "OF" identifier "INTO" identifier |  "RUN" "TIME" "FIELD" identifier |  "TIME" ["FIELD" identifier] |  "TIME" "STAMP" "FIELD" identifier ) ".".
+                                ["EXPORTING" Exps ] |  "REFERENCE" "OF" identifier "INTO" identifier |  "RUN" "TIME" "FIELD" identifier |  ("TIME" (["FIELD" identifier] |   "STAMP" "FIELD" identifier) )) ".".
 
 stHIDE = "HIDE" identifier".".
 
@@ -1376,8 +1409,9 @@ stIMPORT = "IMPORT"(  ( Exps
        | ( "MEMORY" "ID" identifier ) 
        | ( "DATABASE"      identifier "(" identifier ")" ["TO" identifier] ["CLIENT" identifier] 
                                    ("ID" identifier)|("MAJOR-ID" identifier ["MINOR-ID" identifier]) ) 
-       | ( "SHARED" "MEMORY" identifier"("identifier")" ["TO" identifier] ["CLIENT" identifier] "ID" identifier ) 
-       | ( "SHARED" "BUFFER" identifier"("identifier")" ["TO" identifier] ["CLIENT" identifier] "ID" identifier ) ) 
+       | ( "SHARED" ("BUFFER" |"MEMORY") identifier"("identifier")" ["TO" identifier] ["CLIENT" identifier] "ID" identifier ) 
+       
+        ) 
        [ ( ( ( (["ACCEPTING" "PADDING"] ["ACCEPTING" "TRUNCATION"]) 
              |  ["IGNORING" "STRUCTURE" "BOUNDARIES"] ) 
              [ "IGNORING" "CONVERSION" "ERRORS" 
@@ -1400,19 +1434,26 @@ stINITIALIZATION = "INITIALIZATION"".".
 
 stINPUT = "INPUT"".".
 
-stINSERT = "INSERT"(  ( ("INTO" (identifier|"("Expression")")
+stINSERT = "INSERT"(  
+/* INSERT dbtab */
+        ( ("INTO" (identifier|"("Expression")")
           ["USING" "CLIENT" identifier] | ["CLIENT" "SPECIFIED"] 
           ["CONNECTION" (identifier|"("Expression")")] 
           "VALUES" identifier) 
-       | ( (identifier|"("Expression")")
+           | 
+           ( (identifier|"("Expression")")
            ["USING" "CLIENT" identifier] | ["CLIENT" "SPECIFIED"] 
            ["CONNECTION" (identifier|"("Expression")")] 
-           "FROM" identifier|("TABLE" identifier ["ACCEPTING" "DUPLICATE" "KEYS"])|( stSELECT ) ) ) |  identifier  "INTO"  identifier  |  ( identifier 
-       | ("INITIAL" "LINE") 
-       | ("LINES" "OF" identifier ["FROM" identifier] ["TO" identifier] ["USING" "KEY" NameOrRef]) ) 
-  "INTO" ( ("TABLE" identifier) 
-       | (identifier "INDEX" identifier) 
-       | (identifier) ) 
+           "FROM" identifier|("TABLE" identifier ["ACCEPTING" "DUPLICATE" "KEYS"])|( stSELECT ) )
+       )
+       |  ( identifier 
+           | ("INITIAL" "LINE") 
+           | ("LINES" "OF" identifier ["FROM" identifier] ["TO" identifier] ["USING" "KEY" NameOrRef]) 
+          ) 
+          "INTO" ( ("TABLE" identifier) 
+                   | (identifier "INDEX" identifier) 
+                   | (identifier) 
+                 ) 
        [ ("ASSIGNING" identifier ["CASTING"]) | ("REFERENCE" "INTO" identifier ) ] |  "REPORT" identifier "FROM" identifier 
               ["MAXIMUM" "WIDTH" "INTO" identifier] 
               ( ["KEEPING" "DIRECTORY" "ENTRY"] 
@@ -1434,8 +1475,13 @@ stINTERFACES = "INTERFACES" identifier
     | ["ALL" "METHODS" ("ABSTRACT"|"FINAL")] ) 
   ["DATA" "VALUES" Exps ]".".
 
-stLEAVE = "LEAVE"(  "LIST-PROCESSING" |  "PROGRAM" |  ( "SCREEN" | ("TO" "SCREEN" identifier) ) |  "TO" "LIST-PROCESSING" ["AND" "RETURN" "TO" "SCREEN" identifier] |  "TO" ( ("TRANSACTION" identifier) | ("CURRENT" "TRANSACTION") ) 
-         ["AND" "SKIP" "FIRST" "SCREEN"] ) ".".
+stLEAVE = "LEAVE" (  
+            "LIST-PROCESSING"
+             |  "PROGRAM" 
+             |  "SCREEN"  
+             |  "TO" ( "TRANSACTION" identifier | "CURRENT" "TRANSACTION" | "LIST-PROCESSING" ["AND" "RETURN" "TO" "SCREEN" identifier] | "SCREEN" identifier ) 
+         ["AND" "SKIP" "FIRST" "SCREEN"] 
+         ) ".".
 
 stLOAD_OF_PROGRAM = "LOAD-OF-PROGRAM"".".
 
@@ -1480,13 +1526,20 @@ stPACK = "PACK" identifier "TO" identifier ".".
 
 stPARAMETERS = "PARAMETERS" ( identifier [("("number")" |  "LENGTH" number)] ) 
            [ ("TYPE" identifier ["DECIMALS" number]) 
-           | ("LIKE" identifier) 
-           | ("LIKE" "("identifier")") ] 
-           [ (["OBLIGATORY"|"NO-DISPLAY"] ["VISIBLE" "LENGTH" number]) 
-           | ("AS" "CHECKBOX" ["USER-COMMAND" identifier]) 
-           | ("RADIOBUTTON" "GROUP" identifier ["USER-COMMAND" identifier ]) 
-           | ("AS" "LISTBOX" "VISIBLE" "LENGTH" number 
-                ["USER-COMMAND" identifier] ["OBLIGATORY"]) ] 
+                   | ("LIKE" ["("]identifier[")"]) 
+           ] 
+           [ 
+               (["OBLIGATORY"|"NO-DISPLAY"] ["VISIBLE" "LENGTH" number]) 
+               | ("AS"  (
+                       "CHECKBOX" ["USER-COMMAND" identifier] 
+                       |
+                       "LISTBOX" "VISIBLE" "LENGTH" number 
+                                       ["USER-COMMAND" identifier] ["OBLIGATORY"]
+                        )
+                    ) 
+               | ("RADIOBUTTON" "GROUP" identifier ["USER-COMMAND" identifier ]) 
+             
+           ] 
            ["MODIF" "ID" identifier] 
            ["DEFAULT" string1] 
            ["LOWER" "CASE"] 
@@ -1499,9 +1552,10 @@ stPARAMETERS = "PARAMETERS" ( identifier [("("number")" |  "LENGTH" number)] )
               ["AS" "SEARCH" "PATTERN"]]".".
 
 stPERFORM = "PERFORM" ( ( ( identifier 
-            | (NameOrRef "IN" "PROGRAM" [NameOrRef] ["IF" "FOUND"]) 
+            | Expression ("IN" "PROGRAM" [NameOrRef] ["IF" "FOUND"] | ["IF" "FOUND"])
             | (number "OF" identifier ) 
-            | (identifier"("identifier")" ["IF" "FOUND"]) ) 
+            
+         ) 
             ["TABLES" identifier ] 
             ["USING" identifier ] 
             ["CHANGING" identifier ] ) 
@@ -1602,7 +1656,11 @@ stSET = "SET"(  "ASSOCIATION" identifier ( "=" identifier )
             ["ACTIVATION" identifier] |  "HOLD" "DATA" ("ON"|"OFF") |  "LANGUAGE" identifier |  "LEFT" "SCROLL-BOUNDARY" ["COLUMN" string1] |  "LOCALE" "LANGUAGE" identifier ["COUNTRY" string1] ["MODIFIER" string1] |  "MARGIN" number [number] |  "PARAMETER" "ID" identifier "FIELD" identifier |  "PF-STATUS" string1 ["OF" "PROGRAM" identifier] 
                      ["EXCLUDING" identifier] 
                      ["IMMEDIATELY"] |  "PROPERTY" "OF" identifier identifier "=" identifier ["NO" "FLUSH"] 
-                                ["EXPORTING" Exps ] |  "RUN" "TIME" "ANALYZER" ("ON"|"OFF") |  "RUN" "TIME" "CLOCK" "RESOLUTION" ("HIGH"|"LOW") |  "SCREEN" identifier |  "TITLEBAR" string1 ["OF" "PROGRAM" identifier] 
+                                ["EXPORTING" Exps ]
+                                |
+                                  "RUN" "TIME" ("ANALYZER" ("ON"|"OFF") 
+                                  |   "CLOCK" "RESOLUTION" ("HIGH"|"LOW") )
+                                |  "SCREEN" identifier |  "TITLEBAR" string1 ["OF" "PROGRAM" identifier] 
                    ["WITH" string1  string1] |  "UPDATE" "TASK" "LOCAL" |  "USER-COMMAND" identifier ) ".".
 
 stSHIFT = "SHIFT" identifier [ ( [ ("BY" number "PLACES") | ("UP" "TO" string1) ] 
@@ -1756,3 +1814,4 @@ END C.
 
 
 
+abap
