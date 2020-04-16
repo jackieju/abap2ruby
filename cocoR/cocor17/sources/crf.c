@@ -629,6 +629,7 @@ void GenParser(void)
 {
 	GenFrame(module_prefix, "parser_c.frm", Parser_C_Format);
 	GenFrame(module_prefix, "parser_h.frm", Parser_H_Format);
+    printf("->3\n");
 }
 
 void GenScanner(void)

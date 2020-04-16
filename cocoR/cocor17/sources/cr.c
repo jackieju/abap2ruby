@@ -208,7 +208,7 @@ static void PrintListing(void)
 { struct ErrDesc *nextErr;
   int lnr, errC;
   long srcPos;
-  char line[255];
+  char line[1024];
 
   fprintf(lst, "Listing:\n\n");
   srcPos = 0; nextErr = FirstErr;
@@ -229,6 +229,7 @@ static void PrintListing(void)
     }
   }
   fprintf(lst, "\n\n%5d syntax errors\n", errC);
+  printf("--->12\n");
 }
 
 void SummarizeErrors(void)
@@ -306,10 +307,12 @@ int main(int argc, char *argv[])
   InitScannerTab();
   Parse();
   close(S_src);
-
+  printf("-->5\n");
+  
   lst = lstfile;
   if (Errors && !L_option) SummarizeErrors();
   else if (Errors || L_option) PrintListing();
+  printf("-->6\n");
 
   if (Errors) {  /* Check for Syntax Errors */
     fclose(lstfile);
@@ -329,6 +332,7 @@ int main(int argc, char *argv[])
     if (!P_option) GenScanner();
     GenParser();
     GenHeaders();
+    
     if (C_option) GenCompiler();
   }
 
@@ -343,8 +347,14 @@ int main(int argc, char *argv[])
     if (A_option) ShowDFA();
     fclose(lstfile);
   }
+  printf("-->7\n");
+  
   DoneTab();
+  printf("-->8\n");
+  
   DoneScannerTab();
+  printf("-->9:%d\n", EXIT_SUCCESS);
+  
   return (EXIT_SUCCESS);
 }
 

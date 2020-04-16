@@ -10,6 +10,22 @@
 #define  MAX_ALT_IF     3
 #define  isspacetab(c)  (c == ' ' || c == '\t')
 
+#include <execinfo.h>
+#include <stdio.h>
+
+// only on mac
+static print_stack(){
+    void* callstack[128];
+    int i, frames = backtrace(callstack, 128);
+    char** strs = backtrace_symbols(callstack, frames);
+     printf("**** call stack ****\n");
+    for (i = 0; i < frames; ++i) {
+        printf("%s\n", strs[i]);
+    }
+    free(strs);
+    printf("**** end stack ****\n");
+}
+
 static FILE *fparser, *fherror;
 static int ErrorNo, CurrentNt;
 
@@ -48,6 +64,8 @@ static char *GetFormatLine (char *s, char *line)
 /* generate semantic action code */
 static void GenSemCode(int tab, long pos, int len, int line, int col, int gencomma)
 {
+     printf("line %d col %d pos %d len %d tab %d", line, col, pos, len, tab);
+     print_stack();
 	int i;
 	char *buff, *s, *sb;
 	int Comma = FALSE, firstline = 1;
@@ -94,6 +112,7 @@ static void GenSemCode(int tab, long pos, int len, int line, int col, int gencom
     
 	GenCode(fparser, "$$");
 	free(buff);
+    printf("--->1\n");
 }
 
 /* generate attribute code */
@@ -312,6 +331,9 @@ static void GenFuncGraph(int gp, int tab, Set *chequed)
 	Set_Union(chequed, &Oldchequed);
 	Set_Done(&Oldchequed);
 	Set_Done(&s1);
+    
+    printf("-->2:error %d\n", ErrorNo);
+    print_stack();
 }
 
 /* generate body of function */
