@@ -256,10 +256,10 @@ stMOVE =  "MOVE"
     
 
  
-stAPPEND = "APPEND" (identifier 
-        | {"INITIAL" "LINE"} 
+stAPPEND = "APPEND" ( 
+         {"INITIAL" "LINE"} 
         | {"LINES" "OF" identifier ["FROM" identifier] ["TO" identifier] ["USING" "KEY" string1]}
-         )
+        | identifier )
     "TO" identifier {"[""]"}
     ["SORTED" "BY" string1] 
     [ ("ASSIGNING" string1 ["CASTING"] | "REFERENCE" "INTO" identifier ) ] "." .
@@ -311,8 +311,8 @@ DescribeStatement = "DESCRIBE" (
         )
         "." . */
 
-stRAISE = "RAISE" (identifier
-|  "EVENT" identifier ["EXPORTING" Expression {Expression}]
+stRAISE = "RAISE" (
+  "EVENT" identifier ["EXPORTING" Expression {Expression}]
 | ["RESUMABLE"] "EXCEPTION" 
   [  
       ( "TYPE" identifier 
@@ -325,16 +325,17 @@ stRAISE = "RAISE" (identifier
      | identifier
      )
  ]
+ |identifier
 )
 .
 
 MessasgeStatement = "MESSAGE"
          {(
-         ( identifier [ ( "(" identifier ")" | (  "TYPE" identifier) ) ] )
-        | ( "ID" identifier "TYPE" identifier "NUMBER" number )
+         
+         ( "ID" identifier "TYPE" identifier "NUMBER" number )
         
         | (string1 "TYPE" identifier)
-         )} 
+        | ( identifier [ ( "(" identifier ")" | (  "TYPE" identifier) ) ] ))} 
          
         [(
         (["DISPLAY" "LIKE" identifier] 
@@ -344,9 +345,10 @@ MessasgeStatement = "MESSAGE"
         ["WITH" identifier {identifier}] "." . 
 
 
-GroupBy = "GROUP" "BY" (identifier 
-                        | ( Expression {Expression} [ identifier "=" "GROUP" "SIZE"] [ identifier "=" "GROUP" "INDEX"]) 
-                        )
+GroupBy = "GROUP" "BY" ( 
+                        ( Expression {Expression} [ identifier "=" "GROUP" "SIZE"] [ identifier "=" "GROUP" "INDEX"]) 
+                        |identifier
+                       )
                             [("ASCENDING"|"DESCENDING") ["AS" "TEXT"]] 
                             ["WITHOUT" "MEMBERS"] 
                             [ 
@@ -357,8 +359,8 @@ GroupBy = "GROUP" "BY" (identifier
                             
 LoopStatement = "LOOP" [ 
             "AT" ( 
-                  ( identifier ["VERSION" string1]
-                    | (
+                  (
+                     (
                        identifier ( 
                                    "INTO" identifier  
                                  |  "ASSIGNING" identifier ["CASTING"] 
@@ -369,7 +371,8 @@ LoopStatement = "LOOP" [
                           [ "FROM" identifier] ["TO" identifier] ["WHERE" Expression ] 
                           [ GroupBy
                          ]
-                      )
+                     )
+                    | identifier ["VERSION" string1]  
                   )
                 |
                  "GROUP" identifier ( 
@@ -461,15 +464,16 @@ LikeDes =        "LIKE"
                    ).
  
                  
-VariableDefineStatement =  ("DATA"|"STATICS" ) ( identifier { "(" number  ")" }
-                ( TypeDes | LikeDes)
-                ["VALUE" { Expression | "IS" "INITIAL" }] 
-                ["READ-ONLY"] 
+VariableDefineStatement =  ("DATA"|"STATICS" ) 
+            ( 
+                "BEGIN" "OF" ( "COMMON" "PART" identifier| identifier ["READ-ONLY"] ["OCCURS" number] )
                 |
-                "BEGIN" "OF" ( identifier ["READ-ONLY"] ["OCCURS" number] | "COMMON" "PART" identifier)
-                |
-                "END" "OF" (identifier ["VALID" "BETWEEN" Expression "AND" Expression] | "COMMON" "PART" identifier )
-                )
+                "END" "OF" ("COMMON" "PART" identifier | identifier ["VALID" "BETWEEN" Expression "AND" Expression] )
+                | 
+                identifier { "(" number  ")" }  ( TypeDes | LikeDes)
+                                ["VALUE" { Expression | "IS" "INITIAL" }] 
+                                ["READ-ONLY"]
+            )
                     "." .
                     
 
@@ -585,33 +589,46 @@ stAUTHORITY_CHECK = "AUTHORITY-CHECK" "OBJECT" identifier ["FOR" "USER" string1]
                      AUTHORITY_CHECK_ITEM { AUTHORITY_CHECK_ITEM }
                       "." .
                       
-stDELETE = "DELETE"(  "DATASET" identifier |  ( ( "FROM" Expression
-           ["USING" "CLIENT" identifier] | ["CLIENT" "SPECIFIED"] 
-           ["CONNECTION" (identifier|"("Expression")")] 
-           ["WHERE" Expression] ["ORDER" "BY" identifier{"," identifier} ["OFFSET" number]] ["UP" "TO" number "ROWS"] ) 
-       | ( ( identifier|"(" Expression ")") ["CLIENT" "SPECIFIED"] 
-                                      ["CONNECTION" (identifier|"("Expression")")] ) 
-           "FROM" identifier |("TABLE" identifier) ) |  ( ( ("TABLE" identifier 
-            (("FROM" identifier ["USING" "KEY" (identifier|"("identifier")")]) 
-            |("WITH" "TABLE" "KEY" [(identifier|"("identifier")")"COMPONENTS"] 
-                             ["("] identifier [")"] "=" identifier 
-                              ))) 
-         | (identifier "INDEX" identifier ["USING" "KEY" ["("] identifier [")"]]) 
-         | (identifier ["USING" "KEY" identifier]) ) 
-       | (identifier ["USING" "KEY" ["("] identifier [")"]] 
-               ["FROM" identifier] ["TO" identifier] ["WHERE" ["("] Expression [")"]] 
-       | ("ADJACENT" "DUPLICATES" "FROM" identifier 
-           [ "USING" "KEY" ["("] identifier [")"]] 
-           ["COMPARING" identifier |("ALL" "FIELDS")]) ) |  "FROM" 
-           (
-            ("MEMORY" "ID" number) 
-            | ("DATABASE"      identifier"("identifier")" ["CLIENT" identifier] "ID" number) 
-            | "SHARED"(
-                 ( "MEMORY" identifier"("identifier")" ["CLIENT" identifier] "ID" number) 
-                 | ( "BUFFER" identifier"("identifier")" ["CLIENT" identifier] "ID" number)
-            )
-           )
-         ) ) ".".
+stDELETE = "DELETE"(  
+                "DATASET" identifier 
+                |
+                ( 
+                    ( 
+                        "FROM" Expression ["USING" "CLIENT" identifier] 
+                        | ["CLIENT" "SPECIFIED"] ["CONNECTION" (identifier|"("Expression")")] ["WHERE" Expression] ["ORDER" "BY" identifier{"," identifier} ["OFFSET" number]] ["UP" "TO" number "ROWS"] 
+                    ) 
+                   | "TABLE" identifier 
+                   | ( ( identifier|"(" Expression ")") ["CLIENT" "SPECIFIED"] ["CONNECTION" (identifier|"("Expression")")] ) 
+                       "FROM" identifier 
+                ) 
+                |  
+                  ( 
+                        ( ("TABLE" identifier 
+                        (("FROM" identifier ["USING" "KEY" (identifier|"("identifier")")]) 
+                        |("WITH" "TABLE" "KEY" [(identifier|"("identifier")")"COMPONENTS"] 
+                                 ["("] identifier [")"] "=" identifier 
+                                  ))) 
+                                  | (identifier ["INDEX" identifier] ["USING" "KEY" ["("] identifier [")"]]) 
+                        ) 
+                    |
+                        (    
+                            ("ADJACENT" "DUPLICATES" "FROM" identifier [ "USING" "KEY" ["("] identifier [")"]] 
+                                                   ["COMPARING" identifier |("ALL" "FIELDS")])
+                            |
+                            identifier ["USING" "KEY" ["("] identifier [")"]] ["FROM" identifier] ["TO" identifier] ["WHERE" ["("] Expression [")"]] 
+                        )
+                    |
+                        "FROM" 
+                           (
+                            ("MEMORY" "ID" number) 
+                            | ("DATABASE"      identifier"("identifier")" ["CLIENT" identifier] "ID" number) 
+                            | "SHARED"(
+                                 ( "MEMORY" identifier"("identifier")" ["CLIENT" identifier] "ID" number) 
+                                 | ( "BUFFER" identifier"("identifier")" ["CLIENT" identifier] "ID" number)
+                            )
+                           )
+                 )
+                ) ".".
 
 VARYING = "VARYING" identifier "FROM" identifier "NEXT" identifier ["RANGE" Expression] .
 
@@ -627,11 +644,7 @@ Event_options = "EXPORTING" Event_exp_item {Event_exp_item} .
 stEVENTS = "EVENTS" identifier [ Event_options ]".".
 
 
-stMODIFY = "MODIFY"(  identifier|"("Expression")" 
-       ["USING" "CLIENT" identifier] | ["CLIENT" "SPECIFIED"] 
-       ["CONNECTION" (identifier|"("Expression")")] 
-       "FROM" ( identifier|("TABLE" identifier) ) 
-       |
+stMODIFY = "MODIFY"( 
          ( ( ( ("TABLE" identifier)|(identifier "INDEX" identifier) 
              ["USING" "KEY" ["("] identifier [")"]] ) 
              | ( identifier ["USING" "KEY" identifier] ) 
@@ -651,7 +664,13 @@ stMODIFY = "MODIFY"(  identifier|"("Expression")"
            ["LINE" "FORMAT" Format_options] 
            ["FIELD" "FORMAT" identifier Format_options {identifier Format_options} ] 
        |
-         "SCREEN" "FROM" identifier ) ".".
+         "SCREEN" "FROM" identifier 
+       |
+           identifier|"("Expression")" 
+                 ["USING" "CLIENT" identifier] | ["CLIENT" "SPECIFIED"] 
+                 ["CONNECTION" (identifier|"("Expression")")] 
+                 "FROM" ( identifier|("TABLE" identifier) ) 
+         ) ".".
 
 stON = "ON" "CHANGE" "OF" identifier {"OR" identifier }"." 
   Statements 
@@ -758,8 +777,8 @@ stREAD = "READ" (
           
           ) 
            ( ("INTO" identifier 
-              ["COMPARING" ( (identifier{identifier} )|("ALL" "FIELDS")|("NO" "FIELDS") )] 
-              ["TRANSPORTING" ( (identifier{identifier} )|("ALL" "FIELDS") )]) 
+              ["COMPARING" (  "ALL" "FIELDS" | "NO" "FIELDS" |identifier{identifier} )] 
+              ["TRANSPORTING" ( "ALL" "FIELDS"  | identifier{identifier} )]) 
            | ( "ASSIGNING" identifier ["CASTING"] ) 
            | ( "REFERENCE" "INTO" identifier ) 
            | ("TRANSPORTING" "NO" "FIELDS") )
@@ -824,55 +843,8 @@ Types_mesh_stmt =   "TYPES"  identifier (
                {Association} 
                "." .
                                                          
-stTYPES = "TYPES"(  identifier["("number")"] /*("TYPE" ( (identifier ["LENGTH" number] 
-                                      ["DECIMALS" number]) 
-                         | (["LINE" "OF"] identifier) 
-                         | ("REF" "TO" identifier) 
-                         | ( ((["STANDARD"] "TABLE") 
-                             | ("SORTED" "TABLE") 
-                             |("HASHED" "TABLE")) 
-                             "OF" ["REF" "TO"] identifier 
-                             [ ("WITH" ["UNIQUE"|"NON-UNIQUE"] 
-                                  ( ("KEY" [identifier ["ALIAS" identifier] 
-                                       "COMPONENTS"] identifier ) 
-                                  | ("DEFAULT" "KEY") )  ) 
-                             | ("WITH" "EMPTY" "KEY") ] 
-                             ({"WITH" ("UNIQUE" "HASHED")|(("UNIQUE"|"NON-UNIQUE") "SORTED") 
-                                "KEY" identifier "COMPONENTS" identifier } 
-                              ) 
-                             [("WITH"|"WITHOUT") "FURTHER" "SECONDARY" "KEYS"] 
-                             ["INITIAL" "SIZE" number]) 
-                           | ("RANGE" "OF" identifier ["INITIAL" "SIZE" number]) ) 
-                           | identifier Lob_handle_type {Lob_handle_type}
-                               
-                            ) 
-                 | ("LIKE" ( (["LINE" "OF"] identifier) 
-                         | ("REF" "TO" identifier) 
-                         | ( ((["STANDARD"] "TABLE") 
-                             |("SORTED" "TABLE") 
-                             |("HASHED" "TABLE") 
-                             |("ANY" "TABLE") 
-                             |("INDEX" "TABLE")) 
-                             "OF" ["REF" "TO"] identifier 
-                             [ ("WITH" ["UNIQUE"|"NON-UNIQUE"] 
-                                  ( ("KEY" [identifier ["ALIAS" identifier] 
-                                       "COMPONENTS"] identifier ) 
-                                  | ("DEFAULT" "KEY") )) 
-                             | ("WITH" "EMPTY" "KEY") ] 
-                             {"WITH" ("UNIQUE" "HASHED")|(("UNIQUE"|"NON-UNIQUE") "SORTED") 
-                                "KEY" identifier "COMPONENTS" identifier }  
-                             [("WITH"|"WITHOUT") "FURTHER" "SECONDARY" "KEYS"] 
-                             ["INITIAL" "SIZE" number]) 
-                           | ("RANGE" "OF" identifier ["INITIAL" "SIZE" number]) ))*/ 
-                    (TypeDes|LikeDes)
-         
-        |
+stTYPES = "TYPES"( 
           "BEGIN" "OF"(
-              identifier "." 
-                              { "TYPES" identifier["("number")"] (TypeDes|LikeDes) ["BOXED"]  "." }
-                                  {stINCLUDE}
-                              "TYPES" "END" "OF" identifier
-            |
               "ENUM" identifier  ["STRUCTURE" identifier] 
                             ["BASE" "TYPE" identifier] "." 
                 "TYPES" identifier "VALUE" (Expression |"IS" "INITIAL"){"," "TYPES" identifier "VALUE" (Expression |"IS" "INITIAL")} 
@@ -881,8 +853,56 @@ stTYPES = "TYPES"(  identifier["("number")"] /*("TYPE" ( (identifier ["LENGTH" n
               "MESH" identifier"." 
                        {Types_mesh_stmt}
                        "DATA" "END" "OF" "MESH" identifier
+            | 
+                identifier "." 
+                                { "TYPES" identifier["("number")"] (TypeDes|LikeDes) ["BOXED"]  "." }
+                                    {stINCLUDE}
+                                "TYPES" "END" "OF" identifier
           )  
-           )       
+       |
+       identifier["("number")"] /*("TYPE" ( (identifier ["LENGTH" number] 
+                                             ["DECIMALS" number]) 
+                                | (["LINE" "OF"] identifier) 
+                                | ("REF" "TO" identifier) 
+                                | ( ((["STANDARD"] "TABLE") 
+                                    | ("SORTED" "TABLE") 
+                                    |("HASHED" "TABLE")) 
+                                    "OF" ["REF" "TO"] identifier 
+                                    [ ("WITH" ["UNIQUE"|"NON-UNIQUE"] 
+                                         ( ("KEY" [identifier ["ALIAS" identifier] 
+                                              "COMPONENTS"] identifier ) 
+                                         | ("DEFAULT" "KEY") )  ) 
+                                    | ("WITH" "EMPTY" "KEY") ] 
+                                    ({"WITH" ("UNIQUE" "HASHED")|(("UNIQUE"|"NON-UNIQUE") "SORTED") 
+                                       "KEY" identifier "COMPONENTS" identifier } 
+                                     ) 
+                                    [("WITH"|"WITHOUT") "FURTHER" "SECONDARY" "KEYS"] 
+                                    ["INITIAL" "SIZE" number]) 
+                                  | ("RANGE" "OF" identifier ["INITIAL" "SIZE" number]) ) 
+                                  | identifier Lob_handle_type {Lob_handle_type}
+                               
+                                   ) 
+                        | ("LIKE" ( (["LINE" "OF"] identifier) 
+                                | ("REF" "TO" identifier) 
+                                | ( ((["STANDARD"] "TABLE") 
+                                    |("SORTED" "TABLE") 
+                                    |("HASHED" "TABLE") 
+                                    |("ANY" "TABLE") 
+                                    |("INDEX" "TABLE")) 
+                                    "OF" ["REF" "TO"] identifier 
+                                    [ ("WITH" ["UNIQUE"|"NON-UNIQUE"] 
+                                         ( ("KEY" [identifier ["ALIAS" identifier] 
+                                              "COMPONENTS"] identifier ) 
+                                         | ("DEFAULT" "KEY") )) 
+                                    | ("WITH" "EMPTY" "KEY") ] 
+                                    {"WITH" ("UNIQUE" "HASHED")|(("UNIQUE"|"NON-UNIQUE") "SORTED") 
+                                       "KEY" identifier "COMPONENTS" identifier }  
+                                    [("WITH"|"WITHOUT") "FURTHER" "SECONDARY" "KEYS"] 
+                                    ["INITIAL" "SIZE" number]) 
+                                  | ("RANGE" "OF" identifier ["INITIAL" "SIZE" number]) ))*/ 
+                           (TypeDes|LikeDes)
+         
+         )       
       "." .
             
                  
@@ -1010,7 +1030,7 @@ MethodStatement = "METHOD" identifier "."
 "ENDMETHOD" ".".
 
 Typing = (
-        "TYPE"    ( identifier | ["LINE" "OF"] identifier | "REF" "TO" identifier ) 
+        "TYPE"    (  ["LINE" "OF"] identifier | "REF" "TO" identifier  |identifier) 
         | "LIKE" [( ["LINE" "OF"] | "REF" "TO" )] identifier 
       
          )
@@ -1037,7 +1057,7 @@ MethodsStatement =  (("METHODS" | "CLASS-METHODS") identifier ( ["ABSTRACT"|"FIN
                } ] 
   [ "RETURNING" {"VALUE"(identifier)} Typing ] 
   [
-       {"RAISING" (identifier| "RESUMABLE" "(" identifier ")" ) { (identifier| "RESUMABLE" "(" identifier ")" )}} 
+       {"RAISING" ("RESUMABLE" "(" identifier ")" | identifier) { ("RESUMABLE" "(" identifier ")" | identifier)}} 
            | 
        {"EXCEPTIONS" identifier {identifier} }
   ]
@@ -1064,14 +1084,14 @@ stASSERT = "ASSERT" [ ["ID" identifier ["SUBKEY" identifier]]
          "CONDITION" ] Expression ".".
 
 stASSIGN = "ASSIGN" ( 
-        NameOrRef (
+       ["TABLE" "FIELD"] "("identifier")" 
+       | ("COMPONENT" identifier "OF" "STRUCTURE" identifier) 
+       | Expression 
+       |        NameOrRef (
             ["+" number]["("number")"] 
             | ("->"|"=>") ["*"|NameOrRef]
             | "INCREMENT" number
-        )
-       | ["TABLE" "FIELD"] "("identifier")" 
-       | ("COMPONENT" identifier "OF" "STRUCTURE" identifier) 
-       | Expression ) 
+        )) 
   "TO" identifier 
   [ ( "CASTING" [ 
   
@@ -1226,9 +1246,8 @@ stCONVERT = "CONVERT"(
           "INTO" "TIME" "STAMP" string1 "TIME" "ZONE" string1 ) ) ".".
 
 stCREATE = "CREATE"(  "DATA" identifier [ "AREA" "HANDLE" identifier ] 
-                 [ "TYPE" ( (NameOrRef
-                           ["LENGTH" number] ["DECIMALS" number]) 
-                        | (["LINE" "OF"] NameOrRef) 
+                 [ "TYPE" ( 
+                         (["LINE" "OF"] NameOrRef) 
                         | ("REF" "TO" NameOrRef) 
                         | ( ((["STANDARD"] "TABLE") 
                            |("SORTED" "TABLE") 
@@ -1238,7 +1257,10 @@ stCREATE = "CREATE"(  "DATA" identifier [ "AREA" "HANDLE" identifier ]
                                 ("KEY" (identifier )|"("identifier")")|("DEFAULT" "KEY")) 
                            | ("WITH" "EMPTY" "KEY") ] 
                            ["INITIAL" "SIZE" number]) 
-                        | ("HANDLE" identifier) ) ] 
+                        | ("HANDLE" identifier) 
+                        (NameOrRef
+                                                   ["LENGTH" number] ["DECIMALS" number]) 
+                        ) ] 
                | [ "LIKE" ( (["LINE" "OF"] identifier) 
                         | ("REF" "TO" identifier) 
                         | ( ((["STANDARD"] "TABLE") 
@@ -1313,7 +1335,7 @@ stEXPORT = "EXPORT" (
           ) 
            [ "COMPRESSION" ( "ON" | "OFF" ) ]".".
 
-stEXTRACT = "EXTRACT" ( identifier | identifier )".".
+stEXTRACT = "EXTRACT" identifier ".".
 
 stFIELD_GROUPS = "FIELD-GROUPS" identifier   ".".
 
@@ -1464,7 +1486,7 @@ stINSERT = "INSERT"(
 
 stINTERFACE = "INTERFACE"(  identifier"." 
   [identifier] 
-"ENDINTERFACE" |  identifier ("DEFERRED" ["PUBLIC"]) | "LOAD" ) ".".
+"ENDINTERFACE" | "LOAD" |  identifier ("DEFERRED" ["PUBLIC"])  ) ".".
 
 stINTERFACE_POOL = "INTERFACE-POOL"".".
 
