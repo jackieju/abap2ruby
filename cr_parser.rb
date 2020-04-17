@@ -451,7 +451,7 @@ class CRParser
     end
     
     def isKeyword?(n)
-        list = ["DATA", "END","FIELD","WRITE",
+        list = ["DATA", "WRITE",
 "DO",
 "IF",
 "WHILE",
