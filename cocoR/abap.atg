@@ -871,7 +871,7 @@ stTYPES = "TYPES"(  identifier["("number")"] /*("TYPE" ( (identifier ["LENGTH" n
               identifier "." 
                               { "TYPES" identifier["("number")"] (TypeDes|LikeDes) ["BOXED"]  "." }
                                   {stINCLUDE}
-                              "DATA" "END" "OF" identifier
+                              "TYPES" "END" "OF" identifier
             |
               "ENUM" identifier  ["STRUCTURE" identifier] 
                             ["BASE" "TYPE" identifier] "." 

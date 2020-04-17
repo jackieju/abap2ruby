@@ -9286,14 +9286,19 @@ class CParser < CRRParser
 
       else
          if @sym==C_BEGINSym
+             p "TYPES:--->BEGIN"
             Get()
             Expect(C_OFSym)
+            p "TYPES:--->OF"
+            
             if @sym==C_identifierSym
                Get()
                Expect(C_PointSym)
+               p "TYPES:--->IDENTIFIER-->.:#{src}"
                while (@sym==C_TYPESSym)
                   Get()
                   Expect(C_identifierSym)
+                  p "TYPES:--->IDENTIFIER-->.--->TYPES--->IDENTIFIER:#{src}"
                   if @sym==C_LparenSym
                      Get()
                      Expect(C_numberSym)
@@ -9317,12 +9322,12 @@ class CParser < CRRParser
 
                   Expect(C_PointSym)
                end
-
+               p "TYPES:<---IDENTIFIER<---.:#{src}"
                while (@sym==C_INCLUDESym)
                   stINCLUDE()
                end
 
-               Expect(C_DATASym)
+               Expect(C_TYPESSym)
                Expect(C_ENDSym)
                Expect(C_OFSym)
                Expect(C_identifierSym)

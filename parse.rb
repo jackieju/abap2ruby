@@ -20,6 +20,7 @@ def parse(s, preprocess = true, to_ruby=true)
     #p "parse #{s}"
     t_start = Time.now.to_f
     if preprocess
+        p "Preprocessing..."
        s = preprocess(s)
     end
     

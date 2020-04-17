@@ -43,7 +43,7 @@ class Preprocessor < PreParser
         #     include_file("c_macros.c") # predefined macros
         # end
 
-         
+        p "start Preprocess"
          Get()
          p "sym3333:#{@sym}"
          # _preprocess(false)
@@ -1875,7 +1875,7 @@ class Preprocessor < PreParser
             
            
              keyword = curString()
-              p "@linestart  #{@linestart }, #{keyword}"
+              p "@linestart  #{@linestart }, #{@sym}, #{keyword}"
            if @linestart  && ( keyword[0]>='a' && keyword[0]<='z' || keyword[0]>='A' && keyword[0]<='Z')
               
               
@@ -1885,6 +1885,9 @@ class Preprocessor < PreParser
                  sym_pos = @scanner.nextSym.pos
                ar =[]
                Get()
+               
+               # process "KEYWORD:...,"
+               
                p "keyword #{keyword}"
               
                if @sym == C_ColonSym
@@ -1902,6 +1905,8 @@ class Preprocessor < PreParser
                        ar.push(s)
                        p "===>push:#{s}"
                    end while (@sym != C_PointSym && @sym != C_EOF_Sym)
+                   
+                   p "--->111:#{@sym}, #{curString()}"
                    res = ""
                    ar.each{|ss|
                        res += "#{keyword} #{ss} .\n"
@@ -1909,11 +1914,11 @@ class Preprocessor < PreParser
                    p "res:#{res}"
                    if ar.size >0
                        
-                       p_end = @scanner.currSym.pos + @scanner.currSym.len - 1
-                       content = ""
-                       ar.each{|ln|
-                           content = "#{keyword} ln ."
-                       }
+                       p_end = @scanner.nextSym.pos + @scanner.nextSym.len - 1
+                      #content = ""
+                      #ar.each{|ln|
+                      #    content = "#{keyword} ln ."
+                      #}
                        
                        replaced = @scanner.buffer[p_start..p_end]
                        if p_start <= 0 
