@@ -595,10 +595,10 @@ stDELETE = "DELETE"(
                 ( 
                     ( 
                         "FROM" Expression ["USING" "CLIENT" identifier] 
-                        | ["CLIENT" "SPECIFIED"] ["CONNECTION" (identifier|"("Expression")")] ["WHERE" Expression] ["ORDER" "BY" identifier{"," identifier} ["OFFSET" number]] ["UP" "TO" number "ROWS"] 
+                        | ["CLIENT" "SPECIFIED"] ["CONNECTION" ("("Expression")"| identifier)] ["WHERE" Expression] ["ORDER" "BY" identifier{"," identifier} ["OFFSET" number]] ["UP" "TO" number "ROWS"] 
                     ) 
                    | "TABLE" identifier 
-                   | ( ( identifier|"(" Expression ")") ["CLIENT" "SPECIFIED"] ["CONNECTION" (identifier|"("Expression")")] ) 
+                   | ( ( identifier|"(" Expression ")") ["CLIENT" "SPECIFIED"] ["CONNECTION" ("("Expression")"| identifier)] ) 
                        "FROM" identifier 
                 ) 
                 |  
@@ -668,7 +668,7 @@ stMODIFY = "MODIFY"(
        |
            identifier|"("Expression")" 
                  ["USING" "CLIENT" identifier] | ["CLIENT" "SPECIFIED"] 
-                 ["CONNECTION" (identifier|"("Expression")")] 
+                 ["CONNECTION" ("("Expression")"| identifier)] 
                  "FROM" ( identifier|("TABLE" identifier) ) 
          ) ".".
 
@@ -1070,10 +1070,17 @@ MethodsStatement =  (("METHODS" | "CLASS-METHODS") identifier ( ["ABSTRACT"|"FIN
   "." . 
   
   /*** copy from convert_result ***/
-stADD = "ADD"(  identifier "TO" identifier |  ( ( identifier "THEN" identifier "UNTIL" identifier 
-      ( ("TO" identifier) | ("GIVING" identifier ["ACCORDING" "TO" identifier]) ) ) 
-    | ( identifier "FROM" number "TO" number "GIVING" identifier ) ) 
-    ["RANGE" Expression] ) ".".
+stADD = "ADD" identifier ( 
+          "TO" identifier
+         |  
+             ( 
+                 "THEN" identifier "UNTIL" identifier 
+                 ( "TO" identifier | ("GIVING" identifier ["ACCORDING" "TO" identifier]) ) 
+                  
+            |
+            (  "FROM" number "TO" number "GIVING" identifier )
+            ) ["RANGE" Expression] 
+         ) ".".
 
 stADD_CORRESPONDING = "ADD-CORRESPONDING" identifier "TO" identifier".".
 
@@ -1136,7 +1143,7 @@ CallDialog =  "DIALOG" identifier [ ("AND" "SKIP" "FIRST" "SCREEN")
                    ["IMPORTING"  identifier "TO" identifier { identifier "TO" identifier}] .
 
 CallDatabaseProcedure =  "DATABASE" "PROCEDURE" "("identifier")" 
-            ["CONNECTION" (identifier|"("Expression")")] 
+            ["CONNECTION" ("("Expression")"｜identifier)] 
               (   ["EXPORTING"  {Expression} ] 
                     ["IMPORTING"  {Expression}  ] 
         |  ["PARAMETER-TABLE" identifier]  ) .
@@ -1254,7 +1261,7 @@ stCREATE = "CREATE"(  "DATA" identifier [ "AREA" "HANDLE" identifier ]
                            |("HASHED" "TABLE")) 
                            "OF" ["REF" "TO"] NameOrRef
                            [ ("WITH" ["UNIQUE"|"NON-UNIQUE"] 
-                                ("KEY" (identifier )|"("identifier")")|("DEFAULT" "KEY")) 
+                                ("KEY" (identifier{identifier} |"("identifier")"))|("DEFAULT" "KEY")) 
                            | ("WITH" "EMPTY" "KEY") ] 
                            ["INITIAL" "SIZE" number]) 
                         | ("HANDLE" identifier) 
@@ -1268,7 +1275,7 @@ stCREATE = "CREATE"(  "DATA" identifier [ "AREA" "HANDLE" identifier ]
                            |("HASHED" "TABLE")) 
                            "OF" identifier 
                            [ ("WITH" ["UNIQUE"|"NON-UNIQUE"] 
-                                ("KEY" (identifier )|"("identifier")")|("DEFAULT" "KEY")) 
+                                ("KEY" (identifier{identifier} |"("identifier")"))|("DEFAULT" "KEY")) 
                            | ("WITH" "EMPTY" "KEY") ] 
                            ["INITIAL" "SIZE" number]) ) ] |  "OBJECT" identifier ["AREA" "HANDLE" identifier] 
                    [ ["TYPE" identifier] 
@@ -1386,7 +1393,7 @@ Format_options = ["COLOR"
 
 stFORMAT = "FORMAT" Format_options ".".
 
-stFREE = "FREE"(  identifier |  "MEMORY" "ID" identifier |  "OBJECT" identifier ["NO" "FLUSH"] ) ".".
+stFREE = "FREE"(   "MEMORY" "ID" identifier |  "OBJECT" identifier ["NO" "FLUSH"] | identifier ) ".".
 
 stFUNCTION_POOL = "FUNCTION-POOL" identifier ["NO" "STANDARD" "PAGE" "HEADING"] 
                     ["LINE-SIZE" number] 
@@ -1405,17 +1412,19 @@ stGENERATE = "GENERATE" "SUBROUTINE" "POOL" identifier "NAME" identifier
 
 
 stGET = "GET"( 
-   "BADI" ( identifier ["FILTERS" Expression{Expression} ] ) 
+       "BADI"  identifier ["FILTERS" Expression{Expression} ]  
        | ( identifier "TYPE" "("identifier")" 
               [ ("FILTERS" Exps ) 
               | ("FILTER-TABLE" identifier)] ) 
-              ["CONTEXT" identifier] |  "BIT" number "OF" string1 "INTO" identifier |  "CURSOR" ( ( "FIELD" identifier 
+              ["CONTEXT" identifier] 
+       |  "BIT" number "OF" string1 "INTO" identifier 
+       |  "CURSOR" ( ( "FIELD" identifier 
                 ["VALUE" string1] 
                 ["LENGTH" number] 
                 [["DISPLAY"|"MEMORY"] "OFFSET" number] 
                 ["LINE" number] 
                 ["AREA" identifier] ) 
-           | ( "LINE" number 
+                | ( "LINE" number 
                 ["VALUE" string1] 
                 ["LENGTH" number] 
                 [["DISPLAY"|"MEMORY"] "OFFSET" number] ) ) |  "DATASET" identifier ["POSITION" number] ["ATTRIBUTES" identifier] |  "LOCALE" "LANGUAGE" identifier "COUNTRY" string1 "MODIFIER" string1 |  "PARAMETER" "ID" identifier "FIELD" identifier |  "PF-STATUS" string1 ["PROGRAM" identifier] ["EXCLUDING" identifier] |  "PROPERTY" "OF" identifier identifier "=" identifier ["NO" "FLUSH"] ["QUEUE-ONLY"] 
@@ -1423,9 +1432,12 @@ stGET = "GET"(
 
 stHIDE = "HIDE" identifier".".
 
-stIMPORT = "IMPORT"(  ( Exps 
+stIMPORT = "IMPORT"(  
+        ( Exps 
+       | ("identifier")" 
        | ( identifier "TO" identifier  {identifier "TO" identifier} ) 
-       | (identifier) ) 
+       
+       ) 
   "FROM" ( ( "DATA" "BUFFER" identifier ) 
        | ( "INTERNAL" "TABLE" identifier ) 
        | ( "MEMORY" "ID" identifier ) 
@@ -1443,8 +1455,9 @@ stIMPORT = "IMPORT"(  ( Exps
        ["ENDIAN" "INTO" identifier] |  "DIRECTORY" "INTO" identifier 
   "FROM" "DATABASE" identifier"("identifier")" ["TO" identifier] ["CLIENT" identifier] "ID" identifier ) ".".
 
-stINCLUDE = "INCLUDE"(  identifier ["IF" "FOUND"] |  ( ("TYPE" identifier) | ("STRUCTURE" identifier) ) 
-        ["AS" identifier ["RENAMING" "WITH" "SUFFIX" string1]] ) ".".
+stINCLUDE = "INCLUDE"(  ( "TYPE" identifier | "STRUCTURE" identifier ) 
+        ["AS" identifier ["RENAMING" "WITH" "SUFFIX" string1]] 
+        |identifier ["IF" "FOUND"]) ".".
 
 stINFOTYPES = "INFOTYPES" identifier ["NAME" identifier] 
                ["OCCURS" number] 
@@ -1458,23 +1471,24 @@ stINPUT = "INPUT"".".
 
 stINSERT = "INSERT"(  
 /* INSERT dbtab */
-        ( ("INTO" (identifier|"("Expression")")
+        ( ("INTO" ("("Expression")"|identifier)
           ["USING" "CLIENT" identifier] | ["CLIENT" "SPECIFIED"] 
-          ["CONNECTION" (identifier|"("Expression")")] 
+          ["CONNECTION" ("("Expression")"|identifier)] 
           "VALUES" identifier) 
            | 
-           ( (identifier|"("Expression")")
+           ( ("("Expression")"|identifier)
            ["USING" "CLIENT" identifier] | ["CLIENT" "SPECIFIED"] 
-           ["CONNECTION" (identifier|"("Expression")")] 
+           ["CONNECTION" ("("Expression")"| identifier)] 
            "FROM" identifier|("TABLE" identifier ["ACCEPTING" "DUPLICATE" "KEYS"])|( stSELECT ) )
        )
-       |  ( identifier 
-           | ("INITIAL" "LINE") 
+       |  (  
+            ("INITIAL" "LINE") 
            | ("LINES" "OF" identifier ["FROM" identifier] ["TO" identifier] ["USING" "KEY" NameOrRef]) 
+           | identifier
           ) 
           "INTO" ( ("TABLE" identifier) 
                    | (identifier "INDEX" identifier) 
-                   | (identifier) 
+                   
                  ) 
        [ ("ASSIGNING" identifier ["CASTING"]) | ("REFERENCE" "INTO" identifier ) ] |  "REPORT" identifier "FROM" identifier 
               ["MAXIMUM" "WIDTH" "INTO" identifier] 
@@ -1484,9 +1498,9 @@ stINSERT = "INSERT"(
                   ["VERSION"|("UNICODE" "ENABLING") identifier ] ) 
               | ["DIRECTORY" "ENTRY" string1] ) |  "TEXTPOOL" identifier "FROM" identifier "LANGUAGE" identifier ) ".".
 
-stINTERFACE = "INTERFACE"(  identifier"." 
-  [identifier] 
-"ENDINTERFACE" | "LOAD" |  identifier ("DEFERRED" ["PUBLIC"])  ) ".".
+stINTERFACE = "INTERFACE" identifier(  "." 
+  {identifier} 
+"ENDINTERFACE"  |   ("DEFERRED" ["PUBLIC"])  ) ".".
 
 stINTERFACE_POOL = "INTERFACE-POOL"".".
 
@@ -1573,9 +1587,10 @@ stPARAMETERS = "PARAMETERS" ( identifier [("("number")" |  "LENGTH" number)] )
               ["VALUE-REQUEST"] 
               ["AS" "SEARCH" "PATTERN"]]".".
 
-stPERFORM = "PERFORM" ( ( ( identifier 
-            | Expression ("IN" "PROGRAM" [NameOrRef] ["IF" "FOUND"] | ["IF" "FOUND"])
-            | (number "OF" identifier ) 
+stPERFORM = "PERFORM" ( ( (  
+             Expression ("IN" "PROGRAM" [NameOrRef] ["IF" "FOUND"] | ["IF" "FOUND"])
+            | number "OF" identifier  
+            | identifier
             
          ) 
             ["TABLES" identifier ] 
@@ -1605,7 +1620,10 @@ stRECEIVE = "RECEIVE" "RESULTS" "FROM" "FUNCTION" identifier
                             [identifier "=" identifier ["MESSAGE" string1]] 
                             ["OTHERS" "=" identifier]]  ".".
 
-stREFRESH = "REFRESH"(  identifier |  "CONTROL" identifier "FROM" "SCREEN" identifier |  identifier "FROM" "TABLE" identifier ) ".".
+stREFRESH = "REFRESH"(
+          "CONTROL" identifier "FROM" "SCREEN" identifier 
+          |  identifier ["FROM" "TABLE" identifier ]
+          ) ".".
 
 stREJECT = "REJECT" "["identifier"]" ".".
 
@@ -1759,7 +1777,7 @@ stWINDOW = "WINDOW" "STARTING" "AT" string1 number
   /********************************/
 
 stSPLIT = "SPLIT" identifier "AT" Expression "INTO" 
-      ( identifier{identifier } | "TABLE" identifier )
+      (  "TABLE" identifier | identifier{identifier } )
       ["IN" {"CHARACTER"|"BYTE"} "MODE"] . 
       
   Expression           =  Conditional { AssignmentOperator Expression   }  .
@@ -1816,7 +1834,7 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
                           | "--"
                          }    .   
   
-  Primary              =  ( identifier | string1 | char | number | "(" Expression ")" |PredefinedConstant )   .
+  Primary              =  (  string1 | char | number | "(" Expression ")" | PredefinedConstant | identifier )   .
 
   FunctionCall        =  "("   [ ActualParameters] ")"      .
 
