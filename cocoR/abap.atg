@@ -61,7 +61,6 @@ PRODUCTIONS
                   .)
                     "ENDFUNCTION" "." .
 
-    Type = identifier .
 
 
   Statement            = 
@@ -70,11 +69,8 @@ PRODUCTIONS
                          (
                               VariableDefineStatement
                              | WriteStatement 
-                             | AssignmentStatement 
-                             | BreakStatement
                              | ContinueStatement
                              | stDO
-                             | ForStatement
                              | IfStatement  
                              | NullStatement
                              |  ReturnStatement 
@@ -418,7 +414,7 @@ TypeDes = "TYPE"    identifier (["LENGTH" number] ["DECIMALS" number] | { "READE
                           ["INITIAL" "SIZE" number] 
                           ["WITH" "HEADER" "LINE"]
                          
-                       | "RANGE" "OF" Type ["INITIAL" "SIZE" number] ["WITH" "HEADER" "LINE"] 
+                       | "RANGE" "OF" identifier ["INITIAL" "SIZE" number] ["WITH" "HEADER" "LINE"] 
                        | { "WRITER"|"LOCATOR" } "FOR" { "COLUMNS" {identifier} } 
                        |  "ALL" ["OTHER"] ["BLOB"|"CLOB"] "COLUMNS" 
                  .
@@ -563,9 +559,7 @@ WriteStatement =   (. param_hash = {} .) "WRITE"
   .)
   . 
 
-  AssignmentStatement =  Expression  .
 
-  BreakStatement       = "break"   .
 
 
   Statements =  Statement { Statement } .
@@ -914,7 +908,6 @@ stTYPES = "TYPES"(
       "." .
             
                  
-  ForStatement         = "for"  "(" [ Expression ] ";"   [ Expression ]   ";"  [ Expression  ] ")" Statement .
 
 
 stUPDATE = "UPDATE" Expression
@@ -1127,7 +1120,7 @@ stASSIGN = "ASSIGN" (
                        "FOR" (par|selcrit-low|selcrit-high)) 
                     | ("ON" "EXIT-COMMAND") ] |  "USER-COMMAND" ) ".".*/
 
-stBACK = "BACK"".".
+stBACK = "BACK" ".".
 
 stBREAK_POINT = "BREAK-POINT" [ ("ID" identifier) | "("string1")" ]".".
 

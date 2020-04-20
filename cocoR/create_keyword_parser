@@ -1,0 +1,41 @@
+set -e
+#cpp2ruby_dir=/Users/i027910/Desktop/ju/projects/sap/cpp2ruby
+
+cpp2ruby_dir=/Users/i027910/Desktop/ju/projects/sap/CPP2Ruby_github
+
+PWD=`pwd`
+cocor=$PWD/cocor17new
+cocor=$PWD/cocor
+
+name=`echo $1 | awk '{print tolower($0)}'`
+echo ====
+echo $name
+echo ====
+#test grammar
+#cd keyword_parser/$1
+echo $cocor -A -F -X -S -G -C -L -D keyword_parser/$1/$1.atg 
+
+$cocor -A -F -X -S -G -C -L -D keyword_parser/$1/$1.atg 
+echo $?
+echo ---------
+
+output=$PWD/keyword_parser/$1/output
+mkdir -p $output
+mv ${name}s.cpp        $output
+cp ${name}s.hpp        $output
+mv ${name}p.cpp        $output
+cp ${name}p.hpp        $output
+mv ${name}e.hpp        $output
+mv ${name}c.hpp        $output
+cp CR_SCAN.hpp  $output
+cp CR_ABS.hpp   $output
+cp CR_PARSE.hpp $output
+
+
+cd $cpp2ruby_dir
+ruby translate.rb $output/*.cpp -d $output/o
+cd $PWD
+#cd ..
+#./gen_sym.rb cocoR/output/cc.hpp
+
+

@@ -1,0 +1,681 @@
+/* the abap parser for solution2: use single parser for every keywords */
+COMPILER C
+
+CHARACTERS
+  letter   = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz" .
+  digit    = "0123456789" .
+  hexdigit = digit + "ABCDEFabcdef" .
+  tab      = CHR(9) .
+  eol      = CHR(10) .
+  files    = letter + digit + ":\." .
+  chars    = CHR(32) .. CHR(255) - '"' .
+  strings  = CHR(32) .. CHR(255) - "'".
+  strings1 = CHR(32) .. CHR(255) - '"' .	
+  macros   = ANY - eol .
+  space = CHR(32).
+
+COMMENTS FROM "/*" TO "*/"
+COMMENTS FROM "\"" TO eol
+
+IGNORE
+  tab + eol + CHR(13)
+
+TOKENS
+  identifier = ( "_" | letter) { "_" | "-" | letter | digit } .
+  number     = digit { digit } [ "U" | "u" | "L" | "l" ] .
+  hexnumber  = "0" ( "x" | "X" ) hexdigit { hexdigit } [ "U" | "u" | "L" | "l" ] .
+  string1     = "'" { strings } "'" .
+  char       = '"' [ "\\" ] chars '"' .
+   Colon = ":" .
+  space1 = space .
+
+PRAGMAS
+
+  PreProcessor = "#" ( letter ) .
+		    
+
+PRODUCTIONS
+
+    
+    C                  =      (ReportDef | FunctionDef) .
+    
+    ReportDef          = "REPORT" (.  fn_name=curString() .) identifier  (. src("") .) 
+    ["NO" "STANDARD" "PAGE" "HEADING"] 
+               ["LINE-SIZE" number] 
+               ["LINE-COUNT" number["("number")"]] 
+               ["MESSAGE-ID" identifier] 
+               ["DEFINING" "DATABASE" identifier] 
+               ["REDUCED" "FUNCTIONALITY"] "."
+    {Statement}
+                       (.
+                         @root_class.add_method(fn_name, "()", [], src, "")
+                       .)
+                    EOF .
+
+    FunctionDef= "FUNCTION" (. parseAbap("FunctionDef") .).
+
+
+
+  Statement            = 
+  (. ps() .)
+  
+                         (
+                              VariableDefineStatement
+                             | WriteStatement 
+                             | ContinueStatement
+                             | stDO
+                             | ForStatement
+                             | IfStatement  
+                             | NullStatement
+                             |  ReturnStatement 
+                             |  stWHILE 
+                             |  LOOP 
+                             |  CaseStatement
+                             |  stCALL
+                             | (
+                                  ClassStatement
+                                  | ClassImplStatement
+                                )
+                             | MethodStatement
+                             | MethodsStatement
+                             | FunctionDef
+                             /*| DescribeStatement*/
+                             | MessasgeStatement
+                            /* | RefreshStatement */
+                             | SearchStatement
+                             | stAPPEND
+                             | stSPLIT
+                             | stRAISE
+                             | stCONSTANTS
+                             | stMOVE
+                             | stWITH
+                             | stTABLES
+                             | stAUTHORITY_CHECK
+                             | stDELETE
+                             | stEVENTS
+                             /*| stMODIFY*/
+                             | stON
+                             | stOPEN
+                             | stFETCH
+                             | stPROVIDE
+                             | stREAD
+                             | stSORT
+                             | stSUBMIT
+                             | stTRY
+                       /*    | STRUCTURE
+                             | stTYPE
+                             | stUPDATE*/
+                             | stADD
+                             | stADD_CORRESPONDING
+                             | stALIASES
+                             | stASSERT
+                             | stASSIGN
+                            /* |AT*/
+                             | stBACK
+                             | stBREAK_POINT
+                             | stCATCH
+                             | stCHECK
+                             | stCLASS_DATA
+                             | stCLASS_EVENTS
+                             | stCLASS_POOL
+                             | stCLEAR
+                             | stCLOSE
+                             | stCOLLECT
+                             | stCOMMIT
+                           /* | COMMUNICATION*/
+                             | stCOMPUTE
+                             | stCONCATENATE
+                             | stCONDENSE
+                             | stCONTROLS
+                             | stCONVERT
+                             | stCREATE
+                             | stDEMAND
+                             | stDESCRIBE
+                             | stDETAIL
+                             | stDIVIDE
+                             | stDIVIDE_CORRESPONDING
+                             | stEDITOR_CALL
+                             | stEND_OF_PAGE
+                             | stEND_OF_SELECTION
+                             | stEXIT
+                             | stEXPORT
+                             | stEXTRACT
+                             | stFIELD_GROUPS
+                             | stFIELD_SYMBOLS
+                             | stFIELDS
+                             | stFIND
+                             | stFORMAT
+                             | stFREE
+                             | stFUNCTION_POOL
+                             | stGENERATE
+                             | stGET
+                             | stHIDE
+                             | stIMPORT
+                             | stINCLUDE
+                             | stINFOTYPES
+                             | stINITIALIZATION
+                             | stINPUT
+                             | stINSERT
+                             | stINTERFACE
+                             | stINTERFACE_POOL
+                             | stINTERFACES
+                             | stLEAVE
+                             | stLOAD_OF_PROGRAM
+                             | stLOCAL
+                             | stLOG_POINT
+                             | stMAXIMUM
+                             | stMINIMUM
+                             | stMODULE
+                             | stMULTIPLY
+                             | stMULTIPLY_CORRESPONDING
+                             | stNEW_LINE
+                             | stNEW_PAGE
+                             | stNEW_SECTION
+                             | stNODES
+                             | stOVERLAY
+                             | stPACK
+                             | stPARAMETERS
+                             | stPERFORM
+                             | stPOSITION
+                             | stPRINT_CONTROL
+                             | stPROGRAM
+                             | stRANGES
+                             | stRECEIVE
+                             | stREFRESH
+                             | stREJECT
+                             | stREPLACE
+                             | stRESERVE
+                             | stRESUME
+                             | stRETRY
+                             | stRETURN
+                             | stROLLBACK
+                             | stSCROLL
+                             | stSELECT_OPTIONS
+                             | stSELECTION_SCREEN
+                             | stSET
+                             | stSHIFT
+                             | stSKIP
+                             | stSTOP
+                             | stSUBTRACT
+                             | stSUBTRACT_CORRESPONDING
+                             | stSUM
+                             | stSUMMARY
+                             | stSUMMING
+                             | stSUPPLY
+                             | stSUPPRESS
+                             | stSYNTAX_CHECK
+                             | stTEST_INJECTION
+                             | stTEST_SEAM
+                             | stTOP_OF_PAGE
+                             | stTRANSFER
+                             | stTRANSLATE
+                             | stTRUNCATE
+                             | stTYPE_POOL
+                             | stTYPE_POOLS
+                             | stTYPES
+                             | stULINE
+                             | stUNASSIGN
+                             | stUNPACK
+                             | stUPDATE
+                             | stWAIT
+                             | stWINDOW
+                             | stSELECT
+                         )
+                           
+ .
+ 
+stSELECT = "SELECT" (. parseAbap("SELECT") .).
+
+MessasgeStatement = "Message" (. parseAbap("MessasgeStatement") .).
+
+stWITH= "WITH" (. parseAbap("WITH") .).
+ 
+ 
+stTABLES= "TABLES" (. parseAbap("TABLES") .). 
+
+ 
+stMOVE= "MOVE" (. parseAbap("MOVE") .). 
+    
+
+ 
+stAPPEND= "APPEND" (. parseAbap("APPEND") .).
+ 
+stCONCATENATE= "CONCATENATE" (. parseAbap("CONCATENATE") .).
+ 
+SearchStatement= "SEARCH" (. parseAbap("SearchStatement") .).
+ 
+
+
+stRAISE= "RAISE" (. parseAbap("RAISE") .).
+
+
+
+VariableDefineStatement= "DATA" (. parseAbap("VariableDefineStatement") .).
+                    
+
+
+
+stCONSTANTS= "CONSTANTS" (. parseAbap("CONSTANTS") .).
+
+
+WriteStatement= "WRITE" (. parseAbap("WriteStatement") .).
+
+
+
+
+LOOP = "LOOP" (. parseAbap("LOOP") .).
+
+  ContinueStatement= "CONTINUE" (. parseAbap("ContinueStatement") .).
+
+
+
+CaseStatement= "CASE" (. parseAbap("CaseStatement") .).
+
+
+stAUTHORITY_CHECK= "AUTHORITY-CHECK" (. parseAbap("AUTHORITY_CHECK") .).
+                      
+stDELETE= "DELETE" (. parseAbap("DELETE") .).
+
+stDO= "DO" (. parseAbap("DO") .).
+
+
+
+stEVENTS= "EVENTS" (. parseAbap("EVENTS") .).
+
+
+
+stON= "ON" (. parseAbap("ON") .).
+
+
+stOPEN= "OPEN" (. parseAbap("OPEN") .).
+
+stFETCH= "FETCH" (. parseAbap("FETCH") .).
+
+
+               
+stPROVIDE= "PROVIDE" (. parseAbap("PROVIDE") .).
+                       
+stREAD= "READ" (. parseAbap("READ") .).
+       
+
+stSORT= "SORT" (. parseAbap("SORT") .).
+
+stSUBMIT= "SUBMIT" (. parseAbap("SUBMIT") .).
+  
+stTRY= "TRY" (. parseAbap("TRY") .).
+
+
+                               
+
+
+stTYPES= "TYPES" (. parseAbap("TYPES") .).
+            
+                 
+  ForStatement= "for" (. parseAbap("ForStatement") .).
+
+
+stUPDATE= "UPDATE" (. parseAbap("UPDATE") .).
+       
+stWHILE= "WHILE" (. parseAbap("WHILE") .).
+
+       
+
+                       
+  IfStatement= "IF" (. parseAbap("IfStatement") .).
+
+  NullStatement= "." . 
+
+  ReturnStatement= "return" (. parseAbap("ReturnStatement") .).
+                         
+/*
+WhileStatement = "WHILE" Expression 
+      {["VARY" identifier "FROM" identifier "NEXT" identifier ["RANGE" identifier] ]}"." 
+      {Statement}
+      "ENDWHILE" "."
+. 
+*/
+
+ClassStatement= "CLASS" (. parseAbap("ClassStatement") .).
+
+
+ClassImplStatement= "CLASS" (. parseAbap("ClassImplStatement") .).
+
+MethodStatement= "METHOD" (. parseAbap("MethodStatement") .).
+
+
+          
+MethodsStatement= "METHODS" (. parseAbap("MethodsStatement") .). 
+  
+  /*** copy from convert_result ***/
+stADD= "ADD" (. parseAbap("ADD") .).
+
+stADD_CORRESPONDING= "ADD-CORRESPONDING" (. parseAbap("ADD_CORRESPONDING") .).
+
+stALIASES= "ALIASES" (. parseAbap("ALIASES") .).
+
+stASSERT= "ASSERT" (. parseAbap("ASSERT") .).
+
+stASSIGN= "ASSIGN" (. parseAbap("ASSIGN") .).
+
+/*AT = "AT"(  "LINE-SELECTION"  |  "SELECTION-SCREEN" [ "OUTPUT" 
+                    | ("ON" (par|selcrit)) 
+                    | ("ON" "END" "OF" selcrit) 
+                    | ("ON" "BLOCK" block) 
+                    | ("ON" "RADIOBUTTON" "GROUP" identifier) 
+                    | ("ON" ("HELP-REQUEST"|"VALUE-REQUEST") 
+                       "FOR" (par|selcrit-low|selcrit-high)) 
+                    | ("ON" "EXIT-COMMAND") ] |  "USER-COMMAND" ) ".".*/
+
+stBACK= "BACK" (. parseAbap("BACK") .).
+
+stBREAK_POINT= "BREAK-POINT" (. parseAbap("BREAK_POINT") .).
+
+stCALL= "CALL" (. parseAbap("CALL") .).
+
+
+stCATCH= "CATCH" (. parseAbap("CATCH") .).
+
+stCHECK= "CHECK" (. parseAbap("CHECK") .).
+
+stCLASS_DATA= "CLASS-DATA" (. parseAbap("CLASS_DATA") .).
+
+stCLASS_EVENTS= "CLASS-EVENTS" (. parseAbap("CLASS_EVENTS") .).
+
+stCLASS_POOL= "CLASS-POOL" (. parseAbap("CLASS_POOL") .).
+
+stCLEAR= "CLEAR" (. parseAbap("CLEAR") .).
+
+stCLOSE= "CLOSE" (. parseAbap("CLOSE") .).
+
+stCOLLECT= "COLLECT" (. parseAbap("COLLECT") .).
+
+stCOMMIT= "COMMIT" (. parseAbap("COMMIT") .).
+
+/*COMMUNICATION = "COMMUNICATION" ( ("INIT" "DESTINATION" identifier) 
+              | ("ALLOCATE") 
+              | ("ACCEPT") 
+              | ("SEND" "BUFFER" buf) 
+              | ("RECEIVE" "BUFFER" identifier "DATAINFO" identifier "STATUSINFO" identifier) 
+              | ("DEALLOCATE") ) "ID" identifier 
+              ["RETURNCODE" identifier] 
+              ["LENGTH" leng] 
+              ["RECEIVED" identifier] 
+              ["HOLD"]".".
+*/
+stCOMPUTE= "COMPUTE" (. parseAbap("COMPUTE") .).
+
+/*CONCATENATE = "CONCATENATE" ( identifier{identifier} |"LINES" "OF" identifier) 
+            "INTO" identifier 
+            ["IN" ("CHARACTER"|"BYTE") "MODE"] 
+            ["SEPARATED" "BY" sep] 
+            ["RESPECTING" "BLANKS"]".".*/
+
+stCONDENSE= "CONDENSE" (. parseAbap("CONDENSE") .).
+
+/*CONSTANTS = "CONSTANTS" const options".".*/
+
+stCONTROLS= "CONTROLS" (. parseAbap("CONTROLS") .).
+
+stCONVERT= "CONVERT" (. parseAbap("CONVERT") .).
+
+stCREATE= "CREATE" (. parseAbap("CREATE") .).
+
+/*DELETE = "DELETE" "DATASET" identifier".".*/
+
+stDEMAND= "DEMAND" (. parseAbap("DEMAND") .).
+
+stDESCRIBE= "DESCRIBE" (. parseAbap("DESCRIBE") .).
+
+stDETAIL= "DETAIL" (. parseAbap("DETAIL") .).
+
+stDIVIDE= "DIVIDE" (. parseAbap("DIVIDE") .).
+
+stDIVIDE_CORRESPONDING= "DIVIDE-CORRESPONDING" (. parseAbap("DIVIDE_CORRESPONDING") .).
+
+stEDITOR_CALL= "EDITOR-CALL" (. parseAbap("EDITOR_CALL") .).
+
+stEND_OF_PAGE= "END-OF-PAGE" (. parseAbap("END_OF_PAGE") .).
+
+stEND_OF_SELECTION= "END-OF-SELECTION" (. parseAbap("END_OF_SELECTION") .).
+
+stEXIT= "EXIT" (. parseAbap("EXIT") .).
+
+stEXPORT= "EXPORT" (. parseAbap("EXPORT") .).
+
+stEXTRACT= "EXTRACT" (. parseAbap("EXTRACT") .).
+
+stFIELD_GROUPS= "FIELD-GROUPS" (. parseAbap("FIELD_GROUPS") .).
+
+stFIELD_SYMBOLS= "FIELD-SYMBOLS" (. parseAbap("FIELD_SYMBOLS") .).
+
+stFIELDS= "FIELDS" (. parseAbap("FIELDS") .).
+
+stFIND= "FIND" (. parseAbap("FIND") .).
+
+
+
+stFORMAT= "FORMAT" (. parseAbap("FORMAT") .).
+
+stFREE= "FREE" (. parseAbap("FREE") .).
+
+stFUNCTION_POOL= "FUNCTION-POOL" (. parseAbap("FUNCTION_POOL") .).
+
+stGENERATE= "GENERATE" (. parseAbap("GENERATE") .).
+
+
+
+stGET= "GET" (. parseAbap("GET") .).
+
+stHIDE= "HIDE" (. parseAbap("HIDE") .).
+
+stIMPORT= "IMPORT" (. parseAbap("IMPORT") .).
+
+stINCLUDE= "INCLUDE" (. parseAbap("INCLUDE") .).
+
+stINFOTYPES= "INFOTYPES" (. parseAbap("INFOTYPES") .).
+
+stINITIALIZATION= "INITIALIZATION" (. parseAbap("INITIALIZATION") .).
+
+stINPUT= "INPUT" (. parseAbap("INPUT") .).
+
+stINSERT= "INSERT" (. parseAbap("INSERT") .).
+
+stINTERFACE= "INTERFACE" (. parseAbap("INTERFACE") .).
+
+stINTERFACE_POOL= "INTERFACE-POOL" (. parseAbap("INTERFACE_POOL") .).
+
+stINTERFACES= "INTERFACES" (. parseAbap("INTERFACES") .).
+
+stLEAVE= "LEAVE" (. parseAbap("LEAVE") .).
+
+stLOAD_OF_PROGRAM= "LOAD-OF-PROGRAM" (. parseAbap("LOAD_OF_PROGRAM") .).
+
+stLOCAL= "LOCAL" (. parseAbap("LOCAL") .).
+
+stLOG_POINT= "LOG-POINT" (. parseAbap("LOG_POINT") .).
+
+stMAXIMUM= "MAXIMUM" (. parseAbap("MAXIMUM") .).
+
+stMINIMUM= "MINIMUM" (. parseAbap("MINIMUM") .).
+
+stMODULE= "MODULE" (. parseAbap("MODULE") .).
+
+stMULTIPLY= "MULTIPLY" (. parseAbap("MULTIPLY") .).
+
+stMULTIPLY_CORRESPONDING= "MULTIPLY-CORRESPONDING" (. parseAbap("MULTIPLY_CORRESPONDING") .).
+
+stNEW_LINE= "NEW-LINE" (. parseAbap("NEW_LINE") .).
+
+stNEW_PAGE= "NEW-PAGE" (. parseAbap("NEW_PAGE") .).
+
+stNEW_SECTION= "NEW-SECTION" (. parseAbap("NEW_SECTION") .).
+
+stNODES= "NODES" (. parseAbap("NODES") .).
+
+stOVERLAY= "OVERLAY" (. parseAbap("OVERLAY") .).
+
+stPACK= "PACK" (. parseAbap("PACK") .).
+
+stPARAMETERS= "PARAMETERS" (. parseAbap("PARAMETERS") .).
+
+stPERFORM= "PERFORM" (. parseAbap("PERFORM") .).
+
+stPOSITION= "POSITION" (. parseAbap("POSITION") .).
+
+stPRINT_CONTROL= "PRINT-CONTROL" (. parseAbap("PRINT_CONTROL") .).
+
+stPROGRAM= "PROGRAM" (. parseAbap("PROGRAM") .).
+
+stRANGES= "RANGES" (. parseAbap("RANGES") .).
+
+stRECEIVE= "RECEIVE" (. parseAbap("RECEIVE") .).
+
+stREFRESH= "REFRESH" (. parseAbap("REFRESH") .).
+
+stREJECT= "REJECT" (. parseAbap("REJECT") .).
+
+stREPLACE= "REPLACE" (. parseAbap("REPLACE") .).
+
+stRESERVE= "RESERVE" (. parseAbap("RESERVE") .).
+
+stRESUME= "RESUME" (. parseAbap("RESUME") .).
+
+stRETRY= "RETRY" (. parseAbap("RETRY") .).
+
+stRETURN= "RETURN" (. parseAbap("RETURN") .).
+
+stROLLBACK= "ROLLBACK" (. parseAbap("ROLLBACK") .).
+
+stSCROLL= "SCROLL" (. parseAbap("SCROLL") .).
+
+stSELECT_OPTIONS= "SELECT-OPTIONS" (. parseAbap("SELECT_OPTIONS") .).
+
+stSELECTION_SCREEN= "SELECTION-SCREEN" (. parseAbap("SELECTION_SCREEN") .).
+
+stSET= "SET" (. parseAbap("SET") .).
+
+stSHIFT= "SHIFT" (. parseAbap("SHIFT") .).
+
+stSKIP= "SKIP" (. parseAbap("SKIP") .).
+
+
+stSTOP= "STOP" (. parseAbap("STOP") .).
+
+stSUBTRACT= "SUBTRACT" (. parseAbap("SUBTRACT") .).
+
+stSUBTRACT_CORRESPONDING= "SUBTRACT-CORRESPONDING" (. parseAbap("SUBTRACT_CORRESPONDING") .).
+
+stSUM= "SUM" (. parseAbap("SUM") .).
+
+stSUMMARY= "SUMMARY" (. parseAbap("SUMMARY") .).
+
+stSUMMING= "SUMMING" (. parseAbap("SUMMING") .).
+
+stSUPPLY= "SUPPLY" (. parseAbap("SUPPLY") .).
+
+stSUPPRESS= "SUPPRESS" (. parseAbap("SUPPRESS") .).
+
+stSYNTAX_CHECK= "SYNTAX-CHECK" (. parseAbap("SYNTAX_CHECK") .).
+
+stTEST_INJECTION= "TEST-INJECTION" (. parseAbap("TEST_INJECTION") .).
+
+stTEST_SEAM= "TEST-SEAM" (. parseAbap("TEST_SEAM") .).
+
+stTOP_OF_PAGE= "TOP-OF-PAGE" (. parseAbap("TOP_OF_PAGE") .).
+
+stTRANSFER= "TRANSFER" (. parseAbap("TRANSFER") .).
+
+stTRANSLATE= "TRANSLATE" (. parseAbap("TRANSLATE") .).
+
+stTRUNCATE= "TRUNCATE" (. parseAbap("TRUNCATE") .).
+
+stTYPE_POOL= "TYPE-POOL" (. parseAbap("TYPE_POOL") .).
+
+stTYPE_POOLS= "TYPE-POOLS" (. parseAbap("TYPE_POOLS") .).
+
+stULINE= "ULINE" (. parseAbap("ULINE") .).
+
+stUNASSIGN= "UNASSIGN" (. parseAbap("UNASSIGN") .).
+
+stUNPACK= "UNPACK" (. parseAbap("UNPACK") .).
+
+stWAIT= "WAIT" (. parseAbap("WAIT") .).
+
+stWINDOW= "WINDOW" (. parseAbap("WINDOW") .).  
+  
+
+  
+  /********************************/
+
+stSPLIT= "SPLIT" (. parseAbap("SPLIT") .). 
+      
+  Expression           =  Conditional { AssignmentOperator Expression   }  .
+
+  Conditional          =  LogORExp  .
+
+  LogORExp             =  LogANDExp   { ("||" | "OR" | "EQUIV") LogANDExp }  .
+
+  LogANDExp            =  InclORExp   { ("&&" | "AND") InclORExp }
+ 
+.
+
+  InclORExp            =  ExclORExp   { "|" ExclORExp }   .
+
+  ExclORExp            =  ANDExp      { "^" ANDExp }    .
+
+  ANDExp               =  EqualExp    { "&" EqualExp }    .
+
+  EqualExp             =    RelationExp { ( "="| "EQ"| "<>" | "NE" | "IS" ["NOT"] ) RelationExp } |
+  RelationExp ["NOT"] "BETWEEN" RelationExp "AND" RelationExp  
+  .
+
+  RelationExp          =    ShiftExp    { 
+                              ( "<" | "LT"  | ">" | "GT" | "<=" | "LE" | ">=" | "GE" | "CO" | "CN" | "CA" | "NA" | "CS" | "NS" | "CP" | "NP" |"BYTE-CO" | "BYTE-CN" | "BYTE-CA" | "BYTE-NA" | "BYTE-CS" | "BYTE-NS" )  
+                               ShiftExp   }   .
+
+  ShiftExp             =  AddExp      { ( "<<" | ">>" ) AddExp }       .
+              
+                
+                
+  AddExp               =  MultExp     { ( "+"  | "-"  ) MultExp }    .
+
+  MultExp              =   CastExp  
+ { ( "*"   | "/" | "DIV"  | "%"  | "MOD" | "**" ) CastExp }    .
+
+  CastExp              =   UnaryExp     .
+
+
+
+  UnaryExp             =  PostFixExp
+                         | ( "++" | "--" ) UnaryExp
+                         | UnaryOperator CastExp 	
+                            
+					.
+
+
+
+  PostFixExp           =  Primary
+                         { "[" Expression "]"
+                          | FunctionCall
+                          | "->" identifier
+                          | "=>" identifier
+                          | "++"
+                          | "--"
+                         }    .   
+  
+  Primary              =  (  string1 | char | number | "(" Expression ")" | PredefinedConstant | identifier )   .
+
+  FunctionCall        =  "("   [ ActualParameters] ")"      .
+
+  ActualParameters    =    Expression   { "," Expression   }      .
+
+  AssignmentOperator   =    "="  | "*=" | "/=" | "%=" | "+=" | "-=" | "&="
+                         | "^=" | "|=" | "<<=" | ">>="    .
+
+  UnaryOperator        =  "+" | MinusOperator | "*" | "!" | "&" | "~" | "NOT" |  "INSTANCE" "OF" | "IN"    .
+
+  MinusOperator = space1 "-" | "-" space1 .
+
+  PredefinedConstant = "INITIAL" | "BOUND" | "ASSIGNED" | "SUPPLIED" | "REQUESTED" .
+
+END C.

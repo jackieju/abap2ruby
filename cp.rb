@@ -7,6 +7,16 @@ load 'log.rb'
 load 'common.rb'
 load 'cocoR/o/cparser.rb'
 
+path = "#{File.dirname(__FILE__)}/cocoR/keyword_parser/**/output/o/cparser.rb"  
+
+Dir[path].each { |f|
+    p "loading parser from #{f}"
+    load(f)
+    
+    count +=1
+ }
+
+
 def pdebug(s, stack=0)
     depth = 0
     sp = ""

@@ -10,7 +10,10 @@ cocor=./cocor
 $cocor abap.atg 
 
 # generate parser in c
-$cocor -A -F -X -S -G -C -L -D abap.atg 
+# solution 1
+#$cocor -A -F -X -S -G -C -L -D abap.atg 
+# solution 2
+$cocor -A -F -X -S -G -C -L -D abap2.atg 
 
 # cp or move generated parser to output for converting to ruby
 #cp cs.c          output
