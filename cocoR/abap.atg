@@ -103,7 +103,7 @@ PRODUCTIONS
                              | stAUTHORITY_CHECK
                              | stDELETE
                              | stEVENTS
-                             | stMODIFY
+                             /*| stMODIFY*/
                              | stON
                              | stOPEN
                              | stFETCH
@@ -484,71 +484,74 @@ stCONSTANTS = "CONSTANTS" identifier ( TypeDes |
                 ) "VALUE" { Expression | "IS" "INITIAL" } "." .
 
 
-WriteStatement =   (. param_hash = {} .) "WRITE" {["AT"] ["/"][number 
- (. param_hash["col"] = curString().to_i .)
- ][ "(" (number | "*" | "**") ")" ]} Expression 
- (.
-     param_hash["s"] = popv
- .)
-  ["UNDER" identifier] 
-  ["NO-GAP"] 
-  ["LEFT-JUSTIFIED"|"CENTERED"|"RIGHT-JUSTIFIED"] 
-  { 
+WriteStatement =   (. param_hash = {} .) "WRITE" 
+    (
+        {["AT"] ["/"][number 
+         (. param_hash["col"] = curString().to_i .)
+         ][ "(" (number | "*" | "**") ")" ]} Expression 
+         (.
+             param_hash["s"] = popv
+         .)
+          ["UNDER" identifier] 
+          ["NO-GAP"] 
+          ["LEFT-JUSTIFIED"|"CENTERED"|"RIGHT-JUSTIFIED"] 
+          { 
     
-      ["EXPONENT" Expression] 
-      ["NO-GROUPING"] 
-      ["NO-SIGN"] 
-      ["NO-ZERO"] 
-      ["CURRENCY" string1] 
-      { 
-           ["DECIMALS" string1] ["ROUND" number]  
-        | ["UNIT" string1] 
-        } 
+              ["EXPONENT" Expression] 
+              ["NO-GROUPING"] 
+              ["NO-SIGN"] 
+              ["NO-ZERO"] 
+              ["CURRENCY" string1] 
+              { 
+                   ["DECIMALS" string1] ["ROUND" number]  
+                | ["UNIT" string1] 
+                } 
      
-    | { ["ENVIRONMENT" "TIME" "FORMAT"] 
-        ["TIME" "ZONE" string1] } 
-    ["STYLE" string1] 
-  } 
-  ["USING" { "NO" "EDIT" "MASK"| "EDIT" "MASK" string1}] 
-  ["DD/MM/YY"|"MM/DD/YY"|"DD/MM/YYYY"|"MM/DD/YYYY"|"DDMMYY"|"MMDDYY"|"YYMMDD"] 
-  ["COLOR" 
-      {
-         ["="] 
-            { { Primary } ["ON"] } 
-            | "OFF"
+            | { ["ENVIRONMENT" "TIME" "FORMAT"] 
+                ["TIME" "ZONE" string1] } 
+            ["STYLE" string1] 
+          } 
+          ["USING" { "NO" "EDIT" "MASK"| "EDIT" "MASK" string1}] 
+          ["DD/MM/YY"|"MM/DD/YY"|"DD/MM/YYYY"|"MM/DD/YYYY"|"DDMMYY"|"MMDDYY"|"YYMMDD"] 
+          ["COLOR" 
+              {
+                 ["="] 
+                    { { Primary } ["ON"] } 
+                    | "OFF"
               
-        |
-         "=" number
-     }
-  ] 
-  ["INTENSIFIED" [ {"ON"|"OFF"} | {"=" string1} ]] 
-  ["INVERSE"     [ {"ON"|"OFF"} | {"=" string1} ]] 
-  ["HOTSPOT"     [ {"ON"|"OFF"} | {"=" string1} ]] 
-  ["INPUT"       [ {"ON"|"OFF"} | {"=" string1} ]] 
-  ["FRAMES"      [ {"ON"|"OFF"} | {"=" string1} ]] 
-  ["RESET"] 
-  { 
-      "AS" ("CHECKBOX" | "ICON" | "SYMBOL"  | "LINE")
-  } 
-  ["QUICKINFO" string1] 
+                |
+                 "=" number
+             }
+          ] 
+          ["INTENSIFIED" [ {"ON"|"OFF"} | {"=" string1} ]] 
+          ["INVERSE"     [ {"ON"|"OFF"} | {"=" string1} ]] 
+          ["HOTSPOT"     [ {"ON"|"OFF"} | {"=" string1} ]] 
+          ["INPUT"       [ {"ON"|"OFF"} | {"=" string1} ]] 
+          ["FRAMES"      [ {"ON"|"OFF"} | {"=" string1} ]] 
+          ["RESET"] 
+          { 
+              "AS" ("CHECKBOX" | "ICON" | "SYMBOL"  | "LINE")
+          } 
+          ["QUICKINFO" string1] 
   
-  |
+          |
   
-    (identifier|"("identifier")") "TO" identifier 
-  ["LEFT-JUSTIFIED"|"CENTERED"|"RIGHT-JUSTIFIED"] 
-  ( ( ["EXPONENT" Expression] 
-      ["NO-GROUPING"] 
-      ["NO-SIGN"] 
-      ["NO-ZERO"] 
-      ["CURRENCY" string1] 
-      ( ( ["DECIMALS" number] 
-          ["ROUND" number] ) 
-        | ["UNIT" string1] ) ) 
-    | ( ["ENVIRONMENT" "TIME" "FORMAT"] 
-        ["TIME" "ZONE" string1] ) 
-    ["STYLE" string1] ) 
-  ["USING" ( ("NO" "EDIT" "MASK")|("EDIT" "MASK" identifier) )] 
-  ["DD/MM/YY"|"MM/DD/YY"|"DD/MM/YYYY"|"MM/DD/YYYY"|"DDMMYY"|"MMDDYY"|"YYMMDD"] 
+            (identifier|"("identifier")") "TO" identifier 
+          ["LEFT-JUSTIFIED"|"CENTERED"|"RIGHT-JUSTIFIED"] 
+          ( ( ["EXPONENT" Expression] 
+              ["NO-GROUPING"] 
+              ["NO-SIGN"] 
+              ["NO-ZERO"] 
+              ["CURRENCY" string1] 
+              ( ( ["DECIMALS" number] 
+                  ["ROUND" number] ) 
+                | ["UNIT" string1] ) ) 
+            | ( ["ENVIRONMENT" "TIME" "FORMAT"] 
+                ["TIME" "ZONE" string1] ) 
+            ["STYLE" string1] ) 
+          ["USING" ( ("NO" "EDIT" "MASK")|("EDIT" "MASK" identifier) )] 
+          ["DD/MM/YY"|"MM/DD/YY"|"DD/MM/YYYY"|"MM/DD/YYYY"|"DDMMYY"|"MMDDYY"|"YYMMDD"] 
+    )  
     "." 
   (.
   
@@ -643,22 +646,25 @@ Event_options = "EXPORTING" Event_exp_item {Event_exp_item} .
 
 stEVENTS = "EVENTS" identifier [ Event_options ]".".
 
-
-stMODIFY = "MODIFY"( 
-         ( ( ( ("TABLE" identifier)|(identifier "INDEX" identifier) 
-             ["USING" "KEY" ["("] identifier [")"]] ) 
-             | ( identifier ["USING" "KEY" identifier] ) 
-           "FROM" identifier 
-           ["TRANSPORTING" identifier ] 
-           [("ASSIGNING" string1 ["CASTING"])|("REFERENCE" "INTO" identifier)] ) 
+/*
+stMODIFY = "MODIFY"
+     ( 
+         ( 
+           (
+              ( "TABLE" identifier|identifier "INDEX" identifier ["USING" "KEY" ["("] identifier [")"]] ) 
+               | 
+              (identifier ["USING" "KEY" identifier] ) "FROM" identifier ["TRANSPORTING" identifier ] [("ASSIGNING" string1 ["CASTING"])|("REFERENCE" "INTO" identifier)] 
+           ) 
            | (identifier "FROM" identifier ["USING" "KEY" ["("] identifier [")"]] 
                        "TRANSPORTING" identifier  
-                       "WHERE" "("Expression")") ) 
-       |  
-         ( 
-             ("LINE" number ["OF" ("PAGE" number)|("CURRENT" "PAGE")] ["INDEX" identifier]) 
-             |
-            ("CURRENT" "LINE") ) 
+                       "WHERE" "("Expression")") 
+        ) 
+        |  
+           ( 
+            "LINE" number ["OF" ("PAGE" number)|("CURRENT" "PAGE")] ["INDEX" identifier] 
+            |
+            "CURRENT" "LINE"
+           ) 
            ["LINE" "VALUE" "FROM" identifier] 
            ["FIELD" "VALUE" identifier ["FROM" identifier] {identifier ["FROM" identifier]}] 
            ["LINE" "FORMAT" Format_options] 
@@ -666,11 +672,11 @@ stMODIFY = "MODIFY"(
        |
          "SCREEN" "FROM" identifier 
        |
-           identifier|"("Expression")" 
-                 ["USING" "CLIENT" identifier] | ["CLIENT" "SPECIFIED"] 
+         (identifier|"("Expression")" )
+                ( ["USING" "CLIENT" identifier] | ["CLIENT" "SPECIFIED"] )
                  ["CONNECTION" ("("Expression")"| identifier)] 
                  "FROM" ( identifier|("TABLE" identifier) ) 
-         ) ".".
+     ) ".".*/
 
 stON = "ON" "CHANGE" "OF" identifier {"OR" identifier }"." 
   Statements 
@@ -842,7 +848,12 @@ Types_mesh_stmt =   "TYPES"  identifier (
                   "LIKE" ["REF" "TO"] identifier    ) 
                {Association} 
                "." .
-                                                         
+
+/* Because 'END' can be identifier(so LL(1) cannot parse it), so this rule has to be single rule and modifier it in subclass */
+TypeOfStuct =   { "TYPES" identifier["("number")"] (TypeDes|LikeDes) ["BOXED"]  "." }
+                {stINCLUDE}
+                "TYPES" "END" "OF" identifier.     
+                                      
 stTYPES = "TYPES"( 
           "BEGIN" "OF"(
               "ENUM" identifier  ["STRUCTURE" identifier] 
@@ -853,11 +864,8 @@ stTYPES = "TYPES"(
               "MESH" identifier"." 
                        {Types_mesh_stmt}
                        "DATA" "END" "OF" "MESH" identifier
-            | 
-                identifier "." 
-                                { "TYPES" identifier["("number")"] (TypeDes|LikeDes) ["BOXED"]  "." }
-                                    {stINCLUDE}
-                                "TYPES" "END" "OF" identifier
+            | identifier "." 
+                TypeOfStuct
           )  
        |
        identifier["("number")"] /*("TYPE" ( (identifier ["LENGTH" number] 
@@ -1092,13 +1100,14 @@ stASSERT = "ASSERT" [ ["ID" identifier ["SUBKEY" identifier]]
 
 stASSIGN = "ASSIGN" ( 
        ["TABLE" "FIELD"] "("identifier")" 
-       | ("COMPONENT" identifier "OF" "STRUCTURE" identifier) 
+       | "COMPONENT" identifier "OF" "STRUCTURE" identifier
        | Expression 
-       |        NameOrRef (
+        [ (
             ["+" number]["("number")"] 
             | ("->"|"=>") ["*"|NameOrRef]
             | "INCREMENT" number
-        )) 
+        )]
+  ) 
   "TO" identifier 
   [ ( "CASTING" [ 
   
@@ -1143,7 +1152,7 @@ CallDialog =  "DIALOG" identifier [ ("AND" "SKIP" "FIRST" "SCREEN")
                    ["IMPORTING"  identifier "TO" identifier { identifier "TO" identifier}] .
 
 CallDatabaseProcedure =  "DATABASE" "PROCEDURE" "("identifier")" 
-            ["CONNECTION" ("("Expression")"｜identifier)] 
+            ["CONNECTION" ("("Expression")"|identifier)] 
               (   ["EXPORTING"  {Expression} ] 
                     ["IMPORTING"  {Expression}  ] 
         |  ["PARAMETER-TABLE" identifier]  ) .
@@ -1434,9 +1443,8 @@ stHIDE = "HIDE" identifier".".
 
 stIMPORT = "IMPORT"(  
         ( Exps 
-       | ("identifier")" 
+       | "("identifier")" 
        | ( identifier "TO" identifier  {identifier "TO" identifier} ) 
-       
        ) 
   "FROM" ( ( "DATA" "BUFFER" identifier ) 
        | ( "INTERNAL" "TABLE" identifier ) 
@@ -1850,8 +1858,3 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
   PredefinedConstant = "INITIAL" | "BOUND" | "ASSIGNED" | "SUPPLIED" | "REQUESTED" .
 
 END C.
-
-
-
-
-abap

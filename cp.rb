@@ -194,6 +194,53 @@ class Parser < CParser
         @parse_stack.popv
     end
     #### copy/override start ####
+    
+    #/* Because 'END' can be identifier(so LL(1) cannot parse it), so this rule has to be single rule and modifier it in subclass
+    def TypeOfStuct()
+       _in_()
+       while (@sym==C_TYPESSym)
+          Get()
+          Expect(C_identifierSym)
+          p ("===>333:#{prevString()}, #{curString()}, #{SYMS[GetNextSym(1).sym]}")
+          if prevString() == "END" && @sym == C_OFSym
+              p "===>1"
+              break
+          end
+          if @sym==C_LparenSym
+             Get()
+             Expect(C_numberSym)
+             Expect(C_RparenSym)
+          end
+
+          if @sym==C_identifierSym||@sym==C_STANDARDSym||@sym==C_LINESym||@sym==C_OFSym||@sym==C_SORTEDSym||@sym==C_FORSym||@sym==C_TYPESym||@sym==C_LOCATORSym||@sym>=C_REFSym&&@sym<=C_HASHEDSym||@sym>=C_RANGESym&&@sym<=C_WRITERSym||@sym==C_ALLSym
+             TypeDes()
+          else
+             if @sym==C_LIKESym
+                LikeDes()
+             else
+                GenError(975)
+             end
+
+          end
+
+          if @sym==C_BOXEDSym
+             Get()
+          end
+
+          Expect(C_PointSym)
+       end
+       p "===>2"
+
+       while (@sym==C_INCLUDESym)
+          stINCLUDE()
+       end
+
+      # Expect(C_TYPESSym)
+      # Expect(C_ENDSym)
+       Expect(C_OFSym)
+       Expect(C_identifierSym)
+       _out_()
+    end
    #def C()
    #   Expect(C_REPORTSym)
    #   fn_name = curString()

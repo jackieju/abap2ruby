@@ -333,10 +333,6 @@ class CScanner < CRScanner
             return C_COMPARINGSym
          end
 
-         if EqualStr("CURRENT")
-            return C_CURRENTSym
-         end
-
          if EqualStr("CHANGE")
             return C_CHANGESym
          end
@@ -355,6 +351,10 @@ class CScanner < CRScanner
 
          if EqualStr("CORRESPONDING")
             return C_CORRESPONDINGSym
+         end
+
+         if EqualStr("CURRENT")
+            return C_CURRENTSym
          end
 
          if EqualStr("CP")
@@ -1335,10 +1335,6 @@ class CScanner < CRScanner
             return C_LOCALESym
          end
 
-         if EqualStr("LOAD")
-            return C_LOADSym
-         end
-
          if EqualStr("LEAVE")
             return C_LEAVESym
          end
@@ -1419,10 +1415,6 @@ class CScanner < CRScanner
 
          if EqualStr("MEMORY")
             return C_MEMORYSym
-         end
-
-         if EqualStr("MODIFY")
-            return C_MODIFYSym
          end
 
          if EqualStr("MAXIMUM")
@@ -2479,12 +2471,12 @@ class CScanner < CRScanner
             return C_VERSIONSym
          end
 
-         if EqualStr("VALUE")
-            return C_VALUESym
-         end
-
          if EqualStr("VALID")
             return C_VALIDSym
+         end
+
+         if EqualStr("VALUE")
+            return C_VALUESym
          end
 
          if EqualStr("VARYING")

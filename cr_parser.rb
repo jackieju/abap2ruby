@@ -596,13 +596,20 @@ class CRParser
 "UPDATE",
 "WAIT",
 "WINDOW"]
-return list.include?(n)
+return list.include?(SYMS[n])
     end
     
     def Expect(n)
         p "expect #{n}(#{SYMS[n]}), sym = #{@sym}(#{SYMS[@sym]})('#{@scanner.GetSymValue(@scanner.nextSym)}'), line #{@scanner.nextSym.line} col #{@scanner.nextSym.col} pos #{@scanner.nextSym.pos} sym #{SYMS[@scanner.nextSym.sym]}"
-        if @sym == n || (n == C_identifierSym && isKeyword?(@sym) == false)
+       # if @sym == n || (n == C_identifierSym && isKeyword?(@sym) == false)
+        if @sym == n || (n == C_identifierSym && (curString().split("-")[0] =~/^[A-Za-z][A-Za-z0-9]*$/) == 0)
+       
+            # for debug
+            if (n == C_identifierSym && (curString().split("-")[0] =~/^[A-Za-z][A-Za-z0-9]*$/) == 0)
+                p "symbol #{n}(#{curString})#{SYMS[@sym]}} is identifier"
+            end
             Get()
+
         else    
             GenError(n)
         end

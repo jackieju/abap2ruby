@@ -369,7 +369,7 @@ class CRRScanner <  CScanner
     end
     
     def clone()
-        sc = CRRScanner.new
+        sc = self.class.new
         sc.set(@buffer, @ignoreCase, @currSym, @nextSym, @currLine, @currCol, @lineStart, @buffPos, @ch, @comEols)
         return sc
     end
@@ -397,7 +397,7 @@ class CRRScanner <  CScanner
     # the index of the array is the character's acsii code (ch.to_byte), value of array element is the status code.                 
 
     def LeftContext(s)
-        rais("not implemented")
+        raise("not implemented")
 =begin
         int Level, StartLine, OldCol
           long OldLineStart
