@@ -7,14 +7,24 @@ load 'log.rb'
 load 'common.rb'
 load 'cocoR/o/cparser.rb'
 
-path = "#{File.dirname(__FILE__)}/cocoR/keyword_parser/**/output/o/cparser.rb"  
+parser_count = scanner_count = 0
+path = "#{File.dirname(__FILE__)}/cocoR/keyword_parser/*/output/o/c*scanner.rb"  
+Dir[path].each { |f|
+    next if f.end_with?("crscanner.rb")
+    p "loading scanner from #{f}"
+    load(f)
+    parser_count +=1
+}
+
+path = "#{File.dirname(__FILE__)}/cocoR/keyword_parser/*/output/o/*parser.rb"  
 
 Dir[path].each { |f|
+    next if f.end_with?("crparser.rb")
     p "loading parser from #{f}"
     load(f)
-    
-    count +=1
- }
+    scanner_count +=1
+}
+p "loaded #{parser_count} parsers, #{scanner_count} scanners"
 
 
 def pdebug(s, stack=0)
@@ -72,55 +82,10 @@ allclasses.each_line{|line|
 }
 end
 
-# stack for parsing
-# every function for unterminator will have on _in() and out()
-class ParseStack
-    attr_accessor :cur
-    def initialize()
-        _in
-        @last_pop_v = "" # last popuped value
-    end
-    
-    def _in
-        @last_unterminator_src = nil        
-        n = {:src=>"", :parent=>@cur, :auto_append=>true}
-        @cur = n
-    end
-    
-    def out
-        
-        r = @cur
-        @cur = @cur[:parent]
-        @last_pop_v  = r[:src]
-        @last_unterminator_src = r[:src]
-        if @cur[:auto_append]
-            if !@last_pop_v.start_with?(" ")
-                @cur[:src] += " "+@last_pop_v+ " "
-            else
-                 @cur[:src] += @last_pop_v 
-            end
-        end
-        return r
-    end
-    
-    def lus
-        @last_unterminator_src
-    end
-
-    # pop stack value
-    def popv
-        r = @last_pop_v 
-        @last_pop_v  = ""
-        return r
-    end
-
-end
 
 class Parser < CParser
-    attr_accessor :classdefs
     def initialize(scanner, error, classdefs={})
-        
-   
+
         super(scanner, error)
         #@addClassForUnregcognizedName = false
         #@included_files = {}
@@ -136,73 +101,7 @@ class Parser < CParser
         p "init end"
         pclass
     end
-    # stack_pos is the pos of trace stack, for the function name you want to print
-    # set it to 0 will show "trc" as function name
-    def trc(stack_pos=1) 
-        fn = ""
-        begin
-            raise Exception.new
-        rescue Exception=>e
-            e.backtrace[stack_pos].scan(/in `(.*?)'/){|m|
-            fn = m[0]
-        }
-        end
-        pdebug("===>#{fn}:#{@sym}(#{SYMS[@sym]}), #{curString()}")
-    end
-    def trco(stack_pos=1) 
-        fn = ""
-        begin
-            raise Exception.new
-        rescue Exception=>e
-            e.backtrace[stack_pos].scan(/in `(.*?)'/){|m|
-            fn = m[0]
-        }
-        end
-        pdebug("<===#{fn}0:#{@sym}(#{SYMS[@sym]}), #{curString()}, src=#{@parse_stack.cur[:src]}")
-    end
-    def _in_()
-        trc(2)
-        @parse_stack._in
-    end
-    def _out_()
-        trco(2)
-        r = @parse_stack.out
-        return r[:src]
-    end
-    def lus
-        @parse_stack.lus
-    end
-    def Get(ignore_crlf=true)
-        if  @sym == C_PointSym
-            @parse_stack.cur[:src] += "\n"
-        else
-            @parse_stack.cur[:src] += " "+curString()
-        end
-        
-        super
 
-    end
-    def stop_autosrc
-        @parse_stack.cur[:auto_append] = false
-    end
-    
-    def start_autosrc
-        @parse_stack.cur[:auto_append] = true
-    end
-    
-    def src(r=nil)
-        if r
-            @parse_stack.cur[:src] = r
-        end
-        return  @parse_stack.cur[:src]
-    end
-    def add_src(r)
-        @parse_stack.cur[:src] += r
-    end
-    
-    def popv
-        @parse_stack.popv
-    end
     #### copy/override start ####
     
     #/* Because 'END' can be identifier(so LL(1) cannot parse it), so this rule has to be single rule and modifier it in subclass

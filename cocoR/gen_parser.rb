@@ -2,15 +2,14 @@ require "FileUtils"
 require_relative "../rubyutility.rb"
 
 list = [
-    "VariableDefineStatement",
-    "WriteStatement",
+    "stDATA",
+    "stWRITE",
  #   "AssignmentStatement",
    # "BreakStatement",
-    "ContinueStatement",
+    "stCONTINUE",
    # "stDO",
    # "ForStatement",
 #    "IfStatement",
-    "ReturnStatement",
  #   "stWHILE",
   #  "LoopStatement",
    # "CaseStatement",
@@ -20,7 +19,7 @@ list = [
     #"MethodStatement",
     #"MethodsStatement",
  #   "FunctionDef",
-    "MessasgeStatement",
+    "stMessage",
     #"SearchStatement",
     "stAPPEND",
     "stSPLIT",
@@ -84,7 +83,7 @@ list = [
     "stGET",
     "stHIDE",
     "stIMPORT",
-    "stINCLUDE",
+   # "stINCLUDE",
     "stINFOTYPES",
     "stINITIALIZATION",
     "stINPUT",
@@ -98,7 +97,7 @@ list = [
     "stLOG_POINT",
     "stMAXIMUM",
     "stMINIMUM",
-    "stMODULE",
+   # "stMODULE",
     "stMULTIPLY",
     "stMULTIPLY_CORRESPONDING",
     "stNEW_LINE",
@@ -137,8 +136,8 @@ list = [
     "stSUPPLY",
     "stSUPPRESS",
     "stSYNTAX_CHECK",
-    "stTEST_INJECTION",
-    "stTEST_SEAM",
+  #  "stTEST_INJECTION",
+ #   "stTEST_SEAM",
     "stTOP_OF_PAGE",
     "stTRANSFER",
     "stTRANSLATE",
@@ -182,7 +181,7 @@ def add_rules(rule, options)
     options.each{|k,v|
         p "==>k:#{k}"
         if rule.index(k)
-            dep_rules += v
+            dep_rules += v + "\n"
             p "added rules #{k}"
             options.delete(k)
             p "#{options["Expression"]}"

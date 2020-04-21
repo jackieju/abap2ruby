@@ -60,14 +60,13 @@ PRODUCTIONS
   (. ps() .)
   
                          (
-                              VariableDefineStatement
-                             | WriteStatement 
-                             | ContinueStatement
+                              stDATA
+                             | stWRITE 
+                             | stCONTINUE
                              | stDO
                              | ForStatement
                              | IfStatement  
                              | NullStatement
-                             |  ReturnStatement 
                              |  stWHILE 
                              |  LOOP 
                              |  CaseStatement
@@ -80,7 +79,7 @@ PRODUCTIONS
                              | MethodsStatement
                              | FunctionDef
                              /*| DescribeStatement*/
-                             | MessasgeStatement
+                             | stMessage
                             /* | RefreshStatement */
                              | SearchStatement
                              | stAPPEND
@@ -226,7 +225,7 @@ PRODUCTIONS
  
 stSELECT = "SELECT" (. parseAbap("SELECT") .).
 
-MessasgeStatement = "Message" (. parseAbap("MessasgeStatement") .).
+stMessage = "Message" (. parseAbap("Message") .).
 
 stWITH= "WITH" (. parseAbap("WITH") .).
  
@@ -250,7 +249,7 @@ stRAISE= "RAISE" (. parseAbap("RAISE") .).
 
 
 
-VariableDefineStatement= "DATA" (. parseAbap("VariableDefineStatement") .).
+stDATA= "DATA" (. parseAbap("DATA") .).
                     
 
 
@@ -258,14 +257,14 @@ VariableDefineStatement= "DATA" (. parseAbap("VariableDefineStatement") .).
 stCONSTANTS= "CONSTANTS" (. parseAbap("CONSTANTS") .).
 
 
-WriteStatement= "WRITE" (. parseAbap("WriteStatement") .).
+stWRITE= "WRITE" (. parseAbap("WRITE") .).
 
 
 
 
 LOOP = "LOOP" (. parseAbap("LOOP") .).
 
-  ContinueStatement= "CONTINUE" (. parseAbap("ContinueStatement") .).
+  stCONTINUE= "CONTINUE" (. parseAbap("CONTINUE") .).
 
 
 
@@ -325,7 +324,6 @@ stWHILE= "WHILE" (. parseAbap("WHILE") .).
 
   NullStatement= "." . 
 
-  ReturnStatement= "return" (. parseAbap("ReturnStatement") .).
                          
 /*
 WhileStatement = "WHILE" Expression 
@@ -470,7 +468,7 @@ stHIDE= "HIDE" (. parseAbap("HIDE") .).
 
 stIMPORT= "IMPORT" (. parseAbap("IMPORT") .).
 
-stINCLUDE= "INCLUDE" (. parseAbap("INCLUDE") .).
+stINCLUDE= "INCLUDE" (. parseAbap("TYPES") .).
 
 stINFOTYPES= "INFOTYPES" (. parseAbap("INFOTYPES") .).
 

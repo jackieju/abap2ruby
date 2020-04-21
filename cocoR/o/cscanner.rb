@@ -836,12 +836,6 @@ class CScanner < CRScanner
          end
 
 
-      when 'r'
-         if EqualStr("return")
-            return C_returnSym
-         end
-
-
       end
 
       return id

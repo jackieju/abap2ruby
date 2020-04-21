@@ -15,7 +15,8 @@
 ***************************************/
 
 //#include -->TokensHeader
-#include "cp.hpp"
+//#include "cp.hpp"
+#include -->ParserHeader
 
 -->UserDeclarations
 

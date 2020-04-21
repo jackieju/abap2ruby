@@ -8,7 +8,7 @@ class CParser < CRRParser
          if @sym==C_FUNCTIONSym
             FunctionDef()
          else
-            GenError(247)
+            GenError(246)
          end
 
       end
@@ -92,13 +92,13 @@ class CParser < CRRParser
       case @sym
 
       when C_DATASym
-         VariableDefineStatement()
+         stDATA()
 
       when C_WRITESym
-         WriteStatement()
+         stWRITE()
 
       when C_CONTINUESym
-         ContinueStatement()
+         stCONTINUE()
 
       when C_DOSym
          stDO()
@@ -111,9 +111,6 @@ class CParser < CRRParser
 
       when C_PointSym
          NullStatement()
-
-      when C_returnSym
-         ReturnStatement()
 
       when C_WHILESym
          stWHILE()
@@ -134,7 +131,7 @@ class CParser < CRRParser
             if 1
                ClassImplStatement()
             else
-               GenError(248)
+               GenError(247)
             end
 
          end
@@ -150,7 +147,7 @@ class CParser < CRRParser
          FunctionDef()
 
       when C_MessageSym
-         MessasgeStatement()
+         stMessage()
 
       when C_SEARCHSym
          SearchStatement()
@@ -549,33 +546,33 @@ class CParser < CRRParser
          stSELECT()
 
       else
-         GenError(249)
+         GenError(248)
 
       end
 
       _out_()
    end
-   def VariableDefineStatement()
+   def stDATA()
       _in_()
       Expect(C_DATASym)
 
-      parseAbap("VariableDefineStatement");
+      parseAbap("DATA");
 
       _out_()
    end
-   def WriteStatement()
+   def stWRITE()
       _in_()
       Expect(C_WRITESym)
 
-      parseAbap("WriteStatement");
+      parseAbap("WRITE");
 
       _out_()
    end
-   def ContinueStatement()
+   def stCONTINUE()
       _in_()
       Expect(C_CONTINUESym)
 
-      parseAbap("ContinueStatement");
+      parseAbap("CONTINUE");
 
       _out_()
    end
@@ -606,14 +603,6 @@ class CParser < CRRParser
    def NullStatement()
       _in_()
       Expect(C_PointSym)
-      _out_()
-   end
-   def ReturnStatement()
-      _in_()
-      Expect(C_returnSym)
-
-      parseAbap("ReturnStatement");
-
       _out_()
    end
    def stWHILE()
@@ -680,11 +669,11 @@ class CParser < CRRParser
 
       _out_()
    end
-   def MessasgeStatement()
+   def stMessage()
       _in_()
       Expect(C_MessageSym)
 
-      parseAbap("MessasgeStatement");
+      parseAbap("Message");
 
       _out_()
    end
@@ -1196,7 +1185,7 @@ class CParser < CRRParser
       _in_()
       Expect(C_INCLUDESym)
 
-      parseAbap("INCLUDE");
+      parseAbap("TYPES");
 
       _out_()
    end
@@ -1797,7 +1786,7 @@ class CParser < CRRParser
          Get()
 
       else
-         GenError(250)
+         GenError(249)
 
       end
 
@@ -1816,7 +1805,7 @@ class CParser < CRRParser
                if @sym==C_EQUIVSym
                   Get()
                else
-                  GenError(251)
+                  GenError(250)
                end
 
             end
@@ -1838,7 +1827,7 @@ class CParser < CRRParser
             if @sym==C_ANDSym
                Get()
             else
-               GenError(252)
+               GenError(251)
             end
 
          end
@@ -1905,7 +1894,7 @@ class CParser < CRRParser
 
 
             else
-               GenError(253)
+               GenError(252)
 
             end
 
@@ -1924,7 +1913,7 @@ class CParser < CRRParser
             Expect(C_ANDSym)
             RelationExp()
          else
-            GenError(254)
+            GenError(253)
          end
 
       end
@@ -2004,7 +1993,7 @@ class CParser < CRRParser
             Get()
 
          else
-            GenError(255)
+            GenError(254)
 
          end
 
@@ -2023,7 +2012,7 @@ class CParser < CRRParser
             if @sym==C_GreaterGreaterSym
                Get()
             else
-               GenError(256)
+               GenError(255)
             end
 
          end
@@ -2043,7 +2032,7 @@ class CParser < CRRParser
             if @sym==C_MinusSym
                Get()
             else
-               GenError(257)
+               GenError(256)
             end
 
          end
@@ -2078,7 +2067,7 @@ class CParser < CRRParser
             Get()
 
          else
-            GenError(258)
+            GenError(257)
 
          end
 
@@ -2104,7 +2093,7 @@ class CParser < CRRParser
                if @sym==C_MinusMinusSym
                   Get()
                else
-                  GenError(259)
+                  GenError(258)
                end
 
             end
@@ -2115,7 +2104,7 @@ class CParser < CRRParser
                UnaryOperator()
                CastExp()
             else
-               GenError(260)
+               GenError(259)
             end
 
          end
@@ -2153,7 +2142,7 @@ class CParser < CRRParser
             Get()
 
          else
-            GenError(261)
+            GenError(260)
 
          end
 
@@ -2195,7 +2184,7 @@ class CParser < CRRParser
          Get()
 
       else
-         GenError(262)
+         GenError(261)
 
       end
 
@@ -2230,7 +2219,7 @@ class CParser < CRRParser
          Get()
 
       else
-         GenError(263)
+         GenError(262)
 
       end
 
@@ -2266,7 +2255,7 @@ class CParser < CRRParser
          Get()
 
       else
-         GenError(264)
+         GenError(263)
 
       end
 
@@ -2292,7 +2281,7 @@ class CParser < CRRParser
             Get()
             Expect(C_spaceD1Sym)
          else
-            GenError(265)
+            GenError(264)
          end
 
       end

@@ -67,13 +67,12 @@ PRODUCTIONS
   (. ps() .)
   
                          (
-                              VariableDefineStatement
-                             | WriteStatement 
-                             | ContinueStatement
+                              stDATA
+                             | stWRITE 
+                             | stCONTINUE
                              | stDO
                              | IfStatement  
                              | NullStatement
-                             |  ReturnStatement 
                              |  stWHILE 
                              |  LoopStatement 
                              |  CaseStatement
@@ -86,7 +85,7 @@ PRODUCTIONS
                              | MethodsStatement
                              | FunctionDef
                              /*| DescribeStatement*/
-                             | MessasgeStatement
+                             | stMessage
                             /* | RefreshStatement */
                              | SearchStatement
                              | stAPPEND
@@ -325,7 +324,7 @@ stRAISE = "RAISE" (
 )
 .
 
-MessasgeStatement = "MESSAGE"
+stMessage = "MESSAGE"
          {(
          
          ( "ID" identifier "TYPE" identifier "NUMBER" number )
@@ -460,7 +459,7 @@ LikeDes =        "LIKE"
                    ).
  
                  
-VariableDefineStatement =  ("DATA"|"STATICS" ) 
+stDATA =  ("DATA"|"STATICS" ) 
             ( 
                 "BEGIN" "OF" ( "COMMON" "PART" identifier| identifier ["READ-ONLY"] ["OCCURS" number] )
                 |
@@ -480,7 +479,7 @@ stCONSTANTS = "CONSTANTS" identifier ( TypeDes |
                 ) "VALUE" { Expression | "IS" "INITIAL" } "." .
 
 
-WriteStatement =   (. param_hash = {} .) "WRITE" 
+stWRITE =    "WRITE" (. param_hash = {} .)
     (
         {["AT"] ["/"][number 
          (. param_hash["col"] = curString().to_i .)
@@ -564,7 +563,7 @@ WriteStatement =   (. param_hash = {} .) "WRITE"
 
   Statements =  Statement { Statement } .
 
-  ContinueStatement    = "CONTINUE"  "."  .
+  stCONTINUE   = "CONTINUE"  "."  .
 
 /*
   DoStatement          = "DO" [number "TIMES"] {"VARYING" identifier "FROM" identifier "NEXT" identifier ["RANGE" number] } "." 
@@ -981,7 +980,6 @@ stWHILE = "WHILE" Expression
 
   NullStatement        = "." . 
 
-  ReturnStatement      = "return" [ Expression ]   ";"   .
                          
 /*
 WhileStatement = "WHILE" Expression 
@@ -1649,11 +1647,11 @@ stREPLACE = "REPLACE"(  ( ( [("FIRST" "OCCURRENCE")|("ALL" "OCCURRENCES" "OF")]
 
 stRESERVE = "RESERVE" number "LINES"".".
 
-stRESUME = "RESUME"".".
+stRESUME = "RESUME" ".".
 
-stRETRY = "RETRY"".".
+stRETRY = "RETRY" ".".
 
-stRETURN = "RETURN"".".
+stRETURN = "RETURN" ".".
 
 stROLLBACK = "ROLLBACK"(  "WORK" |  "CONNECTION" identifier ) ".".
 

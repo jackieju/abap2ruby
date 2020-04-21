@@ -1,0 +1,55 @@
+load 'goto.rb'
+load 'sym.rb'
+load 'scanner.rb'
+load 'crr_parser.rb'
+load 'error.rb'
+load 'log.rb'
+load 'common.rb'
+require_relative '@cocoR/o/cparser.rb@'
+
+
+def pdebug(s, stack=0)
+    depth = 0
+    sp = ""
+    begin
+        raise Exception.new
+    rescue Exception=>e
+        e.backtrace.each{|b|
+            if b =~ /in `C'/
+                # p "====got botoom====total #{e.backtrace.size}"
+                break
+            else
+                depth += 1
+                sp += "-+"
+            end
+        }
+        
+    end
+    
+    m = "{#{sp}#{depth}}#{s}"
+    if stack>0
+        m = format_msg(m, "", stack)
+    end
+    
+    debug(m)
+    
+end
+class @Parser@ < @CParser@
+    def initialize(scanner, error, classdefs={})
+
+        super(scanner, error)
+        #@addClassForUnregcognizedName = false
+        #@included_files = {}
+        
+        @macros = {}
+        @classdefs = $g_classdefs
+        @root_class = $g_root_moddef
+        
+        @output_src = ""
+        @parse_stack = ParseStack.new
+        
+        
+        p "init end"
+        pclass
+    end
+end

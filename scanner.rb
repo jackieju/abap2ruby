@@ -1,7 +1,7 @@
 load "crr_scan.rb"
 load "rubyutility.rb"
 load "log.rb"
-
+# Scanner(this file) < CRRScanner(crr_scan.rb) < CScanner(o/cscanner.rb) < CRScanner(cr_scan.rb)
 
 #class String
 #    def to_byte

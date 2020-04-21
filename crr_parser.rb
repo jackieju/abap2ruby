@@ -1,6 +1,132 @@
 load "cr_parser.rb"
 
+# stack for parsing
+# every function for unterminator will have on _in() and out()
+class ParseStack
+    attr_accessor :cur
+    def initialize()
+        _in
+        @last_pop_v = "" # last popuped value
+    end
+    
+    def _in
+        @last_unterminator_src = nil        
+        n = {:src=>"", :parent=>@cur, :auto_append=>true}
+        @cur = n
+    end
+    
+    def out
+        
+        r = @cur
+        @cur = @cur[:parent]
+        @last_pop_v  = r[:src]
+        @last_unterminator_src = r[:src]
+        if @cur[:auto_append]
+            if !@last_pop_v.start_with?(" ")
+                @cur[:src] += " "+@last_pop_v+ " "
+            else
+                 @cur[:src] += @last_pop_v 
+            end
+        end
+        return r
+    end
+    
+    def lus
+        @last_unterminator_src
+    end
+
+    # pop stack value
+    def popv
+        r = @last_pop_v 
+        @last_pop_v  = ""
+        return r
+    end
+
+end
+
+
 class CRRParser < CRParser
+    attr_accessor :classdefs, :sym
+    
+    def parseAbap(keyword)
+      sc =  Object.const_get("C#{keyword}Scanner").new(@scanner.buffer, false)
+      error = MyError.new("whaterver", sc)
+      kp = Object.const_get("C#{keyword.capitalize}Parser").new(sc,error, $g_classdefs)
+      sc.buffPos = @scanner.buffPos
+      sc.nextSym = @scanner.nextSym.clone
+      sc.currSym = @scanner.currSym.clone
+      sc.sym = @scanner.sym
+      kp.sym = @sym
+      kp.send(keyword)
+    end
+
+    # stack_pos is the pos of trace stack, for the function name you want to print
+    # set it to 0 will show "trc" as function name
+    def trc(stack_pos=1) 
+        fn = ""
+        begin
+            raise Exception.new
+        rescue Exception=>e
+            e.backtrace[stack_pos].scan(/in `(.*?)'/){|m|
+            fn = m[0]
+        }
+        end
+        pdebug("===>#{fn}:#{@sym}(#{SYMS[@sym]}), #{curString()}")
+    end
+    def trco(stack_pos=1) 
+        fn = ""
+        begin
+            raise Exception.new
+        rescue Exception=>e
+            e.backtrace[stack_pos].scan(/in `(.*?)'/){|m|
+            fn = m[0]
+        }
+        end
+        pdebug("<===#{fn}0:#{@sym}(#{SYMS[@sym]}), #{curString()}, src=#{@parse_stack.cur[:src]}")
+    end
+    def _in_()
+        trc(2)
+        @parse_stack._in
+    end
+    def _out_()
+        trco(2)
+        r = @parse_stack.out
+        return r[:src]
+    end
+    def lus
+        @parse_stack.lus
+    end
+    def Get(ignore_crlf=true)
+        if  @sym == C_PointSym
+            @parse_stack.cur[:src] += "\n"
+        else
+            @parse_stack.cur[:src] += " "+curString()
+        end
+        
+        super
+
+    end
+    def stop_autosrc
+        @parse_stack.cur[:auto_append] = false
+    end
+    
+    def start_autosrc
+        @parse_stack.cur[:auto_append] = true
+    end
+    
+    def src(r=nil)
+        if r
+            @parse_stack.cur[:src] = r
+        end
+        return  @parse_stack.cur[:src]
+    end
+    def add_src(r)
+        @parse_stack.cur[:src] += r
+    end
+    
+    def popv
+        @parse_stack.popv
+    end
     
     def curLine()
         @scanner.currLine
@@ -54,9 +180,9 @@ class CRRParser < CRParser
             tr =  e.backtrace[1]
         end
         if msg
-            p "==>st:#{msg} (sym:#{@sym}, #{curString()} @#{tr}"
+            p "==>st:#{msg} (sym:#{@sym}(#{SYMS[@sym]}), #{curString()} @#{tr}"
         else
-            p "==>st:sym:#{@sym}, #{curString()} @#{tr}"
+            p "==>st:sym:#{@sym}(#{SYMS[@sym]}), #{curString()} @#{tr}"
         end
     end
     

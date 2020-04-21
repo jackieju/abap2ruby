@@ -8,9 +8,11 @@ cocor=$PWD/cocor17new
 cocor=$PWD/cocor
 
 name=`echo $1 | awk '{print tolower($0)}'`
-echo ====
-echo $name
-echo ====
+#cname=`echo ${name} | sed  's/^\([a-z]\)\([a-zA-Z0-9]*\)/\U\1\2/g'`
+#dname=`echo ${name} | sed 's/.*/\L&/; s/[a-z]*/\u&/g'`
+cname=`ruby title.rb $name`
+
+
 #test grammar
 #cd keyword_parser/$1
 echo $cocor -A -F -X -S -G -C -L -D keyword_parser/$1/$1.atg 
@@ -19,8 +21,12 @@ $cocor -A -F -X -S -G -C -L -D keyword_parser/$1/$1.atg
 echo $?
 echo ---------
 
+echo if error, using './cocor keyword_parser/WriteStatement/WriteStatement.atg' to check
+
 output=$PWD/keyword_parser/$1/output
 mkdir -p $output
+mkdir -p $output/o
+
 mv ${name}s.cpp        $output
 cp ${name}s.hpp        $output
 mv ${name}p.cpp        $output
@@ -31,11 +37,46 @@ cp CR_SCAN.hpp  $output
 cp CR_ABS.hpp   $output
 cp CR_PARSE.hpp $output
 
+echo ====
+echo keyword:$1
+echo name:$name
+echo cname:$cname
+#echo $dname
+echo ====
+
+# scanner.rb -> cwritescanner.rb
+cp scanner.tmpl $output/o/c${name}scanner.rb
+# load $crr_scan.rb$ => load crwritescanner.rb
+sed -i.ign "s/@crr_scan.rb@/cr${name}_scan.rb/g" $output/o/c${name}scanner.rb
+
+# class $Scanner$ <  $CRRScanner$ ==> class C${1}Scanner <  WRITEScanner 
+sed -i.ign "s/@Scanner@/C${1}Scanner/g" $output/o/c${name}scanner.rb
+sed -i.ign "s/@CRRScanner@/${1}Scanner/g" $output/o/c${name}scanner.rb
+
+
+# crr_scan.rb -> crwritescanner.rb
+cp crr_scan.tmpl $output/o/cr${name}_scan.rb
+# load 'cocoR/o/cscanner.rb' => load 'writescanner.rb'
+sed -i.ign "s/cocoR\/o\/cscanner.rb/${name}scanner.rb/g" $output/o/cr${name}_scan.rb
+
+# class CRRScanner < CScanner => class WRITEScanner < WriteScanner
+sed -i.ign "s/@CRRScanner@/$1Scanner/g" $output/o/cr${name}_scan.rb 
+sed -i.ign "s/@CScanner@/${cname}Scanner/g" $output/o/cr${name}_scan.rb
+
+
+# cp.rb -> cwriteparser.rb
+cp cp.tmpl $output/o/c${name}parser.rb
+# load 'cocoR/o/cparser.rb' => load 'writeparser.rb'
+sed -i.ign "s/@cocoR\/o\/cparser.rb@/${name}parser.rb/g" $output/o/c${name}parser.rb
+sed -i.ign "s/@CParser@/${cname}Parser/g" $output/o/c${name}parser.rb
+sed -i.ign "s/@Parser@/C${cname}Parser/g" $output/o/c${name}parser.rb
+
 
 cd $cpp2ruby_dir
 ruby translate.rb $output/*.cpp -d $output/o
 cd $PWD
 #cd ..
 #./gen_sym.rb cocoR/output/cc.hpp
+
 
 
