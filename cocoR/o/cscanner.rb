@@ -627,10 +627,6 @@ class CScanner < CRScanner
             return C_DIALOGSym
          end
 
-         if EqualStr("DATE")
-            return C_DATESym
-         end
-
          if EqualStr("DAYLIGHT")
             return C_DAYLIGHTSym
          end
@@ -695,6 +691,10 @@ class CScanner < CRScanner
 
          if EqualStr("EXACT")
             return C_EXACTSym
+         end
+
+         if EqualStr("EXPANDING")
+            return C_EXPANDINGSym
          end
 
          if EqualStr("ENDING")
@@ -1233,6 +1233,10 @@ class CScanner < CRScanner
 
 
       when 'K'
+         if EqualStr("KEEPING")
+            return C_KEEPINGSym
+         end
+
          if EqualStr("KEY")
             return C_KEYSym
          end
@@ -1243,10 +1247,6 @@ class CScanner < CRScanner
 
          if EqualStr("KEYS")
             return C_KEYSSym
-         end
-
-         if EqualStr("KEEPING")
-            return C_KEEPINGSym
          end
 
 
@@ -1263,12 +1263,12 @@ class CScanner < CRScanner
             return C_LEFTSym
          end
 
-         if EqualStr("LINE")
-            return C_LINESym
-         end
-
          if EqualStr("LINES")
             return C_LINESSym
+         end
+
+         if EqualStr("LINE")
+            return C_LINESym
          end
 
          if EqualStr("LIKE")
@@ -1389,6 +1389,10 @@ class CScanner < CRScanner
             return C_MOVESym
          end
 
+         if EqualStr("MOVE-CORRESPONDING")
+            return C_MOVEMinusCORRESPONDINGSym
+         end
+
          if EqualStr("MODE")
             return C_MODESym
          end
@@ -1497,6 +1501,10 @@ class CScanner < CRScanner
       when 'N'
          if EqualStr("NO")
             return C_NOSym
+         end
+
+         if EqualStr("NESTED")
+            return C_NESTEDSym
          end
 
          if EqualStr("NUMBER")
@@ -2261,6 +2269,10 @@ class CScanner < CRScanner
 
          if EqualStr("TO")
             return C_TOSym
+         end
+
+         if EqualStr("TARGET")
+            return C_TARGETSym
          end
 
          if EqualStr("TYPE")

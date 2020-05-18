@@ -664,7 +664,7 @@ return list.include?(SYMS[n])
     
     def GenError(errorNo)
    #     p "generror #{errorNo}, line #{@scanner.nextSym.line} col #{@scanner.nextSym.col} sym #{@scanner.nextSym.sym} val #{@scanner.GetName()}"
-   p "generror #{errorNo}, line #{@scanner.nextSym.line} col #{@scanner.nextSym.col} sym #{@scanner.nextSym.sym} val #{curString()}"
+   p "generror #{errorNo}, line #{@scanner.nextSym.line} col #{@scanner.nextSym.col} sym #{@scanner.nextSym.sym}(#{SYMS[@scanner.nextSym.sym]}) sval #{curString()}"
         
         
         pos = @scanner.nextSym.pos

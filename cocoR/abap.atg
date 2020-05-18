@@ -98,6 +98,7 @@ PRODUCTIONS
                              | stRAISE
                              | stCONSTANTS
                              | stMOVE
+                             | stMOVE_CORRESPONDING
                              | stWITH
                              | stTABLES
                              | stAUTHORITY_CHECK
@@ -254,7 +255,11 @@ stMOVE =  "MOVE"
         
     . 
     
-
+stMOVE_CORRESPONDING = "MOVE-CORRESPONDING" ["EXACT"]
+             ( identifier "TO" identifier ["EXPANDING" "NESTED" "TABLES"] 
+            |  identifier  "TO" identifier  ["EXPANDING" "NESTED" "TABLES"] 
+                                                  ["KEEPING" "TARGET" "LINES"] 
+             ) "." . 
  
 stAPPEND = "APPEND" ( 
          {"INITIAL" "LINE"} 
@@ -264,7 +269,7 @@ stAPPEND = "APPEND" (
     ["SORTED" "BY" string1] 
     [ ("ASSIGNING" string1 ["CASTING"] | "REFERENCE" "INTO" identifier ) ] "." .
  
-stCONCATENATE = "CONCATENATE" (identifier {identifier}
+stCONCATENATE = "CONCATENATE" (Expression {Expression}
              | "LINES" "OF" identifier
              )
              "INTO" identifier 
@@ -1257,8 +1262,8 @@ stCONVERT = "CONVERT"(
   
       |  "TEXT" string1 "INTO" "SORTABLE" "CODE" string1 
       |  ( "TIME" "STAMP" string1 "TIME" "ZONE" string1 
-          "INTO" ["DATE" string1] ["TIME" string1] ["DAYLIGHT" "SAVING" "TIME" string1] ) 
-      | ( "DATE" string1 ["TIME" string1 ["DAYLIGHT" "SAVING" "TIME" string1]] 
+          "INTO" [identifier(. ExpectWord("DATE") .) string1] ["TIME" string1] ["DAYLIGHT" "SAVING" "TIME" string1] ) 
+      | ( identifier(. ExpectWord("DATE") .) string1 ["TIME" string1 ["DAYLIGHT" "SAVING" "TIME" string1]] 
           "INTO" "TIME" "STAMP" string1 "TIME" "ZONE" string1 ) ) ".".
 
 stCREATE = "CREATE"(  "DATA" identifier [ "AREA" "HANDLE" identifier ] 
@@ -1585,8 +1590,8 @@ stPARAMETERS = "PARAMETERS" ( identifier [("("number")" |  "LENGTH" number)] )
              
            ] 
            ["MODIF" "ID" identifier] 
-           ["DEFAULT" string1] 
            ["LOWER" "CASE"] 
+           ["DEFAULT" Expression] 
            ["MATCHCODE" "OBJECT" identifier] 
            ["MEMORY" "ID" identifier] 
            ["VALUE" "CHECK"] 

@@ -295,6 +295,10 @@ class Scanner <  CRRScanner
         super(str, ignoreCase)
     end
 
+    def dump_some(length=10)
+        @buffer[@buffPos..@buffPos+length]
+    end
+    
     def Comment()
         p "===>Comment1:#{@ch}"
        level=1
@@ -306,7 +310,7 @@ class Scanner <  CRRScanner
        if @ch=='*'
            _pos = @buffPos-1
            _ch = @buffer[_pos]
-           isStart = true
+           isStart = true # is start of line
            while (_pos>=0 && _ch.to_byte != EOF_CHAR && _ch.to_byte != LF_CHAR)
                if !isWhitespace?(_ch)
                    p "===>Comment3:#{_ch}, #{_pos}"
@@ -330,29 +334,38 @@ class Scanner <  CRRScanner
          
       end
      
-       if @ch=='"'
-          NextCh()
-          while (@ch!=nil)
-             if @ch==10
-                (level-=1;level+2)
-                NextCh()
-                @comEols=@currLine-startLine
-                if level==0
-                   return 1
-                end
-
-             else
-                if @ch.to_byte==EOF_CHAR
-                   return 0
-                else
-                   NextCh()
-                end
-
-             end
-
-          end
-
-       end
+     if @ch=='"'
+         while (@ch && @ch.to_byte != EOF_CHAR && @ch.to_byte != LF_CHAR && @ch.to_byte != 13)
+             NextCh()
+             p "===>Comment6:#{@ch} #{@ch.to_byte} #{@ch.to_byte != LF_CHAR}"
+            
+         end
+         return 1
+     end
+      #if @ch=='"'
+      #    p "===>Comment6:#{dump_some}", 10
+      #   NextCh()
+      #   while (@ch!=nil)
+      #      if @ch==10
+      #         level-=1
+      #         NextCh()
+      #         @comEols=@currLine-startLine
+      #         if level==0
+      #            return 1
+      #         end
+      #
+      #      else
+      #         if @ch.to_byte==EOF_CHAR
+      #            return 0
+      #         else
+      #            NextCh()
+      #         end
+      #
+      #      end
+      #
+      #   end
+      #
+      #end
 
        return 0
     end
