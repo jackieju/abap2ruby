@@ -1559,10 +1559,6 @@ class CScanner < CRScanner
             return C_NOMinusGAPSSym
          end
 
-         if EqualStr("NAME")
-            return C_NAMESym
-         end
-
          if EqualStr("NEW-LINE")
             return C_NEWMinusLINESym
          end

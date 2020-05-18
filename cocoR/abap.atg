@@ -1409,7 +1409,7 @@ stFUNCTION_POOL = "FUNCTION-POOL" identifier ["NO" "STANDARD" "PAGE" "HEADING"]
                     ["LINE-COUNT" number["("number")"]] 
                     ["MESSAGE-ID" identifier]".".
 
-stGENERATE = "GENERATE" "SUBROUTINE" "POOL" identifier "NAME" identifier 
+stGENERATE = "GENERATE" "SUBROUTINE" "POOL" identifier identifier(. ExpectWord("NAME") .) identifier 
   ["MESSAGE" string1] 
   ["INCLUDE" string1] 
   ["LINE" number] 
@@ -1467,7 +1467,7 @@ stINCLUDE = "INCLUDE"(  ( "TYPE" identifier | "STRUCTURE" identifier )
         ["AS" identifier ["RENAMING" "WITH" "SUFFIX" string1]] 
         |identifier ["IF" "FOUND"]) ".".
 
-stINFOTYPES = "INFOTYPES" identifier ["NAME" identifier] 
+stINFOTYPES = "INFOTYPES" identifier [identifier(. ExpectWord("NAME") .) identifier] 
                ["OCCURS" number] 
                ["MODE" identifier] 
                ["VALID" "FROM" Expression "TO" Expression] 
