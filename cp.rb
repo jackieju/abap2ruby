@@ -73,7 +73,7 @@ class ParseStack
     
     def _in
         @last_unterminator_src = nil        
-        n = {:src=>"", :parent=>@cur, :auto_append=>true}
+        n = {:src=>"", :parent=>@cur, :auto_append=>true, :stack=>[]}
         @cur = n
     end
     
@@ -107,7 +107,7 @@ class ParseStack
 end
 
 class Parser < CParser
-    attr_accessor :classdefs
+    attr_accessor :classdefs, :parse_stack
     def initialize(scanner, error, classdefs={})
         
    
@@ -167,6 +167,7 @@ class Parser < CParser
             @parse_stack.cur[:src] += "\n"
         else
             @parse_stack.cur[:src] += " "+curString()
+            @parse_stack.cur[:stack].push({:sym=>@sym, :val=>curString()})
         end
         
         super

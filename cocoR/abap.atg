@@ -493,7 +493,7 @@ WriteStatement =   (. param_hash = {} .) "WRITE"
     (
         {["AT"] ["/"][number 
          (. param_hash["col"] = curString().to_i .)
-         ][ "(" (number | "*" | "**") ")" ]} Expression 
+         ][ "(" (Expression | "*" | "**") ")" ]} Expression 
          (.
              param_hash["s"] = popv
          .)
@@ -1418,7 +1418,7 @@ stGENERATE = "GENERATE" "SUBROUTINE" "POOL" identifier identifier(. ExpectWord("
   ["MESSAGE" string1] 
   ["INCLUDE" string1] 
   ["LINE" number] 
-  ["WORD" string1] 
+  [identifier(.ExpectWord("WORD").) string1] 
   ["OFFSET" Expression] 
   ["MESSAGE-ID" identifier] 
   ["SHORTDUMP-ID" identifier]".".
@@ -1742,7 +1742,7 @@ stSUPPLY = "SUPPLY" Exps  "TO" "CONTEXT" identifier ".".
 
 stSUPPRESS = "SUPPRESS" "DIALOG"".".
 
-stSYNTAX_CHECK = "SYNTAX-CHECK" "FOR" identifier "MESSAGE" string1 "LINE" number "WORD" string1 
+stSYNTAX_CHECK = "SYNTAX-CHECK" "FOR" identifier "MESSAGE" string1 "LINE" number identifier(.ExpectWord("WORD").) string1 
                  ["PROGRAM" identifier] ["DIRECTORY" "ENTRY" string1] 
                  ["WITH" "CURRENT" "SWITCHSTATES"] 
                  ["INCLUDE" string1] 

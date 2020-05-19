@@ -2557,10 +2557,6 @@ class CScanner < CRScanner
             return C_WAITSym
          end
 
-         if EqualStr("WORD")
-            return C_WORDSym
-         end
-
          if EqualStr("WITH-TITLE")
             return C_WITHMinusTITLESym
          end

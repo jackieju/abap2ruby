@@ -48,10 +48,15 @@ def parse(s, preprocess = true, to_ruby=true)
     p "===== start parsing ====="
     parser.Get
     begin
-    ret = parser.C
+        ret = parser.C
     rescue Exception=>e
        
         parser.dump_pos
+        s = ""
+        parser.parse_stack.cur[:stack].each{|e|
+            s += SYMS[e[:sym]]+" "
+        }
+        p "parsing #{s}"
         throw e
     end 
     p ret
