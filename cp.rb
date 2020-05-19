@@ -107,7 +107,7 @@ class ParseStack
 end
 
 class Parser < CParser
-    attr_accessor :classdefs, :parse_stack
+    attr_accessor :classdefs, :parse_stack, :sym
     def initialize(scanner, error, classdefs={})
         
    

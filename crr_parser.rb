@@ -60,6 +60,10 @@ class CRRParser < CRParser
         end
     end
     
+    def status
+        "sym:#{@sym}(#{SYMS[@sym]}), val #{curString()}, #{@scanner.buffer[@scanner.buffPos..@scanner.buffPos+10]} "
+    end
+    
     def dump_buffer_to_file(fname)
         save_to_file(@scanner.buffer, fname)
     end

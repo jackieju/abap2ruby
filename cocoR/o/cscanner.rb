@@ -21,6 +21,18 @@ class CScanner < CRScanner
             return C_ASSym
          end
 
+         if EqualStr("ASCENDING")
+            return C_ASCENDINGSym
+         end
+
+         if EqualStr("APPENDING")
+            return C_APPENDINGSym
+         end
+
+         if EqualStr("ALL")
+            return C_ALLSym
+         end
+
          if EqualStr("APPEND")
             return C_APPENDSym
          end
@@ -41,16 +53,8 @@ class CScanner < CRScanner
             return C_ANDSym
          end
 
-         if EqualStr("ASCENDING")
-            return C_ASCENDINGSym
-         end
-
          if EqualStr("ALIAS")
             return C_ALIASSym
-         end
-
-         if EqualStr("ALL")
-            return C_ALLSym
          end
 
          if EqualStr("AUTHORITY-CHECK")
@@ -59,10 +63,6 @@ class CScanner < CRScanner
 
          if EqualStr("ADJACENT")
             return C_ADJACENTSym
-         end
-
-         if EqualStr("APPENDING")
-            return C_APPENDINGSym
          end
 
          if EqualStr("ACTUAL")
@@ -143,6 +143,18 @@ class CScanner < CRScanner
             return C_BYSym
          end
 
+         if EqualStr("BLOB")
+            return C_BLOBSym
+         end
+
+         if EqualStr("BYPASSING")
+            return C_BYPASSINGSym
+         end
+
+         if EqualStr("BUFFER")
+            return C_BUFFERSym
+         end
+
          if EqualStr("BYTE")
             return C_BYTESym
          end
@@ -155,24 +167,12 @@ class CScanner < CRScanner
             return C_BOXEDSym
          end
 
-         if EqualStr("BLOB")
-            return C_BLOBSym
-         end
-
          if EqualStr("BEGIN")
             return C_BEGINSym
          end
 
          if EqualStr("BETWEEN")
             return C_BETWEENSym
-         end
-
-         if EqualStr("BUFFER")
-            return C_BUFFERSym
-         end
-
-         if EqualStr("BYPASSING")
-            return C_BYPASSINGSym
          end
 
          if EqualStr("BINARY")
@@ -265,6 +265,34 @@ class CScanner < CRScanner
 
 
       when 'C'
+         if EqualStr("CLIENT")
+            return C_CLIENTSym
+         end
+
+         if EqualStr("CROSS")
+            return C_CROSSSym
+         end
+
+         if EqualStr("CORRESPONDING")
+            return C_CORRESPONDINGSym
+         end
+
+         if EqualStr("CREATING")
+            return C_CREATINGSym
+         end
+
+         if EqualStr("COLUMNS")
+            return C_COLUMNSSym
+         end
+
+         if EqualStr("CLOB")
+            return C_CLOBSym
+         end
+
+         if EqualStr("CONNECTION")
+            return C_CONNECTIONSym
+         end
+
          if EqualStr("CASTING")
             return C_CASTINGSym
          end
@@ -279,14 +307,6 @@ class CScanner < CRScanner
 
          if EqualStr("COMPONENTS")
             return C_COMPONENTSSym
-         end
-
-         if EqualStr("COLUMNS")
-            return C_COLUMNSSym
-         end
-
-         if EqualStr("CLOB")
-            return C_CLOBSym
          end
 
          if EqualStr("COMMON")
@@ -305,10 +325,6 @@ class CScanner < CRScanner
             return C_CURRENCYSym
          end
 
-         if EqualStr("COLOR")
-            return C_COLORSym
-         end
-
          if EqualStr("CHECKBOX")
             return C_CHECKBOXSym
          end
@@ -319,14 +335,6 @@ class CScanner < CRScanner
 
          if EqualStr("CASE")
             return C_CASESym
-         end
-
-         if EqualStr("CLIENT")
-            return C_CLIENTSym
-         end
-
-         if EqualStr("CONNECTION")
-            return C_CONNECTIONSym
          end
 
          if EqualStr("COMPARING")
@@ -347,10 +355,6 @@ class CScanner < CRScanner
 
          if EqualStr("CONVERSION")
             return C_CONVERSIONSym
-         end
-
-         if EqualStr("CORRESPONDING")
-            return C_CORRESPONDINGSym
          end
 
          if EqualStr("CURRENT")
@@ -469,6 +473,10 @@ class CScanner < CRScanner
             return C_COUNTSym
          end
 
+         if EqualStr("COLOR")
+            return C_COLORSym
+         end
+
          if EqualStr("COL_BACKGROUND")
             return C_COLUnderscoreBACKGROUNDSym
          end
@@ -555,12 +563,16 @@ class CScanner < CRScanner
             return C_DATABASESym
          end
 
-         if EqualStr("DISPLAY")
-            return C_DISPLAYSym
+         if EqualStr("DISTINCT")
+            return C_DISTINCTSym
          end
 
          if EqualStr("DESCENDING")
             return C_DESCENDINGSym
+         end
+
+         if EqualStr("DISPLAY")
+            return C_DISPLAYSym
          end
 
          if EqualStr("DECIMALS")
@@ -685,6 +697,18 @@ class CScanner < CRScanner
             return C_ENDFUNCTIONSym
          end
 
+         if EqualStr("ENTRIES")
+            return C_ENTRIESSym
+         end
+
+         if EqualStr("EXTENDED")
+            return C_EXTENDEDSym
+         end
+
+         if EqualStr("ENDSELECT")
+            return C_ENDSELECTSym
+         end
+
          if EqualStr("ENDWITH")
             return C_ENDWITHSym
          end
@@ -753,10 +777,6 @@ class CScanner < CRScanner
             return C_ENDONSym
          end
 
-         if EqualStr("ENTRIES")
-            return C_ENTRIESSym
-         end
-
          if EqualStr("ENCODING")
             return C_ENCODINGSym
          end
@@ -767,10 +787,6 @@ class CScanner < CRScanner
 
          if EqualStr("ERRORS")
             return C_ERRORSSym
-         end
-
-         if EqualStr("EXTENDED")
-            return C_EXTENDEDSym
          end
 
          if EqualStr("ENDPROVIDE")
@@ -899,6 +915,10 @@ class CScanner < CRScanner
             return C_FUNCTIONSym
          end
 
+         if EqualStr("FIELDS")
+            return C_FIELDSSym
+         end
+
          if EqualStr("FROM")
             return C_FROMSym
          end
@@ -907,16 +927,8 @@ class CScanner < CRScanner
             return C_FORSym
          end
 
-         if EqualStr("FIELDS")
-            return C_FIELDSSym
-         end
-
          if EqualStr("FORMAT")
             return C_FORMATSym
-         end
-
-         if EqualStr("FRAMES")
-            return C_FRAMESSym
          end
 
          if EqualStr("FIELD")
@@ -969,6 +981,10 @@ class CScanner < CRScanner
 
          if EqualStr("FIND")
             return C_FINDSym
+         end
+
+         if EqualStr("FRAMES")
+            return C_FRAMESSym
          end
 
          if EqualStr("FUNCTION-POOL")
@@ -1039,6 +1055,10 @@ class CScanner < CRScanner
             return C_HEADINGSym
          end
 
+         if EqualStr("HAVING")
+            return C_HAVINGSym
+         end
+
          if EqualStr("HANDLE")
             return C_HANDLESym
          end
@@ -1051,16 +1071,8 @@ class CScanner < CRScanner
             return C_HEADERSym
          end
 
-         if EqualStr("HOTSPOT")
-            return C_HOTSPOTSym
-         end
-
          if EqualStr("HOLD")
             return C_HOLDSym
-         end
-
-         if EqualStr("HAVING")
-            return C_HAVINGSym
          end
 
          if EqualStr("HARMLESS")
@@ -1073,6 +1085,10 @@ class CScanner < CRScanner
 
          if EqualStr("HEAD-LINES")
             return C_HEADMinusLINESSym
+         end
+
+         if EqualStr("HOTSPOT")
+            return C_HOTSPOTSym
          end
 
          if EqualStr("HIDE")
@@ -1093,8 +1109,8 @@ class CScanner < CRScanner
 
 
       when 'I'
-         if EqualStr("INITIAL")
-            return C_INITIALSym
+         if EqualStr("INNER")
+            return C_INNERSym
          end
 
          if EqualStr("INTO")
@@ -1103,6 +1119,10 @@ class CScanner < CRScanner
 
          if EqualStr("IN")
             return C_INSym
+         end
+
+         if EqualStr("INITIAL")
+            return C_INITIALSym
          end
 
          if EqualStr("ID")
@@ -1117,20 +1137,12 @@ class CScanner < CRScanner
             return C_ISSym
          end
 
-         if EqualStr("INTENSIFIED")
-            return C_INTENSIFIEDSym
-         end
-
-         if EqualStr("INVERSE")
-            return C_INVERSESym
+         if EqualStr("ICON")
+            return C_ICONSym
          end
 
          if EqualStr("INPUT")
             return C_INPUTSym
-         end
-
-         if EqualStr("ICON")
-            return C_ICONSym
          end
 
          if EqualStr("IGNORING")
@@ -1167,6 +1179,14 @@ class CScanner < CRScanner
 
          if EqualStr("INTERNAL")
             return C_INTERNALSym
+         end
+
+         if EqualStr("INTENSIFIED")
+            return C_INTENSIFIEDSym
+         end
+
+         if EqualStr("INVERSE")
+            return C_INVERSESym
          end
 
          if EqualStr("INCLUDE")
@@ -1227,18 +1247,22 @@ class CScanner < CRScanner
 
 
       when 'J'
+         if EqualStr("JOIN")
+            return C_JOINSym
+         end
+
          if EqualStr("JOB")
             return C_JOBSym
          end
 
 
       when 'K'
-         if EqualStr("KEEPING")
-            return C_KEEPINGSym
-         end
-
          if EqualStr("KEY")
             return C_KEYSym
+         end
+
+         if EqualStr("KEEPING")
+            return C_KEEPINGSym
          end
 
          if EqualStr("KIND")
@@ -1263,6 +1287,10 @@ class CScanner < CRScanner
             return C_LEFTSym
          end
 
+         if EqualStr("LOCATOR")
+            return C_LOCATORSym
+         end
+
          if EqualStr("LINES")
             return C_LINESSym
          end
@@ -1277,14 +1305,6 @@ class CScanner < CRScanner
 
          if EqualStr("LOOP")
             return C_LOOPSym
-         end
-
-         if EqualStr("LENGTH")
-            return C_LENGTHSym
-         end
-
-         if EqualStr("LOCATOR")
-            return C_LOCATORSym
          end
 
          if EqualStr("LOB")
@@ -1621,6 +1641,18 @@ class CScanner < CRScanner
 
 
       when 'O'
+         if EqualStr("OUTER")
+            return C_OUTERSym
+         end
+
+         if EqualStr("ON")
+            return C_ONSym
+         end
+
+         if EqualStr("ORDER")
+            return C_ORDERSym
+         end
+
          if EqualStr("OF")
             return C_OFSym
          end
@@ -1629,16 +1661,12 @@ class CScanner < CRScanner
             return C_OTHERSym
          end
 
+         if EqualStr("OFFSET")
+            return C_OFFSETSym
+         end
+
          if EqualStr("OCCURS")
             return C_OCCURSSym
-         end
-
-         if EqualStr("ON")
-            return C_ONSym
-         end
-
-         if EqualStr("OFF")
-            return C_OFFSym
          end
 
          if EqualStr("OR")
@@ -1651,14 +1679,6 @@ class CScanner < CRScanner
 
          if EqualStr("OBJECT")
             return C_OBJECTSym
-         end
-
-         if EqualStr("ORDER")
-            return C_ORDERSym
-         end
-
-         if EqualStr("OFFSET")
-            return C_OFFSETSym
          end
 
          if EqualStr("OPTIONAL")
@@ -1683,6 +1703,10 @@ class CScanner < CRScanner
 
          if EqualStr("OUTPUT-LENGTH")
             return C_OUTPUTMinusLENGTHSym
+         end
+
+         if EqualStr("OFF")
+            return C_OFFSym
          end
 
          if EqualStr("OCCURRENCE")
@@ -1715,6 +1739,14 @@ class CScanner < CRScanner
             return C_PAGESym
          end
 
+         if EqualStr("PRIMARY")
+            return C_PRIMARYSym
+         end
+
+         if EqualStr("PACKAGE")
+            return C_PACKAGESym
+         end
+
          if EqualStr("PERCENTAGE")
             return C_PERCENTAGESym
          end
@@ -1725,10 +1757,6 @@ class CScanner < CRScanner
 
          if EqualStr("POSITION")
             return C_POSITIONSym
-         end
-
-         if EqualStr("PACKAGE")
-            return C_PACKAGESym
          end
 
          if EqualStr("PROVIDE")
@@ -1855,6 +1883,18 @@ class CScanner < CRScanner
             return C_RIGHTSym
          end
 
+         if EqualStr("RESULT")
+            return C_RESULTSym
+         end
+
+         if EqualStr("READER")
+            return C_READERSym
+         end
+
+         if EqualStr("ROWS")
+            return C_ROWSSym
+         end
+
          if EqualStr("REFERENCE")
             return C_REFERENCESym
          end
@@ -1873,10 +1913,6 @@ class CScanner < CRScanner
 
          if EqualStr("RAISING")
             return C_RAISINGSym
-         end
-
-         if EqualStr("READER")
-            return C_READERSym
          end
 
          if EqualStr("REF")
@@ -1899,20 +1935,8 @@ class CScanner < CRScanner
             return C_ROUNDSym
          end
 
-         if EqualStr("RESET")
-            return C_RESETSym
-         end
-
-         if EqualStr("ROWS")
-            return C_ROWSSym
-         end
-
          if EqualStr("REPLACEMENT")
             return C_REPLACEMENTSym
-         end
-
-         if EqualStr("RESULT")
-            return C_RESULTSym
          end
 
          if EqualStr("READ")
@@ -1945,6 +1969,10 @@ class CScanner < CRScanner
 
          if EqualStr("RESULTS")
             return C_RESULTSSym
+         end
+
+         if EqualStr("RESET")
+            return C_RESETSym
          end
 
          if EqualStr("RUN")
@@ -2009,8 +2037,20 @@ class CScanner < CRScanner
             return C_STANDARDSym
          end
 
+         if EqualStr("SPECIFIED")
+            return C_SPECIFIEDSym
+         end
+
+         if EqualStr("SIZE")
+            return C_SIZESym
+         end
+
          if EqualStr("SELECT")
             return C_SELECTSym
+         end
+
+         if EqualStr("SINGLE")
+            return C_SINGLESym
          end
 
          if EqualStr("SORTED")
@@ -2029,10 +2069,6 @@ class CScanner < CRScanner
             return C_STARTINGSym
          end
 
-         if EqualStr("SIZE")
-            return C_SIZESym
-         end
-
          if EqualStr("SCREEN")
             return C_SCREENSym
          end
@@ -2049,10 +2085,6 @@ class CScanner < CRScanner
             return C_SYMBOLSym
          end
 
-         if EqualStr("SPECIFIED")
-            return C_SPECIFIEDSym
-         end
-
          if EqualStr("SHARED")
             return C_SHAREDSym
          end
@@ -2067,10 +2099,6 @@ class CScanner < CRScanner
 
          if EqualStr("SORT")
             return C_SORTSym
-         end
-
-         if EqualStr("STABLE")
-            return C_STABLESym
          end
 
          if EqualStr("SUBMIT")
@@ -2263,12 +2291,16 @@ class CScanner < CRScanner
 
 
       when 'T'
-         if EqualStr("TABLES")
-            return C_TABLESSym
+         if EqualStr("TABLE")
+            return C_TABLESym
          end
 
          if EqualStr("TO")
             return C_TOSym
+         end
+
+         if EqualStr("TABLES")
+            return C_TABLESSym
          end
 
          if EqualStr("TARGET")
@@ -2285,10 +2317,6 @@ class CScanner < CRScanner
 
          if EqualStr("TRANSPORTING")
             return C_TRANSPORTINGSym
-         end
-
-         if EqualStr("TABLE")
-            return C_TABLESym
          end
 
          if EqualStr("TIME")
@@ -2409,6 +2437,18 @@ class CScanner < CRScanner
             return C_USINGSym
          end
 
+         if EqualStr("UPDATE")
+            return C_UPDATESym
+         end
+
+         if EqualStr("UNION")
+            return C_UNIONSym
+         end
+
+         if EqualStr("UP")
+            return C_UPSym
+         end
+
          if EqualStr("UNIQUE")
             return C_UNIQUESym
          end
@@ -2423,14 +2463,6 @@ class CScanner < CRScanner
 
          if EqualStr("USER")
             return C_USERSym
-         end
-
-         if EqualStr("UP")
-            return C_UPSym
-         end
-
-         if EqualStr("UPDATE")
-            return C_UPDATESym
          end
 
          if EqualStr("UTF-8")
@@ -2513,16 +2545,16 @@ class CScanner < CRScanner
 
 
       when 'W'
+         if EqualStr("WHERE")
+            return C_WHERESym
+         end
+
          if EqualStr("WITH")
             return C_WITHSym
          end
 
          if EqualStr("WITHOUT")
             return C_WITHOUTSym
-         end
-
-         if EqualStr("WHERE")
-            return C_WHERESym
          end
 
          if EqualStr("WRITER")
@@ -2588,6 +2620,12 @@ class CScanner < CRScanner
          end
 
 
+      when 'a'
+         if EqualStr("aggregate")
+            return C_aggregateSym
+         end
+
+
       when 'b'
          if EqualStr("break")
             return C_breakSym
@@ -2609,6 +2647,12 @@ class CScanner < CRScanner
       when 'f'
          if EqualStr("for")
             return C_forSym
+         end
+
+
+      when 'p'
+         if EqualStr("primary_key")
+            return C_primaryUnderscorekeySym
          end
 
 
@@ -2905,13 +2949,13 @@ class CScanner < CRScanner
          when 28
             return C_PointSym
          when 29
-            if @ch=='+'
-               state=95
+            if @ch=='*'
+               state=46
             else
                if @ch=='='
-                  state=100
+                  state=102
                else
-                  return C_PlusSym
+                  return C_StarSym
                end
 
             end
@@ -2921,92 +2965,132 @@ class CScanner < CRScanner
             return C_CommaSym
          when 31
             if @ch=='*'
-               state=39
+               state=32
+            else
+               return C_TildeSym
+            end
+
+
+         when 32
+            return C_TildeStarSym
+         when 33
+            if @ch=='D'
+               state=34
+            else
+               return C_AtSym
+            end
+
+
+         when 34
+            if @ch=='A'
+               state=35
+            else
+               return No_Sym
+            end
+
+
+         when 35
+            if @ch=='T'
+               state=36
+            else
+               return No_Sym
+            end
+
+
+         when 36
+            if @ch=='A'
+               state=37
+            else
+               return No_Sym
+            end
+
+
+         when 37
+            return C_AtDATASym
+         when 38
+            if @ch=='+'
+               state=100
             else
                if @ch=='='
-                  state=97
+                  state=105
                else
-                  return C_StarSym
+                  return C_PlusSym
                end
 
             end
 
 
-         when 32
+         when 39
             if @ch=='T'
-               state=33
+               state=40
             else
                return C_QuerySym
             end
 
 
-         when 33
+         when 40
             if @ch=='O'
-               state=34
+               state=41
             else
                return No_Sym
             end
 
 
-         when 34
+         when 41
             return C_QueryTOSym
-         when 35
+         when 42
             return C_LbrackSym
-         when 36
+         when 43
             return C_RbrackSym
-         when 37
+         when 44
             if @ch=='>'
-               state=81
+               state=86
             else
                return C_EqualSym
             end
 
 
-         when 38
+         when 45
             if @ch=='='
-               state=98
+               state=103
             else
                return C_SlashSym
             end
 
 
-         when 39
+         when 46
             return C_StarStarSym
-         when 64
+         when 71
             if @ch=='Y'
-               state=65
+               state=72
             else
                return No_Sym
             end
 
 
-         when 65
+         when 72
             return C_DDSlashMMSlashYYYYSym
-         when 74
+         when 81
             if @ch=='Y'
-               state=75
+               state=82
             else
                return No_Sym
             end
 
 
-         when 75
+         when 82
             return C_MMSlashDDSlashYYYYSym
-         when 76
-            return C_AtSym
-         when 77
+         when 83
             return C_SemicolonSym
-         when 78
-            return C_TildeSym
-         when 79
+         when 84
             if @ch=='>'
-               state=80
+               state=85
             else
                if @ch=='-'
-                  state=96
+                  state=101
                else
                   if @ch=='='
-                     state=101
+                     state=106
                   else
                      return C_MinusSym
                   end
@@ -3016,16 +3100,16 @@ class CScanner < CRScanner
             end
 
 
-         when 80
+         when 85
             return C_MinusGreaterSym
-         when 81
+         when 86
             return C_EqualGreaterSym
-         when 82
+         when 87
             if @ch=='|'
-               state=83
+               state=88
             else
                if @ch=='='
-                  state=104
+                  state=109
                else
                   return C_BarSym
                end
@@ -3033,14 +3117,14 @@ class CScanner < CRScanner
             end
 
 
-         when 83
+         when 88
             return C_BarBarSym
-         when 84
+         when 89
             if @ch=='&'
-               state=85
+               state=90
             else
                if @ch=='='
-                  state=102
+                  state=107
                else
                   return C_AndSym
                end
@@ -3048,25 +3132,25 @@ class CScanner < CRScanner
             end
 
 
-         when 85
+         when 90
             return C_AndAndSym
-         when 86
+         when 91
             if @ch=='='
-               state=103
+               state=108
             else
                return C_UparrowSym
             end
 
 
-         when 87
+         when 92
             if @ch=='>'
-               state=88
+               state=93
             else
                if @ch=='='
-                  state=90
+                  state=95
                else
                   if @ch=='<'
-                     state=92
+                     state=97
                   else
                      return C_LessSym
                   end
@@ -3076,14 +3160,14 @@ class CScanner < CRScanner
             end
 
 
-         when 88
+         when 93
             return C_LessGreaterSym
-         when 89
+         when 94
             if @ch=='='
-               state=91
+               state=96
             else
                if @ch=='>'
-                  state=93
+                  state=98
                else
                   return C_GreaterSym
                end
@@ -3091,154 +3175,114 @@ class CScanner < CRScanner
             end
 
 
-         when 90
+         when 95
             return C_LessEqualSym
-         when 91
+         when 96
             return C_GreaterEqualSym
-         when 92
+         when 97
             if @ch=='='
-               state=105
+               state=110
             else
                return C_LessLessSym
             end
 
 
-         when 93
+         when 98
             if @ch=='='
-               state=106
+               state=111
             else
                return C_GreaterGreaterSym
             end
 
 
-         when 94
+         when 99
             if @ch=='='
-               state=99
+               state=104
             else
                return C_PercentSym
             end
 
 
-         when 95
-            return C_PlusPlusSym
-         when 96
-            return C_MinusMinusSym
-         when 97
-            return C_StarEqualSym
-         when 98
-            return C_SlashEqualSym
-         when 99
-            return C_PercentEqualSym
          when 100
-            return C_PlusEqualSym
+            return C_PlusPlusSym
          when 101
-            return C_MinusEqualSym
+            return C_MinusMinusSym
          when 102
-            return C_AndEqualSym
+            return C_StarEqualSym
          when 103
-            return C_UparrowEqualSym
+            return C_SlashEqualSym
          when 104
-            return C_BarEqualSym
+            return C_PercentEqualSym
          when 105
-            return C_LessLessEqualSym
+            return C_PlusEqualSym
          when 106
-            return C_GreaterGreaterEqualSym
+            return C_MinusEqualSym
          when 107
-            return C_BangSym
+            return C_AndEqualSym
          when 108
+            return C_UparrowEqualSym
+         when 109
+            return C_BarEqualSym
+         when 110
+            return C_LessLessEqualSym
+         when 111
+            return C_GreaterGreaterEqualSym
+         when 112
+            return C_BangSym
+         when 113
             if @ch=='-'||@ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='C'||@ch>='E'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
                state=1
             else
                if @ch=='D'
-                  state=110
+                  state=115
                else
                   return CheckLiteral(C_identifierSym)
                end
 
-            end
-
-
-         when 109
-            if @ch=='-'||@ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='L'||@ch>='N'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
-               state=1
-            else
-               if @ch=='M'
-                  state=111
-               else
-                  return CheckLiteral(C_identifierSym)
-               end
-
-            end
-
-
-         when 110
-            if @ch=='-'||@ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
-               state=1
-            else
-               if @ch=='/'
-                  state=112
-               else
-                  return CheckLiteral(C_identifierSym)
-               end
-
-            end
-
-
-         when 111
-            if @ch=='-'||@ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
-               state=1
-            else
-               if @ch=='/'
-                  state=113
-               else
-                  return CheckLiteral(C_identifierSym)
-               end
-
-            end
-
-
-         when 112
-            if @ch=='M'
-               state=114
-            else
-               return No_Sym
-            end
-
-
-         when 113
-            if @ch=='D'
-               state=115
-            else
-               return No_Sym
             end
 
 
          when 114
-            if @ch=='M'
-               state=116
+            if @ch=='-'||@ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='L'||@ch>='N'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=1
             else
-               return No_Sym
+               if @ch=='M'
+                  state=116
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
             end
 
 
          when 115
-            if @ch=='D'
-               state=117
+            if @ch=='-'||@ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=1
             else
-               return No_Sym
+               if @ch=='/'
+                  state=117
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
             end
 
 
          when 116
-            if @ch=='/'
-               state=118
+            if @ch=='-'||@ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=1
             else
-               return No_Sym
+               if @ch=='/'
+                  state=118
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
             end
 
 
          when 117
-            if @ch=='/'
+            if @ch=='M'
                state=119
             else
                return No_Sym
@@ -3246,7 +3290,7 @@ class CScanner < CRScanner
 
 
          when 118
-            if @ch=='Y'
+            if @ch=='D'
                state=120
             else
                return No_Sym
@@ -3254,7 +3298,7 @@ class CScanner < CRScanner
 
 
          when 119
-            if @ch=='Y'
+            if @ch=='M'
                state=121
             else
                return No_Sym
@@ -3262,7 +3306,7 @@ class CScanner < CRScanner
 
 
          when 120
-            if @ch=='Y'
+            if @ch=='D'
                state=122
             else
                return No_Sym
@@ -3270,7 +3314,7 @@ class CScanner < CRScanner
 
 
          when 121
-            if @ch=='Y'
+            if @ch=='/'
                state=123
             else
                return No_Sym
@@ -3278,16 +3322,56 @@ class CScanner < CRScanner
 
 
          when 122
-            if @ch=='Y'
-               state=64
+            if @ch=='/'
+               state=124
             else
-               return C_DDSlashMMSlashYYSym
+               return No_Sym
             end
 
 
          when 123
             if @ch=='Y'
-               state=74
+               state=125
+            else
+               return No_Sym
+            end
+
+
+         when 124
+            if @ch=='Y'
+               state=126
+            else
+               return No_Sym
+            end
+
+
+         when 125
+            if @ch=='Y'
+               state=127
+            else
+               return No_Sym
+            end
+
+
+         when 126
+            if @ch=='Y'
+               state=128
+            else
+               return No_Sym
+            end
+
+
+         when 127
+            if @ch=='Y'
+               state=71
+            else
+               return C_DDSlashMMSlashYYSym
+            end
+
+
+         when 128
+            if @ch=='Y'
+               state=81
             else
                return C_MMSlashDDSlashYYSym
             end
@@ -3521,13 +3605,13 @@ class CScanner < CRScanner
             when 28
                return C_PointSym
             when 29
-               if @ch=='+'
-                  state=95
+               if @ch=='*'
+                  state=46
                else
                   if @ch=='='
-                     state=100
+                     state=102
                   else
-                     return C_PlusSym
+                     return C_StarSym
                   end
 
                end
@@ -3537,92 +3621,132 @@ class CScanner < CRScanner
                return C_CommaSym
             when 31
                if @ch=='*'
-                  state=39
+                  state=32
+               else
+                  return C_TildeSym
+               end
+
+
+            when 32
+               return C_TildeStarSym
+            when 33
+               if @ch=='D'
+                  state=34
+               else
+                  return C_AtSym
+               end
+
+
+            when 34
+               if @ch=='A'
+                  state=35
+               else
+                  return No_Sym
+               end
+
+
+            when 35
+               if @ch=='T'
+                  state=36
+               else
+                  return No_Sym
+               end
+
+
+            when 36
+               if @ch=='A'
+                  state=37
+               else
+                  return No_Sym
+               end
+
+
+            when 37
+               return C_AtDATASym
+            when 38
+               if @ch=='+'
+                  state=100
                else
                   if @ch=='='
-                     state=97
+                     state=105
                   else
-                     return C_StarSym
+                     return C_PlusSym
                   end
 
                end
 
 
-            when 32
+            when 39
                if @ch=='T'
-                  state=33
+                  state=40
                else
                   return C_QuerySym
                end
 
 
-            when 33
+            when 40
                if @ch=='O'
-                  state=34
+                  state=41
                else
                   return No_Sym
                end
 
 
-            when 34
+            when 41
                return C_QueryTOSym
-            when 35
+            when 42
                return C_LbrackSym
-            when 36
+            when 43
                return C_RbrackSym
-            when 37
+            when 44
                if @ch=='>'
-                  state=81
+                  state=86
                else
                   return C_EqualSym
                end
 
 
-            when 38
+            when 45
                if @ch=='='
-                  state=98
+                  state=103
                else
                   return C_SlashSym
                end
 
 
-            when 39
+            when 46
                return C_StarStarSym
-            when 64
+            when 71
                if @ch=='Y'
-                  state=65
+                  state=72
                else
                   return No_Sym
                end
 
 
-            when 65
+            when 72
                return C_DDSlashMMSlashYYYYSym
-            when 74
+            when 81
                if @ch=='Y'
-                  state=75
+                  state=82
                else
                   return No_Sym
                end
 
 
-            when 75
+            when 82
                return C_MMSlashDDSlashYYYYSym
-            when 76
-               return C_AtSym
-            when 77
+            when 83
                return C_SemicolonSym
-            when 78
-               return C_TildeSym
-            when 79
+            when 84
                if @ch=='>'
-                  state=80
+                  state=85
                else
                   if @ch=='-'
-                     state=96
+                     state=101
                   else
                      if @ch=='='
-                        state=101
+                        state=106
                      else
                         return C_MinusSym
                      end
@@ -3632,16 +3756,16 @@ class CScanner < CRScanner
                end
 
 
-            when 80
+            when 85
                return C_MinusGreaterSym
-            when 81
+            when 86
                return C_EqualGreaterSym
-            when 82
+            when 87
                if @ch=='|'
-                  state=83
+                  state=88
                else
                   if @ch=='='
-                     state=104
+                     state=109
                   else
                      return C_BarSym
                   end
@@ -3649,14 +3773,14 @@ class CScanner < CRScanner
                end
 
 
-            when 83
+            when 88
                return C_BarBarSym
-            when 84
+            when 89
                if @ch=='&'
-                  state=85
+                  state=90
                else
                   if @ch=='='
-                     state=102
+                     state=107
                   else
                      return C_AndSym
                   end
@@ -3664,25 +3788,25 @@ class CScanner < CRScanner
                end
 
 
-            when 85
+            when 90
                return C_AndAndSym
-            when 86
+            when 91
                if @ch=='='
-                  state=103
+                  state=108
                else
                   return C_UparrowSym
                end
 
 
-            when 87
+            when 92
                if @ch=='>'
-                  state=88
+                  state=93
                else
                   if @ch=='='
-                     state=90
+                     state=95
                   else
                      if @ch=='<'
-                        state=92
+                        state=97
                      else
                         return C_LessSym
                      end
@@ -3692,14 +3816,14 @@ class CScanner < CRScanner
                end
 
 
-            when 88
+            when 93
                return C_LessGreaterSym
-            when 89
+            when 94
                if @ch=='='
-                  state=91
+                  state=96
                else
                   if @ch=='>'
-                     state=93
+                     state=98
                   else
                      return C_GreaterSym
                   end
@@ -3707,154 +3831,114 @@ class CScanner < CRScanner
                end
 
 
-            when 90
+            when 95
                return C_LessEqualSym
-            when 91
+            when 96
                return C_GreaterEqualSym
-            when 92
+            when 97
                if @ch=='='
-                  state=105
+                  state=110
                else
                   return C_LessLessSym
                end
 
 
-            when 93
+            when 98
                if @ch=='='
-                  state=106
+                  state=111
                else
                   return C_GreaterGreaterSym
                end
 
 
-            when 94
+            when 99
                if @ch=='='
-                  state=99
+                  state=104
                else
                   return C_PercentSym
                end
 
 
-            when 95
-               return C_PlusPlusSym
-            when 96
-               return C_MinusMinusSym
-            when 97
-               return C_StarEqualSym
-            when 98
-               return C_SlashEqualSym
-            when 99
-               return C_PercentEqualSym
             when 100
-               return C_PlusEqualSym
+               return C_PlusPlusSym
             when 101
-               return C_MinusEqualSym
+               return C_MinusMinusSym
             when 102
-               return C_AndEqualSym
+               return C_StarEqualSym
             when 103
-               return C_UparrowEqualSym
+               return C_SlashEqualSym
             when 104
-               return C_BarEqualSym
+               return C_PercentEqualSym
             when 105
-               return C_LessLessEqualSym
+               return C_PlusEqualSym
             when 106
-               return C_GreaterGreaterEqualSym
+               return C_MinusEqualSym
             when 107
-               return C_BangSym
+               return C_AndEqualSym
             when 108
+               return C_UparrowEqualSym
+            when 109
+               return C_BarEqualSym
+            when 110
+               return C_LessLessEqualSym
+            when 111
+               return C_GreaterGreaterEqualSym
+            when 112
+               return C_BangSym
+            when 113
                if @ch=='-'||@ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='C'||@ch>='E'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
                   state=1
                else
                   if @ch=='D'
-                     state=110
+                     state=115
                   else
                      return CheckLiteral(C_identifierSym)
                   end
 
-               end
-
-
-            when 109
-               if @ch=='-'||@ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='L'||@ch>='N'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
-                  state=1
-               else
-                  if @ch=='M'
-                     state=111
-                  else
-                     return CheckLiteral(C_identifierSym)
-                  end
-
-               end
-
-
-            when 110
-               if @ch=='-'||@ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
-                  state=1
-               else
-                  if @ch=='/'
-                     state=112
-                  else
-                     return CheckLiteral(C_identifierSym)
-                  end
-
-               end
-
-
-            when 111
-               if @ch=='-'||@ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
-                  state=1
-               else
-                  if @ch=='/'
-                     state=113
-                  else
-                     return CheckLiteral(C_identifierSym)
-                  end
-
-               end
-
-
-            when 112
-               if @ch=='M'
-                  state=114
-               else
-                  return No_Sym
-               end
-
-
-            when 113
-               if @ch=='D'
-                  state=115
-               else
-                  return No_Sym
                end
 
 
             when 114
-               if @ch=='M'
-                  state=116
+               if @ch=='-'||@ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='L'||@ch>='N'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=1
                else
-                  return No_Sym
+                  if @ch=='M'
+                     state=116
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
                end
 
 
             when 115
-               if @ch=='D'
-                  state=117
+               if @ch=='-'||@ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=1
                else
-                  return No_Sym
+                  if @ch=='/'
+                     state=117
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
                end
 
 
             when 116
-               if @ch=='/'
-                  state=118
+               if @ch=='-'||@ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=1
                else
-                  return No_Sym
+                  if @ch=='/'
+                     state=118
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
                end
 
 
             when 117
-               if @ch=='/'
+               if @ch=='M'
                   state=119
                else
                   return No_Sym
@@ -3862,7 +3946,7 @@ class CScanner < CRScanner
 
 
             when 118
-               if @ch=='Y'
+               if @ch=='D'
                   state=120
                else
                   return No_Sym
@@ -3870,7 +3954,7 @@ class CScanner < CRScanner
 
 
             when 119
-               if @ch=='Y'
+               if @ch=='M'
                   state=121
                else
                   return No_Sym
@@ -3878,7 +3962,7 @@ class CScanner < CRScanner
 
 
             when 120
-               if @ch=='Y'
+               if @ch=='D'
                   state=122
                else
                   return No_Sym
@@ -3886,7 +3970,7 @@ class CScanner < CRScanner
 
 
             when 121
-               if @ch=='Y'
+               if @ch=='/'
                   state=123
                else
                   return No_Sym
@@ -3894,16 +3978,56 @@ class CScanner < CRScanner
 
 
             when 122
-               if @ch=='Y'
-                  state=64
+               if @ch=='/'
+                  state=124
                else
-                  return C_DDSlashMMSlashYYSym
+                  return No_Sym
                end
 
 
             when 123
                if @ch=='Y'
-                  state=74
+                  state=125
+               else
+                  return No_Sym
+               end
+
+
+            when 124
+               if @ch=='Y'
+                  state=126
+               else
+                  return No_Sym
+               end
+
+
+            when 125
+               if @ch=='Y'
+                  state=127
+               else
+                  return No_Sym
+               end
+
+
+            when 126
+               if @ch=='Y'
+                  state=128
+               else
+                  return No_Sym
+               end
+
+
+            when 127
+               if @ch=='Y'
+                  state=71
+               else
+                  return C_DDSlashMMSlashYYSym
+               end
+
+
+            when 128
+               if @ch=='Y'
+                  state=81
                else
                   return C_MMSlashDDSlashYYSym
                end

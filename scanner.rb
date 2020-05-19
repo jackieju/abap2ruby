@@ -300,7 +300,7 @@ class Scanner <  CRRScanner
     end
     
     def Comment()
-        p "===>Comment1:#{@ch}"
+     #   p "===>Comment1:#{@ch}"
        level=1
        startLine=@currLine
        oldLineStart=@lineStart
@@ -313,22 +313,22 @@ class Scanner <  CRRScanner
            isStart = true # is start of line
            while (_pos>=0 && _ch.to_byte != EOF_CHAR && _ch.to_byte != LF_CHAR)
                if !isWhitespace?(_ch)
-                   p "===>Comment3:#{_ch}, #{_pos}"
+              #     p "===>Comment3:#{_ch}, #{_pos}"
                    isStart = false
                    break
                end
                _pos -=1
                _ch = @buffer[_pos]
            end
-           p "===>Comment2:#{isStart}, #{@ch}"
+        #   p "===>Comment2:#{isStart}, #{@ch}"
            if isStart
                while (@ch && @ch.to_byte != EOF_CHAR && @ch.to_byte != LF_CHAR && @ch.to_byte != 13)
                    NextCh()
-                   p "===>Comment4:#{@ch} #{@ch.to_byte} #{@ch.to_byte != LF_CHAR}"
+           #        p "===>Comment4:#{@ch} #{@ch.to_byte} #{@ch.to_byte != LF_CHAR}"
                   
                end
               
-              p "===>Comment5:#{@ch} #{@ch.to_byte} "
+            #  p "===>Comment5:#{@ch} #{@ch.to_byte} "
                return 1
            end
          
@@ -337,7 +337,7 @@ class Scanner <  CRRScanner
      if @ch=='"'
          while (@ch && @ch.to_byte != EOF_CHAR && @ch.to_byte != LF_CHAR && @ch.to_byte != 13)
              NextCh()
-             p "===>Comment6:#{@ch} #{@ch.to_byte} #{@ch.to_byte != LF_CHAR}"
+         #    p "===>Comment6:#{@ch} #{@ch.to_byte} #{@ch.to_byte != LF_CHAR}"
             
          end
          return 1

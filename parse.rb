@@ -56,7 +56,22 @@ def parse(s, preprocess = true, to_ruby=true)
         parser.parse_stack.cur[:stack].each{|e|
             s += SYMS[e[:sym]]+" "
         }
-        p "parsing #{s}"
+        p "Parsing #{s}, current sym #{SYMS[parser.sym]}(#{parser.curString()})"
+        ar = []
+        node = parser.parse_stack.cur
+        while (node)
+            ar.insert(0, node)
+            node = node[:parent]
+        end 
+        p "---------- parsing stack     --------"
+        for i in 0..ar.size-1
+            s = " "*2*i
+            ar[i][:stack].each{|e|
+                s += SYMS[e[:sym]]+" "
+            }
+            p s
+        end
+        p "---------- parsing stack end --------"
         throw e
     end 
     p ret

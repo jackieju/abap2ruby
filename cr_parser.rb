@@ -599,6 +599,10 @@ class CRParser
 return list.include?(SYMS[n])
     end
     
+    def is(keyword)
+        
+    end
+    
     def Expect(n)
         p "expect #{n}(#{SYMS[n]}), sym = #{@sym}(#{SYMS[@sym]})('#{@scanner.GetSymValue(@scanner.nextSym)}'), line #{@scanner.nextSym.line} col #{@scanner.nextSym.col} pos #{@scanner.nextSym.pos} sym #{SYMS[@scanner.nextSym.sym]}"
        # if @sym == n || (n == C_identifierSym && isKeyword?(@sym) == false)
