@@ -1882,15 +1882,17 @@ class Preprocessor < PreParser
                p "_preprocess13: #{@sym  }"
                
                p_start = @scanner.nextSym.pos
-                 sym_pos = @scanner.nextSym.pos
+               sym_pos = @scanner.nextSym.pos
                ar =[]
                Get()
                
                # process "KEYWORD:...,"
                
+               go_next = false
                p "keyword #{keyword}"
-              
+               while (@sym != C_PointSym && @sym != C_EOF_Sym)
                if @sym == C_ColonSym
+                   part1 = @scanner.buffer[p_start..@scanner.nextSym.pos-1]
                    begin
                        s = ""
                        Get()
@@ -1909,12 +1911,13 @@ class Preprocessor < PreParser
                    p "--->111:#{@sym}, #{curString()}"
                    res = ""
                    ar.each{|ss|
-                       res += "#{keyword} #{ss} .\n"
+                      # res += "#{keyword} #{ss} .\n"
+                      res += "#{part1} #{ss} .\n"
                    }
                    p "res:#{res}"
                    if ar.size >0
                        
-                       p_end = @scanner.nextSym.pos + @scanner.nextSym.len - 1
+                      p_end = @scanner.nextSym.pos + @scanner.nextSym.len - 1
                       #content = ""
                       #ar.each{|ln|
                       #    content = "#{keyword} ln ."
@@ -1928,7 +1931,7 @@ class Preprocessor < PreParser
                        end
            
                        old_size = @scanner.buffer.size
-                        sizediff = s.size()-old_size
+                       sizediff = s.size()-old_size
                        po = @scanner.buffPos
  
                        @scanner.buffer = s
@@ -1936,9 +1939,13 @@ class Preprocessor < PreParser
                        @scanner.fix_ch
                  
                     end
-                    next
-                 end # if @sym == C_ColonSym
-
+                    go_next = true
+                    break 
+                else
+                    Get()                   
+                end # if @sym == C_ColonSym
+            end # while (@sym != C_PointSym && @sym != C_EOF_Sym)
+            next if go_next
                
             end # if @linestart 
    
@@ -2086,8 +2093,9 @@ class Preprocessor < PreParser
                #         $pre_classlist[curString()]=1
                #     end
     
-                end
-            end
+                end #if @sym == C_identifierSym 
+            end # if @sym == C_PreProcessorSym else
+             
             # if @sym == C_identifierSym
             #     cs = curString()
             #     if ifdefined?(cs)
