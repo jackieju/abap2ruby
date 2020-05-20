@@ -152,15 +152,15 @@ C_LOBSym = 147 # "LOB"
 C_HANDLESym = 148 # "HANDLE" 
 C_BOXEDSym = 149 # "BOXED" 
 C_REFSym = 150 # "REF" 
-C_UNIQUESym = 151 # "UNIQUE" 
-C_NONMinusUNIQUESym = 152 # "NON-UNIQUE" 
-C_primaryUnderscorekeySym = 153 # "primary_key" 
-C_ALIASSym = 154 # "ALIAS" 
-C_COMPONENTSSym = 155 # "COMPONENTS" 
-C_DEFAULTSym = 156 # "DEFAULT" 
-C_EMPTYSym = 157 # "EMPTY" 
-C_HASHEDSym = 158 # "HASHED" 
-C_HEADERSym = 159 # "HEADER" 
+C_EMPTYSym = 151 # "EMPTY" 
+C_HEADERSym = 152 # "HEADER" 
+C_UNIQUESym = 153 # "UNIQUE" 
+C_NONMinusUNIQUESym = 154 # "NON-UNIQUE" 
+C_primaryUnderscorekeySym = 155 # "primary_key" 
+C_ALIASSym = 156 # "ALIAS" 
+C_COMPONENTSSym = 157 # "COMPONENTS" 
+C_DEFAULTSym = 158 # "DEFAULT" 
+C_HASHEDSym = 159 # "HASHED" 
 C_RANGESym = 160 # "RANGE" 
 C_WRITERSym = 161 # "WRITER" 
 C_DATASym = 162 # "DATA" 
@@ -867,15 +867,15 @@ SYMS=[
 "HANDLE",
 "BOXED",
 "REF",
+"EMPTY",
+"HEADER",
 "UNIQUE",
 "NON-UNIQUE",
 "primary_key",
 "ALIAS",
 "COMPONENTS",
 "DEFAULT",
-"EMPTY",
 "HASHED",
-"HEADER",
 "RANGE",
 "WRITER",
 "DATA",

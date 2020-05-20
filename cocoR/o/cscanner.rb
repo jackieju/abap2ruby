@@ -1063,12 +1063,12 @@ class CScanner < CRScanner
             return C_HANDLESym
          end
 
-         if EqualStr("HASHED")
-            return C_HASHEDSym
-         end
-
          if EqualStr("HEADER")
             return C_HEADERSym
+         end
+
+         if EqualStr("HASHED")
+            return C_HASHEDSym
          end
 
          if EqualStr("HOLD")
