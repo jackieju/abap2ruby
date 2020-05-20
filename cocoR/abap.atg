@@ -1571,28 +1571,22 @@ stINITIALIZATION = "INITIALIZATION"".".
 stINPUT = "INPUT"".".
 
 stINSERT = "INSERT"(  
-        /* INSERT dbtab */
-        ( ("INTO" ("("Expression")"|identifier)
-          ["USING" "CLIENT" identifier] | ["CLIENT" "SPECIFIED"] 
+        /* INSERT dbtab/itab */
+        [
+            (  
+                 ("INITIAL" "LINE") 
+               | ("LINES" "OF" identifier ["FROM" identifier] ["TO" identifier] ["USING" "KEY" NameOrRef]) 
+               | identifier
+            ) 
+        ]
+        {
+          ["INTO"] ("("Expression")"| ["TABLE"] identifier ["INDEX" identifier])
+          [("USING" "CLIENT" identifier | "CLIENT" "SPECIFIED")]
           ["CONNECTION" ("("Expression")"|identifier)] 
-          "VALUES" identifier) 
-           | 
-           ( ("("Expression")"|identifier)
-           ["USING" "CLIENT" identifier] | ["CLIENT" "SPECIFIED"] 
-           ["CONNECTION" ("("Expression")"| identifier)] 
-           "FROM" identifier|("TABLE" identifier ["ACCEPTING" "DUPLICATE" "KEYS"])|( stSELECT ) )
-       )
-       |  /* INSERT itab */
-           (  
-                ("INITIAL" "LINE") 
-              | ("LINES" "OF" identifier ["FROM" identifier] ["TO" identifier] ["USING" "KEY" NameOrRef]) 
-              | identifier
-           ) 
-          "INTO" ( ("TABLE" identifier) 
-                   | (identifier "INDEX" identifier) 
-                   
-                 ) 
-                 [ ("ASSIGNING" identifier ["CASTING"]) | ("REFERENCE" "INTO" identifier ) ] 
+          ["VALUES" identifier] 
+          [ ("ASSIGNING" identifier ["CASTING"]) | ("REFERENCE" "INTO" identifier ) ] 
+          ["FROM" (identifier|("TABLE" identifier ["ACCEPTING" "DUPLICATE" "KEYS"])|stSELECT ) ]
+       }
        | /* INSERT REPORT*/ 
            "REPORT" identifier "FROM" identifier 
               ["MAXIMUM" "WIDTH" "INTO" identifier] 
