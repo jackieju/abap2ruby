@@ -4,7 +4,7 @@ load 'cp.rb'
 
 def parse_block(s, method="FunctionBody")
     p "parse using #{method}, #{s}"
-    scanner = Scanner.new(s, false)
+    scanner = Scanner.new(s)
     error = MyError.new("whaterver", scanner)
     parser = Parser.new(scanner, error)
     parser.Get
@@ -26,7 +26,7 @@ def parse(s, preprocess = true, to_ruby=true)
     
     p ("preprocess line #{s.count("\n")}")
     
-    scanner = Scanner.new(s, false)
+    scanner = Scanner.new(s)
     error = MyError.new("whaterver", scanner)
     parser = Parser.new(scanner, error, $g_classdefs)
 =begin    
@@ -99,7 +99,7 @@ end
 
 def preprocess(s)
    # p "content to prepro:#{s}"
-    scanner = Scanner.new(s, false)
+    scanner = Scanner.new(s)
     error = MyError.new("whaterver", scanner)
     parser = Preprocessor.new(scanner, error)
     _t = Time.now.to_i

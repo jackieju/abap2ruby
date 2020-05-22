@@ -4,10 +4,12 @@ end
 
 MAXSYM=45
 
-MAXERROR=1044
+MAXERROR=1056
 
 
 
+
+IGNORECASE=true
 
 
 

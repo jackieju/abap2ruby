@@ -814,6 +814,47 @@ class Parser < CParser
        ret = "write(#{params.join(", ")})\n"
        return ret
     end
+    
+    
+    def stMODIFY()
+       _in_()
+       Expect(C_MODIFYSym)
+       while (@sym != C_PointSym && @sym != EOF_Sym)
+           Get()
+       end
+       _out_()
+   end
+   
+   def stSELECT()
+      _in_()
+      Expect(C_SELECTSym)
+      while (@sym != C_PointSym && @sym != EOF_Sym)
+          Get()
+      end
+      p "src1:#(src())"
+     s =  _out_()
+     p "src2:#{s}"
+     p "src3:#{src()}"
+  end
+  def stUPDATE()
+     _in_()
+     Expect(C_UPDATETSym)
+     while (@sym != C_PointSym && @sym != EOF_Sym)
+         Get()
+     end
+     _out_()
+  end
+  def stINSERT()
+     _in_()
+     Expect(C_INSERTSym)
+     while (@sym != C_PointSym && @sym != EOF_Sym)
+         Get()
+     end
+     _out_()
+  end
+  
+  
+  
     #### copy/override end ####
 
 end  # class Parser

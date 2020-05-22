@@ -1,5 +1,7 @@
 COMPILER C
 
+IGNORECASE
+
 CHARACTERS
   letter   = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz" .
   digit    = "0123456789" .
@@ -39,7 +41,7 @@ PRODUCTIONS
     
     NameOrRef = identifier|"("identifier")" .
     
-    C                  =      (ReportDef | FunctionDef) .
+    C                  =      (ReportDef | FunctionDef | ClassStatement ) .
     
     ReportDef          = "REPORT" (.  fn_name=curString() .) identifier  (. src("") .) 
             {
@@ -87,7 +89,7 @@ PRODUCTIONS
                              |  stCALL
                              | (
                                   ClassStatement
-                                  | ClassImplStatement
+                                 /* | ClassImplStatement*/
                                 )
                              | MethodStatement
                              | MethodsStatement
@@ -107,7 +109,7 @@ PRODUCTIONS
                              | stAUTHORITY_CHECK
                              | stDELETE
                              | stEVENTS
-                             /*| stMODIFY*/
+                             | stMODIFY
                              | stON
                              | stOPEN
                              | stFETCH
@@ -234,9 +236,12 @@ PRODUCTIONS
                              | stWAIT
                              | stWINDOW
                              | stSELECT
+                             | stENDSELECT
                          )
                            
  .
+ stENDSELECT = "ENDSELECT" "." .
+ 
  sqlFields = ["FIELDS"] ["DISTINCT"]
                    {( "*" 
                     | sqlColumn{","sqlColumn}
@@ -344,19 +349,19 @@ stMOVE =  "MOVE"
 stMOVE_CORRESPONDING = "MOVE-CORRESPONDING" ["EXACT"]
              ( identifier "TO" identifier ["EXPANDING" "NESTED" "TABLES"] 
             |  identifier  "TO" identifier  ["EXPANDING" "NESTED" "TABLES"] 
-                                                  ["KEEPING" "TARGET" "LINES"] 
+                                                  ["KEEPING" "TARGET" identifier(.is('LINES').)] 
              ) "." . 
  
 stAPPEND = "APPEND" ( 
-         {"INITIAL" "LINE"} 
-        | {"LINES" "OF" identifier ["FROM" identifier] ["TO" identifier] ["USING" "KEY" string1]}
-        | identifier )
+         "INITIAL" "LINE" 
+        | identifier(.#'LINES' or idf.) ["OF" identifier ["FROM" identifier] ["TO" identifier] ["USING" "KEY" string1]]
+        )
     "TO" identifier {"[""]"}
     ["SORTED" "BY" string1] 
     [ ("ASSIGNING" string1 ["CASTING"] | "REFERENCE" "INTO" identifier ) ] "." .
  
 stCONCATENATE = "CONCATENATE" (Expression {Expression}
-             | "LINES" "OF" identifier
+             | identifier(.is('LINES').) "OF" identifier
              )
              "INTO" identifier 
              ["IN" ("CHARACTER"|"BYTE") "MODE"] 
@@ -482,7 +487,7 @@ LoopStatement = "LOOP"
 
 TypeDes = "TYPE"   
             (
-                         identifier ([identifier(.is("LENGTH").) number] ["DECIMALS" number] | { "READER"|"LOCATOR"|"LOB" "HANDLE" } )
+                         identifier ([identifier(.is('LENGTH').) number] ["DECIMALS" number] | { "READER"|"LOCATOR"|"LOB" "HANDLE" } )
                       | 
                           ["LINE" "OF"] identifier ["BOXED"]
                       | 
@@ -734,7 +739,7 @@ Event_options = "EXPORTING" Event_exp_item {Event_exp_item} .
 
 stEVENTS = "EVENTS" identifier [ Event_options ]".".
 
-/*
+
 stMODIFY = "MODIFY"
      ( 
          ( 
@@ -764,7 +769,7 @@ stMODIFY = "MODIFY"
                 ( ["USING" "CLIENT" identifier] | ["CLIENT" "SPECIFIED"] )
                  ["CONNECTION" ("("Expression")"| identifier)] 
                  "FROM" ( identifier|("TABLE" identifier) ) 
-     ) ".".*/
+     ) ".".
 
 stON = "ON" "CHANGE" "OF" identifier {"OR" identifier }"." 
   Statements 
@@ -833,8 +838,8 @@ stPROVIDE = "PROVIDE" ProvideFields {ProvideFields}
 "ENDPROVIDE"".".
                        
 stREAD = "READ" (
-      "DATASET" identifier "INTO" identifier ["MAXIMUM" identifier(.is("LENGTH").) number] 
-                            [["ACTUAL"] identifier(.is("LENGTH").) number] 
+      "DATASET" identifier "INTO" identifier ["MAXIMUM" identifier(.is('LENGTH').) number] 
+                            [["ACTUAL"] identifier(.is('LENGTH').) number] 
     
      |  /* READ LINE */
      ( ("LINE" number [("OF" "PAGE" number)|("OF" "CURRENT" "PAGE")] ["INDEX" identifier]) 
@@ -882,7 +887,7 @@ stREAD = "READ" (
      "TEXTPOOL" identifier "INTO" identifier "LANGUAGE" identifier ) ".".
        
 
-stSORT = "SORT" identifier [identifier(.is("STABLE").)] 
+stSORT = "SORT" identifier [identifier(.is('STABLE').)] 
           ( ( ["ASCENDING"|"DESCENDING"] 
               ["AS" "TEXT"] 
               ["BY" (identifier ["ASCENDING"|"DESCENDING"] ["AS" "TEXT"]) {identifier ["ASCENDING"|"DESCENDING"] ["AS" "TEXT"]}] ) 
@@ -1007,12 +1012,12 @@ stTYPES = "TYPES"(
 
 
 stUPDATE = "UPDATE" Expression
-       ["USING" "CLIENT" identifier] | ["CLIENT" "SPECIFIED"] 
+       [("USING" "CLIENT" identifier | "CLIENT" "SPECIFIED")] 
        ["CONNECTION" Expression] 
        ( 
             "SET" identifier "=" Expression {"," identifier "=" Expression}
                ["WHERE" Expression]  
-       | 
+        | 
            ( "FROM" identifier|("TABLE" identifier) )
        )".".
        
@@ -1087,23 +1092,29 @@ WhileStatement = "WHILE" Expression
 . 
 */
 
-ClassStatement = "CLASS" identifier "DEFINITION" 
-                    ( 
-                       "DEFERRED" ["PUBLIC"]
-                      |
-                       ["INHERITING" "FROM" identifier] 
-                       ["ABSTRACT"] 
-                       ["FINAL"] 
-                       ["CREATE" {"PUBLIC"|"PROTECTED"|"PRIVATE"}] 
-                       ["SHARED" "MEMORY" "ENABLED"] 
-                       ["FOR" "TESTING" 
-                         ["RISK" "LEVEL" {"CRITICAL"|"DANGEROUS"|"HARMLESS"}] 
-                         ["DURATION"   {"SHORT"|"MEDIUM"|"LONG"}] ] 
-                       [
-                           ["GLOBAL"] "FRIENDS" identifier {identifier}
+ClassStatement = "CLASS" identifier 
+                (
+                            "DEFINITION" 
+                            ( 
+                               "DEFERRED" ["PUBLIC"]
+                              |
+                               ["INHERITING" "FROM" identifier] 
+                               ["ABSTRACT"] 
+                               ["FINAL"] 
+                               ["CREATE" {"PUBLIC"|"PROTECTED"|"PRIVATE"}] 
+                               ["SHARED" "MEMORY" "ENABLED"] 
+                               ["FOR" "TESTING" 
+                                 ["RISK" "LEVEL" {"CRITICAL"|"DANGEROUS"|"HARMLESS"}] 
+                                 ["DURATION"   {"SHORT"|"MEDIUM"|"LONG"}] ] 
+                               [
+                                   ["GLOBAL"] "FRIENDS" identifier {identifier}
 
-                        ]
-                    ) "." 
+                                ]
+                            )
+                    |
+                        "IMPLEMENTATION"
+                
+                ) "." 
                         
                 
   ["PUBLIC" "SECTION" "." 
@@ -1118,9 +1129,9 @@ ClassStatement = "CLASS" identifier "DEFINITION"
 "ENDCLASS" "." .
 
 
-ClassImplStatement = "CLASS" identifier "IMPLEMENTATION" "." 
+/*ClassImplStatement = "CLASS" identifier "IMPLEMENTATION" "." 
    {Statement} 
-"ENDCLASS" "." .
+"ENDCLASS" "." .*/
 
 MethodStatement = "METHOD" identifier "." 
   {Statement} 
@@ -1346,8 +1357,8 @@ stCONVERT = "CONVERT"(
   
       |  "TEXT" string1 "INTO" "SORTABLE" "CODE" string1 
       |  ( "TIME" "STAMP" string1 "TIME" "ZONE" string1 
-          "INTO" [identifier(. is("DATE") .) string1] ["TIME" string1] ["DAYLIGHT" "SAVING" "TIME" string1] ) 
-      | ( identifier(. is("DATE") .) string1 ["TIME" string1 ["DAYLIGHT" "SAVING" "TIME" string1]] 
+          "INTO" [identifier(. is('DATE') .) string1] ["TIME" string1] ["DAYLIGHT" "SAVING" "TIME" string1] ) 
+      | ( identifier(. is('DATE') .) string1 ["TIME" string1 ["DAYLIGHT" "SAVING" "TIME" string1]] 
           "INTO" "TIME" "STAMP" string1 "TIME" "ZONE" string1 ) ) ".".
 
 stCREATE = "CREATE"(  "DATA" identifier [ "AREA" "HANDLE" identifier ] 
@@ -1364,7 +1375,7 @@ stCREATE = "CREATE"(  "DATA" identifier [ "AREA" "HANDLE" identifier ]
                            ["INITIAL" "SIZE" number]) 
                         | ("HANDLE" identifier) 
                         (NameOrRef
-                                                   [identifier(.is("LENGTH").) number] ["DECIMALS" number]) 
+                                                   [identifier(.is('LENGTH').) number] ["DECIMALS" number]) 
                         ) ] 
                | [ "LIKE" ( (["LINE" "OF"] identifier) 
                         | ("REF" "TO" identifier) 
@@ -1391,24 +1402,36 @@ stDEMAND = "DEMAND" Expression{Expression}
        "FROM" "CONTEXT" identifier 
        ["MESSAGES" "INTO" identifier]".".
 
-stDESCRIBE = "DESCRIBE"(  "DISTANCE" "BETWEEN" identifier "AND" identifier "INTO" identifier 
+stDESCRIBE = "DESCRIBE"(
+                  "DISTANCE" "BETWEEN" identifier "AND" identifier "INTO" identifier 
                           "IN" ("BYTE"|"CHARACTER") "MODE" |  "FIELD" identifier 
-  ["TYPE" identifier ["COMPONENTS" identifier]] 
-  [identifier(.is("LENGTH").) Expression "IN" ("BYTE"|"CHARACTER") "MODE"] 
-  ["DECIMALS" Expression] 
-  ["OUTPUT-LENGTH" Expression] 
-  ["HELP-ID" identifier] 
-  ["EDIT" "MASK" identifier] |  "LIST" ( ("NUMBER" "OF" ("LINES"|"PAGES") Expression) 
-              | ("LINE" Expression "PAGE" Expression) 
-              | ("PAGE" Expression ["LINE-SIZE" Expression] 
-                            ["LINE-COUNT" Expression] 
-                            ["LINES" Expression] 
-                            ["FIRST-LINE" Expression] 
-                            ["TOP-LINES" Expression] 
-                            ["TITLE-LINES" Expression] 
-                            ["HEAD-LINES" Expression] 
-                            ["END-LINES" Expression]) ) 
-              ["INDEX" identifier] |  "TABLE" identifier ["KIND" identifier] ["LINES" Expression] ["OCCURS" Expression] ) ".".
+                      ["TYPE" identifier ["COMPONENTS" identifier]] 
+                      [identifier(.is('LENGTH').) Expression "IN" ("BYTE"|"CHARACTER") "MODE"] 
+                      ["DECIMALS" Expression] 
+                      ["OUTPUT-LENGTH" Expression] 
+                      ["HELP-ID" identifier] 
+                      ["EDIT" "MASK" identifier]
+              |
+                 "LIST" ( 
+                              ("NUMBER" "OF" (identifier(.is('LINES').)|"PAGES") Expression) 
+                          | 
+                              "LINE" Expression "PAGE" Expression 
+                          | 
+                              (
+                                "PAGE" Expression ["LINE-SIZE" Expression] 
+                                ["LINE-COUNT" Expression] 
+                                [identifier(.is('LINES').) Expression] 
+                                ["FIRST-LINE" Expression] 
+                                ["TOP-LINES" Expression] 
+                                ["TITLE-LINES" Expression] 
+                                ["HEAD-LINES" Expression] 
+                                ["END-LINES" Expression]
+                             ) 
+                        ) 
+                        ["INDEX" identifier]
+            |   
+                "TABLE" identifier { ["KIND" identifier] [identifier(.is('LINES').) Expression] ["OCCURS" Expression] }
+    ) ".".
 
 stDETAIL = "DETAIL"".".
 
@@ -1450,7 +1473,7 @@ stFIELDS = "FIELDS" identifier".".
 
 stFIND = "FIND" [("FIRST" "OCCURRENCE")|("ALL" "OCCURRENCES") "OF"] 
      (["SUBSTRING"] string1) | ("REGEX" string1) "IN" 
-     ( (["SECTION" ["OFFSET" number] [identifier(.is("LENGTH").) number] "OF"] identifier) 
+     ( (["SECTION" ["OFFSET" number] [identifier(.is('LENGTH').) number] "OF"] identifier) 
      | ("TABLE" identifier ["FROM" number ["OFFSET" number]] 
                    ["TO"   number ["OFFSET" number]]) ) 
      ["IN" ("CHARACTER"|"BYTE") "MODE"] 
@@ -1458,7 +1481,7 @@ stFIND = "FIND" [("FIRST" "OCCURRENCE")|("ALL" "OCCURRENCES") "OF"]
      ["MATCH" "COUNT"  number] 
      ( (["MATCH" "LINE"   number] 
         ["MATCH" "OFFSET" number] 
-        ["MATCH" identifier(.is("LENGTH").) number]) 
+        ["MATCH" identifier(.is('LENGTH').) number]) 
      | ["RESULTS" identifier] ) 
      ["SUBMATCHES" string1 ]".".
 
@@ -1502,11 +1525,11 @@ stFUNCTION_POOL = "FUNCTION-POOL" identifier ["NO" "STANDARD" "PAGE" "HEADING"]
                     ["LINE-COUNT" number["("number")"]] 
                     ["MESSAGE-ID" identifier]".".
 
-stGENERATE = "GENERATE" "SUBROUTINE" "POOL" identifier identifier(. is("NAME") .) identifier 
+stGENERATE = "GENERATE" "SUBROUTINE" "POOL" identifier identifier(. is('NAME') .) identifier 
   ["MESSAGE" string1] 
   ["INCLUDE" string1] 
   ["LINE" number] 
-  [identifier(.is("WORD").) string1] 
+  [identifier(.is('WORD').) string1] 
   ["OFFSET" Expression] 
   ["MESSAGE-ID" identifier] 
   ["SHORTDUMP-ID" identifier]".".
@@ -1522,13 +1545,13 @@ stGET = "GET"(
        |  "BIT" number "OF" string1 "INTO" identifier 
        |  "CURSOR" ( ( "FIELD" identifier 
                 ["VALUE" string1] 
-                [identifier(.is("LENGTH").) number] 
+                [identifier(.is('LENGTH').) number] 
                 [["DISPLAY"|"MEMORY"] "OFFSET" number] 
                 ["LINE" number] 
                 ["AREA" identifier] ) 
                 | ( "LINE" number 
                 ["VALUE" string1] 
-                [identifier(.is("LENGTH").) number] 
+                [identifier(.is('LENGTH').) number] 
                 [["DISPLAY"|"MEMORY"] "OFFSET" number] ) ) |  "DATASET" identifier ["POSITION" number] ["ATTRIBUTES" identifier] |  "LOCALE" "LANGUAGE" identifier "COUNTRY" string1 "MODIFIER" string1 |  "PARAMETER" "ID" identifier "FIELD" identifier |  "PF-STATUS" string1 ["PROGRAM" identifier] ["EXCLUDING" identifier] |  "PROPERTY" "OF" identifier identifier "=" identifier ["NO" "FLUSH"] ["QUEUE-ONLY"] 
                                 ["EXPORTING" Exps ] |  "REFERENCE" "OF" identifier "INTO" identifier |  "RUN" "TIME" "FIELD" identifier |  ("TIME" (["FIELD" identifier] |   "STAMP" "FIELD" identifier) )) ".".
 
@@ -1560,7 +1583,7 @@ stINCLUDE = "INCLUDE"(  ( "TYPE" identifier | "STRUCTURE" identifier )
         ["AS" identifier ["RENAMING" "WITH" "SUFFIX" string1]] 
         |identifier ["IF" "FOUND"]) ".".
 
-stINFOTYPES = "INFOTYPES" identifier [identifier(. is("NAME") .) identifier] 
+stINFOTYPES = "INFOTYPES" identifier [identifier(. is('NAME') .) identifier] 
                ["OCCURS" number] 
                ["MODE" identifier] 
                ["VALID" "FROM" Expression "TO" Expression] 
@@ -1575,7 +1598,7 @@ stINSERT = "INSERT"(
         [
             (  
                  ("INITIAL" "LINE") 
-               | ("LINES" "OF" identifier ["FROM" identifier] ["TO" identifier] ["USING" "KEY" NameOrRef]) 
+               | (identifier(.is('LINES').) "OF" identifier ["FROM" identifier] ["TO" identifier] ["USING" "KEY" NameOrRef]) 
                | identifier
             ) 
         ]
@@ -1660,16 +1683,16 @@ stOVERLAY = "OVERLAY" string1 "WITH" string1 ["ONLY" string1]".".
 
 stPACK = "PACK" identifier "TO" identifier ".".
 
-stPARAMETERS = "PARAMETERS" ( identifier [("("number")" |  identifier(.is("LENGTH").) number)] ) 
+stPARAMETERS = "PARAMETERS" ( identifier [("("number")" |  identifier(.is('LENGTH').) number)] ) 
            [ ("TYPE" identifier ["DECIMALS" number]) 
                    | ("LIKE" ["("]identifier[")"]) 
            ] 
            [ 
-               (["OBLIGATORY"|"NO-DISPLAY"] ["VISIBLE" identifier(.is("LENGTH").) number]) 
+               (["OBLIGATORY"|"NO-DISPLAY"] ["VISIBLE" identifier(.is('LENGTH').) number]) 
                | ("AS"  (
                        "CHECKBOX" ["USER-COMMAND" identifier] 
                        |
-                       "LISTBOX" "VISIBLE" identifier(.is("LENGTH").) number 
+                       "LISTBOX" "VISIBLE" identifier(.is('LENGTH').) number 
                                        ["USER-COMMAND" identifier] ["OBLIGATORY"]
                         )
                     ) 
@@ -1731,7 +1754,7 @@ stREJECT = "REJECT" "["identifier"]" ".".
 
 stREPLACE = "REPLACE"(  ( ( [("FIRST" "OCCURRENCE")|("ALL" "OCCURRENCES" "OF")] 
             (["SUBSTRING"] string1) | ("REGEX" string1) "IN" 
-            ( (["SECTION" ["OFFSET" number] [identifier(.is("LENGTH").) number] "OF"] identifier) 
+            ( (["SECTION" ["OFFSET" number] [identifier(.is('LENGTH').) number] "OF"] identifier) 
             | ("TABLE" identifier ["FROM" number ["OFFSET" number]] 
                           ["TO"   number ["OFFSET" number]]) ) 
             "WITH" identifier 
@@ -1739,16 +1762,16 @@ stREPLACE = "REPLACE"(  ( ( [("FIRST" "OCCURRENCE")|("ALL" "OCCURRENCES" "OF")]
             [("RESPECTING"|"IGNORING") "CASE"] 
             ["REPLACEMENT" "COUNT"  number] 
             ( (["REPLACEMENT" "OFFSET" number] 
-               ["REPLACEMENT" identifier(.is("LENGTH").) number] 
+               ["REPLACEMENT" identifier(.is('LENGTH').) number] 
                ["REPLACEMENT" "LINE"   number]) 
             | ["RESULTS" identifier] ) ) 
-        | ( "SECTION" ["OFFSET" number] [identifier(.is("LENGTH").) number] "OF" identifier 
+        | ( "SECTION" ["OFFSET" number] [identifier(.is('LENGTH').) number] "OF" identifier 
             "WITH" identifier 
             ["IN" ("CHARACTER"|"BYTE") "MODE"] ) ) |  string1 "WITH" identifier "INTO" identifier 
         ["IN" ("BYTE"|"CHARACTER") "MODE"] 
-        [identifier(.is("LENGTH").) number] ) ".".
+        [identifier(.is('LENGTH').) number] ) ".".
 
-stRESERVE = "RESERVE" number "LINES"".".
+stRESERVE = "RESERVE" number identifier(.is('LINES').)".".
 
 stRESUME = "RESUME"".".
 
@@ -1769,7 +1792,7 @@ stSCROLL = "SCROLL" "LIST" [ ( "TO" "COLUMN" string1 )
 
 stSELECT_OPTIONS = "SELECT-OPTIONS" identifier "FOR" NameOrRef
               ["OBLIGATORY"|"NO-DISPLAY"] 
-              ["VISIBLE" identifier(.is("LENGTH").) number] 
+              ["VISIBLE" identifier(.is('LENGTH').) number] 
               ["NO-EXTENSION"] 
               ["NO" "INTERVALS"] 
               ["MODIF" "ID" identifier] 
@@ -1795,7 +1818,7 @@ stSET = "SET"(
                   |  
                       "BIT" number "OF" string1 ["TO" identifier]
                   |  
-                      "BLANK" "LINES" ("ON"|"OFF") 
+                      "BLANK" identifier(.is('LINES').) ("ON"|"OFF") 
                   |  
                       "COUNTRY" string1 
                   |  
@@ -1872,7 +1895,7 @@ stSUPPLY = "SUPPLY" Exps  "TO" "CONTEXT" identifier ".".
 
 stSUPPRESS = "SUPPRESS" "DIALOG"".".
 
-stSYNTAX_CHECK = "SYNTAX-CHECK" "FOR" identifier "MESSAGE" string1 "LINE" number identifier(.is("WORD").) string1 
+stSYNTAX_CHECK = "SYNTAX-CHECK" "FOR" identifier "MESSAGE" string1 "LINE" number identifier(.is('WORD').) string1 
                  ["PROGRAM" identifier] ["DIRECTORY" "ENTRY" string1] 
                  ["WITH" "CURRENT" "SWITCHSTATES"] 
                  ["INCLUDE" string1] 
@@ -1889,7 +1912,7 @@ stTEST_SEAM = "TEST-SEAM" identifier"."
 
 stTOP_OF_PAGE = "TOP-OF-PAGE" ["DURING" "LINE-SELECTION"]".".
 
-stTRANSFER = "TRANSFER" identifier "TO" identifier [identifier(.is("LENGTH").) number] 
+stTRANSFER = "TRANSFER" identifier "TO" identifier [identifier(.is('LENGTH').) number] 
                       ["NO" "END" "OF" "LINE"]".".
 
 stTRANSLATE = "TRANSLATE" identifier ("TO" ("UPPER"|"LOWER") "CASE") 

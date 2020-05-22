@@ -188,7 +188,9 @@ class CRScanner < AbsScanner
            c = CurrentCh(pos)
            #p("-->c:#{c}")
            pos+=1
-           # if (IgnoreCase) c = Upcase(c);
+           if (@ignoreCase) 
+               c = Upcase(c)
+           end
            if (c != cc)
                return false
            end

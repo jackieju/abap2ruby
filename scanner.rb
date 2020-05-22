@@ -2,6 +2,11 @@ load "crr_scan.rb"
 load "rubyutility.rb"
 load "log.rb"
 
+IGNORECASE=true
+# over write Upcase funciton in cocor/o/_global_.rb
+def Upcase(c)
+    c.upcase
+end
 
 #class String
 #    def to_byte
@@ -291,7 +296,8 @@ class Scanner <  CRRScanner
     # def initialize( srcFile,  ignoreCase) 
     #     super(srcFile, ignoreCase)
     # end
-    def initialize( str="",  ignoreCase=true) 
+    def initialize( str="",  ignoreCase=IGNORECASE) 
+        p "+==>init scanner:#{ignoreCase}", 10
         super(str, ignoreCase)
     end
 

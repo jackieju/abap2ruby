@@ -1,4 +1,4 @@
-
+require_relative 'macro.rb'
 ######### test ################
 #=begin
 def test(testall=false)
@@ -17,7 +17,7 @@ def test(testall=false)
    * Output System Fields  **
    **************************
 
-   WRITE /5 'SY-ABCDE' .
+   wRITE /5 'SY-ABCDE' .
    WRITE  SY-ABCDE .
    WRITE  /5 'SY-DATUM' .
    WRITE  SY-DATUM .
@@ -157,13 +157,13 @@ end
 
 p s
 
-scanner = Scanner.new(s, false)
+scanner = Scanner.new(s)
 error = MyError.new("whaterver", scanner)
 parser = Preprocessor.new(scanner, error)
 s = parser.Preprocess
     
 
-scanner = Scanner.new(s, false)
+scanner = Scanner.new(s)
 p "===>scanner =#{scanner}"
 p "==>#{scanner.nextSym}"
 $sc = scanner

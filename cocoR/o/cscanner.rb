@@ -12,8 +12,10 @@ class CScanner < CRScanner
       c=CurrentCh(@nextSym.Pos)
       if @ignoreCase
          c=Upcase(c)
+         p "--->upcase:#{c}"
+         
       end
-
+      
       case c
 
       when 'A'
@@ -341,6 +343,10 @@ class CScanner < CRScanner
             return C_COMPARINGSym
          end
 
+         if EqualStr("CURRENT")
+            return C_CURRENTSym
+         end
+
          if EqualStr("CHANGE")
             return C_CHANGESym
          end
@@ -355,10 +361,6 @@ class CScanner < CRScanner
 
          if EqualStr("CONVERSION")
             return C_CONVERSIONSym
-         end
-
-         if EqualStr("CURRENT")
-            return C_CURRENTSym
          end
 
          if EqualStr("CP")
@@ -697,16 +699,16 @@ class CScanner < CRScanner
             return C_ENDFUNCTIONSym
          end
 
+         if EqualStr("ENDSELECT")
+            return C_ENDSELECTSym
+         end
+
          if EqualStr("ENTRIES")
             return C_ENTRIESSym
          end
 
          if EqualStr("EXTENDED")
             return C_EXTENDEDSym
-         end
-
-         if EqualStr("ENDSELECT")
-            return C_ENDSELECTSym
          end
 
          if EqualStr("ENDWITH")
@@ -1291,10 +1293,6 @@ class CScanner < CRScanner
             return C_LOCATORSym
          end
 
-         if EqualStr("LINES")
-            return C_LINESSym
-         end
-
          if EqualStr("LINE")
             return C_LINESym
          end
@@ -1439,6 +1437,10 @@ class CScanner < CRScanner
 
          if EqualStr("MEMORY")
             return C_MEMORYSym
+         end
+
+         if EqualStr("MODIFY")
+            return C_MODIFYSym
          end
 
          if EqualStr("MAXIMUM")

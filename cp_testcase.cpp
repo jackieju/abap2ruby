@@ -13,7 +13,7 @@
    * Output System Fields  **
    **************************
 
-   WRITE /5 'SY-ABCDE' .
+   wRITE /5 'SY-ABCDE' .
    WRITE  SY-ABCDE .
    WRITE  /5 'SY-DATUM' .
    WRITE  SY-DATUM .

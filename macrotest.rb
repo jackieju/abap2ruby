@@ -65,7 +65,7 @@ end
         :include_dirs=>search_dirs
     }
  
-    scanner = Scanner.new(s, false)
+    scanner = Scanner.new(s)
     error = MyError.new("whaterver", scanner)
     parser = Preprocessor.new(scanner, error)
     # parser.Get
