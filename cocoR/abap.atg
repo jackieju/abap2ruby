@@ -1,6 +1,6 @@
 COMPILER C
 
-IGNORECASE
+/*IGNORECASE*/
 
 CHARACTERS
   letter   = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz" .
@@ -22,7 +22,7 @@ IGNORE
   tab + eol + CHR(13)
 
 TOKENS
-  identifier = ( "_" | letter) { "_" | "-" | letter | digit } .
+  identifier = ["!"]( "_" | letter) { "_" | "-" | letter | digit } .
   number     = digit { digit } [ "U" | "u" | "L" | "l" ] .
   hexnumber  = "0" ( "x" | "X" ) hexdigit { hexdigit } [ "U" | "u" | "L" | "l" ] .
   string1     = "'" { strings } "'" .
@@ -891,7 +891,7 @@ stSORT = "SORT" identifier [identifier(.is('STABLE').)]
           ( ( ["ASCENDING"|"DESCENDING"] 
               ["AS" "TEXT"] 
               ["BY" (identifier ["ASCENDING"|"DESCENDING"] ["AS" "TEXT"]) {identifier ["ASCENDING"|"DESCENDING"] ["AS" "TEXT"]}] ) 
-          | ( ["BY" (identifier)] ) 
+          | ( ["BY" "("identifier")"] ) 
           | ( ["BY" Expression] ) )".".
 
 stSUBMIT = "SUBMIT" (identifier|"("identifier")") 
@@ -1096,20 +1096,24 @@ ClassStatement = "CLASS" identifier
                 (
                             "DEFINITION" 
                             ( 
-                               "DEFERRED" ["PUBLIC"]
+                                   "DEFERRED" ["PUBLIC"]
                               |
-                               ["INHERITING" "FROM" identifier] 
-                               ["ABSTRACT"] 
-                               ["FINAL"] 
-                               ["CREATE" {"PUBLIC"|"PROTECTED"|"PRIVATE"}] 
-                               ["SHARED" "MEMORY" "ENABLED"] 
-                               ["FOR" "TESTING" 
-                                 ["RISK" "LEVEL" {"CRITICAL"|"DANGEROUS"|"HARMLESS"}] 
-                                 ["DURATION"   {"SHORT"|"MEDIUM"|"LONG"}] ] 
-                               [
-                                   ["GLOBAL"] "FRIENDS" identifier {identifier}
+                                  [( "PUBLIC"|"PROTECTED"|"PRIVATE")]
+                                  {
+                                 
+                                   ["INHERITING" "FROM" identifier] 
+                                   ["ABSTRACT"] 
+                                   ["FINAL"] 
+                                   ["CREATE" {"PUBLIC"|"PROTECTED"|"PRIVATE"}] 
+                                   ["SHARED" "MEMORY" "ENABLED"] 
+                                   ["FOR" "TESTING" 
+                                     ["RISK" "LEVEL" {"CRITICAL"|"DANGEROUS"|"HARMLESS"}] 
+                                     ["DURATION"   {"SHORT"|"MEDIUM"|"LONG"}] ] 
+                                   [
+                                       ["GLOBAL"] "FRIENDS" identifier {identifier}
 
-                                ]
+                                    ]
+                                  }
                             )
                     |
                         "IMPLEMENTATION"
@@ -1138,43 +1142,43 @@ MethodStatement = "METHOD" identifier "."
 "ENDMETHOD" ".".
 
 Typing = (
-        "TYPE"    (  ["LINE" "OF"] identifier | "REF" "TO" identifier  |identifier) 
-        | "LIKE" [( ["LINE" "OF"] | "REF" "TO" )] identifier 
-      
+            "TYPE"  ["LINE" "OF"|"REF" "TO"] Expression 
+        | 
+            "LIKE" [( ["LINE" "OF"] | "REF" "TO" )] Expression 
          )
- "." .
+ .
          
           
-MethodsStatement =  (("METHODS" | "CLASS-METHODS") identifier ( ["ABSTRACT"|"FINAL"] 
-            | "FOR" "TESTING" 
-            | ["FINAL"] "REDEFINITION"
-            |["DEFAULT" ("IGNORE"|"FAIL")] 
-             ["FOR" "EVENT" identifier "OF" identifier] 
-  [ "IMPORTING" {
-                  ("VALUE" "(" identifier ")" | "REFERENCE" "(" identifier ")" | identifier )
-                   Typing [("OPTIONAL"|"DEFAULT") identifier] 
-                 } 
-              ["PREFERRED" "PARAMETER" identifier] ] 
-  [ "EXPORTING" {
-                  {"VALUE"(identifier)|"REFERENCE"(identifier)|identifier} Typing 
-                 }
-                  ] 
-  [ "CHANGING"  {
-              ("VALUE" "(" identifier ")" | "REFERENCE" "(" identifier ")" | identifier )
-               Typing [("OPTIONAL"|"DEFAULT") identifier]
-               } ] 
-  [ "RETURNING" {"VALUE"(identifier)} Typing ] 
-  [
-       {"RAISING" ("RESUMABLE" "(" identifier ")" | identifier) { ("RESUMABLE" "(" identifier ")" | identifier)}} 
-           | 
-       {"EXCEPTIONS" identifier {identifier} }
-  ]
-  )
+MethodsStatement =  ("METHODS" | "CLASS-METHODS") identifier["~"identifier] ["ABSTRACT"|"FINAL"] 
+        (
+                
+                "FOR" "TESTING" 
+            |   ["FINAL"] "REDEFINITION"
+            |   
+                ["DEFAULT" ("IGNORE"|"FAIL")] 
+                ["FOR" "EVENT" identifier "OF" identifier] 
+                [ "IMPORTING" {
+                                  ("VALUE" "(" identifier ")" | "REFERENCE" "(" identifier ")" | identifier )
+                                   Typing [("OPTIONAL"|"DEFAULT") identifier] 
+                                 } 
+                              ["PREFERRED" "PARAMETER" identifier] ] 
+                [ "EXPORTING" {
+                                  {"VALUE""("identifier")"|"REFERENCE" "("identifier")"|identifier} Typing 
+                                 }
+                                  ] 
+                [ "CHANGING"  {
+                              ("VALUE" "(" identifier ")" | "REFERENCE" "(" identifier ")" | identifier )
+                               Typing [("OPTIONAL"|"DEFAULT") identifier]
+                               } ] 
+                [ "RETURNING" {"VALUE" "("identifier")"} Typing ] 
+                [
+                       {"RAISING" ("RESUMABLE" "(" identifier ")" | identifier) { ("RESUMABLE" "(" identifier ")" | identifier)}} 
+                           | 
+                       {"EXCEPTIONS" identifier {identifier} }
+                ]
+       )
   | 
-  "FOR" "TESTING"
-  |
-  ["FINAL"] "REDEFINITION"
-  )
+
   "." . 
   
   /*** copy from convert_result ***/
@@ -1623,7 +1627,7 @@ stINSERT = "INSERT"(
 
 stINTERFACE = "INTERFACE" identifier(  "." 
   {identifier} 
-"ENDINTERFACE"  |   ("DEFERRED" ["PUBLIC"])  ) ".".
+"ENDINTERFACE"  |   ("DEFERRED" ["PUBLIC"] | "LOAD")  ) ".".
 
 stINTERFACE_POOL = "INTERFACE-POOL"".".
 
