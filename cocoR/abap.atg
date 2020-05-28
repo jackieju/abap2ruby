@@ -39,7 +39,7 @@ PRODUCTIONS
 
     Exps =  Expression{Expression} .
     
-    NameOrRef = identifier|"("identifier")" .
+    Name = identifier|"("identifier")"|"<"identifier">".
     
     C                  =      { ReportDef | FunctionDef | ClassStatement }.
     
@@ -355,11 +355,11 @@ stMOVE_CORRESPONDING = "MOVE-CORRESPONDING" ["EXACT"]
  
 stAPPEND = "APPEND" ( 
          "INITIAL" "LINE" 
-        | identifier(.#'LINES' or idf.) ["OF" identifier ["FROM" identifier] ["TO" identifier] ["USING" "KEY" string1]]
+        | Expression (.#'LINES' or idf.) ["OF" identifier ["FROM" number ["TO" number]] ["USING" "KEY" string1]]
         )
     "TO" identifier {"[""]"}
     ["SORTED" "BY" string1] 
-    [ ("ASSIGNING" string1 ["CASTING"] | "REFERENCE" "INTO" identifier ) ] "." .
+    [ ("ASSIGNING" "<"identifier">" ["CASTING"] | "REFERENCE" "INTO" identifier ) ] "." .
  
 stCONCATENATE = "CONCATENATE" (Expression {Expression}
              | identifier(.is('LINES').) "OF" identifier
@@ -450,7 +450,7 @@ GroupBy = "GROUP" "BY" (
                             ["WITHOUT" "MEMBERS"] 
                             [ 
                                 "INTO" identifier 
-                              | "ASSIGNING" identifier
+                              | "ASSIGNING" "<"identifier">"
                               | "REFERENCE" "INTO" identifier
                             ] .
                             
@@ -461,7 +461,7 @@ LoopStatement = "LOOP"
                      (
                        identifier [( 
                                    "INTO" identifier  
-                                 |  "ASSIGNING" identifier ["CASTING"] 
+                                 |  "ASSIGNING" "<"identifier">" ["CASTING"] 
                                  |  "REFERENCE" "INTO" identifier 
                                  |  "TRANSPORTING" "NO" "FIELDS" 
                                   )]
@@ -474,7 +474,7 @@ LoopStatement = "LOOP"
                 |
                  "GROUP" identifier ( 
                                "INTO" identifier  
-                             |  "ASSIGNING" identifier ["CASTING"] 
+                             |  "ASSIGNING" "<"identifier">" ["CASTING"] 
                              |  "REFERENCE" "INTO" identifier 
                              |  "TRANSPORTING" "NO" "FIELDS" 
                               )
@@ -488,7 +488,7 @@ LoopStatement = "LOOP"
 
 TypeDes = "TYPE"   
             (
-                         identifier["=>"identifier] (
+                         Expression (
                                              [identifier(.is('LENGTH').) number] ["DECIMALS" number] 
                                          |
                                               ( "READER"|"LOCATOR"|"LOB" "HANDLE" )
@@ -752,7 +752,7 @@ stMODIFY = "MODIFY"
            (
               ( "TABLE" identifier|identifier "INDEX" identifier ["USING" "KEY" ["("] identifier [")"]] ) 
                | 
-              (identifier ["USING" "KEY" identifier] ) "FROM" identifier ["TRANSPORTING" identifier ] [("ASSIGNING" string1 ["CASTING"])|("REFERENCE" "INTO" identifier)] 
+              (identifier ["USING" "KEY" identifier] ) "FROM" identifier ["TRANSPORTING" identifier ] [("ASSIGNING" "<"identifier">" ["CASTING"])|("REFERENCE" "INTO" identifier)] 
            ) 
            | (identifier "FROM" identifier ["USING" "KEY" ["("] identifier [")"]] 
                        "TRANSPORTING" identifier  
@@ -883,7 +883,7 @@ stREAD = "READ" (
             ("INTO" identifier 
               ["COMPARING" (  "ALL" "FIELDS" | "NO" "FIELDS" |identifier{identifier} )] 
               ["TRANSPORTING" ( "ALL" "FIELDS"  | identifier{identifier} )]) 
-           |  "ASSIGNING" "<" identifier ">" ["CASTING"]  
+           |  "ASSIGNING" "<"identifier">" ["CASTING"]  
            |  "REFERENCE" "INTO" identifier 
            | "TRANSPORTING" "NO" "FIELDS"
            ]
@@ -1229,14 +1229,14 @@ stASSIGN = "ASSIGN" (
        | Expression 
         [ (
             ["+" number]["("number")"] 
-            | ("->"|"=>") ["*"|NameOrRef]
+            | ("->"|"=>") ["*"|Name]
             | "INCREMENT" number
         )]
   ) 
   "TO" "<"identifier">" 
   [ ( "CASTING" [ 
   
-              ["TYPE" ["HANDLE"] NameOrRef] ["DECIMALS" number ]
+              ["TYPE" ["HANDLE"] Name] ["DECIMALS" number ]
               | ("LIKE" identifier) 
               
               ] ) 
@@ -1290,7 +1290,7 @@ CallDatabaseProcedure =  "DATABASE" "PROCEDURE" "("identifier")"
         
 CallMethod =  "METHOD" ( 
             (
-                ["("](string1|identifier)[")"] [ ("->"|"=>") ["("](string1|identifier) [")"] ]
+                ["("](string1|identifier)[")"] [ ("->"|"=>") ["("](string1|identifier{"~"identifier}) [")"] ]
             |    
                 "OF" identifier identifier ["=" identifier] 
              ) 
@@ -1299,6 +1299,7 @@ CallMethod =  "METHOD" (
                 ["EXCEPTION-TABLE" identifier] 
                 ["EXPORTING" {Expression} ] 
                 ["IMPORTING" {identifier "=" Expression }] 
+                ["CHANGING" {identifier "=" Expression }] 
                 ["RECEIVING" Expression ] 
                 ["NO" "FLUSH"] ["QUEUE-ONLY"] 
             }
@@ -1321,7 +1322,7 @@ CallTransation =  "TRANSACTION" identifier "WITH"|"WITHOUT" "AUTHORITY-CHECK"
                               |["OPTIONS" "FROM" identifier]) 
                              ["MESSAGES" "INTO" identifier]] ).
 
-CallTransformation = "TRANSFORMATION" (NameOrRef) 
+CallTransformation = "TRANSFORMATION" (Name) 
                     ["PARAMETERS" ({Expression} |"("identifier")") ] 
                     ["OBJECTS"    ({Expression} |"("identifier")") ] 
                     ["OPTIONS"    {Expression} ] 
@@ -1360,7 +1361,7 @@ stCLEAR = "CLEAR" Expression [ ("WITH" identifier ["IN" ("CHARACTER"|"BYTE" ) "M
 
 stCLOSE = "CLOSE"(  "CURSOR" "@"identifier |  "DATASET" identifier ) ".".
 
-stCOLLECT = "COLLECT" identifier "INTO" identifier ( ["ASSIGNING" identifier ["CASTING"]] 
+stCOLLECT = "COLLECT" identifier "INTO" identifier ( ["ASSIGNING" "<"identifier">" ["CASTING"]] 
                      | ["REFERENCE" "INTO" identifier] )".".
 
 stCOMMIT = "COMMIT"(  "WORK" ["AND" "WAIT"] |  "CONNECTION" identifier ) ".".
@@ -1401,18 +1402,18 @@ stCONVERT = "CONVERT"(
 
 stCREATE = "CREATE"(  "DATA" identifier [ "AREA" "HANDLE" identifier ] 
                  [ "TYPE" ( 
-                         (["LINE" "OF"] NameOrRef) 
-                        | ("REF" "TO" NameOrRef) 
+                         (["LINE" "OF"] Name) 
+                        | ("REF" "TO" Name) 
                         | ( ((["STANDARD"] "TABLE") 
                            |("SORTED" "TABLE") 
                            |("HASHED" "TABLE")) 
-                           "OF" ["REF" "TO"] NameOrRef
+                           "OF" ["REF" "TO"] Name
                            [ ("WITH" ["UNIQUE"|"NON-UNIQUE"] 
                                 ("KEY" (identifier{identifier} |"("identifier")"))|("DEFAULT" "KEY")) 
                            | ("WITH" "EMPTY" "KEY") ] 
                            ["INITIAL" "SIZE" number]) 
                         | ("HANDLE" identifier) 
-                        (NameOrRef
+                        (Name
                                                    [identifier(.is('LENGTH').) number] ["DECIMALS" number]) 
                         ) ] 
                | [ "LIKE" ( (["LINE" "OF"] identifier) 
@@ -1638,7 +1639,7 @@ stINSERT = "INSERT"(
         [
             (  
                  ("INITIAL" "LINE") 
-               | (identifier(.is('LINES').) "OF" identifier ["FROM" identifier] ["TO" identifier] ["USING" "KEY" NameOrRef]) 
+               | (identifier(.is('LINES').) "OF" identifier ["FROM" identifier] ["TO" identifier] ["USING" "KEY" Name]) 
                | identifier
             ) 
         ]
@@ -1647,7 +1648,7 @@ stINSERT = "INSERT"(
           [("USING" "CLIENT" identifier | "CLIENT" "SPECIFIED")]
           ["CONNECTION" ("("Expression")"|identifier)] 
           ["VALUES" identifier] 
-          [ ("ASSIGNING" identifier ["CASTING"]) | ("REFERENCE" "INTO" identifier ) ] 
+          [ ("ASSIGNING" "<"identifier">" ["CASTING"]) | ("REFERENCE" "INTO" identifier ) ] 
           ["FROM" (identifier|("TABLE" identifier ["ACCEPTING" "DUPLICATE" "KEYS"])|stSELECT ) ]
        }
        | /* INSERT REPORT*/ 
@@ -1753,7 +1754,7 @@ stPARAMETERS = "PARAMETERS" ( identifier [("("number")" |  identifier(.is('LENGT
               ["AS" "SEARCH" "PATTERN"]]".".
 
 stPERFORM = "PERFORM" ( ( (  
-             Expression ("IN" "PROGRAM" [NameOrRef] ["IF" "FOUND"] | ["IF" "FOUND"])
+             Expression ("IN" "PROGRAM" [Name] ["IF" "FOUND"] | ["IF" "FOUND"])
             | number "OF" identifier {identifier}  
             | identifier
             
@@ -1830,7 +1831,7 @@ stSCROLL = "SCROLL" "LIST" [ ( "TO" "COLUMN" string1 )
               | ( ("FORWARD"|"BACKWARD") [number "PAGES"] ) ] 
             ["INDEX" identifier]".".
 
-stSELECT_OPTIONS = "SELECT-OPTIONS" identifier "FOR" NameOrRef
+stSELECT_OPTIONS = "SELECT-OPTIONS" identifier "FOR" Name
               ["OBLIGATORY"|"NO-DISPLAY"] 
               ["VISIBLE" identifier(.is('LENGTH').) number] 
               ["NO-EXTENSION"] 
@@ -2034,6 +2035,7 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
   PostFixExp           =  Primary
                          { "[" [Expression] "]"
                           | FunctionCall
+                          | "~" identifier
                           | "->" identifier
                           | "=>" identifier
                           | "-" identifier
@@ -2046,6 +2048,7 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
                            | number 
                            | "(" Expression ")" 
                            | PredefinedConstant 
+                           | identifier
                            | ["<"]identifier[">"] 
                            | "/" identifier {"/" identifier }
                               .
