@@ -22,13 +22,13 @@ IGNORE
   tab + eol + CHR(13)
 
 TOKENS
-  identifier = ["!"]( "_" | letter) { "_" | "-" | letter | digit } .
+  identifier = ["!"]( "_" | letter) { "_" | letter | digit } .
   number     = digit { digit } [ "U" | "u" | "L" | "l" ] .
   hexnumber  = "0" ( "x" | "X" ) hexdigit { hexdigit } [ "U" | "u" | "L" | "l" ] .
-  string1     = "'" { strings } "'" .
+  string1    = "'" { strings } "'" .
   char       = '"' [ "\\" ] chars '"' .
-   Colon = ":" .
-  space1 = space .
+  Colon      = ":" .
+  space1     = space .
 
 PRAGMAS
 
@@ -41,7 +41,7 @@ PRODUCTIONS
     
     NameOrRef = identifier|"("identifier")" .
     
-    C                  =      (ReportDef | FunctionDef | ClassStatement ) .
+    C                  =      { ReportDef | FunctionDef | ClassStatement }.
     
     ReportDef          = "REPORT" (.  fn_name=curString() .) identifier  (. src("") .) 
             {
@@ -76,7 +76,7 @@ PRODUCTIONS
                               VariableDefineStatement
                              | WriteStatement 
                              | AssignmentStatement 
-                             | BreakStatement
+                          /*   | BreakStatement*/
                              | ContinueStatement
                              | stDO
                              | ForStatement
@@ -126,10 +126,11 @@ PRODUCTIONS
                              | stALIASES
                              | stASSERT
                              | stASSIGN
+                             | stAT
                             /* |AT*/
                              | stBACK
                              | stBREAK_POINT
-                             | stCATCH
+                            /* | stCATCH*/
                              | stCHECK
                              | stCLASS_DATA
                              | stCLASS_EVENTS
@@ -487,11 +488,17 @@ LoopStatement = "LOOP"
 
 TypeDes = "TYPE"   
             (
-                         identifier ([identifier(.is('LENGTH').) number] ["DECIMALS" number] | { "READER"|"LOCATOR"|"LOB" "HANDLE" } )
+                         identifier["=>"identifier] (
+                                             [identifier(.is('LENGTH').) number] ["DECIMALS" number] 
+                                         |
+                                              ( "READER"|"LOCATOR"|"LOB" "HANDLE" )
+                                         |
+                                               /* identifier(.is('WRITER','LOCATOR').)*/ "FOR" ( "COLUMNS" identifier{identifier} ) 
+                                    )
                       | 
                           ["LINE" "OF"] identifier ["BOXED"]
                       | 
-                          "REF" "TO" identifier 
+                          "REF" "TO" Expression 
                       | 
                           [ ("STANDARD" | "SORTED"| "SORTED") ] "TABLE" 
                        
@@ -520,8 +527,6 @@ TypeDes = "TYPE"
                           ["INITIAL" "SIZE" number] 
                      |
                           "RANGE" "OF" Type ["INITIAL" "SIZE" number] ["WITH" "HEADER" "LINE"] 
-                     | 
-                         { "WRITER"|"LOCATOR" } "FOR" { "COLUMNS" {identifier} } 
                      |  
                          "ALL" ["OTHER"] ["BLOB"|"CLOB"] "COLUMNS" 
             )
@@ -657,8 +662,8 @@ WriteStatement =   (. param_hash = {} .) "WRITE"
   . 
 
   AssignmentStatement =  Expression  .
-
-  BreakStatement       = "break"   .
+ /*
+ BreakStatement       = "break"   .*/
 
 
   Statements =  Statement { Statement } .
@@ -673,10 +678,11 @@ WriteStatement =   (. param_hash = {} .) "WRITE"
 
 CaseStatement = 
     "CASE" Expression "." 
-      {"WHEN" Expression {"OR" Expression } "." 
-        {Statement}} 
-      ["WHEN" "OTHERS" "." 
-        {Statement}] 
+      {
+          "WHEN" (Expression {"OR" Expression } | "OTHERS") "." 
+            {Statement}
+      } 
+  
     "ENDCASE" "." .
 
 AUTHORITY_CHECK_ITEM = "ID" identifier ("FIELD" Expression|"DUMMY") .
@@ -849,7 +855,7 @@ stREAD = "READ" (
       |  /* READ REPORT */
       "REPORT" identifier "INTO" identifier ["MAXIMUM" "WIDTH" "INTO" number]
        | /* READ TABLE itab*/
-       "TABLE" identifier(
+       "TABLE" identifier (
            {
            [(
             
@@ -858,26 +864,26 @@ stREAD = "READ" (
                   "WITH"
                  (
                      ( "TABLE" "KEY" [identifier|"("identifier")" "COMPONENTS"] 
-                                      ["("]identifier[")"] "=" identifier { ["("]identifier[")"] "=" identifier }
+                                      ["("]identifier[")"] "=" Expression { ["("]identifier[")"] "=" Expression }
                               
                                       ) 
                      | 
                         "KEY"
                          ( 
-                              (identifier "=" identifier {identifier "=" identifier} ["BINARY" "SEARCH"]) 
+                              (identifier "=" Expression {identifier "=" Expression} ["BINARY" "SEARCH"]) 
                              | ( ["("] identifier [")"] 
-                                         "COMPONENTS" identifier "=" identifier {identifier "=" identifier } )
+                                         "COMPONENTS" identifier "=" Expression {identifier "=" Expression } )
                              | ( ["="]identifier ["BINARY" "SEARCH"])
                          ) 
                  ) 
              | 
-                 "INDEX" identifier ["USING" "KEY" ["("]identifier[")"] ] 
+                 "INDEX" number ["USING" "KEY" ["("]identifier[")"] ] 
           )]
           [
             ("INTO" identifier 
               ["COMPARING" (  "ALL" "FIELDS" | "NO" "FIELDS" |identifier{identifier} )] 
               ["TRANSPORTING" ( "ALL" "FIELDS"  | identifier{identifier} )]) 
-           |  "ASSIGNING" identifier ["CASTING"]  
+           |  "ASSIGNING" "<" identifier ">" ["CASTING"]  
            |  "REFERENCE" "INTO" identifier 
            | "TRANSPORTING" "NO" "FIELDS"
            ]
@@ -901,8 +907,8 @@ stSUBMIT = "SUBMIT" (identifier|"("identifier")")
   ["USING" "SELECTION-SETS" "OF" "PROGRAM" identifier] 
   ["WITH" "SELECTION-TABLE" identifier] 
   {
-      "WITH" identifier ( (("EQ"|"NE"|"CP"|"NP"|"GE"|"LT"|"LE"|"GT") identifier ["SIGN" string1]) 
-              | (["NOT"] "BETWEEN" identifier "AND" identifier ["SIGN" string1]) 
+      "WITH" identifier ( (("EQ"|"NE"|"CP"|"NP"|"GE"|"LT"|"LE"|"GT") identifier [identifier(.is('SIGN').)  string1]) 
+              | (["NOT"] "BETWEEN" identifier "AND" identifier [identifier(.is('SIGN').)  string1]) 
               | ("IN" identifier) )
   }
   ["WITH" "FREE" "SELECTIONS" string1] 
@@ -918,7 +924,7 @@ stSUBMIT = "SUBMIT" (identifier|"("identifier")")
 stTRY = "TRY""." 
     {Statement}
   {
-      "CATCH" ["BEFORE" "UNWIND"] identifier  ["INTO" identifier]"." 
+      "CATCH" ["BEFORE" "UNWIND"] {identifier}  ["INTO" identifier]"." 
         {Statement}
   }
   
@@ -1093,6 +1099,10 @@ WhileStatement = "WHILE" Expression
 */
 
 ClassStatement = "CLASS" identifier 
+                            (. 
+                                cls = @root_class.add_class(prevString)
+                                in_scope(cls)
+                            .)
                 (
                             "DEFINITION" 
                             ( 
@@ -1101,7 +1111,7 @@ ClassStatement = "CLASS" identifier
                                   [( "PUBLIC"|"PROTECTED"|"PRIVATE")]
                                   {
                                  
-                                   ["INHERITING" "FROM" identifier] 
+                                   ["INHERITING" "FROM" identifier (.  cls.parent = prevString .)] 
                                    ["ABSTRACT"] 
                                    ["FINAL"] 
                                    ["CREATE" {"PUBLIC"|"PROTECTED"|"PRIVATE"}] 
@@ -1121,25 +1131,36 @@ ClassStatement = "CLASS" identifier
                 ) "." 
                         
                 
-  ["PUBLIC" "SECTION" "." 
-    {Statement}
-  ] 
-  ["PROTECTED" "SECTION" "." 
-    {Statement}
-  ] 
-  ["PRIVATE" "SECTION" "." 
-    {Statement}
-  ] 
-"ENDCLASS" "." .
+{
+  [("PUBLIC"|"PROTECTED"|"PRIVATE") "SECTION" "." ]
+  {Statement}
+}
+   
+
+"ENDCLASS" 
+(. out_scope() if cls .)
+"." .
 
 
 /*ClassImplStatement = "CLASS" identifier "IMPLEMENTATION" "." 
    {Statement} 
 "ENDCLASS" "." .*/
 
-MethodStatement = "METHOD" identifier "." 
+MethodStatement = "METHOD" identifier["~"identifier] (.       fname = prevString
+      if current_scope.is_a?(ClassDef)
+          classdef = current_scope
+         
+      end .) 
+    "." 
   {Statement} 
-"ENDMETHOD" ".".
+"ENDMETHOD" 
+(.      
+    p "src:#{src}"
+        if classdef
+           classdef.add_method(fname, "()",[], src ,"")
+      end 
+.)
+".".
 
 Typing = (
             "TYPE"  ["LINE" "OF"|"REF" "TO"] Expression 
@@ -1212,7 +1233,7 @@ stASSIGN = "ASSIGN" (
             | "INCREMENT" number
         )]
   ) 
-  "TO" identifier 
+  "TO" "<"identifier">" 
   [ ( "CASTING" [ 
   
               ["TYPE" ["HANDLE"] NameOrRef] ["DECIMALS" number ]
@@ -1221,6 +1242,12 @@ stASSIGN = "ASSIGN" (
               ] ) 
   |  (["TYPE" identifier] ["DECIMALS" number]) ] 
   ["RANGE" Expression]".".
+
+stAT = "AT" ("NEW" identifier | "FIRST" | "LAST" | "END" "OF" identifier) "."
+ {Statement}
+"ENDAT"
+"."
+.
 
 /*AT = "AT"(  "LINE-SELECTION"  |  "SELECTION-SCREEN" [ "OUTPUT" 
                     | ("ON" (par|selcrit)) 
@@ -1263,14 +1290,21 @@ CallDatabaseProcedure =  "DATABASE" "PROCEDURE" "("identifier")"
         
 CallMethod =  "METHOD" ( 
             (
-                ["("]identifier[")" ] ("->"|"=>") ["("]identifier[")" ]
-          
+                ["("](string1|identifier)[")"] [ ("->"|"=>") ["("](string1|identifier) [")"] ]
+            |    
+                "OF" identifier identifier ["=" identifier] 
              ) 
-            ["PARAMETER-TABLE" identifier] 
-            ["EXCEPTION-TABLE" identifier] 
-            |"OF" identifier identifier ["=" identifier] 
-               ["EXPORTING" {Expression} ] 
-               ["NO" "FLUSH"] ["QUEUE-ONLY"] ).
+            {
+                ["PARAMETER-TABLE" identifier] 
+                ["EXCEPTION-TABLE" identifier] 
+                ["EXPORTING" {Expression} ] 
+                ["IMPORTING" {identifier "=" Expression }] 
+                ["RECEIVING" Expression ] 
+                ["NO" "FLUSH"] ["QUEUE-ONLY"] 
+            }
+            )
+            .
+               
 CallScreen =       "SCREEN" identifier 
             ["STARTING" "AT" string1 number 
             ["ENDING"   "AT" string1 number]] .
@@ -1308,10 +1342,10 @@ CallBadi = (  "BADI" identifier"->" "(" identifier ")"
             ["EXCEPTION-TABLE" identifier] ) 
          ) ".".
 
-stCATCH = "CATCH" "SYSTEM-EXCEPTIONS" {Expression}
+/*stCATCH = "CATCH" "SYSTEM-EXCEPTIONS" {Expression}
                         ["OTHERS" "=" identifier]"." 
   [Statements]
-"ENDCATCH"".".
+"ENDCATCH"".".*/
 
 stCHECK = "CHECK" Expression /*|"SELECT-OPTIONS" */ ".".
 
@@ -1321,7 +1355,7 @@ stCLASS_EVENTS = "CLASS-EVENTS" identifier Event_options ".".
 
 stCLASS_POOL = "CLASS-POOL" ["MESSAGE-ID" identifier]".".
 
-stCLEAR = "CLEAR" identifier [ ("WITH" identifier ["IN" ("CHARACTER"|"BYTE" ) "MODE"]) 
+stCLEAR = "CLEAR" Expression [ ("WITH" identifier ["IN" ("CHARACTER"|"BYTE" ) "MODE"]) 
            | ("WITH" "NULL") ]".".
 
 stCLOSE = "CLOSE"(  "CURSOR" "@"identifier |  "DATASET" identifier ) ".".
@@ -1406,9 +1440,11 @@ stDEMAND = "DEMAND" Expression{Expression}
        "FROM" "CONTEXT" identifier 
        ["MESSAGES" "INTO" identifier]".".
 
-stDESCRIBE = "DESCRIBE"(
+stDESCRIBE = "DESCRIBE"
+         (
                   "DISTANCE" "BETWEEN" identifier "AND" identifier "INTO" identifier 
-                          "IN" ("BYTE"|"CHARACTER") "MODE" |  "FIELD" identifier 
+                          "IN" ("BYTE"|"CHARACTER") "MODE"
+              |  "FIELD" Expression 
                       ["TYPE" identifier ["COMPONENTS" identifier]] 
                       [identifier(.is('LENGTH').) Expression "IN" ("BYTE"|"CHARACTER") "MODE"] 
                       ["DECIMALS" Expression] 
@@ -1471,7 +1507,7 @@ stEXTRACT = "EXTRACT" identifier ".".
 
 stFIELD_GROUPS = "FIELD-GROUPS" identifier   ".".
 
-stFIELD_SYMBOLS = "FIELD-SYMBOLS" identifier ( Typing | ( "STRUCTURE" identifier "DEFAULT" identifier ) )".".
+stFIELD_SYMBOLS = "FIELD-SYMBOLS" "<"identifier">" ( Typing | ( "STRUCTURE" identifier "DEFAULT" identifier ) )".".
 
 stFIELDS = "FIELDS" identifier".".
 
@@ -1511,11 +1547,11 @@ Format_options = {
              "=" string1
          )
          ] 
-       ["INTENSIFIED" [ ("ON"|"OFF")|("=" identifier) ] ] 
-       ["INVERSE"     [("ON"|"OFF")|("=" identifier)]] 
-       ["HOTSPOT"     [("ON"|"OFF")|("=" identifier)]] 
-       ["INPUT"       [("ON"|"OFF")|("=" identifier)]] 
-       ["FRAMES"      [("ON"|"OFF")|("=" identifier)]] 
+       ["INTENSIFIED" [ ("ON"|"OFF")|("=" Expression) ] ] 
+       ["INVERSE"     [("ON"|"OFF")|("=" Expression)]] 
+       ["HOTSPOT"     [("ON"|"OFF")|("=" Expression)]] 
+       ["INPUT"       [("ON"|"OFF")|("=" Expression)]] 
+       ["FRAMES"      [("ON"|"OFF")|("=" Expression)]] 
        ["RESET"]
    }
        .
@@ -1718,13 +1754,13 @@ stPARAMETERS = "PARAMETERS" ( identifier [("("number")" |  identifier(.is('LENGT
 
 stPERFORM = "PERFORM" ( ( (  
              Expression ("IN" "PROGRAM" [NameOrRef] ["IF" "FOUND"] | ["IF" "FOUND"])
-            | number "OF" identifier  
+            | number "OF" identifier {identifier}  
             | identifier
             
          ) 
-            ["TABLES" identifier ] 
-            ["USING" identifier ] 
-            ["CHANGING" identifier ] ) 
+            ["TABLES" identifier{identifier}   ] 
+            ["USING" Expression{Expression}   ] 
+            ["CHANGING" Expression{Expression}  ] ) 
         | ( "ON" ( ("COMMIT" ["LEVEL" identifier]) 
                | "ROLLBACK" ) ) )".".
 
@@ -1800,7 +1836,7 @@ stSELECT_OPTIONS = "SELECT-OPTIONS" identifier "FOR" NameOrRef
               ["NO-EXTENSION"] 
               ["NO" "INTERVALS"] 
               ["MODIF" "ID" identifier] 
-              ["DEFAULT" string1 ["TO" identifier] ["OPTION" Expression] ["SIGN" identifier]] 
+              ["DEFAULT" string1 ["TO" identifier] ["OPTION" Expression] [identifier(.is('SIGN').) identifier]] 
               ["LOWER" "CASE"] 
               ["MATCHCODE" "OBJECT" identifier] 
               ["MEMORY" "ID" identifier] 
@@ -2000,15 +2036,23 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
                           | FunctionCall
                           | "->" identifier
                           | "=>" identifier
+                          | "-" identifier
                           | "++"
                           | "--"
                          }    .   
   
-  Primary              =  (  string1{string1} | char | number | "(" Expression ")" | PredefinedConstant | identifier )   .
+  Primary              =  string1{string1}
+                           | char 
+                           | number 
+                           | "(" Expression ")" 
+                           | PredefinedConstant 
+                           | ["<"]identifier[">"] 
+                           | "/" identifier {"/" identifier }
+                              .
 
-  FunctionCall        =  "("   [ ActualParameters] ")"      .
+  FunctionCall        =  "("  { [ "EXPORTING" | "IMPORTING"] {Expression}} ")"      .
 
-  ActualParameters    =    Expression   { "," Expression   }      .
+  /*ActualParameters    =    Expression   { "," Expression   }      .*/
 
   AssignmentOperator   =    "="  | "*=" | "/=" | "%=" | "+=" | "-=" | "&="
                          | "^=" | "|=" | "<<=" | ">>="    .

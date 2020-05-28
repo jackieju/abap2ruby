@@ -113,6 +113,12 @@ Please be noticed that actually
 
 are equal, and usually we take the second form.
 
+Unsupported keywrods
+===
+keyword | reason
+-|-|-
+FORM | Obsolete |
+
 
 How to contribute
 ===

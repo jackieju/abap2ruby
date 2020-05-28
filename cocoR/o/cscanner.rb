@@ -57,10 +57,6 @@ class CScanner < CRScanner
             return C_ALIASSym
          end
 
-         if EqualStr("AUTHORITY-CHECK")
-            return C_AUTHORITYMinusCHECKSym
-         end
-
          if EqualStr("ADJACENT")
             return C_ADJACENTSym
          end
@@ -87,10 +83,6 @@ class CScanner < CRScanner
 
          if EqualStr("ACCORDING")
             return C_ACCORDINGSym
-         end
-
-         if EqualStr("ADD-CORRESPONDING")
-            return C_ADDMinusCORRESPONDINGSym
          end
 
          if EqualStr("ALIASES")
@@ -179,10 +171,6 @@ class CScanner < CRScanner
             return C_BINARYSym
          end
 
-         if EqualStr("BYTE-ORDER")
-            return C_BYTEMinusORDERSym
-         end
-
          if EqualStr("BIG")
             return C_BIGSym
          end
@@ -207,10 +195,6 @@ class CScanner < CRScanner
             return C_BACKSym
          end
 
-         if EqualStr("BREAK-POINT")
-            return C_BREAKMinusPOINTSym
-         end
-
          if EqualStr("BADI")
             return C_BADISym
          end
@@ -233,30 +217,6 @@ class CScanner < CRScanner
 
          if EqualStr("BLANK")
             return C_BLANKSym
-         end
-
-         if EqualStr("BYTE-CO")
-            return C_BYTEMinusCOSym
-         end
-
-         if EqualStr("BYTE-CN")
-            return C_BYTEMinusCNSym
-         end
-
-         if EqualStr("BYTE-CA")
-            return C_BYTEMinusCASym
-         end
-
-         if EqualStr("BYTE-NA")
-            return C_BYTEMinusNASym
-         end
-
-         if EqualStr("BYTE-CS")
-            return C_BYTEMinusCSSym
-         end
-
-         if EqualStr("BYTE-NS")
-            return C_BYTEMinusNSSym
          end
 
          if EqualStr("BOUND")
@@ -393,10 +353,6 @@ class CScanner < CRScanner
             return C_CRITICALSym
          end
 
-         if EqualStr("CLASS-METHODS")
-            return C_CLASSMinusMETHODSSym
-         end
-
          if EqualStr("CONDITION")
             return C_CONDITIONSym
          end
@@ -409,24 +365,8 @@ class CScanner < CRScanner
             return C_CALLSym
          end
 
-         if EqualStr("CUSTOMER-FUNCTION")
-            return C_CUSTOMERMinusFUNCTIONSym
-         end
-
          if EqualStr("CHECK")
             return C_CHECKSym
-         end
-
-         if EqualStr("CLASS-DATA")
-            return C_CLASSMinusDATASym
-         end
-
-         if EqualStr("CLASS-EVENTS")
-            return C_CLASSMinusEVENTSSym
-         end
-
-         if EqualStr("CLASS-POOL")
-            return C_CLASSMinusPOOLSym
          end
 
          if EqualStr("CLEAR")
@@ -511,10 +451,6 @@ class CScanner < CRScanner
 
          if EqualStr("COUNTRY")
             return C_COUNTRYSym
-         end
-
-         if EqualStr("CHAR-TO-HEX")
-            return C_CHARMinusTOMinusHEXSym
          end
 
          if EqualStr("CONTROL")
@@ -663,14 +599,6 @@ class CScanner < CRScanner
             return C_DIVIDESym
          end
 
-         if EqualStr("DIVIDE-CORRESPONDING")
-            return C_DIVIDEMinusCORRESPONDINGSym
-         end
-
-         if EqualStr("DISPLAY-MODE")
-            return C_DISPLAYMinusMODESym
-         end
-
          if EqualStr("DIRECTORY")
             return C_DIRECTORYSym
          end
@@ -813,10 +741,6 @@ class CScanner < CRScanner
             return C_EXCEPTIONSSym
          end
 
-         if EqualStr("EXCEPTION-TABLE")
-            return C_EXCEPTIONMinusTABLESym
-         end
-
          if EqualStr("ELSEIF")
             return C_ELSEIFSym
          end
@@ -841,24 +765,8 @@ class CScanner < CRScanner
             return C_ENDMETHODSym
          end
 
-         if EqualStr("ENDCATCH")
-            return C_ENDCATCHSym
-         end
-
-         if EqualStr("END-LINES")
-            return C_ENDMinusLINESSym
-         end
-
-         if EqualStr("EDITOR-CALL")
-            return C_EDITORMinusCALLSym
-         end
-
-         if EqualStr("END-OF-PAGE")
-            return C_ENDMinusOFMinusPAGESym
-         end
-
-         if EqualStr("END-OF-SELECTION")
-            return C_ENDMinusOFMinusSELECTIONSym
+         if EqualStr("ENDAT")
+            return C_ENDATSym
          end
 
          if EqualStr("EXIT")
@@ -891,14 +799,6 @@ class CScanner < CRScanner
 
          if EqualStr("ENDMODULE")
             return C_ENDMODULESym
-         end
-
-         if EqualStr("END-TEST-INJECTION")
-            return C_ENDMinusTESTMinusINJECTIONSym
-         end
-
-         if EqualStr("END-TEST-SEAM")
-            return C_ENDMinusTESTMinusSEAMSym
          end
 
          if EqualStr("EQUIV")
@@ -967,18 +867,6 @@ class CScanner < CRScanner
             return C_FLUSHSym
          end
 
-         if EqualStr("FIRST-LINE")
-            return C_FIRSTMinusLINESym
-         end
-
-         if EqualStr("FIELD-GROUPS")
-            return C_FIELDMinusGROUPSSym
-         end
-
-         if EqualStr("FIELD-SYMBOLS")
-            return C_FIELDMinusSYMBOLSSym
-         end
-
          if EqualStr("FIND")
             return C_FINDSym
          end
@@ -987,24 +875,12 @@ class CScanner < CRScanner
             return C_FRAMESSym
          end
 
-         if EqualStr("FUNCTION-POOL")
-            return C_FUNCTIONMinusPOOLSym
-         end
-
          if EqualStr("FILTERS")
             return C_FILTERSSym
          end
 
-         if EqualStr("FILTER-TABLE")
-            return C_FILTERMinusTABLESym
-         end
-
          if EqualStr("FOUND")
             return C_FOUNDSym
-         end
-
-         if EqualStr("FIXED-POINT")
-            return C_FIXEDMinusPOINTSym
          end
 
          if EqualStr("FORWARD")
@@ -1079,24 +955,12 @@ class CScanner < CRScanner
             return C_HARMLESSSym
          end
 
-         if EqualStr("HELP-ID")
-            return C_HELPMinusIDSym
-         end
-
-         if EqualStr("HEAD-LINES")
-            return C_HEADMinusLINESSym
-         end
-
          if EqualStr("HOTSPOT")
             return C_HOTSPOTSym
          end
 
          if EqualStr("HIDE")
             return C_HIDESym
-         end
-
-         if EqualStr("HELP-REQUEST")
-            return C_HELPMinusREQUESTSym
          end
 
          if EqualStr("HIGH")
@@ -1213,20 +1077,12 @@ class CScanner < CRScanner
             return C_INTERFACESym
          end
 
-         if EqualStr("INTERFACE-POOL")
-            return C_INTERFACEMinusPOOLSym
-         end
-
          if EqualStr("INTERFACES")
             return C_INTERFACESSym
          end
 
          if EqualStr("IMPLEMENTED")
             return C_IMPLEMENTEDSym
-         end
-
-         if EqualStr("INDEX-LINE")
-            return C_INDEXMinusLINESym
          end
 
          if EqualStr("INTERVALS")
@@ -1275,14 +1131,6 @@ class CScanner < CRScanner
 
 
       when 'L'
-         if EqualStr("LINE-SIZE")
-            return C_LINEMinusSIZESym
-         end
-
-         if EqualStr("LINE-COUNT")
-            return C_LINEMinusCOUNTSym
-         end
-
          if EqualStr("LEFT")
             return C_LEFTSym
          end
@@ -1305,10 +1153,6 @@ class CScanner < CRScanner
 
          if EqualStr("LOB")
             return C_LOBSym
-         end
-
-         if EqualStr("LEFT-JUSTIFIED")
-            return C_LEFTMinusJUSTIFIEDSym
          end
 
          if EqualStr("LINEFEED")
@@ -1347,6 +1191,10 @@ class CScanner < CRScanner
             return C_LONGSym
          end
 
+         if EqualStr("LAST")
+            return C_LASTSym
+         end
+
          if EqualStr("LOCALE")
             return C_LOCALESym
          end
@@ -1359,20 +1207,8 @@ class CScanner < CRScanner
             return C_LEAVESym
          end
 
-         if EqualStr("LIST-PROCESSING")
-            return C_LISTMinusPROCESSINGSym
-         end
-
-         if EqualStr("LOAD-OF-PROGRAM")
-            return C_LOADMinusOFMinusPROGRAMSym
-         end
-
          if EqualStr("LOCAL")
             return C_LOCALSym
-         end
-
-         if EqualStr("LOG-POINT")
-            return C_LOGMinusPOINTSym
          end
 
          if EqualStr("LISTBOX")
@@ -1383,10 +1219,6 @@ class CScanner < CRScanner
             return C_LOWERSym
          end
 
-         if EqualStr("LAST")
-            return C_LASTSym
-         end
-
          if EqualStr("LOW")
             return C_LOWSym
          end
@@ -1395,22 +1227,10 @@ class CScanner < CRScanner
             return C_LEADINGSym
          end
 
-         if EqualStr("LINE-SELECTION")
-            return C_LINEMinusSELECTIONSym
-         end
-
 
       when 'M'
-         if EqualStr("MESSAGE-ID")
-            return C_MESSAGEMinusIDSym
-         end
-
          if EqualStr("MOVE")
             return C_MOVESym
-         end
-
-         if EqualStr("MOVE-CORRESPONDING")
-            return C_MOVEMinusCORRESPONDINGSym
          end
 
          if EqualStr("MODE")
@@ -1477,14 +1297,6 @@ class CScanner < CRScanner
             return C_MODIFIERSym
          end
 
-         if EqualStr("MAJOR-ID")
-            return C_MAJORMinusIDSym
-         end
-
-         if EqualStr("MINOR-ID")
-            return C_MINORMinusIDSym
-         end
-
          if EqualStr("MINIMUM")
             return C_MINIMUMSym
          end
@@ -1495,10 +1307,6 @@ class CScanner < CRScanner
 
          if EqualStr("MULTIPLY")
             return C_MULTIPLYSym
-         end
-
-         if EqualStr("MULTIPLY-CORRESPONDING")
-            return C_MULTIPLYMinusCORRESPONDINGSym
          end
 
          if EqualStr("MODIF")
@@ -1535,32 +1343,8 @@ class CScanner < CRScanner
             return C_NUMBERSym
          end
 
-         if EqualStr("NON-UNIQUE")
-            return C_NONMinusUNIQUESym
-         end
-
-         if EqualStr("NO-GAP")
-            return C_NOMinusGAPSym
-         end
-
-         if EqualStr("NO-GROUPING")
-            return C_NOMinusGROUPINGSym
-         end
-
-         if EqualStr("NO-SIGN")
-            return C_NOMinusSIGNSym
-         end
-
-         if EqualStr("NO-ZERO")
-            return C_NOMinusZEROSym
-         end
-
          if EqualStr("NEXT")
             return C_NEXTSym
-         end
-
-         if EqualStr("NON-UNICODE")
-            return C_NONMinusUNICODESym
          end
 
          if EqualStr("NATIVE")
@@ -1587,52 +1371,12 @@ class CScanner < CRScanner
             return C_NULLSym
          end
 
-         if EqualStr("NO-GAPS")
-            return C_NOMinusGAPSSym
-         end
-
-         if EqualStr("NEW-LINE")
-            return C_NEWMinusLINESym
-         end
-
-         if EqualStr("NO-SCROLLING")
-            return C_NOMinusSCROLLINGSym
-         end
-
-         if EqualStr("NEW-PAGE")
-            return C_NEWMinusPAGESym
-         end
-
-         if EqualStr("NO-TITLE")
-            return C_NOMinusTITLESym
-         end
-
-         if EqualStr("NO-HEADING")
-            return C_NOMinusHEADINGSym
-         end
-
-         if EqualStr("NO-TOPOFPAGE")
-            return C_NOMinusTOPOFPAGESym
-         end
-
-         if EqualStr("NEW-SECTION")
-            return C_NEWMinusSECTIONSym
-         end
-
          if EqualStr("NODES")
             return C_NODESSym
          end
 
-         if EqualStr("NO-DISPLAY")
-            return C_NOMinusDISPLAYSym
-         end
-
          if EqualStr("NODE")
             return C_NODESym
-         end
-
-         if EqualStr("NO-EXTENSION")
-            return C_NOMinusEXTENSIONSym
          end
 
          if EqualStr("NA")
@@ -1705,10 +1449,6 @@ class CScanner < CRScanner
             return C_OBJECTSSym
          end
 
-         if EqualStr("OUTPUT-LENGTH")
-            return C_OUTPUTMinusLENGTHSym
-         end
-
          if EqualStr("OFF")
             return C_OFFSym
          end
@@ -1779,10 +1519,6 @@ class CScanner < CRScanner
             return C_PERFORMINGSym
          end
 
-         if EqualStr("PARAMETER-TABLE")
-            return C_PARAMETERMinusTABLESym
-         end
-
          if EqualStr("PUBLIC")
             return C_PUBLICSym
          end
@@ -1813,10 +1549,6 @@ class CScanner < CRScanner
 
          if EqualStr("POOL")
             return C_POOLSym
-         end
-
-         if EqualStr("PF-STATUS")
-            return C_PFMinusSTATUSSym
          end
 
          if EqualStr("PROPERTY")
@@ -1851,10 +1583,6 @@ class CScanner < CRScanner
             return C_PERFORMSym
          end
 
-         if EqualStr("PRINT-CONTROL")
-            return C_PRINTMinusCONTROLSym
-         end
-
          if EqualStr("PLACES")
             return C_PLACESSym
          end
@@ -1867,10 +1595,6 @@ class CScanner < CRScanner
       when 'Q'
          if EqualStr("QUICKINFO")
             return C_QUICKINFOSym
-         end
-
-         if EqualStr("QUEUE-ONLY")
-            return C_QUEUEMinusONLYSym
          end
 
 
@@ -1925,14 +1649,6 @@ class CScanner < CRScanner
 
          if EqualStr("RANGE")
             return C_RANGESym
-         end
-
-         if EqualStr("READ-ONLY")
-            return C_READMinusONLYSym
-         end
-
-         if EqualStr("RIGHT-JUSTIFIED")
-            return C_RIGHTMinusJUSTIFIEDSym
          end
 
          if EqualStr("ROUND")
@@ -2109,32 +1825,8 @@ class CScanner < CRScanner
             return C_SUBMITSym
          end
 
-         if EqualStr("SELECTION-SCREEN")
-            return C_SELECTIONMinusSCREENSym
-         end
-
-         if EqualStr("SELECTION-SET")
-            return C_SELECTIONMinusSETSym
-         end
-
-         if EqualStr("SELECTION-SETS")
-            return C_SELECTIONMinusSETSSym
-         end
-
-         if EqualStr("SELECTION-TABLE")
-            return C_SELECTIONMinusTABLESym
-         end
-
-         if EqualStr("SIGN")
-            return C_SIGNSym
-         end
-
          if EqualStr("SELECTIONS")
             return C_SELECTIONSSym
-         end
-
-         if EqualStr("SAP-SPOOL")
-            return C_SAPMinusSPOOLSym
          end
 
          if EqualStr("SPOOL")
@@ -2173,10 +1865,6 @@ class CScanner < CRScanner
             return C_SOURCESym
          end
 
-         if EqualStr("SYSTEM-EXCEPTIONS")
-            return C_SYSTEMMinusEXCEPTIONSSym
-         end
-
          if EqualStr("SORTABLE")
             return C_SORTABLESym
          end
@@ -2193,10 +1881,6 @@ class CScanner < CRScanner
             return C_SQLSym
          end
 
-         if EqualStr("STEP-LOOP")
-            return C_STEPMinusLOOPSym
-         end
-
          if EqualStr("SUBSTRING")
             return C_SUBSTRINGSym
          end
@@ -2207,10 +1891,6 @@ class CScanner < CRScanner
 
          if EqualStr("SUBROUTINE")
             return C_SUBROUTINESym
-         end
-
-         if EqualStr("SHORTDUMP-ID")
-            return C_SHORTDUMPMinusIDSym
          end
 
          if EqualStr("SUFFIX")
@@ -2225,16 +1905,8 @@ class CScanner < CRScanner
             return C_SCROLLSym
          end
 
-         if EqualStr("SELECT-OPTIONS")
-            return C_SELECTMinusOPTIONSSym
-         end
-
          if EqualStr("SELECTION")
             return C_SELECTIONSym
-         end
-
-         if EqualStr("SCROLL-BOUNDARY")
-            return C_SCROLLMinusBOUNDARYSym
          end
 
          if EqualStr("SHIFT")
@@ -2247,10 +1919,6 @@ class CScanner < CRScanner
 
          if EqualStr("SUBTRACT")
             return C_SUBTRACTSym
-         end
-
-         if EqualStr("SUBTRACT-CORRESPONDING")
-            return C_SUBTRACTMinusCORRESPONDINGSym
          end
 
          if EqualStr("SUM")
@@ -2271,10 +1939,6 @@ class CScanner < CRScanner
 
          if EqualStr("SUPPRESS")
             return C_SUPPRESSSym
-         end
-
-         if EqualStr("SYNTAX-CHECK")
-            return C_SYNTAXMinusCHECKSym
          end
 
          if EqualStr("SWITCHSTATES")
@@ -2371,14 +2035,6 @@ class CScanner < CRScanner
             return C_TABSTRIPSym
          end
 
-         if EqualStr("TOP-LINES")
-            return C_TOPMinusLINESSym
-         end
-
-         if EqualStr("TITLE-LINES")
-            return C_TITLEMinusLINESSym
-         end
-
          if EqualStr("TITLE")
             return C_TITLESym
          end
@@ -2399,18 +2055,6 @@ class CScanner < CRScanner
             return C_TRAILINGSym
          end
 
-         if EqualStr("TEST-INJECTION")
-            return C_TESTMinusINJECTIONSym
-         end
-
-         if EqualStr("TEST-SEAM")
-            return C_TESTMinusSEAMSym
-         end
-
-         if EqualStr("TOP-OF-PAGE")
-            return C_TOPMinusOFMinusPAGESym
-         end
-
          if EqualStr("TRANSFER")
             return C_TRANSFERSym
          end
@@ -2421,14 +2065,6 @@ class CScanner < CRScanner
 
          if EqualStr("TRUNCATE")
             return C_TRUNCATESym
-         end
-
-         if EqualStr("TYPE-POOL")
-            return C_TYPEMinusPOOLSym
-         end
-
-         if EqualStr("TYPE-POOLS")
-            return C_TYPEMinusPOOLSSym
          end
 
          if EqualStr("TASKS")
@@ -2469,10 +2105,6 @@ class CScanner < CRScanner
             return C_USERSym
          end
 
-         if EqualStr("UTF-8")
-            return C_UTFMinusD8Sym
-         end
-
          if EqualStr("UNIX")
             return C_UNIXSym
          end
@@ -2487,10 +2119,6 @@ class CScanner < CRScanner
 
          if EqualStr("UNICODE")
             return C_UNICODESym
-         end
-
-         if EqualStr("USER-COMMAND")
-            return C_USERMinusCOMMANDSym
          end
 
          if EqualStr("UPPER")
@@ -2543,10 +2171,6 @@ class CScanner < CRScanner
             return C_VISIBLESym
          end
 
-         if EqualStr("VALUE-REQUEST")
-            return C_VALUEMinusREQUESTSym
-         end
-
 
       when 'W'
          if EqualStr("WHERE")
@@ -2559,10 +2183,6 @@ class CScanner < CRScanner
 
          if EqualStr("WITHOUT")
             return C_WITHOUTSym
-         end
-
-         if EqualStr("WRITER")
-            return C_WRITERSym
          end
 
          if EqualStr("WRITE")
@@ -2593,14 +2213,6 @@ class CScanner < CRScanner
             return C_WAITSym
          end
 
-         if EqualStr("WITH-TITLE")
-            return C_WITHMinusTITLESym
-         end
-
-         if EqualStr("WITH-HEADING")
-            return C_WITHMinusHEADINGSym
-         end
-
          if EqualStr("WINDOW")
             return C_WINDOWSym
          end
@@ -2627,12 +2239,6 @@ class CScanner < CRScanner
       when 'a'
          if EqualStr("aggregate")
             return C_aggregateSym
-         end
-
-
-      when 'b'
-         if EqualStr("break")
-            return C_breakSym
          end
 
 
@@ -2769,7 +2375,7 @@ class CScanner < CRScanner
 
 
          when 2
-            if @ch=='-'||@ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
 
             else
                return CheckLiteral(C_identifierSym)
@@ -2958,43 +2564,8 @@ class CScanner < CRScanner
             return C_LparenSym
          when 28
             return C_RparenSym
-         when 29
-            return C_PointSym
-         when 30
-            if @ch=='*'
-               state=47
-            else
-               if @ch=='='
-                  state=103
-               else
-                  return C_StarSym
-               end
-
-            end
-
-
-         when 31
-            return C_CommaSym
-         when 32
-            if @ch=='*'
-               state=33
-            else
-               return C_TildeSym
-            end
-
-
-         when 33
-            return C_TildeStarSym
-         when 34
-            if @ch=='D'
-               state=35
-            else
-               return C_AtSym
-            end
-
-
          when 35
-            if @ch=='A'
+            if @ch=='Z'
                state=36
             else
                return No_Sym
@@ -3002,7 +2573,7 @@ class CScanner < CRScanner
 
 
          when 36
-            if @ch=='T'
+            if @ch=='E'
                state=37
             else
                return No_Sym
@@ -3010,21 +2581,126 @@ class CScanner < CRScanner
 
 
          when 37
-            if @ch=='A'
-               state=38
+            return C_LINEMinusSIZESym
+         when 43
+            if @ch=='O'
+               state=44
             else
                return No_Sym
             end
 
 
-         when 38
-            return C_AtDATASym
-         when 39
-            if @ch=='+'
-               state=101
+         when 44
+            if @ch=='U'
+               state=45
+            else
+               return No_Sym
+            end
+
+
+         when 45
+            if @ch=='N'
+               state=46
+            else
+               return No_Sym
+            end
+
+
+         when 46
+            if @ch=='T'
+               state=47
+            else
+               return No_Sym
+            end
+
+
+         when 47
+            return C_LINEMinusCOUNTSym
+         when 55
+            if @ch=='I'
+               state=56
+            else
+               return No_Sym
+            end
+
+
+         when 56
+            if @ch=='D'
+               state=57
+            else
+               return No_Sym
+            end
+
+
+         when 57
+            return C_MESSAGEMinusIDSym
+         when 58
+            return C_PointSym
+         when 59
+            if @ch=='*'
+               state=114
             else
                if @ch=='='
-                  state=106
+                  state=1182
+               else
+                  return C_StarSym
+               end
+
+            end
+
+
+         when 60
+            return C_CommaSym
+         when 61
+            if @ch=='*'
+               state=62
+            else
+               return C_TildeSym
+            end
+
+
+         when 62
+            return C_TildeStarSym
+         when 63
+            if @ch=='D'
+               state=64
+            else
+               return C_AtSym
+            end
+
+
+         when 64
+            if @ch=='A'
+               state=65
+            else
+               return No_Sym
+            end
+
+
+         when 65
+            if @ch=='T'
+               state=66
+            else
+               return No_Sym
+            end
+
+
+         when 66
+            if @ch=='A'
+               state=67
+            else
+               return No_Sym
+            end
+
+
+         when 67
+            return C_AtDATASym
+         when 68
+            if @ch=='+'
+               state=1180
+            else
+               if @ch=='='
+                  state=1185
                else
                   return C_PlusSym
                end
@@ -3032,58 +2708,74 @@ class CScanner < CRScanner
             end
 
 
-         when 40
+         when 69
             if @ch=='T'
-               state=41
+               state=70
             else
                return C_QuerySym
             end
 
 
-         when 41
+         when 70
             if @ch=='O'
-               state=42
+               state=71
             else
                return No_Sym
             end
 
 
-         when 42
+         when 71
             return C_QueryTOSym
-         when 43
-            return C_LbrackSym
-         when 44
-            return C_RbrackSym
-         when 45
-            if @ch=='>'
-               state=87
-            else
-               return C_EqualSym
-            end
-
-
-         when 46
-            if @ch=='='
-               state=104
-            else
-               return C_SlashSym
-            end
-
-
-         when 47
-            return C_StarStarSym
-         when 72
-            if @ch=='Y'
-               state=73
+         when 76
+            if @ch=='C'
+               state=77
             else
                return No_Sym
             end
 
 
-         when 73
-            return C_DDSlashMMSlashYYYYSym
+         when 77
+            if @ch=='O'
+               state=78
+            else
+               return No_Sym
+            end
+
+
+         when 78
+            if @ch=='R'
+               state=79
+            else
+               return No_Sym
+            end
+
+
+         when 79
+            if @ch=='R'
+               state=80
+            else
+               return No_Sym
+            end
+
+
+         when 80
+            if @ch=='E'
+               state=81
+            else
+               return No_Sym
+            end
+
+
+         when 81
+            if @ch=='S'
+               state=82
+            else
+               return No_Sym
+            end
+
+
          when 82
-            if @ch=='Y'
+            if @ch=='P'
                state=83
             else
                return No_Sym
@@ -3091,78 +2783,514 @@ class CScanner < CRScanner
 
 
          when 83
-            return C_MMSlashDDSlashYYYYSym
+            if @ch=='O'
+               state=84
+            else
+               return No_Sym
+            end
+
+
          when 84
-            return C_SemicolonSym
+            if @ch=='N'
+               state=85
+            else
+               return No_Sym
+            end
+
+
          when 85
-            if @ch=='>'
+            if @ch=='D'
                state=86
             else
-               if @ch=='-'
-                  state=102
-               else
-                  if @ch=='='
-                     state=107
-                  else
-                     return C_MinusSym
-                  end
-
-               end
-
+               return No_Sym
             end
 
 
          when 86
-            return C_MinusGreaterSym
+            if @ch=='I'
+               state=87
+            else
+               return No_Sym
+            end
+
+
          when 87
-            return C_EqualGreaterSym
+            if @ch=='N'
+               state=88
+            else
+               return No_Sym
+            end
+
+
          when 88
-            if @ch=='|'
+            if @ch=='G'
                state=89
             else
-               if @ch=='='
-                  state=110
-               else
-                  return C_BarSym
-               end
-
+               return No_Sym
             end
 
 
          when 89
-            return C_BarBarSym
+            return C_MOVEMinusCORRESPONDINGSym
          when 90
-            if @ch=='&'
-               state=91
-            else
-               if @ch=='='
-                  state=108
-               else
-                  return C_AndSym
-               end
-
-            end
-
-
+            return C_LbrackSym
          when 91
-            return C_AndAndSym
+            return C_RbrackSym
          when 92
-            if @ch=='='
-               state=109
+            if @ch=='>'
+               state=93
             else
-               return C_UparrowSym
+               return C_EqualSym
             end
 
 
          when 93
+            return C_EqualGreaterSym
+         when 101
+            if @ch=='U'
+               state=102
+            else
+               return No_Sym
+            end
+
+
+         when 102
+            if @ch=='E'
+               state=103
+            else
+               return No_Sym
+            end
+
+
+         when 103
+            return C_NONMinusUNIQUESym
+         when 108
+            if @ch=='O'
+               state=109
+            else
+               return No_Sym
+            end
+
+
+         when 109
+            if @ch=='N'
+               state=110
+            else
+               return No_Sym
+            end
+
+
+         when 110
+            if @ch=='L'
+               state=111
+            else
+               return No_Sym
+            end
+
+
+         when 111
+            if @ch=='Y'
+               state=112
+            else
+               return No_Sym
+            end
+
+
+         when 112
+            return C_READMinusONLYSym
+         when 113
+            if @ch=='='
+               state=1183
+            else
+               return C_SlashSym
+            end
+
+
+         when 114
+            return C_StarStarSym
+         when 125
+            if @ch=='J'
+               state=126
+            else
+               return No_Sym
+            end
+
+
+         when 126
+            if @ch=='U'
+               state=127
+            else
+               return No_Sym
+            end
+
+
+         when 127
+            if @ch=='S'
+               state=128
+            else
+               return No_Sym
+            end
+
+
+         when 128
+            if @ch=='T'
+               state=129
+            else
+               return No_Sym
+            end
+
+
+         when 129
+            if @ch=='I'
+               state=130
+            else
+               return No_Sym
+            end
+
+
+         when 130
+            if @ch=='F'
+               state=131
+            else
+               return No_Sym
+            end
+
+
+         when 131
+            if @ch=='I'
+               state=132
+            else
+               return No_Sym
+            end
+
+
+         when 132
+            if @ch=='E'
+               state=133
+            else
+               return No_Sym
+            end
+
+
+         when 133
+            if @ch=='D'
+               state=134
+            else
+               return No_Sym
+            end
+
+
+         when 134
+            return C_LEFTMinusJUSTIFIEDSym
+         when 140
+            if @ch=='J'
+               state=141
+            else
+               return No_Sym
+            end
+
+
+         when 141
+            if @ch=='U'
+               state=142
+            else
+               return No_Sym
+            end
+
+
+         when 142
+            if @ch=='S'
+               state=143
+            else
+               return No_Sym
+            end
+
+
+         when 143
+            if @ch=='T'
+               state=144
+            else
+               return No_Sym
+            end
+
+
+         when 144
+            if @ch=='I'
+               state=145
+            else
+               return No_Sym
+            end
+
+
+         when 145
+            if @ch=='F'
+               state=146
+            else
+               return No_Sym
+            end
+
+
+         when 146
+            if @ch=='I'
+               state=147
+            else
+               return No_Sym
+            end
+
+
+         when 147
+            if @ch=='E'
+               state=148
+            else
+               return No_Sym
+            end
+
+
+         when 148
+            if @ch=='D'
+               state=149
+            else
+               return No_Sym
+            end
+
+
+         when 149
+            return C_RIGHTMinusJUSTIFIEDSym
+         when 154
+            if @ch=='O'
+               state=155
+            else
+               return No_Sym
+            end
+
+
+         when 155
+            if @ch=='U'
+               state=156
+            else
+               return No_Sym
+            end
+
+
+         when 156
+            if @ch=='P'
+               state=157
+            else
+               return No_Sym
+            end
+
+
+         when 157
+            if @ch=='I'
+               state=158
+            else
+               return No_Sym
+            end
+
+
+         when 158
+            if @ch=='N'
+               state=159
+            else
+               return No_Sym
+            end
+
+
+         when 159
+            if @ch=='G'
+               state=160
+            else
+               return No_Sym
+            end
+
+
+         when 160
+            return C_NOMinusGROUPINGSym
+         when 165
+            if @ch=='G'
+               state=166
+            else
+               return No_Sym
+            end
+
+
+         when 166
+            if @ch=='N'
+               state=167
+            else
+               return No_Sym
+            end
+
+
+         when 167
+            return C_NOMinusSIGNSym
+         when 171
+            if @ch=='E'
+               state=172
+            else
+               return No_Sym
+            end
+
+
+         when 172
+            if @ch=='R'
+               state=173
+            else
+               return No_Sym
+            end
+
+
+         when 173
+            if @ch=='O'
+               state=174
+            else
+               return No_Sym
+            end
+
+
+         when 174
+            return C_NOMinusZEROSym
+         when 199
+            if @ch=='Y'
+               state=200
+            else
+               return No_Sym
+            end
+
+
+         when 200
+            return C_DDSlashMMSlashYYYYSym
+         when 209
+            if @ch=='Y'
+               state=210
+            else
+               return No_Sym
+            end
+
+
+         when 210
+            return C_MMSlashDDSlashYYYYSym
+         when 220
+            if @ch=='C'
+               state=221
+            else
+               return No_Sym
+            end
+
+
+         when 221
+            if @ch=='H'
+               state=222
+            else
+               return No_Sym
+            end
+
+
+         when 222
+            if @ch=='E'
+               state=223
+            else
+               return No_Sym
+            end
+
+
+         when 223
+            if @ch=='C'
+               state=224
+            else
+               return No_Sym
+            end
+
+
+         when 224
+            if @ch=='K'
+               state=225
+            else
+               return No_Sym
+            end
+
+
+         when 225
+            return C_AUTHORITYMinusCHECKSym
+         when 229
+            if @ch=='8'
+               state=230
+            else
+               return No_Sym
+            end
+
+
+         when 230
+            return C_UTFMinusD8Sym
+         when 236
+            if @ch=='R'
+               state=237
+            else
+               return No_Sym
+            end
+
+
+         when 237
+            if @ch=='D'
+               state=238
+            else
+               return No_Sym
+            end
+
+
+         when 238
+            if @ch=='E'
+               state=239
+            else
+               return No_Sym
+            end
+
+
+         when 239
+            if @ch=='R'
+               state=240
+            else
+               return No_Sym
+            end
+
+
+         when 240
+            return C_BYTEMinusORDERSym
+         when 248
+            if @ch=='O'
+               state=249
+            else
+               return No_Sym
+            end
+
+
+         when 249
+            if @ch=='D'
+               state=250
+            else
+               return No_Sym
+            end
+
+
+         when 250
+            if @ch=='E'
+               state=251
+            else
+               return No_Sym
+            end
+
+
+         when 251
+            return C_NONMinusUNICODESym
+         when 252
             if @ch=='>'
-               state=94
+               state=1132
             else
                if @ch=='='
-                  state=96
+                  state=1133
                else
                   if @ch=='<'
-                     state=98
+                     state=1177
                   else
                      return C_LessSym
                   end
@@ -3172,14 +3300,12 @@ class CScanner < CRScanner
             end
 
 
-         when 94
-            return C_LessGreaterSym
-         when 95
+         when 253
             if @ch=='='
-               state=97
+               state=1134
             else
                if @ch=='>'
-                  state=99
+                  state=1178
                else
                   return C_GreaterSym
                end
@@ -3187,64 +3313,3583 @@ class CScanner < CRScanner
             end
 
 
-         when 96
-            return C_LessEqualSym
-         when 97
-            return C_GreaterEqualSym
-         when 98
+         when 265
+            if @ch=='R'
+               state=266
+            else
+               return No_Sym
+            end
+
+
+         when 266
+            if @ch=='E'
+               state=267
+            else
+               return No_Sym
+            end
+
+
+         when 267
+            if @ch=='E'
+               state=268
+            else
+               return No_Sym
+            end
+
+
+         when 268
+            if @ch=='N'
+               state=269
+            else
+               return No_Sym
+            end
+
+
+         when 269
+            return C_SELECTIONMinusSCREENSym
+         when 296
+            return C_SELECTIONMinusSETSSym
+         when 307
+            if @ch=='A'
+               state=308
+            else
+               return No_Sym
+            end
+
+
+         when 308
+            if @ch=='B'
+               state=309
+            else
+               return No_Sym
+            end
+
+
+         when 309
+            if @ch=='L'
+               state=310
+            else
+               return No_Sym
+            end
+
+
+         when 310
+            if @ch=='E'
+               state=311
+            else
+               return No_Sym
+            end
+
+
+         when 311
+            return C_SELECTIONMinusTABLESym
+         when 315
+            if @ch=='S'
+               state=316
+            else
+               return No_Sym
+            end
+
+
+         when 316
+            if @ch=='P'
+               state=317
+            else
+               return No_Sym
+            end
+
+
+         when 317
+            if @ch=='O'
+               state=318
+            else
+               return No_Sym
+            end
+
+
+         when 318
+            if @ch=='O'
+               state=319
+            else
+               return No_Sym
+            end
+
+
+         when 319
+            if @ch=='L'
+               state=320
+            else
+               return No_Sym
+            end
+
+
+         when 320
+            return C_SAPMinusSPOOLSym
+         when 321
+            return C_SemicolonSym
+         when 331
+            if @ch=='T'
+               state=332
+            else
+               return No_Sym
+            end
+
+
+         when 332
+            if @ch=='A'
+               state=333
+            else
+               return No_Sym
+            end
+
+
+         when 333
+            if @ch=='B'
+               state=334
+            else
+               return No_Sym
+            end
+
+
+         when 334
+            if @ch=='L'
+               state=335
+            else
+               return No_Sym
+            end
+
+
+         when 335
+            if @ch=='E'
+               state=336
+            else
+               return No_Sym
+            end
+
+
+         when 336
+            return C_PARAMETERMinusTABLESym
+         when 346
+            if @ch=='T'
+               state=347
+            else
+               return No_Sym
+            end
+
+
+         when 347
+            if @ch=='A'
+               state=348
+            else
+               return No_Sym
+            end
+
+
+         when 348
+            if @ch=='B'
+               state=349
+            else
+               return No_Sym
+            end
+
+
+         when 349
+            if @ch=='L'
+               state=350
+            else
+               return No_Sym
+            end
+
+
+         when 350
+            if @ch=='E'
+               state=351
+            else
+               return No_Sym
+            end
+
+
+         when 351
+            return C_EXCEPTIONMinusTABLESym
+         when 358
+            if @ch=='E'
+               state=359
+            else
+               return No_Sym
+            end
+
+
+         when 359
+            if @ch=='T'
+               state=360
+            else
+               return No_Sym
+            end
+
+
+         when 360
+            if @ch=='H'
+               state=361
+            else
+               return No_Sym
+            end
+
+
+         when 361
+            if @ch=='O'
+               state=362
+            else
+               return No_Sym
+            end
+
+
+         when 362
+            if @ch=='D'
+               state=363
+            else
+               return No_Sym
+            end
+
+
+         when 363
+            if @ch=='S'
+               state=364
+            else
+               return No_Sym
+            end
+
+
+         when 364
+            return C_CLASSMinusMETHODSSym
+         when 368
+            if @ch=='C'
+               state=369
+            else
+               return No_Sym
+            end
+
+
+         when 369
+            if @ch=='O'
+               state=370
+            else
+               return No_Sym
+            end
+
+
+         when 370
+            if @ch=='R'
+               state=371
+            else
+               return No_Sym
+            end
+
+
+         when 371
+            if @ch=='R'
+               state=372
+            else
+               return No_Sym
+            end
+
+
+         when 372
+            if @ch=='E'
+               state=373
+            else
+               return No_Sym
+            end
+
+
+         when 373
+            if @ch=='S'
+               state=374
+            else
+               return No_Sym
+            end
+
+
+         when 374
+            if @ch=='P'
+               state=375
+            else
+               return No_Sym
+            end
+
+
+         when 375
+            if @ch=='O'
+               state=376
+            else
+               return No_Sym
+            end
+
+
+         when 376
+            if @ch=='N'
+               state=377
+            else
+               return No_Sym
+            end
+
+
+         when 377
+            if @ch=='D'
+               state=378
+            else
+               return No_Sym
+            end
+
+
+         when 378
+            if @ch=='I'
+               state=379
+            else
+               return No_Sym
+            end
+
+
+         when 379
+            if @ch=='N'
+               state=380
+            else
+               return No_Sym
+            end
+
+
+         when 380
+            if @ch=='G'
+               state=381
+            else
+               return No_Sym
+            end
+
+
+         when 381
+            return C_ADDMinusCORRESPONDINGSym
+         when 382
+            if @ch=='>'
+               state=383
+            else
+               if @ch=='-'
+                  state=1181
+               else
+                  if @ch=='='
+                     state=1186
+                  else
+                     return C_MinusSym
+                  end
+
+               end
+
+            end
+
+
+         when 383
+            return C_MinusGreaterSym
+         when 389
+            if @ch=='P'
+               state=390
+            else
+               return No_Sym
+            end
+
+
+         when 390
+            if @ch=='O'
+               state=391
+            else
+               return No_Sym
+            end
+
+
+         when 391
+            if @ch=='I'
+               state=392
+            else
+               return No_Sym
+            end
+
+
+         when 392
+            if @ch=='N'
+               state=393
+            else
+               return No_Sym
+            end
+
+
+         when 393
+            if @ch=='T'
+               state=394
+            else
+               return No_Sym
+            end
+
+
+         when 394
+            return C_BREAKMinusPOINTSym
+         when 403
+            if @ch=='F'
+               state=404
+            else
+               return No_Sym
+            end
+
+
+         when 404
+            if @ch=='U'
+               state=405
+            else
+               return No_Sym
+            end
+
+
+         when 405
+            if @ch=='N'
+               state=406
+            else
+               return No_Sym
+            end
+
+
+         when 406
+            if @ch=='C'
+               state=407
+            else
+               return No_Sym
+            end
+
+
+         when 407
+            if @ch=='T'
+               state=408
+            else
+               return No_Sym
+            end
+
+
+         when 408
+            if @ch=='I'
+               state=409
+            else
+               return No_Sym
+            end
+
+
+         when 409
+            if @ch=='O'
+               state=410
+            else
+               return No_Sym
+            end
+
+
+         when 410
+            if @ch=='N'
+               state=411
+            else
+               return No_Sym
+            end
+
+
+         when 411
+            return C_CUSTOMERMinusFUNCTIONSym
+         when 417
+            if @ch=='O'
+               state=418
+            else
+               return No_Sym
+            end
+
+
+         when 418
+            if @ch=='N'
+               state=419
+            else
+               return No_Sym
+            end
+
+
+         when 419
+            if @ch=='L'
+               state=420
+            else
+               return No_Sym
+            end
+
+
+         when 420
+            if @ch=='Y'
+               state=421
+            else
+               return No_Sym
+            end
+
+
+         when 421
+            return C_QUEUEMinusONLYSym
+         when 428
+            if @ch=='A'
+               state=429
+            else
+               return No_Sym
+            end
+
+
+         when 429
+            if @ch=='T'
+               state=430
+            else
+               return No_Sym
+            end
+
+
+         when 430
+            if @ch=='A'
+               state=431
+            else
+               return No_Sym
+            end
+
+
+         when 431
+            return C_CLASSMinusDATASym
+         when 438
+            if @ch=='V'
+               state=439
+            else
+               return No_Sym
+            end
+
+
+         when 439
+            if @ch=='E'
+               state=440
+            else
+               return No_Sym
+            end
+
+
+         when 440
+            if @ch=='N'
+               state=441
+            else
+               return No_Sym
+            end
+
+
+         when 441
+            if @ch=='T'
+               state=442
+            else
+               return No_Sym
+            end
+
+
+         when 442
+            if @ch=='S'
+               state=443
+            else
+               return No_Sym
+            end
+
+
+         when 443
+            return C_CLASSMinusEVENTSSym
+         when 450
+            if @ch=='O'
+               state=451
+            else
+               return No_Sym
+            end
+
+
+         when 451
+            if @ch=='O'
+               state=452
+            else
+               return No_Sym
+            end
+
+
+         when 452
+            if @ch=='L'
+               state=453
+            else
+               return No_Sym
+            end
+
+
+         when 453
+            return C_CLASSMinusPOOLSym
+         when 460
+            return C_NOMinusGAPSSym
+         when 467
+            if @ch=='L'
+               state=468
+            else
+               return No_Sym
+            end
+
+
+         when 468
+            if @ch=='E'
+               state=469
+            else
+               return No_Sym
+            end
+
+
+         when 469
+            if @ch=='N'
+               state=470
+            else
+               return No_Sym
+            end
+
+
+         when 470
+            if @ch=='G'
+               state=471
+            else
+               return No_Sym
+            end
+
+
+         when 471
+            if @ch=='T'
+               state=472
+            else
+               return No_Sym
+            end
+
+
+         when 472
+            if @ch=='H'
+               state=473
+            else
+               return No_Sym
+            end
+
+
+         when 473
+            return C_OUTPUTMinusLENGTHSym
+         when 479
+            if @ch=='D'
+               state=480
+            else
+               return No_Sym
+            end
+
+
+         when 480
+            return C_HELPMinusIDSym
+         when 486
+            if @ch=='L'
+               state=487
+            else
+               return No_Sym
+            end
+
+
+         when 487
+            if @ch=='I'
+               state=488
+            else
+               return No_Sym
+            end
+
+
+         when 488
+            if @ch=='N'
+               state=489
+            else
+               return No_Sym
+            end
+
+
+         when 489
+            if @ch=='E'
+               state=490
+            else
+               return No_Sym
+            end
+
+
+         when 490
+            return C_FIRSTMinusLINESym
+         when 495
+            if @ch=='I'
+               state=496
+            else
+               return No_Sym
+            end
+
+
+         when 496
+            if @ch=='N'
+               state=497
+            else
+               return No_Sym
+            end
+
+
+         when 497
+            if @ch=='E'
+               state=498
+            else
+               return No_Sym
+            end
+
+
+         when 498
+            if @ch=='S'
+               state=499
+            else
+               return No_Sym
+            end
+
+
+         when 499
+            return C_TOPMinusLINESSym
+         when 505
+            if @ch=='L'
+               state=506
+            else
+               return No_Sym
+            end
+
+
+         when 506
+            if @ch=='I'
+               state=507
+            else
+               return No_Sym
+            end
+
+
+         when 507
+            if @ch=='N'
+               state=508
+            else
+               return No_Sym
+            end
+
+
+         when 508
+            if @ch=='E'
+               state=509
+            else
+               return No_Sym
+            end
+
+
+         when 509
+            if @ch=='S'
+               state=510
+            else
+               return No_Sym
+            end
+
+
+         when 510
+            return C_TITLEMinusLINESSym
+         when 515
+            if @ch=='L'
+               state=516
+            else
+               return No_Sym
+            end
+
+
+         when 516
+            if @ch=='I'
+               state=517
+            else
+               return No_Sym
+            end
+
+
+         when 517
+            if @ch=='N'
+               state=518
+            else
+               return No_Sym
+            end
+
+
+         when 518
+            if @ch=='E'
+               state=519
+            else
+               return No_Sym
+            end
+
+
+         when 519
+            if @ch=='S'
+               state=520
+            else
+               return No_Sym
+            end
+
+
+         when 520
+            return C_HEADMinusLINESSym
+         when 525
+            if @ch=='I'
+               state=526
+            else
+               return No_Sym
+            end
+
+
+         when 526
+            if @ch=='N'
+               state=527
+            else
+               return No_Sym
+            end
+
+
+         when 527
+            if @ch=='E'
+               state=528
+            else
+               return No_Sym
+            end
+
+
+         when 528
+            if @ch=='S'
+               state=529
+            else
+               return No_Sym
+            end
+
+
+         when 529
+            return C_ENDMinusLINESSym
+         when 536
+            if @ch=='C'
+               state=537
+            else
+               return No_Sym
+            end
+
+
+         when 537
+            if @ch=='O'
+               state=538
+            else
+               return No_Sym
+            end
+
+
+         when 538
+            if @ch=='R'
+               state=539
+            else
+               return No_Sym
+            end
+
+
+         when 539
+            if @ch=='R'
+               state=540
+            else
+               return No_Sym
+            end
+
+
+         when 540
+            if @ch=='E'
+               state=541
+            else
+               return No_Sym
+            end
+
+
+         when 541
+            if @ch=='S'
+               state=542
+            else
+               return No_Sym
+            end
+
+
+         when 542
+            if @ch=='P'
+               state=543
+            else
+               return No_Sym
+            end
+
+
+         when 543
+            if @ch=='O'
+               state=544
+            else
+               return No_Sym
+            end
+
+
+         when 544
+            if @ch=='N'
+               state=545
+            else
+               return No_Sym
+            end
+
+
+         when 545
+            if @ch=='D'
+               state=546
+            else
+               return No_Sym
+            end
+
+
+         when 546
+            if @ch=='I'
+               state=547
+            else
+               return No_Sym
+            end
+
+
+         when 547
+            if @ch=='N'
+               state=548
+            else
+               return No_Sym
+            end
+
+
+         when 548
+            if @ch=='G'
+               state=549
+            else
+               return No_Sym
+            end
+
+
+         when 549
+            return C_DIVIDEMinusCORRESPONDINGSym
+         when 556
+            if @ch=='C'
+               state=557
+            else
+               return No_Sym
+            end
+
+
+         when 557
+            if @ch=='A'
+               state=558
+            else
+               return No_Sym
+            end
+
+
+         when 558
+            if @ch=='L'
+               state=559
+            else
+               return No_Sym
+            end
+
+
+         when 559
+            if @ch=='L'
+               state=560
+            else
+               return No_Sym
+            end
+
+
+         when 560
+            return C_EDITORMinusCALLSym
+         when 568
+            if @ch=='M'
+               state=569
+            else
+               return No_Sym
+            end
+
+
+         when 569
+            if @ch=='O'
+               state=570
+            else
+               return No_Sym
+            end
+
+
+         when 570
+            if @ch=='D'
+               state=571
+            else
+               return No_Sym
+            end
+
+
+         when 571
+            if @ch=='E'
+               state=572
+            else
+               return No_Sym
+            end
+
+
+         when 572
+            return C_DISPLAYMinusMODESym
+         when 580
+            if @ch=='A'
+               state=581
+            else
+               return No_Sym
+            end
+
+
+         when 581
+            if @ch=='G'
+               state=582
+            else
+               return No_Sym
+            end
+
+
+         when 582
+            if @ch=='E'
+               state=583
+            else
+               return No_Sym
+            end
+
+
+         when 583
+            return C_ENDMinusOFMinusPAGESym
+         when 591
+            if @ch=='E'
+               state=592
+            else
+               return No_Sym
+            end
+
+
+         when 592
+            if @ch=='L'
+               state=593
+            else
+               return No_Sym
+            end
+
+
+         when 593
+            if @ch=='E'
+               state=594
+            else
+               return No_Sym
+            end
+
+
+         when 594
+            if @ch=='C'
+               state=595
+            else
+               return No_Sym
+            end
+
+
+         when 595
+            if @ch=='T'
+               state=596
+            else
+               return No_Sym
+            end
+
+
+         when 596
+            if @ch=='I'
+               state=597
+            else
+               return No_Sym
+            end
+
+
+         when 597
+            if @ch=='O'
+               state=598
+            else
+               return No_Sym
+            end
+
+
+         when 598
+            if @ch=='N'
+               state=599
+            else
+               return No_Sym
+            end
+
+
+         when 599
+            return C_ENDMinusOFMinusSELECTIONSym
+         when 604
+            if @ch=='L'
+               state=605
+            else
+               return No_Sym
+            end
+
+
+         when 605
+            if @ch=='O'
+               state=606
+            else
+               return No_Sym
+            end
+
+
+         when 606
+            if @ch=='O'
+               state=607
+            else
+               return No_Sym
+            end
+
+
+         when 607
+            if @ch=='P'
+               state=608
+            else
+               return No_Sym
+            end
+
+
+         when 608
+            return C_STEPMinusLOOPSym
+         when 615
+            if @ch=='R'
+               state=616
+            else
+               return No_Sym
+            end
+
+
+         when 616
+            if @ch=='O'
+               state=617
+            else
+               return No_Sym
+            end
+
+
+         when 617
+            if @ch=='U'
+               state=618
+            else
+               return No_Sym
+            end
+
+
+         when 618
+            if @ch=='P'
+               state=619
+            else
+               return No_Sym
+            end
+
+
+         when 619
+            if @ch=='S'
+               state=620
+            else
+               return No_Sym
+            end
+
+
+         when 620
+            return C_FIELDMinusGROUPSSym
+         when 627
+            if @ch=='Y'
+               state=628
+            else
+               return No_Sym
+            end
+
+
+         when 628
+            if @ch=='M'
+               state=629
+            else
+               return No_Sym
+            end
+
+
+         when 629
+            if @ch=='B'
+               state=630
+            else
+               return No_Sym
+            end
+
+
+         when 630
+            if @ch=='O'
+               state=631
+            else
+               return No_Sym
+            end
+
+
+         when 631
+            if @ch=='L'
+               state=632
+            else
+               return No_Sym
+            end
+
+
+         when 632
+            if @ch=='S'
+               state=633
+            else
+               return No_Sym
+            end
+
+
+         when 633
+            return C_FIELDMinusSYMBOLSSym
+         when 642
+            if @ch=='P'
+               state=643
+            else
+               return No_Sym
+            end
+
+
+         when 643
+            if @ch=='O'
+               state=644
+            else
+               return No_Sym
+            end
+
+
+         when 644
+            if @ch=='O'
+               state=645
+            else
+               return No_Sym
+            end
+
+
+         when 645
+            if @ch=='L'
+               state=646
+            else
+               return No_Sym
+            end
+
+
+         when 646
+            return C_FUNCTIONMinusPOOLSym
+         when 656
+            if @ch=='I'
+               state=657
+            else
+               return No_Sym
+            end
+
+
+         when 657
+            if @ch=='D'
+               state=658
+            else
+               return No_Sym
+            end
+
+
+         when 658
+            return C_SHORTDUMPMinusIDSym
+         when 665
+            if @ch=='T'
+               state=666
+            else
+               return No_Sym
+            end
+
+
+         when 666
+            if @ch=='A'
+               state=667
+            else
+               return No_Sym
+            end
+
+
+         when 667
+            if @ch=='B'
+               state=668
+            else
+               return No_Sym
+            end
+
+
+         when 668
+            if @ch=='L'
+               state=669
+            else
+               return No_Sym
+            end
+
+
+         when 669
+            if @ch=='E'
+               state=670
+            else
+               return No_Sym
+            end
+
+
+         when 670
+            return C_FILTERMinusTABLESym
+         when 673
+            if @ch=='S'
+               state=674
+            else
+               return No_Sym
+            end
+
+
+         when 674
+            if @ch=='T'
+               state=675
+            else
+               return No_Sym
+            end
+
+
+         when 675
+            if @ch=='A'
+               state=676
+            else
+               return No_Sym
+            end
+
+
+         when 676
+            if @ch=='T'
+               state=677
+            else
+               return No_Sym
+            end
+
+
+         when 677
+            if @ch=='U'
+               state=678
+            else
+               return No_Sym
+            end
+
+
+         when 678
+            if @ch=='S'
+               state=679
+            else
+               return No_Sym
+            end
+
+
+         when 679
+            return C_PFMinusSTATUSSym
+         when 685
+            if @ch=='I'
+               state=686
+            else
+               return No_Sym
+            end
+
+
+         when 686
+            if @ch=='D'
+               state=687
+            else
+               return No_Sym
+            end
+
+
+         when 687
+            return C_MAJORMinusIDSym
+         when 693
+            if @ch=='I'
+               state=694
+            else
+               return No_Sym
+            end
+
+
+         when 694
+            if @ch=='D'
+               state=695
+            else
+               return No_Sym
+            end
+
+
+         when 695
+            return C_MINORMinusIDSym
+         when 700
+            if @ch=='T'
+               state=701
+            else
+               return No_Sym
+            end
+
+
+         when 701
+            if @ch=='O'
+               state=702
+            else
+               return No_Sym
+            end
+
+
+         when 702
+            if @ch=='-'
+               state=703
+            else
+               return No_Sym
+            end
+
+
+         when 703
+            if @ch=='H'
+               state=704
+            else
+               return No_Sym
+            end
+
+
+         when 704
+            if @ch=='E'
+               state=705
+            else
+               return No_Sym
+            end
+
+
+         when 705
+            if @ch=='X'
+               state=706
+            else
+               return No_Sym
+            end
+
+
+         when 706
+            return C_CHARMinusTOMinusHEXSym
+         when 712
+            if @ch=='P'
+               state=713
+            else
+               return No_Sym
+            end
+
+
+         when 713
+            if @ch=='O'
+               state=714
+            else
+               return No_Sym
+            end
+
+
+         when 714
+            if @ch=='I'
+               state=715
+            else
+               return No_Sym
+            end
+
+
+         when 715
+            if @ch=='N'
+               state=716
+            else
+               return No_Sym
+            end
+
+
+         when 716
+            if @ch=='T'
+               state=717
+            else
+               return No_Sym
+            end
+
+
+         when 717
+            return C_FIXEDMinusPOINTSym
+         when 727
+            if @ch=='P'
+               state=728
+            else
+               return No_Sym
+            end
+
+
+         when 728
+            if @ch=='O'
+               state=729
+            else
+               return No_Sym
+            end
+
+
+         when 729
+            if @ch=='O'
+               state=730
+            else
+               return No_Sym
+            end
+
+
+         when 730
+            if @ch=='L'
+               state=731
+            else
+               return No_Sym
+            end
+
+
+         when 731
+            return C_INTERFACEMinusPOOLSym
+         when 736
+            if @ch=='P'
+               state=737
+            else
+               return No_Sym
+            end
+
+
+         when 737
+            if @ch=='R'
+               state=738
+            else
+               return No_Sym
+            end
+
+
+         when 738
+            if @ch=='O'
+               state=739
+            else
+               return No_Sym
+            end
+
+
+         when 739
+            if @ch=='C'
+               state=740
+            else
+               return No_Sym
+            end
+
+
+         when 740
+            if @ch=='E'
+               state=741
+            else
+               return No_Sym
+            end
+
+
+         when 741
+            if @ch=='S'
+               state=742
+            else
+               return No_Sym
+            end
+
+
+         when 742
+            if @ch=='S'
+               state=743
+            else
+               return No_Sym
+            end
+
+
+         when 743
+            if @ch=='I'
+               state=744
+            else
+               return No_Sym
+            end
+
+
+         when 744
+            if @ch=='N'
+               state=745
+            else
+               return No_Sym
+            end
+
+
+         when 745
+            if @ch=='G'
+               state=746
+            else
+               return No_Sym
+            end
+
+
+         when 746
+            return C_LISTMinusPROCESSINGSym
+         when 751
+            if @ch=='O'
+               state=752
+            else
+               return No_Sym
+            end
+
+
+         when 752
+            if @ch=='F'
+               state=753
+            else
+               return No_Sym
+            end
+
+
+         when 753
+            if @ch=='-'
+               state=754
+            else
+               return No_Sym
+            end
+
+
+         when 754
+            if @ch=='P'
+               state=755
+            else
+               return No_Sym
+            end
+
+
+         when 755
+            if @ch=='R'
+               state=756
+            else
+               return No_Sym
+            end
+
+
+         when 756
+            if @ch=='O'
+               state=757
+            else
+               return No_Sym
+            end
+
+
+         when 757
+            if @ch=='G'
+               state=758
+            else
+               return No_Sym
+            end
+
+
+         when 758
+            if @ch=='R'
+               state=759
+            else
+               return No_Sym
+            end
+
+
+         when 759
+            if @ch=='A'
+               state=760
+            else
+               return No_Sym
+            end
+
+
+         when 760
+            if @ch=='M'
+               state=761
+            else
+               return No_Sym
+            end
+
+
+         when 761
+            return C_LOADMinusOFMinusPROGRAMSym
+         when 765
+            if @ch=='P'
+               state=766
+            else
+               return No_Sym
+            end
+
+
+         when 766
+            if @ch=='O'
+               state=767
+            else
+               return No_Sym
+            end
+
+
+         when 767
+            if @ch=='I'
+               state=768
+            else
+               return No_Sym
+            end
+
+
+         when 768
+            if @ch=='N'
+               state=769
+            else
+               return No_Sym
+            end
+
+
+         when 769
+            if @ch=='T'
+               state=770
+            else
+               return No_Sym
+            end
+
+
+         when 770
+            return C_LOGMinusPOINTSym
+         when 779
+            if @ch=='C'
+               state=780
+            else
+               return No_Sym
+            end
+
+
+         when 780
+            if @ch=='O'
+               state=781
+            else
+               return No_Sym
+            end
+
+
+         when 781
+            if @ch=='R'
+               state=782
+            else
+               return No_Sym
+            end
+
+
+         when 782
+            if @ch=='R'
+               state=783
+            else
+               return No_Sym
+            end
+
+
+         when 783
+            if @ch=='E'
+               state=784
+            else
+               return No_Sym
+            end
+
+
+         when 784
+            if @ch=='S'
+               state=785
+            else
+               return No_Sym
+            end
+
+
+         when 785
+            if @ch=='P'
+               state=786
+            else
+               return No_Sym
+            end
+
+
+         when 786
+            if @ch=='O'
+               state=787
+            else
+               return No_Sym
+            end
+
+
+         when 787
+            if @ch=='N'
+               state=788
+            else
+               return No_Sym
+            end
+
+
+         when 788
+            if @ch=='D'
+               state=789
+            else
+               return No_Sym
+            end
+
+
+         when 789
+            if @ch=='I'
+               state=790
+            else
+               return No_Sym
+            end
+
+
+         when 790
+            if @ch=='N'
+               state=791
+            else
+               return No_Sym
+            end
+
+
+         when 791
+            if @ch=='G'
+               state=792
+            else
+               return No_Sym
+            end
+
+
+         when 792
+            return C_MULTIPLYMinusCORRESPONDINGSym
+         when 797
+            if @ch=='I'
+               state=798
+            else
+               return No_Sym
+            end
+
+
+         when 798
+            if @ch=='N'
+               state=799
+            else
+               return No_Sym
+            end
+
+
+         when 799
+            if @ch=='E'
+               state=800
+            else
+               return No_Sym
+            end
+
+
+         when 800
+            return C_NEWMinusLINESym
+         when 805
+            if @ch=='R'
+               state=806
+            else
+               return No_Sym
+            end
+
+
+         when 806
+            if @ch=='O'
+               state=807
+            else
+               return No_Sym
+            end
+
+
+         when 807
+            if @ch=='L'
+               state=808
+            else
+               return No_Sym
+            end
+
+
+         when 808
+            if @ch=='L'
+               state=809
+            else
+               return No_Sym
+            end
+
+
+         when 809
+            if @ch=='I'
+               state=810
+            else
+               return No_Sym
+            end
+
+
+         when 810
+            if @ch=='N'
+               state=811
+            else
+               return No_Sym
+            end
+
+
+         when 811
+            if @ch=='G'
+               state=812
+            else
+               return No_Sym
+            end
+
+
+         when 812
+            return C_NOMinusSCROLLINGSym
+         when 817
+            if @ch=='A'
+               state=818
+            else
+               return No_Sym
+            end
+
+
+         when 818
+            if @ch=='G'
+               state=819
+            else
+               return No_Sym
+            end
+
+
+         when 819
+            if @ch=='E'
+               state=820
+            else
+               return No_Sym
+            end
+
+
+         when 820
+            return C_NEWMinusPAGESym
+         when 826
+            if @ch=='I'
+               state=827
+            else
+               return No_Sym
+            end
+
+
+         when 827
+            if @ch=='T'
+               state=828
+            else
+               return No_Sym
+            end
+
+
+         when 828
+            if @ch=='L'
+               state=829
+            else
+               return No_Sym
+            end
+
+
+         when 829
+            if @ch=='E'
+               state=830
+            else
+               return No_Sym
+            end
+
+
+         when 830
+            return C_WITHMinusTITLESym
+         when 835
+            if @ch=='T'
+               state=836
+            else
+               return No_Sym
+            end
+
+
+         when 836
+            if @ch=='L'
+               state=837
+            else
+               return No_Sym
+            end
+
+
+         when 837
+            if @ch=='E'
+               state=838
+            else
+               return No_Sym
+            end
+
+
+         when 838
+            return C_NOMinusTITLESym
+         when 844
+            if @ch=='E'
+               state=845
+            else
+               return No_Sym
+            end
+
+
+         when 845
+            if @ch=='A'
+               state=846
+            else
+               return No_Sym
+            end
+
+
+         when 846
+            if @ch=='D'
+               state=847
+            else
+               return No_Sym
+            end
+
+
+         when 847
+            if @ch=='I'
+               state=848
+            else
+               return No_Sym
+            end
+
+
+         when 848
+            if @ch=='N'
+               state=849
+            else
+               return No_Sym
+            end
+
+
+         when 849
+            if @ch=='G'
+               state=850
+            else
+               return No_Sym
+            end
+
+
+         when 850
+            return C_WITHMinusHEADINGSym
+         when 854
+            if @ch=='E'
+               state=855
+            else
+               return No_Sym
+            end
+
+
+         when 855
+            if @ch=='A'
+               state=856
+            else
+               return No_Sym
+            end
+
+
+         when 856
+            if @ch=='D'
+               state=857
+            else
+               return No_Sym
+            end
+
+
+         when 857
+            if @ch=='I'
+               state=858
+            else
+               return No_Sym
+            end
+
+
+         when 858
+            if @ch=='N'
+               state=859
+            else
+               return No_Sym
+            end
+
+
+         when 859
+            if @ch=='G'
+               state=860
+            else
+               return No_Sym
+            end
+
+
+         when 860
+            return C_NOMinusHEADINGSym
+         when 865
+            if @ch=='P'
+               state=866
+            else
+               return No_Sym
+            end
+
+
+         when 866
+            if @ch=='O'
+               state=867
+            else
+               return No_Sym
+            end
+
+
+         when 867
+            if @ch=='F'
+               state=868
+            else
+               return No_Sym
+            end
+
+
+         when 868
+            if @ch=='P'
+               state=869
+            else
+               return No_Sym
+            end
+
+
+         when 869
+            if @ch=='A'
+               state=870
+            else
+               return No_Sym
+            end
+
+
+         when 870
+            if @ch=='G'
+               state=871
+            else
+               return No_Sym
+            end
+
+
+         when 871
+            if @ch=='E'
+               state=872
+            else
+               return No_Sym
+            end
+
+
+         when 872
+            return C_NOMinusTOPOFPAGESym
+         when 877
+            if @ch=='E'
+               state=878
+            else
+               return No_Sym
+            end
+
+
+         when 878
+            if @ch=='C'
+               state=879
+            else
+               return No_Sym
+            end
+
+
+         when 879
+            if @ch=='T'
+               state=880
+            else
+               return No_Sym
+            end
+
+
+         when 880
+            if @ch=='I'
+               state=881
+            else
+               return No_Sym
+            end
+
+
+         when 881
+            if @ch=='O'
+               state=882
+            else
+               return No_Sym
+            end
+
+
+         when 882
+            if @ch=='N'
+               state=883
+            else
+               return No_Sym
+            end
+
+
+         when 883
+            return C_NEWMinusSECTIONSym
+         when 887
+            if @ch=='I'
+               state=888
+            else
+               return No_Sym
+            end
+
+
+         when 888
+            if @ch=='S'
+               state=889
+            else
+               return No_Sym
+            end
+
+
+         when 889
+            if @ch=='P'
+               state=890
+            else
+               return No_Sym
+            end
+
+
+         when 890
+            if @ch=='L'
+               state=891
+            else
+               return No_Sym
+            end
+
+
+         when 891
+            if @ch=='A'
+               state=892
+            else
+               return No_Sym
+            end
+
+
+         when 892
+            if @ch=='Y'
+               state=893
+            else
+               return No_Sym
+            end
+
+
+         when 893
+            return C_NOMinusDISPLAYSym
+         when 898
+            if @ch=='C'
+               state=899
+            else
+               return No_Sym
+            end
+
+
+         when 899
+            if @ch=='O'
+               state=900
+            else
+               return No_Sym
+            end
+
+
+         when 900
+            if @ch=='M'
+               state=901
+            else
+               return No_Sym
+            end
+
+
+         when 901
+            if @ch=='M'
+               state=902
+            else
+               return No_Sym
+            end
+
+
+         when 902
+            if @ch=='A'
+               state=903
+            else
+               return No_Sym
+            end
+
+
+         when 903
+            if @ch=='N'
+               state=904
+            else
+               return No_Sym
+            end
+
+
+         when 904
+            if @ch=='D'
+               state=905
+            else
+               return No_Sym
+            end
+
+
+         when 905
+            return C_USERMinusCOMMANDSym
+         when 911
+            if @ch=='E'
+               state=912
+            else
+               return No_Sym
+            end
+
+
+         when 912
+            if @ch=='Q'
+               state=913
+            else
+               return No_Sym
+            end
+
+
+         when 913
+            if @ch=='U'
+               state=914
+            else
+               return No_Sym
+            end
+
+
+         when 914
+            if @ch=='E'
+               state=915
+            else
+               return No_Sym
+            end
+
+
+         when 915
+            if @ch=='S'
+               state=916
+            else
+               return No_Sym
+            end
+
+
+         when 916
+            if @ch=='T'
+               state=917
+            else
+               return No_Sym
+            end
+
+
+         when 917
+            return C_HELPMinusREQUESTSym
+         when 923
+            if @ch=='R'
+               state=924
+            else
+               return No_Sym
+            end
+
+
+         when 924
+            if @ch=='E'
+               state=925
+            else
+               return No_Sym
+            end
+
+
+         when 925
+            if @ch=='Q'
+               state=926
+            else
+               return No_Sym
+            end
+
+
+         when 926
+            if @ch=='U'
+               state=927
+            else
+               return No_Sym
+            end
+
+
+         when 927
+            if @ch=='E'
+               state=928
+            else
+               return No_Sym
+            end
+
+
+         when 928
+            if @ch=='S'
+               state=929
+            else
+               return No_Sym
+            end
+
+
+         when 929
+            if @ch=='T'
+               state=930
+            else
+               return No_Sym
+            end
+
+
+         when 930
+            return C_VALUEMinusREQUESTSym
+         when 936
+            if @ch=='C'
+               state=937
+            else
+               return No_Sym
+            end
+
+
+         when 937
+            if @ch=='O'
+               state=938
+            else
+               return No_Sym
+            end
+
+
+         when 938
+            if @ch=='N'
+               state=939
+            else
+               return No_Sym
+            end
+
+
+         when 939
+            if @ch=='T'
+               state=940
+            else
+               return No_Sym
+            end
+
+
+         when 940
+            if @ch=='R'
+               state=941
+            else
+               return No_Sym
+            end
+
+
+         when 941
+            if @ch=='O'
+               state=942
+            else
+               return No_Sym
+            end
+
+
+         when 942
+            if @ch=='L'
+               state=943
+            else
+               return No_Sym
+            end
+
+
+         when 943
+            return C_PRINTMinusCONTROLSym
+         when 949
+            if @ch=='L'
+               state=950
+            else
+               return No_Sym
+            end
+
+
+         when 950
+            if @ch=='I'
+               state=951
+            else
+               return No_Sym
+            end
+
+
+         when 951
+            if @ch=='N'
+               state=952
+            else
+               return No_Sym
+            end
+
+
+         when 952
+            if @ch=='E'
+               state=953
+            else
+               return No_Sym
+            end
+
+
+         when 953
+            return C_INDEXMinusLINESym
+         when 960
+            if @ch=='O'
+               state=961
+            else
+               return No_Sym
+            end
+
+
+         when 961
+            if @ch=='P'
+               state=962
+            else
+               return No_Sym
+            end
+
+
+         when 962
+            if @ch=='T'
+               state=963
+            else
+               return No_Sym
+            end
+
+
+         when 963
+            if @ch=='I'
+               state=964
+            else
+               return No_Sym
+            end
+
+
+         when 964
+            if @ch=='O'
+               state=965
+            else
+               return No_Sym
+            end
+
+
+         when 965
+            if @ch=='N'
+               state=966
+            else
+               return No_Sym
+            end
+
+
+         when 966
+            if @ch=='S'
+               state=967
+            else
+               return No_Sym
+            end
+
+
+         when 967
+            return C_SELECTMinusOPTIONSSym
+         when 971
+            if @ch=='X'
+               state=972
+            else
+               return No_Sym
+            end
+
+
+         when 972
+            if @ch=='T'
+               state=973
+            else
+               return No_Sym
+            end
+
+
+         when 973
+            if @ch=='E'
+               state=974
+            else
+               return No_Sym
+            end
+
+
+         when 974
+            if @ch=='N'
+               state=975
+            else
+               return No_Sym
+            end
+
+
+         when 975
+            if @ch=='S'
+               state=976
+            else
+               return No_Sym
+            end
+
+
+         when 976
+            if @ch=='I'
+               state=977
+            else
+               return No_Sym
+            end
+
+
+         when 977
+            if @ch=='O'
+               state=978
+            else
+               return No_Sym
+            end
+
+
+         when 978
+            if @ch=='N'
+               state=979
+            else
+               return No_Sym
+            end
+
+
+         when 979
+            return C_NOMinusEXTENSIONSym
+         when 986
+            if @ch=='B'
+               state=987
+            else
+               return No_Sym
+            end
+
+
+         when 987
+            if @ch=='O'
+               state=988
+            else
+               return No_Sym
+            end
+
+
+         when 988
+            if @ch=='U'
+               state=989
+            else
+               return No_Sym
+            end
+
+
+         when 989
+            if @ch=='N'
+               state=990
+            else
+               return No_Sym
+            end
+
+
+         when 990
+            if @ch=='D'
+               state=991
+            else
+               return No_Sym
+            end
+
+
+         when 991
+            if @ch=='A'
+               state=992
+            else
+               return No_Sym
+            end
+
+
+         when 992
+            if @ch=='R'
+               state=993
+            else
+               return No_Sym
+            end
+
+
+         when 993
+            if @ch=='Y'
+               state=994
+            else
+               return No_Sym
+            end
+
+
+         when 994
+            return C_SCROLLMinusBOUNDARYSym
+         when 1003
+            if @ch=='C'
+               state=1004
+            else
+               return No_Sym
+            end
+
+
+         when 1004
+            if @ch=='O'
+               state=1005
+            else
+               return No_Sym
+            end
+
+
+         when 1005
+            if @ch=='R'
+               state=1006
+            else
+               return No_Sym
+            end
+
+
+         when 1006
+            if @ch=='R'
+               state=1007
+            else
+               return No_Sym
+            end
+
+
+         when 1007
+            if @ch=='E'
+               state=1008
+            else
+               return No_Sym
+            end
+
+
+         when 1008
+            if @ch=='S'
+               state=1009
+            else
+               return No_Sym
+            end
+
+
+         when 1009
+            if @ch=='P'
+               state=1010
+            else
+               return No_Sym
+            end
+
+
+         when 1010
+            if @ch=='O'
+               state=1011
+            else
+               return No_Sym
+            end
+
+
+         when 1011
+            if @ch=='N'
+               state=1012
+            else
+               return No_Sym
+            end
+
+
+         when 1012
+            if @ch=='D'
+               state=1013
+            else
+               return No_Sym
+            end
+
+
+         when 1013
+            if @ch=='I'
+               state=1014
+            else
+               return No_Sym
+            end
+
+
+         when 1014
+            if @ch=='N'
+               state=1015
+            else
+               return No_Sym
+            end
+
+
+         when 1015
+            if @ch=='G'
+               state=1016
+            else
+               return No_Sym
+            end
+
+
+         when 1016
+            return C_SUBTRACTMinusCORRESPONDINGSym
+         when 1023
+            if @ch=='C'
+               state=1024
+            else
+               return No_Sym
+            end
+
+
+         when 1024
+            if @ch=='H'
+               state=1025
+            else
+               return No_Sym
+            end
+
+
+         when 1025
+            if @ch=='E'
+               state=1026
+            else
+               return No_Sym
+            end
+
+
+         when 1026
+            if @ch=='C'
+               state=1027
+            else
+               return No_Sym
+            end
+
+
+         when 1027
+            if @ch=='K'
+               state=1028
+            else
+               return No_Sym
+            end
+
+
+         when 1028
+            return C_SYNTAXMinusCHECKSym
+         when 1034
+            if @ch=='N'
+               state=1035
+            else
+               return No_Sym
+            end
+
+
+         when 1035
+            if @ch=='J'
+               state=1036
+            else
+               return No_Sym
+            end
+
+
+         when 1036
+            if @ch=='E'
+               state=1037
+            else
+               return No_Sym
+            end
+
+
+         when 1037
+            if @ch=='C'
+               state=1038
+            else
+               return No_Sym
+            end
+
+
+         when 1038
+            if @ch=='T'
+               state=1039
+            else
+               return No_Sym
+            end
+
+
+         when 1039
+            if @ch=='I'
+               state=1040
+            else
+               return No_Sym
+            end
+
+
+         when 1040
+            if @ch=='O'
+               state=1041
+            else
+               return No_Sym
+            end
+
+
+         when 1041
+            if @ch=='N'
+               state=1042
+            else
+               return No_Sym
+            end
+
+
+         when 1042
+            return C_TESTMinusINJECTIONSym
+         when 1052
+            if @ch=='N'
+               state=1053
+            else
+               return No_Sym
+            end
+
+
+         when 1053
+            if @ch=='J'
+               state=1054
+            else
+               return No_Sym
+            end
+
+
+         when 1054
+            if @ch=='E'
+               state=1055
+            else
+               return No_Sym
+            end
+
+
+         when 1055
+            if @ch=='C'
+               state=1056
+            else
+               return No_Sym
+            end
+
+
+         when 1056
+            if @ch=='T'
+               state=1057
+            else
+               return No_Sym
+            end
+
+
+         when 1057
+            if @ch=='I'
+               state=1058
+            else
+               return No_Sym
+            end
+
+
+         when 1058
+            if @ch=='O'
+               state=1059
+            else
+               return No_Sym
+            end
+
+
+         when 1059
+            if @ch=='N'
+               state=1060
+            else
+               return No_Sym
+            end
+
+
+         when 1060
+            return C_ENDMinusTESTMinusINJECTIONSym
+         when 1066
+            if @ch=='E'
+               state=1067
+            else
+               return No_Sym
+            end
+
+
+         when 1067
+            if @ch=='A'
+               state=1068
+            else
+               return No_Sym
+            end
+
+
+         when 1068
+            if @ch=='M'
+               state=1069
+            else
+               return No_Sym
+            end
+
+
+         when 1069
+            return C_TESTMinusSEAMSym
+         when 1079
+            if @ch=='E'
+               state=1080
+            else
+               return No_Sym
+            end
+
+
+         when 1080
+            if @ch=='A'
+               state=1081
+            else
+               return No_Sym
+            end
+
+
+         when 1081
+            if @ch=='M'
+               state=1082
+            else
+               return No_Sym
+            end
+
+
+         when 1082
+            return C_ENDMinusTESTMinusSEAMSym
+         when 1087
+            if @ch=='F'
+               state=1088
+            else
+               return No_Sym
+            end
+
+
+         when 1088
+            if @ch=='-'
+               state=1089
+            else
+               return No_Sym
+            end
+
+
+         when 1089
+            if @ch=='P'
+               state=1090
+            else
+               return No_Sym
+            end
+
+
+         when 1090
+            if @ch=='A'
+               state=1091
+            else
+               return No_Sym
+            end
+
+
+         when 1091
+            if @ch=='G'
+               state=1092
+            else
+               return No_Sym
+            end
+
+
+         when 1092
+            if @ch=='E'
+               state=1093
+            else
+               return No_Sym
+            end
+
+
+         when 1093
+            return C_TOPMinusOFMinusPAGESym
+         when 1100
+            if @ch=='L'
+               state=1101
+            else
+               return No_Sym
+            end
+
+
+         when 1101
+            if @ch=='E'
+               state=1102
+            else
+               return No_Sym
+            end
+
+
+         when 1102
+            if @ch=='C'
+               state=1103
+            else
+               return No_Sym
+            end
+
+
+         when 1103
+            if @ch=='T'
+               state=1104
+            else
+               return No_Sym
+            end
+
+
+         when 1104
+            if @ch=='I'
+               state=1105
+            else
+               return No_Sym
+            end
+
+
+         when 1105
+            if @ch=='O'
+               state=1106
+            else
+               return No_Sym
+            end
+
+
+         when 1106
+            if @ch=='N'
+               state=1107
+            else
+               return No_Sym
+            end
+
+
+         when 1107
+            return C_LINEMinusSELECTIONSym
+         when 1126
+            return C_TYPEMinusPOOLSSym
+         when 1127
+            if @ch=='|'
+               state=1128
+            else
+               if @ch=='='
+                  state=1189
+               else
+                  return C_BarSym
+               end
+
+            end
+
+
+         when 1128
+            return C_BarBarSym
+         when 1129
+            if @ch=='&'
+               state=1130
+            else
+               if @ch=='='
+                  state=1187
+               else
+                  return C_AndSym
+               end
+
+            end
+
+
+         when 1130
+            return C_AndAndSym
+         when 1131
             if @ch=='='
-               state=111
+               state=1188
+            else
+               return C_UparrowSym
+            end
+
+
+         when 1132
+            return C_LessGreaterSym
+         when 1133
+            return C_LessEqualSym
+         when 1134
+            return C_GreaterEqualSym
+         when 1141
+            return C_BYTEMinusCOSym
+         when 1148
+            return C_BYTEMinusCNSym
+         when 1155
+            return C_BYTEMinusCASym
+         when 1162
+            return C_BYTEMinusNASym
+         when 1169
+            return C_BYTEMinusCSSym
+         when 1176
+            return C_BYTEMinusNSSym
+         when 1177
+            if @ch=='='
+               state=1190
             else
                return C_LessLessSym
             end
 
 
-         when 99
+         when 1178
             if @ch=='='
-               state=112
+               state=1191
             else
                return C_GreaterGreaterSym
             end
 
 
-         when 100
+         when 1179
             if @ch=='='
-               state=105
+               state=1184
             else
                return C_PercentSym
             end
 
 
-         when 101
+         when 1180
             return C_PlusPlusSym
-         when 102
+         when 1181
             return C_MinusMinusSym
-         when 103
+         when 1182
             return C_StarEqualSym
-         when 104
+         when 1183
             return C_SlashEqualSym
-         when 105
+         when 1184
             return C_PercentEqualSym
-         when 106
+         when 1185
             return C_PlusEqualSym
-         when 107
+         when 1186
             return C_MinusEqualSym
-         when 108
+         when 1187
             return C_AndEqualSym
-         when 109
+         when 1188
             return C_UparrowEqualSym
-         when 110
+         when 1189
             return C_BarEqualSym
-         when 111
+         when 1190
             return C_LessLessEqualSym
-         when 112
+         when 1191
             return C_GreaterGreaterEqualSym
-         when 113
-            if @ch=='-'||@ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='C'||@ch>='E'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+         when 1192
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='D'||@ch>='F'&&@ch<='H'||@ch>='J'&&@ch<='N'||@ch>='P'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='I'
+                  state=1212
+               else
+                  if @ch=='E'
+                     state=1213
+                  else
+                     if @ch=='O'
+                        state=1214
+                     else
+                        return CheckLiteral(C_identifierSym)
+                     end
+
+                  end
+
+               end
+
+            end
+
+
+         when 1193
+            if @ch>='0'&&@ch<='9'||@ch>='B'&&@ch<='D'||@ch>='F'&&@ch<='H'||@ch>='J'&&@ch<='L'||@ch=='N'||@ch>='P'&&@ch<='T'||@ch>='V'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='E'
+                  state=1215
+               else
+                  if @ch=='O'
+                     state=1216
+                  else
+                     if @ch=='M'
+                        state=1217
+                     else
+                        if @ch=='A'
+                           state=1218
+                        else
+                           if @ch=='I'
+                              state=1219
+                           else
+                              if @ch=='U'
+                                 state=1220
+                              else
+                                 return CheckLiteral(C_identifierSym)
+                              end
+
+                           end
+
+                        end
+
+                     end
+
+                  end
+
+               end
+
+            end
+
+
+         when 1194
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='D'||@ch>='F'&&@ch<='N'||@ch>='P'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='O'
+                  state=1221
+               else
+                  if @ch=='E'
+                     state=1222
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+            end
+
+
+         when 1195
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='D'||@ch>='F'&&@ch<='H'||@ch>='J'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='E'
+                  state=1223
+               else
+                  if @ch=='I'
+                     state=1224
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+            end
+
+
+         when 1196
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='C'||@ch>='E'&&@ch<='H'||@ch>='J'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
                state=2
             else
                if @ch=='D'
-                  state=115
+                  state=1225
+               else
+                  if @ch=='I'
+                     state=1226
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+            end
+
+
+         when 1197
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='C'||@ch>='E'&&@ch<='T'||@ch>='V'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='U'
+                  state=1227
+               else
+                  if @ch=='D'
+                     state=1228
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+            end
+
+
+         when 1198
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='R'||@ch>='U'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='T'
+                  state=1229
+               else
+                  if @ch=='S'
+                     state=1230
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+            end
+
+
+         when 1199
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Q'||@ch>='S'&&@ch<='X'||@ch=='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='Y'
+                  state=1231
+               else
+                  if @ch=='R'
+                     state=1232
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+            end
+
+
+         when 1200
+            if @ch>='0'&&@ch<='9'||@ch=='B'||@ch=='D'||@ch>='F'&&@ch<='G'||@ch>='I'&&@ch<='S'||@ch>='V'&&@ch<='X'||@ch=='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='E'
+                  state=1233
+               else
+                  if @ch=='A'
+                     state=1234
+                  else
+                     if @ch=='T'
+                        state=1235
+                     else
+                        if @ch=='H'
+                           state=1236
+                        else
+                           if @ch=='C'
+                              state=1237
+                           else
+                              if @ch=='U'
+                                 state=1238
+                              else
+                                 if @ch=='Y'
+                                    state=1239
+                                 else
+                                    return CheckLiteral(C_identifierSym)
+                                 end
+
+                              end
+
+                           end
+
+                        end
+
+                     end
+
+                  end
+
+               end
+
+            end
+
+
+         when 1201
+            if @ch>='0'&&@ch<='9'||@ch>='B'&&@ch<='E'||@ch>='G'&&@ch<='Q'||@ch>='S'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='A'
+                  state=1240
+               else
+                  if @ch=='F'
+                     state=1241
+                  else
+                     if @ch=='R'
+                        state=1242
+                     else
+                        return CheckLiteral(C_identifierSym)
+                     end
+
+                  end
+
+               end
+
+            end
+
+
+         when 1202
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='C'||@ch>='E'&&@ch<='M'||@ch>='O'&&@ch<='W'||@ch>='Y'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='X'
+                  state=1243
+               else
+                  if @ch=='N'
+                     state=1244
+                  else
+                     if @ch=='D'
+                        state=1245
+                     else
+                        return CheckLiteral(C_identifierSym)
+                     end
+
+                  end
+
+               end
+
+            end
+
+
+         when 1203
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='G'||@ch>='I'&&@ch<='K'||@ch>='M'&&@ch<='T'||@ch>='V'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='L'
+                  state=1246
+               else
+                  if @ch=='U'
+                     state=1247
+                  else
+                     if @ch=='H'
+                        state=1248
+                     else
+                        return CheckLiteral(C_identifierSym)
+                     end
+
+                  end
+
+               end
+
+            end
+
+
+         when 1204
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='T'||@ch>='V'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='U'
+                  state=1249
                else
                   return CheckLiteral(C_identifierSym)
                end
@@ -3252,12 +6897,1941 @@ class CScanner < CRScanner
             end
 
 
-         when 114
-            if @ch=='-'||@ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='L'||@ch>='N'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+         when 1205
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='T'||@ch>='V'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='U'
+                  state=1250
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1206
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='D'||@ch>='F'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='E'
+                  state=1251
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1207
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='H'||@ch>='J'&&@ch<='T'||@ch>='V'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='I'
+                  state=1252
+               else
+                  if @ch=='U'
+                     state=1253
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+            end
+
+
+         when 1208
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='D'||@ch>='F'&&@ch<='H'||@ch>='J'&&@ch<='N'||@ch>='P'&&@ch<='X'||@ch=='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='O'
+                  state=1254
+               else
+                  if @ch=='I'
+                     state=1255
+                  else
+                     if @ch=='E'
+                        state=1256
+                     else
+                        if @ch=='Y'
+                           state=1257
+                        else
+                           return CheckLiteral(C_identifierSym)
+                        end
+
+                     end
+
+                  end
+
+               end
+
+            end
+
+
+         when 1209
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='M'||@ch>='O'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='N'
+                  state=1258
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1210
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='H'||@ch>='J'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='I'
+                  state=1259
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1211
+            if @ch>='0'&&@ch<='9'||@ch>='B'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='A'
+                  state=1260
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1212
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='M'||@ch>='O'&&@ch<='R'||@ch>='T'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='N'
+                  state=1261
+               else
+                  if @ch=='S'
+                     state=1262
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+            end
+
+
+         when 1213
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='E'||@ch>='G'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='F'
+                  state=1263
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1214
+            if @ch>='0'&&@ch<='9'||@ch>='B'&&@ch<='F'||@ch>='H'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='A'
+                  state=1264
+               else
+                  if @ch=='G'
+                     state=1265
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+            end
+
+
+         when 1215
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='R'||@ch>='T'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='S'
+                  state=1266
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1216
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='U'||@ch>='W'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='V'
+                  state=1267
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1217
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='/'
+                  state=1268
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1218
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='I'||@ch>='K'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='J'
+                  state=1269
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1219
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='M'||@ch>='O'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='N'
+                  state=1270
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1220
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='K'||@ch>='M'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='L'
+                  state=1271
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1221
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='M'||@ch>='O'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='N'
+                  state=1272
+               else
+                  if @ch=='-'
+                     state=1273
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+            end
+
+
+         when 1222
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='V'||@ch>='X'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='W'
+                  state=1274
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1223
+            if @ch>='0'&&@ch<='9'||@ch>='B'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='A'
+                  state=1275
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1224
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='F'||@ch>='H'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='G'
+                  state=1276
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1225
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='/'
+                  state=1277
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1226
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='R'||@ch>='T'&&@ch<='U'||@ch>='W'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='V'
+                  state=1278
+               else
+                  if @ch=='S'
+                     state=1279
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+            end
+
+
+         when 1227
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='S'||@ch>='U'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='T'
+                  state=1280
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1228
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='C'||@ch>='E'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='D'
+                  state=1281
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1229
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='E'||@ch>='G'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='F'
+                  state=1282
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1230
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='D'||@ch>='F'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='E'
+                  state=1283
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1231
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='S'||@ch>='U'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='T'
+                  state=1284
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1232
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='D'||@ch>='F'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='E'
+                  state=1285
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1233
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='K'||@ch>='M'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='L'
+                  state=1286
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1234
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='O'||@ch>='Q'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='P'
+                  state=1287
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1235
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='D'||@ch>='F'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='E'
+                  state=1288
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1236
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='N'||@ch>='P'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='O'
+                  state=1289
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1237
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Q'||@ch>='S'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='R'
+                  state=1290
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1238
+            if @ch>='0'&&@ch<='9'||@ch=='A'||@ch>='C'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='B'
+                  state=1291
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1239
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='M'||@ch>='O'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='N'
+                  state=1292
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1240
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Q'||@ch>='S'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='R'
+                  state=1293
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1241
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='-'
+                  state=673
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1242
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='H'||@ch>='J'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='I'
+                  state=1294
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1243
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='B'||@ch>='D'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='C'
+                  state=1295
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1244
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='C'||@ch>='E'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='D'
+                  state=1296
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1245
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='H'||@ch>='J'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='I'
+                  state=1297
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1246
+            if @ch>='0'&&@ch<='9'||@ch>='B'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='A'
+                  state=1298
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1247
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='R'||@ch>='T'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='S'
+                  state=1299
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1248
+            if @ch>='0'&&@ch<='9'||@ch>='B'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='A'
+                  state=1300
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1249
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='D'||@ch>='F'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='E'
+                  state=1301
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1250
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='S'||@ch>='U'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='T'
+                  state=1302
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1251
+            if @ch>='0'&&@ch<='9'||@ch>='B'&&@ch<='K'||@ch>='M'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='L'
+                  state=1303
+               else
+                  if @ch=='A'
+                     state=1304
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+            end
+
+
+         when 1252
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='D'||@ch>='F'&&@ch<='K'||@ch>='M'&&@ch<='Q'||@ch>='S'&&@ch<='W'||@ch>='Y'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='R'
+                  state=1305
+               else
+                  if @ch=='E'
+                     state=1306
+                  else
+                     if @ch=='L'
+                        state=1307
+                     else
+                        if @ch=='X'
+                           state=1308
+                        else
+                           return CheckLiteral(C_identifierSym)
+                        end
+
+                     end
+
+                  end
+
+               end
+
+            end
+
+
+         when 1253
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='M'||@ch>='O'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='N'
+                  state=1309
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1254
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='O'||@ch>='Q'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='P'
+                  state=1310
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1255
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='S'||@ch>='U'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='T'
+                  state=1311
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1256
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='R'||@ch>='T'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='S'
+                  state=1312
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1257
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='O'||@ch>='Q'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='P'
+                  state=1313
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1258
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='C'||@ch>='E'&&@ch<='S'||@ch>='U'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='T'
+                  state=1314
+               else
+                  if @ch=='D'
+                     state=1315
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+            end
+
+
+         when 1259
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='S'||@ch>='U'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='T'
+                  state=1316
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1260
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='K'||@ch>='M'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='L'
+                  state=1317
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1261
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='D'||@ch>='F'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='E'
+                  state=1318
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1262
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='S'||@ch>='U'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='T'
+                  state=1319
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1263
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='S'||@ch>='U'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='T'
+                  state=1320
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1264
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='C'||@ch>='E'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='D'
+                  state=1321
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1265
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='-'
+                  state=765
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1266
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='R'||@ch>='T'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='S'
+                  state=1322
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1267
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='D'||@ch>='F'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='E'
+                  state=1323
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1268
+            if @ch=='D'
+               state=1324
+            else
+               return No_Sym
+            end
+
+
+         when 1269
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='N'||@ch>='P'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='O'
+                  state=1325
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1270
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='N'||@ch>='P'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='O'
+                  state=1326
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1271
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='S'||@ch>='U'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='T'
+                  state=1327
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1272
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='-'
+                  state=1328
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1273
+            if @ch=='G'
+               state=1329
+            else
+               if @ch=='S'
+                  state=1330
+               else
+                  if @ch=='Z'
+                     state=171
+                  else
+                     if @ch=='T'
+                        state=1331
+                     else
+                        if @ch=='H'
+                           state=854
+                        else
+                           if @ch=='D'
+                              state=887
+                           else
+                              if @ch=='E'
+                                 state=971
+                              else
+                                 return No_Sym
+                              end
+
+                           end
+
+                        end
+
+                     end
+
+                  end
+
+               end
+
+            end
+
+
+         when 1274
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='-'
+                  state=1332
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1275
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='C'||@ch>='E'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='D'
+                  state=1333
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1276
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='G'||@ch>='I'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='H'
+                  state=1334
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1277
+            if @ch=='M'
+               state=1335
+            else
+               return No_Sym
+            end
+
+
+         when 1278
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='H'||@ch>='J'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='I'
+                  state=1336
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1279
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='O'||@ch>='Q'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='P'
+                  state=1337
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1280
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='G'||@ch>='I'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='H'
+                  state=1338
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1281
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='-'
+                  state=368
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1282
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='-'
+                  state=229
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1283
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Q'||@ch>='S'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='R'
+                  state=1339
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1284
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='D'||@ch>='F'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='E'
+                  state=1340
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1285
+            if @ch>='0'&&@ch<='9'||@ch>='B'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='A'
+                  state=1341
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1286
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='D'||@ch>='F'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='E'
+                  state=1342
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1287
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='-'
+                  state=315
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1288
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='O'||@ch>='Q'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='P'
+                  state=1343
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1289
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Q'||@ch>='S'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='R'
+                  state=1344
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1290
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='N'||@ch>='P'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='O'
+                  state=1345
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1291
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='S'||@ch>='U'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='T'
+                  state=1346
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1292
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='S'||@ch>='U'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='T'
+                  state=1347
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1293
+            if @ch>='0'&&@ch<='9'||@ch>='B'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='A'
+                  state=1348
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1294
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='M'||@ch>='O'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='N'
+                  state=1349
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1295
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='D'||@ch>='F'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='E'
+                  state=1350
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1296
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='-'
+                  state=1351
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1297
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='S'||@ch>='U'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='T'
+                  state=1352
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1298
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='R'||@ch>='T'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='S'
+                  state=1353
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1299
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='S'||@ch>='U'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='T'
+                  state=1354
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1300
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Q'||@ch>='S'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='R'
+                  state=1355
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1301
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='T'||@ch>='V'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='U'
+                  state=1356
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1302
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='O'||@ch>='Q'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='P'
+                  state=1357
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1303
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='O'||@ch>='Q'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='P'
+                  state=1358
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1304
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='C'||@ch>='E'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='D'
+                  state=1359
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1305
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='R'||@ch>='T'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='S'
+                  state=1360
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1306
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='K'||@ch>='M'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='L'
+                  state=1361
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1307
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='S'||@ch>='U'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='T'
+                  state=1362
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1308
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='D'||@ch>='F'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='E'
+                  state=1363
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1309
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='B'||@ch>='D'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='C'
+                  state=1364
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1310
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='-'
+                  state=1365
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1311
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='K'||@ch>='M'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='L'
+                  state=1366
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1312
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='S'||@ch>='U'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='T'
+                  state=1367
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1313
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='D'||@ch>='F'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='E'
+                  state=1368
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1314
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='D'||@ch>='F'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='E'
+                  state=1369
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1315
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='D'||@ch>='F'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='E'
+                  state=1370
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1316
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='G'||@ch>='I'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='H'
+                  state=1371
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1317
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='T'||@ch>='V'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='U'
+                  state=1372
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1318
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='-'
+                  state=1373
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1319
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='-'
+                  state=736
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1320
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='-'
+                  state=125
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1321
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='-'
+                  state=751
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1322
+            if @ch>='0'&&@ch<='9'||@ch>='B'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='A'
+                  state=1374
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1323
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='-'
+                  state=76
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1324
+            if @ch=='D'
+               state=1375
+            else
+               return No_Sym
+            end
+
+
+         when 1325
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Q'||@ch>='S'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='R'
+                  state=1376
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1326
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Q'||@ch>='S'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='R'
+                  state=1377
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1327
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='H'||@ch>='J'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='I'
+                  state=1378
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1328
+            if @ch=='U'
+               state=1379
+            else
+               return No_Sym
+            end
+
+
+         when 1329
+            if @ch=='A'
+               state=1380
+            else
+               if @ch=='R'
+                  state=154
+               else
+                  return No_Sym
+               end
+
+            end
+
+
+         when 1330
+            if @ch=='I'
+               state=165
+            else
+               if @ch=='C'
+                  state=805
+               else
+                  return No_Sym
+               end
+
+            end
+
+
+         when 1331
+            if @ch=='I'
+               state=835
+            else
+               if @ch=='O'
+                  state=865
+               else
+                  return No_Sym
+               end
+
+            end
+
+
+         when 1332
+            if @ch=='L'
+               state=797
+            else
+               if @ch=='P'
+                  state=817
+               else
+                  if @ch=='S'
+                     state=877
+                  else
+                     return No_Sym
+                  end
+
+               end
+
+            end
+
+
+         when 1333
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='-'
+                  state=108
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1334
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='S'||@ch>='U'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='T'
+                  state=1381
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1335
+            if @ch=='M'
+               state=1382
+            else
+               return No_Sym
+            end
+
+
+         when 1336
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='C'||@ch>='E'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='D'
+                  state=1383
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1337
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='K'||@ch>='M'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='L'
+                  state=1384
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1338
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='N'||@ch>='P'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='O'
+                  state=1385
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1339
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='-'
+                  state=898
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1340
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='-'
+                  state=1386
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1341
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='J'||@ch>='L'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='K'
+                  state=1387
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1342
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='B'||@ch>='D'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='C'
+                  state=1388
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1343
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='-'
+                  state=604
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1344
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='S'||@ch>='U'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='T'
+                  state=1389
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1345
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='K'||@ch>='M'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='L'
+                  state=1390
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1346
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Q'||@ch>='S'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='R'
+                  state=1391
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1347
+            if @ch>='0'&&@ch<='9'||@ch>='B'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='A'
+                  state=1392
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1348
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='L'||@ch>='N'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
                state=2
             else
                if @ch=='M'
-                  state=116
+                  state=1393
                else
                   return CheckLiteral(C_identifierSym)
                end
@@ -3265,12 +8839,12 @@ class CScanner < CRScanner
             end
 
 
-         when 115
-            if @ch=='-'||@ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+         when 1349
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='S'||@ch>='U'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
                state=2
             else
-               if @ch=='/'
-                  state=117
+               if @ch=='T'
+                  state=1394
                else
                   return CheckLiteral(C_identifierSym)
                end
@@ -3278,12 +8852,12 @@ class CScanner < CRScanner
             end
 
 
-         when 116
-            if @ch=='-'||@ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+         when 1350
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='O'||@ch>='Q'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
                state=2
             else
-               if @ch=='/'
-                  state=118
+               if @ch=='P'
+                  state=1395
                else
                   return CheckLiteral(C_identifierSym)
                end
@@ -3291,99 +8865,1720 @@ class CScanner < CRScanner
             end
 
 
-         when 117
-            if @ch=='M'
-               state=119
+         when 1351
+            if @ch=='L'
+               state=525
             else
-               return No_Sym
+               if @ch=='O'
+                  state=1396
+               else
+                  if @ch=='T'
+                     state=1397
+                  else
+                     return No_Sym
+                  end
+
+               end
+
             end
 
 
-         when 118
-            if @ch=='D'
-               state=120
+         when 1352
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='N'||@ch>='P'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
             else
-               return No_Sym
+               if @ch=='O'
+                  state=1398
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
             end
 
 
-         when 119
-            if @ch=='M'
-               state=121
+         when 1353
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='R'||@ch>='T'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
             else
-               return No_Sym
+               if @ch=='S'
+                  state=1399
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
             end
 
 
-         when 120
-            if @ch=='D'
-               state=122
+         when 1354
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='N'||@ch>='P'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
             else
-               return No_Sym
+               if @ch=='O'
+                  state=1400
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
             end
 
 
-         when 121
+         when 1355
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='-'
+                  state=700
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1356
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='D'||@ch>='F'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='E'
+                  state=1401
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1357
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='T'||@ch>='V'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='U'
+                  state=1402
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1358
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='-'
+                  state=1403
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1359
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='-'
+                  state=515
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1360
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='S'||@ch>='U'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='T'
+                  state=1404
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1361
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='C'||@ch>='E'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='D'
+                  state=1405
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1362
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='D'||@ch>='F'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='E'
+                  state=1406
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1363
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='C'||@ch>='E'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='D'
+                  state=1407
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1364
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='S'||@ch>='U'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='T'
+                  state=1408
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1365
+            if @ch=='L'
+               state=495
+            else
+               if @ch=='O'
+                  state=1087
+               else
+                  return No_Sym
+               end
+
+            end
+
+
+         when 1366
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='D'||@ch>='F'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='E'
+                  state=1409
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1367
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='-'
+                  state=1410
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1368
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='-'
+                  state=1411
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1369
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Q'||@ch>='S'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='R'
+                  state=1412
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1370
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='W'||@ch>='Y'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='X'
+                  state=1413
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1371
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='-'
+                  state=1414
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1372
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='D'||@ch>='F'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='E'
+                  state=1415
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1373
+            if @ch=='S'
+               state=1416
+            else
+               if @ch=='C'
+                  state=43
+               else
+                  return No_Sym
+               end
+
+            end
+
+
+         when 1374
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='F'||@ch>='H'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='G'
+                  state=1417
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1375
             if @ch=='/'
-               state=123
+               state=1418
             else
                return No_Sym
             end
 
 
-         when 122
+         when 1376
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='-'
+                  state=685
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1377
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='-'
+                  state=693
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1378
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='O'||@ch>='Q'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='P'
+                  state=1419
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1379
+            if @ch=='N'
+               state=1420
+            else
+               return No_Sym
+            end
+
+
+         when 1380
+            if @ch=='P'
+               state=1421
+            else
+               return No_Sym
+            end
+
+
+         when 1381
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='-'
+                  state=140
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1382
             if @ch=='/'
-               state=124
+               state=1422
             else
                return No_Sym
             end
 
 
-         when 123
-            if @ch=='Y'
-               state=125
+         when 1383
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='D'||@ch>='F'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='E'
+                  state=1423
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1384
+            if @ch>='0'&&@ch<='9'||@ch>='B'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='A'
+                  state=1424
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1385
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Q'||@ch>='S'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='R'
+                  state=1425
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1386
+            if @ch=='O'
+               state=236
+            else
+               if @ch=='C'
+                  state=1426
+               else
+                  if @ch=='N'
+                     state=1427
+                  else
+                     return No_Sym
+                  end
+
+               end
+
+            end
+
+
+         when 1387
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='-'
+                  state=389
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1388
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='S'||@ch>='U'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='T'
+                  state=1428
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1389
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='C'||@ch>='E'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='D'
+                  state=1429
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1390
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='K'||@ch>='M'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='L'
+                  state=1430
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1391
+            if @ch>='0'&&@ch<='9'||@ch>='B'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='A'
+                  state=1431
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1392
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='W'||@ch>='Y'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='X'
+                  state=1432
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1393
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='D'||@ch>='F'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='E'
+                  state=1433
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1394
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='-'
+                  state=936
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1395
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='S'||@ch>='U'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='T'
+                  state=1434
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1396
+            if @ch=='F'
+               state=1435
             else
                return No_Sym
             end
 
 
-         when 124
-            if @ch=='Y'
-               state=126
+         when 1397
+            if @ch=='E'
+               state=1436
             else
                return No_Sym
             end
 
 
-         when 125
-            if @ch=='Y'
-               state=127
+         when 1398
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Q'||@ch>='S'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='R'
+                  state=1437
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1399
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='-'
+                  state=1438
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1400
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='L'||@ch>='N'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='M'
+                  state=1439
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1401
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='-'
+                  state=417
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1402
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='S'||@ch>='U'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='T'
+                  state=1440
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1403
+            if @ch=='I'
+               state=479
+            else
+               if @ch=='R'
+                  state=911
+               else
+                  return No_Sym
+               end
+
+            end
+
+
+         when 1404
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='-'
+                  state=486
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1405
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='-'
+                  state=1441
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1406
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Q'||@ch>='S'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='R'
+                  state=1442
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1407
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='-'
+                  state=712
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1408
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='H'||@ch>='J'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='I'
+                  state=1443
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1409
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='-'
+                  state=505
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1410
+            if @ch=='I'
+               state=1034
+            else
+               if @ch=='S'
+                  state=1066
+               else
+                  return No_Sym
+               end
+
+            end
+
+
+         when 1411
+            if @ch=='P'
+               state=1444
             else
                return No_Sym
             end
 
 
-         when 126
+         when 1412
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='E'||@ch>='G'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='F'
+                  state=1445
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1413
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='-'
+                  state=949
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1414
+            if @ch=='T'
+               state=826
+            else
+               if @ch=='H'
+                  state=844
+               else
+                  return No_Sym
+               end
+
+            end
+
+
+         when 1415
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='-'
+                  state=923
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1416
+            if @ch=='I'
+               state=35
+            else
+               if @ch=='E'
+                  state=1100
+               else
+                  return No_Sym
+               end
+
+            end
+
+
+         when 1417
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='D'||@ch>='F'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='E'
+                  state=1446
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1418
             if @ch=='Y'
-               state=128
+               state=1447
             else
                return No_Sym
             end
 
 
-         when 127
+         when 1419
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='K'||@ch>='M'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='L'
+                  state=1448
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1420
+            if @ch=='I'
+               state=1449
+            else
+               return No_Sym
+            end
+
+
+         when 1421
+            if @ch=='S'
+               state=460
+            else
+               return C_NOMinusGAPSym
+            end
+
+
+         when 1422
             if @ch=='Y'
-               state=72
+               state=1450
+            else
+               return No_Sym
+            end
+
+
+         when 1423
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='-'
+                  state=536
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1424
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='X'||@ch=='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='Y'
+                  state=1451
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1425
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='H'||@ch>='J'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='I'
+                  state=1452
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1426
+            if @ch=='O'
+               state=1141
+            else
+               if @ch=='N'
+                  state=1148
+               else
+                  if @ch=='A'
+                     state=1155
+                  else
+                     if @ch=='S'
+                        state=1169
+                     else
+                        return No_Sym
+                     end
+
+                  end
+
+               end
+
+            end
+
+
+         when 1427
+            if @ch=='A'
+               state=1162
+            else
+               if @ch=='S'
+                  state=1176
+               else
+                  return No_Sym
+               end
+
+            end
+
+
+         when 1428
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='H'||@ch>='J'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='I'
+                  state=1453
+               else
+                  if @ch=='-'
+                     state=960
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+            end
+
+
+         when 1429
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='T'||@ch>='V'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='U'
+                  state=1454
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1430
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='-'
+                  state=986
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1431
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='B'||@ch>='D'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='C'
+                  state=1455
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1432
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='-'
+                  state=1023
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1433
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='S'||@ch>='U'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='T'
+                  state=1456
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1434
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='H'||@ch>='J'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='I'
+                  state=1457
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1435
+            if @ch=='-'
+               state=1458
+            else
+               return No_Sym
+            end
+
+
+         when 1436
+            if @ch=='S'
+               state=1459
+            else
+               return No_Sym
+            end
+
+
+         when 1437
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='-'
+                  state=556
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1438
+            if @ch=='M'
+               state=358
+            else
+               if @ch=='D'
+                  state=428
+               else
+                  if @ch=='E'
+                     state=438
+                  else
+                     if @ch=='P'
+                        state=450
+                     else
+                        return No_Sym
+                     end
+
+                  end
+
+               end
+
+            end
+
+
+         when 1439
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='D'||@ch>='F'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='E'
+                  state=1460
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1440
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='-'
+                  state=467
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1441
+            if @ch=='G'
+               state=615
+            else
+               if @ch=='S'
+                  state=627
+               else
+                  return No_Sym
+               end
+
+            end
+
+
+         when 1442
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='-'
+                  state=665
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1443
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='N'||@ch>='P'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='O'
+                  state=1461
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1444
+            if @ch=='O'
+               state=1462
+            else
+               return No_Sym
+            end
+
+
+         when 1445
+            if @ch>='0'&&@ch<='9'||@ch>='B'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='A'
+                  state=1463
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1446
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='-'
+                  state=55
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1447
+            if @ch=='Y'
+               state=1464
+            else
+               return No_Sym
+            end
+
+
+         when 1448
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='X'||@ch=='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='Y'
+                  state=1465
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1449
+            if @ch=='Q'
+               state=101
+            else
+               if @ch=='C'
+                  state=248
+               else
+                  return No_Sym
+               end
+
+            end
+
+
+         when 1450
+            if @ch=='Y'
+               state=1466
+            else
+               return No_Sym
+            end
+
+
+         when 1451
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='-'
+                  state=568
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1452
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='S'||@ch>='U'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='T'
+                  state=1467
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1453
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='N'||@ch>='P'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='O'
+                  state=1468
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1454
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='L'||@ch>='N'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='M'
+                  state=1469
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1455
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='S'||@ch>='U'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='T'
+                  state=1470
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1456
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='D'||@ch>='F'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='E'
+                  state=1471
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1457
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='N'||@ch>='P'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='O'
+                  state=1472
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1458
+            if @ch=='P'
+               state=580
+            else
+               if @ch=='S'
+                  state=591
+               else
+                  return No_Sym
+               end
+
+            end
+
+
+         when 1459
+            if @ch=='T'
+               state=1473
+            else
+               return No_Sym
+            end
+
+
+         when 1460
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Q'||@ch>='S'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='R'
+                  state=1474
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1461
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='M'||@ch>='O'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='N'
+                  state=1475
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1462
+            if @ch=='O'
+               state=1476
+            else
+               return No_Sym
+            end
+
+
+         when 1463
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='B'||@ch>='D'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='C'
+                  state=1477
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1464
+            if @ch=='Y'
+               state=209
+            else
+               return C_MMSlashDDSlashYYSym
+            end
+
+
+         when 1465
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='-'
+                  state=779
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1466
+            if @ch=='Y'
+               state=199
             else
                return C_DDSlashMMSlashYYSym
             end
 
 
-         when 128
-            if @ch=='Y'
-               state=82
+         when 1467
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='X'||@ch=='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
             else
-               return C_MMSlashDDSlashYYSym
+               if @ch=='Y'
+                  state=1478
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1468
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='M'||@ch>='O'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='N'
+                  state=1479
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1469
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='O'||@ch>='Q'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='P'
+                  state=1480
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1470
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='-'
+                  state=1003
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1471
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Q'||@ch>='S'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='R'
+                  state=1481
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1472
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='M'||@ch>='O'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='N'
+                  state=1482
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1473
+            if @ch=='-'
+               state=1483
+            else
+               return No_Sym
+            end
+
+
+         when 1474
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='-'
+                  state=403
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1475
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='-'
+                  state=642
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1476
+            if @ch=='L'
+               state=1484
+            else
+               return No_Sym
+            end
+
+
+         when 1477
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='D'||@ch>='F'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='E'
+                  state=1485
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1478
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='-'
+                  state=220
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1479
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='-'
+                  state=1486
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1480
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='-'
+                  state=656
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1481
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='-'
+                  state=331
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1482
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='-'
+                  state=346
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1483
+            if @ch=='I'
+               state=1052
+            else
+               if @ch=='S'
+                  state=1079
+               else
+                  return No_Sym
+               end
+
+            end
+
+
+         when 1484
+            if @ch=='S'
+               state=1126
+            else
+               return C_TYPEMinusPOOLSym
+            end
+
+
+         when 1485
+            if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               state=2
+            else
+               if @ch=='-'
+                  state=727
+               else
+                  return CheckLiteral(C_identifierSym)
+               end
+
+            end
+
+
+         when 1486
+            if @ch=='S'
+               state=1487
+            else
+               if @ch=='T'
+                  state=307
+               else
+                  return No_Sym
+               end
+
+            end
+
+
+         when 1487
+            if @ch=='C'
+               state=265
+            else
+               if @ch=='E'
+                  state=1488
+               else
+                  return No_Sym
+               end
+
+            end
+
+
+         when 1488
+            if @ch=='T'
+               state=1489
+            else
+               return No_Sym
+            end
+
+
+         when 1489
+            if @ch=='S'
+               state=296
+            else
+               return C_SELECTIONMinusSETSym
             end
 
 
@@ -3431,7 +10626,7 @@ class CScanner < CRScanner
 
 
             when 2
-               if @ch=='-'||@ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
 
                else
                   return CheckLiteral(C_identifierSym)
@@ -3620,43 +10815,8 @@ class CScanner < CRScanner
                return C_LparenSym
             when 28
                return C_RparenSym
-            when 29
-               return C_PointSym
-            when 30
-               if @ch=='*'
-                  state=47
-               else
-                  if @ch=='='
-                     state=103
-                  else
-                     return C_StarSym
-                  end
-
-               end
-
-
-            when 31
-               return C_CommaSym
-            when 32
-               if @ch=='*'
-                  state=33
-               else
-                  return C_TildeSym
-               end
-
-
-            when 33
-               return C_TildeStarSym
-            when 34
-               if @ch=='D'
-                  state=35
-               else
-                  return C_AtSym
-               end
-
-
             when 35
-               if @ch=='A'
+               if @ch=='Z'
                   state=36
                else
                   return No_Sym
@@ -3664,7 +10824,7 @@ class CScanner < CRScanner
 
 
             when 36
-               if @ch=='T'
+               if @ch=='E'
                   state=37
                else
                   return No_Sym
@@ -3672,21 +10832,126 @@ class CScanner < CRScanner
 
 
             when 37
-               if @ch=='A'
-                  state=38
+               return C_LINEMinusSIZESym
+            when 43
+               if @ch=='O'
+                  state=44
                else
                   return No_Sym
                end
 
 
-            when 38
-               return C_AtDATASym
-            when 39
-               if @ch=='+'
-                  state=101
+            when 44
+               if @ch=='U'
+                  state=45
+               else
+                  return No_Sym
+               end
+
+
+            when 45
+               if @ch=='N'
+                  state=46
+               else
+                  return No_Sym
+               end
+
+
+            when 46
+               if @ch=='T'
+                  state=47
+               else
+                  return No_Sym
+               end
+
+
+            when 47
+               return C_LINEMinusCOUNTSym
+            when 55
+               if @ch=='I'
+                  state=56
+               else
+                  return No_Sym
+               end
+
+
+            when 56
+               if @ch=='D'
+                  state=57
+               else
+                  return No_Sym
+               end
+
+
+            when 57
+               return C_MESSAGEMinusIDSym
+            when 58
+               return C_PointSym
+            when 59
+               if @ch=='*'
+                  state=114
                else
                   if @ch=='='
-                     state=106
+                     state=1182
+                  else
+                     return C_StarSym
+                  end
+
+               end
+
+
+            when 60
+               return C_CommaSym
+            when 61
+               if @ch=='*'
+                  state=62
+               else
+                  return C_TildeSym
+               end
+
+
+            when 62
+               return C_TildeStarSym
+            when 63
+               if @ch=='D'
+                  state=64
+               else
+                  return C_AtSym
+               end
+
+
+            when 64
+               if @ch=='A'
+                  state=65
+               else
+                  return No_Sym
+               end
+
+
+            when 65
+               if @ch=='T'
+                  state=66
+               else
+                  return No_Sym
+               end
+
+
+            when 66
+               if @ch=='A'
+                  state=67
+               else
+                  return No_Sym
+               end
+
+
+            when 67
+               return C_AtDATASym
+            when 68
+               if @ch=='+'
+                  state=1180
+               else
+                  if @ch=='='
+                     state=1185
                   else
                      return C_PlusSym
                   end
@@ -3694,58 +10959,74 @@ class CScanner < CRScanner
                end
 
 
-            when 40
+            when 69
                if @ch=='T'
-                  state=41
+                  state=70
                else
                   return C_QuerySym
                end
 
 
-            when 41
+            when 70
                if @ch=='O'
-                  state=42
+                  state=71
                else
                   return No_Sym
                end
 
 
-            when 42
+            when 71
                return C_QueryTOSym
-            when 43
-               return C_LbrackSym
-            when 44
-               return C_RbrackSym
-            when 45
-               if @ch=='>'
-                  state=87
-               else
-                  return C_EqualSym
-               end
-
-
-            when 46
-               if @ch=='='
-                  state=104
-               else
-                  return C_SlashSym
-               end
-
-
-            when 47
-               return C_StarStarSym
-            when 72
-               if @ch=='Y'
-                  state=73
+            when 76
+               if @ch=='C'
+                  state=77
                else
                   return No_Sym
                end
 
 
-            when 73
-               return C_DDSlashMMSlashYYYYSym
+            when 77
+               if @ch=='O'
+                  state=78
+               else
+                  return No_Sym
+               end
+
+
+            when 78
+               if @ch=='R'
+                  state=79
+               else
+                  return No_Sym
+               end
+
+
+            when 79
+               if @ch=='R'
+                  state=80
+               else
+                  return No_Sym
+               end
+
+
+            when 80
+               if @ch=='E'
+                  state=81
+               else
+                  return No_Sym
+               end
+
+
+            when 81
+               if @ch=='S'
+                  state=82
+               else
+                  return No_Sym
+               end
+
+
             when 82
-               if @ch=='Y'
+               if @ch=='P'
                   state=83
                else
                   return No_Sym
@@ -3753,78 +11034,514 @@ class CScanner < CRScanner
 
 
             when 83
-               return C_MMSlashDDSlashYYYYSym
+               if @ch=='O'
+                  state=84
+               else
+                  return No_Sym
+               end
+
+
             when 84
-               return C_SemicolonSym
+               if @ch=='N'
+                  state=85
+               else
+                  return No_Sym
+               end
+
+
             when 85
-               if @ch=='>'
+               if @ch=='D'
                   state=86
                else
-                  if @ch=='-'
-                     state=102
-                  else
-                     if @ch=='='
-                        state=107
-                     else
-                        return C_MinusSym
-                     end
-
-                  end
-
+                  return No_Sym
                end
 
 
             when 86
-               return C_MinusGreaterSym
+               if @ch=='I'
+                  state=87
+               else
+                  return No_Sym
+               end
+
+
             when 87
-               return C_EqualGreaterSym
+               if @ch=='N'
+                  state=88
+               else
+                  return No_Sym
+               end
+
+
             when 88
-               if @ch=='|'
+               if @ch=='G'
                   state=89
                else
-                  if @ch=='='
-                     state=110
-                  else
-                     return C_BarSym
-                  end
-
+                  return No_Sym
                end
 
 
             when 89
-               return C_BarBarSym
+               return C_MOVEMinusCORRESPONDINGSym
             when 90
-               if @ch=='&'
-                  state=91
-               else
-                  if @ch=='='
-                     state=108
-                  else
-                     return C_AndSym
-                  end
-
-               end
-
-
+               return C_LbrackSym
             when 91
-               return C_AndAndSym
+               return C_RbrackSym
             when 92
-               if @ch=='='
-                  state=109
+               if @ch=='>'
+                  state=93
                else
-                  return C_UparrowSym
+                  return C_EqualSym
                end
 
 
             when 93
+               return C_EqualGreaterSym
+            when 101
+               if @ch=='U'
+                  state=102
+               else
+                  return No_Sym
+               end
+
+
+            when 102
+               if @ch=='E'
+                  state=103
+               else
+                  return No_Sym
+               end
+
+
+            when 103
+               return C_NONMinusUNIQUESym
+            when 108
+               if @ch=='O'
+                  state=109
+               else
+                  return No_Sym
+               end
+
+
+            when 109
+               if @ch=='N'
+                  state=110
+               else
+                  return No_Sym
+               end
+
+
+            when 110
+               if @ch=='L'
+                  state=111
+               else
+                  return No_Sym
+               end
+
+
+            when 111
+               if @ch=='Y'
+                  state=112
+               else
+                  return No_Sym
+               end
+
+
+            when 112
+               return C_READMinusONLYSym
+            when 113
+               if @ch=='='
+                  state=1183
+               else
+                  return C_SlashSym
+               end
+
+
+            when 114
+               return C_StarStarSym
+            when 125
+               if @ch=='J'
+                  state=126
+               else
+                  return No_Sym
+               end
+
+
+            when 126
+               if @ch=='U'
+                  state=127
+               else
+                  return No_Sym
+               end
+
+
+            when 127
+               if @ch=='S'
+                  state=128
+               else
+                  return No_Sym
+               end
+
+
+            when 128
+               if @ch=='T'
+                  state=129
+               else
+                  return No_Sym
+               end
+
+
+            when 129
+               if @ch=='I'
+                  state=130
+               else
+                  return No_Sym
+               end
+
+
+            when 130
+               if @ch=='F'
+                  state=131
+               else
+                  return No_Sym
+               end
+
+
+            when 131
+               if @ch=='I'
+                  state=132
+               else
+                  return No_Sym
+               end
+
+
+            when 132
+               if @ch=='E'
+                  state=133
+               else
+                  return No_Sym
+               end
+
+
+            when 133
+               if @ch=='D'
+                  state=134
+               else
+                  return No_Sym
+               end
+
+
+            when 134
+               return C_LEFTMinusJUSTIFIEDSym
+            when 140
+               if @ch=='J'
+                  state=141
+               else
+                  return No_Sym
+               end
+
+
+            when 141
+               if @ch=='U'
+                  state=142
+               else
+                  return No_Sym
+               end
+
+
+            when 142
+               if @ch=='S'
+                  state=143
+               else
+                  return No_Sym
+               end
+
+
+            when 143
+               if @ch=='T'
+                  state=144
+               else
+                  return No_Sym
+               end
+
+
+            when 144
+               if @ch=='I'
+                  state=145
+               else
+                  return No_Sym
+               end
+
+
+            when 145
+               if @ch=='F'
+                  state=146
+               else
+                  return No_Sym
+               end
+
+
+            when 146
+               if @ch=='I'
+                  state=147
+               else
+                  return No_Sym
+               end
+
+
+            when 147
+               if @ch=='E'
+                  state=148
+               else
+                  return No_Sym
+               end
+
+
+            when 148
+               if @ch=='D'
+                  state=149
+               else
+                  return No_Sym
+               end
+
+
+            when 149
+               return C_RIGHTMinusJUSTIFIEDSym
+            when 154
+               if @ch=='O'
+                  state=155
+               else
+                  return No_Sym
+               end
+
+
+            when 155
+               if @ch=='U'
+                  state=156
+               else
+                  return No_Sym
+               end
+
+
+            when 156
+               if @ch=='P'
+                  state=157
+               else
+                  return No_Sym
+               end
+
+
+            when 157
+               if @ch=='I'
+                  state=158
+               else
+                  return No_Sym
+               end
+
+
+            when 158
+               if @ch=='N'
+                  state=159
+               else
+                  return No_Sym
+               end
+
+
+            when 159
+               if @ch=='G'
+                  state=160
+               else
+                  return No_Sym
+               end
+
+
+            when 160
+               return C_NOMinusGROUPINGSym
+            when 165
+               if @ch=='G'
+                  state=166
+               else
+                  return No_Sym
+               end
+
+
+            when 166
+               if @ch=='N'
+                  state=167
+               else
+                  return No_Sym
+               end
+
+
+            when 167
+               return C_NOMinusSIGNSym
+            when 171
+               if @ch=='E'
+                  state=172
+               else
+                  return No_Sym
+               end
+
+
+            when 172
+               if @ch=='R'
+                  state=173
+               else
+                  return No_Sym
+               end
+
+
+            when 173
+               if @ch=='O'
+                  state=174
+               else
+                  return No_Sym
+               end
+
+
+            when 174
+               return C_NOMinusZEROSym
+            when 199
+               if @ch=='Y'
+                  state=200
+               else
+                  return No_Sym
+               end
+
+
+            when 200
+               return C_DDSlashMMSlashYYYYSym
+            when 209
+               if @ch=='Y'
+                  state=210
+               else
+                  return No_Sym
+               end
+
+
+            when 210
+               return C_MMSlashDDSlashYYYYSym
+            when 220
+               if @ch=='C'
+                  state=221
+               else
+                  return No_Sym
+               end
+
+
+            when 221
+               if @ch=='H'
+                  state=222
+               else
+                  return No_Sym
+               end
+
+
+            when 222
+               if @ch=='E'
+                  state=223
+               else
+                  return No_Sym
+               end
+
+
+            when 223
+               if @ch=='C'
+                  state=224
+               else
+                  return No_Sym
+               end
+
+
+            when 224
+               if @ch=='K'
+                  state=225
+               else
+                  return No_Sym
+               end
+
+
+            when 225
+               return C_AUTHORITYMinusCHECKSym
+            when 229
+               if @ch=='8'
+                  state=230
+               else
+                  return No_Sym
+               end
+
+
+            when 230
+               return C_UTFMinusD8Sym
+            when 236
+               if @ch=='R'
+                  state=237
+               else
+                  return No_Sym
+               end
+
+
+            when 237
+               if @ch=='D'
+                  state=238
+               else
+                  return No_Sym
+               end
+
+
+            when 238
+               if @ch=='E'
+                  state=239
+               else
+                  return No_Sym
+               end
+
+
+            when 239
+               if @ch=='R'
+                  state=240
+               else
+                  return No_Sym
+               end
+
+
+            when 240
+               return C_BYTEMinusORDERSym
+            when 248
+               if @ch=='O'
+                  state=249
+               else
+                  return No_Sym
+               end
+
+
+            when 249
+               if @ch=='D'
+                  state=250
+               else
+                  return No_Sym
+               end
+
+
+            when 250
+               if @ch=='E'
+                  state=251
+               else
+                  return No_Sym
+               end
+
+
+            when 251
+               return C_NONMinusUNICODESym
+            when 252
                if @ch=='>'
-                  state=94
+                  state=1132
                else
                   if @ch=='='
-                     state=96
+                     state=1133
                   else
                      if @ch=='<'
-                        state=98
+                        state=1177
                      else
                         return C_LessSym
                      end
@@ -3834,14 +11551,12 @@ class CScanner < CRScanner
                end
 
 
-            when 94
-               return C_LessGreaterSym
-            when 95
+            when 253
                if @ch=='='
-                  state=97
+                  state=1134
                else
                   if @ch=='>'
-                     state=99
+                     state=1178
                   else
                      return C_GreaterSym
                   end
@@ -3849,64 +11564,3583 @@ class CScanner < CRScanner
                end
 
 
-            when 96
-               return C_LessEqualSym
-            when 97
-               return C_GreaterEqualSym
-            when 98
+            when 265
+               if @ch=='R'
+                  state=266
+               else
+                  return No_Sym
+               end
+
+
+            when 266
+               if @ch=='E'
+                  state=267
+               else
+                  return No_Sym
+               end
+
+
+            when 267
+               if @ch=='E'
+                  state=268
+               else
+                  return No_Sym
+               end
+
+
+            when 268
+               if @ch=='N'
+                  state=269
+               else
+                  return No_Sym
+               end
+
+
+            when 269
+               return C_SELECTIONMinusSCREENSym
+            when 296
+               return C_SELECTIONMinusSETSSym
+            when 307
+               if @ch=='A'
+                  state=308
+               else
+                  return No_Sym
+               end
+
+
+            when 308
+               if @ch=='B'
+                  state=309
+               else
+                  return No_Sym
+               end
+
+
+            when 309
+               if @ch=='L'
+                  state=310
+               else
+                  return No_Sym
+               end
+
+
+            when 310
+               if @ch=='E'
+                  state=311
+               else
+                  return No_Sym
+               end
+
+
+            when 311
+               return C_SELECTIONMinusTABLESym
+            when 315
+               if @ch=='S'
+                  state=316
+               else
+                  return No_Sym
+               end
+
+
+            when 316
+               if @ch=='P'
+                  state=317
+               else
+                  return No_Sym
+               end
+
+
+            when 317
+               if @ch=='O'
+                  state=318
+               else
+                  return No_Sym
+               end
+
+
+            when 318
+               if @ch=='O'
+                  state=319
+               else
+                  return No_Sym
+               end
+
+
+            when 319
+               if @ch=='L'
+                  state=320
+               else
+                  return No_Sym
+               end
+
+
+            when 320
+               return C_SAPMinusSPOOLSym
+            when 321
+               return C_SemicolonSym
+            when 331
+               if @ch=='T'
+                  state=332
+               else
+                  return No_Sym
+               end
+
+
+            when 332
+               if @ch=='A'
+                  state=333
+               else
+                  return No_Sym
+               end
+
+
+            when 333
+               if @ch=='B'
+                  state=334
+               else
+                  return No_Sym
+               end
+
+
+            when 334
+               if @ch=='L'
+                  state=335
+               else
+                  return No_Sym
+               end
+
+
+            when 335
+               if @ch=='E'
+                  state=336
+               else
+                  return No_Sym
+               end
+
+
+            when 336
+               return C_PARAMETERMinusTABLESym
+            when 346
+               if @ch=='T'
+                  state=347
+               else
+                  return No_Sym
+               end
+
+
+            when 347
+               if @ch=='A'
+                  state=348
+               else
+                  return No_Sym
+               end
+
+
+            when 348
+               if @ch=='B'
+                  state=349
+               else
+                  return No_Sym
+               end
+
+
+            when 349
+               if @ch=='L'
+                  state=350
+               else
+                  return No_Sym
+               end
+
+
+            when 350
+               if @ch=='E'
+                  state=351
+               else
+                  return No_Sym
+               end
+
+
+            when 351
+               return C_EXCEPTIONMinusTABLESym
+            when 358
+               if @ch=='E'
+                  state=359
+               else
+                  return No_Sym
+               end
+
+
+            when 359
+               if @ch=='T'
+                  state=360
+               else
+                  return No_Sym
+               end
+
+
+            when 360
+               if @ch=='H'
+                  state=361
+               else
+                  return No_Sym
+               end
+
+
+            when 361
+               if @ch=='O'
+                  state=362
+               else
+                  return No_Sym
+               end
+
+
+            when 362
+               if @ch=='D'
+                  state=363
+               else
+                  return No_Sym
+               end
+
+
+            when 363
+               if @ch=='S'
+                  state=364
+               else
+                  return No_Sym
+               end
+
+
+            when 364
+               return C_CLASSMinusMETHODSSym
+            when 368
+               if @ch=='C'
+                  state=369
+               else
+                  return No_Sym
+               end
+
+
+            when 369
+               if @ch=='O'
+                  state=370
+               else
+                  return No_Sym
+               end
+
+
+            when 370
+               if @ch=='R'
+                  state=371
+               else
+                  return No_Sym
+               end
+
+
+            when 371
+               if @ch=='R'
+                  state=372
+               else
+                  return No_Sym
+               end
+
+
+            when 372
+               if @ch=='E'
+                  state=373
+               else
+                  return No_Sym
+               end
+
+
+            when 373
+               if @ch=='S'
+                  state=374
+               else
+                  return No_Sym
+               end
+
+
+            when 374
+               if @ch=='P'
+                  state=375
+               else
+                  return No_Sym
+               end
+
+
+            when 375
+               if @ch=='O'
+                  state=376
+               else
+                  return No_Sym
+               end
+
+
+            when 376
+               if @ch=='N'
+                  state=377
+               else
+                  return No_Sym
+               end
+
+
+            when 377
+               if @ch=='D'
+                  state=378
+               else
+                  return No_Sym
+               end
+
+
+            when 378
+               if @ch=='I'
+                  state=379
+               else
+                  return No_Sym
+               end
+
+
+            when 379
+               if @ch=='N'
+                  state=380
+               else
+                  return No_Sym
+               end
+
+
+            when 380
+               if @ch=='G'
+                  state=381
+               else
+                  return No_Sym
+               end
+
+
+            when 381
+               return C_ADDMinusCORRESPONDINGSym
+            when 382
+               if @ch=='>'
+                  state=383
+               else
+                  if @ch=='-'
+                     state=1181
+                  else
+                     if @ch=='='
+                        state=1186
+                     else
+                        return C_MinusSym
+                     end
+
+                  end
+
+               end
+
+
+            when 383
+               return C_MinusGreaterSym
+            when 389
+               if @ch=='P'
+                  state=390
+               else
+                  return No_Sym
+               end
+
+
+            when 390
+               if @ch=='O'
+                  state=391
+               else
+                  return No_Sym
+               end
+
+
+            when 391
+               if @ch=='I'
+                  state=392
+               else
+                  return No_Sym
+               end
+
+
+            when 392
+               if @ch=='N'
+                  state=393
+               else
+                  return No_Sym
+               end
+
+
+            when 393
+               if @ch=='T'
+                  state=394
+               else
+                  return No_Sym
+               end
+
+
+            when 394
+               return C_BREAKMinusPOINTSym
+            when 403
+               if @ch=='F'
+                  state=404
+               else
+                  return No_Sym
+               end
+
+
+            when 404
+               if @ch=='U'
+                  state=405
+               else
+                  return No_Sym
+               end
+
+
+            when 405
+               if @ch=='N'
+                  state=406
+               else
+                  return No_Sym
+               end
+
+
+            when 406
+               if @ch=='C'
+                  state=407
+               else
+                  return No_Sym
+               end
+
+
+            when 407
+               if @ch=='T'
+                  state=408
+               else
+                  return No_Sym
+               end
+
+
+            when 408
+               if @ch=='I'
+                  state=409
+               else
+                  return No_Sym
+               end
+
+
+            when 409
+               if @ch=='O'
+                  state=410
+               else
+                  return No_Sym
+               end
+
+
+            when 410
+               if @ch=='N'
+                  state=411
+               else
+                  return No_Sym
+               end
+
+
+            when 411
+               return C_CUSTOMERMinusFUNCTIONSym
+            when 417
+               if @ch=='O'
+                  state=418
+               else
+                  return No_Sym
+               end
+
+
+            when 418
+               if @ch=='N'
+                  state=419
+               else
+                  return No_Sym
+               end
+
+
+            when 419
+               if @ch=='L'
+                  state=420
+               else
+                  return No_Sym
+               end
+
+
+            when 420
+               if @ch=='Y'
+                  state=421
+               else
+                  return No_Sym
+               end
+
+
+            when 421
+               return C_QUEUEMinusONLYSym
+            when 428
+               if @ch=='A'
+                  state=429
+               else
+                  return No_Sym
+               end
+
+
+            when 429
+               if @ch=='T'
+                  state=430
+               else
+                  return No_Sym
+               end
+
+
+            when 430
+               if @ch=='A'
+                  state=431
+               else
+                  return No_Sym
+               end
+
+
+            when 431
+               return C_CLASSMinusDATASym
+            when 438
+               if @ch=='V'
+                  state=439
+               else
+                  return No_Sym
+               end
+
+
+            when 439
+               if @ch=='E'
+                  state=440
+               else
+                  return No_Sym
+               end
+
+
+            when 440
+               if @ch=='N'
+                  state=441
+               else
+                  return No_Sym
+               end
+
+
+            when 441
+               if @ch=='T'
+                  state=442
+               else
+                  return No_Sym
+               end
+
+
+            when 442
+               if @ch=='S'
+                  state=443
+               else
+                  return No_Sym
+               end
+
+
+            when 443
+               return C_CLASSMinusEVENTSSym
+            when 450
+               if @ch=='O'
+                  state=451
+               else
+                  return No_Sym
+               end
+
+
+            when 451
+               if @ch=='O'
+                  state=452
+               else
+                  return No_Sym
+               end
+
+
+            when 452
+               if @ch=='L'
+                  state=453
+               else
+                  return No_Sym
+               end
+
+
+            when 453
+               return C_CLASSMinusPOOLSym
+            when 460
+               return C_NOMinusGAPSSym
+            when 467
+               if @ch=='L'
+                  state=468
+               else
+                  return No_Sym
+               end
+
+
+            when 468
+               if @ch=='E'
+                  state=469
+               else
+                  return No_Sym
+               end
+
+
+            when 469
+               if @ch=='N'
+                  state=470
+               else
+                  return No_Sym
+               end
+
+
+            when 470
+               if @ch=='G'
+                  state=471
+               else
+                  return No_Sym
+               end
+
+
+            when 471
+               if @ch=='T'
+                  state=472
+               else
+                  return No_Sym
+               end
+
+
+            when 472
+               if @ch=='H'
+                  state=473
+               else
+                  return No_Sym
+               end
+
+
+            when 473
+               return C_OUTPUTMinusLENGTHSym
+            when 479
+               if @ch=='D'
+                  state=480
+               else
+                  return No_Sym
+               end
+
+
+            when 480
+               return C_HELPMinusIDSym
+            when 486
+               if @ch=='L'
+                  state=487
+               else
+                  return No_Sym
+               end
+
+
+            when 487
+               if @ch=='I'
+                  state=488
+               else
+                  return No_Sym
+               end
+
+
+            when 488
+               if @ch=='N'
+                  state=489
+               else
+                  return No_Sym
+               end
+
+
+            when 489
+               if @ch=='E'
+                  state=490
+               else
+                  return No_Sym
+               end
+
+
+            when 490
+               return C_FIRSTMinusLINESym
+            when 495
+               if @ch=='I'
+                  state=496
+               else
+                  return No_Sym
+               end
+
+
+            when 496
+               if @ch=='N'
+                  state=497
+               else
+                  return No_Sym
+               end
+
+
+            when 497
+               if @ch=='E'
+                  state=498
+               else
+                  return No_Sym
+               end
+
+
+            when 498
+               if @ch=='S'
+                  state=499
+               else
+                  return No_Sym
+               end
+
+
+            when 499
+               return C_TOPMinusLINESSym
+            when 505
+               if @ch=='L'
+                  state=506
+               else
+                  return No_Sym
+               end
+
+
+            when 506
+               if @ch=='I'
+                  state=507
+               else
+                  return No_Sym
+               end
+
+
+            when 507
+               if @ch=='N'
+                  state=508
+               else
+                  return No_Sym
+               end
+
+
+            when 508
+               if @ch=='E'
+                  state=509
+               else
+                  return No_Sym
+               end
+
+
+            when 509
+               if @ch=='S'
+                  state=510
+               else
+                  return No_Sym
+               end
+
+
+            when 510
+               return C_TITLEMinusLINESSym
+            when 515
+               if @ch=='L'
+                  state=516
+               else
+                  return No_Sym
+               end
+
+
+            when 516
+               if @ch=='I'
+                  state=517
+               else
+                  return No_Sym
+               end
+
+
+            when 517
+               if @ch=='N'
+                  state=518
+               else
+                  return No_Sym
+               end
+
+
+            when 518
+               if @ch=='E'
+                  state=519
+               else
+                  return No_Sym
+               end
+
+
+            when 519
+               if @ch=='S'
+                  state=520
+               else
+                  return No_Sym
+               end
+
+
+            when 520
+               return C_HEADMinusLINESSym
+            when 525
+               if @ch=='I'
+                  state=526
+               else
+                  return No_Sym
+               end
+
+
+            when 526
+               if @ch=='N'
+                  state=527
+               else
+                  return No_Sym
+               end
+
+
+            when 527
+               if @ch=='E'
+                  state=528
+               else
+                  return No_Sym
+               end
+
+
+            when 528
+               if @ch=='S'
+                  state=529
+               else
+                  return No_Sym
+               end
+
+
+            when 529
+               return C_ENDMinusLINESSym
+            when 536
+               if @ch=='C'
+                  state=537
+               else
+                  return No_Sym
+               end
+
+
+            when 537
+               if @ch=='O'
+                  state=538
+               else
+                  return No_Sym
+               end
+
+
+            when 538
+               if @ch=='R'
+                  state=539
+               else
+                  return No_Sym
+               end
+
+
+            when 539
+               if @ch=='R'
+                  state=540
+               else
+                  return No_Sym
+               end
+
+
+            when 540
+               if @ch=='E'
+                  state=541
+               else
+                  return No_Sym
+               end
+
+
+            when 541
+               if @ch=='S'
+                  state=542
+               else
+                  return No_Sym
+               end
+
+
+            when 542
+               if @ch=='P'
+                  state=543
+               else
+                  return No_Sym
+               end
+
+
+            when 543
+               if @ch=='O'
+                  state=544
+               else
+                  return No_Sym
+               end
+
+
+            when 544
+               if @ch=='N'
+                  state=545
+               else
+                  return No_Sym
+               end
+
+
+            when 545
+               if @ch=='D'
+                  state=546
+               else
+                  return No_Sym
+               end
+
+
+            when 546
+               if @ch=='I'
+                  state=547
+               else
+                  return No_Sym
+               end
+
+
+            when 547
+               if @ch=='N'
+                  state=548
+               else
+                  return No_Sym
+               end
+
+
+            when 548
+               if @ch=='G'
+                  state=549
+               else
+                  return No_Sym
+               end
+
+
+            when 549
+               return C_DIVIDEMinusCORRESPONDINGSym
+            when 556
+               if @ch=='C'
+                  state=557
+               else
+                  return No_Sym
+               end
+
+
+            when 557
+               if @ch=='A'
+                  state=558
+               else
+                  return No_Sym
+               end
+
+
+            when 558
+               if @ch=='L'
+                  state=559
+               else
+                  return No_Sym
+               end
+
+
+            when 559
+               if @ch=='L'
+                  state=560
+               else
+                  return No_Sym
+               end
+
+
+            when 560
+               return C_EDITORMinusCALLSym
+            when 568
+               if @ch=='M'
+                  state=569
+               else
+                  return No_Sym
+               end
+
+
+            when 569
+               if @ch=='O'
+                  state=570
+               else
+                  return No_Sym
+               end
+
+
+            when 570
+               if @ch=='D'
+                  state=571
+               else
+                  return No_Sym
+               end
+
+
+            when 571
+               if @ch=='E'
+                  state=572
+               else
+                  return No_Sym
+               end
+
+
+            when 572
+               return C_DISPLAYMinusMODESym
+            when 580
+               if @ch=='A'
+                  state=581
+               else
+                  return No_Sym
+               end
+
+
+            when 581
+               if @ch=='G'
+                  state=582
+               else
+                  return No_Sym
+               end
+
+
+            when 582
+               if @ch=='E'
+                  state=583
+               else
+                  return No_Sym
+               end
+
+
+            when 583
+               return C_ENDMinusOFMinusPAGESym
+            when 591
+               if @ch=='E'
+                  state=592
+               else
+                  return No_Sym
+               end
+
+
+            when 592
+               if @ch=='L'
+                  state=593
+               else
+                  return No_Sym
+               end
+
+
+            when 593
+               if @ch=='E'
+                  state=594
+               else
+                  return No_Sym
+               end
+
+
+            when 594
+               if @ch=='C'
+                  state=595
+               else
+                  return No_Sym
+               end
+
+
+            when 595
+               if @ch=='T'
+                  state=596
+               else
+                  return No_Sym
+               end
+
+
+            when 596
+               if @ch=='I'
+                  state=597
+               else
+                  return No_Sym
+               end
+
+
+            when 597
+               if @ch=='O'
+                  state=598
+               else
+                  return No_Sym
+               end
+
+
+            when 598
+               if @ch=='N'
+                  state=599
+               else
+                  return No_Sym
+               end
+
+
+            when 599
+               return C_ENDMinusOFMinusSELECTIONSym
+            when 604
+               if @ch=='L'
+                  state=605
+               else
+                  return No_Sym
+               end
+
+
+            when 605
+               if @ch=='O'
+                  state=606
+               else
+                  return No_Sym
+               end
+
+
+            when 606
+               if @ch=='O'
+                  state=607
+               else
+                  return No_Sym
+               end
+
+
+            when 607
+               if @ch=='P'
+                  state=608
+               else
+                  return No_Sym
+               end
+
+
+            when 608
+               return C_STEPMinusLOOPSym
+            when 615
+               if @ch=='R'
+                  state=616
+               else
+                  return No_Sym
+               end
+
+
+            when 616
+               if @ch=='O'
+                  state=617
+               else
+                  return No_Sym
+               end
+
+
+            when 617
+               if @ch=='U'
+                  state=618
+               else
+                  return No_Sym
+               end
+
+
+            when 618
+               if @ch=='P'
+                  state=619
+               else
+                  return No_Sym
+               end
+
+
+            when 619
+               if @ch=='S'
+                  state=620
+               else
+                  return No_Sym
+               end
+
+
+            when 620
+               return C_FIELDMinusGROUPSSym
+            when 627
+               if @ch=='Y'
+                  state=628
+               else
+                  return No_Sym
+               end
+
+
+            when 628
+               if @ch=='M'
+                  state=629
+               else
+                  return No_Sym
+               end
+
+
+            when 629
+               if @ch=='B'
+                  state=630
+               else
+                  return No_Sym
+               end
+
+
+            when 630
+               if @ch=='O'
+                  state=631
+               else
+                  return No_Sym
+               end
+
+
+            when 631
+               if @ch=='L'
+                  state=632
+               else
+                  return No_Sym
+               end
+
+
+            when 632
+               if @ch=='S'
+                  state=633
+               else
+                  return No_Sym
+               end
+
+
+            when 633
+               return C_FIELDMinusSYMBOLSSym
+            when 642
+               if @ch=='P'
+                  state=643
+               else
+                  return No_Sym
+               end
+
+
+            when 643
+               if @ch=='O'
+                  state=644
+               else
+                  return No_Sym
+               end
+
+
+            when 644
+               if @ch=='O'
+                  state=645
+               else
+                  return No_Sym
+               end
+
+
+            when 645
+               if @ch=='L'
+                  state=646
+               else
+                  return No_Sym
+               end
+
+
+            when 646
+               return C_FUNCTIONMinusPOOLSym
+            when 656
+               if @ch=='I'
+                  state=657
+               else
+                  return No_Sym
+               end
+
+
+            when 657
+               if @ch=='D'
+                  state=658
+               else
+                  return No_Sym
+               end
+
+
+            when 658
+               return C_SHORTDUMPMinusIDSym
+            when 665
+               if @ch=='T'
+                  state=666
+               else
+                  return No_Sym
+               end
+
+
+            when 666
+               if @ch=='A'
+                  state=667
+               else
+                  return No_Sym
+               end
+
+
+            when 667
+               if @ch=='B'
+                  state=668
+               else
+                  return No_Sym
+               end
+
+
+            when 668
+               if @ch=='L'
+                  state=669
+               else
+                  return No_Sym
+               end
+
+
+            when 669
+               if @ch=='E'
+                  state=670
+               else
+                  return No_Sym
+               end
+
+
+            when 670
+               return C_FILTERMinusTABLESym
+            when 673
+               if @ch=='S'
+                  state=674
+               else
+                  return No_Sym
+               end
+
+
+            when 674
+               if @ch=='T'
+                  state=675
+               else
+                  return No_Sym
+               end
+
+
+            when 675
+               if @ch=='A'
+                  state=676
+               else
+                  return No_Sym
+               end
+
+
+            when 676
+               if @ch=='T'
+                  state=677
+               else
+                  return No_Sym
+               end
+
+
+            when 677
+               if @ch=='U'
+                  state=678
+               else
+                  return No_Sym
+               end
+
+
+            when 678
+               if @ch=='S'
+                  state=679
+               else
+                  return No_Sym
+               end
+
+
+            when 679
+               return C_PFMinusSTATUSSym
+            when 685
+               if @ch=='I'
+                  state=686
+               else
+                  return No_Sym
+               end
+
+
+            when 686
+               if @ch=='D'
+                  state=687
+               else
+                  return No_Sym
+               end
+
+
+            when 687
+               return C_MAJORMinusIDSym
+            when 693
+               if @ch=='I'
+                  state=694
+               else
+                  return No_Sym
+               end
+
+
+            when 694
+               if @ch=='D'
+                  state=695
+               else
+                  return No_Sym
+               end
+
+
+            when 695
+               return C_MINORMinusIDSym
+            when 700
+               if @ch=='T'
+                  state=701
+               else
+                  return No_Sym
+               end
+
+
+            when 701
+               if @ch=='O'
+                  state=702
+               else
+                  return No_Sym
+               end
+
+
+            when 702
+               if @ch=='-'
+                  state=703
+               else
+                  return No_Sym
+               end
+
+
+            when 703
+               if @ch=='H'
+                  state=704
+               else
+                  return No_Sym
+               end
+
+
+            when 704
+               if @ch=='E'
+                  state=705
+               else
+                  return No_Sym
+               end
+
+
+            when 705
+               if @ch=='X'
+                  state=706
+               else
+                  return No_Sym
+               end
+
+
+            when 706
+               return C_CHARMinusTOMinusHEXSym
+            when 712
+               if @ch=='P'
+                  state=713
+               else
+                  return No_Sym
+               end
+
+
+            when 713
+               if @ch=='O'
+                  state=714
+               else
+                  return No_Sym
+               end
+
+
+            when 714
+               if @ch=='I'
+                  state=715
+               else
+                  return No_Sym
+               end
+
+
+            when 715
+               if @ch=='N'
+                  state=716
+               else
+                  return No_Sym
+               end
+
+
+            when 716
+               if @ch=='T'
+                  state=717
+               else
+                  return No_Sym
+               end
+
+
+            when 717
+               return C_FIXEDMinusPOINTSym
+            when 727
+               if @ch=='P'
+                  state=728
+               else
+                  return No_Sym
+               end
+
+
+            when 728
+               if @ch=='O'
+                  state=729
+               else
+                  return No_Sym
+               end
+
+
+            when 729
+               if @ch=='O'
+                  state=730
+               else
+                  return No_Sym
+               end
+
+
+            when 730
+               if @ch=='L'
+                  state=731
+               else
+                  return No_Sym
+               end
+
+
+            when 731
+               return C_INTERFACEMinusPOOLSym
+            when 736
+               if @ch=='P'
+                  state=737
+               else
+                  return No_Sym
+               end
+
+
+            when 737
+               if @ch=='R'
+                  state=738
+               else
+                  return No_Sym
+               end
+
+
+            when 738
+               if @ch=='O'
+                  state=739
+               else
+                  return No_Sym
+               end
+
+
+            when 739
+               if @ch=='C'
+                  state=740
+               else
+                  return No_Sym
+               end
+
+
+            when 740
+               if @ch=='E'
+                  state=741
+               else
+                  return No_Sym
+               end
+
+
+            when 741
+               if @ch=='S'
+                  state=742
+               else
+                  return No_Sym
+               end
+
+
+            when 742
+               if @ch=='S'
+                  state=743
+               else
+                  return No_Sym
+               end
+
+
+            when 743
+               if @ch=='I'
+                  state=744
+               else
+                  return No_Sym
+               end
+
+
+            when 744
+               if @ch=='N'
+                  state=745
+               else
+                  return No_Sym
+               end
+
+
+            when 745
+               if @ch=='G'
+                  state=746
+               else
+                  return No_Sym
+               end
+
+
+            when 746
+               return C_LISTMinusPROCESSINGSym
+            when 751
+               if @ch=='O'
+                  state=752
+               else
+                  return No_Sym
+               end
+
+
+            when 752
+               if @ch=='F'
+                  state=753
+               else
+                  return No_Sym
+               end
+
+
+            when 753
+               if @ch=='-'
+                  state=754
+               else
+                  return No_Sym
+               end
+
+
+            when 754
+               if @ch=='P'
+                  state=755
+               else
+                  return No_Sym
+               end
+
+
+            when 755
+               if @ch=='R'
+                  state=756
+               else
+                  return No_Sym
+               end
+
+
+            when 756
+               if @ch=='O'
+                  state=757
+               else
+                  return No_Sym
+               end
+
+
+            when 757
+               if @ch=='G'
+                  state=758
+               else
+                  return No_Sym
+               end
+
+
+            when 758
+               if @ch=='R'
+                  state=759
+               else
+                  return No_Sym
+               end
+
+
+            when 759
+               if @ch=='A'
+                  state=760
+               else
+                  return No_Sym
+               end
+
+
+            when 760
+               if @ch=='M'
+                  state=761
+               else
+                  return No_Sym
+               end
+
+
+            when 761
+               return C_LOADMinusOFMinusPROGRAMSym
+            when 765
+               if @ch=='P'
+                  state=766
+               else
+                  return No_Sym
+               end
+
+
+            when 766
+               if @ch=='O'
+                  state=767
+               else
+                  return No_Sym
+               end
+
+
+            when 767
+               if @ch=='I'
+                  state=768
+               else
+                  return No_Sym
+               end
+
+
+            when 768
+               if @ch=='N'
+                  state=769
+               else
+                  return No_Sym
+               end
+
+
+            when 769
+               if @ch=='T'
+                  state=770
+               else
+                  return No_Sym
+               end
+
+
+            when 770
+               return C_LOGMinusPOINTSym
+            when 779
+               if @ch=='C'
+                  state=780
+               else
+                  return No_Sym
+               end
+
+
+            when 780
+               if @ch=='O'
+                  state=781
+               else
+                  return No_Sym
+               end
+
+
+            when 781
+               if @ch=='R'
+                  state=782
+               else
+                  return No_Sym
+               end
+
+
+            when 782
+               if @ch=='R'
+                  state=783
+               else
+                  return No_Sym
+               end
+
+
+            when 783
+               if @ch=='E'
+                  state=784
+               else
+                  return No_Sym
+               end
+
+
+            when 784
+               if @ch=='S'
+                  state=785
+               else
+                  return No_Sym
+               end
+
+
+            when 785
+               if @ch=='P'
+                  state=786
+               else
+                  return No_Sym
+               end
+
+
+            when 786
+               if @ch=='O'
+                  state=787
+               else
+                  return No_Sym
+               end
+
+
+            when 787
+               if @ch=='N'
+                  state=788
+               else
+                  return No_Sym
+               end
+
+
+            when 788
+               if @ch=='D'
+                  state=789
+               else
+                  return No_Sym
+               end
+
+
+            when 789
+               if @ch=='I'
+                  state=790
+               else
+                  return No_Sym
+               end
+
+
+            when 790
+               if @ch=='N'
+                  state=791
+               else
+                  return No_Sym
+               end
+
+
+            when 791
+               if @ch=='G'
+                  state=792
+               else
+                  return No_Sym
+               end
+
+
+            when 792
+               return C_MULTIPLYMinusCORRESPONDINGSym
+            when 797
+               if @ch=='I'
+                  state=798
+               else
+                  return No_Sym
+               end
+
+
+            when 798
+               if @ch=='N'
+                  state=799
+               else
+                  return No_Sym
+               end
+
+
+            when 799
+               if @ch=='E'
+                  state=800
+               else
+                  return No_Sym
+               end
+
+
+            when 800
+               return C_NEWMinusLINESym
+            when 805
+               if @ch=='R'
+                  state=806
+               else
+                  return No_Sym
+               end
+
+
+            when 806
+               if @ch=='O'
+                  state=807
+               else
+                  return No_Sym
+               end
+
+
+            when 807
+               if @ch=='L'
+                  state=808
+               else
+                  return No_Sym
+               end
+
+
+            when 808
+               if @ch=='L'
+                  state=809
+               else
+                  return No_Sym
+               end
+
+
+            when 809
+               if @ch=='I'
+                  state=810
+               else
+                  return No_Sym
+               end
+
+
+            when 810
+               if @ch=='N'
+                  state=811
+               else
+                  return No_Sym
+               end
+
+
+            when 811
+               if @ch=='G'
+                  state=812
+               else
+                  return No_Sym
+               end
+
+
+            when 812
+               return C_NOMinusSCROLLINGSym
+            when 817
+               if @ch=='A'
+                  state=818
+               else
+                  return No_Sym
+               end
+
+
+            when 818
+               if @ch=='G'
+                  state=819
+               else
+                  return No_Sym
+               end
+
+
+            when 819
+               if @ch=='E'
+                  state=820
+               else
+                  return No_Sym
+               end
+
+
+            when 820
+               return C_NEWMinusPAGESym
+            when 826
+               if @ch=='I'
+                  state=827
+               else
+                  return No_Sym
+               end
+
+
+            when 827
+               if @ch=='T'
+                  state=828
+               else
+                  return No_Sym
+               end
+
+
+            when 828
+               if @ch=='L'
+                  state=829
+               else
+                  return No_Sym
+               end
+
+
+            when 829
+               if @ch=='E'
+                  state=830
+               else
+                  return No_Sym
+               end
+
+
+            when 830
+               return C_WITHMinusTITLESym
+            when 835
+               if @ch=='T'
+                  state=836
+               else
+                  return No_Sym
+               end
+
+
+            when 836
+               if @ch=='L'
+                  state=837
+               else
+                  return No_Sym
+               end
+
+
+            when 837
+               if @ch=='E'
+                  state=838
+               else
+                  return No_Sym
+               end
+
+
+            when 838
+               return C_NOMinusTITLESym
+            when 844
+               if @ch=='E'
+                  state=845
+               else
+                  return No_Sym
+               end
+
+
+            when 845
+               if @ch=='A'
+                  state=846
+               else
+                  return No_Sym
+               end
+
+
+            when 846
+               if @ch=='D'
+                  state=847
+               else
+                  return No_Sym
+               end
+
+
+            when 847
+               if @ch=='I'
+                  state=848
+               else
+                  return No_Sym
+               end
+
+
+            when 848
+               if @ch=='N'
+                  state=849
+               else
+                  return No_Sym
+               end
+
+
+            when 849
+               if @ch=='G'
+                  state=850
+               else
+                  return No_Sym
+               end
+
+
+            when 850
+               return C_WITHMinusHEADINGSym
+            when 854
+               if @ch=='E'
+                  state=855
+               else
+                  return No_Sym
+               end
+
+
+            when 855
+               if @ch=='A'
+                  state=856
+               else
+                  return No_Sym
+               end
+
+
+            when 856
+               if @ch=='D'
+                  state=857
+               else
+                  return No_Sym
+               end
+
+
+            when 857
+               if @ch=='I'
+                  state=858
+               else
+                  return No_Sym
+               end
+
+
+            when 858
+               if @ch=='N'
+                  state=859
+               else
+                  return No_Sym
+               end
+
+
+            when 859
+               if @ch=='G'
+                  state=860
+               else
+                  return No_Sym
+               end
+
+
+            when 860
+               return C_NOMinusHEADINGSym
+            when 865
+               if @ch=='P'
+                  state=866
+               else
+                  return No_Sym
+               end
+
+
+            when 866
+               if @ch=='O'
+                  state=867
+               else
+                  return No_Sym
+               end
+
+
+            when 867
+               if @ch=='F'
+                  state=868
+               else
+                  return No_Sym
+               end
+
+
+            when 868
+               if @ch=='P'
+                  state=869
+               else
+                  return No_Sym
+               end
+
+
+            when 869
+               if @ch=='A'
+                  state=870
+               else
+                  return No_Sym
+               end
+
+
+            when 870
+               if @ch=='G'
+                  state=871
+               else
+                  return No_Sym
+               end
+
+
+            when 871
+               if @ch=='E'
+                  state=872
+               else
+                  return No_Sym
+               end
+
+
+            when 872
+               return C_NOMinusTOPOFPAGESym
+            when 877
+               if @ch=='E'
+                  state=878
+               else
+                  return No_Sym
+               end
+
+
+            when 878
+               if @ch=='C'
+                  state=879
+               else
+                  return No_Sym
+               end
+
+
+            when 879
+               if @ch=='T'
+                  state=880
+               else
+                  return No_Sym
+               end
+
+
+            when 880
+               if @ch=='I'
+                  state=881
+               else
+                  return No_Sym
+               end
+
+
+            when 881
+               if @ch=='O'
+                  state=882
+               else
+                  return No_Sym
+               end
+
+
+            when 882
+               if @ch=='N'
+                  state=883
+               else
+                  return No_Sym
+               end
+
+
+            when 883
+               return C_NEWMinusSECTIONSym
+            when 887
+               if @ch=='I'
+                  state=888
+               else
+                  return No_Sym
+               end
+
+
+            when 888
+               if @ch=='S'
+                  state=889
+               else
+                  return No_Sym
+               end
+
+
+            when 889
+               if @ch=='P'
+                  state=890
+               else
+                  return No_Sym
+               end
+
+
+            when 890
+               if @ch=='L'
+                  state=891
+               else
+                  return No_Sym
+               end
+
+
+            when 891
+               if @ch=='A'
+                  state=892
+               else
+                  return No_Sym
+               end
+
+
+            when 892
+               if @ch=='Y'
+                  state=893
+               else
+                  return No_Sym
+               end
+
+
+            when 893
+               return C_NOMinusDISPLAYSym
+            when 898
+               if @ch=='C'
+                  state=899
+               else
+                  return No_Sym
+               end
+
+
+            when 899
+               if @ch=='O'
+                  state=900
+               else
+                  return No_Sym
+               end
+
+
+            when 900
+               if @ch=='M'
+                  state=901
+               else
+                  return No_Sym
+               end
+
+
+            when 901
+               if @ch=='M'
+                  state=902
+               else
+                  return No_Sym
+               end
+
+
+            when 902
+               if @ch=='A'
+                  state=903
+               else
+                  return No_Sym
+               end
+
+
+            when 903
+               if @ch=='N'
+                  state=904
+               else
+                  return No_Sym
+               end
+
+
+            when 904
+               if @ch=='D'
+                  state=905
+               else
+                  return No_Sym
+               end
+
+
+            when 905
+               return C_USERMinusCOMMANDSym
+            when 911
+               if @ch=='E'
+                  state=912
+               else
+                  return No_Sym
+               end
+
+
+            when 912
+               if @ch=='Q'
+                  state=913
+               else
+                  return No_Sym
+               end
+
+
+            when 913
+               if @ch=='U'
+                  state=914
+               else
+                  return No_Sym
+               end
+
+
+            when 914
+               if @ch=='E'
+                  state=915
+               else
+                  return No_Sym
+               end
+
+
+            when 915
+               if @ch=='S'
+                  state=916
+               else
+                  return No_Sym
+               end
+
+
+            when 916
+               if @ch=='T'
+                  state=917
+               else
+                  return No_Sym
+               end
+
+
+            when 917
+               return C_HELPMinusREQUESTSym
+            when 923
+               if @ch=='R'
+                  state=924
+               else
+                  return No_Sym
+               end
+
+
+            when 924
+               if @ch=='E'
+                  state=925
+               else
+                  return No_Sym
+               end
+
+
+            when 925
+               if @ch=='Q'
+                  state=926
+               else
+                  return No_Sym
+               end
+
+
+            when 926
+               if @ch=='U'
+                  state=927
+               else
+                  return No_Sym
+               end
+
+
+            when 927
+               if @ch=='E'
+                  state=928
+               else
+                  return No_Sym
+               end
+
+
+            when 928
+               if @ch=='S'
+                  state=929
+               else
+                  return No_Sym
+               end
+
+
+            when 929
+               if @ch=='T'
+                  state=930
+               else
+                  return No_Sym
+               end
+
+
+            when 930
+               return C_VALUEMinusREQUESTSym
+            when 936
+               if @ch=='C'
+                  state=937
+               else
+                  return No_Sym
+               end
+
+
+            when 937
+               if @ch=='O'
+                  state=938
+               else
+                  return No_Sym
+               end
+
+
+            when 938
+               if @ch=='N'
+                  state=939
+               else
+                  return No_Sym
+               end
+
+
+            when 939
+               if @ch=='T'
+                  state=940
+               else
+                  return No_Sym
+               end
+
+
+            when 940
+               if @ch=='R'
+                  state=941
+               else
+                  return No_Sym
+               end
+
+
+            when 941
+               if @ch=='O'
+                  state=942
+               else
+                  return No_Sym
+               end
+
+
+            when 942
+               if @ch=='L'
+                  state=943
+               else
+                  return No_Sym
+               end
+
+
+            when 943
+               return C_PRINTMinusCONTROLSym
+            when 949
+               if @ch=='L'
+                  state=950
+               else
+                  return No_Sym
+               end
+
+
+            when 950
+               if @ch=='I'
+                  state=951
+               else
+                  return No_Sym
+               end
+
+
+            when 951
+               if @ch=='N'
+                  state=952
+               else
+                  return No_Sym
+               end
+
+
+            when 952
+               if @ch=='E'
+                  state=953
+               else
+                  return No_Sym
+               end
+
+
+            when 953
+               return C_INDEXMinusLINESym
+            when 960
+               if @ch=='O'
+                  state=961
+               else
+                  return No_Sym
+               end
+
+
+            when 961
+               if @ch=='P'
+                  state=962
+               else
+                  return No_Sym
+               end
+
+
+            when 962
+               if @ch=='T'
+                  state=963
+               else
+                  return No_Sym
+               end
+
+
+            when 963
+               if @ch=='I'
+                  state=964
+               else
+                  return No_Sym
+               end
+
+
+            when 964
+               if @ch=='O'
+                  state=965
+               else
+                  return No_Sym
+               end
+
+
+            when 965
+               if @ch=='N'
+                  state=966
+               else
+                  return No_Sym
+               end
+
+
+            when 966
+               if @ch=='S'
+                  state=967
+               else
+                  return No_Sym
+               end
+
+
+            when 967
+               return C_SELECTMinusOPTIONSSym
+            when 971
+               if @ch=='X'
+                  state=972
+               else
+                  return No_Sym
+               end
+
+
+            when 972
+               if @ch=='T'
+                  state=973
+               else
+                  return No_Sym
+               end
+
+
+            when 973
+               if @ch=='E'
+                  state=974
+               else
+                  return No_Sym
+               end
+
+
+            when 974
+               if @ch=='N'
+                  state=975
+               else
+                  return No_Sym
+               end
+
+
+            when 975
+               if @ch=='S'
+                  state=976
+               else
+                  return No_Sym
+               end
+
+
+            when 976
+               if @ch=='I'
+                  state=977
+               else
+                  return No_Sym
+               end
+
+
+            when 977
+               if @ch=='O'
+                  state=978
+               else
+                  return No_Sym
+               end
+
+
+            when 978
+               if @ch=='N'
+                  state=979
+               else
+                  return No_Sym
+               end
+
+
+            when 979
+               return C_NOMinusEXTENSIONSym
+            when 986
+               if @ch=='B'
+                  state=987
+               else
+                  return No_Sym
+               end
+
+
+            when 987
+               if @ch=='O'
+                  state=988
+               else
+                  return No_Sym
+               end
+
+
+            when 988
+               if @ch=='U'
+                  state=989
+               else
+                  return No_Sym
+               end
+
+
+            when 989
+               if @ch=='N'
+                  state=990
+               else
+                  return No_Sym
+               end
+
+
+            when 990
+               if @ch=='D'
+                  state=991
+               else
+                  return No_Sym
+               end
+
+
+            when 991
+               if @ch=='A'
+                  state=992
+               else
+                  return No_Sym
+               end
+
+
+            when 992
+               if @ch=='R'
+                  state=993
+               else
+                  return No_Sym
+               end
+
+
+            when 993
+               if @ch=='Y'
+                  state=994
+               else
+                  return No_Sym
+               end
+
+
+            when 994
+               return C_SCROLLMinusBOUNDARYSym
+            when 1003
+               if @ch=='C'
+                  state=1004
+               else
+                  return No_Sym
+               end
+
+
+            when 1004
+               if @ch=='O'
+                  state=1005
+               else
+                  return No_Sym
+               end
+
+
+            when 1005
+               if @ch=='R'
+                  state=1006
+               else
+                  return No_Sym
+               end
+
+
+            when 1006
+               if @ch=='R'
+                  state=1007
+               else
+                  return No_Sym
+               end
+
+
+            when 1007
+               if @ch=='E'
+                  state=1008
+               else
+                  return No_Sym
+               end
+
+
+            when 1008
+               if @ch=='S'
+                  state=1009
+               else
+                  return No_Sym
+               end
+
+
+            when 1009
+               if @ch=='P'
+                  state=1010
+               else
+                  return No_Sym
+               end
+
+
+            when 1010
+               if @ch=='O'
+                  state=1011
+               else
+                  return No_Sym
+               end
+
+
+            when 1011
+               if @ch=='N'
+                  state=1012
+               else
+                  return No_Sym
+               end
+
+
+            when 1012
+               if @ch=='D'
+                  state=1013
+               else
+                  return No_Sym
+               end
+
+
+            when 1013
+               if @ch=='I'
+                  state=1014
+               else
+                  return No_Sym
+               end
+
+
+            when 1014
+               if @ch=='N'
+                  state=1015
+               else
+                  return No_Sym
+               end
+
+
+            when 1015
+               if @ch=='G'
+                  state=1016
+               else
+                  return No_Sym
+               end
+
+
+            when 1016
+               return C_SUBTRACTMinusCORRESPONDINGSym
+            when 1023
+               if @ch=='C'
+                  state=1024
+               else
+                  return No_Sym
+               end
+
+
+            when 1024
+               if @ch=='H'
+                  state=1025
+               else
+                  return No_Sym
+               end
+
+
+            when 1025
+               if @ch=='E'
+                  state=1026
+               else
+                  return No_Sym
+               end
+
+
+            when 1026
+               if @ch=='C'
+                  state=1027
+               else
+                  return No_Sym
+               end
+
+
+            when 1027
+               if @ch=='K'
+                  state=1028
+               else
+                  return No_Sym
+               end
+
+
+            when 1028
+               return C_SYNTAXMinusCHECKSym
+            when 1034
+               if @ch=='N'
+                  state=1035
+               else
+                  return No_Sym
+               end
+
+
+            when 1035
+               if @ch=='J'
+                  state=1036
+               else
+                  return No_Sym
+               end
+
+
+            when 1036
+               if @ch=='E'
+                  state=1037
+               else
+                  return No_Sym
+               end
+
+
+            when 1037
+               if @ch=='C'
+                  state=1038
+               else
+                  return No_Sym
+               end
+
+
+            when 1038
+               if @ch=='T'
+                  state=1039
+               else
+                  return No_Sym
+               end
+
+
+            when 1039
+               if @ch=='I'
+                  state=1040
+               else
+                  return No_Sym
+               end
+
+
+            when 1040
+               if @ch=='O'
+                  state=1041
+               else
+                  return No_Sym
+               end
+
+
+            when 1041
+               if @ch=='N'
+                  state=1042
+               else
+                  return No_Sym
+               end
+
+
+            when 1042
+               return C_TESTMinusINJECTIONSym
+            when 1052
+               if @ch=='N'
+                  state=1053
+               else
+                  return No_Sym
+               end
+
+
+            when 1053
+               if @ch=='J'
+                  state=1054
+               else
+                  return No_Sym
+               end
+
+
+            when 1054
+               if @ch=='E'
+                  state=1055
+               else
+                  return No_Sym
+               end
+
+
+            when 1055
+               if @ch=='C'
+                  state=1056
+               else
+                  return No_Sym
+               end
+
+
+            when 1056
+               if @ch=='T'
+                  state=1057
+               else
+                  return No_Sym
+               end
+
+
+            when 1057
+               if @ch=='I'
+                  state=1058
+               else
+                  return No_Sym
+               end
+
+
+            when 1058
+               if @ch=='O'
+                  state=1059
+               else
+                  return No_Sym
+               end
+
+
+            when 1059
+               if @ch=='N'
+                  state=1060
+               else
+                  return No_Sym
+               end
+
+
+            when 1060
+               return C_ENDMinusTESTMinusINJECTIONSym
+            when 1066
+               if @ch=='E'
+                  state=1067
+               else
+                  return No_Sym
+               end
+
+
+            when 1067
+               if @ch=='A'
+                  state=1068
+               else
+                  return No_Sym
+               end
+
+
+            when 1068
+               if @ch=='M'
+                  state=1069
+               else
+                  return No_Sym
+               end
+
+
+            when 1069
+               return C_TESTMinusSEAMSym
+            when 1079
+               if @ch=='E'
+                  state=1080
+               else
+                  return No_Sym
+               end
+
+
+            when 1080
+               if @ch=='A'
+                  state=1081
+               else
+                  return No_Sym
+               end
+
+
+            when 1081
+               if @ch=='M'
+                  state=1082
+               else
+                  return No_Sym
+               end
+
+
+            when 1082
+               return C_ENDMinusTESTMinusSEAMSym
+            when 1087
+               if @ch=='F'
+                  state=1088
+               else
+                  return No_Sym
+               end
+
+
+            when 1088
+               if @ch=='-'
+                  state=1089
+               else
+                  return No_Sym
+               end
+
+
+            when 1089
+               if @ch=='P'
+                  state=1090
+               else
+                  return No_Sym
+               end
+
+
+            when 1090
+               if @ch=='A'
+                  state=1091
+               else
+                  return No_Sym
+               end
+
+
+            when 1091
+               if @ch=='G'
+                  state=1092
+               else
+                  return No_Sym
+               end
+
+
+            when 1092
+               if @ch=='E'
+                  state=1093
+               else
+                  return No_Sym
+               end
+
+
+            when 1093
+               return C_TOPMinusOFMinusPAGESym
+            when 1100
+               if @ch=='L'
+                  state=1101
+               else
+                  return No_Sym
+               end
+
+
+            when 1101
+               if @ch=='E'
+                  state=1102
+               else
+                  return No_Sym
+               end
+
+
+            when 1102
+               if @ch=='C'
+                  state=1103
+               else
+                  return No_Sym
+               end
+
+
+            when 1103
+               if @ch=='T'
+                  state=1104
+               else
+                  return No_Sym
+               end
+
+
+            when 1104
+               if @ch=='I'
+                  state=1105
+               else
+                  return No_Sym
+               end
+
+
+            when 1105
+               if @ch=='O'
+                  state=1106
+               else
+                  return No_Sym
+               end
+
+
+            when 1106
+               if @ch=='N'
+                  state=1107
+               else
+                  return No_Sym
+               end
+
+
+            when 1107
+               return C_LINEMinusSELECTIONSym
+            when 1126
+               return C_TYPEMinusPOOLSSym
+            when 1127
+               if @ch=='|'
+                  state=1128
+               else
+                  if @ch=='='
+                     state=1189
+                  else
+                     return C_BarSym
+                  end
+
+               end
+
+
+            when 1128
+               return C_BarBarSym
+            when 1129
+               if @ch=='&'
+                  state=1130
+               else
+                  if @ch=='='
+                     state=1187
+                  else
+                     return C_AndSym
+                  end
+
+               end
+
+
+            when 1130
+               return C_AndAndSym
+            when 1131
                if @ch=='='
-                  state=111
+                  state=1188
+               else
+                  return C_UparrowSym
+               end
+
+
+            when 1132
+               return C_LessGreaterSym
+            when 1133
+               return C_LessEqualSym
+            when 1134
+               return C_GreaterEqualSym
+            when 1141
+               return C_BYTEMinusCOSym
+            when 1148
+               return C_BYTEMinusCNSym
+            when 1155
+               return C_BYTEMinusCASym
+            when 1162
+               return C_BYTEMinusNASym
+            when 1169
+               return C_BYTEMinusCSSym
+            when 1176
+               return C_BYTEMinusNSSym
+            when 1177
+               if @ch=='='
+                  state=1190
                else
                   return C_LessLessSym
                end
 
 
-            when 99
+            when 1178
                if @ch=='='
-                  state=112
+                  state=1191
                else
                   return C_GreaterGreaterSym
                end
 
 
-            when 100
+            when 1179
                if @ch=='='
-                  state=105
+                  state=1184
                else
                   return C_PercentSym
                end
 
 
-            when 101
+            when 1180
                return C_PlusPlusSym
-            when 102
+            when 1181
                return C_MinusMinusSym
-            when 103
+            when 1182
                return C_StarEqualSym
-            when 104
+            when 1183
                return C_SlashEqualSym
-            when 105
+            when 1184
                return C_PercentEqualSym
-            when 106
+            when 1185
                return C_PlusEqualSym
-            when 107
+            when 1186
                return C_MinusEqualSym
-            when 108
+            when 1187
                return C_AndEqualSym
-            when 109
+            when 1188
                return C_UparrowEqualSym
-            when 110
+            when 1189
                return C_BarEqualSym
-            when 111
+            when 1190
                return C_LessLessEqualSym
-            when 112
+            when 1191
                return C_GreaterGreaterEqualSym
-            when 113
-               if @ch=='-'||@ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='C'||@ch>='E'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+            when 1192
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='D'||@ch>='F'&&@ch<='H'||@ch>='J'&&@ch<='N'||@ch>='P'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='I'
+                     state=1212
+                  else
+                     if @ch=='E'
+                        state=1213
+                     else
+                        if @ch=='O'
+                           state=1214
+                        else
+                           return CheckLiteral(C_identifierSym)
+                        end
+
+                     end
+
+                  end
+
+               end
+
+
+            when 1193
+               if @ch>='0'&&@ch<='9'||@ch>='B'&&@ch<='D'||@ch>='F'&&@ch<='H'||@ch>='J'&&@ch<='L'||@ch=='N'||@ch>='P'&&@ch<='T'||@ch>='V'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='E'
+                     state=1215
+                  else
+                     if @ch=='O'
+                        state=1216
+                     else
+                        if @ch=='M'
+                           state=1217
+                        else
+                           if @ch=='A'
+                              state=1218
+                           else
+                              if @ch=='I'
+                                 state=1219
+                              else
+                                 if @ch=='U'
+                                    state=1220
+                                 else
+                                    return CheckLiteral(C_identifierSym)
+                                 end
+
+                              end
+
+                           end
+
+                        end
+
+                     end
+
+                  end
+
+               end
+
+
+            when 1194
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='D'||@ch>='F'&&@ch<='N'||@ch>='P'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='O'
+                     state=1221
+                  else
+                     if @ch=='E'
+                        state=1222
+                     else
+                        return CheckLiteral(C_identifierSym)
+                     end
+
+                  end
+
+               end
+
+
+            when 1195
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='D'||@ch>='F'&&@ch<='H'||@ch>='J'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='E'
+                     state=1223
+                  else
+                     if @ch=='I'
+                        state=1224
+                     else
+                        return CheckLiteral(C_identifierSym)
+                     end
+
+                  end
+
+               end
+
+
+            when 1196
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='C'||@ch>='E'&&@ch<='H'||@ch>='J'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
                   state=2
                else
                   if @ch=='D'
-                     state=115
+                     state=1225
+                  else
+                     if @ch=='I'
+                        state=1226
+                     else
+                        return CheckLiteral(C_identifierSym)
+                     end
+
+                  end
+
+               end
+
+
+            when 1197
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='C'||@ch>='E'&&@ch<='T'||@ch>='V'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='U'
+                     state=1227
+                  else
+                     if @ch=='D'
+                        state=1228
+                     else
+                        return CheckLiteral(C_identifierSym)
+                     end
+
+                  end
+
+               end
+
+
+            when 1198
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='R'||@ch>='U'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='T'
+                     state=1229
+                  else
+                     if @ch=='S'
+                        state=1230
+                     else
+                        return CheckLiteral(C_identifierSym)
+                     end
+
+                  end
+
+               end
+
+
+            when 1199
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Q'||@ch>='S'&&@ch<='X'||@ch=='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='Y'
+                     state=1231
+                  else
+                     if @ch=='R'
+                        state=1232
+                     else
+                        return CheckLiteral(C_identifierSym)
+                     end
+
+                  end
+
+               end
+
+
+            when 1200
+               if @ch>='0'&&@ch<='9'||@ch=='B'||@ch=='D'||@ch>='F'&&@ch<='G'||@ch>='I'&&@ch<='S'||@ch>='V'&&@ch<='X'||@ch=='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='E'
+                     state=1233
+                  else
+                     if @ch=='A'
+                        state=1234
+                     else
+                        if @ch=='T'
+                           state=1235
+                        else
+                           if @ch=='H'
+                              state=1236
+                           else
+                              if @ch=='C'
+                                 state=1237
+                              else
+                                 if @ch=='U'
+                                    state=1238
+                                 else
+                                    if @ch=='Y'
+                                       state=1239
+                                    else
+                                       return CheckLiteral(C_identifierSym)
+                                    end
+
+                                 end
+
+                              end
+
+                           end
+
+                        end
+
+                     end
+
+                  end
+
+               end
+
+
+            when 1201
+               if @ch>='0'&&@ch<='9'||@ch>='B'&&@ch<='E'||@ch>='G'&&@ch<='Q'||@ch>='S'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='A'
+                     state=1240
+                  else
+                     if @ch=='F'
+                        state=1241
+                     else
+                        if @ch=='R'
+                           state=1242
+                        else
+                           return CheckLiteral(C_identifierSym)
+                        end
+
+                     end
+
+                  end
+
+               end
+
+
+            when 1202
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='C'||@ch>='E'&&@ch<='M'||@ch>='O'&&@ch<='W'||@ch>='Y'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='X'
+                     state=1243
+                  else
+                     if @ch=='N'
+                        state=1244
+                     else
+                        if @ch=='D'
+                           state=1245
+                        else
+                           return CheckLiteral(C_identifierSym)
+                        end
+
+                     end
+
+                  end
+
+               end
+
+
+            when 1203
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='G'||@ch>='I'&&@ch<='K'||@ch>='M'&&@ch<='T'||@ch>='V'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='L'
+                     state=1246
+                  else
+                     if @ch=='U'
+                        state=1247
+                     else
+                        if @ch=='H'
+                           state=1248
+                        else
+                           return CheckLiteral(C_identifierSym)
+                        end
+
+                     end
+
+                  end
+
+               end
+
+
+            when 1204
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='T'||@ch>='V'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='U'
+                     state=1249
                   else
                      return CheckLiteral(C_identifierSym)
                   end
@@ -3914,12 +15148,1941 @@ class CScanner < CRScanner
                end
 
 
-            when 114
-               if @ch=='-'||@ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='L'||@ch>='N'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+            when 1205
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='T'||@ch>='V'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='U'
+                     state=1250
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1206
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='D'||@ch>='F'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='E'
+                     state=1251
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1207
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='H'||@ch>='J'&&@ch<='T'||@ch>='V'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='I'
+                     state=1252
+                  else
+                     if @ch=='U'
+                        state=1253
+                     else
+                        return CheckLiteral(C_identifierSym)
+                     end
+
+                  end
+
+               end
+
+
+            when 1208
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='D'||@ch>='F'&&@ch<='H'||@ch>='J'&&@ch<='N'||@ch>='P'&&@ch<='X'||@ch=='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='O'
+                     state=1254
+                  else
+                     if @ch=='I'
+                        state=1255
+                     else
+                        if @ch=='E'
+                           state=1256
+                        else
+                           if @ch=='Y'
+                              state=1257
+                           else
+                              return CheckLiteral(C_identifierSym)
+                           end
+
+                        end
+
+                     end
+
+                  end
+
+               end
+
+
+            when 1209
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='M'||@ch>='O'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='N'
+                     state=1258
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1210
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='H'||@ch>='J'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='I'
+                     state=1259
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1211
+               if @ch>='0'&&@ch<='9'||@ch>='B'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='A'
+                     state=1260
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1212
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='M'||@ch>='O'&&@ch<='R'||@ch>='T'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='N'
+                     state=1261
+                  else
+                     if @ch=='S'
+                        state=1262
+                     else
+                        return CheckLiteral(C_identifierSym)
+                     end
+
+                  end
+
+               end
+
+
+            when 1213
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='E'||@ch>='G'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='F'
+                     state=1263
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1214
+               if @ch>='0'&&@ch<='9'||@ch>='B'&&@ch<='F'||@ch>='H'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='A'
+                     state=1264
+                  else
+                     if @ch=='G'
+                        state=1265
+                     else
+                        return CheckLiteral(C_identifierSym)
+                     end
+
+                  end
+
+               end
+
+
+            when 1215
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='R'||@ch>='T'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='S'
+                     state=1266
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1216
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='U'||@ch>='W'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='V'
+                     state=1267
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1217
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='/'
+                     state=1268
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1218
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='I'||@ch>='K'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='J'
+                     state=1269
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1219
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='M'||@ch>='O'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='N'
+                     state=1270
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1220
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='K'||@ch>='M'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='L'
+                     state=1271
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1221
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='M'||@ch>='O'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='N'
+                     state=1272
+                  else
+                     if @ch=='-'
+                        state=1273
+                     else
+                        return CheckLiteral(C_identifierSym)
+                     end
+
+                  end
+
+               end
+
+
+            when 1222
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='V'||@ch>='X'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='W'
+                     state=1274
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1223
+               if @ch>='0'&&@ch<='9'||@ch>='B'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='A'
+                     state=1275
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1224
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='F'||@ch>='H'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='G'
+                     state=1276
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1225
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='/'
+                     state=1277
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1226
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='R'||@ch>='T'&&@ch<='U'||@ch>='W'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='V'
+                     state=1278
+                  else
+                     if @ch=='S'
+                        state=1279
+                     else
+                        return CheckLiteral(C_identifierSym)
+                     end
+
+                  end
+
+               end
+
+
+            when 1227
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='S'||@ch>='U'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='T'
+                     state=1280
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1228
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='C'||@ch>='E'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='D'
+                     state=1281
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1229
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='E'||@ch>='G'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='F'
+                     state=1282
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1230
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='D'||@ch>='F'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='E'
+                     state=1283
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1231
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='S'||@ch>='U'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='T'
+                     state=1284
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1232
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='D'||@ch>='F'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='E'
+                     state=1285
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1233
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='K'||@ch>='M'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='L'
+                     state=1286
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1234
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='O'||@ch>='Q'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='P'
+                     state=1287
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1235
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='D'||@ch>='F'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='E'
+                     state=1288
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1236
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='N'||@ch>='P'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='O'
+                     state=1289
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1237
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Q'||@ch>='S'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='R'
+                     state=1290
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1238
+               if @ch>='0'&&@ch<='9'||@ch=='A'||@ch>='C'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='B'
+                     state=1291
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1239
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='M'||@ch>='O'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='N'
+                     state=1292
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1240
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Q'||@ch>='S'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='R'
+                     state=1293
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1241
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='-'
+                     state=673
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1242
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='H'||@ch>='J'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='I'
+                     state=1294
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1243
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='B'||@ch>='D'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='C'
+                     state=1295
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1244
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='C'||@ch>='E'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='D'
+                     state=1296
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1245
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='H'||@ch>='J'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='I'
+                     state=1297
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1246
+               if @ch>='0'&&@ch<='9'||@ch>='B'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='A'
+                     state=1298
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1247
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='R'||@ch>='T'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='S'
+                     state=1299
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1248
+               if @ch>='0'&&@ch<='9'||@ch>='B'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='A'
+                     state=1300
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1249
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='D'||@ch>='F'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='E'
+                     state=1301
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1250
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='S'||@ch>='U'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='T'
+                     state=1302
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1251
+               if @ch>='0'&&@ch<='9'||@ch>='B'&&@ch<='K'||@ch>='M'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='L'
+                     state=1303
+                  else
+                     if @ch=='A'
+                        state=1304
+                     else
+                        return CheckLiteral(C_identifierSym)
+                     end
+
+                  end
+
+               end
+
+
+            when 1252
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='D'||@ch>='F'&&@ch<='K'||@ch>='M'&&@ch<='Q'||@ch>='S'&&@ch<='W'||@ch>='Y'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='R'
+                     state=1305
+                  else
+                     if @ch=='E'
+                        state=1306
+                     else
+                        if @ch=='L'
+                           state=1307
+                        else
+                           if @ch=='X'
+                              state=1308
+                           else
+                              return CheckLiteral(C_identifierSym)
+                           end
+
+                        end
+
+                     end
+
+                  end
+
+               end
+
+
+            when 1253
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='M'||@ch>='O'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='N'
+                     state=1309
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1254
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='O'||@ch>='Q'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='P'
+                     state=1310
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1255
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='S'||@ch>='U'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='T'
+                     state=1311
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1256
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='R'||@ch>='T'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='S'
+                     state=1312
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1257
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='O'||@ch>='Q'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='P'
+                     state=1313
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1258
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='C'||@ch>='E'&&@ch<='S'||@ch>='U'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='T'
+                     state=1314
+                  else
+                     if @ch=='D'
+                        state=1315
+                     else
+                        return CheckLiteral(C_identifierSym)
+                     end
+
+                  end
+
+               end
+
+
+            when 1259
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='S'||@ch>='U'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='T'
+                     state=1316
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1260
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='K'||@ch>='M'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='L'
+                     state=1317
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1261
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='D'||@ch>='F'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='E'
+                     state=1318
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1262
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='S'||@ch>='U'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='T'
+                     state=1319
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1263
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='S'||@ch>='U'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='T'
+                     state=1320
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1264
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='C'||@ch>='E'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='D'
+                     state=1321
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1265
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='-'
+                     state=765
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1266
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='R'||@ch>='T'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='S'
+                     state=1322
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1267
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='D'||@ch>='F'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='E'
+                     state=1323
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1268
+               if @ch=='D'
+                  state=1324
+               else
+                  return No_Sym
+               end
+
+
+            when 1269
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='N'||@ch>='P'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='O'
+                     state=1325
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1270
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='N'||@ch>='P'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='O'
+                     state=1326
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1271
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='S'||@ch>='U'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='T'
+                     state=1327
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1272
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='-'
+                     state=1328
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1273
+               if @ch=='G'
+                  state=1329
+               else
+                  if @ch=='S'
+                     state=1330
+                  else
+                     if @ch=='Z'
+                        state=171
+                     else
+                        if @ch=='T'
+                           state=1331
+                        else
+                           if @ch=='H'
+                              state=854
+                           else
+                              if @ch=='D'
+                                 state=887
+                              else
+                                 if @ch=='E'
+                                    state=971
+                                 else
+                                    return No_Sym
+                                 end
+
+                              end
+
+                           end
+
+                        end
+
+                     end
+
+                  end
+
+               end
+
+
+            when 1274
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='-'
+                     state=1332
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1275
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='C'||@ch>='E'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='D'
+                     state=1333
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1276
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='G'||@ch>='I'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='H'
+                     state=1334
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1277
+               if @ch=='M'
+                  state=1335
+               else
+                  return No_Sym
+               end
+
+
+            when 1278
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='H'||@ch>='J'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='I'
+                     state=1336
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1279
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='O'||@ch>='Q'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='P'
+                     state=1337
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1280
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='G'||@ch>='I'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='H'
+                     state=1338
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1281
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='-'
+                     state=368
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1282
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='-'
+                     state=229
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1283
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Q'||@ch>='S'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='R'
+                     state=1339
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1284
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='D'||@ch>='F'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='E'
+                     state=1340
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1285
+               if @ch>='0'&&@ch<='9'||@ch>='B'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='A'
+                     state=1341
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1286
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='D'||@ch>='F'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='E'
+                     state=1342
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1287
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='-'
+                     state=315
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1288
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='O'||@ch>='Q'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='P'
+                     state=1343
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1289
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Q'||@ch>='S'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='R'
+                     state=1344
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1290
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='N'||@ch>='P'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='O'
+                     state=1345
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1291
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='S'||@ch>='U'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='T'
+                     state=1346
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1292
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='S'||@ch>='U'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='T'
+                     state=1347
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1293
+               if @ch>='0'&&@ch<='9'||@ch>='B'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='A'
+                     state=1348
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1294
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='M'||@ch>='O'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='N'
+                     state=1349
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1295
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='D'||@ch>='F'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='E'
+                     state=1350
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1296
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='-'
+                     state=1351
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1297
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='S'||@ch>='U'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='T'
+                     state=1352
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1298
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='R'||@ch>='T'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='S'
+                     state=1353
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1299
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='S'||@ch>='U'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='T'
+                     state=1354
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1300
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Q'||@ch>='S'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='R'
+                     state=1355
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1301
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='T'||@ch>='V'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='U'
+                     state=1356
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1302
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='O'||@ch>='Q'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='P'
+                     state=1357
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1303
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='O'||@ch>='Q'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='P'
+                     state=1358
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1304
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='C'||@ch>='E'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='D'
+                     state=1359
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1305
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='R'||@ch>='T'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='S'
+                     state=1360
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1306
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='K'||@ch>='M'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='L'
+                     state=1361
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1307
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='S'||@ch>='U'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='T'
+                     state=1362
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1308
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='D'||@ch>='F'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='E'
+                     state=1363
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1309
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='B'||@ch>='D'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='C'
+                     state=1364
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1310
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='-'
+                     state=1365
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1311
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='K'||@ch>='M'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='L'
+                     state=1366
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1312
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='S'||@ch>='U'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='T'
+                     state=1367
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1313
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='D'||@ch>='F'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='E'
+                     state=1368
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1314
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='D'||@ch>='F'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='E'
+                     state=1369
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1315
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='D'||@ch>='F'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='E'
+                     state=1370
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1316
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='G'||@ch>='I'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='H'
+                     state=1371
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1317
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='T'||@ch>='V'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='U'
+                     state=1372
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1318
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='-'
+                     state=1373
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1319
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='-'
+                     state=736
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1320
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='-'
+                     state=125
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1321
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='-'
+                     state=751
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1322
+               if @ch>='0'&&@ch<='9'||@ch>='B'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='A'
+                     state=1374
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1323
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='-'
+                     state=76
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1324
+               if @ch=='D'
+                  state=1375
+               else
+                  return No_Sym
+               end
+
+
+            when 1325
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Q'||@ch>='S'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='R'
+                     state=1376
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1326
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Q'||@ch>='S'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='R'
+                     state=1377
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1327
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='H'||@ch>='J'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='I'
+                     state=1378
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1328
+               if @ch=='U'
+                  state=1379
+               else
+                  return No_Sym
+               end
+
+
+            when 1329
+               if @ch=='A'
+                  state=1380
+               else
+                  if @ch=='R'
+                     state=154
+                  else
+                     return No_Sym
+                  end
+
+               end
+
+
+            when 1330
+               if @ch=='I'
+                  state=165
+               else
+                  if @ch=='C'
+                     state=805
+                  else
+                     return No_Sym
+                  end
+
+               end
+
+
+            when 1331
+               if @ch=='I'
+                  state=835
+               else
+                  if @ch=='O'
+                     state=865
+                  else
+                     return No_Sym
+                  end
+
+               end
+
+
+            when 1332
+               if @ch=='L'
+                  state=797
+               else
+                  if @ch=='P'
+                     state=817
+                  else
+                     if @ch=='S'
+                        state=877
+                     else
+                        return No_Sym
+                     end
+
+                  end
+
+               end
+
+
+            when 1333
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='-'
+                     state=108
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1334
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='S'||@ch>='U'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='T'
+                     state=1381
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1335
+               if @ch=='M'
+                  state=1382
+               else
+                  return No_Sym
+               end
+
+
+            when 1336
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='C'||@ch>='E'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='D'
+                     state=1383
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1337
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='K'||@ch>='M'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='L'
+                     state=1384
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1338
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='N'||@ch>='P'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='O'
+                     state=1385
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1339
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='-'
+                     state=898
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1340
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='-'
+                     state=1386
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1341
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='J'||@ch>='L'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='K'
+                     state=1387
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1342
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='B'||@ch>='D'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='C'
+                     state=1388
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1343
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='-'
+                     state=604
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1344
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='S'||@ch>='U'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='T'
+                     state=1389
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1345
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='K'||@ch>='M'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='L'
+                     state=1390
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1346
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Q'||@ch>='S'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='R'
+                     state=1391
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1347
+               if @ch>='0'&&@ch<='9'||@ch>='B'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='A'
+                     state=1392
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1348
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='L'||@ch>='N'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
                   state=2
                else
                   if @ch=='M'
-                     state=116
+                     state=1393
                   else
                      return CheckLiteral(C_identifierSym)
                   end
@@ -3927,12 +17090,12 @@ class CScanner < CRScanner
                end
 
 
-            when 115
-               if @ch=='-'||@ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+            when 1349
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='S'||@ch>='U'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
                   state=2
                else
-                  if @ch=='/'
-                     state=117
+                  if @ch=='T'
+                     state=1394
                   else
                      return CheckLiteral(C_identifierSym)
                   end
@@ -3940,12 +17103,12 @@ class CScanner < CRScanner
                end
 
 
-            when 116
-               if @ch=='-'||@ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+            when 1350
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='O'||@ch>='Q'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
                   state=2
                else
-                  if @ch=='/'
-                     state=118
+                  if @ch=='P'
+                     state=1395
                   else
                      return CheckLiteral(C_identifierSym)
                   end
@@ -3953,99 +17116,1720 @@ class CScanner < CRScanner
                end
 
 
-            when 117
-               if @ch=='M'
-                  state=119
+            when 1351
+               if @ch=='L'
+                  state=525
                else
-                  return No_Sym
+                  if @ch=='O'
+                     state=1396
+                  else
+                     if @ch=='T'
+                        state=1397
+                     else
+                        return No_Sym
+                     end
+
+                  end
+
                end
 
 
-            when 118
-               if @ch=='D'
-                  state=120
+            when 1352
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='N'||@ch>='P'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
                else
-                  return No_Sym
+                  if @ch=='O'
+                     state=1398
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
                end
 
 
-            when 119
-               if @ch=='M'
-                  state=121
+            when 1353
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='R'||@ch>='T'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
                else
-                  return No_Sym
+                  if @ch=='S'
+                     state=1399
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
                end
 
 
-            when 120
-               if @ch=='D'
-                  state=122
+            when 1354
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='N'||@ch>='P'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
                else
-                  return No_Sym
+                  if @ch=='O'
+                     state=1400
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
                end
 
 
-            when 121
+            when 1355
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='-'
+                     state=700
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1356
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='D'||@ch>='F'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='E'
+                     state=1401
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1357
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='T'||@ch>='V'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='U'
+                     state=1402
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1358
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='-'
+                     state=1403
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1359
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='-'
+                     state=515
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1360
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='S'||@ch>='U'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='T'
+                     state=1404
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1361
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='C'||@ch>='E'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='D'
+                     state=1405
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1362
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='D'||@ch>='F'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='E'
+                     state=1406
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1363
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='C'||@ch>='E'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='D'
+                     state=1407
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1364
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='S'||@ch>='U'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='T'
+                     state=1408
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1365
+               if @ch=='L'
+                  state=495
+               else
+                  if @ch=='O'
+                     state=1087
+                  else
+                     return No_Sym
+                  end
+
+               end
+
+
+            when 1366
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='D'||@ch>='F'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='E'
+                     state=1409
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1367
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='-'
+                     state=1410
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1368
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='-'
+                     state=1411
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1369
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Q'||@ch>='S'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='R'
+                     state=1412
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1370
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='W'||@ch>='Y'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='X'
+                     state=1413
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1371
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='-'
+                     state=1414
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1372
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='D'||@ch>='F'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='E'
+                     state=1415
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1373
+               if @ch=='S'
+                  state=1416
+               else
+                  if @ch=='C'
+                     state=43
+                  else
+                     return No_Sym
+                  end
+
+               end
+
+
+            when 1374
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='F'||@ch>='H'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='G'
+                     state=1417
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1375
                if @ch=='/'
-                  state=123
+                  state=1418
                else
                   return No_Sym
                end
 
 
-            when 122
+            when 1376
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='-'
+                     state=685
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1377
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='-'
+                     state=693
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1378
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='O'||@ch>='Q'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='P'
+                     state=1419
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1379
+               if @ch=='N'
+                  state=1420
+               else
+                  return No_Sym
+               end
+
+
+            when 1380
+               if @ch=='P'
+                  state=1421
+               else
+                  return No_Sym
+               end
+
+
+            when 1381
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='-'
+                     state=140
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1382
                if @ch=='/'
-                  state=124
+                  state=1422
                else
                   return No_Sym
                end
 
 
-            when 123
-               if @ch=='Y'
-                  state=125
+            when 1383
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='D'||@ch>='F'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='E'
+                     state=1423
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1384
+               if @ch>='0'&&@ch<='9'||@ch>='B'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='A'
+                     state=1424
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1385
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Q'||@ch>='S'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='R'
+                     state=1425
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1386
+               if @ch=='O'
+                  state=236
+               else
+                  if @ch=='C'
+                     state=1426
+                  else
+                     if @ch=='N'
+                        state=1427
+                     else
+                        return No_Sym
+                     end
+
+                  end
+
+               end
+
+
+            when 1387
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='-'
+                     state=389
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1388
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='S'||@ch>='U'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='T'
+                     state=1428
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1389
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='C'||@ch>='E'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='D'
+                     state=1429
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1390
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='K'||@ch>='M'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='L'
+                     state=1430
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1391
+               if @ch>='0'&&@ch<='9'||@ch>='B'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='A'
+                     state=1431
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1392
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='W'||@ch>='Y'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='X'
+                     state=1432
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1393
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='D'||@ch>='F'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='E'
+                     state=1433
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1394
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='-'
+                     state=936
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1395
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='S'||@ch>='U'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='T'
+                     state=1434
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1396
+               if @ch=='F'
+                  state=1435
                else
                   return No_Sym
                end
 
 
-            when 124
-               if @ch=='Y'
-                  state=126
+            when 1397
+               if @ch=='E'
+                  state=1436
                else
                   return No_Sym
                end
 
 
-            when 125
-               if @ch=='Y'
-                  state=127
+            when 1398
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Q'||@ch>='S'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='R'
+                     state=1437
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1399
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='-'
+                     state=1438
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1400
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='L'||@ch>='N'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='M'
+                     state=1439
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1401
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='-'
+                     state=417
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1402
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='S'||@ch>='U'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='T'
+                     state=1440
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1403
+               if @ch=='I'
+                  state=479
+               else
+                  if @ch=='R'
+                     state=911
+                  else
+                     return No_Sym
+                  end
+
+               end
+
+
+            when 1404
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='-'
+                     state=486
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1405
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='-'
+                     state=1441
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1406
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Q'||@ch>='S'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='R'
+                     state=1442
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1407
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='-'
+                     state=712
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1408
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='H'||@ch>='J'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='I'
+                     state=1443
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1409
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='-'
+                     state=505
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1410
+               if @ch=='I'
+                  state=1034
+               else
+                  if @ch=='S'
+                     state=1066
+                  else
+                     return No_Sym
+                  end
+
+               end
+
+
+            when 1411
+               if @ch=='P'
+                  state=1444
                else
                   return No_Sym
                end
 
 
-            when 126
+            when 1412
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='E'||@ch>='G'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='F'
+                     state=1445
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1413
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='-'
+                     state=949
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1414
+               if @ch=='T'
+                  state=826
+               else
+                  if @ch=='H'
+                     state=844
+                  else
+                     return No_Sym
+                  end
+
+               end
+
+
+            when 1415
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='-'
+                     state=923
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1416
+               if @ch=='I'
+                  state=35
+               else
+                  if @ch=='E'
+                     state=1100
+                  else
+                     return No_Sym
+                  end
+
+               end
+
+
+            when 1417
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='D'||@ch>='F'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='E'
+                     state=1446
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1418
                if @ch=='Y'
-                  state=128
+                  state=1447
                else
                   return No_Sym
                end
 
 
-            when 127
+            when 1419
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='K'||@ch>='M'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='L'
+                     state=1448
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1420
+               if @ch=='I'
+                  state=1449
+               else
+                  return No_Sym
+               end
+
+
+            when 1421
+               if @ch=='S'
+                  state=460
+               else
+                  return C_NOMinusGAPSym
+               end
+
+
+            when 1422
                if @ch=='Y'
-                  state=72
+                  state=1450
+               else
+                  return No_Sym
+               end
+
+
+            when 1423
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='-'
+                     state=536
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1424
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='X'||@ch=='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='Y'
+                     state=1451
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1425
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='H'||@ch>='J'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='I'
+                     state=1452
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1426
+               if @ch=='O'
+                  state=1141
+               else
+                  if @ch=='N'
+                     state=1148
+                  else
+                     if @ch=='A'
+                        state=1155
+                     else
+                        if @ch=='S'
+                           state=1169
+                        else
+                           return No_Sym
+                        end
+
+                     end
+
+                  end
+
+               end
+
+
+            when 1427
+               if @ch=='A'
+                  state=1162
+               else
+                  if @ch=='S'
+                     state=1176
+                  else
+                     return No_Sym
+                  end
+
+               end
+
+
+            when 1428
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='H'||@ch>='J'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='I'
+                     state=1453
+                  else
+                     if @ch=='-'
+                        state=960
+                     else
+                        return CheckLiteral(C_identifierSym)
+                     end
+
+                  end
+
+               end
+
+
+            when 1429
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='T'||@ch>='V'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='U'
+                     state=1454
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1430
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='-'
+                     state=986
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1431
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='B'||@ch>='D'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='C'
+                     state=1455
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1432
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='-'
+                     state=1023
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1433
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='S'||@ch>='U'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='T'
+                     state=1456
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1434
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='H'||@ch>='J'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='I'
+                     state=1457
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1435
+               if @ch=='-'
+                  state=1458
+               else
+                  return No_Sym
+               end
+
+
+            when 1436
+               if @ch=='S'
+                  state=1459
+               else
+                  return No_Sym
+               end
+
+
+            when 1437
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='-'
+                     state=556
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1438
+               if @ch=='M'
+                  state=358
+               else
+                  if @ch=='D'
+                     state=428
+                  else
+                     if @ch=='E'
+                        state=438
+                     else
+                        if @ch=='P'
+                           state=450
+                        else
+                           return No_Sym
+                        end
+
+                     end
+
+                  end
+
+               end
+
+
+            when 1439
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='D'||@ch>='F'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='E'
+                     state=1460
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1440
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='-'
+                     state=467
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1441
+               if @ch=='G'
+                  state=615
+               else
+                  if @ch=='S'
+                     state=627
+                  else
+                     return No_Sym
+                  end
+
+               end
+
+
+            when 1442
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='-'
+                     state=665
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1443
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='N'||@ch>='P'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='O'
+                     state=1461
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1444
+               if @ch=='O'
+                  state=1462
+               else
+                  return No_Sym
+               end
+
+
+            when 1445
+               if @ch>='0'&&@ch<='9'||@ch>='B'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='A'
+                     state=1463
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1446
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='-'
+                     state=55
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1447
+               if @ch=='Y'
+                  state=1464
+               else
+                  return No_Sym
+               end
+
+
+            when 1448
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='X'||@ch=='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='Y'
+                     state=1465
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1449
+               if @ch=='Q'
+                  state=101
+               else
+                  if @ch=='C'
+                     state=248
+                  else
+                     return No_Sym
+                  end
+
+               end
+
+
+            when 1450
+               if @ch=='Y'
+                  state=1466
+               else
+                  return No_Sym
+               end
+
+
+            when 1451
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='-'
+                     state=568
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1452
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='S'||@ch>='U'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='T'
+                     state=1467
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1453
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='N'||@ch>='P'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='O'
+                     state=1468
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1454
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='L'||@ch>='N'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='M'
+                     state=1469
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1455
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='S'||@ch>='U'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='T'
+                     state=1470
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1456
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='D'||@ch>='F'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='E'
+                     state=1471
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1457
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='N'||@ch>='P'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='O'
+                     state=1472
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1458
+               if @ch=='P'
+                  state=580
+               else
+                  if @ch=='S'
+                     state=591
+                  else
+                     return No_Sym
+                  end
+
+               end
+
+
+            when 1459
+               if @ch=='T'
+                  state=1473
+               else
+                  return No_Sym
+               end
+
+
+            when 1460
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Q'||@ch>='S'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='R'
+                     state=1474
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1461
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='M'||@ch>='O'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='N'
+                     state=1475
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1462
+               if @ch=='O'
+                  state=1476
+               else
+                  return No_Sym
+               end
+
+
+            when 1463
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='B'||@ch>='D'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='C'
+                     state=1477
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1464
+               if @ch=='Y'
+                  state=209
+               else
+                  return C_MMSlashDDSlashYYSym
+               end
+
+
+            when 1465
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='-'
+                     state=779
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1466
+               if @ch=='Y'
+                  state=199
                else
                   return C_DDSlashMMSlashYYSym
                end
 
 
-            when 128
-               if @ch=='Y'
-                  state=82
+            when 1467
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='X'||@ch=='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
                else
-                  return C_MMSlashDDSlashYYSym
+                  if @ch=='Y'
+                     state=1478
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1468
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='M'||@ch>='O'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='N'
+                     state=1479
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1469
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='O'||@ch>='Q'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='P'
+                     state=1480
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1470
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='-'
+                     state=1003
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1471
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Q'||@ch>='S'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='R'
+                     state=1481
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1472
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='M'||@ch>='O'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='N'
+                     state=1482
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1473
+               if @ch=='-'
+                  state=1483
+               else
+                  return No_Sym
+               end
+
+
+            when 1474
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='-'
+                     state=403
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1475
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='-'
+                     state=642
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1476
+               if @ch=='L'
+                  state=1484
+               else
+                  return No_Sym
+               end
+
+
+            when 1477
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='D'||@ch>='F'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='E'
+                     state=1485
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1478
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='-'
+                     state=220
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1479
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='-'
+                     state=1486
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1480
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='-'
+                     state=656
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1481
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='-'
+                     state=331
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1482
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='-'
+                     state=346
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1483
+               if @ch=='I'
+                  state=1052
+               else
+                  if @ch=='S'
+                     state=1079
+                  else
+                     return No_Sym
+                  end
+
+               end
+
+
+            when 1484
+               if @ch=='S'
+                  state=1126
+               else
+                  return C_TYPEMinusPOOLSym
+               end
+
+
+            when 1485
+               if @ch>='0'&&@ch<='9'||@ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
+                  state=2
+               else
+                  if @ch=='-'
+                     state=727
+                  else
+                     return CheckLiteral(C_identifierSym)
+                  end
+
+               end
+
+
+            when 1486
+               if @ch=='S'
+                  state=1487
+               else
+                  if @ch=='T'
+                     state=307
+                  else
+                     return No_Sym
+                  end
+
+               end
+
+
+            when 1487
+               if @ch=='C'
+                  state=265
+               else
+                  if @ch=='E'
+                     state=1488
+                  else
+                     return No_Sym
+                  end
+
+               end
+
+
+            when 1488
+               if @ch=='T'
+                  state=1489
+               else
+                  return No_Sym
+               end
+
+
+            when 1489
+               if @ch=='S'
+                  state=296
+               else
+                  return C_SELECTIONMinusSETSym
                end
 
 

@@ -91,7 +91,7 @@ class ModuleDef < Scope
         @src += src
     end
     
-
+    # head: content in () in ruby code, including ()
     def add_method(method_name, head, args, src, acc="public")
         arg_number = args.size
         method_sig = method_signature(method_name, arg_number)
@@ -197,12 +197,13 @@ m[:src] = "" if m[:src] ==nil
         return moduleDef
     end
     
-    # class_name can be CladdDef Object
+    # class_name can be ClassDef Object
     def add_class(class_name)
         
         if class_name.class == String 
             class_name = valid_class_name(class_name)
-            if @classes[class_name] == nil
+            clsdef = @classes[class_name]
+            if clsdef == nil
                 clsdef = ClassDef.new(class_name)
                 @classes[class_name] = clsdef
                 clsdef.parentScope = self
@@ -287,9 +288,9 @@ class CRParser
     end
     def in_scope(name)
         cs = current_scope
-       # p "==>in_scope0:#{name}, #{name.class_name}, #{name.} ", 10
-        
-      #  p "==>cs1:#{cs.inspect}"
+     #   p "==>in_scope0:#{name}, #{name.class_name}, #{name.inspect} ", 10
+         p "==>cs2:#{name.inspect}"
+        p "==>cs1:#{cs.inspect}"
         if name.class == String
             name = Scope.new(name)
             @sstack.push(name)
