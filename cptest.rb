@@ -43,6 +43,7 @@ def test(testall=false)
    WRITE  SY-UNAME .
    WRITE  /5 'SY-UZEIT' .
    WRITE  SY-UZEIT .
+
    .
 
 HERE
@@ -116,6 +117,12 @@ WRITE:/5 'TYPE C      :', CNAME,
       /5 'TYPE X      :', HEXA,
       /5 'TYPE STRING :', STRNG.
 HERE
+s2 = <<HERE
+REPORT TEST.
+   DATA a-c type i .
+   a->b = 1.
+   .
+HERE
 #def dump_testcase
     p "==>dump_testcase"
     r = ""
@@ -132,12 +139,12 @@ HERE
             r += "// testcase #{i} \n" + si +"\n"
         end
     end
-    save_to_file(r, "cp_testcase.cpp")
+    save_to_file(r, "cp_testcase.abap")
     #end
 
 if !testall
    
-    s = s0
+    s = s2
 else
 
     r = ""
@@ -203,12 +210,12 @@ begin
     end
     list_classes($g_classdefs)
     parser.dump_classes_as_ruby
-    end # end of test
  
 rescue Exception=>e
     parser.dump_pos
     throw e
 end
+end # end of test
 
 
 #=end

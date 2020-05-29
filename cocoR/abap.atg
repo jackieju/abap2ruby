@@ -22,7 +22,7 @@ IGNORE
   tab + eol + CHR(13)
 
 TOKENS
-  identifier = ["!"]( "_" | letter) { "_" | letter | digit } .
+  identifier = ["!"]( "_" | letter) { ("_" | letter | digit ) | ( ("~"|"-"|"->") ("_" | letter | digit ) )} .
   number     = digit { digit } [ "U" | "u" | "L" | "l" ] .
   hexnumber  = "0" ( "x" | "X" ) hexdigit { hexdigit } [ "U" | "u" | "L" | "l" ] .
   string1    = "'" { strings } "'" .
@@ -41,7 +41,7 @@ PRODUCTIONS
     
     Name = identifier|"("identifier")"|"<"identifier">".
     
-    C                  =      { ReportDef | FunctionDef | ClassStatement }.
+    C                  =      (.in_scope(@root_class).){ ReportDef | FunctionDef | ClassStatement }.
     
     ReportDef          = "REPORT" (.  fn_name=curString() .) identifier  (. src("") .) 
             {
@@ -486,9 +486,9 @@ LoopStatement = "LOOP"
             {Statement} 
         "ENDLOOP" "." .
 
-TypeDes = "TYPE"   
+TypeDes = "TYPE"  
             (
-                         Expression (
+                         Expression  (.ret = VarType.new(lus.strip).) (
                                              [identifier(.is('LENGTH').) number] ["DECIMALS" number] 
                                          |
                                               ( "READER"|"LOCATOR"|"LOB" "HANDLE" )
@@ -498,11 +498,11 @@ TypeDes = "TYPE"
                       | 
                           ["LINE" "OF"] identifier ["BOXED"]
                       | 
-                          "REF" "TO" Expression 
+                          "REF" "TO" Expression (.ret = VarType.new(lus.strip).)
                       | 
                           [ ("STANDARD" | "SORTED"| "SORTED") ] "TABLE" 
                        
-                          "OF" ["REF" "TO"] identifier 
+                          "OF" ["REF" "TO"] identifier (.ret = VarType.new(curString.strip).)
                           {
                               "WITH"
                               (
@@ -526,11 +526,11 @@ TypeDes = "TYPE"
                           }
                           ["INITIAL" "SIZE" number] 
                      |
-                          "RANGE" "OF" Type ["INITIAL" "SIZE" number] ["WITH" "HEADER" "LINE"] 
+                          "RANGE" "OF" Type (.ret = VarType.new(lus.strip).)  ["INITIAL" "SIZE" number] ["WITH" "HEADER" "LINE"] 
                      |  
                          "ALL" ["OTHER"] ["BLOB"|"CLOB"] "COLUMNS" 
             )
-                 .
+              (. @lnv = ret .)   .
                  
 LikeDes =        "LIKE" 
                   (
@@ -579,14 +579,23 @@ VariableDefineStatement =  ("DATA"|"STATICS" )
                 |
                 "END" "OF" ("COMMON" "PART" identifier | identifier ["VALID" "BETWEEN" Expression "AND" Expression] )
                 | 
-                identifier { "(" number  ")" }  ( TypeDes | LikeDes)
+                identifier (.name = prevString
+                    p "var name=#{name}"
+                    .){ "(" number  ")" } 
+                    
+                     ( TypeDes (. var_type = @lnv 
+                         p "var_type:#{var_type.inspect}"
+                         .)| LikeDes)
                              
             )
            { ["VALUE" { Expression | "IS" "INITIAL" }] 
             ["READ-ONLY"]
             ["OCCURS" number
                       ["WITH" "HEADER" "LINE"]]
-            }                    "." .
+            }                    "."
+            
+            (. current_scope.add_var(Variable.new(name, var_type)) .)
+             .
                     
 
 
@@ -804,7 +813,7 @@ stOPEN = "OPEN" (
   "FOR" ( "INPUT" | "OUTPUT" | "APPENDING" | "UPDATE" ) 
   "IN" ( ( "BINARY" "MODE" ) 
      | ( "TEXT" "MODE" "ENCODING" ( "DEFAULT" 
-                            | ("UTF-8" ["SKIPPING"|"WITH" "BYTE-ORDER" "MARK"]) 
+                            | (identifier(.is('UTF-8').) ["SKIPPING"|"WITH" "BYTE-ORDER" "MARK"]) 
                             | "NON-UNICODE" ) 
                    ["WITH" ("NATIVE"|"SMART"|"UNIX"|"WINDOWS") "LINEFEED"]  ) 
 
@@ -921,16 +930,16 @@ stSUBMIT = "SUBMIT" (identifier|"("identifier")")
   [["USER" string1] "VIA" "JOB" identifier "NUMBER" number ["LANGUAGE" identifier]] 
   ["AND" "RETURN"]".".
   
-stTRY = "TRY""." 
+stTRY = "TRY" (.replace_src("begin").) "."
     {Statement}
   {
-      "CATCH" ["BEFORE" "UNWIND"] {identifier}  ["INTO" identifier]"." 
+      "CATCH"  (.replace_src("catch").)["BEFORE" "UNWIND"] {identifier(.add_src(",").)}  ["INTO"(.replace_src("=>").) identifier]"." 
         {Statement}
   }
   
   ["CLEANUP" ["INTO" identifier]"." 
     {Statement}] 
-"ENDTRY"".".
+"ENDTRY" (.replace_src("end").)  "." .
 
 /*
 Lob_handle_type =  ( "READER"|"LOCATOR"|"LOB" "HANDLE"|"WRITER" ) 

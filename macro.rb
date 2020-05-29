@@ -2265,4 +2265,4 @@ end # class Preprocessor
 
 
 
-load 'macrotest.rb'
+#load 'macrotest.rb'

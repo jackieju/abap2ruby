@@ -187,8 +187,27 @@ class Parser < CParser
         end
         return  @parse_stack.cur[:src]
     end
+    
     def add_src(r)
         @parse_stack.cur[:src] += r
+    end
+    
+    def back_src()
+        p "33322222#{@parse_stack.cur[:src]}"
+        p "33322222#{prevString()}"
+        
+        i = @parse_stack.cur[:src].rindex(prevString())
+        if i <= 0 
+            @parse_stack.cur[:src] = ""
+        else
+             @parse_stack.cur[:src] =  @parse_stack.cur[:src][0..i-1]
+        end
+        return  @parse_stack.cur[:src] 
+    end
+    # replace last element of src
+    def replace_src(s)
+        back_src
+        add_src(s)
     end
     
     def popv
@@ -861,4 +880,4 @@ end  # class Parser
 
 load "cocoR/o/cparser.rb"
 
-#load 'cptest.rb'
+load 'cptest.rb'

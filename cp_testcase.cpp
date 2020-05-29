@@ -39,6 +39,7 @@
    WRITE  SY-UNAME .
    WRITE  /5 'SY-UZEIT' .
    WRITE  SY-UZEIT .
+
    .
 
 
@@ -110,4 +111,10 @@ WRITE:/5 'TYPE C      :', CNAME,
       /5 'TYPE T      :', NOW,
       /5 'TYPE X      :', HEXA,
       /5 'TYPE STRING :', STRNG.
+
+// testcase 2 
+REPORT TEST.
+   DATA a type i .
+   a->b = 1.
+   .
 

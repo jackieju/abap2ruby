@@ -107,7 +107,8 @@ static void GenSemCode(int tab, long pos, int len, int line, int col, int gencom
 		}
 		firstline = 0;
 	}
-	if (Comma && gencomma) GenCode(fparser, ";");
+    // ruby code doesn't need ';'
+	//if (Comma && gencomma) GenCode(fparser, ";");
     GenCode(fparser, "$$__embedend__");
     
 	GenCode(fparser, "$$");

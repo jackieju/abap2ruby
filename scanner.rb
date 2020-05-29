@@ -1410,7 +1410,7 @@ public
         begin
            return C_EOF_Sym if @ch == nil
 
-           p "===>Get2:#{@ch} #{@ch.to_byte}"
+          # p "===>Get2:#{@ch} #{@ch.to_byte}"
            # filter white space
            while (@ch.to_byte >= 9 && # TAB
                    @ch.to_byte <= 10 || # LF
@@ -1423,17 +1423,17 @@ public
                        return C_CRLF_Sym
                    end
                    Scan_NextCh()
-                    p "get31:#{@ch}, #{@buffPos}"
+                    #p "get31:#{@ch}, #{@buffPos}"
                    return C_EOF_Sym if @ch == nil 
            end
-           p "get32:#{@ch}, #{@buffPos}"
+          # p "get32:#{@ch}, #{@buffPos}"
            
          end while ((@ch == '*' || @ch == '"') && Comment()==1) 
           
          if (@ch == nil || @ch.to_byte == EOF_CHAR  ) 
              return C_EOF_Sym
          end
-         p "Get5:#{@ch}, #{@ch.to_byte}"
+       #  p "Get5:#{@ch}, #{@ch.to_byte}"
          if !ignore_crlf &&  ( @ch.to_byte == 13|| ch.to_byte == 10)
              return C_CRLF_Sym
          end
