@@ -1,9 +1,15 @@
 load 'log.rb'
 def method_signature(method_name, arg_number)
+    if IGNORECASE
+        method_name = method_name.downcase
+    end
     return "#{method_name}\#\##{arg_number}"
 end
 def translate_varname(varname, uncapitalize=true)
     return "" if varname==nil or varname == ""
+    if IGNORECASE
+        varname  = varname.downcase
+    end
     if uncapitalize
         if varname.size ==1 
             varname = varname.downcase
@@ -92,7 +98,9 @@ class ModuleDef < Scope
     end
     
     # head: content in () in ruby code, including ()
-    def add_method(method_name, head, args, src, acc="public")
+    # will change it with new value if method already exists
+    def add_method(method_name, head, args, src, acc="public", others=nil)
+        p "===>add_method1:#{method_name}, #{head}"
         arg_number = args.size
         method_sig = method_signature(method_name, arg_number)
         
@@ -145,7 +153,7 @@ m[:src] = "" if m[:src] ==nil
             method_desc = @methods[method_sig]
             method_desc[:name] = method_name
             method_desc[:args] = args
-            method_desc[:head] = head
+            method_desc[:head] = head if head != nil
             
             if src && src.strip != ""
                 method_desc[:src] =src

@@ -595,6 +595,13 @@ VariableDefineStatement =  ("DATA"|"STATICS" )
             }                    "."
             
             (. current_scope.add_var(Variable.new(name, var_type)) .)
+            (.
+                if var_type
+                    s = "#{name} = #{var_type.name}.new\n"
+                    src(s)
+                end
+            
+            .)
              .
                     
 
@@ -686,13 +693,13 @@ WriteStatement =   (. param_hash = {} .) "WRITE"
 */
 
 CaseStatement = 
-    "CASE" Expression "." 
+    "CASE"(. re("case") .) Expression "." 
       {
-          "WHEN" (Expression {"OR" Expression } | "OTHERS") "." 
+          "WHEN" (. re("when") .) (Expression {"OR" Expression } | "OTHERS" (. re("", "else").)) "." 
             {Statement}
       } 
   
-    "ENDCASE" "." .
+    "ENDCASE" (. re("end") .) "." .
 
 AUTHORITY_CHECK_ITEM = "ID" identifier ("FIELD" Expression|"DUMMY") .
 
@@ -1097,7 +1104,7 @@ stWHILE = "WHILE" Expression
 
   NullStatement        = "." . 
 
-  ReturnStatement      = "return" [ Expression ]   ";"   .
+  ReturnStatement      = "return" (. replace_src("return").)[ Expression ]   ";"   .
                          
 /*
 WhileStatement = "WHILE" Expression 
@@ -1161,14 +1168,16 @@ MethodStatement = "METHOD" identifier["~"identifier] (.       fname = prevString
          
       end .) 
     "." 
+    (. src("") .)
   {Statement} 
+  (.      
+      p "src:#{src}"
+          if classdef
+             classdef.add_method(fname, nil, [], src ,"")
+        end 
+  .)
 "ENDMETHOD" 
-(.      
-    p "src:#{src}"
-        if classdef
-           classdef.add_method(fname, "()",[], src ,"")
-      end 
-.)
+
 ".".
 
 Typing = (
@@ -1179,7 +1188,15 @@ Typing = (
  .
          
           
-MethodsStatement =  ("METHODS" | "CLASS-METHODS") identifier["~"identifier] ["ABSTRACT"|"FINAL"] 
+MethodsStatement =  ("METHODS" | "CLASS-METHODS") identifier["~"identifier] 
+(.     
+    fname = prevString
+      if current_scope.is_a?(ClassDef)
+          classdef = current_scope
+         
+      end
+.) 
+        ["ABSTRACT"|"FINAL"] 
         (
                 
                 "FOR" "TESTING" 
@@ -1187,8 +1204,8 @@ MethodsStatement =  ("METHODS" | "CLASS-METHODS") identifier["~"identifier] ["AB
             |   
                 ["DEFAULT" ("IGNORE"|"FAIL")] 
                 ["FOR" "EVENT" identifier "OF" identifier] 
-                [ "IMPORTING" {
-                                  ("VALUE" "(" identifier ")" | "REFERENCE" "(" identifier ")" | identifier )
+                [ "IMPORTING" { (.impar = [].)
+                                  ("VALUE" "(" identifier (.impar.push(prevString).)")" | "REFERENCE" "(" identifier (.impar.push(prevString).)")" | identifier (.impar.push(prevString).))
                                    Typing [("OPTIONAL"|"DEFAULT") identifier] 
                                  } 
                               ["PREFERRED" "PARAMETER" identifier] ] 
@@ -1207,9 +1224,29 @@ MethodsStatement =  ("METHODS" | "CLASS-METHODS") identifier["~"identifier] ["AB
                        {"EXCEPTIONS" identifier {identifier} }
                 ]
        )
-  | 
-
-  "." . 
+  
+  
+  "."
+  
+  (.      
+      p "src:#{src}"
+      if impar
+          for i in 0..impar.size-1
+           impar[i] += ":=nil"
+          end
+      else
+          impar = []
+      end
+      impar.push("_i:")
+      impar.push("_e:")
+      pars = impar.join(",")
+      
+          if classdef
+      
+             classdef.add_method(fname, "(#{pars})", [], nil ,"")
+        end 
+  .)
+   . 
   
   /*** copy from convert_result ***/
 stADD = "ADD" identifier ( 
@@ -1271,7 +1308,7 @@ stBACK = "BACK"".".
 
 stBREAK_POINT = "BREAK-POINT" [ ("ID" identifier) | "("string1")" ]".".
 
-stCALL = "CALL" (CallFunction | CallBadi | CallDialog | CallCustomerFunction | CallDatabaseProcedure | CallMethod | CallScreen
+stCALL = "CALL" (.back_src.) (CallFunction | CallBadi | CallDialog | CallCustomerFunction | CallDatabaseProcedure | CallMethod | CallScreen
             | CallSelectionScreen
             | CallTransation
             | CallTransformation
@@ -1297,22 +1334,34 @@ CallDatabaseProcedure =  "DATABASE" "PROCEDURE" "("identifier")"
                     ["IMPORTING"  {Expression}  ] 
         |  ["PARAMETER-TABLE" identifier]  ) .
         
-CallMethod =  "METHOD" ( 
+CallMethod =  "METHOD" 
+        (. param_hash = {} .)
+        ( 
             (
-                ["("](string1|identifier)[")"] [ ("->"|"=>") ["("](string1|identifier{"~"identifier}) [")"] ]
+                ["("](string1(.name1=strInQuote(prevString).)|identifier(.name1=prevString;.))[")"] [ ("->"|"=>") ["("](string1(.name1=strInQuote(prevString).)| identifier(.name2=prevString.){"~"identifier(.name2+="~#{prevString}".)} ) [")"] ]
             |    
                 "OF" identifier identifier ["=" identifier] 
              ) 
             {
-                ["PARAMETER-TABLE" identifier] 
-                ["EXCEPTION-TABLE" identifier] 
-                ["EXPORTING" {Expression} ] 
-                ["IMPORTING" {identifier "=" Expression }] 
-                ["CHANGING" {identifier "=" Expression }] 
-                ["RECEIVING" Expression ] 
-                ["NO" "FLUSH"] ["QUEUE-ONLY"] 
+                ["PARAMETER-TABLE" identifier (.param_hash["PARAMETER-TABLE"]=prevString.) ] 
+                ["EXCEPTION-TABLE" identifier (. param_hash["EXCEPTION-TABLE"]=prevString .) ] 
+                ["EXPORTING" (. exporting = "{\n".){ identifier(.idn = prevString.) "=" Expression (.exporting+="\"#{idn}\" => #{lus},\n".)} (. exporting += "}\n".)  ] 
+                ["IMPORTING" (. importing = "{\n".) { identifier(.idn = prevString.) "=" Expression (.importing+="\"#{idn}\" => #{lus},\n".)} (. importing += "}\n".)  ] 
+                ["CHANGING" {identifier "=" Expression } (.param_hash["CHANGING"]=lus.) ] 
+                ["RECEIVING" Expression  (.param_hash["RECEIVING"]=lus.) ] 
+                ["NO" "FLUSH" (.param_hash["noflush"]=true.) ] 
+                ["QUEUE-ONLY" (.param_hash["QUEUE-ONLY"]=true.) ] 
             }
-            )
+        )
+            (.
+                params = []
+                param_hash.each{|k,v|
+                    params.push "#{k}: #{v}"
+                }
+             
+               # src("call_method(#{name1}.#{name2}, {#{params}})");
+                src("#{name1}.#{name2}(_i:#{exporting}, _e:#{importing})")
+            .)
             .
                
 CallScreen =       "SCREEN" identifier 
@@ -1357,7 +1406,7 @@ CallBadi = (  "BADI" identifier"->" "(" identifier ")"
   [Statements]
 "ENDCATCH"".".*/
 
-stCHECK = "CHECK" Expression /*|"SELECT-OPTIONS" */ ".".
+stCHECK = "CHECK" (. re("check(").) Expression /*|"SELECT-OPTIONS" */ (. add_src(")") .)".".
 
 stCLASS_DATA = "CLASS-DATA" identifier Event_options ".".
 
@@ -1827,7 +1876,7 @@ stRESUME = "RESUME"".".
 
 stRETRY = "RETRY"".".
 
-stRETURN = "RETURN"".".
+stRETURN = "RETURN" "." (.src("return").) .
 
 stROLLBACK = "ROLLBACK"(  "WORK" |  "CONNECTION" identifier ) ".".
 
@@ -2012,8 +2061,9 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
 
   ANDExp               =  EqualExp    { "&" EqualExp }    .
 
-  EqualExp             =    RelationExp { ( "="| "EQ"| "<>" | "NE" | "IS" ["NOT"] | "LIKE") RelationExp } |
-  RelationExp ["NOT"] "BETWEEN" RelationExp "AND" RelationExp  
+  EqualExp             =    RelationExp { ( "=" (.re("==").)| "EQ"(.re("==").)| "<>" (.re("!=").)| "NE"(.re("!=").) | "IS" ["NOT"] | "LIKE" ) RelationExp } 
+                          |
+                            RelationExp ["NOT"] "BETWEEN" RelationExp "AND" RelationExp  
   .
 
   RelationExp          =    ShiftExp    { 
@@ -2041,12 +2091,12 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
 
 
 
-  PostFixExp           =  Primary
+  PostFixExp           =  Primary (. pri = lus .)
                          { "[" [Expression] "]"
                           | FunctionCall
                           | "~" identifier
-                          | "->" identifier
-                          | "=>" identifier
+                          | "->" identifier (.# re(".#{lus}");back_src() .) (. src("#{pri}.#{prevString}").)
+                          | "=>" identifier (.# re(".#{lus}");back_src() .)(. src("#{pri}.#{prevString}").)
                           | "-" identifier
                           | "++"
                           | "--"

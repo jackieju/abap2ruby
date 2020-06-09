@@ -1,3 +1,4 @@
+require "json"
 load 'goto.rb'
 load 'sym.rb'
 load 'scanner.rb'
@@ -7,6 +8,9 @@ load 'log.rb'
 load 'common.rb'
 load 'cocoR/o/cparser.rb'
 
+def strInQuote(s)
+    s[1..s.size-2]
+end
 def pdebug(s, stack=0)
     depth = 0
     sp = ""
@@ -73,7 +77,7 @@ class ParseStack
     
     def _in
         @last_unterminator_src = nil        
-        n = {:src=>"", :parent=>@cur, :auto_append=>true, :stack=>[]}
+        n = {:src=>[], :parent=>@cur, :auto_append=>true, :stack=>[]}
         @cur = n
     end
     
@@ -84,17 +88,17 @@ class ParseStack
         @last_pop_v  = r[:src]
         @last_unterminator_src = r[:src]
         if @cur[:auto_append]
-            if !@last_pop_v.start_with?(" ")
-                @cur[:src] += " "+@last_pop_v+ " "
-            else
-                 @cur[:src] += @last_pop_v 
-            end
+             @cur[:src].concat(@last_pop_v)
         end
+
         return r
     end
     
     def lus
-        @last_unterminator_src
+        if @last_unterminator_src
+           return @last_unterminator_src.join(" ")
+        end
+        return ""
     end
 
     # pop stack value
@@ -148,7 +152,7 @@ class Parser < CParser
             fn = m[0]
         }
         end
-        pdebug("<===#{fn}0:#{@sym}(#{SYMS[@sym]}), #{curString()}, src=#{@parse_stack.cur[:src]}")
+        pdebug("<===#{fn}0:#{@sym}(#{SYMS[@sym]}), #{curString()}, src=#{@parse_stack.cur[:src].inspect}")
     end
     def _in_()
         trc(2)
@@ -164,9 +168,9 @@ class Parser < CParser
     end
     def Get(ignore_crlf=true)
         if  @sym == C_PointSym
-            @parse_stack.cur[:src] += "\n"
+                @parse_stack.cur[:src].push("\n")
         else
-            @parse_stack.cur[:src] += " "+curString()
+            @parse_stack.cur[:src].push(curString())
             @parse_stack.cur[:stack].push({:sym=>@sym, :val=>curString()})
         end
         
@@ -183,32 +187,48 @@ class Parser < CParser
     
     def src(r=nil)
         if r
-            @parse_stack.cur[:src] = r
+            @parse_stack.cur[:src] = [r]
         end
-        return  @parse_stack.cur[:src]
+        return  @parse_stack.cur[:src].join(" ")
     end
     
     def add_src(r)
-        @parse_stack.cur[:src] += r
+        @parse_stack.cur[:src].push(r)
     end
     
+    # remove last token content from src content
     def back_src()
         p "33322222#{@parse_stack.cur[:src]}"
         p "33322222#{prevString()}"
-        
-        i = @parse_stack.cur[:src].rindex(prevString())
-        if i <= 0 
-            @parse_stack.cur[:src] = ""
-        else
-             @parse_stack.cur[:src] =  @parse_stack.cur[:src][0..i-1]
+        print "33322222#{@parse_stack.cur.to_json}"
+      #  str = @parse_stack.cur[:stack].pop()[:val]
+        #str = prevString()
+        #i = @parse_stack.cur[:src].rindex(str)
+        #if i <= 0 
+        #    @parse_stack.cur[:src] = ""
+        #else
+        #     @parse_stack.cur[:src] =  @parse_stack.cur[:src][0..i-1]
+        #end
+        while @parse_stack.cur[:src].pop == "\n"
         end
         return  @parse_stack.cur[:src] 
     end
+    
     # replace last element of src
-    def replace_src(s)
-        back_src
-        add_src(s)
+    def replace_src(*s)
+        s.each{|str|
+            back_src
+        }
+        s.each{|str|
+            add_src(str)
+        }
+       
+        
     end
+    
+
+    
+    alias_method "re", "replace_src"
     
     def popv
         @parse_stack.popv

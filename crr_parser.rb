@@ -11,15 +11,22 @@ class CRRParser < CRParser
     def curString() # current string means value of nextsym
         # ret = @scanner.GetName()
         ret = @scanner.GetSymValue(@scanner.nextSym)
+        if IGNORECASE && @scanner.nextSym.sym == C_identifierSym
+            ret = ret.downcase
+        end
         # p "------#{@scanner}"
         return ret
     end
     def prevString() # previous string means value of currsym
         # ret = @scanner.GetName()
         ret = @scanner.GetSymValue(@scanner.currSym)
+        if IGNORECASE && @scanner.currSym.sym == C_identifierSym
+            ret = ret.downcase
+        end
         # p "------#{@scanner}"
         return ret
     end
+    alias :prevName :prevString
     def nextString()
         ret = @scanner.GetNextName()
         p "------#{ret}"
