@@ -16,10 +16,8 @@ class CParser < CRRParser
          AssignmentOperator()
          Expression()
       end
-      p "src2:#{src}"
 
       _out_()
-      
    end
    def Name()
       _in_()
@@ -977,6 +975,9 @@ class CParser < CRRParser
                   if @sym==C_ISSym
                      Get()
                      Expect(C_INITIALSym)
+
+                     back_src();re(".init()");
+
                   else
                      GenError(719)
                   end
@@ -2417,18 +2418,20 @@ class CParser < CRRParser
 
 
       p "src:#{src}"
-      impar = [] if !impar
-      for i in 0..impar.size-1
-         impar[i] += ":=nil"
+      if impar
+         for i in 0..impar.size-1
+            impar[i] += ":=nil"
+         end
+      else
+         impar = []
       end
-
       impar.push("_i:")
       impar.push("_e:")
       pars = impar.join(",")
-      p "pars:#{pars}"
+
       if classdef
 
-         classdef.add_method(fname, "(#{pars})", [], src ,"")
+         classdef.add_method(fname, "(#{pars})", [], nil ,"")
       end ;
 
       _out_()
@@ -2565,6 +2568,9 @@ class CParser < CRRParser
    def stAPPEND()
       _in_()
       Expect(C_APPENDSym)
+
+      params = {};
+
       if @sym==C_INITIALSym
          Get()
          Expect(C_LINESym)
@@ -2573,6 +2579,9 @@ class CParser < CRRParser
             Expression()
 
             #'LINES' or idf;
+
+
+            params[:from]=lus;
 
             if @sym==C_OFSym
                Get()
@@ -2603,6 +2612,9 @@ class CParser < CRRParser
 
       Expect(C_TOSym)
       Expect(C_identifierSym)
+
+      params[:to]=prevString;
+
       while (@sym==C_LbrackSym)
          Get()
          Expect(C_RbrackSym)
@@ -2801,6 +2813,9 @@ class CParser < CRRParser
             if @sym==C_ISSym
                Get()
                Expect(C_INITIALSym)
+
+               back();re(".init()");
+
             else
                GenError(762)
             end
@@ -9613,6 +9628,9 @@ class CParser < CRRParser
                if @sym==C_ISSym
                   Get()
                   Expect(C_INITIALSym)
+
+                  back();re(".init()");
+
                else
                   GenError(953)
                end
@@ -9630,6 +9648,9 @@ class CParser < CRRParser
                   if @sym==C_ISSym
                      Get()
                      Expect(C_INITIALSym)
+
+                     back();re(".init()");
+
                   else
                      GenError(954)
                   end
@@ -10622,7 +10643,7 @@ class CParser < CRRParser
          C_SUPPLIEDSym,
          C_REQUESTEDSym
          Expression()
-         p "===>1133:#{lus.strip}"
+
          ret = VarType.new(lus.strip);
 
          if @sym==C_identifierSym||@sym==C_PointSym||@sym==C_DECIMALSSym||@sym==C_BOXEDSym||@sym>=C_READMinusONLYSym&&@sym<=C_OCCURSSym||@sym==C_VALUESym
@@ -12586,469 +12607,510 @@ class CParser < CRRParser
             when C_EqualSym
                Get()
 
+               re("==");
+
+
             when C_EQSym
                Get()
+
+               re("==");
+
 
             when C_LessGreaterSym
                Get()
 
+               re("!=");
+
+
             when C_NESym
                Get()
 
+               re("!=");
+
+
             when C_ISSym
                Get()
+
+               re(".is(");br = true;
+
                if @sym==C_NOTSym
                   Get()
+
+                  back_src();re(".isnot(");not=true;
+
                end
 
-
-            when C_LIKESym
-               Get()
-
-            else
-               GenError(1043)
-
-            end
-
-            RelationExp()
-         end
-
-      else
-         if 1
-            RelationExp()
-            if @sym==C_NOTSym
-               Get()
-            end
-
-            Expect(C_BETWEENSym)
-            RelationExp()
-            Expect(C_ANDSym)
-            RelationExp()
-         else
-            GenError(1044)
-         end
-
-      end
-
-      _out_()
-   end
-   def RelationExp()
-      _in_()
-      ShiftExp()
-      while (@sym>=C_LessSym&&@sym<=C_GreaterSym||@sym>=C_CPSym&&@sym<=C_GTSym||@sym>=C_LessEqualSym&&@sym<=C_BYTEMinusNSSym)
-         case @sym
-
-         when C_LessSym
-            Get()
-
-         when C_LTSym
-            Get()
-
-         when C_GreaterSym
-            Get()
-
-         when C_GTSym
-            Get()
-
-         when C_LessEqualSym
-            Get()
-
-         when C_LESym
-            Get()
-
-         when C_GreaterEqualSym
-            Get()
-
-         when C_GESym
-            Get()
-
-         when C_COSym
-            Get()
-
-         when C_CNSym
-            Get()
-
-         when C_CASym
-            Get()
-
-         when C_NASym
-            Get()
-
-         when C_CSSym
-            Get()
-
-         when C_NSSym
-            Get()
-
-         when C_CPSym
-            Get()
-
-         when C_NPSym
-            Get()
-
-         when C_BYTEMinusCOSym
-            Get()
-
-         when C_BYTEMinusCNSym
-            Get()
-
-         when C_BYTEMinusCASym
-            Get()
-
-         when C_BYTEMinusNASym
-            Get()
-
-         when C_BYTEMinusCSSym
-            Get()
-
-         when C_BYTEMinusNSSym
-            Get()
-
-         else
-            GenError(1045)
-
-         end
-
-         ShiftExp()
-      end
-
-      _out_()
-   end
-   def ShiftExp()
-      _in_()
-      AddExp()
-      while (@sym>=C_LessLessSym&&@sym<=C_GreaterGreaterSym)
-         if @sym==C_LessLessSym
-            Get()
-         else
-            if @sym==C_GreaterGreaterSym
-               Get()
-            else
-               GenError(1046)
-            end
-
-         end
-
-         AddExp()
-      end
-
-      _out_()
-   end
-   def AddExp()
-      _in_()
-      MultExp()
-      while (@sym==C_PlusSym||@sym==C_MinusSym)
-         if @sym==C_PlusSym
-            Get()
-         else
-            if @sym==C_MinusSym
-               Get()
-            else
-               GenError(1047)
-            end
-
-         end
-
-         MultExp()
-      end
-
-      _out_()
-   end
-   def MultExp()
-      _in_()
-      CastExp()
-      while (@sym==C_StarSym||@sym>=C_SlashSym&&@sym<=C_StarStarSym||@sym>=C_DIVSym&&@sym<=C_MODSym)
-         case @sym
-
-         when C_StarSym
-            Get()
-
-         when C_SlashSym
-            Get()
-
-         when C_DIVSym
-            Get()
-
-         when C_PercentSym
-            Get()
-
-         when C_MODSym
-            Get()
-
-         when C_StarStarSym
-            Get()
-
-         else
-            GenError(1048)
-
-         end
-
-         CastExp()
-      end
-
-      _out_()
-   end
-   def CastExp()
-      _in_()
-      UnaryExp()
-      _out_()
-   end
-   def UnaryExp()
-      _in_()
-      if @sym>=C_identifierSym&&@sym<=C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_charSym||@sym==C_LparenSym||@sym==C_LessSym||@sym==C_INITIALSym||@sym==C_SlashSym||@sym>=C_BOUNDSym&&@sym<=C_REQUESTEDSym
-         PostFixExp()
-      else
-         if @sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym
-            if @sym==C_PlusPlusSym
-               Get()
-            else
-               if @sym==C_MinusMinusSym
+               if @sym==C_INITIALSym
                   Get()
+
+                  back_src();if not
+                  re(".isInit(")
                else
-                  GenError(1049)
+                  re(".isNotInit(")
                end
+               ;
 
             end
 
-            UnaryExp()
-         else
-            if @sym==C_spaceD1Sym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_INSym||@sym==C_PlusSym||@sym==C_NOTSym||@sym==C_AndSym||@sym==C_MinusSym||@sym>=C_BangSym&&@sym<=C_INSTANCESym
-               UnaryOperator()
-               CastExp()
-            else
-               GenError(1050)
-            end
 
-         end
-
-      end
-
-      _out_()
-   end
-   def PostFixExp()
-      _in_()
-      Primary()
-      pri = lus
-      while (@sym==C_LparenSym||@sym==C_TildeSym||@sym==C_LbrackSym||@sym>=C_MinusGreaterSym&&@sym<=C_EqualGreaterSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym)
-         case @sym
-
-         when C_LbrackSym
-            Get()
-            if @sym>=C_identifierSym&&@sym<=C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_charSym||@sym>=C_spaceD1Sym&&@sym<=C_LparenSym||@sym==C_LessSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_INSym||@sym==C_PlusSym||@sym==C_INITIALSym||@sym==C_SlashSym||@sym==C_NOTSym||@sym==C_AndSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym>=C_BangSym&&@sym<=C_REQUESTEDSym
-               Expression()
-            end
-
-            Expect(C_RbrackSym)
-
-         when C_LparenSym
-            FunctionCall()
-
-         when C_TildeSym
-            Get()
-            Expect(C_identifierSym)
-
-         when C_MinusGreaterSym
-            Get()
-            Expect(C_identifierSym)
-            
-            #re(".#{lus}");back_src();
- src("#{pri}.#{prevString}")
-
-         when C_EqualGreaterSym
-            Get()
-            Expect(C_identifierSym)
-
-            #re(".#{lus}");back_src();
- src("#{pri}.#{prevString}")
-
-         when C_MinusSym
-            Get()
-            Expect(C_identifierSym)
-
-         when C_PlusPlusSym
-            Get()
-
-         when C_MinusMinusSym
+         when C_LIKESym
             Get()
 
          else
-            GenError(1051)
+            GenError(1043)
 
          end
 
+         RelationExp()
+
+         add_src(")") if br;
+
       end
 
-      _out_()
+   else
+      if 1
+         RelationExp()
+         if @sym==C_NOTSym
+            Get()
+         end
+
+         Expect(C_BETWEENSym)
+         RelationExp()
+         Expect(C_ANDSym)
+         RelationExp()
+      else
+         GenError(1044)
+      end
+
    end
-   def UnaryOperator()
-      _in_()
+
+   _out_()
+end
+def RelationExp()
+   _in_()
+   ShiftExp()
+   while (@sym>=C_LessSym&&@sym<=C_GreaterSym||@sym>=C_CPSym&&@sym<=C_GTSym||@sym>=C_LessEqualSym&&@sym<=C_BYTEMinusNSSym)
       case @sym
 
-      when C_PlusSym
+      when C_LessSym
          Get()
 
-      when C_spaceD1Sym,
-         C_MinusSym
-         MinusOperator()
+      when C_LTSym
+         Get()
+
+      when C_GreaterSym
+         Get()
+
+      when C_GTSym
+         Get()
+
+      when C_LessEqualSym
+         Get()
+
+      when C_LESym
+         Get()
+
+      when C_GreaterEqualSym
+         Get()
+
+      when C_GESym
+         Get()
+
+      when C_COSym
+         Get()
+
+      when C_CNSym
+         Get()
+
+      when C_CASym
+         Get()
+
+      when C_NASym
+         Get()
+
+      when C_CSSym
+         Get()
+
+      when C_NSSym
+         Get()
+
+      when C_CPSym
+         Get()
+
+      when C_NPSym
+         Get()
+
+      when C_BYTEMinusCOSym
+         Get()
+
+      when C_BYTEMinusCNSym
+         Get()
+
+      when C_BYTEMinusCASym
+         Get()
+
+      when C_BYTEMinusNASym
+         Get()
+
+      when C_BYTEMinusCSSym
+         Get()
+
+      when C_BYTEMinusNSSym
+         Get()
+
+      else
+         GenError(1045)
+
+      end
+
+      ShiftExp()
+   end
+
+   _out_()
+end
+def ShiftExp()
+   _in_()
+   AddExp()
+   while (@sym>=C_LessLessSym&&@sym<=C_GreaterGreaterSym)
+      if @sym==C_LessLessSym
+         Get()
+      else
+         if @sym==C_GreaterGreaterSym
+            Get()
+         else
+            GenError(1046)
+         end
+
+      end
+
+      AddExp()
+   end
+
+   _out_()
+end
+def AddExp()
+   _in_()
+   MultExp()
+   while (@sym==C_PlusSym||@sym==C_MinusSym)
+      if @sym==C_PlusSym
+         Get()
+      else
+         if @sym==C_MinusSym
+            Get()
+         else
+            GenError(1047)
+         end
+
+      end
+
+      MultExp()
+   end
+
+   _out_()
+end
+def MultExp()
+   _in_()
+   CastExp()
+   while (@sym==C_StarSym||@sym>=C_SlashSym&&@sym<=C_StarStarSym||@sym>=C_DIVSym&&@sym<=C_MODSym)
+      case @sym
 
       when C_StarSym
          Get()
 
-      when C_BangSym
-         Get()
-
-      when C_AndSym
-         Get()
-
-      when C_TildeSym
-         Get()
-
-      when C_NOTSym
-         Get()
-
-      when C_INSTANCESym
-         Get()
-         Expect(C_OFSym)
-
-      when C_INSym
-         Get()
-
-      else
-         GenError(1052)
-
-      end
-
-      _out_()
-   end
-   def Primary()
-      _in_()
-      case @sym
-
-      when C_stringD1Sym
-         Get()
-         while (@sym==C_stringD1Sym)
-            Get()
-         end
-
-
-      when C_charSym
-         Get()
-
-      when C_numberSym
-         Get()
-
-      when C_LparenSym
-         Get()
-         Expression()
-         Expect(C_RparenSym)
-
-      when C_INITIALSym,
-         C_BOUNDSym,
-         C_ASSIGNEDSym,
-         C_SUPPLIEDSym,
-         C_REQUESTEDSym
-         PredefinedConstant()
-
-      when C_identifierSym
-         Get()
-
-      when C_LessSym
-         if @sym==C_LessSym
-            Get()
-         end
-
-         Expect(C_identifierSym)
-         if @sym==C_GreaterSym
-            Get()
-         end
-
-
       when C_SlashSym
          Get()
-         Expect(C_identifierSym)
-         while (@sym==C_SlashSym)
-            Get()
-            Expect(C_identifierSym)
-         end
 
+      when C_DIVSym
+         Get()
+
+      when C_PercentSym
+         Get()
+
+      when C_MODSym
+         Get()
+
+      when C_StarStarSym
+         Get()
 
       else
-         GenError(1053)
+         GenError(1048)
 
       end
 
-      _out_()
+      CastExp()
    end
-   def FunctionCall()
-      _in_()
-      Expect(C_LparenSym)
-      while (@sym>=C_identifierSym&&@sym<=C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_charSym||@sym>=C_spaceD1Sym&&@sym<=C_LparenSym||@sym==C_LessSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_INSym||@sym==C_PlusSym||@sym==C_INITIALSym||@sym==C_EXPORTINGSym||@sym==C_SlashSym||@sym==C_NOTSym||@sym==C_IMPORTINGSym||@sym==C_AndSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym>=C_BangSym&&@sym<=C_REQUESTEDSym)
-         if @sym==C_EXPORTINGSym||@sym==C_IMPORTINGSym
-            if @sym==C_EXPORTINGSym
+
+   _out_()
+end
+def CastExp()
+   _in_()
+   UnaryExp()
+   _out_()
+end
+def UnaryExp()
+   _in_()
+   if @sym>=C_identifierSym&&@sym<=C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_charSym||@sym==C_LparenSym||@sym==C_LessSym||@sym==C_INITIALSym||@sym==C_SlashSym||@sym>=C_BOUNDSym&&@sym<=C_REQUESTEDSym
+      PostFixExp()
+   else
+      if @sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym
+         if @sym==C_PlusPlusSym
+            Get()
+         else
+            if @sym==C_MinusMinusSym
                Get()
             else
-               if @sym==C_IMPORTINGSym
-                  Get()
-               else
-                  GenError(1054)
-               end
-
+               GenError(1049)
             end
 
          end
 
-         while (@sym>=C_identifierSym&&@sym<=C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_charSym||@sym>=C_spaceD1Sym&&@sym<=C_LparenSym||@sym==C_LessSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_INSym||@sym==C_PlusSym||@sym==C_INITIALSym||@sym==C_SlashSym||@sym==C_NOTSym||@sym==C_AndSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym>=C_BangSym&&@sym<=C_REQUESTEDSym)
+         UnaryExp()
+      else
+         if @sym==C_spaceD1Sym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_INSym||@sym==C_PlusSym||@sym==C_NOTSym||@sym==C_AndSym||@sym==C_MinusSym||@sym>=C_BangSym&&@sym<=C_INSTANCESym
+            UnaryOperator()
+            CastExp()
+         else
+            GenError(1050)
+         end
+
+      end
+
+   end
+
+   _out_()
+end
+def PostFixExp()
+   _in_()
+   Primary()
+
+   pri = lus;
+
+   while (@sym==C_LparenSym||@sym==C_TildeSym||@sym==C_LbrackSym||@sym>=C_MinusGreaterSym&&@sym<=C_EqualGreaterSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym)
+      case @sym
+
+      when C_LbrackSym
+         Get()
+         if @sym>=C_identifierSym&&@sym<=C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_charSym||@sym>=C_spaceD1Sym&&@sym<=C_LparenSym||@sym==C_LessSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_INSym||@sym==C_PlusSym||@sym==C_INITIALSym||@sym==C_SlashSym||@sym==C_NOTSym||@sym==C_AndSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym>=C_BangSym&&@sym<=C_REQUESTEDSym
             Expression()
          end
 
+         Expect(C_RbrackSym)
+
+      when C_LparenSym
+         FunctionCall()
+
+      when C_TildeSym
+         Get()
+         Expect(C_identifierSym)
+
+      when C_MinusGreaterSym
+         Get()
+         Expect(C_identifierSym)
+
+         #re(".#{lus}");back_src();
+
+
+         src("#{pri}.#{prevString}");
+
+
+      when C_EqualGreaterSym
+         Get()
+         Expect(C_identifierSym)
+
+         #re(".#{lus}");back_src();
+
+
+         src("#{pri}.#{prevString}");
+
+
+      when C_MinusSym
+         Get()
+         Expect(C_identifierSym)
+
+      when C_PlusPlusSym
+         Get()
+
+      when C_MinusMinusSym
+         Get()
+
+      else
+         GenError(1051)
+
       end
 
+   end
+
+   _out_()
+end
+def UnaryOperator()
+   _in_()
+   case @sym
+
+   when C_PlusSym
+      Get()
+
+   when C_spaceD1Sym,
+      C_MinusSym
+      MinusOperator()
+
+   when C_StarSym
+      Get()
+
+   when C_BangSym
+      Get()
+
+   when C_AndSym
+      Get()
+
+   when C_TildeSym
+      Get()
+
+   when C_NOTSym
+      Get()
+
+   when C_INSTANCESym
+      Get()
+      Expect(C_OFSym)
+
+   when C_INSym
+      Get()
+
+   else
+      GenError(1052)
+
+   end
+
+   _out_()
+end
+def Primary()
+   _in_()
+   case @sym
+
+   when C_stringD1Sym
+      Get()
+      while (@sym==C_stringD1Sym)
+         Get()
+      end
+
+
+   when C_charSym
+      Get()
+
+   when C_numberSym
+      Get()
+
+   when C_LparenSym
+      Get()
+      Expression()
       Expect(C_RparenSym)
-      _out_()
-   end
-   def PredefinedConstant()
-      _in_()
-      case @sym
 
-      when C_INITIALSym
+   when C_INITIALSym,
+      C_BOUNDSym,
+      C_ASSIGNEDSym,
+      C_SUPPLIEDSym,
+      C_REQUESTEDSym
+      PredefinedConstant()
+
+   when C_identifierSym
+      Get()
+
+   when C_LessSym
+      if @sym==C_LessSym
          Get()
-
-      when C_BOUNDSym
-         Get()
-
-      when C_ASSIGNEDSym
-         Get()
-
-      when C_SUPPLIEDSym
-         Get()
-
-      when C_REQUESTEDSym
-         Get()
-
-      else
-         GenError(1055)
-
       end
 
-      _out_()
-   end
-   def MinusOperator()
-      _in_()
-      if @sym==C_spaceD1Sym
+      Expect(C_identifierSym)
+      if @sym==C_GreaterSym
          Get()
-         Expect(C_MinusSym)
-      else
-         if @sym==C_MinusSym
+      end
+
+
+   when C_SlashSym
+      Get()
+      Expect(C_identifierSym)
+      while (@sym==C_SlashSym)
+         Get()
+         Expect(C_identifierSym)
+      end
+
+
+   else
+      GenError(1053)
+
+   end
+
+   _out_()
+end
+def FunctionCall()
+   _in_()
+   Expect(C_LparenSym)
+   while (@sym>=C_identifierSym&&@sym<=C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_charSym||@sym>=C_spaceD1Sym&&@sym<=C_LparenSym||@sym==C_LessSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_INSym||@sym==C_PlusSym||@sym==C_INITIALSym||@sym==C_EXPORTINGSym||@sym==C_SlashSym||@sym==C_NOTSym||@sym==C_IMPORTINGSym||@sym==C_AndSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym>=C_BangSym&&@sym<=C_REQUESTEDSym)
+      if @sym==C_EXPORTINGSym||@sym==C_IMPORTINGSym
+         if @sym==C_EXPORTINGSym
             Get()
-            Expect(C_spaceD1Sym)
          else
-            GenError(1056)
+            if @sym==C_IMPORTINGSym
+               Get()
+            else
+               GenError(1054)
+            end
+
          end
 
       end
 
-      _out_()
+      while (@sym>=C_identifierSym&&@sym<=C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_charSym||@sym>=C_spaceD1Sym&&@sym<=C_LparenSym||@sym==C_LessSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_INSym||@sym==C_PlusSym||@sym==C_INITIALSym||@sym==C_SlashSym||@sym==C_NOTSym||@sym==C_AndSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym>=C_BangSym&&@sym<=C_REQUESTEDSym)
+         Expression()
+      end
+
    end
+
+   Expect(C_RparenSym)
+   _out_()
+end
+def PredefinedConstant()
+   _in_()
+   case @sym
+
+   when C_INITIALSym
+      Get()
+
+   when C_BOUNDSym
+      Get()
+
+   when C_ASSIGNEDSym
+      Get()
+
+   when C_SUPPLIEDSym
+      Get()
+
+   when C_REQUESTEDSym
+      Get()
+
+   else
+      GenError(1055)
+
+   end
+
+   _out_()
+end
+def MinusOperator()
+   _in_()
+   if @sym==C_spaceD1Sym
+      Get()
+      Expect(C_MinusSym)
+   else
+      if @sym==C_MinusSym
+         Get()
+         Expect(C_spaceD1Sym)
+      else
+         GenError(1056)
+      end
+
+   end
+
+   _out_()
+end
 
 
 end

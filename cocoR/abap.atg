@@ -353,11 +353,11 @@ stMOVE_CORRESPONDING = "MOVE-CORRESPONDING" ["EXACT"]
                                                   ["KEEPING" "TARGET" identifier(.is('LINES').)] 
              ) "." . 
  
-stAPPEND = "APPEND" ( 
+stAPPEND = "APPEND" (. params = {} .) ( 
          "INITIAL" "LINE" 
-        | Expression (.#'LINES' or idf.) ["OF" identifier ["FROM" number ["TO" number]] ["USING" "KEY" string1]]
+        | Expression (.#'LINES' or idf .) (.params[:from]=lus.) ["OF" identifier ["FROM" number ["TO" number]] ["USING" "KEY" string1]]
         )
-    "TO" identifier {"[""]"}
+    "TO" identifier(.params[:to]=prevString.)  {"[""]"} 
     ["SORTED" "BY" string1] 
     [ ("ASSIGNING" "<"identifier">" ["CASTING"] | "REFERENCE" "INTO" identifier ) ] "." .
  
@@ -588,7 +588,7 @@ VariableDefineStatement =  ("DATA"|"STATICS" )
                          .)| LikeDes)
                              
             )
-           { ["VALUE" { Expression | "IS" "INITIAL" }] 
+           { ["VALUE" { Expression | "IS" "INITIAL" (.back_src();re(".init()").) }] 
             ["READ-ONLY"]
             ["OCCURS" number
                       ["WITH" "HEADER" "LINE"]]
@@ -609,7 +609,7 @@ VariableDefineStatement =  ("DATA"|"STATICS" )
 
 stCONSTANTS = "CONSTANTS" identifier ( TypeDes | 
                LikeDes
-                ) "VALUE" { Expression | "IS" "INITIAL" } "." .
+                ) "VALUE" { Expression | "IS" "INITIAL"(.back();re(".init()").) } "." .
 
 
 WriteStatement =   (. param_hash = {} .) "WRITE" 
@@ -974,7 +974,7 @@ stTYPES = "TYPES"(
           "BEGIN" "OF"(
               "ENUM" identifier  ["STRUCTURE" identifier] 
                             ["BASE" "TYPE" identifier] "." 
-                "TYPES" identifier "VALUE" (Expression |"IS" "INITIAL"){"," "TYPES" identifier "VALUE" (Expression |"IS" "INITIAL")} 
+                "TYPES" identifier "VALUE" (Expression |"IS" "INITIAL"(.back();re(".init()").)){"," "TYPES" identifier "VALUE" (Expression |"IS" "INITIAL"(.back();re(".init()").))} 
               "TYPES" "END" "OF" "ENUM" identifier ["STRUCTURE" identifier]
             | 
               "MESH" identifier"." 
@@ -2061,7 +2061,13 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
 
   ANDExp               =  EqualExp    { "&" EqualExp }    .
 
-  EqualExp             =    RelationExp { ( "=" (.re("==").)| "EQ"(.re("==").)| "<>" (.re("!=").)| "NE"(.re("!=").) | "IS" ["NOT"] | "LIKE" ) RelationExp } 
+  EqualExp             =    RelationExp { ( "=" (.re("==").)| "EQ"(.re("==").)| "<>" (.re("!=").)| "NE"(.re("!=").) | "IS"(.re(".is(");br = true.) ["NOT"(.back_src();re(".isnot(");not=true.)] ["INITIAL"(.back_src();if not 
+  re(".isInit(")
+  else
+  re(".isNotInit(")
+  end
+  
+  .)] | "LIKE" ) RelationExp (.add_src(")") if br.) } 
                           |
                             RelationExp ["NOT"] "BETWEEN" RelationExp "AND" RelationExp  
   .

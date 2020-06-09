@@ -229,7 +229,7 @@ class Parser < CParser
 
     
     alias_method "re", "replace_src"
-    
+    alias_method "back", "back_src"
     def popv
         @parse_stack.popv
     end
