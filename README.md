@@ -1,4 +1,4 @@
-#  abap2ruby
+#  Abap2ruby
 A Translator/compiler to convert SAP ABAP code to ruby code
 
 This project is still under developing. Please check abap file and ruby file translated from abap under directory https://github.com/jackieju/abap2ruby/tree/master/examples  to see current functionalities.
