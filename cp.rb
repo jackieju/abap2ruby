@@ -178,14 +178,20 @@ class Parser < CParser
         @parse_stack.lus
     end
     def Get(ignore_crlf=true)
-        if  @sym == C_PointSym
-                @parse_stack.cur[:src].push("\n")
-        else
+        if @sym == C_PointSym
+            @parse_stack.cur[:src].push("\n")
+        elsif @sym != 0.6
             @parse_stack.cur[:src].push(curString())
             @parse_stack.cur[:stack].push({:sym=>@sym, :val=>curString()})
         end
         
         super
+        
+        if @sym == 0.6 # comment
+            # p "cmt:#{curString()}", 10
+             @parse_stack.cur[:src].push("#"+curString())
+             Get(ignore_crlf)
+         end
 
     end
     def stop_autosrc

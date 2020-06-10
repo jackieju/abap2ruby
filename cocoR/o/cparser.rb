@@ -1506,7 +1506,7 @@ class CParser < CRRParser
          end
 
 
-         stmts = lus;
+         stmts += lus+"\n";
 
       end
 
@@ -2713,6 +2713,9 @@ class CParser < CRRParser
                if @sym==C_TYPESym
                   Get()
                   Expect(C_identifierSym)
+
+                  exp_type=prevString;
+
                   if @sym==C_WITHSym||@sym>=C_MESSAGESym&&@sym<=C_IDSym
                      if @sym==C_MESSAGESym
                         Get()
@@ -2768,9 +2771,15 @@ class CParser < CRRParser
 
             end
 
+
+            src("raise #{exp_type}.new");
+
          else
             if @sym==C_identifierSym
                Get()
+
+               src("raise #{prevString}");
+
             else
                GenError(760)
             end
@@ -6220,6 +6229,9 @@ class CParser < CRRParser
       end
 
       Expect(C_PointSym)
+
+      src("break");
+
       _out_()
    end
    def stEXPORT()
@@ -7283,6 +7295,9 @@ class CParser < CRRParser
                else
                   if 1
                      Get()
+
+                     params[:id]=prevString;
+
                   else
                      GenError(885)
                   end

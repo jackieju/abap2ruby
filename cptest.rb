@@ -122,6 +122,17 @@ REPORT TEST.
    DATA a-c type i .
    a->b = 1.
    .
+   
+   DATA:
+     lr_accpe_qaf                TYPE REF TO if_a1fia_acproerr_qaf_eco=>ty_root,
+     lv_user_account_id          TYPE apc_c_user_account_id,
+     lv_determine_navigation     TYPE syboolean.
+
+ * Initialization
+   rt_accpe_qaf = it_accpe_qaf.
+   ls_out_data-parent_node_id      = ls_applog_ovv_item-parent_node_id.
+*   data:
+a = 1.
 HERE
 #def dump_testcase
     p "==>dump_testcase"
@@ -168,7 +179,7 @@ scanner = Scanner.new(s)
 error = MyError.new("whaterver", scanner)
 parser = Preprocessor.new(scanner, error)
 s = parser.Preprocess
-    
+p "===>preprocess output:#{s}"
 
 scanner = Scanner.new(s)
 p "===>scanner =#{scanner}"
@@ -190,7 +201,7 @@ begin
 
 # ret = parser.C
 
-    p "parsing result:#{ret}"
+    print "parsing result:#{ret}\n"
     error.PrintListing
 
     p "---->list classes"

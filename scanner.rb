@@ -306,7 +306,7 @@ class Scanner <  CRRScanner
     end
     
     def Comment()
-     #   p "===>Comment1:#{@ch}"
+       #p "===>Comment1:#{@ch}"
        level=1
        startLine=@currLine
        oldLineStart=@lineStart
@@ -317,6 +317,7 @@ class Scanner <  CRRScanner
            _pos = @buffPos-1
            _ch = @buffer[_pos]
            isStart = true # is start of line
+           # check if it's start of line
            while (_pos>=0 && _ch.to_byte != EOF_CHAR && _ch.to_byte != LF_CHAR)
                if !isWhitespace?(_ch)
               #     p "===>Comment3:#{_ch}, #{_pos}"
@@ -326,15 +327,15 @@ class Scanner <  CRRScanner
                _pos -=1
                _ch = @buffer[_pos]
            end
-        #   p "===>Comment2:#{isStart}, #{@ch}"
+         #  p "===>Comment2:#{isStart}, #{@ch}"
            if isStart
                while (@ch && @ch.to_byte != EOF_CHAR && @ch.to_byte != LF_CHAR && @ch.to_byte != 13)
                    NextCh()
-           #        p "===>Comment4:#{@ch} #{@ch.to_byte} #{@ch.to_byte != LF_CHAR}"
-                  
+                   p "===>Comment4:#{@ch} #{@ch.to_byte} #{@ch.to_byte != LF_CHAR}"
+                  @nextSym.Len+=1
                end
-              
-            #  p "===>Comment5:#{@ch} #{@ch.to_byte} "
+               @nextSym.Len+=1 if @ch.to_byte != EOF_CHAR
+        #      p "===>Comment5:#{@ch} #{@ch.to_byte} "
                return 1
            end
          
@@ -343,8 +344,8 @@ class Scanner <  CRRScanner
      if @ch=='"'
          while (@ch && @ch.to_byte != EOF_CHAR && @ch.to_byte != LF_CHAR && @ch.to_byte != 13)
              NextCh()
-         #    p "===>Comment6:#{@ch} #{@ch.to_byte} #{@ch.to_byte != LF_CHAR}"
-            
+          #   p "===>Comment6:#{@ch} #{@ch.to_byte} #{@ch.to_byte != LF_CHAR}"
+            @nextSym.Len+=1 if @ch.to_byte != EOF_CHAR
          end
          return 1
      end
@@ -1402,7 +1403,7 @@ public
   end
 =end
   
-   def skip(ignore_crlf)
+   def skip(ignore_crlf= true, skip_comment = true)
        
        return C_EOF_Sym if @ch == nil
        
@@ -1427,13 +1428,13 @@ public
                    return C_EOF_Sym if @ch == nil 
            end
           # p "get32:#{@ch}, #{@buffPos}"
-           
-         end while ((@ch == '*' || @ch == '"') && Comment()==1) 
+
+         end while (skip_comment && (@ch == '*' || @ch == '"') && Comment()==1) 
           
          if (@ch == nil || @ch.to_byte == EOF_CHAR  ) 
              return C_EOF_Sym
          end
-       #  p "Get5:#{@ch}, #{@ch.to_byte}"
+         p "Get5:#{@ch}, #{@ch.to_byte}"
          if !ignore_crlf &&  ( @ch.to_byte == 13|| ch.to_byte == 10)
              return C_CRLF_Sym
          end
@@ -1443,15 +1444,23 @@ public
    
    def Get(ignore_crlf=true)
        # int state, ctx
-       r = skip(ignore_crlf)
+       r = skip(ignore_crlf, false)
        return r if r
- 
+       
+
 
           @currSym = nextSym.clone
          
           nextSym.init(0, @currLine, @currCol - 1, @buffPos, 0)
           nextSym.len  = 0
            ctx = 0
+            p "==>>>check comments"
+           if Comment()==1
+               p "==>>>is comments:#{GetSymValue(nextSym)}"
+               return 0.6
+           end
+           
+           
          #
          #  
          #  state = @@STATE0[@ch.to_byte]

@@ -1896,13 +1896,17 @@ class Preprocessor < PreParser
                    begin
                        s = ""
                        Get()
-                       while (@sym != C_EOF_Sym && @sym != C_CommaSym && @sym != C_PointSym)
-                           p("3313:#{@sym}, #{curString}") 
-                           if @scanner.currSym.pos + @scanner.currSym.len< @scanner.nextSym.pos
-                               s += " "
-                           end
+                       if @sym == 0.6 # comments
                            s += curString()
-                           Get()
+                       else
+                           while (@sym != C_EOF_Sym && @sym != C_CommaSym && @sym != C_PointSym)
+                               p("3313:#{@sym}, #{curString}") 
+                               if @scanner.currSym.pos + @scanner.currSym.len< @scanner.nextSym.pos
+                                   s += " "
+                               end
+                               s += curString()
+                               Get()
+                           end
                        end
                        ar.push(s)
                        p "===>push:#{s}"
@@ -1912,7 +1916,11 @@ class Preprocessor < PreParser
                    res = ""
                    ar.each{|ss|
                       # res += "#{keyword} #{ss} .\n"
-                      res += "#{part1} #{ss} .\n"
+                      if ss.strip.start_with?("*") || ss.strip.start_with?("\"")
+                          res += ss+"\n"
+                      else
+                          res += "#{part1} #{ss} .\n"
+                      end
                    }
                    p "res:#{res}"
                    if ar.size >0

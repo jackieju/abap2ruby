@@ -415,22 +415,26 @@ DescribeStatement = "DESCRIBE" (
         )
         "." . */
 
-stRAISE = "RAISE" (
-  "EVENT" identifier ["EXPORTING" Expression {Expression}]
-| ["RESUMABLE"] "EXCEPTION" 
-  [  
-      ( "TYPE" identifier 
-          [ 
-              "MESSAGE" identifier "(" identifier ")" 
-              | { "ID" identifier "TYPE" identifier "NUMBER" Expression }   ["WITH" identifier {identifier} ]
-          ] 
-         ["EXPORTING" Expression {Expression}] 
+stRAISE = "RAISE"
+     (
+              "EVENT" identifier ["EXPORTING" Expression {Expression}]
+          |
+              ["RESUMABLE"] "EXCEPTION" 
+              [  
+                  ( "TYPE" identifier (.exp_type=prevString.)
+                      [ 
+                          "MESSAGE" identifier "(" identifier ")" 
+                          | { "ID" identifier "TYPE" identifier "NUMBER" Expression }   ["WITH" identifier {identifier} ]
+                      ] 
+                     ["EXPORTING" Expression {Expression}] 
        
-     | identifier
+                 | identifier
+                 )
+             ]  (.src("raise #{exp_type}.new").)
+          |
+              identifier  (.src("raise #{prevString}").)
      )
- ]
- |identifier
-)
+   
 .
 
 MessasgeStatement = "MESSAGE"
@@ -1106,7 +1110,7 @@ stWHILE = "WHILE" Expression
                           
                           .)
                       "IF" Conditional (. exp = lus .)  "."
-                              [{Statement} (. stmts = lus .)] 
+                              [{Statement} (. stmts += lus+"\n" .)] 
                               (.  ret += "if #{exp}\n#{stmts}\n" .)
                              { "ELSEIF" Conditional (. exp = lus .) "."
                               [{Statement} (. stmts = lus .) ]
@@ -1573,7 +1577,9 @@ stEND_OF_PAGE = "END-OF-PAGE"".".
 
 stEND_OF_SELECTION = "END-OF-SELECTION"".".
 
-stEXIT = "EXIT" [(  "FROM" "SQL" |  "FROM" "STEP-LOOP" )] ".".
+stEXIT = "EXIT" [(  "FROM" "SQL" |  "FROM" "STEP-LOOP" )] "."
+        (. src("break").)
+.
 
 stEXPORT = "EXPORT" ( 
             Expression{Expression}
@@ -1727,7 +1733,7 @@ stINSERT = "INSERT"
             (  
                  ("INITIAL" "LINE") 
                | (identifier(.is('LINES').) "OF" identifier ["FROM" identifier] ["TO" identifier] ["USING" "KEY" Name]) 
-               | identifier
+               | identifier(.params[:id]=prevString.)
             ) 
         ]
         {
@@ -1747,7 +1753,8 @@ stINSERT = "INSERT"
                   ["VERSION"|("UNICODE" "ENABLING") identifier ] ) 
               | ["DIRECTORY" "ENTRY" string1] ) 
        |/* insert textpool */
-         "TEXTPOOL" identifier "FROM" identifier "LANGUAGE" identifier ) "."
+         "TEXTPOOL" identifier "FROM" identifier "LANGUAGE" identifier 
+    ) "."
          
          (.
              src("insert(#{hash_to_params(params)})")
