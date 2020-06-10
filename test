@@ -1,4 +1,7 @@
-ruby translate.rb ../A1FIA_ACPROERR_QAF_ECO.abap
-ruby translate.rb cp_testcase.abap
-ruby translate.rb abap/YCL*.txt
-ruby translate.rb abap/YCL*.TXT
+ruby translate.rb examples/A1FIA_ACPROERR_QAF_ECO.abap -d examples
+ruby translate.rb examples/A1FIA_AAR_CREATE_QAF_ECO.abap -d examples
+
+
+#ruby translate.rb cp_testcase.abap
+#ruby translate.rb abap/YCL*.txt
+#ruby translate.rb abap/YCL*.TXT

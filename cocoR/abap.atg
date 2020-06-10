@@ -1110,7 +1110,7 @@ stWHILE = "WHILE" Expression
                           
                           .)
                       "IF" Conditional (. exp = lus .)  "."
-                              [{Statement} (. stmts += lus+"\n" .)] 
+                              [{Statement (. stmts += lus+"\n" .)}] 
                               (.  ret += "if #{exp}\n#{stmts}\n" .)
                              { "ELSEIF" Conditional (. exp = lus .) "."
                               [{Statement} (. stmts = lus .) ]
