@@ -8,11 +8,15 @@ class CRRParser < CRParser
     def curCol()
         @scanner.currCol
     end
+    
+
     def curString() # current string means value of nextsym
         # ret = @scanner.GetName()
         ret = @scanner.GetSymValue(@scanner.nextSym)
-        if IGNORECASE && @scanner.nextSym.sym == C_identifierSym
-            ret = ret.downcase
+
+        if @scanner.nextSym.sym == C_identifierSym
+
+            ret = ret.downcase if IGNORECASE  
         end
         # p "------#{@scanner}"
         return ret
@@ -20,8 +24,9 @@ class CRRParser < CRParser
     def prevString() # previous string means value of currsym
         # ret = @scanner.GetName()
         ret = @scanner.GetSymValue(@scanner.currSym)
-        if IGNORECASE && @scanner.currSym.sym == C_identifierSym
-            ret = ret.downcase
+        if @scanner.currSym.sym == C_identifierSym
+
+            ret = ret.downcase if IGNORECASE  
         end
         # p "------#{@scanner}"
         return ret

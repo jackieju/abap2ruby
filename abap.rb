@@ -10,6 +10,10 @@ class Object
     super
     end
 end
+
+def append(params)
+end
+
 def call_method(name, exporting, importing)
  #   exporting.() if exporting
   #  importing.() if importing

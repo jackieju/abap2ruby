@@ -7,7 +7,18 @@ load 'error.rb'
 load 'log.rb'
 load 'common.rb'
 load 'cocoR/o/cparser.rb'
-
+def convertName(s)
+   # s.gsub("!", "").gsub("->", ".").gsub("-", "_1_").gsub("~", "_2_")
+    s.gsub("!", "").gsub("->", ".").gsub("-", ".").gsub("~", ".").gsub("/", "::")
+end
+    
+def hash_to_params(hash)
+    ar = []
+    hash.each{|k,v|
+        ar.push(":#{k}=>#{v}")
+    }
+    return "{"+ar.join(",\n")+"}"
+end
 def strInQuote(s)
     s[1..s.size-2]
 end
@@ -233,7 +244,49 @@ class Parser < CParser
     def popv
         @parse_stack.popv
     end
-    #### copy/override start ####
+    
+    
+    
+    def add_method(classdef, fname, head, args, source, deco)
+        before = <<HERE
+        ###################################
+        # setup importing parameter
+        _i.each{|k,v| eval("\#{k} = \#{v}")} if _i
+        ###################################
+        
+        
+HERE
+        after = <<HERE
+        
+        
+        
+        
+        ###################################
+        # setup exporting 
+        _exp = {}
+        _e.each{|k,v| eval("_exp['\#{v}'] = \#{k}")} if _e
+        
+        return {:exp=>_exp}
+        ###################################
+
+HERE
+         _src = "#{before}\n#{src}\n#{after}"       
+        classdef.add_method(fname, head, args, _src ,deco)
+    end
+    
+    
+    def curString() # current string means value of nextsym
+       convertName(super)
+    end
+    def prevString() # previous string means value of currsym
+        convertName(super)
+    end
+    
+    #############################
+    #                           #
+    #    copy/override start    #
+    #                           #
+    #############################
     
     #/* Because 'END' can be identifier(so LL(1) cannot parse it), so this rule has to be single rule and modifier it in subclass
     def TypeOfStuct()
