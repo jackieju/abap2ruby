@@ -521,17 +521,12 @@ TypeDes = "TYPE"
                                   |
                                       "HEADER" "LINE"
                                   |
-                                      [("UNIQUE"|"NON-UNIQUE")] 
+                                      [("UNIQUE"|"NON-UNIQUE")] ["HASHED"|"SORTED"]
                                       (
-                                             ["SORTED"] "KEY" ["PRIMARY_KEY" ["ALIAS" identifier] "COMPONENTS"] identifier {identifier}
+                                            "KEY" ["PRIMARY_KEY" ["ALIAS" identifier] "COMPONENTS"] identifier {identifier}
                                           | 
                                               "DEFAULT" "KEY" 
                                       )
-                                  |
-                                      (   "UNIQUE" "HASHED"
-                                        | 
-                                           [("UNIQUE"|"NON-UNIQUE")] "SORTED"
-                                      ) "KEY" identifier "COMPONENTS" {identifier}
                               )
                           
                           }
