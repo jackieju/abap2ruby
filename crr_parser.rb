@@ -479,7 +479,7 @@ class CRRParser < CRParser
                 end
             end
         end while (@sym > C_MAXT || (self.class.to_s!= "Preprocessor" &&ignoreSym?(@sym) ) )
-         p "get()2: #{@sym}, #{curString}"
+       #  p "get()2: #{@sym}, #{curString}"
         # p "Get()2 #{@scanner.nextSym.sym}, line #{@scanner.nextSym.line}, col #{@scanner.nextSym.col}, value #{curString()}"
         # p("Get()3:#{@sym}, #{curString()}, line #{curLine}", 20)
         return @scanner.nextSym.sym

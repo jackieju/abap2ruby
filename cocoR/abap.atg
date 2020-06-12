@@ -22,7 +22,7 @@ IGNORE
   tab + eol + CHR(13)
 
 TOKENS
-  identifier = ["!"]( "_" | letter) { ("_" | letter | digit ) | ( ("~"|"-"|"->") ("_" | letter | digit ) )} | "/" {("_" | letter | digit ) } {"/" {("_" | letter | digit ) }} | "<" ("_" | letter | digit ) { ("_" | letter | digit ) }">".
+  identifier = ["!"]( "_" | letter) { ("_" | letter | digit ) | ( ("~"|"-"|"->") ("_" | letter | digit ) )} | "/" ( "_" | letter){("_" | letter | digit ) } {"/" ( "_" | letter) {("_" | letter | digit ) }} | "<" ("_" | letter | digit ) { ("_" | letter | digit ) }">".
   number     = digit { digit } [ "U" | "u" | "L" | "l" ] .
   hexnumber  = "0" ( "x" | "X" ) hexdigit { hexdigit } [ "U" | "u" | "L" | "l" ] .
   string1    = "'" { strings } "'" .
@@ -32,7 +32,7 @@ TOKENS
 
 PRAGMAS
 
-  PreProcessor = "#" ( letter ) .
+  PreProcessor = "##" ( "_" | letter){ "_" | letter | digit } .
 		    
 
 PRODUCTIONS
@@ -57,7 +57,7 @@ PRODUCTIONS
                        (.
                          @root_class.add_method(fn_name, "()", [], src, "")
                        .)
-                    EOF .
+                    /*EOF*/ .
 
     FunctionDef = "FUNCTION" (.  fn_name=curString() .) identifier "."  (. src("") .) 
                     {Statement}
@@ -132,7 +132,7 @@ PRODUCTIONS
                              | stBREAK_POINT
                             /* | stCATCH*/
                              | stCHECK
-                             | stCLASS_DATA
+                             /*| stCLASS_DATA*/
                              | stCLASS_EVENTS
                              | stCLASS_POOL
                              | stCLEAR
@@ -511,7 +511,7 @@ TypeDes = "TYPE"
                       | 
                           "REF" "TO" Expression (.ret = VarType.new(lus.strip).)
                       | 
-                          [ ("STANDARD" | "SORTED"| "SORTED") ] "TABLE" 
+                          [ ("STANDARD" | "SORTED"| "HASHED") ] "TABLE" 
                        
                           "OF" ["REF" "TO"] identifier (.ret = VarType.new(curString.strip).)
                           {
@@ -523,7 +523,7 @@ TypeDes = "TYPE"
                                   |
                                       [("UNIQUE"|"NON-UNIQUE")] 
                                       (
-                                              "KEY" ["primary_key" ["ALIAS" identifier] "COMPONENTS"] identifier {identifier}
+                                             ["SORTED"] "KEY" ["PRIMARY_KEY" ["ALIAS" identifier] "COMPONENTS"] identifier {identifier}
                                           | 
                                               "DEFAULT" "KEY" 
                                       )
@@ -558,7 +558,7 @@ LikeDes =        "LIKE"
                           
                                   "WITH" ["UNIQUE"|"NON-UNIQUE"] 
                                    {
-                                    "KEY" ["primary_key" ["ALIAS" identifier] "COMPONENTS"] {identifier} 
+                                    "KEY" ["PRIMARY_KEY" ["ALIAS" identifier] "COMPONENTS"] {identifier} 
                                    |
                                     "DEFAULT" "KEY"
                                    }
@@ -584,7 +584,7 @@ LikeDes =        "LIKE"
                    ).
  
                  
-VariableDefineStatement =  ("DATA"|"STATICS" ) 
+VariableDefineStatement =  ("DATA"|"STATICS" |"CLASS-DATA") 
             ( 
                 "BEGIN" "OF" ( "COMMON" "PART" identifier| identifier ["READ-ONLY"] ["OCCURS" number] )
                 |
@@ -1439,7 +1439,7 @@ CallBadi = (  "BADI" identifier"->" "(" identifier ")"
 
 stCHECK = "CHECK" (. re("check(").) Expression /*|"SELECT-OPTIONS" */ (. add_src(")") .)".".
 
-stCLASS_DATA = "CLASS-DATA" identifier Event_options ".".
+/*stCLASS_DATA = "CLASS-DATA" identifier Event_options ".".*/
 
 stCLASS_EVENTS = "CLASS-EVENTS" identifier Event_options ".".
 

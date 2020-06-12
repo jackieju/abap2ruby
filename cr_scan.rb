@@ -190,6 +190,8 @@ class CRScanner < AbsScanner
            pos+=1
            if (@ignoreCase) 
                c = Upcase(c)
+               cc = Upcase(cc)
+            #   p "equalstr:#{cc}, #{c}"
            end
            if (c != cc)
                return false

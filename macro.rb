@@ -6,23 +6,25 @@ load 'crr_parser.rb'
 load 'error.rb'
 load 'log.rb'
 load 'common.rb'
-load "crr_parser.rb"
 
 class PreParser < CRRParser
 end
 # hide_p_in_file(__FILE__)
 class Preprocessor < PreParser
     attr_accessor :ifstack
-     
+    
     def Get()
         super(false)
-        p "Get99:#{@sym}"
+        p "Get99:#{@sym}, #{curString}"
         if @sym == C_CRLF_Sym
             @linestart = true
             while @sym == C_CRLF_Sym && @sym != C_EOF_Sym
                 super(false)
                 p "Get98:#{@sym}, #{@scanner.buffPos}"
             end
+        elsif @first_get
+             @linestart = true
+             @first_get = false
         else
             @linestart = false
         end
@@ -39,6 +41,7 @@ class Preprocessor < PreParser
         @saved_line = 0
         @count = 0
         @macros ={}
+        @first_get = true
         # if include_predined_file 
         #     include_file("c_macros.c") # predefined macros
         # end
@@ -106,9 +109,9 @@ class Preprocessor < PreParser
            @directive = "#{_str1}#{_str2}"
 =end          
            p "preprocess_directive0 #{@directive}, line=#{@scanner.currLine}", 10
-           if @scanner.currLine == 54 && @directive == "\#include"
-             #  p "==>preprocess_directive9:#{@scanner.buffer}"
-           end
+           #if @scanner.currLine == 54 && @directive == "\#include"
+           #  #  p "==>preprocess_directive9:#{@scanner.buffer}"
+           #end
            if @directive == "\#includestackpop"  # you cannot use include_stack_pop, before the sym will only be "#include",because it will stop before "_", check method scanner::Get()
                p "pop stack"
 
@@ -213,11 +216,21 @@ class Preprocessor < PreParser
                 # @scanner.delete_curline
                 # if !["#else", "#endif", "elif"].include?(@directive)
                     # @scanner.skip_curline
-                    p "before skip_curline:#{@scanner.buffPos}, #{@scanner.buffer[@scanner.buffPos-5..@scanner.buffPos+15]}", 10
+                p "before delete:#{@scanner.buffPos}, #{@scanner.buffer[@scanner.buffPos-5..@scanner.buffPos+15]}", 10
                     
-                @scanner.skip_curline(true)
+                #@scanner.skip_curline(true)
                 #delete_curline()
-                 p "after skip_curline:#{@scanner.buffPos}, #{@scanner.buffer[@scanner.buffPos-5..@scanner.buffPos+15]}", 10
+                p "before delete2:#{@scanner.nextSym.pos}, #{@scanner.buffer[@scanner.nextSym.pos..@scanner.nextSym.pos+10]}", 10
+                
+                pstart = @scanner.nextSym.pos
+                while @sym != C_PointSym && @sym != C_ColonSym && @sym != C_CRLF_Sym && @sym != C_CommaSym
+                    Get()
+                    p "==>#{@sym}, #{curString}"
+                end
+                p "before delete3:#{@scanner.nextSym.pos}, #{@scanner.buffer[@scanner.nextSym.pos..@scanner.nextSym.pos+10]}", 10
+                
+                @scanner.delete_in_line(pstart, @scanner.nextSym.pos-1)
+                 p "after delete:#{@scanner.buffPos}, #{@scanner.buffer[@scanner.buffPos-5..@scanner.buffPos+15]}", 10
                 #  Get()
                #  p "get:#{@scanner.nextSym.inspect}, #{@scanner.ch} #{curString}"
                #  p "buffer:#{@scanner.buffer}"
@@ -1916,7 +1929,7 @@ class Preprocessor < PreParser
                    res = ""
                    ar.each{|ss|
                       # res += "#{keyword} #{ss} .\n"
-                      if ss.strip.start_with?("*") || ss.strip.start_with?("\"")
+                      if ss.strip.start_with?("*") || ss.strip.start_with?("\"") # for comments
                           res += ss+"\n"
                       else
                           res += "#{part1} #{ss} .\n"
@@ -1950,13 +1963,17 @@ class Preprocessor < PreParser
                     go_next = true
                     break 
                 else
-                    Get()                   
-                end # if @sym == C_ColonSym
+                    Get()    
+                    if @sym == C_PreProcessorSym     
+                        preprocess_directive(process_directive)
+                        Get()
+                    end           
+                end # if @sym == C_ColonSym else
             end # while (@sym != C_PointSym && @sym != C_EOF_Sym)
-            next if go_next
+            next if go_next # if just processed one multi-line keywords, just out to main loop
                
             end # if @linestart 
-   
+   p "_preprocess133: #{@sym  }"
              #p "_preprocess1:sym2: line #{@scanner.currLine}, sym #{@sym}, d:#{@directive}, #{curString()}, #{@scanner.buffer[@scanner.buffPos..@scanner.buffPos+10]}"
             if @sym == C_PreProcessorSym
                 #_str1 = curString()
@@ -1965,7 +1982,7 @@ class Preprocessor < PreParser
                 #_str2 = curString()
                 #@directive = "#{_str1}#{_str2}"
                 @directive = curString()
-                #p "_preprocess directive3:#{@directive}, #{@scanner.buffer[@scanner.buffPos-30..@scanner.buffPos+30]}"
+                p "_preprocess directive3:#{@directive}, #{@scanner.buffer[@scanner.buffPos-30..@scanner.buffPos+30]}"
                 #p "_preprocess directive=#{@directive}, until_find=#{until_find.inspect}, process_directive=#{process_directive}", 10
               
                 if until_find.include?(@directive)
@@ -2113,7 +2130,7 @@ class Preprocessor < PreParser
             #p "before get:buffer(#{@scanner.buffer.size}):#{@scanner.buffer}"
             
             Get()
-            # p "_preprocess0:sym3:#{@sym}, d:#{@directive}, #{@scanner.nextSym.inspect}, #{curString()}"
+            p "_preprocess0:sym3:#{@sym}, d:#{@directive}, #{@scanner.nextSym.inspect}, #{curString()}"
             @count += 1
             if @count > 100
                 p "==>count:#{@scanner.currLine}, #{@saved_line}, #{@scanner.remain_enough_line?(31)} "
@@ -2273,4 +2290,4 @@ end # class Preprocessor
 
 
 
-#load 'macrotest.rb'
+load 'macrotest.rb'

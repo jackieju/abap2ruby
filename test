@@ -1,5 +1,6 @@
 ruby translate.rb examples/A1FIA_ACPROERR_QAF_ECO.abap -d examples
 ruby translate.rb examples/A1FIA_AAR_CREATE_QAF_ECO.abap -d examples
+ruby translate.rb examples/cp_testcase.abap -d examples
 
 
 #ruby translate.rb cp_testcase.abap

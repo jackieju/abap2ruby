@@ -230,7 +230,7 @@ end # end of test
 
 
 #=end
-test(false)
+test(true)
 #dump_testcase
 p "$typedef:#{$typedef.inspect}"
 

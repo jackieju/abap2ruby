@@ -331,7 +331,7 @@ class Scanner <  CRRScanner
            if isStart
                while (@ch && @ch.to_byte != EOF_CHAR && @ch.to_byte != LF_CHAR && @ch.to_byte != 13)
                    NextCh()
-                   p "===>Comment4:#{@ch} #{@ch.to_byte} #{@ch.to_byte != LF_CHAR}"
+                 #  p "===>Comment4:#{@ch} #{@ch.to_byte} #{@ch.to_byte != LF_CHAR}"
                   @nextSym.Len+=1
                end
                @nextSym.Len+=1 if @ch.to_byte != EOF_CHAR
@@ -1434,7 +1434,7 @@ public
          if (@ch == nil || @ch.to_byte == EOF_CHAR  ) 
              return C_EOF_Sym
          end
-         p "Get5:#{@ch}, #{@ch.to_byte}"
+        # p "Get5:#{@ch}, #{@ch.to_byte}"
          if !ignore_crlf &&  ( @ch.to_byte == 13|| ch.to_byte == 10)
              return C_CRLF_Sym
          end
@@ -1454,9 +1454,9 @@ public
           nextSym.init(0, @currLine, @currCol - 1, @buffPos, 0)
           nextSym.len  = 0
            ctx = 0
-            p "==>>>check comments"
+         #   p "==>>>check comments"
            if Comment()==1
-               p "==>>>is comments:#{GetSymValue(nextSym)}"
+         #      p "==>>>is comments:#{GetSymValue(nextSym)}"
                return 0.6
            end
            
@@ -1475,8 +1475,9 @@ public
          #
          #  end
 
-            return UpdateState()
-
+            ret =  UpdateState()
+          #  p "ret:#{ret}"
+            return ret
 
    end
    

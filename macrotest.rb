@@ -30,9 +30,14 @@ def test(testall=false)
           /5 'SY-UNAME', SY-UNAME,
           /5 'SY-UZEIT', SY-UZEIT.
 HERE
+s1=<<HERE
+write '1' ##no_text .
+write '1' ##Mo_text .
+
+HERE
 if !testall
    
-    s = s0
+    s = s1
 
 else
 

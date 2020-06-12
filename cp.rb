@@ -959,4 +959,4 @@ end  # class Parser
 
 load "cocoR/o/cparser.rb"
 
-load 'cptest.rb'
+#load 'cptest.rb'
