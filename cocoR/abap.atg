@@ -14,6 +14,7 @@ CHARACTERS
   strings1 = CHR(32) .. CHR(255) - '"' .	
   macros   = ANY - eol .
   space = CHR(32).
+  idn      = letter + digit + "_" +"<"+">".
 
 COMMENTS FROM "/*" TO "*/"
 COMMENTS FROM "\"" TO eol
@@ -22,13 +23,18 @@ IGNORE
   tab + eol + CHR(13)
 
 TOKENS
-  identifier = ["!"]( "_" | letter) { ("_" | letter | digit ) | ( ("~"|"-"|"->") ("_" | letter | digit ) )} | "/" ( "_" | letter){("_" | letter | digit ) } {"/" ( "_" | letter) {("_" | letter | digit ) }} | "<" ("_" | letter | digit ) { ("_" | letter | digit ) }">".
+ /*identifier = ["!"]( "_" | letter) { ("_" | letter | digit ) | ( ("~"|"-"|"->") ("_" | letter | digit |"*") )}
+           | "/" ( "_" | letter){("_" | letter | digit ) } {"/" ( "_" | letter) {("_" | letter | digit ) }} 
+           | "<" ("_" | letter | digit ) { ("_" | letter | digit ) }">".*/
+           
   number     = digit { digit } [ "U" | "u" | "L" | "l" ] .
   hexnumber  = "0" ( "x" | "X" ) hexdigit { hexdigit } [ "U" | "u" | "L" | "l" ] .
   string1    = "'" { strings } "'" .
   char       = '"' [ "\\" ] chars '"' .
   Colon      = ":" .
   space1     = space .
+  identifier =   ["!"|"/"|"<"] ( "_" | letter)  { idn | ( ("~"|"-"|"->"|"/") ( idn |"*") )}.
+      
 
 PRAGMAS
 
@@ -523,7 +529,7 @@ TypeDes = "TYPE"
                                   |
                                       [("UNIQUE"|"NON-UNIQUE")] ["HASHED"|"SORTED"]
                                       (
-                                            "KEY" ["PRIMARY_KEY" ["ALIAS" identifier] "COMPONENTS"] identifier {identifier}
+                                            "KEY" ["PRIMARY_KEY" ["ALIAS" identifier]|identifier] ["COMPONENTS" identifier {identifier}]
                                           | 
                                               "DEFAULT" "KEY" 
                                       )
@@ -716,32 +722,42 @@ stAUTHORITY_CHECK = "AUTHORITY-CHECK" "OBJECT" identifier ["FOR" "USER" string1]
                       "." .
                       
 stDELETE = "DELETE"(  
-                "DATASET" identifier 
+                    "DATASET" identifier 
                 |
-                ( 
                     ( 
-                        "FROM" Expression ["USING" "CLIENT" identifier] 
-                        | ["CLIENT" "SPECIFIED"] ["CONNECTION" ("("Expression")"| identifier)] ["WHERE" Expression] ["ORDER" "BY" identifier{"," identifier} ["OFFSET" number]] ["UP" "TO" number "ROWS"] 
+                        ( 
+                                "FROM" Expression ["USING" "CLIENT" identifier] 
+                            | 
+                                [ identifier|"(" Expression ")" ] ["CLIENT" "SPECIFIED"] ["CONNECTION" ("("Expression")"| identifier)] ["USING" "KEY" ["("] identifier [")"]] ["FROM" identifier] ["TO" identifier] ["WHERE" Expression] ["ORDER" "BY" identifier{"," identifier} ["OFFSET" number]] ["UP" "TO" number "ROWS"] 
+                        ) 
+                       |
+                            "TABLE" identifier 
+                       /*|
+                            ( ( identifier|"(" Expression ")") ["CLIENT" "SPECIFIED"] ["CONNECTION" ("("Expression")"| identifier)] ) 
+                            "FROM" identifier */
                     ) 
-                   | "TABLE" identifier 
-                   | ( ( identifier|"(" Expression ")") ["CLIENT" "SPECIFIED"] ["CONNECTION" ("("Expression")"| identifier)] ) 
-                       "FROM" identifier 
-                ) 
                 |  
                   ( 
-                        ( ("TABLE" identifier 
-                        (("FROM" identifier ["USING" "KEY" (identifier|"("identifier")")]) 
-                        |("WITH" "TABLE" "KEY" [(identifier|"("identifier")")"COMPONENTS"] 
-                                 ["("] identifier [")"] "=" identifier 
-                                  ))) 
-                                  | (identifier ["INDEX" identifier] ["USING" "KEY" ["("] identifier [")"]]) 
+                        (
+                                (
+                                    "TABLE" identifier 
+                                    (
+                                        ("FROM" identifier ["USING" "KEY" (identifier|"("identifier")")]) 
+                                      |
+                                        ("WITH" "TABLE" "KEY" [(identifier|"("identifier")")"COMPONENTS"] 
+                                        ["("] identifier [")"] "=" identifier 
+                                        )
+                                    )
+                                )
+                            | 
+                                (identifier ["INDEX" identifier] ["USING" "KEY" ["("] identifier [")"]]) 
                         ) 
                     |
                         (    
                             ("ADJACENT" "DUPLICATES" "FROM" identifier [ "USING" "KEY" ["("] identifier [")"]] 
                                                    ["COMPARING" identifier |("ALL" "FIELDS")])
-                            |
-                            identifier ["USING" "KEY" ["("] identifier [")"]] ["FROM" identifier] ["TO" identifier] ["WHERE" ["("] Expression [")"]] 
+                           /* |
+                            identifier ["USING" "KEY" ["("] identifier [")"]] ["FROM" identifier] ["TO" identifier] ["WHERE" ["("] Expression [")"]] */
                         )
                     |
                         "FROM" 
@@ -887,21 +903,10 @@ stREAD = "READ"
             
                 ("FROM" identifier (.params["from"]=prevString.)["USING" "KEY" ["("] identifier [")"]]) 
              |
-                  "WITH"
-                 (
-                     ( "TABLE" "KEY" [identifier|"("identifier")" "COMPONENTS"] 
-                                      ["("]identifier[")"] "=" Expression { ["("]identifier[")"] "=" Expression }
-                              
-                                      ) 
-                     | 
-                        "KEY"
-                         ( 
-                              (identifier "=" Expression {identifier "=" Expression} ["BINARY" "SEARCH"]) 
-                             | ( ["("] identifier [")"] 
-                                         "COMPONENTS" identifier "=" Expression {identifier "=" Expression } )
-                             | ( ["="]identifier ["BINARY" "SEARCH"])
-                         ) 
-                 ) 
+                  "WITH" ["TABLE"] "KEY" 
+                  ["("]identifier[")"] ("COMPONENTS" | "=" Expression ){ ["("]identifier[")"] "=" Expression } ["BINARY" "SEARCH"]
+                         
+                  
              | 
                  "INDEX" number (.params["index"]=prevString.)["USING" "KEY" ["("]identifier[")"] ] 
           )]
@@ -1159,21 +1164,23 @@ ClassStatement = "CLASS" identifier
                                     ]
                                   }
                             )
+                            ["LOAD"  (. out_scope() if cls .)]
                     |
                         "IMPLEMENTATION"
                 
                 ) "." 
                         
-                
+
+               
 {
+    
   [("PUBLIC"|"PROTECTED"|"PRIVATE") "SECTION" "." ]
   {Statement}
 }
-   
 
-"ENDCLASS" 
-(. out_scope() if cls .)
-"." .
+
+
+["ENDCLASS" "." (. out_scope() if cls .) ] .
 
 
 /*ClassImplStatement = "CLASS" identifier "IMPLEMENTATION" "." 
@@ -1223,8 +1230,14 @@ MethodsStatement =  ("METHODS" | "CLASS-METHODS") identifier["~"identifier]
                 ["DEFAULT" ("IGNORE"|"FAIL")] 
                 ["FOR" "EVENT" identifier "OF" identifier] 
                 [ "IMPORTING" { (.impar = [].)
-                                  ("VALUE" "(" identifier (.impar.push(prevString).)")" | "REFERENCE" "(" identifier (.impar.push(prevString).)")" | identifier (.impar.push(prevString).))
-                                   Typing [("OPTIONAL"|"DEFAULT") identifier] 
+                                  ( 
+                                          "VALUE" "(" identifier (.impar.push(prevString).)")" 
+                                      |  
+                                          "REFERENCE" "(" identifier (.impar.push(prevString).)")" 
+                                      |
+                                          identifier (.impar.push(prevString).)
+                                  )
+                                   Typing ["OPTIONAL"| "DEFAULT" identifier] 
                                  } 
                               ["PREFERRED" "PARAMETER" identifier] ] 
                 [ "EXPORTING" {
@@ -1233,7 +1246,7 @@ MethodsStatement =  ("METHODS" | "CLASS-METHODS") identifier["~"identifier]
                                   ] 
                 [ "CHANGING"  {
                               ("VALUE" "(" identifier ")" | "REFERENCE" "(" identifier ")" | identifier )
-                               Typing [("OPTIONAL"|"DEFAULT") identifier]
+                               Typing ["OPTIONAL"| "DEFAULT" identifier] 
                                } ] 
                 [ "RETURNING" {"VALUE" "("identifier")"} Typing ] 
                 [
@@ -1285,11 +1298,11 @@ stALIASES = "ALIASES" identifier "FOR" identifier"~"identifier".".
 
 stASSERT = "ASSERT" [ ["ID" identifier ["SUBKEY" identifier]] 
          ["FIELDS" identifier ] 
-         "CONDITION" ] Expression ".".
+         "CONDITION" ] Conditional ".".
 
 stASSIGN = "ASSIGN" (.params={}.)( 
        ["TABLE" "FIELD"] "("identifier")" 
-       | "COMPONENT" identifier "OF" "STRUCTURE" identifier
+       | "COMPONENT" (number|identifier) "OF" "STRUCTURE" identifier
        | Expression 
         [ (
             ["+" number]["("number")"] 
@@ -2062,7 +2075,7 @@ stTYPE_POOLS = "TYPE-POOLS" identifier ".".
 
 stULINE = "ULINE" (["AT"] ["/"] [number] [ "("number")"]) ["NO-GAP"]".".
 
-stUNASSIGN = "UNASSIGN"".".
+stUNASSIGN = "UNASSIGN" identifier ".".
 
 stUNPACK = "UNPACK" identifier "TO" identifier ".".
 
@@ -2144,13 +2157,14 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
                           | "-" identifier
                           | "++"
                           | "--"
-                          | "IS"(.re(".is(");br = true.) ["NOT"(.back_src();re(".isnot(");_not=true.)] ["INITIAL"(.back_src();if _not 
+                        /*  | "IS"(.re(".is(");br = true.) ["NOT"(.back_src();re(".isnot(");_not=true.)] ["INITIAL"(.back_src();if _not 
   re(".isInit(")
   else
   re(".isNotInit(")
   end
   add_src(")") if br
-  .)]
+  .)]*/ 
+                         | "IS"(.back();s=".is".) ["NOT" (.back();s+="Not";.)] PredefinedConstant (.s+=lus;add_src("#{s}()").)
                          }    .   
   
   Primary              =  string1{string1}
@@ -2168,13 +2182,15 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
    {
       ["EXPORTING" (. exporting = "{\n".){ identifier(.idn = prevString.) "=" Expression (.exporting+="\"#{idn}\" => #{lus},\n".)} (. exporting += "}\n".)  ] 
       ["IMPORTING" (. importing = "{\n".) { identifier(.idn = prevString.) "=" Expression (.importing+="\"#{idn}\" => #{lus},\n".)} (. importing += "}\n".)  ] 
+      ["CHANGING" (. changing = "{\n".) { identifier(.idn = prevString.) "=" Expression (.changing+="\"#{idn}\" => #{lus},\n".)} (. changing += "}\n".)  ] 
+ 
    }
   |
     
    { Expression }
    ) ")"     
    (.
-       src("(_i:#{exporting}, _e:#{importing})")
+       src("(_i:#{exporting}, _e:#{importing}, _c:#{changing})")
    .)
     .
 

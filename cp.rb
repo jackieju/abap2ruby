@@ -215,9 +215,9 @@ class Parser < CParser
     
     # remove last token content from src content
     def back_src()
-        p "33322222#{@parse_stack.cur[:src]}"
-        p "33322222#{prevString()}"
-        print "33322222#{@parse_stack.cur.to_json}"
+       # p "33322222#{@parse_stack.cur[:src]}"
+     #   p "33322222#{prevString()}"
+      #  print "33322222#{@parse_stack.cur.to_json}"
       #  str = @parse_stack.cur[:stack].pop()[:val]
         #str = prevString()
         #i = @parse_stack.cur[:src].rindex(str)
@@ -959,4 +959,4 @@ end  # class Parser
 
 load "cocoR/o/cparser.rb"
 
-#load 'cptest.rb'
+load 'cptest.rb'

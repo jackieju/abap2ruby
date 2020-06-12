@@ -323,7 +323,7 @@ class CRParser
     end
     def out_scope()
         r = @sstack.pop
-        p "==>out_scop:#{r}, #{r.name}, #{r.class_name}"
+        p "==>out_scope:#{r}, #{r.name}, #{r.class_name}"
         return r
     end    
     def current_ruby_scope

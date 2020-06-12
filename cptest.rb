@@ -134,6 +134,11 @@ REPORT TEST.
 *   data:
 a = 1.
 HERE
+s3 = <<HERE
+REPORT TEST.
+ad->dq = 1.
+f(a->*).
+HERE
 #def dump_testcase
     p "==>dump_testcase"
     r = ""
@@ -153,9 +158,10 @@ HERE
     save_to_file(r, "cp_testcase.abap")
     #end
 
-if !testall
+if testall != true
    
-    s = s2
+    s = eval("s#{testall}")
+    print s
 else
 
     r = ""
@@ -230,7 +236,7 @@ end # end of test
 
 
 #=end
-test(true)
+test(3)
 #dump_testcase
 p "$typedef:#{$typedef.inspect}"
 
