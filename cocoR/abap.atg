@@ -43,6 +43,7 @@ PRAGMAS
 
 PRODUCTIONS
 
+    Var = identifier | "DATA" "(" identifier ")" | "FIELD-SYMBOL" "(" identifier ")" .
     Exps =  Expression{Expression} .
     
     Name = identifier|"("identifier")".
@@ -365,7 +366,7 @@ stAPPEND = "APPEND" (. params = {} .) (
         )
     "TO" identifier(.params[:to]=prevString.)  {"[""]"} 
     ["SORTED" "BY" string1] 
-    [ ("ASSIGNING" identifier ["CASTING"] | "REFERENCE" "INTO" identifier ) ] "."
+    [ ("ASSIGNING" Var ["CASTING"] | "REFERENCE" "INTO" identifier ) ] "."
     (.
         
         src("append(#{hash_to_params(params)})\n")
@@ -476,26 +477,28 @@ LoopStatement = "LOOP"
             "AT" ( 
                   (
                      (
-                       identifier [( 
-                                   "INTO" identifier  
-                                 |  "ASSIGNING" identifier ["CASTING"] 
+                       Expression [( 
+                                   "INTO" Expression  
+                                 |  "ASSIGNING" Var ["CASTING"] 
                                  |  "REFERENCE" "INTO" identifier 
                                  |  "TRANSPORTING" "NO" "FIELDS" 
                                   )]
                           [ "USING" "KEY" (identifier|"("identifier")" )] 
-                          [ "FROM" identifier] ["TO" identifier] ["WHERE" Expression ] 
+                          [ "FROM" identifier]
+                          ["TO" identifier]
+                          ["WHERE" LogExp ] 
                           [ GroupBy ]
                      )
-                    | identifier ["VERSION" string1]  
+                    | Expression ["VERSION" string1]  
                   )
                 |
-                 "GROUP" identifier ( 
+                 "GROUP" Expression ( 
                                "INTO" identifier  
                              |  "ASSIGNING" identifier ["CASTING"] 
                              |  "REFERENCE" "INTO" identifier 
                              |  "TRANSPORTING" "NO" "FIELDS" 
                               )
-                                   ["WHERE" Expression] 
+                                   ["WHERE" LogExp] 
                                    [GroupBy]
                 | "SCREEN" "INTO" identifier
                )
@@ -515,7 +518,7 @@ TypeDes = "TYPE"
                       | 
                           ["LINE" "OF"] identifier ["BOXED"]
                       | 
-                          "REF" "TO" Expression (.ret = VarType.new(lus.strip).)
+                          "REF" "TO" (Expression|"DATA") (.ret = VarType.new(lus.strip).)
                       | 
                           [ ("STANDARD" | "SORTED"| "HASHED") ] "TABLE" 
                        
@@ -585,7 +588,8 @@ LikeDes =        "LIKE"
                    ).
  
                  
-VariableDefineStatement =  ("DATA"|"STATICS" |"CLASS-DATA") 
+VariableDefineStatement =  ("DATA"|"STATICS" | "CLASS-DATA" ) 
+    (
             ( 
                 "BEGIN" "OF" ( "COMMON" "PART" identifier| identifier ["READ-ONLY"] ["OCCURS" number] )
                 |
@@ -604,7 +608,7 @@ VariableDefineStatement =  ("DATA"|"STATICS" |"CLASS-DATA")
             ["READ-ONLY"]
             ["OCCURS" number
                       ["WITH" "HEADER" "LINE"]]
-            }                    "."
+            }                
             
             (. current_scope.add_var(Variable.new(name, var_type)) .)
             (.
@@ -616,6 +620,12 @@ VariableDefineStatement =  ("DATA"|"STATICS" |"CLASS-DATA")
                 end
             
             .)
+                |
+                
+             "(" identifier ")" "=" Expression       
+                
+             )
+     "."
              .
                     
 
@@ -728,7 +738,7 @@ stDELETE = "DELETE"(
                         ( 
                                 "FROM" Expression ["USING" "CLIENT" identifier] 
                             | 
-                                [ identifier|"(" Expression ")" ] ["CLIENT" "SPECIFIED"] ["CONNECTION" ("("Expression")"| identifier)] ["USING" "KEY" ["("] identifier [")"]] ["FROM" identifier] ["TO" identifier] ["WHERE" Expression] ["ORDER" "BY" identifier{"," identifier} ["OFFSET" number]] ["UP" "TO" number "ROWS"] 
+                                [ identifier|"(" Expression ")" ] ["CLIENT" "SPECIFIED"] ["CONNECTION" ("("Expression")"| identifier)] ["USING" "KEY" ["("] identifier [")"]] ["FROM" identifier] ["TO" identifier] ["WHERE" LogExp] ["ORDER" "BY" identifier{"," identifier} ["OFFSET" number]] ["UP" "TO" number "ROWS"] 
                         ) 
                        |
                             "TABLE" identifier 
@@ -796,7 +806,7 @@ stMODIFY = "MODIFY"
            ) 
            | (identifier "FROM" identifier ["USING" "KEY" ["("] identifier [")"]] 
                        "TRANSPORTING" identifier  
-                       "WHERE" "("Expression")") 
+                       "WHERE" "("LogExp")") 
         ) 
         |  
            ( 
@@ -821,7 +831,7 @@ stON = "ON" "CHANGE" "OF" identifier {"OR" identifier }"."
   Statements 
 "ENDON"".".
 
-SQLCondition = Expression .
+SQLCondition = LogExp .
 
 stOPEN = "OPEN" ( 
      "CURSOR" ["WITH" "HOLD"] "@"identifier "FOR" 
@@ -872,7 +882,7 @@ stFETCH = "FETCH" "NEXT" "CURSOR" identifier
 ProvideFields = "FIELDS" ("*"| identifier {identifier}) 
                "FROM" identifier "INTO" identifier "VALID" identifier  
                "BOUNDS" number "AND" number 
-               ["WHERE" Expression] .
+               ["WHERE" LogExp] .
 
 
                
@@ -911,7 +921,7 @@ stREAD = "READ"
                  "INDEX" number (.params["index"]=prevString.)["USING" "KEY" ["("]identifier[")"] ] 
           )]
           [
-            ("INTO" identifier (.params["into"]=prevString.)
+            ("INTO" Var (.params["into"]=lus.)
               ["COMPARING" (  "ALL" "FIELDS" | "NO" "FIELDS" |identifier{identifier} )] 
               ["TRANSPORTING" ( "ALL" "FIELDS"  | identifier{identifier} )]) 
            |  "ASSIGNING" identifier ["CASTING"]  
@@ -963,7 +973,7 @@ stSUBMIT = "SUBMIT" (identifier|"("identifier")")
 stTRY = "TRY" (.replace_src("begin").) "."
     {Statement}
   {
-      "CATCH"  (.re("rescue").)["BEFORE" "UNWIND"] {identifier(.add_src(",").)}  ["INTO"(.replace_src("=>").) identifier]"." 
+      "CATCH"  (.re("rescue").)["BEFORE" "UNWIND"] {identifier(.add_src(",").)}  ["INTO"(.replace_src("=>").) Var]"." 
         {Statement}
   }
   
@@ -1061,7 +1071,7 @@ stUPDATE = "UPDATE" Expression
        ["CONNECTION" Expression] 
        ( 
             "SET" identifier "=" Expression {"," identifier "=" Expression}
-               ["WHERE" Expression]  
+               ["WHERE" LogExp]  
         | 
            ( "FROM" identifier|("TABLE" identifier) )
        )".".
@@ -1109,10 +1119,10 @@ stWHILE = "WHILE" Expression
                           stmts = "" 
                           
                           .)
-                      "IF" Conditional (. exp = lus .)  "."
+                      "IF" LogExp (. exp = lus .)  "."
                               [{Statement (. stmts += lus+"\n" .)}] 
                               (.  ret += "if #{exp}\n#{stmts}\n" .)
-                             { "ELSEIF" Conditional (. exp = lus .) "."
+                             { "ELSEIF" LogExp (. exp = lus .) "."
                               [{Statement} (. stmts = lus .) ]
                               (.  ret += "elsif #{exp}\n#{stmts}\n" .)
                               }
@@ -1206,9 +1216,10 @@ MethodStatement = "METHOD" identifier["~"identifier] (.       fname = prevString
 ".".
 
 Typing = (
-            "TYPE"  ["LINE" "OF"|"REF" "TO"] Expression 
+            "TYPE"  (["LINE" "OF"|"REF" "TO"] ("DATA"|Expression) | ("ANY"|"INDEX") ["TABLE"] )
         | 
             "LIKE" [( ["LINE" "OF"] | "REF" "TO" )] Expression 
+            
          )
  .
          
@@ -1298,11 +1309,11 @@ stALIASES = "ALIASES" identifier "FOR" identifier"~"identifier".".
 
 stASSERT = "ASSERT" [ ["ID" identifier ["SUBKEY" identifier]] 
          ["FIELDS" identifier ] 
-         "CONDITION" ] Conditional ".".
+         "CONDITION" ] LogExp ".".
 
 stASSIGN = "ASSIGN" (.params={}.)( 
        ["TABLE" "FIELD"] "("identifier")" 
-       | "COMPONENT" (number|identifier) "OF" "STRUCTURE" identifier
+       | "COMPONENT" Expression "OF" "STRUCTURE" identifier
        | Expression 
         [ (
             ["+" number]["("number")"] 
@@ -1310,7 +1321,7 @@ stASSIGN = "ASSIGN" (.params={}.)(
             | "INCREMENT" number
         )]
   ) 
-  "TO" identifier(.params[:to]=prevString.) 
+  "TO" Var(.params[:to]=lus.) 
   [ ( "CASTING" [ 
   
               ["TYPE" ["HANDLE"] Name] ["DECIMALS" number ]
@@ -1445,7 +1456,7 @@ CallBadi = (  "BADI" identifier"->" "(" identifier ")"
   [Statements]
 "ENDCATCH"".".*/
 
-stCHECK = "CHECK" (. re("check(").) Expression /*|"SELECT-OPTIONS" */ (. add_src(")") .)".".
+stCHECK = "CHECK" (. re("check(").) LogExp /*|"SELECT-OPTIONS" */ (. add_src(")") .)".".
 
 /*stCLASS_DATA = "CLASS-DATA" identifier Event_options ".".*/
 
@@ -1497,8 +1508,10 @@ stCONVERT = "CONVERT"(
       | ( identifier(. is('DATE') .) string1 ["TIME" string1 ["DAYLIGHT" "SAVING" "TIME" string1]] 
           "INTO" "TIME" "STAMP" string1 "TIME" "ZONE" string1 ) ) ".".
 
-stCREATE = "CREATE"(  "DATA" identifier [ "AREA" "HANDLE" identifier ] 
-                 [ "TYPE" ( 
+stCREATE = "CREATE"(  "DATA" identifier [ "AREA" "HANDLE" identifier ] [ TypeDes (. var_type = @lnv 
+                         p "var_type:#{var_type.inspect}"
+                         .)| LikeDes]
+                 /*[ "TYPE" ( 
                          (["LINE" "OF"] Name) 
                         | ("REF" "TO" Name) 
                         | ( ((["STANDARD"] "TABLE") 
@@ -1513,6 +1526,9 @@ stCREATE = "CREATE"(  "DATA" identifier [ "AREA" "HANDLE" identifier ]
                         (Name
                                                    [identifier(.is('LENGTH').) number] ["DECIMALS" number]) 
                         ) ] 
+                     [ TypeDes (. var_type = @lnv 
+                         p "var_type:#{var_type.inspect}"
+                         .)]
                | [ "LIKE" ( (["LINE" "OF"] identifier) 
                         | ("REF" "TO" identifier) 
                         | ( ((["STANDARD"] "TABLE") 
@@ -1522,7 +1538,8 @@ stCREATE = "CREATE"(  "DATA" identifier [ "AREA" "HANDLE" identifier ]
                            [ ("WITH" ["UNIQUE"|"NON-UNIQUE"] 
                                 ("KEY" (identifier{identifier} |"("identifier")"))|("DEFAULT" "KEY")) 
                            | ("WITH" "EMPTY" "KEY") ] 
-                           ["INITIAL" "SIZE" number]) ) ] |  "OBJECT" identifier ["AREA" "HANDLE" identifier] 
+                           ["INITIAL" "SIZE" number]) ) ]*/
+                 |  "OBJECT" identifier ["AREA" "HANDLE" identifier] 
                    [ ["TYPE" identifier] 
                       ["EXPORTING"  Expression{Expression} ] 
                       ["EXCEPTIONS" Expression{Expression}  ["OTHERS" "=" identifier]] ] 
@@ -1530,7 +1547,12 @@ stCREATE = "CREATE"(  "DATA" identifier [ "AREA" "HANDLE" identifier ]
                      ( ["EXPORTING"  Expression{Expression}  ] 
                       ["EXCEPTIONS" Expression{Expression}   ["OTHERS" "=" identifier]]) 
                    | (["PARAMETER-TABLE" identifier] 
-                      ["EXCEPTION-TABLE" identifier]) ] |  "OBJECT" identifier identifier ["NO" "FLUSH"] ["QUEUE-ONLY"] ) ".".
+                      ["EXCEPTION-TABLE" identifier]) ] |  "OBJECT" identifier identifier ["NO" "FLUSH"] ["QUEUE-ONLY"] 
+                      
+               ) 
+                     
+                     
+                     ".".
 
 /*DELETE = "DELETE" "DATASET" identifier".".*/
 
@@ -2098,7 +2120,7 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
 
       
   /*Expression           =  Conditional { AssignmentOperator Expression   }  .*/
-  /* abap expression dosn't include conditional or relationexp, because in abap "=" can be assignment and compare */
+  /* abap expression dosn't include conditional or relationexp, because in abap "=" can be assignment and comparison */
   Expression          =  ShiftExp { AssignmentOperator Conditional   } .
   
   /* abap logicexp is conditional */
@@ -2106,9 +2128,7 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
 
   LogORExp             =  LogANDExp   { ("||" | "OR" | "EQUIV") LogANDExp }  .
 
-  LogANDExp            =  InclORExp   { ("&&" | "AND") InclORExp }
- 
-.
+  LogANDExp            =  InclORExp   { ("&&" | "AND") InclORExp } .
 
   InclORExp            =  ExclORExp   { "|" ExclORExp }   .
 
@@ -2168,21 +2188,101 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
                          }    .   
   
   Primary              =  string1{string1}
+                           | "NEW" Creator
                            | char 
                            | number 
                            | "(" Expression ")" 
                            | PredefinedConstant 
-                           | identifier
+                           | (identifier | AllowedKeywords)
                           /* | ["<"]identifier[">"] 
                            | "/" identifier {"/" identifier }*/
                               .
+                              
+  Creator = identifier [FunctionCall] .
+  
+                              /* abap logicexp is conditional */
+                            
 
+                              LogExp             =  LogLogANDExp   { ("||" | "OR" | "EQUIV") LogLogANDExp }  .
+
+                              LogLogANDExp            =  LogInclORExp   { ("&&" | "AND") LogInclORExp } .
+
+                              LogInclORExp            =  LogExclORExp   { "|" LogExclORExp }   .
+
+                              LogExclORExp            =  LogANDExp2      { "^" LogANDExp2 }    .
+
+                              LogANDExp2               =  LogEqualExp    { "&" LogEqualExp }    .
+
+                              LogEqualExp             =  LogRelationExp (
+                                                          { ( "=" (.re("==").)| "EQ"(.re("==").)| "<>" (.re("!=").)| "NE"(.re("!=").)  | "LIKE" ) LogRelationExp } 
+                                                      |
+                                                         ["NOT"] "BETWEEN" LogRelationExp "AND" LogRelationExp
+                                                      )  
+                              .
+
+                             LogRelationExp          =    LogShiftExp    { 
+                                                          ( "<" | "LT"  | ">" | "GT" | "<=" | "LE" | ">=" | "GE" | "CO" | "CN" | "CA" | "NA" | "CS" | "NS" | "CP" | "NP" |"BYTE-CO" | "BYTE-CN" | "BYTE-CA" | "BYTE-NA" | "BYTE-CS" | "BYTE-NS" )  
+                                                           LogShiftExp   }   .
+
+                              LogShiftExp             =  LogAddExp      { ( "<<" | ">>" ) LogAddExp }       .
+              
+                
+                
+                              LogAddExp               =  LogMultExp     { ( "+"  | "-"  ) LogMultExp }    .
+
+                              LogMultExp              =   LogCastExp  
+                             { ( "*"   | "/" | "DIV"  | "%"  | "MOD" | "**" ) LogCastExp }    .
+
+                              LogCastExp              =   LogUnaryExp     .
+
+
+
+                              LogUnaryExp             =  LogPostFixExp
+                                                     | ( "++" | "--" ) LogUnaryExp
+                                                     | UnaryOperator LogCastExp 	
+                            
+                            					.
+
+
+
+                              LogPostFixExp           =  LogPrimary (. pri = lus .)
+                                                     { "[" [Expression] "]"
+                                                      | FunctionCall
+                                                      | "~" identifier
+                                                      | "->" identifier (.# re(".#{lus}");back_src() .) (. src("#{pri}.#{prevString}").)
+                                                      | "=>" identifier (.# re(".#{lus}");back_src() .)(. src("#{pri}.#{prevString}").)
+                                                      | "-" identifier
+                                                      | "++"
+                                                      | "--"
+                                                    /*  | "IS"(.re(".is(");br = true.) ["NOT"(.back_src();re(".isnot(");_not=true.)] ["INITIAL"(.back_src();if _not 
+                              re(".isInit(")
+                              else
+                              re(".isNotInit(")
+                              end
+                              add_src(")") if br
+                              .)]*/ 
+                                                     | "IS"(.back();s=".is".) ["NOT" (.back();s+="Not";.)] PredefinedConstant (.s+=lus;add_src("#{s}()").)
+                                                     }    .   
+  
+                              LogPrimary              =  string1{string1}
+                                                       | char 
+                                                       | number 
+                                                       | "(" LogExp ")" 
+                                                       | PredefinedConstant 
+                                                       | (identifier | AllowedKeywords)
+                                                      /* | ["<"]identifier[">"] 
+                                                       | "/" identifier {"/" identifier }*/
+                                                          .                          
+                              
+                              
+  AllowedKeywords = "DATA". 
   FunctionCall        =  "(" 
   (
    {
       ["EXPORTING" (. exporting = "{\n".){ identifier(.idn = prevString.) "=" Expression (.exporting+="\"#{idn}\" => #{lus},\n".)} (. exporting += "}\n".)  ] 
       ["IMPORTING" (. importing = "{\n".) { identifier(.idn = prevString.) "=" Expression (.importing+="\"#{idn}\" => #{lus},\n".)} (. importing += "}\n".)  ] 
       ["CHANGING" (. changing = "{\n".) { identifier(.idn = prevString.) "=" Expression (.changing+="\"#{idn}\" => #{lus},\n".)} (. changing += "}\n".)  ] 
+      ["RECEIVING" (. receiving = "{\n".) { identifier(.idn = prevString.) "=" Expression (.receiving+="\"#{idn}\" => #{lus},\n".)} (. receiving += "}\n".)  ] 
  
    }
   |

@@ -81,6 +81,10 @@ class CScanner < CRScanner
             return C_ABSTRACTSym
          end
 
+         if EqualStr("ANY")
+            return C_ANYSym
+         end
+
          if EqualStr("ADD")
             return C_ADDSym
          end
@@ -555,6 +559,10 @@ class CScanner < CRScanner
 
 
       when 'D'
+         if EqualStr("DATA")
+            return C_DATASym
+         end
+
          if EqualStr("DEFINING")
             return C_DEFININGSym
          end
@@ -581,10 +589,6 @@ class CScanner < CRScanner
 
          if EqualStr("DEFAULT")
             return C_DEFAULTSym
-         end
-
-         if EqualStr("DATA")
-            return C_DATASym
          end
 
          if EqualStr("DD/MM/YY")
@@ -915,6 +919,10 @@ class CScanner < CRScanner
 
 
       when 'F'
+         if EqualStr("FIELD-SYMBOL")
+            return C_FIELDMinusSYMBOLSym
+         end
+
          if EqualStr("FUNCTIONALITY")
             return C_FUNCTIONALITYSym
          end
