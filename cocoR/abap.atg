@@ -437,9 +437,9 @@ stRAISE = "RAISE"
        
                  | identifier
                  )
-             ]  (.src("raise #{exp_type}.new").)
+             ]  (.src("raise #{exp_type}.new\n").)
           |
-              identifier  (.src("raise #{prevString}").)
+              identifier  (.src("raise #{prevString}\n").)
      )
    
 .
@@ -472,13 +472,13 @@ GroupBy = "GROUP" "BY" (
                               | "REFERENCE" "INTO" identifier
                             ] .
                             
-LoopStatement = "LOOP" 
+LoopStatement = "LOOP" (.parmas = {};stmts ="".)
          [ 
             "AT" ( 
                   (
                      (
-                       Expression [( 
-                                   "INTO" Expression  
+                       Expression (.params[:at]=lus.) [( 
+                                   "INTO" Expression  (.params[:into]=lus.)
                                  |  "ASSIGNING" Var ["CASTING"] 
                                  |  "REFERENCE" "INTO" identifier 
                                  |  "TRANSPORTING" "NO" "FIELDS" 
@@ -503,8 +503,14 @@ LoopStatement = "LOOP"
                 | "SCREEN" "INTO" identifier
                )
          ] "." 
-            {Statement} 
-        "ENDLOOP" "." .
+            {Statement (. stmts += lus+"\n" .)}
+        "ENDLOOP" "." 
+        
+        (.
+            src("loop(#{hash_to_params(params)}\{\n#{stmts}}\n")
+            
+        .)
+        .
 
 TypeDes = "TYPE"  
             (
@@ -935,7 +941,7 @@ stREAD = "READ"
      
      (.
          if fn
-             src("#{fn}(#{hash_to_params(params)})")
+             src("#{fn}(#{hash_to_params(params)})\n")
          end
      
      .)
@@ -1129,7 +1135,7 @@ stWHILE = "WHILE" Expression
                               [ "ELSE" "."   [{Statement}(. stmts = lus .)]   (.  ret += "else #{exp}\n#{stmts}\n" .) ]
                               "ENDIF"
                                (. 
-                                ret += "\nend" 
+                                ret += "\nend\n" 
                                   src(ret)
                                .)
                                 "." 
@@ -1332,7 +1338,7 @@ stASSIGN = "ASSIGN" (.params={}.)(
   ["RANGE" Expression]"."
   
   (.
-          src("assign(#{hash_to_params(params)})")
+          src("assign(#{hash_to_params(params)})\n")
 
   .)
   
@@ -1410,7 +1416,7 @@ CallMethod =  "METHOD"
                 }
              
                # src("call_method(#{name1}.#{name2}, {#{params}})");
-                src("#{name}(_i:#{exporting}, _e:#{importing})")
+                src("#{name}(_i:#{exporting}, _e:#{importing})\n")
             .)
             .
                
@@ -1787,7 +1793,7 @@ stINSERT = "INSERT"
     ) "."
          
          (.
-             src("insert(#{hash_to_params(params)})")
+             src("insert(#{hash_to_params(params)})\n")
          .)
          
          .
@@ -1948,7 +1954,7 @@ stRESUME = "RESUME"".".
 
 stRETRY = "RETRY"".".
 
-stRETURN = "RETURN" "." (.src("return").) .
+stRETURN = "RETURN" "." (.src("return\n").) .
 
 stROLLBACK = "ROLLBACK"(  "WORK" |  "CONNECTION" identifier ) ".".
 
