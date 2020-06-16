@@ -401,7 +401,8 @@ And check the consistent manually by your code, instead of by gramma.
 
 EBNF Trouble shooting
 ===
-1. In case you encounter problem of multi "else" in generated cparser.rb, it's because you use wrong syntax for LL(1) generator.
+### 1. Multi "else" problem 
+In case you encounter problem of multi "else" in generated cparser.rb, it's because you use wrong syntax for LL(1) generator.
 e.g.
 "Statement" is defined as:
 <pre> 
@@ -430,7 +431,8 @@ So you should change it to :
 </pre> 
 
 
-2. Because abap syntax is defined with very ambigous way or redundant way like:
+### 2. LL(1) contradiction
+Because abap syntax is defined with very ambigous way or redundant way like:
 <pre> 
 
 Typing = (
@@ -464,3 +466,19 @@ Please be noticed that actually
 </pre> 
 
 are equal, and usually we take the second form.
+
+### 3. Keyword used as name
+In abap, the keyword sometime can be used as variable or type or even function name. e.g.
+<pre>
+DATA lr_table TYPE REF TO data.
+</pre>
+Because abap ignore case, so scanner will return a special symbol but not identifer when encounter "data", but here , the second "data" should be an identifer. 
+
+This is a little tricky to solve this. Actually you can use your own way. 
+
+Here's the way to use "AllowedKeyword" rule with "identifer"
+
+So in a rule, replace (AllowedKeywrods|identifier) with identifer.
+
+Another way is, if the keyword is just used very few in ebnf, you can replace it with "identifer(.is('XXXX'.)". So parser will check whether the keyword XXX occur here, while it can used as name anywhere else.
+
