@@ -52,9 +52,9 @@ abap/:  abap code for testing, from https://github.com/Apress/sap-abap
 
 Unsupported keywrods
 ===
-keyword | reason
--|-|-
-FORM | Obsolete |
+| Keyword | Reason |
+| ------- | ------ |
+| FORM    | Obsolete |
 
 
 How to contribute
