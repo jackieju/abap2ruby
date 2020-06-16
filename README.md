@@ -28,7 +28,9 @@ ruby translate.rb cp_testcase.abap
 </pre>
 
 cp_testcase.abap can also be any abap source file.
+
 Global functions are generated in _global.rb.
+
 Classes will be generated in <class_name>.rb.
 
 
