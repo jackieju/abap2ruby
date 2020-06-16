@@ -136,7 +136,7 @@ It will translate ASSERT statment to ruby code
      assert()
 </pre>
 
-But it's actually an empty call. So you can add the parameter from parsing
+But it's actually an empty call. So you can add more work in abap.atg
 
 <pre>
 stASSERT = "ASSERT" [ ["ID" identifier (.cp[:id]=prevString.)["SUBKEY" identifier(.cp[:subkey]=prevString.)]] 
