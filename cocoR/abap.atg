@@ -43,10 +43,10 @@ PRAGMAS
 
 PRODUCTIONS
 
-    Var = identifier | "DATA" "(" identifier ")" | "FIELD-SYMBOL" "(" identifier ")" .
+    Var = identifier (.re(fixName(prevString())).) | "DATA" "(" Name ")" | "FIELD-SYMBOL" "(" Name ")" .
     Exps =  Expression{Expression} .
     
-    Name = identifier|"("identifier")".
+    Name = ((identifier|AllowedKeywords) | ("("(identifier|AllowedKeywords)")") ) (. src(fixName(src())).).
     
     C                  =      (.in_scope(@root_class).){ ReportDef | FunctionDef | ClassStatement }.
     
@@ -354,11 +354,15 @@ stMOVE =  "MOVE"
         
     . 
     
-stMOVE_CORRESPONDING = "MOVE-CORRESPONDING" ["EXACT"]
-             ( identifier "TO" identifier ["EXPANDING" "NESTED" "TABLES"] 
-            |  identifier  "TO" identifier  ["EXPANDING" "NESTED" "TABLES"] 
-                                                  ["KEEPING" "TARGET" identifier(.is('LINES').)] 
-             ) "." . 
+stMOVE_CORRESPONDING = "MOVE-CORRESPONDING"  ["EXACT"]
+             ( Var(.cp[:o]=lus.) "TO" Var (.cp[:to]=lus.)["EXPANDING" "NESTED" "TABLES"] 
+            |  Var (.cp[:o]=lus.) "TO" Var (.cp[:to]=lus.) ["EXPANDING" "NESTED" "TABLES"] 
+                                                  ["KEEPING" "TARGET" Var(.is('LINES').)] 
+             ) "."
+             (.
+                make()
+            .)
+              . 
  
 stAPPEND = "APPEND" (. params = {} .) ( 
          "INITIAL" "LINE" 
@@ -375,13 +379,18 @@ stAPPEND = "APPEND" (. params = {} .) (
     
      .
  
-stCONCATENATE = "CONCATENATE" (Expression {Expression}
+stCONCATENATE = "CONCATENATE" (.params={:ar=>[]}.)( Expression (. params[:ar].push(lus).) {Expression(. params[:ar].push(lus).)}
              | identifier(.is('LINES').) "OF" identifier
              )
-             "INTO" identifier 
+             "INTO" Var (. params[:into]=lus.) 
              ["IN" ("CHARACTER"|"BYTE") "MODE"] 
              ["SEPARATED" "BY" string1] 
-             ["RESPECTING" "BLANKS"] ".".
+             ["RESPECTING" "BLANKS"] "."
+             
+             (.
+                 src("concatenate(#{hash_to_params(params)})\n")
+             .)
+             .
  
 SearchStatement = "SEARCH" identifier "FOR" string1 
       ["IN" ("CHARACTER"|"BYTE") "MODE"] 
@@ -472,7 +481,7 @@ GroupBy = "GROUP" "BY" (
                               | "REFERENCE" "INTO" identifier
                             ] .
                             
-LoopStatement = "LOOP" (.parmas = {};stmts ="".)
+LoopStatement = "LOOP" (.params = {};stmts ="".)
          [ 
             "AT" ( 
                   (
@@ -507,7 +516,7 @@ LoopStatement = "LOOP" (.parmas = {};stmts ="".)
         "ENDLOOP" "." 
         
         (.
-            src("loop(#{hash_to_params(params)}\{\n#{stmts}}\n")
+            src("loop(#{hash_to_params(params)})\n{\n#{stmts}}\n")
             
         .)
         .
@@ -714,7 +723,7 @@ WriteStatement =   (. param_hash = {} .) "WRITE"
 
   Statements =  Statement { Statement } .
 
-  ContinueStatement    = "CONTINUE"  "."  .
+  ContinueStatement    = "CONTINUE"  "." (.src("next\n").) .
 
 /*
   DoStatement          = "DO" [number "TIMES"] {"VARYING" identifier "FROM" identifier "NEXT" identifier ["RANGE" number] } "." 
@@ -1280,7 +1289,7 @@ MethodsStatement =  ("METHODS" | "CLASS-METHODS") identifier["~"identifier]
       p "src:#{src}"
       if impar
           for i in 0..impar.size-1
-           impar[i] += ":=nil"
+           impar[i] += ":nil"
           end
       else
           impar = []
@@ -1313,9 +1322,9 @@ stADD_CORRESPONDING = "ADD-CORRESPONDING" identifier "TO" identifier".".
 
 stALIASES = "ALIASES" identifier "FOR" identifier"~"identifier".".
 
-stASSERT = "ASSERT" [ ["ID" identifier ["SUBKEY" identifier]] 
-         ["FIELDS" identifier ] 
-         "CONDITION" ] LogExp ".".
+stASSERT = "ASSERT" [ ["ID" identifier (.cp[:id]=prevString.)["SUBKEY" identifier(.cp[:subkey]=prevString.)]] 
+         ["FIELDS" identifier (.cp[:fields]=lus.)] 
+         "CONDITION" ] LogExp (.cp[:o]=lus.) "." (.make.) .
 
 stASSIGN = "ASSIGN" (.params={}.)( 
        ["TABLE" "FIELD"] "("identifier")" 
@@ -1470,8 +1479,12 @@ stCLASS_EVENTS = "CLASS-EVENTS" identifier Event_options ".".
 
 stCLASS_POOL = "CLASS-POOL" ["MESSAGE-ID" identifier]".".
 
-stCLEAR = "CLEAR" Expression [ ("WITH" identifier ["IN" ("CHARACTER"|"BYTE" ) "MODE"]) 
-           | ("WITH" "NULL") ]".".
+stCLEAR = "CLEAR" (.params={}.) Expression(.params[:id]=lus.) [ ("WITH" identifier (.params[:with]=prevString.)["IN" ("CHARACTER"|"BYTE" )(.params[:mode]=prevString.) "MODE"]) 
+           | ("WITH" "NULL"(.params[:withnull]=true.)) ]"." 
+           (.
+              src("clear(#{hash_to_params(params)})\n")
+            .)
+           .
 
 stCLOSE = "CLOSE"(  "CURSOR" "@"identifier |  "DATASET" identifier ) ".".
 
@@ -1514,7 +1527,7 @@ stCONVERT = "CONVERT"(
       | ( identifier(. is('DATE') .) string1 ["TIME" string1 ["DAYLIGHT" "SAVING" "TIME" string1]] 
           "INTO" "TIME" "STAMP" string1 "TIME" "ZONE" string1 ) ) ".".
 
-stCREATE = "CREATE"(  "DATA" identifier [ "AREA" "HANDLE" identifier ] [ TypeDes (. var_type = @lnv 
+stCREATE = "CREATE"(  "DATA" identifier (.varname=prevString.)[ "AREA" "HANDLE" identifier ] [ TypeDes (. var_type = @lnv 
                          p "var_type:#{var_type.inspect}"
                          .)| LikeDes]
                  /*[ "TYPE" ( 
@@ -1557,7 +1570,14 @@ stCREATE = "CREATE"(  "DATA" identifier [ "AREA" "HANDLE" identifier ] [ TypeDes
                       
                ) 
                      
-                     
+               (.
+                if var_type
+                    s = "#{fixName(varname)} = #{var_type.name}.new\n"
+                    src(s)
+                else
+                    src("")
+                end
+                .)
                      ".".
 
 /*DELETE = "DELETE" "DATASET" identifier".".*/
@@ -1635,7 +1655,7 @@ stEXTRACT = "EXTRACT" identifier ".".
 
 stFIELD_GROUPS = "FIELD-GROUPS" identifier   ".".
 
-stFIELD_SYMBOLS = "FIELD-SYMBOLS" identifier ( Typing | ( "STRUCTURE" identifier "DEFAULT" identifier ) )".".
+stFIELD_SYMBOLS = "FIELD-SYMBOLS" identifier ( Typing | ( "STRUCTURE" identifier "DEFAULT" identifier ) )"." (.src("").).
 
 stFIELDS = "FIELDS" identifier".".
 
@@ -1686,7 +1706,9 @@ Format_options = {
 
 stFORMAT = "FORMAT" Format_options ".".
 
-stFREE = "FREE"(   "MEMORY" "ID" identifier |  "OBJECT" identifier ["NO" "FLUSH"] | identifier ) ".".
+stFREE = "FREE" (   "MEMORY" "ID" Var(.o=lus.) |  "OBJECT" Var(.o=lus.) ["NO" "FLUSH"] | Var (.o=lus.)) "."
+(.src("free(#{o})\n").)
+.
 
 stFUNCTION_POOL = "FUNCTION-POOL" identifier ["NO" "STANDARD" "PAGE" "HEADING"] 
                     ["LINE-SIZE" number] 
@@ -1773,7 +1795,7 @@ stINSERT = "INSERT"
             ) 
         ]
         {
-          ["INTO"] ("("Expression(.params[:into]=lus.)")"   | ["TABLE"] identifier (.params[:into]=prevString.) ["INDEX" identifier (.params[:index]=prevString.)])
+          ["INTO"] ("("Expression(.params[:into]=lus.)")"   | ["TABLE"] identifier (.params[:intotable]=prevString.) ["INDEX" identifier (.params[:intoindex]=prevString.)])
           [("USING" "CLIENT" identifier | "CLIENT" "SPECIFIED")]
           ["CONNECTION" ("("Expression")"|identifier)] 
           ["VALUES" identifier] 
@@ -2103,7 +2125,7 @@ stTYPE_POOLS = "TYPE-POOLS" identifier ".".
 
 stULINE = "ULINE" (["AT"] ["/"] [number] [ "("number")"]) ["NO-GAP"]".".
 
-stUNASSIGN = "UNASSIGN" identifier ".".
+stUNASSIGN = "UNASSIGN" Var(.o=lus.) "." (.src("unassign(#{o})\n").).
 
 stUNPACK = "UNPACK" identifier "TO" identifier ".".
 
@@ -2177,10 +2199,10 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
   PostFixExp           =  Primary (. pri = lus .)
                          { "[" [Expression] "]"
                           | FunctionCall
-                          | "~" identifier
+                        /*  | "~" identifier
+                          | "-" identifier*/
                           | "->" identifier (.# re(".#{lus}");back_src() .) (. src("#{pri}.#{prevString}").)
                           | "=>" identifier (.# re(".#{lus}");back_src() .)(. src("#{pri}.#{prevString}").)
-                          | "-" identifier
                           | "++"
                           | "--"
                         /*  | "IS"(.re(".is(");br = true.) ["NOT"(.back_src();re(".isnot(");_not=true.)] ["INITIAL"(.back_src();if _not 
@@ -2199,7 +2221,7 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
                            | number 
                            | "(" Expression ")" 
                            | PredefinedConstant 
-                           | (identifier | AllowedKeywords)
+                           | Name
                           /* | ["<"]identifier[">"] 
                            | "/" identifier {"/" identifier }*/
                               .
@@ -2254,10 +2276,10 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
                               LogPostFixExp           =  LogPrimary (. pri = lus .)
                                                      { "[" [Expression] "]"
                                                       | FunctionCall
-                                                      | "~" identifier
+                                                     /* | "~" identifier
+                                                      | "-" identifier*/
                                                       | "->" identifier (.# re(".#{lus}");back_src() .) (. src("#{pri}.#{prevString}").)
                                                       | "=>" identifier (.# re(".#{lus}");back_src() .)(. src("#{pri}.#{prevString}").)
-                                                      | "-" identifier
                                                       | "++"
                                                       | "--"
                                                     /*  | "IS"(.re(".is(");br = true.) ["NOT"(.back_src();re(".isnot(");_not=true.)] ["INITIAL"(.back_src();if _not 
@@ -2267,7 +2289,7 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
                               end
                               add_src(")") if br
                               .)]*/ 
-                                                     | "IS"(.back();s=".is".) ["NOT" (.back();s+="Not";.)] PredefinedConstant (.s+=lus;add_src("#{s}()").)
+                                                     | "IS"(.back();s=".is".) ["NOT" (.back();s+="Not";.)] PredefinedConstant (.back();s+=lus;add_src("#{s}()").)
                                                      }    .   
   
                               LogPrimary              =  string1{string1}
@@ -2275,7 +2297,7 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
                                                        | number 
                                                        | "(" LogExp ")" 
                                                        | PredefinedConstant 
-                                                       | (identifier | AllowedKeywords)
+                                                       | Name
                                                       /* | ["<"]identifier[">"] 
                                                        | "/" identifier {"/" identifier }*/
                                                           .                          
@@ -2291,13 +2313,21 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
       ["RECEIVING" (. receiving = "{\n".) { identifier(.idn = prevString.) "=" Expression (.receiving+="\"#{idn}\" => #{lus},\n".)} (. receiving += "}\n".)  ] 
  
    }
-  |
-    
-   { Expression }
-   ) ")"     
    (.
        src("(_i:#{exporting}, _e:#{importing}, _c:#{changing})")
    .)
+  |
+   (.s="";e={}.) 
+   {  ShiftExp(. a = lus;s+=lus;.)[ "=" Expression  (.e[a]=lus.) ] (.s+=",".)}
+   (.
+       if e.keys.size>0
+       src("(#{hash_to_params(e)})\n")
+       else
+       src("(#{s})")
+       end
+   .)
+   ) ")"     
+
     .
 
   /*ActualParameters    =    Expression   { "," Expression   }      .*/

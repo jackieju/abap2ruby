@@ -137,7 +137,7 @@ HERE
 s3 = <<HERE
 REPORT TEST.
 ad->dq = 1.
-f(a->*).
+*f(a->*).
 HERE
 #def dump_testcase
     p "==>dump_testcase"

@@ -11,6 +11,21 @@ class Object
     end
 end
 
+def assign(params)
+end
+def unassign(params)
+end
+def read_table(params)
+end
+def check(params)
+end
+
+def assert(params)
+end
+
+def loop(params, &block)
+end
+
 def append(params)
 end
 
