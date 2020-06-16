@@ -257,7 +257,7 @@ cd cocoR
     end
 </pre>
 
-There are some helper method you will use:
+There are some helper methods you will use:
 
 ```
   lus:     The last unterminator's return value
