@@ -476,9 +476,9 @@ Because abap ignore case, so scanner will return a special symbol but not identi
 
 This is a little tricky to solve this. Actually you can use your own way. 
 
-Here's the way to use "AllowedKeyword" rule with "identifer"
+Here's the way to use "AllowedKeyword" rule with "identifer".
 
-So in a rule, replace (AllowedKeywrods|identifier) with identifer.
+So in a rule, replace "identifer" with "(AllowedKeywrods|identifier)".
 
-Another way is, if the keyword is just used very few in ebnf, you can replace it with "identifer(.is('XXXX'.)". So parser will check whether the keyword XXX occur here, while it can used as name anywhere else.
+Another way is, if the keyword is just used very few in ebnf, you can replace it with "identifer(.is('XXXX').)". So parser will check whether the keyword XXX occur here, while it can used as name anywhere else.
 
