@@ -45,81 +45,16 @@ cocoR/cocor17:     Source code of cocoR
 
 cp.rb:      subclass of cparser.rb for overriding, the real place to generate code to implement ABAP keyword functionality like "write"
 
-abaplib.rb:   Implemenation of ABAP keyword in ruby. like "write". You can definitly write your own lib to execute your translated abap program.
+abap.rb:   Implemenation of ABAP keyword in ruby. like "write". You can definitly write your own lib to execute your translated abap program.
 
 abap/:  abap code for testing, from https://github.com/Apress/sap-abap 
 
-Trouble shooting
-===
-1. In case you encounter problem of multi "else" in generated cparser.rb, it's because you use wrong syntax for LL(1) generator.
-e.g.
-"Statement" is defined as:
-<pre> 
-
-  Statement            = 
-      ...
-                           | ClassStatement
-                           | ClassImplStatement
-</pre> 
-
-in which the ClassStatment and ClassImplStatement are defined as:
-<pre> 
-
-ClassStatement = "CLASS" identifier "DEFINITION" ...
-ClassImplStatement = "CLASS" identifier "IMPLEMENTATION" "." ...
-</pre> 
-
-This will cause a LL(1) parser cannot decide which way to go by looking forward only one token.
-So you should change it to :
-<pre> 
-
-  Statement            = 
-      ...
-                           |( ClassStatement
-                           | ClassImplStatement)
-</pre> 
-
-
-2. Because abap syntax is defined with very ambigous way or redundant way like:
-<pre> 
-
-Typing = (
-        "TYPE" identifier  
-        | "LIKE" identifier 
-        |  "TYPE" ( ["LINE" "OF"] identifier | "REF" "TO" identifier ) 
-        |  "LIKE" ( ["LINE" "OF"] identifier | "REF" "TO" identifier) 
-         )
- "." .
-</pre> 
-         
-This also will cause multi "else" problem. It should be changed to:
-<pre> 
-
-Typing = (
-        "TYPE"    ( identifier | ["LINE" "OF"] identifier | "REF" "TO" identifier ) 
-        | "LIKE" [( ["LINE" "OF"] | "REF" "TO" )] identifier 
-      ...
-</pre> 
-    
-Please be noticed that actually
-  <pre> 
-  
-     "XXXX"    ( identifier | ["LINE" "OF"] identifier | "REF" "TO" identifier )
- </pre> 
- 
- and 
- <pre> 
- 
-     "XXXX" [( ["LINE" "OF"] | "REF" "TO" )] identifier 
-</pre> 
-
-are equal, and usually we take the second form.
 
 Unsupported keywrods
 ===
-keyword | reason
--|-|-
-FORM | Obsolete |
+| Keyword | Reason |
+| ------- | ------ |
+| FORM    | Obsolete |
 
 
 How to contribute
@@ -184,11 +119,41 @@ But so far you just generated the parser and you need to generate real ruby code
 
 ### 3. Generate Ruby code in Parser
 
-The old way is:
+There 3 ways to generate ruby code.
 
-In cp.rb, you can override the function in cocoR/o/cparser.rb to generate code. You can see the example of generating code for "write" Keyword, which is written in function "WriteStatement" in cp.rb
+The 1st ways is acctually you  do nothing.
+Because the parser will just output the original source.
 
-The recommened ways is:
+Then if you just put one line "(.make.)", it will do nice translate for you.
+e.g.
+<pre>
+stASSERT = "ASSERT" [ ["ID" identifier ["SUBKEY" identifier]] 
+         ["FIELDS" identifier ] 
+         "CONDITION" ] LogExp  "." (.make.) .
+</pre>
+It will translate ASSERT statment to ruby code
+<pre>
+     assert()
+</pre>
+
+But it's actually an empty call. So you can add more work in abap.atg
+
+<pre>
+stASSERT = "ASSERT" [ ["ID" identifier (.cp[:id]=prevString.)["SUBKEY" identifier(.cp[:subkey]=prevString.)]] 
+         ["FIELDS" identifier (.cp[:fields]=lus.)] 
+         "CONDITION" ] LogExp (.cp[:o]=lus.) "." (.make.) .
+</pre>
+then it will translate the real assert statment.
+e.g.
+<pre>
+ASSERT sy-subrc = 0.
+</pre>
+will output ruby code:
+<pre>
+  assert(o:sy.subrc == 0)
+</pre>
+
+So the main/recommened ways is:
 
 Write your code-generating code (ruby) in atg file, between (. and .)
 
@@ -288,15 +253,23 @@ cd cocoR
     end
 </pre>
 
-There are some method you will use:
+There are some helper method you will use:
 
 ```
   lus:     The last unterminator's return value
   src(x):  Set x as return value of current statemet
   src:     Current value of of current parsing statement
+  re(s):    Replace current source node content to s
 ```
+All the help methods are defined in cp.rb.
+You can also check all their usage samples in abap.atg
 
-You can also check all samples in abap.atg
+
+The other but unrecommended way is:
+
+In cp.rb, you can override the function in cocoR/o/cparser.rb to generate code. You can see the example of generating code for "write" Keyword, which is written in function "WriteStatement" in cp.rb
+
+
 
 And then you can write you ABAP code for testing in xxx.abap, and run
 
@@ -421,3 +394,69 @@ And check the consistent manually by your code, instead of by gramma.
 {}: Actually like () in EBNF, and in most case it can be ignored
 ...: means repeat
 </pre>
+
+EBNF Trouble shooting
+===
+1. In case you encounter problem of multi "else" in generated cparser.rb, it's because you use wrong syntax for LL(1) generator.
+e.g.
+"Statement" is defined as:
+<pre> 
+
+  Statement            = 
+      ...
+                           | ClassStatement
+                           | ClassImplStatement
+</pre> 
+
+in which the ClassStatment and ClassImplStatement are defined as:
+<pre> 
+
+ClassStatement = "CLASS" identifier "DEFINITION" ...
+ClassImplStatement = "CLASS" identifier "IMPLEMENTATION" "." ...
+</pre> 
+
+This will cause a LL(1) parser cannot decide which way to go by looking forward only one token.
+So you should change it to :
+<pre> 
+
+  Statement            = 
+      ...
+                           |( ClassStatement
+                           | ClassImplStatement)
+</pre> 
+
+
+2. Because abap syntax is defined with very ambigous way or redundant way like:
+<pre> 
+
+Typing = (
+        "TYPE" identifier  
+        | "LIKE" identifier 
+        |  "TYPE" ( ["LINE" "OF"] identifier | "REF" "TO" identifier ) 
+        |  "LIKE" ( ["LINE" "OF"] identifier | "REF" "TO" identifier) 
+         )
+ "." .
+</pre> 
+         
+This also will cause multi "else" problem. It should be changed to:
+<pre> 
+
+Typing = (
+        "TYPE"    ( identifier | ["LINE" "OF"] identifier | "REF" "TO" identifier ) 
+        | "LIKE" [( ["LINE" "OF"] | "REF" "TO" )] identifier 
+      ...
+</pre> 
+    
+Please be noticed that actually
+  <pre> 
+  
+     "XXXX"    ( identifier | ["LINE" "OF"] identifier | "REF" "TO" identifier )
+ </pre> 
+ 
+ and 
+ <pre> 
+ 
+     "XXXX" [( ["LINE" "OF"] | "REF" "TO" )] identifier 
+</pre> 
+
+are equal, and usually we take the second form.
