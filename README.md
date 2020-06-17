@@ -113,7 +113,6 @@ So it will need very big efforts to convert ABAP ambigous grammar(https://help.s
 
 1. Generate AST from code and then generate target code from AST will make it difficult to do troubleshooting. But in cocoR way, we can find the problem quickly.
 
-2.
 
 So now let's do your contribution.
 
