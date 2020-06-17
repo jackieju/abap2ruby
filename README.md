@@ -1,5 +1,5 @@
 #  Abap2ruby
-A Translator/compiler to convert SAP ABAP code to ruby code.
+A Translator/compiler to convert SAP ABAP code to runnable ruby code.
 
 This parser is very easy to extend to parse more abap syntax and implement more functionality. 
 
@@ -37,13 +37,21 @@ Classes will be generated in <class_name>.rb.
 Generate ABAP Parser
 ===
 If you changed the abap.atg and want to regenerate parser.
+You need to download cpp2ruby first.
+<pre>
+cd ..
+git clone https://github.com/jackieju/CPP2Ruby.git
+cd abap2ruby
+</pre>
+
+Then 
 
 <pre> 
 cd cocoR
 ./go
 </pre>
 
-     Done
+Done !
 
 Code
 ===
@@ -105,7 +113,6 @@ So it will need very big efforts to convert ABAP ambigous grammar(https://help.s
 
 1. Generate AST from code and then generate target code from AST will make it difficult to do troubleshooting. But in cocoR way, we can find the problem quickly.
 
-2.
 
 So now let's do your contribution.
 
