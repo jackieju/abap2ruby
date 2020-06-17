@@ -37,13 +37,21 @@ Classes will be generated in <class_name>.rb.
 Generate ABAP Parser
 ===
 If you changed the abap.atg and want to regenerate parser.
+You need to download cpp2ruby first.
+<pre>
+cd ..
+git clone https://github.com/jackieju/CPP2Ruby.git
+cd abap2ruby
+</pre>
+
+Then 
 
 <pre> 
 cd cocoR
 ./go
 </pre>
 
-     Done
+Done !
 
 Code
 ===
