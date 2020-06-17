@@ -189,22 +189,28 @@ class Parser < CParser
         @parse_stack.lus
     end
     def Get(ignore_crlf=true)
-        if @sym == C_PointSym
-            @parse_stack.cur[:src].push("\n")
-        elsif @sym != 0.6
-            @parse_stack.cur[:src].push(curString())
-            @parse_stack.cur[:stack].push({:sym=>@sym, :val=>curString()})
+
+        if @parse_stack.cur[:auto_append]          
+            if @sym == C_PointSym
+                @parse_stack.cur[:src].push("\n")
+            elsif @sym != 0.6 
+                @parse_stack.cur[:src].push(curString())
+                @parse_stack.cur[:stack].push({:sym=>@sym, :val=>curString()})
+            end
         end
         
         super
         
-        if @sym == 0.6 # comment
-            p "cmt:#{curString()}", 10
-             @parse_stack.cur[:src].push("#"+curString())
-             Get(ignore_crlf)
+        if @parse_stack.cur[:auto_append]
+            if @sym == 0.6 # comment
+              #  p "cmt:#{curString()}", 10
+                 @parse_stack.cur[:src].push("#"+curString())
+                 Get(ignore_crlf)
+             end
          end
 
     end
+    # if stop auto append source, you cannot use method like back(), re() to manipulate the source generating processs
     def stop_autosrc
         @parse_stack.cur[:auto_append] = false
     end

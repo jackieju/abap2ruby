@@ -368,7 +368,7 @@ stAPPEND = "APPEND" (. params = {} .) (
          "INITIAL" "LINE" 
         | Expression (.#'LINES' or idf .) (.params[:from]=lus.) ["OF" identifier ["FROM" number ["TO" number]] ["USING" "KEY" string1]]
         )
-    "TO" identifier(.params[:to]=prevString.)  {"[""]"} 
+    "TO" Name(.params[:to]=lus.)  {"[""]"} 
     ["SORTED" "BY" string1] 
     [ ("ASSIGNING" Var ["CASTING"] | "REFERENCE" "INTO" identifier ) ] "."
     (.
@@ -985,16 +985,21 @@ stSUBMIT = "SUBMIT" (identifier|"("identifier")")
   [["USER" string1] "VIA" "JOB" identifier "NUMBER" number ["LANGUAGE" identifier]] 
   ["AND" "RETURN"]".".
   
-stTRY = "TRY" (.replace_src("begin").) "."
-    {Statement}
+stTRY = "TRY"  "." (. stmt_try="";stmt_catch="";e="".)
+    {Statement(. stmt_try+=lus.)}
   {
-      "CATCH"  (.re("rescue").)["BEFORE" "UNWIND"] {identifier(.add_src(",").)}  ["INTO"(.replace_src("=>").) Var]"." 
-        {Statement}
+      "CATCH"  (.ar=[].)["BEFORE" "UNWIND"] {Name(.ar.push(lus).)} ["INTO" Var(.e=lus.)]"." 
+          {Statement(. stmt_catch+=lus.)}
   }
   
   ["CLEANUP" ["INTO" identifier]"." 
     {Statement}] 
-"ENDTRY" (.replace_src("end").)  "." .
+"ENDTRY"  "." 
+(.
+    src("begin\n#{stmt_try}\nrescue #{ar.join(",")}=>#{e}\n#{stmt_catch}\nend\n")
+.)
+
+.
 
 /*
 Lob_handle_type =  ( "READER"|"LOCATOR"|"LOB" "HANDLE"|"WRITER" ) 
@@ -1136,12 +1141,12 @@ stWHILE = "WHILE" Expression
                           .)
                       "IF" LogExp (. exp = lus .)  "."
                               [{Statement (. stmts += lus+"\n" .)}] 
-                              (.  ret += "if #{exp}\n#{stmts}\n" .)
+                              (.  ret += "if #{exp}\n#{stmts}\n";stmts="" .)
                              { "ELSEIF" LogExp (. exp = lus .) "."
-                              [{Statement} (. stmts = lus .) ]
-                              (.  ret += "elsif #{exp}\n#{stmts}\n" .)
+                              [{Statement(. stmts += lus .)}  ]
+                              (.  ret += "elsif #{exp}\n#{stmts}\n";stmts="" .)
                               }
-                              [ "ELSE" "."   [{Statement}(. stmts = lus .)]   (.  ret += "else #{exp}\n#{stmts}\n" .) ]
+                              [ "ELSE" "."   [{Statement(. stmts += lus .)}]   (.  ret += "else\n#{stmts}\n" .) ]
                               "ENDIF"
                                (. 
                                 ret += "\nend\n" 
@@ -2304,28 +2309,32 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
                               
                               
   AllowedKeywords = "DATA". 
-  FunctionCall        =  "(" 
+  FunctionCall        =  "(" (.stop_autosrc.)
   (
-   {
-      ["EXPORTING" (. exporting = "{\n".){ identifier(.idn = prevString.) "=" Expression (.exporting+="\"#{idn}\" => #{lus},\n".)} (. exporting += "}\n".)  ] 
-      ["IMPORTING" (. importing = "{\n".) { identifier(.idn = prevString.) "=" Expression (.importing+="\"#{idn}\" => #{lus},\n".)} (. importing += "}\n".)  ] 
-      ["CHANGING" (. changing = "{\n".) { identifier(.idn = prevString.) "=" Expression (.changing+="\"#{idn}\" => #{lus},\n".)} (. changing += "}\n".)  ] 
-      ["RECEIVING" (. receiving = "{\n".) { identifier(.idn = prevString.) "=" Expression (.receiving+="\"#{idn}\" => #{lus},\n".)} (. receiving += "}\n".)  ] 
- 
-   }
-   (.
-       src("(_i:#{exporting}, _e:#{importing}, _c:#{changing})")
-   .)
+       {
+          ["EXPORTING" (. exporting = "{\n".){ identifier(.idn = prevString.) "=" Expression (.exporting+="\"#{idn}\" => #{lus},\n".)} (. exporting += "}\n".)  ] 
+          ["IMPORTING" (. importing = "{\n".) { identifier(.idn = prevString.) "=" Expression (.importing+="\"#{idn}\" => #{lus},\n".)} (. importing += "}\n".)  ] 
+          ["CHANGING" (. changing = "{\n".) { identifier(.idn = prevString.) "=" Expression (.changing+="\"#{idn}\" => #{lus},\n".)} (. changing += "}\n".)  ] 
+          ["RECEIVING" (. receiving = "{\n".) { identifier(.idn = prevString.) "=" Expression (.receiving+="\"#{idn}\" => #{lus},\n".)} (. receiving += "}\n".)  ] 
+
+       }
+       (.
+           params= {}
+           params[:_i]=importing
+           params[:_e]=exporting
+           params[:_c]=changing
+           src("(#{hash_to_params(params)})")
+       .)
   |
-   (.s="";e={}.) 
-   {  ShiftExp(. a = lus;s+=lus;.)[ "=" Expression  (.e[a]=lus.) ] (.s+=",".)}
-   (.
-       if e.keys.size>0
-       src("(#{hash_to_params(e)})\n")
-       else
-       src("(#{s})")
-       end
-   .)
+       (.s="";e={}.) 
+       {  ShiftExp(. a = lus;s+=lus;.)[ "=" Expression  (.e[a]=lus.) ] (.s+=",".)}
+       (.
+           if e.keys.size>0
+           src("(#{hash_to_params(e)})\n")
+           else
+           src("(#{s})")
+           end
+       .)
    ) ")"     
 
     .
