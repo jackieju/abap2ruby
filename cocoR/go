@@ -1,7 +1,9 @@
 set -e
 #cpp2ruby_dir=/Users/i027910/Desktop/ju/projects/sap/cpp2ruby
 
-cpp2ruby_dir=/Users/i027910/Desktop/ju/projects/sap/CPP2Ruby_github
+#cpp2ruby_dir=/Users/i027910/Desktop/ju/projects/sap/CPP2Ruby_github
+
+cpp2ruby_dir=../../CPP2Ruby
 
 cocor=./cocor17new
 cocor=./cocor
@@ -12,6 +14,7 @@ $cocor abap.atg
 # generate parser in c
 $cocor -A -F -X -S -G -C -L -D abap.atg 
 
+mkdir -p output
 # cp or move generated parser to output for converting to ruby
 #cp cs.c          output
 #cp cs.h          output
