@@ -1,5 +1,5 @@
 #  Abap2ruby
-A Translator/compiler to convert SAP ABAP code to ruby code.
+A Translator/compiler to convert SAP ABAP code to runnable ruby code.
 
 This parser is very easy to extend to parse more abap syntax and implement more functionality. 
 
