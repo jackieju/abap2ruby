@@ -9,7 +9,7 @@ load 'common.rb'
 load 'cocoR/o/cparser.rb'
 def convertName(s)
 #    if @sym == C_# s.gsub("!", "").gsub("->", ".").gsub("-", "_1_").gsub("~", "_2_")
-    s.gsub("!", "").gsub("->", ".").gsub("-", ".").gsub("~", ".").gsub("/", "::")
+    s.gsub("!", "").gsub("->", ".").gsub("-", ".").gsub("~", "_i_").gsub("/", "::")
 end
 
 def fixName(s)
@@ -27,7 +27,7 @@ def hash_to_params(hash)
          end
     }
     #return "{"+ar.join(",\n")+"}"
-    return ar.join(",\n")
+    return ar.join(", ")
 end
 def strInQuote(s)
     s[1..s.size-2]
@@ -201,10 +201,10 @@ class Parser < CParser
         
         super
         
-        if @parse_stack.cur[:auto_append]
-            if @sym == 0.6 # comment
+        if @sym == 0.6 # comment
+            if @parse_stack.cur[:auto_append]
               #  p "cmt:#{curString()}", 10
-                 @parse_stack.cur[:src].push("#"+curString())
+                 @parse_stack.cur[:src].push("#"+curString()+"\n")
                  Get(ignore_crlf)
              end
          end

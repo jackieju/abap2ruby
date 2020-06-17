@@ -43,7 +43,8 @@ PRAGMAS
 
 PRODUCTIONS
 
-    Var = identifier (.re(fixName(prevString())).) | "DATA" "(" Name ")" | "FIELD-SYMBOL" "(" Name ")" .
+    Var = identifier (.re(fixName(prevString())).) | "DATA" "(" Name ")" (.src(lus).)| "FIELD-SYMBOL" "(" Name ")" .
+    
     Exps =  Expression{Expression} .
     
     Name = ((identifier|AllowedKeywords) | ("("(identifier|AllowedKeywords)")") ) (. src(fixName(src())).).
@@ -516,7 +517,7 @@ LoopStatement = "LOOP" (.params = {};stmts ="".)
         "ENDLOOP" "." 
         
         (.
-            src("loop(#{hash_to_params(params)})\n{\n#{stmts}}\n")
+            src("loop(#{hash_to_params(params)}){\n#{stmts}}\n")
             
         .)
         .
@@ -637,7 +638,7 @@ VariableDefineStatement =  ("DATA"|"STATICS" | "CLASS-DATA" )
             .)
                 |
                 
-             "(" identifier ")" "=" Expression       
+             "(" identifier (.name=prevString.)")" "=" Expression (.src("#{name} = #{lus}").)      
                 
              )
      "."
@@ -922,7 +923,7 @@ stREAD = "READ"
       |  /* READ REPORT */
       "REPORT" identifier "INTO" identifier ["MAXIMUM" "WIDTH" "INTO" number]
        | /* READ TABLE itab*/
-       "TABLE" (.fn="read_table".)identifier (.params["id"]=prevString.)(
+       "TABLE" (.fn="read_table".)Name (.params["id"]=lus.)(
            {
            [(
             
@@ -1408,15 +1409,16 @@ CallMethod =  "METHOD"
         (. param_hash = {};name = "".)
         ( 
             (
-                ["("](string1(.name+=strInQuote(prevString).)|identifier(.name+=prevString;.))[")"] [ ("->"|"=>") ["("](string1(.name+="."+strInQuote(prevString).)| identifier(.name+="."+prevString.){"~"identifier(.name2+="_2_#{prevString}".)} ) [")"] ]
+               /* ["("](string1(.name+=strInQuote(prevString).)|identifier(.name+=prevString;.))[")"] [ ("->"|"=>") ["("](string1(.name+="."+strInQuote(prevString).)| identifier(.name+="."+prevString.){"~"identifier(.name2+="_2_#{prevString}".)} ) [")"] ]*/
+               Expression(.name=lus.)
             |    
                 "OF" identifier identifier ["=" identifier] 
              ) 
             {
                 ["PARAMETER-TABLE" identifier (.param_hash["PARAMETER-TABLE"]=prevString.) ] 
                 ["EXCEPTION-TABLE" identifier (. param_hash["EXCEPTION-TABLE"]=prevString .) ] 
-                ["EXPORTING" (. exporting = "{\n".){ identifier(.idn = prevString.) "=" Expression (.exporting+="\"#{idn}\" => #{lus},\n".)} (. exporting += "}\n".)  ] 
-                ["IMPORTING" (. importing = "{\n".) { identifier(.idn = prevString.) "=" Expression (.importing+="\"#{idn}\" => #{lus},\n".)} (. importing += "}\n".)  ] 
+                ["EXPORTING" (. exporting = "{\n".){ identifier(.idn = prevString.) "=" Expression (.exporting+="\"#{idn}\" => #{lus},\n".)} (. exporting += "}".)  ] 
+                ["IMPORTING" (. importing = "{\n".) { identifier(.idn = prevString.) "=" Expression (.importing+="\"#{idn}\" => #{lus},\n".)} (. importing += "}".)  ] 
                 ["CHANGING" {identifier "=" Expression } (.param_hash["CHANGING"]=lus.) ] 
                 ["RECEIVING" Expression  (.param_hash["RECEIVING"]=lus.) ] 
                 ["NO" "FLUSH" (.param_hash["noflush"]=true.) ] 
@@ -2159,9 +2161,9 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
   /* abap logicexp is conditional */
   Conditional          =  LogORExp  .
 
-  LogORExp             =  LogANDExp   { ("||" | "OR" | "EQUIV") LogANDExp }  .
+  LogORExp             =  LogANDExp   { ("||" | "OR"(.re("or").) | "EQUIV"(.re("or").)) LogANDExp }  .
 
-  LogANDExp            =  InclORExp   { ("&&" | "AND") InclORExp } .
+  LogANDExp            =  InclORExp   { ("&&" | "AND"(.re("and").)) InclORExp } .
 
   InclORExp            =  ExclORExp   { "|" ExclORExp }   .
 
@@ -2203,7 +2205,13 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
 
   PostFixExp           =  Primary (. pri = lus .)
                          { "[" [Expression] "]"
-                          | FunctionCall
+                          | FunctionCall (.
+                              if pri == "DATA"
+                                  src(lus[1..lus.size-2])
+                              else
+                                  src("#{pri}#{lus}")
+                              end
+                              .)
                         /*  | "~" identifier
                           | "-" identifier*/
                           | "->" identifier (.# re(".#{lus}");back_src() .) (. src("#{pri}.#{prevString}").)
@@ -2236,9 +2244,9 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
                               /* abap logicexp is conditional */
                             
 
-                              LogExp             =  LogLogANDExp   { ("||" | "OR" | "EQUIV") LogLogANDExp }  .
+                              LogExp             =  LogLogANDExp   { ("||" | "OR"(.re("or").) | "EQUIV") LogLogANDExp }  .
 
-                              LogLogANDExp            =  LogInclORExp   { ("&&" | "AND") LogInclORExp } .
+                              LogLogANDExp            =  LogInclORExp   { ("&&" | "AND"(.re("and").)) LogInclORExp } .
 
                               LogInclORExp            =  LogExclORExp   { "|" LogExclORExp }   .
 
@@ -2312,10 +2320,10 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
   FunctionCall        =  "(" (.stop_autosrc.)
   (
        {
-          ["EXPORTING" (. exporting = "{\n".){ identifier(.idn = prevString.) "=" Expression (.exporting+="\"#{idn}\" => #{lus},\n".)} (. exporting += "}\n".)  ] 
-          ["IMPORTING" (. importing = "{\n".) { identifier(.idn = prevString.) "=" Expression (.importing+="\"#{idn}\" => #{lus},\n".)} (. importing += "}\n".)  ] 
-          ["CHANGING" (. changing = "{\n".) { identifier(.idn = prevString.) "=" Expression (.changing+="\"#{idn}\" => #{lus},\n".)} (. changing += "}\n".)  ] 
-          ["RECEIVING" (. receiving = "{\n".) { identifier(.idn = prevString.) "=" Expression (.receiving+="\"#{idn}\" => #{lus},\n".)} (. receiving += "}\n".)  ] 
+          ["EXPORTING" (. exporting = "{\n".){ identifier(.idn = prevString.) "=" Expression (.exporting+="\"#{idn}\" => #{lus},\n".)} (. exporting += "}".)  ] 
+          ["IMPORTING" (. importing = "{\n".) { identifier(.idn = prevString.) "=" Expression (.importing+="\"#{idn}\" => #{lus},\n".)} (. importing += "}".)  ] 
+          ["CHANGING" (. changing = "{\n".) { identifier(.idn = prevString.) "=" Expression (.changing+="\"#{idn}\" => #{lus},\n".)} (. changing += "}".)  ] 
+          ["RECEIVING" (. receiving = "{\n".) { identifier(.idn = prevString.) "=" Expression (.receiving+="\"#{idn}\" => #{lus},\n".)} (. receiving += "}".)  ] 
 
        }
        (.
@@ -2332,7 +2340,7 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
            if e.keys.size>0
            src("(#{hash_to_params(e)})\n")
            else
-           src("(#{s})")
+           src("(#{s[0..s.size-2]})")
            end
        .)
    ) ")"     

@@ -13,6 +13,9 @@ class CParser < CRRParser
             Expect(C_LparenSym)
             Name()
             Expect(C_RparenSym)
+
+            src(lus);
+
          else
             if @sym==C_FIELDMinusSYMBOLSym
                Get()
@@ -1082,9 +1085,15 @@ class CParser < CRRParser
          if @sym==C_LparenSym
             Get()
             Expect(C_identifierSym)
+
+            name=prevString;
+
             Expect(C_RparenSym)
             Expect(C_EqualSym)
             Expression()
+
+            src("#{name} = #{lus}");
+
          else
             GenError(724)
          end
@@ -1861,7 +1870,7 @@ class CParser < CRRParser
       Expect(C_PointSym)
 
 
-      src("loop(#{hash_to_params(params)})\n{\n#{stmts}}\n")
+      src("loop(#{hash_to_params(params)}){\n#{stmts}}\n")
       ;
 
       _out_()
@@ -4287,9 +4296,9 @@ class CParser < CRRParser
 
          fn="read_table";
 
-         Expect(C_identifierSym)
+         Name()
 
-         params["id"]=prevString;
+         params["id"]=lus;
 
          while (@sym==C_FROMSym||@sym==C_INTOSym||@sym==C_WITHSym||@sym==C_ASSIGNINGSym||@sym==C_REFERENCESym||@sym==C_INDEXSym||@sym==C_TRANSPORTINGSym)
             if @sym==C_FROMSym||@sym==C_WITHSym||@sym==C_INDEXSym
@@ -10513,6 +10522,9 @@ class CParser < CRRParser
          else
             if @sym==C_ORSym
                Get()
+
+               re("or");
+
             else
                if @sym==C_EQUIVSym
                   Get()
@@ -12002,78 +12014,10 @@ class CParser < CRRParser
 
       param_hash = {};name = "";
 
-      if @sym==C_stringD1Sym||@sym==C_identifierSym||@sym==C_LparenSym
-         if @sym==C_LparenSym
-            Get()
-         end
+      if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_charSym||@sym>=C_spaceD1Sym&&@sym<=C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_INSym||@sym==C_PlusSym||@sym==C_INITIALSym||@sym==C_NOTSym||@sym==C_NEWSym||@sym==C_AndSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym>=C_BangSym&&@sym<=C_REQUESTEDSym
+         Expression()
 
-         if @sym==C_stringD1Sym
-            Get()
-
-            name+=strInQuote(prevString);
-
-         else
-            if @sym==C_identifierSym
-               Get()
-
-               name+=prevString;
-
-            else
-               GenError(1026)
-            end
-
-         end
-
-         if @sym==C_RparenSym
-            Get()
-         end
-
-         if @sym>=C_MinusGreaterSym&&@sym<=C_EqualGreaterSym
-            if @sym==C_MinusGreaterSym
-               Get()
-            else
-               if @sym==C_EqualGreaterSym
-                  Get()
-               else
-                  GenError(1027)
-               end
-
-            end
-
-            if @sym==C_LparenSym
-               Get()
-            end
-
-            if @sym==C_stringD1Sym
-               Get()
-
-               name+="."+strInQuote(prevString);
-
-            else
-               if @sym==C_identifierSym
-                  Get()
-
-                  name+="."+prevString;
-
-                  while (@sym==C_TildeSym)
-                     Get()
-                     Expect(C_identifierSym)
-
-                     name2+="_2_#{prevString}";
-
-                  end
-
-               else
-                  GenError(1028)
-               end
-
-            end
-
-            if @sym==C_RparenSym
-               Get()
-            end
-
-         end
+         name=lus;
 
       else
          if @sym==C_OFSym
@@ -12086,7 +12030,7 @@ class CParser < CRRParser
             end
 
          else
-            GenError(1029)
+            GenError(1026)
          end
 
       end
@@ -12126,7 +12070,7 @@ class CParser < CRRParser
             end
 
 
-            exporting += "}\n";
+            exporting += "}";
 
          end
 
@@ -12148,7 +12092,7 @@ class CParser < CRRParser
             end
 
 
-            importing += "}\n";
+            importing += "}";
 
          end
 
@@ -12303,13 +12247,13 @@ class CParser < CRRParser
                   end
 
                else
-                  GenError(1030)
+                  GenError(1027)
                end
 
             end
 
          else
-            GenError(1031)
+            GenError(1028)
          end
 
       end
@@ -12334,7 +12278,7 @@ class CParser < CRRParser
                   Expect(C_identifierSym)
                   Expect(C_RparenSym)
                else
-                  GenError(1032)
+                  GenError(1029)
                end
 
             end
@@ -12354,7 +12298,7 @@ class CParser < CRRParser
                   Expect(C_identifierSym)
                   Expect(C_RparenSym)
                else
-                  GenError(1033)
+                  GenError(1030)
                end
 
             end
@@ -12414,7 +12358,7 @@ class CParser < CRRParser
                end
 
             else
-               GenError(1034)
+               GenError(1031)
             end
 
          end
@@ -12433,7 +12377,7 @@ class CParser < CRRParser
             if @sym==C_GreaterGreaterSym
                Get()
             else
-               GenError(1035)
+               GenError(1032)
             end
 
          end
@@ -12481,7 +12425,7 @@ class CParser < CRRParser
          Get()
 
       else
-         GenError(1036)
+         GenError(1033)
 
       end
 
@@ -12501,11 +12445,17 @@ class CParser < CRRParser
          else
             if @sym==C_ORSym
                Get()
+
+               re("or");
+
             else
                if @sym==C_EQUIVSym
                   Get()
+
+                  re("or");
+
                else
-                  GenError(1037)
+                  GenError(1034)
                end
 
             end
@@ -12526,8 +12476,11 @@ class CParser < CRRParser
          else
             if @sym==C_ANDSym
                Get()
+
+               re("and");
+
             else
-               GenError(1038)
+               GenError(1035)
             end
 
          end
@@ -12602,7 +12555,7 @@ class CParser < CRRParser
                Get()
 
             else
-               GenError(1039)
+               GenError(1036)
 
             end
 
@@ -12620,7 +12573,7 @@ class CParser < CRRParser
             Expect(C_ANDSym)
             RelationExp()
          else
-            GenError(1040)
+            GenError(1037)
          end
 
       end
@@ -12700,7 +12653,7 @@ class CParser < CRRParser
             Get()
 
          else
-            GenError(1041)
+            GenError(1038)
 
          end
 
@@ -12719,7 +12672,7 @@ class CParser < CRRParser
             if @sym==C_MinusSym
                Get()
             else
-               GenError(1042)
+               GenError(1039)
             end
 
          end
@@ -12754,7 +12707,7 @@ class CParser < CRRParser
             Get()
 
          else
-            GenError(1043)
+            GenError(1040)
 
          end
 
@@ -12780,7 +12733,7 @@ class CParser < CRRParser
                if @sym==C_MinusMinusSym
                   Get()
                else
-                  GenError(1044)
+                  GenError(1041)
                end
 
             end
@@ -12791,7 +12744,7 @@ class CParser < CRRParser
                UnaryOperator()
                CastExp()
             else
-               GenError(1045)
+               GenError(1042)
             end
 
          end
@@ -12819,6 +12772,14 @@ class CParser < CRRParser
 
          when C_LparenSym
             FunctionCall()
+
+
+            if pri == "DATA"
+               src(lus[1..lus.size-2])
+            else
+               src("#{pri}#{lus}")
+            end;
+
 
          when C_MinusGreaterSym
             Get()
@@ -12864,7 +12825,7 @@ class CParser < CRRParser
 
 
          else
-            GenError(1046)
+            GenError(1043)
 
          end
 
@@ -12909,7 +12870,7 @@ class CParser < CRRParser
          Get()
 
       else
-         GenError(1047)
+         GenError(1044)
 
       end
 
@@ -12953,7 +12914,7 @@ class CParser < CRRParser
          Name()
 
       else
-         GenError(1048)
+         GenError(1045)
 
       end
 
@@ -12985,7 +12946,7 @@ class CParser < CRRParser
                end
 
 
-               exporting += "}\n";
+               exporting += "}";
 
             end
 
@@ -13007,7 +12968,7 @@ class CParser < CRRParser
                end
 
 
-               importing += "}\n";
+               importing += "}";
 
             end
 
@@ -13029,7 +12990,7 @@ class CParser < CRRParser
                end
 
 
-               changing += "}\n";
+               changing += "}";
 
             end
 
@@ -13051,7 +13012,7 @@ class CParser < CRRParser
                end
 
 
-               receiving += "}\n";
+               receiving += "}";
 
             end
 
@@ -13093,7 +13054,7 @@ class CParser < CRRParser
             if e.keys.size>0
                src("(#{hash_to_params(e)})\n")
             else
-               src("(#{s})")
+               src("(#{s[0..s.size-2]})")
             end;
 
          end
@@ -13123,7 +13084,7 @@ class CParser < CRRParser
          Get()
 
       else
-         GenError(1049)
+         GenError(1046)
 
       end
 
@@ -13147,8 +13108,11 @@ class CParser < CRRParser
          else
             if @sym==C_ANDSym
                Get()
+
+               re("and");
+
             else
-               GenError(1050)
+               GenError(1047)
             end
 
          end
@@ -13223,7 +13187,7 @@ class CParser < CRRParser
                Get()
 
             else
-               GenError(1051)
+               GenError(1048)
 
             end
 
@@ -13241,7 +13205,7 @@ class CParser < CRRParser
             Expect(C_ANDSym)
             LogRelationExp()
          else
-            GenError(1052)
+            GenError(1049)
          end
 
       end
@@ -13321,7 +13285,7 @@ class CParser < CRRParser
             Get()
 
          else
-            GenError(1053)
+            GenError(1050)
 
          end
 
@@ -13340,7 +13304,7 @@ class CParser < CRRParser
             if @sym==C_GreaterGreaterSym
                Get()
             else
-               GenError(1054)
+               GenError(1051)
             end
 
          end
@@ -13360,7 +13324,7 @@ class CParser < CRRParser
             if @sym==C_MinusSym
                Get()
             else
-               GenError(1055)
+               GenError(1052)
             end
 
          end
@@ -13395,7 +13359,7 @@ class CParser < CRRParser
             Get()
 
          else
-            GenError(1056)
+            GenError(1053)
 
          end
 
@@ -13421,7 +13385,7 @@ class CParser < CRRParser
                if @sym==C_MinusMinusSym
                   Get()
                else
-                  GenError(1057)
+                  GenError(1054)
                end
 
             end
@@ -13432,7 +13396,7 @@ class CParser < CRRParser
                UnaryOperator()
                LogCastExp()
             else
-               GenError(1058)
+               GenError(1055)
             end
 
          end
@@ -13505,7 +13469,7 @@ class CParser < CRRParser
 
 
          else
-            GenError(1059)
+            GenError(1056)
 
          end
 
@@ -13547,7 +13511,7 @@ class CParser < CRRParser
          Name()
 
       else
-         GenError(1060)
+         GenError(1057)
 
       end
 
@@ -13563,7 +13527,7 @@ class CParser < CRRParser
             Get()
             Expect(C_spaceD1Sym)
          else
-            GenError(1061)
+            GenError(1058)
          end
 
       end

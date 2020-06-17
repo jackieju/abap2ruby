@@ -11,11 +11,14 @@ class Object
     end
 end
 
+def DATA(b)
+    b
+end
 def assign(params)
 end
 def unassign(params)
 end
-def read_table(params)
+def read_table(id:)
 end
 def check(params)
 end
@@ -23,7 +26,7 @@ end
 def assert(params)
 end
 
-def loop(params, &block)
+def loop1(at:,into:)
 end
 
 def append(params)
