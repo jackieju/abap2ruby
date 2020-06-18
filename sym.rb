@@ -658,37 +658,37 @@ C_CHANNELSSym = 653 # "CHANNELS"
 C_PUSHSym = 654 # "PUSH" 
 C_WINDOWSym = 655 # "WINDOW" 
 C_SPLITSym = 656 # "SPLIT" 
-C_BarBarSym = 657 # "||" 
-C_EQUIVSym = 658 # "EQUIV" 
-C_AndAndSym = 659 # "&&" 
-C_BarSym = 660 # "|" 
-C_UparrowSym = 661 # "^" 
-C_AndSym = 662 # "&" 
-C_LessGreaterSym = 663 # "<>" 
-C_LessSym = 664 # "<" 
-C_GreaterSym = 665 # ">" 
-C_LessEqualSym = 666 # "<=" 
-C_GreaterEqualSym = 667 # ">=" 
-C_COSym = 668 # "CO" 
-C_CNSym = 669 # "CN" 
-C_CASym = 670 # "CA" 
-C_NASym = 671 # "NA" 
-C_CSSym = 672 # "CS" 
-C_NSSym = 673 # "NS" 
-C_BYTEMinusCOSym = 674 # "BYTE-CO" 
-C_BYTEMinusCNSym = 675 # "BYTE-CN" 
-C_BYTEMinusCASym = 676 # "BYTE-CA" 
-C_BYTEMinusNASym = 677 # "BYTE-NA" 
-C_BYTEMinusCSSym = 678 # "BYTE-CS" 
-C_BYTEMinusNSSym = 679 # "BYTE-NS" 
-C_LessLessSym = 680 # "<<" 
-C_GreaterGreaterSym = 681 # ">>" 
-C_MinusSym = 682 # "-" 
-C_DIVSym = 683 # "DIV" 
-C_PercentSym = 684 # "%" 
-C_MODSym = 685 # "MOD" 
-C_PlusPlusSym = 686 # "++" 
-C_MinusMinusSym = 687 # "--" 
+C_LessLessSym = 657 # "<<" 
+C_GreaterGreaterSym = 658 # ">>" 
+C_MinusSym = 659 # "-" 
+C_DIVSym = 660 # "DIV" 
+C_PercentSym = 661 # "%" 
+C_MODSym = 662 # "MOD" 
+C_PlusPlusSym = 663 # "++" 
+C_MinusMinusSym = 664 # "--" 
+C_BarBarSym = 665 # "||" 
+C_EQUIVSym = 666 # "EQUIV" 
+C_AndAndSym = 667 # "&&" 
+C_BarSym = 668 # "|" 
+C_UparrowSym = 669 # "^" 
+C_AndSym = 670 # "&" 
+C_LessGreaterSym = 671 # "<>" 
+C_LessSym = 672 # "<" 
+C_GreaterSym = 673 # ">" 
+C_LessEqualSym = 674 # "<=" 
+C_GreaterEqualSym = 675 # ">=" 
+C_COSym = 676 # "CO" 
+C_CNSym = 677 # "CN" 
+C_CASym = 678 # "CA" 
+C_NASym = 679 # "NA" 
+C_CSSym = 680 # "CS" 
+C_NSSym = 681 # "NS" 
+C_BYTEMinusCOSym = 682 # "BYTE-CO" 
+C_BYTEMinusCNSym = 683 # "BYTE-CN" 
+C_BYTEMinusCASym = 684 # "BYTE-CA" 
+C_BYTEMinusNASym = 685 # "BYTE-NA" 
+C_BYTEMinusCSSym = 686 # "BYTE-CS" 
+C_BYTEMinusNSSym = 687 # "BYTE-NS" 
 C_StarEqualSym = 688 # "*=" 
 C_SlashEqualSym = 689 # "/=" 
 C_PercentEqualSym = 690 # "%=" 
@@ -1371,6 +1371,14 @@ SYMS=[
 "PUSH",
 "WINDOW",
 "SPLIT",
+"<<",
+">>",
+"-",
+"DIV",
+"%",
+"MOD",
+"++",
+"--",
 "||",
 "EQUIV",
 "&&",
@@ -1394,14 +1402,6 @@ SYMS=[
 "BYTE-NA",
 "BYTE-CS",
 "BYTE-NS",
-"<<",
-">>",
-"-",
-"DIV",
-"%",
-"MOD",
-"++",
-"--",
 "*=",
 "/=",
 "%=",

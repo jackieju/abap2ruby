@@ -1,5 +1,8 @@
+set -e
 ruby translate.rb examples/sample1.abap -d examples
+ruby examples/cl_a1fia_aar_create_qaf_eco.rb
 ruby translate.rb examples/sample2.abap -d examples
+ruby examples/cl_a1fia_acproerr_qaf_eco.rb
 ruby translate.rb examples/cp_testcase.abap -d examples
 
 

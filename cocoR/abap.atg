@@ -43,7 +43,7 @@ PRAGMAS
 
 PRODUCTIONS
 
-    Var = identifier (.re(fixName(prevString())).) | "DATA" "(" Name ")" (.src(lus).)| "FIELD-SYMBOL" "(" Name ")" .
+    Var = identifier (.re(fixName(prevString())).) | "DATA" "(" Name ")" (.src(lus).)| "FIELD-SYMBOL" "(" Name ")" (.src(lus).).
     
     Exps =  Expression{Expression} .
     
@@ -735,7 +735,7 @@ WriteStatement =   (. param_hash = {} .) "WRITE"
 CaseStatement = 
     "CASE"(. re("case") .) Expression "." 
       {
-          "WHEN" (. re("when") .) (Expression {"OR" Expression } | "OTHERS" (. re("", "else").)) "." 
+          "WHEN" (. re("when");ar=[] .) (Expression (.ar.push(lus).) {"OR"(.re(",").) Expression(.ar.push(lus).) } | "OTHERS" (. re("", "else").)) "." 
             {Statement}
       } 
   
@@ -800,9 +800,14 @@ stDELETE = "DELETE"(
 
 VARYING = "VARYING" identifier "FROM" identifier "NEXT" identifier ["RANGE" Expression] .
 
-stDO = "DO" [number "TIMES"] {VARYING} "." 
-  {Statement}
-"ENDDO"".".
+stDO = "DO" [number "TIMES"] {VARYING} "." (.stmt="".)
+  {Statement(.stmt+=lus.)}
+"ENDDO""."
+(.
+    src("begin\n#{stmt}end while (true)\n")
+    
+.)
+.
 
 Event_exp_item = "VALUE"(Expression) Typing 
                          ["OPTIONAL"|("DEFAULT" Expression)] .
@@ -986,7 +991,7 @@ stSUBMIT = "SUBMIT" (identifier|"("identifier")")
   [["USER" string1] "VIA" "JOB" identifier "NUMBER" number ["LANGUAGE" identifier]] 
   ["AND" "RETURN"]".".
   
-stTRY = "TRY"  "." (. stmt_try="";stmt_catch="";e="".)
+stTRY = "TRY"  "." (. stmt_try="";stmt_catch="";.)
     {Statement(. stmt_try+=lus.)}
   {
       "CATCH"  (.ar=[].)["BEFORE" "UNWIND"] {Name(.ar.push(lus).)} ["INTO" Var(.e=lus.)]"." 
@@ -997,7 +1002,12 @@ stTRY = "TRY"  "." (. stmt_try="";stmt_catch="";e="".)
     {Statement}] 
 "ENDTRY"  "." 
 (.
-    src("begin\n#{stmt_try}\nrescue #{ar.join(",")}=>#{e}\n#{stmt_catch}\nend\n")
+    if e
+        e = "=>#{e}"
+    else
+        e = ""
+    end
+    src("begin\n#{stmt_try}\nrescue #{ar.join(",")}#{e}\n#{stmt_catch}\nend\n")
 .)
 
 .
@@ -1426,13 +1436,11 @@ CallMethod =  "METHOD"
             }
         )
             (.
-                params = []
-                param_hash.each{|k,v|
-                    params.push "#{k}: #{v}"
-                }
+                params = {"_i"=>exporting, "_e"=>importing}
+              
              
                # src("call_method(#{name1}.#{name2}, {#{params}})");
-                src("#{name}(_i:#{exporting}, _e:#{importing})\n")
+                src("#{name}(hash_to_params(params))\n")
             .)
             .
                
@@ -2156,9 +2164,9 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
       
   /*Expression           =  Conditional { AssignmentOperator Expression   }  .*/
   /* abap expression dosn't include conditional or relationexp, because in abap "=" can be assignment and comparison */
-  Expression          =  ShiftExp { AssignmentOperator Conditional   } .
+  Expression          =  ShiftExp { AssignmentOperator ShiftExp   } .
   
-  /* abap logicexp is conditional */
+  /* abap logicexp is conditional 
   Conditional          =  LogORExp  .
 
   LogORExp             =  LogANDExp   { ("||" | "OR"(.re("or").) | "EQUIV"(.re("or").)) LogANDExp }  .
@@ -2180,7 +2188,7 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
 
   RelationExp          =    ShiftExp    { 
                               ( "<" | "LT"  | ">" | "GT" | "<=" | "LE" | ">=" | "GE" | "CO" | "CN" | "CA" | "NA" | "CS" | "NS" | "CP" | "NP" |"BYTE-CO" | "BYTE-CN" | "BYTE-CA" | "BYTE-NA" | "BYTE-CS" | "BYTE-NS" )  
-                               ShiftExp   }   .
+                               ShiftExp   }   .*/
 
   ShiftExp             =  AddExp      { ( "<<" | ">>" ) AddExp }       .
               
@@ -2203,7 +2211,7 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
 
 
 
-  PostFixExp           =  Primary (. pri = lus .)
+  PostFixExp           =  (.no_space.) Primary (. pri = lus .)
                          { "[" [Expression] "]"
                           | FunctionCall (.
                               if pri == "DATA"
@@ -2214,8 +2222,8 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
                               .)
                         /*  | "~" identifier
                           | "-" identifier*/
-                          | "->" identifier (.# re(".#{lus}");back_src() .) (. src("#{pri}.#{prevString}").)
-                          | "=>" identifier (.# re(".#{lus}");back_src() .)(. src("#{pri}.#{prevString}").)
+                          | "->"(.re(".").) identifier 
+                          | "=>"(.re(".").) identifier 
                           | "++"
                           | "--"
                         /*  | "IS"(.re(".is(");br = true.) ["NOT"(.back_src();re(".isnot(");_not=true.)] ["INITIAL"(.back_src();if _not 
@@ -2226,10 +2234,11 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
   add_src(")") if br
   .)]*/ 
                          | "IS"(.back();s=".is".) ["NOT" (.back();s+="Not";.)] PredefinedConstant (.s+=lus;add_src("#{s}()").)
-                         }    .   
+                         }   
+                         (. no_space(false).) .   
   
   Primary              =  string1{string1}
-                           | "NEW" Creator
+                           | "NEW"(.back().) Creator
                            | char 
                            | number 
                            | "(" Expression ")" 
@@ -2239,14 +2248,14 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
                            | "/" identifier {"/" identifier }*/
                               .
                               
-  Creator = identifier [FunctionCall] .
+  Creator = identifier (.name=prevString.)[FunctionCall] (.src("#{name}.new#{lus}").).
   
                               /* abap logicexp is conditional */
                             
 
-                              LogExp             =  LogLogANDExp   { ("||" | "OR"(.re("or").) | "EQUIV") LogLogANDExp }  .
+                              LogExp             =   (.no_comments().) LogLogANDExp   { ("||" | "OR"(.re("||").) | "EQUIV") LogLogANDExp } (.no_comments(false).)  .
 
-                              LogLogANDExp            =  LogInclORExp   { ("&&" | "AND"(.re("and").)) LogInclORExp } .
+                              LogLogANDExp            =  LogInclORExp   { ("&&" | "AND"(.re("&&").)) LogInclORExp } .
 
                               LogInclORExp            =  LogExclORExp   { "|" LogExclORExp }   .
 
@@ -2286,10 +2295,16 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
 
 
 
-                              LogPostFixExp           =  LogPrimary (. pri = lus .)
+                              LogPostFixExp           = (.no_space.) LogPrimary (. pri = lus .)
                                                      { "[" [Expression] "]"
-                                                      | FunctionCall
-                                                     /* | "~" identifier
+                                                      | FunctionCall(.
+                                                          if pri == "DATA"
+                                                              src(lus[1..lus.size-2])
+                                                          else
+                                                              src("#{pri}#{lus}")
+                                                          end
+                                                          .)
+                                                      /* | "~" identifier
                                                       | "-" identifier*/
                                                       | "->" identifier (.# re(".#{lus}");back_src() .) (. src("#{pri}.#{prevString}").)
                                                       | "=>" identifier (.# re(".#{lus}");back_src() .)(. src("#{pri}.#{prevString}").)
@@ -2303,7 +2318,7 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
                               add_src(")") if br
                               .)]*/ 
                                                      | "IS"(.back();s=".is".) ["NOT" (.back();s+="Not";.)] PredefinedConstant (.back();s+=lus;add_src("#{s}()").)
-                                                     }    .   
+                                                     }   (.no_space(false).) .   
   
                               LogPrimary              =  string1{string1}
                                                        | char 
@@ -2317,7 +2332,7 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
                               
                               
   AllowedKeywords = "DATA". 
-  FunctionCall        =  "(" (.stop_autosrc.)
+  FunctionCall        =  "(" (.stop_autosrc;no_comments.)
   (
        {
           ["EXPORTING" (. exporting = "{\n".){ identifier(.idn = prevString.) "=" Expression (.exporting+="\"#{idn}\" => #{lus},\n".)} (. exporting += "}".)  ] 
@@ -2338,13 +2353,13 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
        {  ShiftExp(. a = lus;s+=lus;.)[ "=" Expression  (.e[a]=lus.) ] (.s+=",".)}
        (.
            if e.keys.size>0
-           src("(#{hash_to_params(e)})\n")
+           src("(#{hash_to_params(e)})")
            else
            src("(#{s[0..s.size-2]})")
            end
        .)
    ) ")"     
-
+   (.no_comments(false).)
     .
 
   /*ActualParameters    =    Expression   { "," Expression   }      .*/

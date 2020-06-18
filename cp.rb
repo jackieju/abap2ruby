@@ -9,11 +9,14 @@ load 'common.rb'
 load 'cocoR/o/cparser.rb'
 def convertName(s)
 #    if @sym == C_# s.gsub("!", "").gsub("->", ".").gsub("-", "_1_").gsub("~", "_2_")
-    s.gsub("!", "").gsub("->", ".").gsub("-", ".").gsub("~", "_i_").gsub("/", "::")
+    if s.start_with?("/")
+        s = s[1..s.size-1]
+    end
+    s = s.gsub("!", "").gsub("->", ".").gsub("-", ".").gsub("~", "_i_").gsub("/", "::")
 end
 
 def fixName(s)
-    s.gsub(/[<>\(\)]/, "")
+    s = s.gsub(/[<>\(\)]/, "")
 end
     
 def hash_to_params(hash)
@@ -98,7 +101,10 @@ class ParseStack
     
     def _in
         @last_unterminator_src = nil        
-        n = {:src=>[], :parent=>@cur, :auto_append=>true, :stack=>[]}
+        n = {:src=>[], :parent=>@cur, :auto_append=>true, :stack=>[], :no_space=>false, :no_comments=>false}
+        if @cur
+           n[:no_comments] = @cur[:no_comments]
+        end
         @cur = n
     end
     
@@ -150,6 +156,19 @@ class Parser < CParser
         
         p "init end"
         pclass
+    end
+    # skip comments, because sometimes comment will break ruby syntax
+    # e.g. if a = true # comment
+    #         &&
+    # here && must be in the above line and before the comments, which is to complicated
+    def no_comments(nc = true)
+        @parse_stack.cur[:no_comments] = nc
+    end
+    
+    # for auto source generating
+    # tell parser not to insert space between token
+    def no_space(ns=true)
+       @parse_stack.cur[:no_space] = ns
     end
     # stack_pos is the pos of trace stack, for the function name you want to print
     # set it to 0 will show "trc" as function name
@@ -204,7 +223,7 @@ class Parser < CParser
         if @sym == 0.6 # comment
             if @parse_stack.cur[:auto_append]
               #  p "cmt:#{curString()}", 10
-                 @parse_stack.cur[:src].push("#"+curString()+"\n")
+                 @parse_stack.cur[:src].push("#"+curString()+"\n") if @parse_stack.cur[:no_comments]  == false
                  Get(ignore_crlf)
              end
          end
@@ -223,6 +242,11 @@ class Parser < CParser
         if r
             @parse_stack.cur[:src] = [r]
         end
+        
+        if @parse_stack.cur[:no_space]
+            return @parse_stack.cur[:src].join()
+        end
+    
         return  @parse_stack.cur[:src].join(" ")
     end
     
@@ -396,20 +420,26 @@ HERE
   
     def stMODIFY()
        _in_()
+       no_comments
        Expect(C_MODIFYSym)
-       while (@sym != C_PointSym && @sym != EOF_Sym)
+       while (@sym != C_PointSym && @sym != EOF_Sym )
            Get()
        end
+       no_comments(false)
          src("abap(\"#{src()}\")")
        _out_()
    end
    
    def stSELECT()
       _in_()
+      no_comments
+      
       Expect(C_SELECTSym)
       while (@sym != C_PointSym && @sym != EOF_Sym)
           Get()
       end
+      no_comments(false)
+      
         src("abap(\"#{src()}\")")
       p "src1:#(src())"
      s =  _out_()
@@ -418,19 +448,27 @@ HERE
   end
   def stUPDATE()
      _in_()
+     no_comments
+     
      Expect(C_UPDATETSym)
      while (@sym != C_PointSym && @sym != EOF_Sym)
          Get()
      end
+     no_comments(false)
+     
        src("abap(\"#{src()}\")")
      _out_()
   end
   def stINSERT()
      _in_()
+     no_comments
+     
      Expect(C_INSERTSym)
      while (@sym != C_PointSym && @sym != EOF_Sym)
          Get()
      end
+     no_comments(false)
+     
      src("abap(\"#{src()}\")")
      
      _out_()
@@ -438,10 +476,14 @@ HERE
   end
   def stDELETE()
      _in_()
+     no_comments
+     
      Expect(C_DELETESym)
      while (@sym != C_PointSym && @sym != EOF_Sym)
          Get()
      end
+     no_comments(false)
+     
      src("abap(\"#{src()}\")")
      
      _out_()

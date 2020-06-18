@@ -47,7 +47,6 @@ def test(testall=false)
    .
 
 HERE
-
 s1=<<HERE
 *&---------------------------------------------------------------------*
 *& Report  YCL_CH04_03_ELEM_DATA_OBJECTS
@@ -117,7 +116,7 @@ WRITE:/5 'TYPE C      :', CNAME,
       /5 'TYPE X      :', HEXA,
       /5 'TYPE STRING :', STRNG.
 HERE
-s2 = <<HERE
+s2=<<HERE
 REPORT TEST.
    DATA a-c type i .
    a->b = 1.
@@ -134,34 +133,72 @@ REPORT TEST.
 *   data:
 a = 1.
 HERE
-s3 = <<HERE
+s3=<<HERE
 REPORT TEST.
 ad->dq = 1.
 *f(a->*).
 HERE
+s4=<<HERE
+REPORT TEST.
+a = b = c.
+HERE
+s5=<<HERE
+REPORT TEST.
+a =     in_source_bo_node_name        = if_fia_acc_adjustment_run=>co_bo_node-root "Assumption that the core bo node is directly under Root
+
+mo_lcp_bo->retrieve_default_node_values(
+  EXPORTING
+    in_association_name           = ls_attribute_map=>core_bo_node_name "Assumption that the core bo node is directly under Root
+    in_source_bo_node_name        = if_fia_acc_adjustment_run=>co_bo_node-root "Assumption that the core bo node is directly under Root
+    in_source_node_id             = mv_eco_root_node_id "Assumption that the core bo node is directly under Root
+
+).
+HERE
+s6=<<HERE
+REPORT TEST.
+mo_mdro_schedule_immediately->schedule_immediately(
+  EXPORTING
+    io_facade   = me->mo_provider_context->get_lcp_facade( )
+  IMPORTING
+    et_messages = lt_message "Don't add this to message handler as we are not interested in TechO's messages
+    et_mdro_root_to_bgjobsch_map = DATA(lt_mdro_root_to_bgjobsch_map)
+).
+HERE
+$ar = []
 #def dump_testcase
     p "==>dump_testcase"
     r = ""
     for i in 0..200
         p i
         begin
-            si = eval("# test case #{i}\ns#{i}")
-            p "testcase:#{si}"
+            si = eval("s#{i}")
+            $ar.push(si)
+            p "==>push s#{i}:#{si}"
+            
         rescue Exception=>e
             p e
             break
         end
         if si !=nil
-            r += "// testcase #{i} \n" + si +"\n"
+            r += "* testcase #{i} \n" + si +"\n"
         end
     end
     save_to_file(r, "cp_testcase.abap")
     #end
 
+#dump_testcase
+  p "===>all test cases:#{$ar.size}"
 if testall != true
-   
-    s = eval("s#{testall}")
-    print s
+    if testall == false || testall ==nil
+        s = $ar.last
+      
+        p "case number:#{$ar.size}"
+        print "===>case:\n#{s}"
+    else
+       # s = eval("s#{testall}") 
+       s = cases[testall]
+    end
+    
 else
 
     r = ""
@@ -236,7 +273,7 @@ end # end of test
 
 
 #=end
-test(3)
+test()
 #dump_testcase
 p "$typedef:#{$typedef.inspect}"
 
