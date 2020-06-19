@@ -10,7 +10,8 @@ class Object
     super
     end
 end
-
+def clear(b)
+end
 def DATA(b)
     b
 end

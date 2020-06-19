@@ -33,7 +33,8 @@ def hash_to_params(hash)
     return ar.join(", ")
 end
 def strInQuote(s)
-    s[1..s.size-2]
+    s= s.strip()
+    return s[1..s.size-2]
 end
 def pdebug(s, stack=0)
     depth = 0
@@ -221,13 +222,21 @@ class Parser < CParser
         super
         
         if @sym == 0.6 # comment
+           
             if @parse_stack.cur[:auto_append]
-              #  p "cmt:#{curString()}", 10
-                 @parse_stack.cur[:src].push("#"+curString()+"\n") if @parse_stack.cur[:no_comments]  == false
+                 #p "cmt:#{curString()}", 10
+                 #p "#"+curString()+"|||\n"
+                 #p @parse_stack.cur[:src].size
+                 #p @parse_stack.cur[:src]
+                  @parse_stack.cur[:src].push("#"+curString()+"\n") if @parse_stack.cur[:no_comments]  == false
+                 
+                  # keep current sym, in case for call for prevString()
+                 sy = @scanner.currSym.clone
                  Get(ignore_crlf)
+                 @scanner.currSym = sy
              end
          end
-
+          p @parse_stack.cur[:src]
     end
     # if stop auto append source, you cannot use method like back(), re() to manipulate the source generating processs
     def stop_autosrc

@@ -317,12 +317,12 @@ class CScanner < CRScanner
             return C_CLASSMinusDATASym
          end
 
-         if EqualStr("COMMON")
-            return C_COMMONSym
-         end
-
          if EqualStr("CONSTANTS")
             return C_CONSTANTSSym
+         end
+
+         if EqualStr("COMMON")
+            return C_COMMONSym
          end
 
          if EqualStr("CENTERED")
@@ -3091,7 +3091,12 @@ class CScanner < CRScanner
             if @ch=='T'
                state=46
             else
-               return C_QuerySym
+               if @ch=='='
+                  state=88
+               else
+                  return C_QuerySym
+               end
+
             end
 
 
@@ -3240,7 +3245,9 @@ class CScanner < CRScanner
             return C_LessLessEqualSym
          when 87
             return C_GreaterGreaterEqualSym
-         when 89
+         when 88
+            return C_QueryEqualSym
+         when 90
             if @ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
                state=22
             else
@@ -3248,7 +3255,7 @@ class CScanner < CRScanner
             end
 
 
-         when 90
+         when 91
             if @ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
                state=22
             else
@@ -3261,12 +3268,12 @@ class CScanner < CRScanner
             end
 
 
-         when 91
+         when 92
             if @ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
                state=22
             else
                if @ch=='<'
-                  state=92
+                  state=93
                else
                   if @ch=='>'
                      state=70
@@ -3284,7 +3291,7 @@ class CScanner < CRScanner
             end
 
 
-         when 92
+         when 93
             if @ch=='='
                state=86
             else
@@ -3658,7 +3665,12 @@ class CScanner < CRScanner
                if @ch=='T'
                   state=46
                else
-                  return C_QuerySym
+                  if @ch=='='
+                     state=88
+                  else
+                     return C_QuerySym
+                  end
+
                end
 
 
@@ -3807,7 +3819,9 @@ class CScanner < CRScanner
                return C_LessLessEqualSym
             when 87
                return C_GreaterGreaterEqualSym
-            when 89
+            when 88
+               return C_QueryEqualSym
+            when 90
                if @ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
                   state=22
                else
@@ -3815,7 +3829,7 @@ class CScanner < CRScanner
                end
 
 
-            when 90
+            when 91
                if @ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
                   state=22
                else
@@ -3828,12 +3842,12 @@ class CScanner < CRScanner
                end
 
 
-            when 91
+            when 92
                if @ch>='A'&&@ch<='Z'||@ch=='_'||@ch>='a'&&@ch<='z'
                   state=22
                else
                   if @ch=='<'
-                     state=92
+                     state=93
                   else
                      if @ch=='>'
                         state=70
@@ -3851,7 +3865,7 @@ class CScanner < CRScanner
                end
 
 
-            when 92
+            when 93
                if @ch=='='
                   state=86
                else

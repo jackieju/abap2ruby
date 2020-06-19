@@ -59,13 +59,15 @@ class Scope
     end
     
     def add_var(v)
-        p "add_var:#{v.name}", 20
+        p "add_var:#{v.name} to #{@class_name}@#{self}", 20
         if @name == "class"
             v.newname = "@#{v.newname}"
+            p "add_var:#{v.name} class var #{v.newname}"
         end
         @vars[v.name] = v
         return v.newname
     end
+    
     
     def get_var(k)
         return @vars[k]
@@ -154,6 +156,9 @@ m[:src] = "" if m[:src] ==nil
             method_desc[:name] = method_name
             method_desc[:args] = args
             method_desc[:head] = head if head != nil
+            if method_desc[:head] == nil
+                method_desc[:head] = "(_i:nil,_e:nil)"
+            end
             
             if src && src.strip != ""
                 method_desc[:src] =src
@@ -168,6 +173,7 @@ m[:src] = "" if m[:src] ==nil
                 end
             }
             
+            
         else
             @methods[method_sig]={
                 :name=>method_name,
@@ -176,7 +182,11 @@ m[:src] = "" if m[:src] ==nil
                 :decoration=>acc,
                 :head=>head
             }
+            if @methods[method_sig][:head] == nil
+                @methods[method_sig][:head] = "(_i:nil,_e:nil)"
+            end
         end
+        
         p("method #{method_sig} added to #{self.class_name}@#{self}:#{@methods[method_sig].inspect} \n")
       #  p(@methods.inspect)
       #  if self.class != ModuleDef

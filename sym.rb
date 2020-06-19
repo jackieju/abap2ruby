@@ -165,17 +165,17 @@ C_DEFAULTSym = 160 # "DEFAULT"
 C_RANGESym = 161 # "RANGE" 
 C_STATICSSym = 162 # "STATICS" 
 C_CLASSMinusDATASym = 163 # "CLASS-DATA" 
-C_BEGINSym = 164 # "BEGIN" 
-C_COMMONSym = 165 # "COMMON" 
-C_PARTSym = 166 # "PART" 
-C_READMinusONLYSym = 167 # "READ-ONLY" 
-C_OCCURSSym = 168 # "OCCURS" 
-C_ENDSym = 169 # "END" 
-C_VALIDSym = 170 # "VALID" 
-C_BETWEENSym = 171 # "BETWEEN" 
-C_VALUESym = 172 # "VALUE" 
-C_ISSym = 173 # "IS" 
-C_CONSTANTSSym = 174 # "CONSTANTS" 
+C_CONSTANTSSym = 164 # "CONSTANTS" 
+C_BEGINSym = 165 # "BEGIN" 
+C_COMMONSym = 166 # "COMMON" 
+C_PARTSym = 167 # "PART" 
+C_READMinusONLYSym = 168 # "READ-ONLY" 
+C_OCCURSSym = 169 # "OCCURS" 
+C_ENDSym = 170 # "END" 
+C_VALIDSym = 171 # "VALID" 
+C_BETWEENSym = 172 # "BETWEEN" 
+C_VALUESym = 173 # "VALUE" 
+C_ISSym = 174 # "IS" 
 C_WRITESym = 175 # "WRITE" 
 C_SlashSym = 176 # "/" 
 C_StarStarSym = 177 # "**" 
@@ -699,14 +699,15 @@ C_UparrowEqualSym = 694 # "^="
 C_BarEqualSym = 695 # "|=" 
 C_LessLessEqualSym = 696 # "<<=" 
 C_GreaterGreaterEqualSym = 697 # ">>=" 
-C_BangSym = 698 # "!" 
-C_INSTANCESym = 699 # "INSTANCE" 
-C_BOUNDSym = 700 # "BOUND" 
-C_ASSIGNEDSym = 701 # "ASSIGNED" 
-C_SUPPLIEDSym = 702 # "SUPPLIED" 
-C_REQUESTEDSym = 703 # "REQUESTED" 
-No_Sym = 704 # not 
-C_PreProcessorSym = 705 # PreProcessor 
+C_QueryEqualSym = 698 # "?=" 
+C_BangSym = 699 # "!" 
+C_INSTANCESym = 700 # "INSTANCE" 
+C_BOUNDSym = 701 # "BOUND" 
+C_ASSIGNEDSym = 702 # "ASSIGNED" 
+C_SUPPLIEDSym = 703 # "SUPPLIED" 
+C_REQUESTEDSym = 704 # "REQUESTED" 
+No_Sym = 705 # not 
+C_PreProcessorSym = 706 # PreProcessor 
 
 
 MAXT =	No_Sym 	# Max Terminals */
@@ -878,6 +879,7 @@ SYMS=[
 "RANGE",
 "STATICS",
 "CLASS-DATA",
+"CONSTANTS",
 "BEGIN",
 "COMMON",
 "PART",
@@ -888,7 +890,6 @@ SYMS=[
 "BETWEEN",
 "VALUE",
 "IS",
-"CONSTANTS",
 "WRITE",
 "/",
 "**",
@@ -1412,6 +1413,7 @@ SYMS=[
 "|=",
 "<<=",
 ">>=",
+"?=",
 "!",
 "INSTANCE",
 "BOUND",

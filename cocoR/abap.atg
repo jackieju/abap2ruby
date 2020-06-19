@@ -47,7 +47,13 @@ PRODUCTIONS
     
     Exps =  Expression{Expression} .
     
-    Name = ((identifier|AllowedKeywords) | ("("(identifier|AllowedKeywords)")") ) (. src(fixName(src())).).
+    Name = (identifier|AllowedKeywords) (. src(fixName(src())).).
+  /*  Name = ((identifier|AllowedKeywords) | ("("(identifier|AllowedKeywords)")") ) (. src(fixName(src())).).*/
+    
+    /* in case: keyword = xxx.
+    have to no exclude those keyword can be in start of line
+    */
+    NameInPrimary = ((identifier|AllowedKeywordsExclude) | ("("(identifier|AllowedKeywordsExclude)")") ) (. src(fixName(src())).).
     
     C                  =      (.in_scope(@root_class).){ ReportDef | FunctionDef | ClassStatement }.
     
@@ -103,13 +109,13 @@ PRODUCTIONS
                              | MethodsStatement
                              | FunctionDef
                              /*| DescribeStatement*/
-                             | MessasgeStatement
+                             | MessageStatement
                             /* | RefreshStatement */
                              | SearchStatement
                              | stAPPEND
                              | stSPLIT
                              | stRAISE
-                             | stCONSTANTS
+                            /* | stCONSTANTS*/
                              | stMOVE
                              | stMOVE_CORRESPONDING
                              | stWITH
@@ -454,7 +460,7 @@ stRAISE = "RAISE"
    
 .
 
-MessasgeStatement = "MESSAGE"
+MessageStatement = "MESSAGE"
          {(
          
          ( "ID" identifier "TYPE" identifier "NUMBER" number )
@@ -603,15 +609,14 @@ LikeDes =        "LIKE"
                                          
                    ).
  
-                 
-VariableDefineStatement =  ("DATA"|"STATICS" | "CLASS-DATA" ) 
+VariableDefineStatement =  ("DATA"|"STATICS" | "CLASS-DATA" | "CONSTANTS") 
     (
             ( 
                 "BEGIN" "OF" ( "COMMON" "PART" identifier| identifier ["READ-ONLY"] ["OCCURS" number] )
                 |
                 "END" "OF" ("COMMON" "PART" identifier | identifier ["VALID" "BETWEEN" Expression "AND" Expression] )
                 | 
-                identifier (.name = prevString
+                Name (.name = lus
                     p "var name=#{name}"
                     .){ "(" number  ")" } 
                     
@@ -646,10 +651,10 @@ VariableDefineStatement =  ("DATA"|"STATICS" | "CLASS-DATA" )
                     
 
 
-
+             /*
 stCONSTANTS = "CONSTANTS" identifier ( TypeDes | 
                LikeDes
-                ) "VALUE" { Expression | "IS" "INITIAL"(.back();re(".init()").) } "." .
+                ) "VALUE" { Expression | "IS" "INITIAL"(.back();re(".init()").) } "." .*/
 
 
 WriteStatement =   (. param_hash = {} .) "WRITE" 
@@ -717,7 +722,7 @@ WriteStatement =   (. param_hash = {} .) "WRITE"
   .)
   . 
 
-  AssignmentStatement =  Expression  .
+  AssignmentStatement =  Expression (.add_src("\n").) .
  /*
  BreakStatement       = "break"   .*/
 
@@ -1191,7 +1196,7 @@ ClassStatement = "CLASS" identifier
                                   [( "PUBLIC"|"PROTECTED"|"PRIVATE")]
                                   {
                                  
-                                   ["INHERITING" "FROM" identifier (.  cls.parent = prevString .)] 
+                                   ["INHERITING" "FROM" identifier (.  cls.parent = valid_class_name(prevString) .)] 
                                    ["ABSTRACT"] 
                                    ["FINAL"] 
                                    ["CREATE" {"PUBLIC"|"PROTECTED"|"PRIVATE"}] 
@@ -1279,7 +1284,7 @@ MethodsStatement =  ("METHODS" | "CLASS-METHODS") identifier["~"identifier]
                                       |
                                           identifier (.impar.push(prevString).)
                                   )
-                                   Typing ["OPTIONAL"| "DEFAULT" identifier] 
+                                   Typing ["OPTIONAL"| "DEFAULT" Expression] 
                                  } 
                               ["PREFERRED" "PARAMETER" identifier] ] 
                 [ "EXPORTING" {
@@ -1310,8 +1315,8 @@ MethodsStatement =  ("METHODS" | "CLASS-METHODS") identifier["~"identifier]
       else
           impar = []
       end
-      impar.push("_i:")
-      impar.push("_e:")
+      impar.push("_i:nil")
+      impar.push("_e:nil")
       pars = impar.join(",")
       
           if classdef
@@ -1336,7 +1341,7 @@ stADD = "ADD" identifier (
 
 stADD_CORRESPONDING = "ADD-CORRESPONDING" identifier "TO" identifier".".
 
-stALIASES = "ALIASES" identifier "FOR" identifier"~"identifier".".
+stALIASES = "ALIASES" identifier "FOR" identifier ".".
 
 stASSERT = "ASSERT" [ ["ID" identifier (.cp[:id]=prevString.)["SUBKEY" identifier(.cp[:subkey]=prevString.)]] 
          ["FIELDS" identifier (.cp[:fields]=lus.)] 
@@ -1414,13 +1419,18 @@ CallDatabaseProcedure =  "DATABASE" "PROCEDURE" "("identifier")"
               (   ["EXPORTING"  {Expression} ] 
                     ["IMPORTING"  {Expression}  ] 
         |  ["PARAMETER-TABLE" identifier]  ) .
-        
+
+MethodName = ( (string1 (.name=strInQuote(prevString).)| identifier(.name=prevString.)) |  "("(string1 (.name=strInQuote(prevString).)| identifier(.name=prevString;.))")" ) (.src(name).).
+
 CallMethod =  "METHOD" 
         (. param_hash = {};name = "".)
         ( 
             (
-               /* ["("](string1(.name+=strInQuote(prevString).)|identifier(.name+=prevString;.))[")"] [ ("->"|"=>") ["("](string1(.name+="."+strInQuote(prevString).)| identifier(.name+="."+prevString.){"~"identifier(.name2+="_2_#{prevString}".)} ) [")"] ]*/
-               Expression(.name=lus.)
+              MethodName(.name+=lus.) {("->"|"=>") MethodName(.name+=".#{lus}".)}
+               
+                
+               /*["("](string1(.name+=strInQuote(prevString).)|identifier(.name+=prevString;.))[")"] [ ("->"|"=>") ["("](string1(.name+="."+strInQuote(prevString).)| identifier(.name+="."+prevString.)) [")"] ]
+                Expression(.name=lus.)*/
             |    
                 "OF" identifier identifier ["=" identifier] 
              ) 
@@ -1649,7 +1659,7 @@ stEND_OF_PAGE = "END-OF-PAGE"".".
 stEND_OF_SELECTION = "END-OF-SELECTION"".".
 
 stEXIT = "EXIT" [(  "FROM" "SQL" |  "FROM" "STEP-LOOP" )] "."
-        (. src("break").)
+        (. src("return").)
 .
 
 stEXPORT = "EXPORT" ( 
@@ -2211,21 +2221,24 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
 
 
 
-  PostFixExp           =  (.no_space.) Primary (. pri = lus .)
-                         { "[" [Expression] "]"
+  PostFixExp           =  (.no_space;r="".) Primary (. 
+                                                      pri = lus
+                                                      r += pri
+                                                       .)
+                         { "[" [Expression] "]" (.r+="[#{lus}]".)
                           | FunctionCall (.
-                              if pri == "DATA"
-                                  src(lus[1..lus.size-2])
+                              if r == "DATA"
+                                 r = lus[1..lus.size-2]
                               else
-                                  src("#{pri}#{lus}")
+                                  r+="#{lus}"
                               end
                               .)
                         /*  | "~" identifier
                           | "-" identifier*/
-                          | "->"(.re(".").) identifier 
-                          | "=>"(.re(".").) identifier 
-                          | "++"
-                          | "--"
+                          | "->" identifier (.r+=".#{prevString}".)
+                          | "=>" identifier  (.r+=".#{prevString}".)
+                          | "++" (.r+="++".)
+                          | "--"(.r+="--".)
                         /*  | "IS"(.re(".is(");br = true.) ["NOT"(.back_src();re(".isnot(");_not=true.)] ["INITIAL"(.back_src();if _not 
   re(".isInit(")
   else
@@ -2233,9 +2246,14 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
   end
   add_src(")") if br
   .)]*/ 
-                         | "IS"(.back();s=".is".) ["NOT" (.back();s+="Not";.)] PredefinedConstant (.s+=lus;add_src("#{s}()").)
+                         | "IS"(.s=".is".) ["NOT" (.s+="Not";.)] PredefinedConstant (.s+=lus;r+="#{s}()".)
                          }   
-                         (. no_space(false).) .   
+                         (. 
+                             no_space(false)
+                             if r != ""
+                                 src(r)
+                             end
+                        .) .   
   
   Primary              =  string1{string1}
                            | "NEW"(.back().) Creator
@@ -2243,7 +2261,15 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
                            | number 
                            | "(" Expression ")" 
                            | PredefinedConstant 
-                           | Name
+                           | NameInPrimary (.  
+                                                       name = lus
+                                                       v = find_var(name)
+                                                      p "find:#{name}:#{v.inspect}"
+                                                      if v
+                                                         name  = v.newname
+                                                      end
+                                                      src(name)
+                           .)
                           /* | ["<"]identifier[">"] 
                            | "/" identifier {"/" identifier }*/
                               .
@@ -2325,13 +2351,14 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
                                                        | number 
                                                        | "(" LogExp ")" 
                                                        | PredefinedConstant 
-                                                       | Name
+                                                       | NameInPrimary
                                                       /* | ["<"]identifier[">"] 
                                                        | "/" identifier {"/" identifier }*/
                                                           .                          
                               
                               
-  AllowedKeywords = "DATA". 
+  AllowedKeywordsExclude = "DATA" . 
+  AllowedKeywords = "DATA" | "MESSAGE". 
   FunctionCall        =  "(" (.stop_autosrc;no_comments.)
   (
        {
@@ -2365,7 +2392,7 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
   /*ActualParameters    =    Expression   { "," Expression   }      .*/
 
   AssignmentOperator   =    "="  | "*=" | "/=" | "%=" | "+=" | "-=" | "&="
-                         | "^=" | "|=" | "<<=" | ">>="    .
+                         | "^=" | "|=" | "<<=" | ">>=" | "?="(.re("=").)   .
 
   UnaryOperator        =  "+" | MinusOperator | "*" | "!" | "&" | "~" | "NOT"(.re("!").) |  "INSTANCE" "OF" | "IN"    .
 

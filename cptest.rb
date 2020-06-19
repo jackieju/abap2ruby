@@ -189,18 +189,17 @@ $ar = []
 #dump_testcase
   p "===>all test cases:#{$ar.size}"
 if testall != true
-    if testall == false || testall ==nil
+    if testall == false || testall == nil
         s = $ar.last
       
         p "case number:#{$ar.size}"
         print "===>case:\n#{s}"
     else
        # s = eval("s#{testall}") 
-       s = cases[testall]
+       s = $ar[testall]
     end
     
 else
-
     r = ""
     for i in 0..200
         begin
@@ -273,7 +272,7 @@ end # end of test
 
 
 #=end
-test()
+test(5)
 #dump_testcase
 p "$typedef:#{$typedef.inspect}"
 
