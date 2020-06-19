@@ -111,22 +111,22 @@ class Cl_bsa_service_provider_co
          }
          if sy.subrc == 0
             loop(at:in_messages, into:@lo_message){
-               if lo_message.origin_location.bo_name != in_message_handler.bo_name
-                  ls_origin_location.bo_name = in_message_handler.bo_name
+               if @lo_message.origin_location.bo_name != in_message_handler.bo_name
+                  @ls_origin_location.bo_name = in_message_handler.bo_name
 
 
                   #"change lifetime to transition - no other chance, because state is not allowed
                   #"without location
 
-                  @lo_mapped_message = lo_message.copy_with_new_location(new_origin_location:@ls_origin_location, new_message_lifetime:cm_esi_root.co_lifetime_transition)
+                  @lo_mapped_message = @lo_message.copy_with_new_location(new_origin_location:@ls_origin_location, new_message_lifetime:cm_esi_root.co_lifetime_transition)
 
 
 
-                  append(from:@lo_mapped_message, to:lt_message)
+                  append(from:@lo_mapped_message, to:@lt_message)
 
 
                else
-                  append(from:@lo_message, to:lt_message)
+                  append(from:@lo_message, to:@lt_message)
 
 
                end
@@ -315,7 +315,7 @@ class Cl_bsa_service_provider_co
       lt_messages = cm_esi_root.tt_esi_root.new
 
       begin
-         mo_adaptation_handler.check(_i:{
+         @mo_adaptation_handler.check(_i:{
             "out_messages" => @lt_messages,
          }, _e:{
             "in_bo_node_name" => in_bo_node_name,
@@ -356,16 +356,16 @@ class Cl_bsa_service_provider_co
 
 
 
-      lx_bsa_runtime = cx_bsa_runtime.new
+      @lx_bsa_runtime = cx_bsa_runtime.new
 
-      lx_root = cx_root.new
+      @lx_root = cx_root.new
 
-      lt_messages = cm_esi_root.tt_esi_root.new
+      @lt_messages = cm_esi_root.tt_esi_root.new
 
       ls_change_notifs = if_esf_types.ty_change_notifications.new
 
       begin
-         mo_adaptation_handler.check_and_determine(_i:{
+         @mo_adaptation_handler.check_and_determine(_i:{
             "out_messages" => @lt_messages,
             "out_change_notifications" => @ls_change_notifs,
          }, _e:{
@@ -409,12 +409,12 @@ class Cl_bsa_service_provider_co
 
 
 
-      lx_bsa_runtime = cx_bsa_runtime.new
+      @lx_bsa_runtime = cx_bsa_runtime.new
 
-      lx_root = cx_root.new
+      @lx_root = cx_root.new
 
       begin
-         mo_adaptation_handler.convert_keys(_i:{
+         @mo_adaptation_handler.convert_keys(_i:{
             "out_target_keys" => out_target_keys,
             "out_failed" => out_failed,
          }, _e:{
@@ -455,12 +455,12 @@ class Cl_bsa_service_provider_co
 
 
 
-      lx_bsa_runtime = cx_bsa_runtime.new
+      @lx_bsa_runtime = cx_bsa_runtime.new
 
-      lx_root = cx_root.new
+      @lx_root = cx_root.new
 
       begin
-         mo_adaptation_handler.convert_key_to_node_id(_i:{
+         @mo_adaptation_handler.convert_key_to_node_id(_i:{
             "out_key_mapping" => out_key_mapping,
          }, _e:{
             "in_bo_node_name" => in_bo_node_name,
@@ -500,16 +500,16 @@ class Cl_bsa_service_provider_co
 
 
 
-      lx_bsa_runtime = cx_bsa_runtime.new
+      @lx_bsa_runtime = cx_bsa_runtime.new
 
-      lx_root = cx_root.new
+      @lx_root = cx_root.new
 
-      lt_messages = cm_esi_root.tt_esi_root.new
+      @lt_messages = cm_esi_root.tt_esi_root.new
 
-      ls_change_notifs = if_esf_types.ty_change_notifications.new
+      @ls_change_notifs = if_esf_types.ty_change_notifications.new
 
       begin
-         mo_adaptation_handler.modify(_i:{
+         @mo_adaptation_handler.modify(_i:{
             "out_messages" => @lt_messages,
             "out_change_notifications" => @ls_change_notifs,
          }, _e:{
@@ -551,13 +551,13 @@ class Cl_bsa_service_provider_co
 
 
 
-      lx_bsa_runtime = cx_bsa_runtime.new
+      @lx_bsa_runtime = cx_bsa_runtime.new
 
-      lx_root = cx_root.new
+      @lx_root = cx_root.new
 
-      lt_messages = cm_esi_root.tt_esi_root.new
+      @lt_messages = cm_esi_root.tt_esi_root.new
 
-      ls_change_notifs = if_esf_types.ty_change_notifications.new
+      @ls_change_notifs = if_esf_types.ty_change_notifications.new
 
       if in_edit_mode != if_esf_types.co_read_only
          assert(o:in_buffer_sync_handler .isBOUND())
@@ -567,11 +567,11 @@ class Cl_bsa_service_provider_co
       end
 
       begin
-         mo_adaptation_handler.retrieve(_i:{
+         @mo_adaptation_handler.retrieve(_i:{
             "out_data" => out_data,
             "out_failed_node_ids" => out_failed_node_ids,
             "out_messages" => @lt_messages,
-            "out_sync_notifications" => ls_change_notifs.sync_notifications,
+            "out_sync_notifications" => @ls_change_notifs.sync_notifications,
          }, _e:{
             "in_bo_node_name" => in_bo_node_name,
             "in_node_ids" => in_node_ids,
@@ -583,7 +583,7 @@ class Cl_bsa_service_provider_co
          me.put_messages_into_handler(in_message_handler:in_message_handler, in_messages:@lt_messages)
 
          if in_buffer_sync_handler .isBOUND()
-            me.put_sync_notifs_into_handler(in_sync_handler:in_buffer_sync_handler, in_sync_notifications:ls_change_notifs.sync_notifications)
+            me.put_sync_notifs_into_handler(in_sync_handler:in_buffer_sync_handler, in_sync_notifications:@ls_change_notifs.sync_notifications)
 
 
 
@@ -622,13 +622,13 @@ class Cl_bsa_service_provider_co
 
 
 
-      lx_bsa_runtime = cx_bsa_runtime.new
+      @lx_bsa_runtime = cx_bsa_runtime.new
 
-      lx_root = cx_root.new
+      @lx_root = cx_root.new
 
-      lt_messages = cm_esi_root.tt_esi_root.new
+      @lt_messages = cm_esi_root.tt_esi_root.new
 
-      ls_change_notifs = if_esf_types.ty_change_notifications.new
+      @ls_change_notifs = if_esf_types.ty_change_notifications.new
 
       if in_edit_mode != if_esf_types.co_read_only
          assert(o:in_buffer_sync_handler .isBOUND())
@@ -638,12 +638,12 @@ class Cl_bsa_service_provider_co
       end
 
       begin
-         mo_adaptation_handler.retrieve_by_association(_i:{
+         @mo_adaptation_handler.retrieve_by_association(_i:{
             "out_links" => out_links,
             "out_data" => out_data,
             "out_failed_source_node_ids" => out_failed_source_node_ids,
             "out_messages" => @lt_messages,
-            "out_sync_notifications" => ls_change_notifs.sync_notifications,
+            "out_sync_notifications" => @ls_change_notifs.sync_notifications,
          }, _e:{
             "in_bo_node_name" => in_bo_node_name,
             "in_association_name" => in_association_name,
@@ -659,7 +659,7 @@ class Cl_bsa_service_provider_co
          me.put_messages_into_handler(in_message_handler:in_message_handler, in_messages:@lt_messages)
 
          if in_buffer_sync_handler .isBOUND()
-            me.put_sync_notifs_into_handler(in_sync_handler:in_buffer_sync_handler, in_sync_notifications:ls_change_notifs.sync_notifications)
+            me.put_sync_notifs_into_handler(in_sync_handler:in_buffer_sync_handler, in_sync_notifications:@ls_change_notifs.sync_notifications)
 
 
 
@@ -698,15 +698,15 @@ class Cl_bsa_service_provider_co
 
 
 
-      lx_bsa_runtime = cx_bsa_runtime.new
+      @lx_bsa_runtime = cx_bsa_runtime.new
 
-      lx_root = cx_root.new
+      @lx_root = cx_root.new
 
       ls_properties = if_esf_types.ty_properties.new
 
       assert(o:in_property_handler .isBOUND())
       begin
-         mo_adaptation_handler.retrieve_default_node_values(_i:{
+         @mo_adaptation_handler.retrieve_default_node_values(_i:{
             "out_data" => out_data,
             "out_properties" => @ls_properties,
          }, _e:{
@@ -755,14 +755,14 @@ class Cl_bsa_service_provider_co
 
 
 
-      lx_bsa_runtime = cx_bsa_runtime.new
+      @lx_bsa_runtime = cx_bsa_runtime.new
 
-      lx_root = cx_root.new
+      @lx_root = cx_root.new
 
-      ls_properties = if_esf_types.ty_properties.new
+      @ls_properties = if_esf_types.ty_properties.new
 
       begin
-         mo_adaptation_handler.retrieve_properties(_i:{
+         @mo_adaptation_handler.retrieve_properties(_i:{
             "out_properties" => @ls_properties,
          }, _e:{
             "in_bo_node_name" => in_bo_node_name,
@@ -805,12 +805,12 @@ class Cl_bsa_service_provider_co
 
 
 
-      lx_bsa_runtime = cx_bsa_runtime.new
+      @lx_bsa_runtime = cx_bsa_runtime.new
 
-      lx_root = cx_root.new
+      @lx_root = cx_root.new
 
       begin
-         mo_adaptation_handler.retrieve_root_node_id(_i:{
+         @mo_adaptation_handler.retrieve_root_node_id(_i:{
             "out_links" => out_links,
          }, _e:{
             "in_bo_node_name" => in_bo_node_name,
@@ -849,16 +849,16 @@ class Cl_bsa_service_provider_co
 
 
 
-      lx_bsa_runtime = cx_bsa_runtime.new
+      @lx_bsa_runtime = cx_bsa_runtime.new
 
-      lx_root = cx_root.new
+      @lx_root = cx_root.new
 
-      lt_messages = cm_esi_root.tt_esi_root.new
+      @lt_messages = cm_esi_root.tt_esi_root.new
 
-      ls_change_notifs = if_esf_types.ty_change_notifications.new
+      @ls_change_notifs = if_esf_types.ty_change_notifications.new
 
       begin
-         mo_adaptation_handler.execute_action(_i:{
+         @mo_adaptation_handler.execute_action(_i:{
             "out_messages" => @lt_messages,
             "out_change_notifications" => @ls_change_notifs,
          }, _e:{
@@ -904,12 +904,12 @@ class Cl_bsa_service_provider_co
 
 
 
-      lx_bsa_runtime = cx_bsa_runtime.new
+      @lx_bsa_runtime = cx_bsa_runtime.new
 
-      lx_root = cx_root.new
+      @lx_root = cx_root.new
 
       begin
-         mo_adaptation_handler.retrieve_default_action_param(_i:{
+         @mo_adaptation_handler.retrieve_default_action_param(_i:{
             "out_action_parameters" => out_action_parameters,
          }, _e:{
             "in_bo_node_name" => in_bo_node_name,
@@ -948,7 +948,7 @@ class Cl_bsa_service_provider_co
 
 
 
-      lx_bsa_runtime = cx_bsa_runtime.new
+      @lx_bsa_runtime = cx_bsa_runtime.new
 
       begin
          @mo_adaptation_handler = cl_bsa_factory.get_adaptation_handler_for_co(in_bo_name:in_bo_name, in_provider_context:in_provider_context)
@@ -1052,14 +1052,14 @@ class Cl_bsa_service_provider_co
 
 
 
-      lx_bsa_runtime = cx_bsa_runtime.new
+      @lx_bsa_runtime = cx_bsa_runtime.new
 
-      lx_root = cx_root.new
+      @lx_root = cx_root.new
 
-      lt_messages = cm_esi_root.tt_esi_root.new
+      @lt_messages = cm_esi_root.tt_esi_root.new
 
       begin
-         mo_adaptation_handler.if_esf_lcp_i_query(_i:{
+         @mo_adaptation_handler.if_esf_lcp_i_query(_i:{
             "out_node_ids" => out_node_ids,
             "out_data" => out_data,
             "out_query_info" => out_query_info,
@@ -1108,12 +1108,12 @@ class Cl_bsa_service_provider_co
 
 
 
-      lx_bsa_runtime = cx_bsa_runtime.new
+      @lx_bsa_runtime = cx_bsa_runtime.new
 
-      lx_root = cx_root.new
+      @lx_root = cx_root.new
 
       begin
-         mo_adaptation_handler.retrieve_default_query_param(_i:{
+         @mo_adaptation_handler.retrieve_default_query_param(_i:{
             "out_selection_parameters" => out_selection_parameters,
          }, _e:{
             "in_bo_node_name" => in_bo_node_name,
@@ -1312,14 +1312,14 @@ class Cl_bsa_service_provider_co
 
 
 
-      lx_bsa_runtime = cx_bsa_runtime.new
+      @lx_bsa_runtime = cx_bsa_runtime.new
 
-      lx_root = cx_root.new
+      @lx_root = cx_root.new
 
       #**********************************************************************
 
       begin
-         mo_adaptation_handler.retrieve_action_code_values(_i:{
+         @mo_adaptation_handler.retrieve_action_code_values(_i:{
             "out_code_values" => out_code_values,
          }, _e:{
             "in_bo_node_name" => in_bo_node_name,
@@ -1361,14 +1361,14 @@ class Cl_bsa_service_provider_co
 
 
 
-      lx_bsa_runtime = cx_bsa_runtime.new
+      @lx_bsa_runtime = cx_bsa_runtime.new
 
-      lx_root = cx_root.new
+      @lx_root = cx_root.new
 
       #**********************************************************************
 
       begin
-         mo_adaptation_handler.retrieve_action_value_set(_i:{
+         @mo_adaptation_handler.retrieve_action_value_set(_i:{
             "out_value_set_node_ids" => out_value_set_node_ids,
          }, _e:{
             "in_bo_node_name" => in_bo_node_name,
@@ -1411,14 +1411,14 @@ class Cl_bsa_service_provider_co
 
 
 
-      lx_bsa_runtime = cx_bsa_runtime.new
+      @lx_bsa_runtime = cx_bsa_runtime.new
 
-      lx_root = cx_root.new
+      @lx_root = cx_root.new
 
       #**********************************************************************
 
       begin
-         mo_adaptation_handler.retrieve_code_values(_i:{
+         @mo_adaptation_handler.retrieve_code_values(_i:{
             "out_code_values" => out_code_values,
          }, _e:{
             "in_bo_node_name" => in_bo_node_name,
@@ -1460,14 +1460,14 @@ class Cl_bsa_service_provider_co
 
 
 
-      lx_bsa_runtime = cx_bsa_runtime.new
+      @lx_bsa_runtime = cx_bsa_runtime.new
 
-      lx_root = cx_root.new
+      @lx_root = cx_root.new
 
       #**********************************************************************
 
       begin
-         mo_adaptation_handler.retrieve_query_code_values(_i:{
+         @mo_adaptation_handler.retrieve_query_code_values(_i:{
             "out_code_values" => out_code_values,
          }, _e:{
             "in_bo_node_name" => in_bo_node_name,
@@ -1508,14 +1508,14 @@ class Cl_bsa_service_provider_co
 
 
 
-      lx_bsa_runtime = cx_bsa_runtime.new
+      @lx_bsa_runtime = cx_bsa_runtime.new
 
-      lx_root = cx_root.new
+      @lx_root = cx_root.new
 
       #**********************************************************************
 
       begin
-         mo_adaptation_handler.retrieve_query_value_set(_i:{
+         @mo_adaptation_handler.retrieve_query_value_set(_i:{
             "out_value_set_node_ids" => out_value_set_node_ids,
          }, _e:{
             "in_bo_node_name" => in_bo_node_name,
@@ -1557,14 +1557,14 @@ class Cl_bsa_service_provider_co
 
 
 
-      lx_bsa_runtime = cx_bsa_runtime.new
+      @lx_bsa_runtime = cx_bsa_runtime.new
 
-      lx_root = cx_root.new
+      @lx_root = cx_root.new
 
       #**********************************************************************
 
       begin
-         mo_adaptation_handler.retrieve_value_set(_i:{
+         @mo_adaptation_handler.retrieve_value_set(_i:{
             "out_value_set_node_ids" => out_value_set_node_ids,
          }, _e:{
             "in_bo_node_name" => in_bo_node_name,

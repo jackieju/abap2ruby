@@ -47,13 +47,39 @@ PRODUCTIONS
     
     Exps =  Expression{Expression} .
     
-    Name = (identifier|AllowedKeywords) (. src(fixName(src())).).
+    Name = (identifier|AllowedKeywords)  (. name=fixName(src()).)
+                            (.  
+                                                        #  name = lus
+                                                          ar = name.split(".")
+                                                          tail = ""
+                                                          tail = "."+ar[1..ar.size-1].join(".") if ar.size>1
+                                                          v = find_var(ar[0])
+                                                         p "find:#{name}:#{v.inspect}"
+                                                         if v
+                                                            name  = v.newname+tail
+                                                         end
+                                                         src(name)
+                              .)
+                                .
   /*  Name = ((identifier|AllowedKeywords) | ("("(identifier|AllowedKeywords)")") ) (. src(fixName(src())).).*/
     
     /* in case: keyword = xxx.
     have to no exclude those keyword can be in start of line
     */
-    NameInPrimary = ((identifier|AllowedKeywordsExclude) | ("("(identifier|AllowedKeywordsExclude)")") ) (. src(fixName(src())).).
+    NameInPrimary = ((identifier|AllowedKeywordsExclude) | ("("(identifier|AllowedKeywordsExclude)")") ) (. name=fixName(src()).)
+                            (.  
+                                                        #  name = lus
+                                                          ar = name.split(".")
+                                                          tail = ""
+                                                          tail = "."+ar[1..ar.size-1].join(".") if ar.size>1
+                                                          v = find_var(ar[0])
+                                                         p "find:#{name}:#{v.inspect}"
+                                                         if v
+                                                            name  = v.newname+tail
+                                                         end
+                                                         src(name)
+                              .)
+    .
     
     C                  =      (.in_scope(@root_class).){ ReportDef | FunctionDef | ClassStatement }.
     
@@ -2261,15 +2287,7 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
                            | number 
                            | "(" Expression ")" 
                            | PredefinedConstant 
-                           | NameInPrimary (.  
-                                                       name = lus
-                                                       v = find_var(name)
-                                                      p "find:#{name}:#{v.inspect}"
-                                                      if v
-                                                         name  = v.newname
-                                                      end
-                                                      src(name)
-                           .)
+                           | NameInPrimary
                           /* | ["<"]identifier[">"] 
                            | "/" identifier {"/" identifier }*/
                               .
@@ -2296,9 +2314,9 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
                                                       )  
                               .
 
-                             LogRelationExp          =    LogShiftExp    { 
-                                                          ( "<" | "LT"  | ">" | "GT" | "<=" | "LE" | ">=" | "GE" | "CO" | "CN" | "CA" | "NA" | "CS" | "NS" | "CP" | "NP" |"BYTE-CO" | "BYTE-CN" | "BYTE-CA" | "BYTE-NA" | "BYTE-CS" | "BYTE-NS" )  
-                                                           LogShiftExp   }   .
+                             LogRelationExp          =    LogShiftExp   { (.br=false.)
+                                                          ( "<" | "LT"  | ">" | "GT" | "<=" | "LE" | ">=" | "GE" | "CO" | "CN" | "CA" | "NA" | "CS" | "NS" | "CP" | "NP"(.re(".include?(");br=true;.) |"BYTE-CO" | "BYTE-CN" | "BYTE-CA" | "BYTE-NA" | "BYTE-CS" | "BYTE-NS" )  
+                                                           LogShiftExp (. re("#{lus})") if br.)  }   .
 
                               LogShiftExp             =  LogAddExp      { ( "<<" | ">>" ) LogAddExp }       .
               

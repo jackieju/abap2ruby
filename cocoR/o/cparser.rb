@@ -49,7 +49,20 @@ class CParser < CRRParser
       end
 
 
-      src(fixName(src()));
+      name=fixName(src());
+
+
+
+      #name = lus
+      ar = name.split(".")
+      tail = ""
+      tail = "."+ar[1..ar.size-1].join(".") if ar.size>1
+      v = find_var(ar[0])
+      p "find:#{name}:#{v.inspect}"
+      if v
+         name  = v.newname+tail
+      end
+      src(name);
 
       _out_()
    end
@@ -123,7 +136,20 @@ class CParser < CRRParser
       end
 
 
-      src(fixName(src()));
+      name=fixName(src());
+
+
+
+      #name = lus
+      ar = name.split(".")
+      tail = ""
+      tail = "."+ar[1..ar.size-1].join(".") if ar.size>1
+      v = find_var(ar[0])
+      p "find:#{name}:#{v.inspect}"
+      if v
+         name  = v.newname+tail
+      end
+      src(name);
 
       _out_()
    end
@@ -12806,16 +12832,6 @@ class CParser < CRRParser
          C_DATASym
          NameInPrimary()
 
-
-         name = lus
-         v = find_var(name)
-         p "find:#{name}:#{v.inspect}"
-         if v
-            name  = v.newname
-         end
-         src(name);
-
-
       else
          GenError(1045)
 
@@ -13128,6 +13144,9 @@ class CParser < CRRParser
       _in_()
       LogShiftExp()
       while (@sym>=C_CPSym&&@sym<=C_GTSym||@sym>=C_LessSym&&@sym<=C_BYTEMinusNSSym)
+
+         br=false;
+
          case @sym
 
          when C_LessSym
@@ -13178,6 +13197,9 @@ class CParser < CRRParser
          when C_NPSym
             Get()
 
+            re(".include?(");br=true;
+
+
          when C_BYTEMinusCOSym
             Get()
 
@@ -13202,6 +13224,9 @@ class CParser < CRRParser
          end
 
          LogShiftExp()
+
+         re("#{lus})") if br;
+
       end
 
       _out_()

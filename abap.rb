@@ -11,6 +11,7 @@ class Object
     end
 end
 def clear(b)
+    p "calling abap function CLEAR"
 end
 def DATA(b)
     b

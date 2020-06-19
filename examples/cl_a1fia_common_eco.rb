@@ -9,7 +9,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
 
 
-      if mv_do_retrieve_check == abap_true
+      if @mv_do_retrieve_check == abap_true
          @mv_do_retrieve_check = abap_false
 
 
@@ -49,7 +49,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
       super.if_esf_provider_access_i_retrieve(hash_to_params(params))
 
-      if mv_do_retrieve_check == abap_true && in_requested_image == if_esf_types.co_image_transactional_buffer && lines(out_failed_node_ids) != lines(in_node_ids)
+      if @mv_do_retrieve_check == abap_true && in_requested_image == if_esf_types.co_image_transactional_buffer && lines(out_failed_node_ids) != lines(in_node_ids)
          begin
             mo_adaptation_handler.check(_i:{
                "out_messages" => @lt_message,
@@ -66,7 +66,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
          end
 
-         if lt_message .isNotINITIAL()
+         if @lt_message .isNotINITIAL()
             mo_message_manager.add_messages(@lt_message)
 
 
@@ -253,7 +253,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
 
 
-      if mv_do_retrieve_check == abap_true
+      if @mv_do_retrieve_check == abap_true
          @mv_do_retrieve_check = abap_false
 
 
@@ -262,11 +262,11 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
       end
 
-      ms_execute_action_parameter.bo_node_name = in_bo_node_name
+      @ms_execute_action_parameter.bo_node_name = in_bo_node_name
 
-      ms_execute_action_parameter.action_name = in_action_name
+      @ms_execute_action_parameter.action_name = in_action_name
 
-      ms_execute_action_parameter.referencing_node_elements = in_referencing_node_elements
+      @ms_execute_action_parameter.referencing_node_elements = in_referencing_node_elements
 
       if ! in_action_parameters .isINITIAL()
 
@@ -434,11 +434,11 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
       ls_lcp_bo_node_name = ty_lcp_bo_node_name.new
 
-      ls_lcp_bo_node_name.bo_node_name = iv_bo_node_name
+      @ls_lcp_bo_node_name.bo_node_name = iv_bo_node_name
 
-      ls_lcp_bo_node_name.core_bo_name = iv_core_bo_name
+      @ls_lcp_bo_node_name.core_bo_name = iv_core_bo_name
 
-      ls_lcp_bo_node_name.core_bo_node_name = iv_core_bo_node_name
+      @ls_lcp_bo_node_name.core_bo_node_name = iv_core_bo_node_name
 
       abap("INSERT ls_lcp_bo_node_name INTO TABLE mt_lcp_bo_node_name")
       if mo_rnid_manager .isBOUND()
@@ -522,7 +522,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
 
 
-      read_table(id:mt_callback_bo_node_name, from:iv_bo_node_name)
+      read_table(id:@mt_callback_bo_node_name, from:iv_bo_node_name)
       if sy.subrc == 0
          rv_result = abap_true
 
@@ -559,7 +559,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
 
 
-      read_table(id:mt_lcp_bo_node_name)
+      read_table(id:@mt_lcp_bo_node_name)
       if sy.subrc == 0
          rv_result = abap_true
 
@@ -596,7 +596,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
 
 
-      read_table(id:mt_heuristic_bo_node_name, from:iv_bo_node_name)
+      read_table(id:@mt_heuristic_bo_node_name, from:iv_bo_node_name)
       if sy.subrc == 0
          rv_result = abap_true
 
@@ -657,8 +657,8 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
       @lv_bo_name = if_a1s_service_provider_eco_i_get_bo_name()
 
-      if in_bo_node_name == lv_root_node_name
-         @lrt_core_bo_out_data = mo_provider_context.get_lcp_facade().get_bo_node_table_container(in_bo_name:@lv_bo_name, in_bo_node_name:@lv_root_node_name)
+      if in_bo_node_name == @lv_root_node_name
+         @lrt_core_bo_out_data = @mo_provider_context.get_lcp_facade().get_bo_node_table_container(in_bo_name:@lv_bo_name, in_bo_node_name:@lv_root_node_name)
 
 
 
@@ -688,8 +688,8 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
             "ev_first_root_id_determined" => @lv_node_id_determined,
          })
 
-         if lv_node_id_determined == abap_false || ( lv_node_id .isINITIAL() && lv_node_id_determined == abap_true )
-            ls_origin_location.bo_name = @lv_bo_name
+         if @lv_node_id_determined == abap_false || ( @lv_node_id .isINITIAL() && @lv_node_id_determined == abap_true )
+            @ls_origin_location.bo_name = @lv_bo_name
 
 
 
@@ -703,15 +703,15 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
          else
             if if_a1fia_common_eco_i_check_root_node_existence(iv_node_id:@lv_node_id, iv_requested_image:in_requested_image) == abap_true
                loop(at:in_node_ids){
-                  ls_link.source_node_id = ls_node_id
+                  @ls_link.source_node_id = ls_node_id
 
 
 
-                  ls_link.target_node_id = @lv_node_id
+                  @ls_link.target_node_id = @lv_node_id
 
 
 
-                  append(from:@ls_link, to:lt_out_links)
+                  append(from:@ls_link, to:@lt_out_links)
 
                }
 
@@ -754,9 +754,9 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
       lo_lcp = if_esf_lcp.new
 
-      read_table(id:mt_lcp_bo_node_name)
-      assert(o:ls_lcp_bo_node_name .isASSIGNED())
-      @lo_lcp = mo_adaptation_handler.get_lcp(ls_lcp_bo_node_name.core_bo_name)
+      read_table(id:@mt_lcp_bo_node_name)
+      assert(o:@ls_lcp_bo_node_name .isASSIGNED())
+      @lo_lcp = mo_adaptation_handler.get_lcp(@ls_lcp_bo_node_name.core_bo_name)
 
       lo_lcp.retrieve_root_node_id(hash_to_params(params))
 
@@ -785,7 +785,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
       lt_node_id = sesf_bo_node_id_tab.new
 
-      lt_out_links = sesf_association_link_tab.new
+      @lt_out_links = sesf_association_link_tab.new
 
       abap("INSERT iv_node_id INTO TABLE lt_node_id")
       if_esf_provider_access_i_retrieve_root_node_id(hash_to_params(params))
@@ -853,7 +853,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
       lo_ex_message = cx_esf_message_handler.new
 
-      lo_message = cm_esi_t100_adapter.new
+      @lo_message = cm_esi_t100_adapter.new
 
       ls_msg = symsg.new
 
@@ -861,17 +861,17 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
       lt_out_messages = cm_esi_root.tt_esi_root.new
 
-      ls_orig_loc.bo_name = if_a1s_service_provider_eco_i_get_bo_name()
+      @ls_orig_loc.bo_name = if_a1s_service_provider_eco_i_get_bo_name()
 
-      ls_msg.msgno = '103'
+      @ls_msg.msgno = '103'
 
-      ls_msg.msgty = 'E'
+      @ls_msg.msgty = 'E'
 
-      ls_msg.msgid = 'A1FIA_ACCOUNTING'
+      @ls_msg.msgid = 'A1FIA_ACCOUNTING'
 
       @lo_message = cm_esi_t100_adapter.create(symptom:cl_esi_message_symptom_code.co_bo_inconsistency, lifetime:cm_esi_root.co_lifetime_transition, origin_location:@ls_orig_loc, symsg:@ls_msg)
 
-      append(from:@lo_message, to:lt_out_messages)
+      append(from:@lo_message, to:@lt_out_messages)
       begin
          io_message_handler.add_messages(hash_to_params(params))
 
@@ -905,8 +905,8 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
 
 
-      loop(at:it_node_id, into:ls_link.source_node_id){
-         ls_link.target_node_id = ls_link.source_node_id
+      loop(at:it_node_id, into:@ls_link.source_node_id){
+         @ls_link.target_node_id = @ls_link.source_node_id
 
 
 

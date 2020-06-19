@@ -9,7 +9,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
 
 
 
-      lt_messages = if_esf_types.ty_messages.new
+      @lt_messages = if_esf_types.ty_messages.new
 
       lt_node_ids = sesf_bo_node_id_tab.new
 
@@ -89,14 +89,14 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
 
 
 
-      lt_messages = if_esf_types.ty_messages.new
+      @lt_messages = if_esf_types.ty_messages.new
 
       lt_sync_notifications = if_esf_types.tt_sync_notifications.new
 
       #"#EC NEEDED
-      lx_bsa_runtime = cx_bsa_runtime.new
+      @lx_bsa_runtime = cx_bsa_runtime.new
 
-      lx_root = cx_root.new
+      @lx_root = cx_root.new
 
       begin
          mo_adaptation_handler.retrieve(hash_to_params(params))
@@ -147,16 +147,16 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
 
 
 
-      lt_sync_notifications = if_esf_types.tt_sync_notifications.new
+      @lt_sync_notifications = if_esf_types.tt_sync_notifications.new
 
       #"#EC NEEDED
-      lt_messages = if_esf_types.ty_messages.new
+      @lt_messages = if_esf_types.ty_messages.new
 
       lt_node_id_for_task_search = sesf_bo_node_id_tab.new
 
-      lx_bsa_runtime = cx_bsa_runtime.new
+      @lx_bsa_runtime = cx_bsa_runtime.new
 
-      lx_root = cx_root.new
+      @lx_root = cx_root.new
 
       lt_existing_node_id = sesf_bo_node_id_tab.new
 
@@ -166,11 +166,11 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
 
       lt_requested_attributes = sesf_string_tab.new
 
-      if mv_has_task_region == abap_true && in_association_name == gc_task_association_name && in_bo_node_name == mv_bo_root_node_name && in_bo_name == mv_bo_name
+      if @mv_has_task_region == abap_true && in_association_name == @gc_task_association_name && in_bo_node_name == @mv_bo_root_node_name && in_bo_name == @mv_bo_name
          begin
             @lt_existing_node_id = in_node_ids
 
-            @lrt_out_data = mo_provider_context.get_lcp_facade().get_bo_node_table_container(in_bo_name:@mv_bo_name, in_bo_node_name:@mv_bo_root_node_name)
+            @lrt_out_data = @mo_provider_context.get_lcp_facade().get_bo_node_table_container(in_bo_name:@mv_bo_name, in_bo_node_name:@mv_bo_root_node_name)
 
             assign(to:lt_out_data)
             abap("INSERT if_esf_types => co_node_id_proxy_name INTO TABLE lt_requested_attributes")
@@ -278,7 +278,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
 
       mo_rnid_manager.rrnid(hash_to_params(params))
 
-      if lv_skipped == abap_true
+      if @lv_skipped == abap_true
          super.if_esf_provider_access_i_retrieve_root_node_id(hash_to_params(params))
 
 
@@ -341,8 +341,8 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
 
       get_task_region_bo_details(hash_to_params(params))
 
-      if mv_has_task_region == abap_true
-         if lv_task_bo_name .isINITIAL() || lv_task_bo_node_name .isINITIAL() || mv_bo_root_node_name .isINITIAL()
+      if @mv_has_task_region == abap_true
+         if @lv_task_bo_name .isINITIAL() || @lv_task_bo_node_name .isINITIAL() || @mv_bo_root_node_name .isINITIAL()
             raise cx_fatal_exception.new
 
 
@@ -424,7 +424,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
 
 
 
-      lx_bsa_runtime = cx_bsa_runtime.new
+      @lx_bsa_runtime = cx_bsa_runtime.new
 
       lv_skip_check = sesf_boolean.new
 
@@ -547,7 +547,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
 
 
 
-      if mv_notify_any_error == abap_undefined
+      if @mv_notify_any_error == abap_undefined
          @mv_notify_any_error = abap_true
 
 
@@ -595,28 +595,28 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
 
       ls_msg = symsg.new
 
-      ls_orig_loc.bo_name = @mv_bo_name
+      @ls_orig_loc.bo_name = @mv_bo_name
 
       if iv_rejected == abap_true
-         ls_msg.msgno = '001'
+         @ls_msg.msgno = '001'
 
 
 
-         ls_msg.msgty = 'E'
+         @ls_msg.msgty = 'E'
 
 
 
 
       else
-         ls_msg.msgno = '000'
+         @ls_msg.msgno = '000'
 
-         ls_msg.msgty = 'S'
+         @ls_msg.msgty = 'S'
 
 
 
       end
 
-      ls_msg.msgid = 'MSGM_ON_SAVE_TRANS'
+      @ls_msg.msgid = 'MSGM_ON_SAVE_TRANS'
 
       @lo_message = cm_esi_t100_adapter.CREATE(symptom:space, lifetime:cm_esi_root.co_lifetime_transition, origin_location:@ls_orig_loc, symsg:@ls_msg)
 
@@ -738,11 +738,11 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
       begin
          @lo_bo_descriptor = cl_esf_descriptor_factory.get_bo_descriptor(in_bo_proxy_name:iv_eco_name)
 
-         @lo_root_node_descriptor = lo_bo_descriptor.get_root_bo_node_descriptor()
+         @lo_root_node_descriptor = @lo_bo_descriptor.get_root_bo_node_descriptor()
 
          #*/    Return Root Node Name
 
-         ev_eco_root_node_name = lo_root_node_descriptor.get_proxy_name()
+         ev_eco_root_node_name = @lo_root_node_descriptor.get_proxy_name()
 
 
       rescue cx_esf_metadata_error=>lx_esf_metadata_error
@@ -751,7 +751,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
 
       end
       begin
-         @lo_association_descriptor = lo_root_node_descriptor.get_association_descriptor(association_proxy_name:@gc_task_association_name)
+         @lo_association_descriptor = @lo_root_node_descriptor.get_association_descriptor(association_proxy_name:@gc_task_association_name)
 
          lr_bsa_primary_node = ( 'BSA_I_PRMRY_NODE' ).new
 
@@ -817,7 +817,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
 
       lt_affected_association = sesf_string_tab.new
 
-      if mv_has_task_region == abap_true
+      if @mv_has_task_region == abap_true
          abap("INSERT gc_task_association_name INTO TABLE lt_affected_association")
 
 
@@ -855,12 +855,12 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
 
 
 
-      lo_message = cm_esi_root.new
+      @lo_message = cm_esi_root.new
 
-      lt_messages_manager = cm_esi_root.tt_esi_root.new
+      @lt_messages_manager = cm_esi_root.tt_esi_root.new
 
       #"Messages for MessageManager
-      lt_messages_handler = cm_esi_root.tt_esi_root.new
+      @lt_messages_handler = cm_esi_root.tt_esi_root.new
 
       #"Messages for ESF Message Handler
       #*/Delegation at present not implemented
@@ -881,14 +881,14 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
 
       #*             possible succeeding SAVE and/or EXECUTE_ACTION calls
 
-      if mv_notify_trans_error == abap_true || mv_notify_any_error == abap_true
+      if @mv_notify_trans_error == abap_true || @mv_notify_any_error == abap_true
          loop(at:in_messages, into:@lo_message){
-            if lo_message.severity == cm_esi_root.co_severity_error && lo_message.origin_location.bo_name == mv_bo_name && ( mv_notify_trans_error == abap_true && lo_message.lifetime == cm_esi_root.co_lifetime_transition || mv_notify_any_error == abap_true )
-               append(from:@lo_message, to:lt_messages_handler)
+            if @lo_message.severity == cm_esi_root.co_severity_error && @lo_message.origin_location.bo_name == @mv_bo_name && ( @mv_notify_trans_error == abap_true && @lo_message.lifetime == cm_esi_root.co_lifetime_transition || @mv_notify_any_error == abap_true )
+               append(from:@lo_message, to:@lt_messages_handler)
 
 
             else
-               append(from:@lo_message, to:lt_messages_manager)
+               append(from:@lo_message, to:@lt_messages_manager)
 
 
             end
@@ -896,7 +896,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
 
          }
 
-         if lt_messages_handler .isNotINITIAL()
+         if @lt_messages_handler .isNotINITIAL()
             super.put_messages_into_handler(in_message_handler:in_message_handler, in_messages:@lt_messages_handler)
 
 
@@ -908,8 +908,8 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
          #*   Put the rest into Message Manager
 
 
-         if lt_messages_manager .isNotINITIAL()
-            mo_message_manager.add_messages(@lt_messages_manager)
+         if @lt_messages_manager .isNotINITIAL()
+            @mo_message_manager.add_messages(@lt_messages_manager)
 
 
 
@@ -922,7 +922,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
 
 
       else
-         mo_message_manager.add_messages(in_messages)
+         @mo_message_manager.add_messages(in_messages)
 
 
 
@@ -951,15 +951,15 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
 
 
 
-      lt_messages = cm_esi_root.tt_esi_root.new
+      @lt_messages = cm_esi_root.tt_esi_root.new
 
       lt_messages_handler = cm_esi_root.tt_esi_root.new
 
       lt_messages_manager = cm_esi_root.tt_esi_root.new
 
-      lx_exception = cx_static_check.new
+      @lx_exception = cx_static_check.new
 
-      lo_message = cm_esi_root.new
+      @lo_message = cm_esi_root.new
 
 
       check( it_messages .isNotINITIAL() )
@@ -969,33 +969,33 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
 
          #*     handle dependent on location and lifetime
 
-         ls_location.bo_name = @mv_bo_name
+         @ls_location.bo_name = @mv_bo_name
 
-         ls_location.bo_node_name = @mv_bo_root_node_name
+         @ls_location.bo_node_name = @mv_bo_root_node_name
 
          loop(at:@lt_messages){
-            if lo_message.origin_location.bo_name != mv_bo_name
+            if @lo_message.origin_location.bo_name != @mv_bo_name
                if iv_ignore_wrong_orig_location == abap_true
                   abap("DELETE lt_messages")
 
 
 
                else
-                  if lo_message.lifetime == cm_esi_root.co_lifetime_transition
+                  if @lo_message.lifetime == cm_esi_root.co_lifetime_transition
                      clear(id:@lo_message)
 
-                     @lo_message = lo_message.copy_with_new_location(new_origin_location:@ls_location)
+                     @lo_message = @lo_message.copy_with_new_location(new_origin_location:@ls_location)
 
 
 
-                     append(from:@lo_message, to:lt_messages_handler)
+                     append(from:@lo_message, to:@lt_messages_handler)
 
                      abap("DELETE lt_messages")
 
 
 
                   else
-                     append(from:@lo_message, to:lt_messages_manager)
+                     append(from:@lo_message, to:@lt_messages_manager)
                      abap("DELETE lt_messages")
 
 
@@ -1012,7 +1012,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
 
 
          }
-         if lt_messages .isNotINITIAL()
+         if @lt_messages .isNotINITIAL()
             io_message_handler.add_messages(@lt_messages)
 
 
@@ -1021,7 +1021,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
 
          end
 
-         if lt_messages_handler .isNotINITIAL()
+         if @lt_messages_handler .isNotINITIAL()
             io_message_handler.add_messages(@lt_messages_handler)
 
 
@@ -1032,8 +1032,8 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
 
          #*     add messages to manager as handler can not handle these
 
-         if lt_messages_manager .isNotINITIAL()
-            mo_message_manager.add_messages(@lt_messages_manager)
+         if @lt_messages_manager .isNotINITIAL()
+            @mo_message_manager.add_messages(@lt_messages_manager)
 
 
 
@@ -1077,7 +1077,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
          "in_messages" => it_message,
       })
 
-      mo_message_manager.add_messages(@lt_message)
+      @mo_message_manager.add_messages(@lt_message)
 
 
 
