@@ -172,7 +172,9 @@ m[:src] = "" if m[:src] ==nil
                     method_desc[:decoration] += " #{v}"
                 end
             }
-            
+            if others && others[:doc] && method_desc[:head] == nil
+                method_desc[:head] = others[:doc]
+            end
             
         else
             @methods[method_sig]={
@@ -184,6 +186,10 @@ m[:src] = "" if m[:src] ==nil
             }
             if @methods[method_sig][:head] == nil
                 @methods[method_sig][:head] = "(_i:nil,_e:nil)"
+            end
+            
+            if @methods[method_sig][:doc] == nil && others && others[:doc]
+                @methods[method_sig][:doc] = nil && others[:doc]
             end
         end
         

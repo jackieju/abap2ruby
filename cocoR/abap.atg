@@ -661,7 +661,7 @@ VariableDefineStatement =  ("DATA"|"STATICS" | "CLASS-DATA" | "CONSTANTS")
             (.
                 if var_type
                     s = "#{name} = #{var_type.name}.new\n"
-                    src(s)
+                    src("#"+s)
                 else
                     src("")
                 end
@@ -1334,6 +1334,11 @@ MethodsStatement =  ("METHODS" | "CLASS-METHODS") identifier["~"identifier]
   
   (.      
       p "src:#{src}"
+      doc_lines = src.split("\n")
+      doc = ""
+      doc_lines.each{|line| line ="# "+line}
+      
+      
       if impar
           for i in 0..impar.size-1
            impar[i] += ":nil"
@@ -1346,8 +1351,7 @@ MethodsStatement =  ("METHODS" | "CLASS-METHODS") identifier["~"identifier]
       pars = impar.join(",")
       
           if classdef
-      
-             classdef.add_method(fname, "(#{pars})", [], nil ,"")
+             classdef.add_method(fname, "(#{pars})", [], nil ,"", {:doc=>doc})
         end 
   .)
    . 
@@ -1476,7 +1480,7 @@ CallMethod =  "METHOD"
               
              
                # src("call_method(#{name1}.#{name2}, {#{params}})");
-                src("#{name}(hash_to_params(params))\n")
+                src("#{name}(#{hash_to_params(params)})\n")
             .)
             .
                

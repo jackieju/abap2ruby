@@ -1138,7 +1138,7 @@ class CParser < CRRParser
 
          if var_type
             s = "#{name} = #{var_type.name}.new\n"
-            src(s)
+            src("#"+s)
          else
             src("")
          end
@@ -2604,6 +2604,11 @@ class CParser < CRRParser
 
 
       p "src:#{src}"
+      doc_lines = src.split("\n")
+      doc = ""
+      doc_lines.each{|line| line ="# "+line}
+
+
       if impar
          for i in 0..impar.size-1
             impar[i] += ":nil"
@@ -2616,8 +2621,7 @@ class CParser < CRRParser
       pars = impar.join(",")
 
       if classdef
-
-         classdef.add_method(fname, "(#{pars})", [], nil ,"")
+         classdef.add_method(fname, "(#{pars})", [], nil ,"", {:doc=>doc})
       end ;
 
       _out_()
