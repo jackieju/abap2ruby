@@ -1,12 +1,15 @@
 set -e
+
 ruby translate.rb examples/CL_A1FIA_COMMON_ECO.abap -d examples
 ruby translate.rb examples/CL_A1S_SERVICE_PROVIDER_ECO.abap -d examples
-ruby translate.rb examples/cl_bsa_service_provider_c.abap -d examples
+ruby translate.rb examples/cl_bsa_service_provider_co.abap -d examples
+
 ruby translate.rb examples/sample1.abap -d examples
 ruby examples/cl_a1fia_aar_create_qaf_eco.rb
 ruby translate.rb examples/sample2.abap -d examples
 ruby examples/cl_a1fia_acproerr_qaf_eco.rb
-ruby translate.rb examples/cp_testcase.abap -d examples
+
+#ruby translate.rb examples/cp_testcase.abap -d examples
 
 
 #ruby translate.rb cp_testcase.abap

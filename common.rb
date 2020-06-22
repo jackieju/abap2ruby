@@ -81,9 +81,16 @@ def dump_one_as_ruby(v, module_name=nil)
             
                 if v[:src] #&& v[:src].strip != ""
                     p "src:#{v[:src]}"
+                    pre = ""
+                    #if v[:import]
+                    #    v[:import].each{|vn|
+                    #        pre +="#{vn} = nil\n"
+                    #    }
+                    #end
                     method_template =<<HERE
                     #{v[:doc]}
                 def #{method_name}#{v[:head]}
+                    #{pre}
                     #{v[:src]}
                 end
 HERE

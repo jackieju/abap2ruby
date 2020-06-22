@@ -50,12 +50,13 @@ end
 class Scope
     # name is scope name in c/cpp, except "module"
     # name can "class", "struct", "module"(module means namespace)
-    attr_accessor :name, :vars, :parentScope, :hasGoto, :labeled_blocks, :class_name # class_name here is just for easy debuging
+    attr_accessor :name, :vars, :parentScope, :hasGoto, :labeled_blocks, :pre, :class_name # class_name here is just for easy debuging
     def initialize(name)
         @name = name 
         @vars = {}
         @hasGoto = false # only for functiondefinition
         @labeled_blocks =[]
+        @pre=""
     end
     
     def add_var(v)
@@ -67,7 +68,6 @@ class Scope
         @vars[v.name] = v
         return v.newname
     end
-    
     
     def get_var(k)
         return @vars[k]
@@ -103,6 +103,7 @@ class ModuleDef < Scope
     # will change it with new value if method already exists
     def add_method(method_name, head, args, src, acc="public", others=nil)
         p "===>add_method1:#{method_name}, #{head}"
+        p "====>add_method2:#{src}"
         arg_number = args.size
         method_sig = method_signature(method_name, arg_number)
         
@@ -172,10 +173,12 @@ m[:src] = "" if m[:src] ==nil
                     method_desc[:decoration] += " #{v}"
                 end
             }
-            if others && others[:doc] && method_desc[:head] == nil
-                method_desc[:head] = others[:doc]
+            if others && others[:doc] && method_desc[:doc] == nil
+                method_desc[:doc] = others[:doc]
             end
-            
+            if others && others[:import] && method_desc[:import] == nil
+                method_desc[:import] = others[:import]
+            end            
         else
             @methods[method_sig]={
                 :name=>method_name,
@@ -189,8 +192,11 @@ m[:src] = "" if m[:src] ==nil
             end
             
             if @methods[method_sig][:doc] == nil && others && others[:doc]
-                @methods[method_sig][:doc] = nil && others[:doc]
+                @methods[method_sig][:doc] = others[:doc]
             end
+            if others && others[:import] && @methods[method_sig][:import] == nil
+                @methods[method_sig][:import] = others[:import]
+            end     
         end
         
         p("method #{method_sig} added to #{self.class_name}@#{self}:#{@methods[method_sig].inspect} \n")

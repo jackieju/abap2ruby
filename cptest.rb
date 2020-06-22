@@ -164,6 +164,39 @@ mo_mdro_schedule_immediately->schedule_immediately(
     et_mdro_root_to_bgjobsch_map = DATA(lt_mdro_root_to_bgjobsch_map)
 ).
 HERE
+
+s7=<<HERE
+REPORT TEST.
+
+      CALL METHOD mo_rnid_manager->sync_data
+        EXPORTING
+          iv_node_name = in_bo_node_name
+*/        IT_NODE_ID   = OUT_NODE_IDS
+          it_data      = out_data.
+          
+HERE
+s7=<<HERE
+class ABC definition
+  public
+  create public .
+  data lt_eco_attr_for_cur_core_node type SESF_BO_NODE_ID .
+ENDCLASS.
+
+CLASS ABC IMPLEMENTATION.
+
+
+METHOD if_esf_provider_access~retrieve1.
+DATA lt_requested_core_attr TYPE sesf_string_tab.
+ENDMETHOD.
+
+METHOD if_esf_provider_access~retrieve.
+DATA lt_requested_core_attr TYPE sesf_string_tab.
+DATA lt_eco_attr_for_cur_core_node TYPE sesf_string_tab.
+a = b
+   
+ENDMETHOD.  
+ENDCLASS.    
+HERE
 $ar = []
 #def dump_testcase
     p "==>dump_testcase"
@@ -214,7 +247,7 @@ else
     s = r
     p(" ==== find #{i} testcase")
 end
-
+p "case content:"
 p s
 
 scanner = Scanner.new(s)
@@ -272,7 +305,7 @@ end # end of test
 
 
 #=end
-test(5)
+test()
 #dump_testcase
 p "$typedef:#{$typedef.inspect}"
 

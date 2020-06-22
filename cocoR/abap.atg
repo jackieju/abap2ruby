@@ -47,6 +47,12 @@ PRODUCTIONS
     
     Exps =  Expression{Expression} .
     
+    NameInVarDef =  (identifier|AllowedKeywords)  (. name=fixName(src()).)
+                            (.  
+                                             src(name)
+                              .)
+                                .
+                                
     Name = (identifier|AllowedKeywords)  (. name=fixName(src()).)
                             (.  
                                                         #  name = lus
@@ -57,6 +63,7 @@ PRODUCTIONS
                                                          p "find:#{name}:#{v.inspect}"
                                                          if v
                                                             name  = v.newname+tail
+                                                       
                                                          end
                                                          src(name)
                               .)
@@ -64,9 +71,9 @@ PRODUCTIONS
   /*  Name = ((identifier|AllowedKeywords) | ("("(identifier|AllowedKeywords)")") ) (. src(fixName(src())).).*/
     
     /* in case: keyword = xxx.
-    have to no exclude those keyword can be in start of line
+    have to exclude those keyword can be in start of line
     */
-    NameInPrimary = ((identifier|AllowedKeywordsExclude) | ("("(identifier|AllowedKeywordsExclude)")") ) (. name=fixName(src()).)
+    NameInPrimary = (.no_comments.)((identifier|AllowedKeywordsExclude) | ("("(identifier|AllowedKeywordsExclude)")") ) (. name=fixName(src()).)
                             (.  
                                                         #  name = lus
                                                           ar = name.split(".")
@@ -76,6 +83,9 @@ PRODUCTIONS
                                                          p "find:#{name}:#{v.inspect}"
                                                          if v
                                                             name  = v.newname+tail
+                                                         else
+                                                          #  current_scope.pre += "#{name}=nil\n"
+                                                         #   current_scope.add_var(name, nil)
                                                          end
                                                          src(name)
                               .)
@@ -642,7 +652,7 @@ VariableDefineStatement =  ("DATA"|"STATICS" | "CLASS-DATA" | "CONSTANTS")
                 |
                 "END" "OF" ("COMMON" "PART" identifier | identifier ["VALID" "BETWEEN" Expression "AND" Expression] )
                 | 
-                Name (.name = lus
+                NameInVarDef (.name = lus
                     p "var name=#{name}"
                     .){ "(" number  ")" } 
                     
@@ -660,8 +670,10 @@ VariableDefineStatement =  ("DATA"|"STATICS" | "CLASS-DATA" | "CONSTANTS")
             (. current_scope.add_var(Variable.new(name, var_type)) .)
             (.
                 if var_type
-                    s = "#{name} = #{var_type.name}.new\n"
-                    src("#"+s)
+                   # s = "#{name} = #{var_type.name}.new\n"
+                     s = "#{name} = nil \# #{var_type.name}.new\n"
+                  #  src("#"+s)
+                    src(s)
                 else
                     src("")
                 end
@@ -1265,13 +1277,18 @@ MethodStatement = "METHOD" identifier["~"identifier] (.       fname = prevString
          
       end .) 
     "." 
-    (. src("") .)
+    (. 
+       src("")
+       in_scope("Method")
+    .)
   {Statement} 
   (.      
       p "src:#{src}"
-          if classdef
-              add_method(classdef, fname, nil, [], src, "")
-        end 
+      
+      if current_scope.parentScope
+         add_method(current_scope.parentScope, fname, nil, [], src, "", {:pre=>current_scope.pre})
+      end 
+      out_scope()
   .)
 "ENDMETHOD" 
 
@@ -1334,24 +1351,27 @@ MethodsStatement =  ("METHODS" | "CLASS-METHODS") identifier["~"identifier]
   
   (.      
       p "src:#{src}"
-      doc_lines = src.split("\n")
+      os = origin_src
+      doc_lines = os.split("\n")
       doc = ""
-      doc_lines.each{|line| line ="# "+line}
-      
-      
+      doc_lines.each{|line| doc +="# "+line+"\n"}
+     
+      args = nil
       if impar
+           args = impar
           for i in 0..impar.size-1
            impar[i] += ":nil"
           end
       else
           impar = []
       end
+ 
       impar.push("_i:nil")
       impar.push("_e:nil")
       pars = impar.join(",")
       
           if classdef
-             classdef.add_method(fname, "(#{pars})", [], nil ,"", {:doc=>doc})
+             classdef.add_method(fname, "(#{pars})", [], nil ,"", {:doc=>doc,:import=>args})
         end 
   .)
    . 
@@ -2402,9 +2422,9 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
        {  ShiftExp(. a = lus;s+=lus;.)[ "=" Expression  (.e[a]=lus.) ] (.s+=",".)}
        (.
            if e.keys.size>0
-           src("(#{hash_to_params(e)})")
+               src("(#{hash_to_params(e)})")
            else
-           src("(#{s[0..s.size-2]})")
+               src("(#{s[0..s.size-2]})")
            end
        .)
    ) ")"     

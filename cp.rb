@@ -198,6 +198,7 @@ class Parser < CParser
     def _in_()
         trc(2)
         @parse_stack._in
+        @parse_stack.cur[:pos] = @scanner.nextSym.pos
         pre()
     end
     def _out_()
@@ -207,6 +208,9 @@ class Parser < CParser
     end
     def lus
         @parse_stack.lus
+    end
+    def origin_src
+        @scanner.buffer[@parse_stack.cur[:pos]..@scanner.nextSym.pos-1]
     end
     def Get(ignore_crlf=true)
 
@@ -320,11 +324,18 @@ class Parser < CParser
         src("#{fn}(#{hash_to_params(cp)})\n")
     end
     
-    def add_method(classdef, fname, head, args, source, deco)
+    def add_method(classdef, fname, head, args, source, deco, others=nil)
+        pre = ""
+        if others and others[:pre]
+            pre = others[:pre]
+        end
         before = <<HERE
+        #{pre}
         ###################################
         # setup importing parameter
-        _i.each{|k,v| eval("\#{k} = \#{v}")} if _i
+     #   _i.each{|k,v| eval("\#{k} = \#{v}")} if _i  
+      #  _i.each{|k,v| v = "\\\"\#{v}\\\"" if v.is_a?(String);eval("\#{k} = \#{v}")} if _i    
+      var(_i) if _i
         ###################################
         
         
@@ -343,8 +354,8 @@ HERE
         ###################################
 
 HERE
-         _src = "#{before}\n#{src}\n#{after}"       
-        classdef.add_method(fname, head, args, _src ,deco)
+         _src = "#{before}\n#{source}\n#{after}"       
+        classdef.add_method(fname, head, args, _src ,deco, others)
     end
     
     
@@ -427,29 +438,30 @@ HERE
    #end
     
   
-    def stMODIFY()
-       _in_()
+   def put_src_abap()
        no_comments
-       Expect(C_MODIFYSym)
+       #Expect(C_MODIFYSym)
+       Get()
        while (@sym != C_PointSym && @sym != EOF_Sym )
            Get()
        end
        no_comments(false)
-         src("abap(\"#{src()}\")")
+       src("abap(\"#{src()}\")")
+   end
+   
+    def stMODIFY()
+       _in_()
+      # Expect(C_MODIFYSym)
+       put_src_abap
        _out_()
    end
    
    def stSELECT()
       _in_()
-      no_comments
       
-      Expect(C_SELECTSym)
-      while (@sym != C_PointSym && @sym != EOF_Sym)
-          Get()
-      end
-      no_comments(false)
       
-        src("abap(\"#{src()}\")")
+   #   Expect(C_SELECTSym)
+      put_src_abap
       p "src1:#(src())"
      s =  _out_()
      p "src2:#{s}"
@@ -457,43 +469,25 @@ HERE
   end
   def stUPDATE()
      _in_()
-     no_comments
      
-     Expect(C_UPDATETSym)
-     while (@sym != C_PointSym && @sym != EOF_Sym)
-         Get()
-     end
-     no_comments(false)
-     
-       src("abap(\"#{src()}\")")
+   #  Expect(C_UPDATETSym)
+    put_src_abap
      _out_()
   end
   def stINSERT()
      _in_()
-     no_comments
      
-     Expect(C_INSERTSym)
-     while (@sym != C_PointSym && @sym != EOF_Sym)
-         Get()
-     end
-     no_comments(false)
-     
-     src("abap(\"#{src()}\")")
+    # Expect(C_INSERTSym)
+     put_src_abap
      
      _out_()
      
   end
   def stDELETE()
      _in_()
-     no_comments
      
-     Expect(C_DELETESym)
-     while (@sym != C_PointSym && @sym != EOF_Sym)
-         Get()
-     end
-     no_comments(false)
-     
-     src("abap(\"#{src()}\")")
+    # Expect(C_DELETESym)
+     put_src_abap
      
      _out_()
      

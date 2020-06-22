@@ -1,3 +1,21 @@
+#def var(variable_name)
+#    variable_module = Module.new do
+#      attr_accessor variable_name.to_sym
+#    end
+#
+#    include variable_name
+#    instance_variable_set("@#{variable_name}", nil)
+#end
+def var(hash)
+    hash.each do |n, v|
+      self.class.define_method(n) do
+        instance_variable_get("@__#{n}")
+      end
+      instance_variable_set("@__#{n}", v)
+    end
+end
+
+# util
 class Object
     def method_missing(name, *args, &block) # :nodoc:
         print "*****************************************\n"
@@ -10,6 +28,11 @@ class Object
     super
     end
 end
+
+##
+# method
+##
+
 def clear(b)
     p "calling abap function CLEAR"
 end
@@ -33,6 +56,14 @@ end
 
 def append(params)
 end
+
+##
+# consts
+##
+def abap_true
+    true
+end
+
 
 def call_method(name, exporting, importing)
  #   exporting.() if exporting
