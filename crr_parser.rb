@@ -1,7 +1,159 @@
 load "cr_parser.rb"
 
 class CRRParser < CRParser
-    
+    def getSymValue(sym)
+        @scanner.GetSymString(sym)
+    end
+    def GetNextSym(step =1)
+        _scanner = @scanner.clone()
+      #  p "==>scanner clone =#{_scanner.inspect}"
+        _sym = nil
+        while step > 0
+             begin 
+                _sym = _scanner.Get()
+              #  p "==>scanner clone2 =#{_scanner.inspect}"
+            
+                # if $sc_cur != $sc.currSym.sym
+                #     pp("!!!===", 20)
+                # end
+                _scanner.nextSym.SetSym(_sym)
+                if (_sym <= C_MAXT) 
+                    # _error.errorDist +=1
+            
+                else 
+                    if (_sym == C_PreProcessorSym) # /*86*/
+                      # line 65 "cs.atg"
+	    
+                    else
+                        #/* Empty Stmt */ ;
+                        _scanner.nextSym = _scanner.currSym
+                    end
+                end
+            
+                # if $sc_cur != $sc.currSym.sym
+                #     pp("!!!===", 20)
+                # end
+            
+            end while (_sym > C_MAXT || ignoreSym?(_sym))
+            step -= 1
+        end
+        return _scanner.nextSym
+    end
+    def GetNext(step =1)
+        _scanner = @scanner.clone()
+        # p "==>scanner clone =#{_scanner.inspect}"
+        _sym = nil
+        while step > 0
+             begin 
+                _sym = _scanner.Get()
+            
+                # if $sc_cur != $sc.currSym.sym
+                #     pp("!!!===", 20)
+                # end
+            
+                _scanner.nextSym.SetSym(_sym)
+                if (_sym <= C_MAXT) 
+                    # _error.errorDist +=1
+            
+                else 
+                    if (_sym == C_PreProcessorSym) # /*86*/
+                      # line 65 "cs.atg"
+	    
+                    else
+                        #/* Empty Stmt */ ;
+                        _scanner.nextSym = _scanner.currSym
+                    end
+                end
+            
+                # if $sc_cur != $sc.currSym.sym
+                #     pp("!!!===", 20)
+                # end
+            
+            end while (_sym > C_MAXT || ignoreSym?(_sym))
+            step -= 1
+        end
+        return _sym
+    end
+    def GetNextSymFromSym(sym, step =1)
+        _scanner = @scanner.clone()
+        _scanner.currLine = sym.line
+        _scanner.currCol = sym.col
+        _scanner.buffPos = sym.pos+sym.len-1
+        _scanner.Scan_NextCh
+        # p "==>scanner clone =#{_scanner.inspect}"
+        _sym = nil
+        while step > 0
+             begin 
+                _sym = _scanner.Get()
+            
+                # if $sc_cur != $sc.currSym.sym
+                #     pp("!!!===", 20)
+                # end
+            
+                _scanner.nextSym.SetSym(_sym)
+                p "==>8888:#{_sym}, #{_scanner.nextSym.sym}, #{getSymValue(_scanner.nextSym)}"
+                if (_sym <= C_MAXT) 
+                    # _error.errorDist +=1
+            
+                else 
+                    if (_sym == C_PreProcessorSym) # /*86*/
+                      # line 65 "cs.atg"
+	    
+                    else
+                        #/* Empty Stmt */ ;
+                        _scanner.nextSym = _scanner.currSym
+                    end
+                end
+            
+                # if $sc_cur != $sc.currSym.sym
+                #     pp("!!!===", 20)
+                # end
+            
+            end while (_sym > C_MAXT || ignoreSym?(_sym))
+            step -= 1
+        end
+        return _scanner.nextSym
+    end
+    def GetNextFromSym(sym, step =1)
+        _scanner = @scanner.clone()
+        _scanner.currLine = sym.line
+        _scanner.currCol = sym.col
+        _scanner.buffPos = sym.pos+sym.len-1
+        _scanner.Scan_NextCh
+        
+        # p "==>scanner clone =#{_scanner.inspect}"
+        _sym = nil
+        while step > 0
+             begin 
+                _sym = _scanner.Get()
+            
+                # if $sc_cur != $sc.currSym.sym
+                #     pp("!!!===", 20)
+                # end
+            
+                _scanner.nextSym.SetSym(_sym)
+                if (_sym <= C_MAXT) 
+                    # _error.errorDist +=1
+            
+                else 
+                    if (_sym == C_PreProcessorSym) # /*86*/
+                      # line 65 "cs.atg"
+	    
+                    else
+                        #/* Empty Stmt */ ;
+                        _scanner.nextSym = _scanner.currSym
+                    end
+                end
+            
+                # if $sc_cur != $sc.currSym.sym
+                #     pp("!!!===", 20)
+                # end
+            
+            end while (_sym > C_MAXT || ignoreSym?(_sym))
+            step -= 1
+        end
+        return _sym
+    end
     def curLine()
         @scanner.currLine
     end

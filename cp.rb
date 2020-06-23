@@ -12,13 +12,19 @@ def convertName(s)
     if s.start_with?("/")
         s = s[1..s.size-1]
     end
-    s = s.gsub("!", "").gsub("->", ".").gsub("-", ".").gsub("~", "_i_").gsub("/", "::")
+    s = s.gsub("!", "").gsub("->", ".")
+    #s = s.gsub(/-(\w+)/){|m|
+    #    "::#{to_ruby_const($1)}"
+    #} 
+    s = s.gsub("-", ".")
+    s = s.gsub("~", "_i_").gsub("/", "::")
 end
 
 def fixName(s)
     s = s.gsub(/[<>\(\)]/, "")
 end
-    
+
+
 def hash_to_params(hash)
     ar = []
     hash.each{|k,v|

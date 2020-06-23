@@ -533,7 +533,8 @@ class CParser < CRRParser
       Expect(C_identifierSym)
       if @sym==C_PointSym||@sym>=C_PUBLICSym&&@sym<=C_PRIVATESym
 
-         clsdef = ModuleDef.new(prevString);current_ruby_scope.add_module(clsdef);
+
+         n = prevString;clsdef = ModuleDef.new(n);current_ruby_scope.add_module(clsdef);clsdef.add_src("#{n}=#{to_ruby_const(n)}\n");
 
          if @sym>=C_PUBLICSym&&@sym<=C_PRIVATESym
             if @sym==C_PUBLICSym
@@ -1171,9 +1172,8 @@ class CParser < CRRParser
 
 
             if t == "CONSTANTS"
-               clsdef = ModuleDef.new(modname)
-               current_ruby_scope.add_module(clsdef)
-               in_scope(clsdef)
+
+               current_ruby_scope.add_src("module #{to_ruby_const(modname)}\nmodule_function\n")
             end;
 
          else
@@ -1202,7 +1202,9 @@ class CParser < CRRParser
                end
 
 
-               out_scope;
+
+               #out_scope
+               current_ruby_scope.add_src("end\n");
 
             else
                if @sym>=C_identifierSym&&@sym<=C_DATASym||@sym==C_KEYSym||@sym>=C_MESSAGESym&&@sym<=C_IDSym||@sym==C_CREATESym
@@ -1291,8 +1293,10 @@ class CParser < CRRParser
          #add constants to module
          if current_ruby_scope.is_a?(ModuleDef) && t == "CONSTANTS"
             if name
-               newname = current_ruby_scope.add_var(Variable.new(name, var_type))
+               newname = current_ruby_scope.add_var(Variable.new(name, var_type)) #just for getting new name
                current_ruby_scope.add_src("#{newname} = #{value}\n")
+               current_ruby_scope.add_src("def #{name};#{value};  end\n")
+
             end
          else
             current_scope.add_var(Variable.new(name, var_type))
@@ -12767,6 +12771,12 @@ class CParser < CRRParser
 
 
       pri = lus
+      s = GetNextSym()
+      p "pri:#{pri}"
+       p "22222222:#{getSymValue(s)}, #{GetNext()},#{s} "
+      if curString =="=>"
+         pri = to_ruby_const(pri)
+      end
       r += pri;
 
       while (@sym==C_LparenSym||@sym==C_LbrackSym||@sym==C_ISSym||@sym>=C_MinusGreaterSym&&@sym<=C_EqualGreaterSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym)
@@ -12805,7 +12815,7 @@ class CParser < CRRParser
             Get()
             Expect(C_identifierSym)
 
-            r+=".#{prevString}";
+            r+="::#{to_ruby_const(prevString)}";
 
 
          when C_PlusPlusSym
@@ -13449,11 +13459,18 @@ class CParser < CRRParser
    def LogPostFixExp()
       _in_()
 
-      no_space;
+      no_space;r="";
 
       LogPrimary()
 
-      pri = lus;
+      pri = lus
+      s = GetNextSym()
+       p "111111111:#{getSymValue(s)}, #{GetNext()},#{s} "
+      if GetNext() == C_EqualGreaterSym
+         
+         pri = to_ruby_const(pri)
+      end
+      r += pri;
 
       while (@sym==C_LparenSym||@sym==C_LbrackSym||@sym==C_ISSym||@sym>=C_MinusGreaterSym&&@sym<=C_EqualGreaterSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym)
          case @sym
@@ -13481,43 +13498,43 @@ class CParser < CRRParser
             Get()
             Expect(C_identifierSym)
 
-            #re(".#{lus}");back_src();
-
-
-            src("#{pri}.#{prevString}");
+            r+=".#{prevString}";
 
 
          when C_EqualGreaterSym
             Get()
             Expect(C_identifierSym)
 
-            #re(".#{lus}");back_src();
-
-
-            src("#{pri}.#{prevString}");
+            r+="::#{to_ruby_const(prevString)}";
 
 
          when C_PlusPlusSym
             Get()
 
+            r+="++";
+
+
          when C_MinusMinusSym
             Get()
+
+            r+="--";
+
 
          when C_ISSym
             Get()
 
-            back();s=".is";
+            s=".is";
 
             if @sym==C_NOTSym
                Get()
 
-               back();s+="Not";
+               s+="Not";
 
             end
 
             PredefinedConstant()
 
-            back();s+=lus;add_src("#{s}()");
+            s+=lus;r+="#{s}()";
 
 
          else
@@ -13528,7 +13545,11 @@ class CParser < CRRParser
       end
 
 
-      no_space(false);
+
+      no_space(false)
+      if r != ""
+         src(r)
+      end;
 
       _out_()
    end

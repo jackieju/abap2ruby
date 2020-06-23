@@ -1,4 +1,10 @@
 load 'log.rb'
+def to_ruby_const(s)
+    a = s[0].upcase
+    return a if s.size ==1
+    return "#{a}#{s[1..s.size-1]}"
+end
+    
 def method_signature(method_name, arg_number)
     if IGNORECASE
         method_name = method_name.downcase
@@ -70,12 +76,13 @@ class Scope
     end
 
 end
+
 class ModuleDef < Scope
     attr_accessor :class_name, :modules, :classes, :methods, :src, :functions, :includings
   
     def initialize(class_name)
         super("module")
-        @class_name = class_name
+        @class_name = to_ruby_const(class_name)
         @methods = {}
         @modules = {}
         @classes = {}
@@ -730,5 +737,6 @@ return list.include?(SYMS[n])
     # Scanner
     #    Error
     #    Sym
+
 
 end
