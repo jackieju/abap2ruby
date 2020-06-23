@@ -197,6 +197,18 @@ a = b
 ENDMETHOD.  
 ENDCLASS.    
 HERE
+s8=<<HERE
+interface IB  .
+constants CO_BO_NAME type STRING value 'A1FIA_AAR_CREATE_QAF_ECO' ##no_text .
+constants:
+  begin of CO_BO_NODE,
+    BUPA                           type STRING value 'BUPA',
+    COMPANY                        type STRING value 'COMPANY',
+    COST_CENTRE                    type STRING value 'COST_CENTRE',
+end of CO_BO_NODE .
+    
+endinterface.
+HERE
 $ar = []
 #def dump_testcase
     p "==>dump_testcase"

@@ -377,7 +377,7 @@ HERE
     #############################
     
     #/* Because 'END' can be identifier(so LL(1) cannot parse it), so this rule has to be single rule and modifier it in subclass
-    def TypeOfStuct()
+    def TypeOfStuct1()
        _in_()
        while (@sym==C_TYPESSym)
           Get()
@@ -416,8 +416,8 @@ HERE
           stINCLUDE()
        end
 
-      # Expect(C_TYPESSym)
-      # Expect(C_ENDSym)
+       Expect(C_TYPESSym)
+       Expect(C_ENDSym)
        Expect(C_OFSym)
        Expect(C_identifierSym)
        _out_()

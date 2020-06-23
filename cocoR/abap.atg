@@ -91,7 +91,7 @@ PRODUCTIONS
                               .)
     .
     
-    C                  =      (.in_scope(@root_class).){ ReportDef | FunctionDef | ClassStatement }.
+    C                  =      (.in_scope(@root_class).){ ReportDef | FunctionDef | ClassStatement | stINTERFACE}.
     
     ReportDef          = "REPORT" (.  fn_name=curString() .) identifier  (. src("") .) 
             {
@@ -645,43 +645,60 @@ LikeDes =        "LIKE"
                                          
                    ).
  
-VariableDefineStatement =  ("DATA"|"STATICS" | "CLASS-DATA" | "CONSTANTS") 
+VariableDefineStatement =  ("DATA"|"STATICS" | "CLASS-DATA" | "CONSTANTS" ) (.t=prevString.upcase.) 
     (
             ( 
-                "BEGIN" "OF" ( "COMMON" "PART" identifier| identifier ["READ-ONLY"] ["OCCURS" number] )
-                |
-                "END" "OF" ("COMMON" "PART" identifier | identifier ["VALID" "BETWEEN" Expression "AND" Expression] )
-                | 
-                NameInVarDef (.name = lus
-                    p "var name=#{name}"
-                    .){ "(" number  ")" } 
+                        "BEGIN" "OF" ( "COMMON" "PART" NameInVarDef | NameInVarDef (.modname=lus.) ["READ-ONLY"] ["OCCURS" number] )
+                        (. 
+                            if t == "CONSTANTS"
+                                clsdef = ModuleDef.new(modname)
+                                current_ruby_scope.add_module(clsdef)
+                                in_scope(clsdef)
+                            end
+                        .)
+                        |
+                        "END" "OF" ("COMMON" "PART" NameInVarDef | NameInVarDef ["VALID" "BETWEEN" Expression "AND" Expression] )
+                        (.out_scope.)
+                        | 
+                        NameInVarDef (.name = lus
+                            p "var name=#{name}"
+                            .){ "(" number  ")" } 
                     
-                     ( TypeDes (. var_type = @lnv 
-                         p "var_type:#{var_type.inspect}"
-                         .)| LikeDes)
+                             ( TypeDes (. var_type = @lnv 
+                                 p "var_type:#{var_type.inspect}"
+                                 .)| LikeDes)
                              
-            )
-           { ["VALUE" { Expression | "IS" "INITIAL" (.back_src();re(".init()").) }] 
-            ["READ-ONLY"]
-            ["OCCURS" number
-                      ["WITH" "HEADER" "LINE"]]
-            }                
+                    )
+                   { ["VALUE" (.value = nil.){  Expression (. value = "" if value ==nil;value += lus.)| "IS" "INITIAL" (.back_src();re(".init()").) }] 
+                    ["READ-ONLY"]
+                    ["OCCURS" number
+                              ["WITH" "HEADER" "LINE"]]
+                    }                
             
-            (. current_scope.add_var(Variable.new(name, var_type)) .)
-            (.
-                if var_type
-                   # s = "#{name} = #{var_type.name}.new\n"
-                     s = "#{name} = nil \# #{var_type.name}.new\n"
-                  #  src("#"+s)
-                    src(s)
-                else
-                    src("")
-                end
+                    (.
+                        # add constants to module
+                        if current_ruby_scope.is_a?(ModuleDef) && t == "CONSTANTS"
+                            if name
+                                newname = current_ruby_scope.add_var(Variable.new(name, var_type))
+                                current_ruby_scope.add_src("#{newname} = #{value}\n")
+                            end
+                        else
+                            current_scope.add_var(Variable.new(name, var_type)) 
+                    
+                            if var_type
+                               # s = "#{name} = #{var_type.name}.new\n"
+                                 s = "#{name} = nil \# #{var_type.name}.new\n"
+                              #  src("#"+s)
+                                src(s)
+                            else
+                                src("")
+                            end
+                        end
             
-            .)
+                    .)
                 |
                 
-             "(" identifier (.name=prevString.)")" "=" Expression (.src("#{name} = #{lus}").)      
+                     "(" identifier (.name=prevString.)")" "=" Expression (.src("#{name} = #{lus}").)      
                 
              )
      "."
@@ -1073,11 +1090,11 @@ Types_mesh_stmt =   "TYPES"  identifier (
                "." .
 
 /* Because 'END' can be identifier(so LL(1) cannot parse it), so this rule has to be single rule and modifier it in subclass */
-TypeOfStuct =   { "TYPES" identifier["("number")"] (TypeDes|LikeDes) ["BOXED"]  "." }
-                {stINCLUDE}
-                "TYPES" "END" "OF" identifier.     
-                                      
-stTYPES = "TYPES"( 
+ /*TypeOfStuct =  
+                {stINCLUDE|("TYPES" NameInVarDef["("number")"] (TypeDes|LikeDes) ["BOXED"]  ".")}
+               "TYPES" "END" "OF" identifier.   
+                   .    */               
+stTYPES = "TYPES" (
           "BEGIN" "OF"(
               "ENUM" identifier  ["STRUCTURE" identifier] 
                             ["BASE" "TYPE" identifier] "." 
@@ -1087,50 +1104,13 @@ stTYPES = "TYPES"(
               "MESH" identifier"." 
                        {Types_mesh_stmt}
                        "DATA" "END" "OF" "MESH" identifier
-            | identifier "." 
-                TypeOfStuct
+            | NameInVarDef 
+                /*TypeOfStuct*/
           )  
        |
-       identifier["("number")"] /*("TYPE" ( (identifier ["LENGTH" number] 
-                                             ["DECIMALS" number]) 
-                                | (["LINE" "OF"] identifier) 
-                                | ("REF" "TO" identifier) 
-                                | ( ((["STANDARD"] "TABLE") 
-                                    | ("SORTED" "TABLE") 
-                                    |("HASHED" "TABLE")) 
-                                    "OF" ["REF" "TO"] identifier 
-                                    [ ("WITH" ["UNIQUE"|"NON-UNIQUE"] 
-                                         ( ("KEY" [identifier ["ALIAS" identifier] 
-                                              "COMPONENTS"] identifier ) 
-                                         | ("DEFAULT" "KEY") )  ) 
-                                    | ("WITH" "EMPTY" "KEY") ] 
-                                    ({"WITH" ("UNIQUE" "HASHED")|(("UNIQUE"|"NON-UNIQUE") "SORTED") 
-                                       "KEY" identifier "COMPONENTS" identifier } 
-                                     ) 
-                                    [("WITH"|"WITHOUT") "FURTHER" "SECONDARY" "KEYS"] 
-                                    ["INITIAL" "SIZE" number]) 
-                                  | ("RANGE" "OF" identifier ["INITIAL" "SIZE" number]) ) 
-                                  | identifier Lob_handle_type {Lob_handle_type}
-                               
-                                   ) 
-                        | ("LIKE" ( (["LINE" "OF"] identifier) 
-                                | ("REF" "TO" identifier) 
-                                | ( ((["STANDARD"] "TABLE") 
-                                    |("SORTED" "TABLE") 
-                                    |("HASHED" "TABLE") 
-                                    |("ANY" "TABLE") 
-                                    |("INDEX" "TABLE")) 
-                                    "OF" ["REF" "TO"] identifier 
-                                    [ ("WITH" ["UNIQUE"|"NON-UNIQUE"] 
-                                         ( ("KEY" [identifier ["ALIAS" identifier] 
-                                              "COMPONENTS"] identifier ) 
-                                         | ("DEFAULT" "KEY") )) 
-                                    | ("WITH" "EMPTY" "KEY") ] 
-                                    {"WITH" ("UNIQUE" "HASHED")|(("UNIQUE"|"NON-UNIQUE") "SORTED") 
-                                       "KEY" identifier "COMPONENTS" identifier }  
-                                    [("WITH"|"WITHOUT") "FURTHER" "SECONDARY" "KEYS"] 
-                                    ["INITIAL" "SIZE" number]) 
-                                  | ("RANGE" "OF" identifier ["INITIAL" "SIZE" number]) ))*/ 
+           "END" "OF" identifier
+       |
+       NameInVarDef["("number")"] 
                            (TypeDes|LikeDes)
          
          )       
@@ -1895,8 +1875,13 @@ stINSERT = "INSERT"
          
          .
 
-stINTERFACE = "INTERFACE" identifier(  "." 
-  {identifier} 
+stINTERFACE = "INTERFACE" identifier  ( (.clsdef = ModuleDef.new(prevString);current_ruby_scope.add_module(clsdef).)  ["PUBLIC"|"PRIVATE"|"PROTECTED"]  "." 
+
+(.in_scope(clsdef).)
+  {
+      stTYPES | stINTERFACES | VariableDefineStatement | stINCLUDE
+  } 
+  (.out_scope.)
 "ENDINTERFACE"  |   ("DEFERRED" ["PUBLIC"] | "LOAD")  ) ".".
 
 stINTERFACE_POOL = "INTERFACE-POOL"".".
@@ -2400,7 +2385,7 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
                               
                               
   AllowedKeywordsExclude = "DATA" . 
-  AllowedKeywords = "DATA" | "MESSAGE". 
+  AllowedKeywords = "DATA" | "MESSAGE" | "END" | "CREATE" | "KEY" |"ID". 
   FunctionCall        =  "(" (.stop_autosrc;no_comments.)
   (
        {

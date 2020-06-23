@@ -61,10 +61,6 @@ class Scope
     
     def add_var(v)
         p "add_var:#{v.name} to #{@class_name}@#{self}", 20
-        if @name == "class"
-            v.newname = "@#{v.newname}"
-            p "add_var:#{v.name} class var #{v.newname}"
-        end
         @vars[v.name] = v
         return v.newname
     end
@@ -213,6 +209,7 @@ m[:src] = "" if m[:src] ==nil
     end
     
     def add_module(module_name)
+         p "add_module #{module_name} to #{@name} #{@class_name}"
         if module_name.class == String
             moduleDef = ModuleDef.new(module_name)
             @modules[module_name] = moduleDef
@@ -221,7 +218,7 @@ m[:src] = "" if m[:src] ==nil
             moduleDef = module_name
             @modules[moduleDef.class_name] = moduleDef
             moduleDef.parentScope = self
-            
+           
             
         end
         return moduleDef
@@ -250,6 +247,16 @@ m[:src] = "" if m[:src] ==nil
 
         return clsdef
     end
+    
+    def add_var(v)
+        p "v:#{v.inspect}"
+        p "add_const to module:#{v.name} to #{@class_name}@#{self}", 20
+      
+        v.newname = "#{v.name[0].upcase}#{v.name[1..v.name.size-1]}"
+        p "add_const:#{v.name} class var #{v.newname}"
+        @vars[v.name] = v
+        return v.newname
+    end
 end
 class ClassDef < ModuleDef
     attr_accessor :class_name, :parent, :methods, :src, :parentScope, :functions, :includings
@@ -277,7 +284,16 @@ class ClassDef < ModuleDef
         @includings = [module_name]
         return r
     end
-
+    
+    def add_var(v)
+        p "add_var:#{v.name} to #{@class_name}@#{self}", 20
+        if @name == "class"
+            v.newname = "@#{v.newname}"
+            p "add_var:#{v.name} class var #{v.newname}"
+        end
+        @vars[v.name] = v
+        return v.newname
+    end
 end
 class CRParser 
 # Abstract Parser
