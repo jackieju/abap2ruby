@@ -17,7 +17,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
 
 
 
-      lt_messages = nil # if_esf_types.ty_messages.new
+      lt_messages = nil # If_esf_types::Ty_messages.new
 
       lt_node_ids = nil # sesf_bo_node_id_tab.new
 
@@ -124,9 +124,9 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
 
 
 
-      lt_messages = nil # if_esf_types.ty_messages.new
+      lt_messages = nil # If_esf_types::Ty_messages.new
 
-      lt_sync_notifications = nil # if_esf_types.tt_sync_notifications.new
+      lt_sync_notifications = nil # If_esf_types::Tt_sync_notifications.new
 
       #"#EC NEEDED
       lx_bsa_runtime = nil # cx_bsa_runtime.new
@@ -151,7 +151,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
 
          put_messages(io_message_handler:in_message_handler, it_messages:lt_messages)
 
-         if in_buffer_sync_handler .isBOUND() && lines(lt_sync_notifications) .isNotINITIAL()
+         if in_buffer_sync_handler.isBOUND() && lines.isNotINITIAL()
             in_buffer_sync_handler.notify_buffer_syncs(_i:{
                "in_sync_notifications" => lt_sync_notifications,
             })
@@ -206,10 +206,10 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
 
 
 
-      lt_sync_notifications = nil # if_esf_types.tt_sync_notifications.new
+      lt_sync_notifications = nil # If_esf_types::Tt_sync_notifications.new
 
       #"#EC NEEDED
-      lt_messages = nil # if_esf_types.ty_messages.new
+      lt_messages = nil # If_esf_types::Ty_messages.new
 
       lt_node_id_for_task_search = nil # sesf_bo_node_id_tab.new
 
@@ -236,7 +236,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
             mo_adaptation_handler.if_esf_lcp_i_retrieve(_i:{
                "in_bo_node_name" => in_bo_node_name,
                "in_node_ids" => in_node_ids,
-               "in_edit_mode" => if_esf_types.co_read_only,
+               "in_edit_mode" => If_esf_types::Co_read_only,
                "in_requested_image" => in_requested_image,
                "in_requested_attributes" => lt_requested_attributes,
             }, _e:{
@@ -252,7 +252,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
                #"#EC CI_STDSEQ
 
             }
-            if lines(lt_existing_node_id) > 0
+            if lines > 0
                @mt_task_region_node_id = lt_existing_node_id
 
 
@@ -305,7 +305,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
 
             put_messages(io_message_handler:in_message_handler, it_messages:lt_messages)
 
-            if in_buffer_sync_handler .isBOUND() && lines(lt_sync_notifications) .isNotINITIAL()
+            if in_buffer_sync_handler.isBOUND() && lines.isNotINITIAL()
                in_buffer_sync_handler.notify_buffer_syncs(_i:{
                   "in_sync_notifications" => lt_sync_notifications,
                })
@@ -481,14 +481,14 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
       })
 
       if @mv_has_task_region == abap_true
-         if lv_task_bo_name .isINITIAL() || lv_task_bo_node_name .isINITIAL() || @mv_bo_root_node_name .isINITIAL()
+         if lv_task_bo_name.isINITIAL() || lv_task_bo_node_name.isINITIAL() || @mv_bo_root_node_name.isINITIAL()
             raise cx_fatal_exception.new
 
 
 
 
          else
-            @mo_task_region_helper = cl_coutl_task_region_helper.create_task_region_helper(in_bo_name:lv_task_bo_name, in_bo_node_name:lv_task_bo_node_name, in_lcp_facade:lo_lcp_facade)
+            @mo_task_region_helper = Cl_coutl_task_region_helper::Create_task_region_helper(in_bo_name:lv_task_bo_name, in_bo_node_name:lv_task_bo_node_name, in_lcp_facade:lo_lcp_facade)
 
 
 
@@ -610,7 +610,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
       end
       super.if_esf_provider_interact_ctrl_i_do_post_processing()
 
-      if ( in_overruling_code .isSUPPLIED() && in_overruling_code == if_esf_types.co_oc_in_ovs_phase )
+      if ( in_overruling_code.isSUPPLIED() && in_overruling_code == if_esf_types::Co_oc_in_ovs_phase )
          lv_skip_check = abap_true
 
 
@@ -814,7 +814,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
 
       lo_message = nil # cm_esi_t100_adapter.new
 
-      ls_orig_loc = nil # cm_esi_root.ty_message_location.new
+      ls_orig_loc = nil # Cm_esi_root::Ty_message_location.new
 
       ls_msg = nil # symsg.new
 
@@ -841,7 +841,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
 
       ls_msg.msgid = 'MSGM_ON_SAVE_TRANS'
 
-      lo_message = cm_esi_t100_adapter.CREATE(symptom:space, lifetime:cm_esi_root.co_lifetime_transition, origin_location:ls_orig_loc, symsg:ls_msg)
+      lo_message = Cm_esi_t100_adapter::CREATE(symptom:space, lifetime:Cm_esi_root::Co_lifetime_transition, origin_location:ls_orig_loc, symsg:ls_msg)
 
       mo_message_manager.add_message(_i:{
          "io_message" => lo_message,
@@ -1004,7 +1004,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
       clear(id:ev_bo_node_name)
       clear(id:ev_eco_root_node_name)
       begin
-         lo_bo_descriptor = cl_esf_descriptor_factory.get_bo_descriptor(in_bo_proxy_name:iv_eco_name)
+         lo_bo_descriptor = Cl_esf_descriptor_factory::Get_bo_descriptor(in_bo_proxy_name:iv_eco_name)
 
          lo_root_node_descriptor = lo_bo_descriptor.get_root_bo_node_descriptor()
 
@@ -1026,7 +1026,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
          assign(to:ls_bsa_primary_node)
          abap("SELECT SINGLE * FROM ( 'BSA_I_PRMRY_NODE' ) INTO <ls_bsa_primary_node> WHERE bo_name = iv_eco_name AND bo_node_name = ev_eco_root_node_name")
          #"#EC CI_DYNTAB
-         if sy.subrc .isINITIAL()
+         if sy.subrc.isINITIAL()
             assign(to:lv_prmry_bo_name)
 
             assign(to:lv_prmry_node_name)
@@ -1147,10 +1147,10 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
 
       lo_message = nil # cm_esi_root.new
 
-      lt_messages_manager = nil # cm_esi_root.tt_esi_root.new
+      lt_messages_manager = nil # Cm_esi_root::Tt_esi_root.new
 
       #"Messages for MessageManager
-      lt_messages_handler = nil # cm_esi_root.tt_esi_root.new
+      lt_messages_handler = nil # Cm_esi_root::Tt_esi_root.new
 
       #"Messages for ESF Message Handler
       #*/Delegation at present not implemented
@@ -1173,7 +1173,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
 
       if @mv_notify_trans_error == abap_true || @mv_notify_any_error == abap_true
          loop(at:in_messages, into:lo_message){
-            if lo_message.severity == cm_esi_root.co_severity_error && lo_message.origin_location.bo_name == @mv_bo_name && ( @mv_notify_trans_error == abap_true && lo_message.lifetime == cm_esi_root.co_lifetime_transition || @mv_notify_any_error == abap_true )
+            if lo_message.severity == cm_esi_root::Co_severity_error && lo_message.origin_location.bo_name == @mv_bo_name && ( @mv_notify_trans_error == abap_true && lo_message.lifetime == cm_esi_root::Co_lifetime_transition || @mv_notify_any_error == abap_true )
                append(from:lo_message, to:lt_messages_handler)
 
 
@@ -1186,7 +1186,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
 
          }
 
-         if lt_messages_handler .isNotINITIAL()
+         if lt_messages_handler.isNotINITIAL()
             super.put_messages_into_handler(in_message_handler:in_message_handler, in_messages:lt_messages_handler)
 
 
@@ -1198,7 +1198,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
          #*   Put the rest into Message Manager
 
 
-         if lt_messages_manager .isNotINITIAL()
+         if lt_messages_manager.isNotINITIAL()
             @mo_message_manager.add_messages(lt_messages_manager)
 
 
@@ -1251,19 +1251,19 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
 
 
 
-      lt_messages = nil # cm_esi_root.tt_esi_root.new
+      lt_messages = nil # Cm_esi_root::Tt_esi_root.new
 
-      lt_messages_handler = nil # cm_esi_root.tt_esi_root.new
+      lt_messages_handler = nil # Cm_esi_root::Tt_esi_root.new
 
-      lt_messages_manager = nil # cm_esi_root.tt_esi_root.new
+      lt_messages_manager = nil # Cm_esi_root::Tt_esi_root.new
 
       lx_exception = nil # cx_static_check.new
 
       lo_message = nil # cm_esi_root.new
 
 
-      check( it_messages .isNotINITIAL() )
-      assert(o:io_message_handler .isBOUND())
+      check( it_messages.isNotINITIAL() )
+      assert(o:io_message_handler.isBOUND())
       begin
          lt_messages = it_messages
 
@@ -1281,7 +1281,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
 
 
                else
-                  if lo_message.lifetime == cm_esi_root.co_lifetime_transition
+                  if lo_message.lifetime == cm_esi_root::Co_lifetime_transition
                      clear(id:lo_message)
 
                      lo_message = lo_message.copy_with_new_location(new_origin_location:ls_location)
@@ -1312,7 +1312,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
 
 
          }
-         if lt_messages .isNotINITIAL()
+         if lt_messages.isNotINITIAL()
             io_message_handler.add_messages(lt_messages)
 
 
@@ -1321,7 +1321,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
 
          end
 
-         if lt_messages_handler .isNotINITIAL()
+         if lt_messages_handler.isNotINITIAL()
             io_message_handler.add_messages(lt_messages_handler)
 
 
@@ -1332,7 +1332,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
 
          #*     add messages to manager as handler can not handle these
 
-         if lt_messages_manager .isNotINITIAL()
+         if lt_messages_manager.isNotINITIAL()
             @mo_message_manager.add_messages(lt_messages_manager)
 
 
@@ -1415,7 +1415,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
 
       ls_mapped_notification = if_a1s_service_provider_eco_i_map_change_notifications(is_change_notification)
 
-      cl_bsa_service_provider_co.put_change_notifs_into_handler(in_change_notifications:ls_mapped_notification, in_change_handler:io_change_handler)
+      Cl_bsa_service_provider_co::Put_change_notifs_into_handler(in_change_notifications:ls_mapped_notification, in_change_handler:io_change_handler)
 
 
 
@@ -1539,7 +1539,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
 
 
 
-      lt_messages = nil # cm_esi_root.tt_esi_root.new
+      lt_messages = nil # Cm_esi_root::Tt_esi_root.new
 
       lx_exception = nil # cx_static_check.new
 
@@ -1574,5 +1574,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
 
    end
 
+   @gc_task_association_name = 'TO_OPEN_TASK'
+   def gc_task_association_name;'TO_OPEN_TASK';  end
 
 end

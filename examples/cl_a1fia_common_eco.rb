@@ -62,7 +62,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
 
 
-      lt_message = nil # cm_esi_root.tt_esi_root.new
+      lt_message = nil # Cm_esi_root::Tt_esi_root.new
 
       lx_esf_core_service = nil # cx_esf_core_service.new
 
@@ -79,14 +79,14 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
          "out_failed_node_ids" => out_failed_node_ids,
       })
 
-      if @mv_do_retrieve_check == abap_true && in_requested_image == if_esf_types.co_image_transactional_buffer && lines(out_failed_node_ids) != lines(in_node_ids)
+      if @mv_do_retrieve_check == abap_true && in_requested_image == if_esf_types::Co_image_transactional_buffer && lines != lines
          begin
             mo_adaptation_handler.check(_i:{
                "out_messages" => lt_message,
             }, _e:{
                "in_bo_node_name" => in_bo_node_name,
                "in_node_ids" => in_node_ids,
-               "in_check_scope" => if_esf_types.co_check_scope_substructure,
+               "in_check_scope" => If_esf_types::Co_check_scope_substructure,
             })
 
 
@@ -96,7 +96,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
          end
 
-         if lt_message .isNotINITIAL()
+         if lt_message.isNotINITIAL()
             mo_message_manager.add_messages(lt_message)
 
 
@@ -151,7 +151,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
       begin
          if mo_rnid_manager.mv_skip_rnid_manager == abap_true
-            if use_heuristic_for_rrnid(in_bo_node_name) == abap_true
+            if use_heuristic_for_rrnid == abap_true
                heuristic_rrnid(_i:{
                   "out_links" => out_links,
                }, _e:{
@@ -163,7 +163,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
 
 
-            elsif use_delegation_for_rrnid(in_bo_node_name) == abap_true
+            elsif use_delegation_for_rrnid == abap_true
                delegation_rrnid(_i:{
                   "out_links" => out_links,
                }, _e:{
@@ -173,7 +173,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
                })
 
 
-            elsif use_callback_for_rrnid(in_bo_node_name) == abap_true
+            elsif use_callback_for_rrnid == abap_true
                callback_rrnid(_i:{
                   "out_links" => out_links,
                }, _e:{
@@ -201,7 +201,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
 
          else
-            if mo_rnid_manager.is_skipped(iv_node_name:in_bo_node_name) .isINITIAL()
+            if mo_rnid_manager.is_skipped.isINITIAL()
                super.if_esf_provider_access_i_retrieve_root_node_id(_i:{
                   "out_links" => out_links,
                }, _e:{
@@ -213,7 +213,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
 
 
-            elsif use_heuristic_for_rrnid(in_bo_node_name) == abap_true
+            elsif use_heuristic_for_rrnid == abap_true
                heuristic_rrnid(_i:{
                   "out_links" => out_links,
                }, _e:{
@@ -223,7 +223,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
                })
 
 
-            elsif use_delegation_for_rrnid(in_bo_node_name) == abap_true
+            elsif use_delegation_for_rrnid == abap_true
                delegation_rrnid(_i:{
                   "out_links" => out_links,
                }, _e:{
@@ -233,7 +233,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
                })
 
 
-            elsif use_callback_for_rrnid(in_bo_node_name) == abap_true
+            elsif use_callback_for_rrnid == abap_true
                callback_rrnid(_i:{
                   "out_links" => out_links,
                }, _e:{
@@ -314,7 +314,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
       @ms_execute_action_parameter.referencing_node_elements = in_referencing_node_elements
 
-      if ! in_action_parameters .isINITIAL()
+      if ! in_action_parameters.isINITIAL()
 
 
          assign(to:lv_action_parameters)
@@ -447,7 +447,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
 
       abap("insert iv_bo_node_name into TABLE mt_callback_bo_node_name")
-      if mo_rnid_manager .isBOUND()
+      if mo_rnid_manager.isBOUND()
          mo_rnid_manager.exclude(iv_node_name:iv_bo_node_name)
 
 
@@ -489,7 +489,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
 
       abap("insert iv_bo_node_name into TABLE mt_heuristic_bo_node_name")
-      if mo_rnid_manager .isBOUND()
+      if mo_rnid_manager.isBOUND()
          mo_rnid_manager.include(iv_node_name:iv_bo_node_name)
 
 
@@ -541,7 +541,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
       ls_lcp_bo_node_name.core_bo_node_name = iv_core_bo_node_name
 
       abap("INSERT ls_lcp_bo_node_name INTO TABLE mt_lcp_bo_node_name")
-      if mo_rnid_manager .isBOUND()
+      if mo_rnid_manager.isBOUND()
          mo_rnid_manager.exclude(iv_node_name:iv_bo_node_name)
 
 
@@ -806,7 +806,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
       lv_node_id_determined = nil # boolean.new
 
-      ls_origin_location = nil # cm_esi_root.ty_message_location.new
+      ls_origin_location = nil # Cm_esi_root::Ty_message_location.new
 
       lo_message = nil # cm_a1fia_common_eco.new
 
@@ -839,7 +839,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
          mo_adaptation_handler.if_esf_lcp_i_retrieve(_i:{
             "in_bo_node_name" => in_bo_node_name,
             "in_node_ids" => in_node_ids,
-            "in_edit_mode" => if_esf_types.co_read_only,
+            "in_edit_mode" => If_esf_types::Co_read_only,
             "in_requested_image" => in_requested_image,
             "in_requested_attributes" => lt_requested_attributes,
          }, _e:{
@@ -849,7 +849,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
 
 
-         if lines(lt_out_failed_node_id) == 0
+         if lines == 0
             lt_out_links = if_a1fia_common_eco_i_source_to_target_mapping(in_node_ids)
 
 
@@ -866,7 +866,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
             "ev_first_root_id_determined" => lv_node_id_determined,
          })
 
-         if lv_node_id_determined == abap_false || ( lv_node_id .isINITIAL() && lv_node_id_determined == abap_true )
+         if lv_node_id_determined == abap_false || ( lv_node_id.isINITIAL() && lv_node_id_determined == abap_true )
             ls_origin_location.bo_name = lv_bo_name
 
 
@@ -879,7 +879,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
 
          else
-            if if_a1fia_common_eco_i_check_root_node_existence(iv_node_id:lv_node_id, iv_requested_image:in_requested_image) == abap_true
+            if if_a1fia_common_eco_i_check_root_node_existence == abap_true
                loop(at:in_node_ids){
                   ls_link.source_node_id = ls_node_id
 
@@ -947,7 +947,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
       lo_lcp = nil # if_esf_lcp.new
 
       read_table(id:@mt_lcp_bo_node_name)
-      assert(o:ls_lcp_bo_node_name .isASSIGNED())
+      assert(o:ls_lcp_bo_node_name.isASSIGNED())
       lo_lcp = mo_adaptation_handler.get_lcp(ls_lcp_bo_node_name.core_bo_name)
 
       lo_lcp.retrieve_root_node_id(_i:{
@@ -999,7 +999,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
          "out_links" => lt_out_links,
       })
 
-      if lines(lt_out_links) > 0
+      if lines > 0
          rv_exists = abap_true
 
 
@@ -1076,9 +1076,9 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
       ls_msg = nil # symsg.new
 
-      ls_orig_loc = nil # cm_esi_root.ty_message_location.new
+      ls_orig_loc = nil # Cm_esi_root::Ty_message_location.new
 
-      lt_out_messages = nil # cm_esi_root.tt_esi_root.new
+      lt_out_messages = nil # Cm_esi_root::Tt_esi_root.new
 
       ls_orig_loc.bo_name = if_a1s_service_provider_eco_i_get_bo_name()
 
@@ -1088,7 +1088,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
       ls_msg.msgid = 'A1FIA_ACCOUNTING'
 
-      lo_message = cm_esi_t100_adapter.create(symptom:cl_esi_message_symptom_code.co_bo_inconsistency, lifetime:cm_esi_root.co_lifetime_transition, origin_location:ls_orig_loc, symsg:ls_msg)
+      lo_message = Cm_esi_t100_adapter::Create(symptom:Cl_esi_message_symptom_code::Co_bo_inconsistency, lifetime:Cm_esi_root::Co_lifetime_transition, origin_location:ls_orig_loc, symsg:ls_msg)
 
       append(from:lo_message, to:lt_out_messages)
       begin

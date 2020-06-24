@@ -11,6 +11,11 @@ ruby examples/cl_a1fia_acproerr_qaf_eco.rb
 
 ruby translate.rb examples/IF_A1FIA_AAR_CREATE_QAF_EC.abap -d examples
 
+ruby translate.rb examples/if_bsa_adaptation_handler.abap -d  examples
+ruby translate.rb examples/IF_ESF_TYPES.abap -d  examples
+
+
+
 
 #ruby translate.rb examples/cp_testcase.abap -d examples
 

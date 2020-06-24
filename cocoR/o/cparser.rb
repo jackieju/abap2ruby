@@ -531,11 +531,11 @@ class CParser < CRRParser
       _in_()
       Expect(C_INTERFACESym)
       Expect(C_identifierSym)
+
+
+      n = prevString;clsdef = ModuleDef.new(n);current_ruby_scope.add_module(clsdef);clsdef.add_src("#{n}=#{to_ruby_const(n)}\n");
+
       if @sym==C_PointSym||@sym>=C_PUBLICSym&&@sym<=C_PRIVATESym
-
-
-         n = prevString;clsdef = ModuleDef.new(n);current_ruby_scope.add_module(clsdef);clsdef.add_src("#{n}=#{to_ruby_const(n)}\n");
-
          if @sym>=C_PUBLICSym&&@sym<=C_PRIVATESym
             if @sym==C_PUBLICSym
                Get()
@@ -559,7 +559,7 @@ class CParser < CRRParser
 
          in_scope(clsdef);
 
-         while (@sym==C_DATASym||@sym>=C_STATICSSym&&@sym<=C_CONSTANTSSym||@sym==C_TYPESSym||@sym==C_INCLUDESym||@sym==C_INTERFACESSym)
+         while (@sym==C_DATASym||@sym>=C_STATICSSym&&@sym<=C_CONSTANTSSym||@sym==C_TYPESSym||@sym>=C_METHODSSym&&@sym<=C_CLASSMinusMETHODSSym||@sym==C_ALIASESSym||@sym==C_INCLUDESym||@sym==C_INTERFACESym||@sym==C_INTERFACESSym)
             case @sym
 
             when C_TYPESSym
@@ -567,6 +567,9 @@ class CParser < CRRParser
 
             when C_INTERFACESSym
                stINTERFACES()
+
+            when C_INTERFACESym
+               stINTERFACE()
 
             when C_DATASym,
                C_STATICSSym,
@@ -576,6 +579,13 @@ class CParser < CRRParser
 
             when C_INCLUDESym
                stINCLUDE()
+
+            when C_ALIASESSym
+               stALIASES()
+
+            when C_METHODSSym,
+               C_CLASSMinusMETHODSSym
+               MethodsStatement()
 
             else
                GenError(722)
@@ -599,6 +609,9 @@ class CParser < CRRParser
             else
                if @sym==C_LOADSym
                   Get()
+
+                  current_scope.add_src("include #{to_ruby_const(n)}");
+
                else
                   GenError(723)
                end
@@ -1306,6 +1319,10 @@ class CParser < CRRParser
                s = "#{name} = nil \# #{var_type.name}.new\n"
                #src("#"+s)
                src(s)
+               if current_scope.is_a?(ClassDef)
+                  s = "@#{name} = nil \# #{var_type.name}.new\n"
+                  current_scope.add_src(s)
+               end
             else
                src("")
             end
@@ -5187,7 +5204,7 @@ class CParser < CRRParser
       Expect(C_ALIASESSym)
       Expect(C_identifierSym)
       Expect(C_FORSym)
-      Expect(C_identifierSym)
+      Name()
       Expect(C_PointSym)
       _out_()
    end
@@ -12771,10 +12788,7 @@ class CParser < CRRParser
 
 
       pri = lus
-      s = GetNextSym()
-      p "pri:#{pri}"
-       p "22222222:#{getSymValue(s)}, #{GetNext()},#{s} "
-      if curString =="=>"
+      if GetNext() == C_EqualGreaterSym
          pri = to_ruby_const(pri)
       end
       r += pri;
@@ -13464,10 +13478,7 @@ class CParser < CRRParser
       LogPrimary()
 
       pri = lus
-      s = GetNextSym()
-       p "111111111:#{getSymValue(s)}, #{GetNext()},#{s} "
-      if GetNext() == C_EqualGreaterSym
-         
+      if curString == "=>"
          pri = to_ruby_const(pri)
       end
       r += pri;

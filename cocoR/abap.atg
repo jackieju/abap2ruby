@@ -694,6 +694,10 @@ VariableDefineStatement =  ("DATA"|"STATICS" | "CLASS-DATA" | "CONSTANTS" ) (.t=
                                  s = "#{name} = nil \# #{var_type.name}.new\n"
                               #  src("#"+s)
                                 src(s)
+                                if current_scope.is_a?(ClassDef)
+                                    s = "@#{name} = nil \# #{var_type.name}.new\n"
+                                    current_scope.add_src(s)
+                                end
                             else
                                 src("")
                             end
@@ -1375,7 +1379,7 @@ stADD = "ADD" identifier (
 
 stADD_CORRESPONDING = "ADD-CORRESPONDING" identifier "TO" identifier".".
 
-stALIASES = "ALIASES" identifier "FOR" identifier ".".
+stALIASES = "ALIASES" identifier "FOR" Name ".".
 
 stASSERT = "ASSERT" [ ["ID" identifier (.cp[:id]=prevString.)["SUBKEY" identifier(.cp[:subkey]=prevString.)]] 
          ["FIELDS" identifier (.cp[:fields]=lus.)] 
@@ -1879,16 +1883,16 @@ stINSERT = "INSERT"
          
          .
 
-stINTERFACE = "INTERFACE" identifier  ( (.
+stINTERFACE = "INTERFACE" identifier (.
     n = prevString;clsdef = ModuleDef.new(n);current_ruby_scope.add_module(clsdef);clsdef.add_src("#{n}=#{to_ruby_const(n)}\n")
-    .)  ["PUBLIC"|"PRIVATE"|"PROTECTED"]  "." 
+    .)  (   ["PUBLIC"|"PRIVATE"|"PROTECTED"]  "." 
 
 (.in_scope(clsdef).)
   {
-      stTYPES | stINTERFACES | VariableDefineStatement | stINCLUDE
+      stTYPES | stINTERFACES | stINTERFACE | VariableDefineStatement | stINCLUDE | stALIASES | MethodsStatement
   } 
   (.out_scope.)
-"ENDINTERFACE"  |   ("DEFERRED" ["PUBLIC"] | "LOAD")  ) ".".
+"ENDINTERFACE"  |   ("DEFERRED" ["PUBLIC"] | "LOAD" (.current_scope.add_src("include #{to_ruby_const(n)}").))  ) ".".
 
 stINTERFACE_POOL = "INTERFACE-POOL"".".
 

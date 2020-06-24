@@ -144,9 +144,9 @@ class Cl_bsa_service_provider_co
 
       lo_mapped_message = nil # cm_esi_root.new
 
-      lt_message = nil # cm_esi_root.tt_esi_root.new
+      lt_message = nil # Cm_esi_root::Tt_esi_root.new
 
-      ls_origin_location = nil # cm_esi_root.ty_message_location.new
+      ls_origin_location = nil # Cm_esi_root::Ty_message_location.new
 
       begin
          loop(at:in_messages, into:lo_message){
@@ -161,7 +161,7 @@ class Cl_bsa_service_provider_co
                   #"change lifetime to transition - no other chance, because state is not allowed
                   #"without location
 
-                  lo_mapped_message = lo_message.copy_with_new_location(new_origin_location:ls_origin_location, new_message_lifetime:cm_esi_root.co_lifetime_transition)
+                  lo_mapped_message = lo_message.copy_with_new_location(new_origin_location:ls_origin_location, new_message_lifetime:Cm_esi_root::Co_lifetime_transition)
 
 
 
@@ -227,7 +227,7 @@ class Cl_bsa_service_provider_co
 
 
 
-      assert(o:ix_exception .isBOUND())
+      assert(o:ix_exception.isBOUND())
       raise cx_bsa_runtime_dynamic.new
 
 
@@ -339,7 +339,7 @@ class Cl_bsa_service_provider_co
       #**********************************************************************
 
       #" check if a previous exception exists or not
-      if io_exception .isBOUND()
+      if io_exception.isBOUND()
          begin
             lr_t100_message = io_exception
 
@@ -398,7 +398,7 @@ class Cl_bsa_service_provider_co
 
       lx_root = nil # cx_root.new
 
-      lt_messages = nil # cm_esi_root.tt_esi_root.new
+      lt_messages = nil # Cm_esi_root::Tt_esi_root.new
 
       begin
          @mo_adaptation_handler.check(_i:{
@@ -451,9 +451,9 @@ class Cl_bsa_service_provider_co
 
       lx_root = nil # cx_root.new
 
-      lt_messages = nil # cm_esi_root.tt_esi_root.new
+      lt_messages = nil # Cm_esi_root::Tt_esi_root.new
 
-      ls_change_notifs = nil # if_esf_types.ty_change_notifications.new
+      ls_change_notifs = nil # If_esf_types::Ty_change_notifications.new
 
       begin
          @mo_adaptation_handler.check_and_determine(_i:{
@@ -610,9 +610,9 @@ class Cl_bsa_service_provider_co
 
       lx_root = nil # cx_root.new
 
-      lt_messages = nil # cm_esi_root.tt_esi_root.new
+      lt_messages = nil # Cm_esi_root::Tt_esi_root.new
 
-      ls_change_notifs = nil # if_esf_types.ty_change_notifications.new
+      ls_change_notifs = nil # If_esf_types::Ty_change_notifications.new
 
       begin
          @mo_adaptation_handler.modify(_i:{
@@ -666,12 +666,12 @@ class Cl_bsa_service_provider_co
 
       lx_root = nil # cx_root.new
 
-      lt_messages = nil # cm_esi_root.tt_esi_root.new
+      lt_messages = nil # Cm_esi_root::Tt_esi_root.new
 
-      ls_change_notifs = nil # if_esf_types.ty_change_notifications.new
+      ls_change_notifs = nil # If_esf_types::Ty_change_notifications.new
 
-      if in_edit_mode != if_esf_types.co_read_only
-         assert(o:in_buffer_sync_handler .isBOUND())
+      if in_edit_mode != if_esf_types::Co_read_only
+         assert(o:in_buffer_sync_handler.isBOUND())
 
 
 
@@ -693,7 +693,7 @@ class Cl_bsa_service_provider_co
 
          me.put_messages_into_handler(in_message_handler:in_message_handler, in_messages:lt_messages)
 
-         if in_buffer_sync_handler .isBOUND()
+         if in_buffer_sync_handler.isBOUND()
             me.put_sync_notifs_into_handler(in_sync_handler:in_buffer_sync_handler, in_sync_notifications:ls_change_notifs.sync_notifications)
 
 
@@ -742,12 +742,12 @@ class Cl_bsa_service_provider_co
 
       lx_root = nil # cx_root.new
 
-      lt_messages = nil # cm_esi_root.tt_esi_root.new
+      lt_messages = nil # Cm_esi_root::Tt_esi_root.new
 
-      ls_change_notifs = nil # if_esf_types.ty_change_notifications.new
+      ls_change_notifs = nil # If_esf_types::Ty_change_notifications.new
 
-      if in_edit_mode != if_esf_types.co_read_only
-         assert(o:in_buffer_sync_handler .isBOUND())
+      if in_edit_mode != if_esf_types::Co_read_only
+         assert(o:in_buffer_sync_handler.isBOUND())
 
 
 
@@ -774,7 +774,7 @@ class Cl_bsa_service_provider_co
 
          me.put_messages_into_handler(in_message_handler:in_message_handler, in_messages:lt_messages)
 
-         if in_buffer_sync_handler .isBOUND()
+         if in_buffer_sync_handler.isBOUND()
             me.put_sync_notifs_into_handler(in_sync_handler:in_buffer_sync_handler, in_sync_notifications:ls_change_notifs.sync_notifications)
 
 
@@ -823,9 +823,9 @@ class Cl_bsa_service_provider_co
 
       lx_root = nil # cx_root.new
 
-      ls_properties = nil # if_esf_types.ty_properties.new
+      ls_properties = nil # If_esf_types::Ty_properties.new
 
-      assert(o:in_property_handler .isBOUND())
+      assert(o:in_property_handler.isBOUND())
       begin
          @mo_adaptation_handler.retrieve_default_node_values(_i:{
             "out_data" => out_data,
@@ -885,7 +885,7 @@ class Cl_bsa_service_provider_co
 
       lx_root = nil # cx_root.new
 
-      ls_properties = nil # if_esf_types.ty_properties.new
+      ls_properties = nil # If_esf_types::Ty_properties.new
 
       begin
          @mo_adaptation_handler.retrieve_properties(_i:{
@@ -989,9 +989,9 @@ class Cl_bsa_service_provider_co
 
       lx_root = nil # cx_root.new
 
-      lt_messages = nil # cm_esi_root.tt_esi_root.new
+      lt_messages = nil # Cm_esi_root::Tt_esi_root.new
 
-      ls_change_notifs = nil # if_esf_types.ty_change_notifications.new
+      ls_change_notifs = nil # If_esf_types::Ty_change_notifications.new
 
       begin
          @mo_adaptation_handler.execute_action(_i:{
@@ -1097,7 +1097,7 @@ class Cl_bsa_service_provider_co
       lx_bsa_runtime = nil # cx_bsa_runtime.new
 
       begin
-         @mo_adaptation_handler = cl_bsa_factory.get_adaptation_handler_for_co(in_bo_name:in_bo_name, in_provider_context:in_provider_context)
+         @mo_adaptation_handler = Cl_bsa_factory::Get_adaptation_handler_for_co(in_bo_name:in_bo_name, in_provider_context:in_provider_context)
 
 
       rescue cx_bsa_runtime=>lx_bsa_runtime
@@ -1222,7 +1222,7 @@ class Cl_bsa_service_provider_co
 
       lx_root = nil # cx_root.new
 
-      lt_messages = nil # cm_esi_root.tt_esi_root.new
+      lt_messages = nil # Cm_esi_root::Tt_esi_root.new
 
       begin
          @mo_adaptation_handler.if_esf_lcp_i_query(_i:{
@@ -1836,5 +1836,16 @@ class Cl_bsa_service_provider_co
 
    end
 
+   module Co_error_behavior
+      module_function
+      @dump = 0
+      def dump;0;  end
+      @fatal_exception = 1
+      def fatal_exception;1;  end
+      @dynamic_exception = 2
+      def dynamic_exception;2;  end
+      @message = 3
+      def message;3;  end
+   end
 
 end
