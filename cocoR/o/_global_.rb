@@ -4,8 +4,7 @@ end
 
 MAXSYM=45
 
-MAXERROR=1061
-
+MAXERROR=1060
 
 
 

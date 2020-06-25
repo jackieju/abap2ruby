@@ -144,9 +144,9 @@ class Cl_bsa_service_provider_co
 
       lo_mapped_message = nil # cm_esi_root.new
 
-      lt_message = nil # Cm_esi_root::Tt_esi_root.new
+      lt_message = nil # cm_esi_root::Tt_esi_root.new
 
-      ls_origin_location = nil # Cm_esi_root::Ty_message_location.new
+      ls_origin_location = nil # cm_esi_root::Ty_message_location.new
 
       begin
          loop(at:in_messages, into:lo_message){
@@ -161,7 +161,7 @@ class Cl_bsa_service_provider_co
                   #"change lifetime to transition - no other chance, because state is not allowed
                   #"without location
 
-                  lo_mapped_message = lo_message.copy_with_new_location(new_origin_location:ls_origin_location, new_message_lifetime:Cm_esi_root::Co_lifetime_transition)
+                  lo_mapped_message = lo_message.copy_with_new_location(new_origin_location:ls_origin_location, new_message_lifetime:cm_esi_root::Co_lifetime_transition)
 
 
 
@@ -398,7 +398,7 @@ class Cl_bsa_service_provider_co
 
       lx_root = nil # cx_root.new
 
-      lt_messages = nil # Cm_esi_root::Tt_esi_root.new
+      lt_messages = nil # cm_esi_root::Tt_esi_root.new
 
       begin
          @mo_adaptation_handler.check(_i:{
@@ -451,9 +451,9 @@ class Cl_bsa_service_provider_co
 
       lx_root = nil # cx_root.new
 
-      lt_messages = nil # Cm_esi_root::Tt_esi_root.new
+      lt_messages = nil # cm_esi_root::Tt_esi_root.new
 
-      ls_change_notifs = nil # If_esf_types::Ty_change_notifications.new
+      ls_change_notifs = nil # if_esf_types::Ty_change_notifications.new
 
       begin
          @mo_adaptation_handler.check_and_determine(_i:{
@@ -610,9 +610,9 @@ class Cl_bsa_service_provider_co
 
       lx_root = nil # cx_root.new
 
-      lt_messages = nil # Cm_esi_root::Tt_esi_root.new
+      lt_messages = nil # cm_esi_root::Tt_esi_root.new
 
-      ls_change_notifs = nil # If_esf_types::Ty_change_notifications.new
+      ls_change_notifs = nil # if_esf_types::Ty_change_notifications.new
 
       begin
          @mo_adaptation_handler.modify(_i:{
@@ -666,11 +666,11 @@ class Cl_bsa_service_provider_co
 
       lx_root = nil # cx_root.new
 
-      lt_messages = nil # Cm_esi_root::Tt_esi_root.new
+      lt_messages = nil # cm_esi_root::Tt_esi_root.new
 
-      ls_change_notifs = nil # If_esf_types::Ty_change_notifications.new
+      ls_change_notifs = nil # if_esf_types::Ty_change_notifications.new
 
-      if in_edit_mode != if_esf_types::Co_read_only
+      if in_edit_mode != If_esf_types::Co_read_only
          assert(o:in_buffer_sync_handler.isBOUND())
 
 
@@ -742,11 +742,11 @@ class Cl_bsa_service_provider_co
 
       lx_root = nil # cx_root.new
 
-      lt_messages = nil # Cm_esi_root::Tt_esi_root.new
+      lt_messages = nil # cm_esi_root::Tt_esi_root.new
 
-      ls_change_notifs = nil # If_esf_types::Ty_change_notifications.new
+      ls_change_notifs = nil # if_esf_types::Ty_change_notifications.new
 
-      if in_edit_mode != if_esf_types::Co_read_only
+      if in_edit_mode != If_esf_types::Co_read_only
          assert(o:in_buffer_sync_handler.isBOUND())
 
 
@@ -823,7 +823,7 @@ class Cl_bsa_service_provider_co
 
       lx_root = nil # cx_root.new
 
-      ls_properties = nil # If_esf_types::Ty_properties.new
+      ls_properties = nil # if_esf_types::Ty_properties.new
 
       assert(o:in_property_handler.isBOUND())
       begin
@@ -885,7 +885,7 @@ class Cl_bsa_service_provider_co
 
       lx_root = nil # cx_root.new
 
-      ls_properties = nil # If_esf_types::Ty_properties.new
+      ls_properties = nil # if_esf_types::Ty_properties.new
 
       begin
          @mo_adaptation_handler.retrieve_properties(_i:{
@@ -989,9 +989,9 @@ class Cl_bsa_service_provider_co
 
       lx_root = nil # cx_root.new
 
-      lt_messages = nil # Cm_esi_root::Tt_esi_root.new
+      lt_messages = nil # cm_esi_root::Tt_esi_root.new
 
-      ls_change_notifs = nil # If_esf_types::Ty_change_notifications.new
+      ls_change_notifs = nil # if_esf_types::Ty_change_notifications.new
 
       begin
          @mo_adaptation_handler.execute_action(_i:{
@@ -1097,7 +1097,7 @@ class Cl_bsa_service_provider_co
       lx_bsa_runtime = nil # cx_bsa_runtime.new
 
       begin
-         @mo_adaptation_handler = Cl_bsa_factory::Get_adaptation_handler_for_co(in_bo_name:in_bo_name, in_provider_context:in_provider_context)
+         @mo_adaptation_handler = cl_bsa_factory::Get_adaptation_handler_for_co(in_bo_name:in_bo_name, in_provider_context:in_provider_context)
 
 
       rescue cx_bsa_runtime=>lx_bsa_runtime
@@ -1222,7 +1222,7 @@ class Cl_bsa_service_provider_co
 
       lx_root = nil # cx_root.new
 
-      lt_messages = nil # Cm_esi_root::Tt_esi_root.new
+      lt_messages = nil # cm_esi_root::Tt_esi_root.new
 
       begin
          @mo_adaptation_handler.if_esf_lcp_i_query(_i:{
@@ -1847,5 +1847,9 @@ class Cl_bsa_service_provider_co
       @message = 3
       def message;3;  end
    end
-
+   include If_esf_types@mt_exceptions = nil # tt_exceptions.new
+   @mo_adaptation_handler = nil # if_bsa_adaptation_handler.new
+   @mv_error_behavior = nil # ty_error_behavior.new
+   @mv_error_behavior_adap_hdlr = nil # ty_error_behavior.new
+   include If_esf_types
 end

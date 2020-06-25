@@ -7,6 +7,32 @@ load 'error.rb'
 load 'log.rb'
 load 'common.rb'
 load 'cocoR/o/cparser.rb'
+
+def load_file(fname)
+    p "load_file:#{fname}"
+    # make sure include only once
+    if (@included_files[fname] == 1)
+        
+    else
+        dir = File.dirname($g_cur_parse_file)
+        parse_file(dir+"/"+fname, $preprocessor, false)
+        @included_files[fname] = 1
+    end
+end
+    
+
+def procName(name)
+    ar = name.split(".")
+    tail = ""
+    tail = "."+ar[1..ar.size-1].join(".") if ar.size>1
+    v = find_var(ar[0])
+   p "find:#{name}:#{v.inspect}", 10
+   if v
+      name  = v.newname+tail
+ 
+   end
+   return name
+end
 def convertName(s)
 #    if @sym == C_# s.gsub("!", "").gsub("->", ".").gsub("-", "_1_").gsub("~", "_2_")
     if s.start_with?("/")
@@ -160,6 +186,7 @@ class Parser < CParser
         @output_src = ""
         @parse_stack = ParseStack.new
         
+        @included_files = {}
         
         p "init end"
         pclass

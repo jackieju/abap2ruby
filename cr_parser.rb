@@ -383,6 +383,21 @@ class CRParser
          return nil
     end
     
+    # find var in scope and it's ancestor
+    def find_var_in_scope(name, scope)
+        ret = scope.get_var(name)
+        return ret if ret
+        if scope.is_a?(ClassDef) && scope.parent
+            parent = scope.parent
+            if parent.class == String
+                parent = find_class(parent)[:v]
+            end
+            return nil if !parent
+            return find_var_in_scope(name, parent)
+        end
+        return nil
+    end
+    
     def find_var(name, scope=nil)
          p "find_var:#{name}", 10
         scope= current_scope  if !scope
@@ -401,7 +416,7 @@ class CRParser
             scope.vars.each{|k,v|
                 p "===>var:#{k}"
             }
-            ret = scope.get_var(name)
+            ret = find_var_in_scope(name, scope)
             return ret if ret
             scope = scope.parentScope
         end

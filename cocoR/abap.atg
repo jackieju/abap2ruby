@@ -56,15 +56,7 @@ PRODUCTIONS
     Name = (identifier|AllowedKeywords)  (. name=fixName(src()).)
                             (.  
                                                         #  name = lus
-                                                          ar = name.split(".")
-                                                          tail = ""
-                                                          tail = "."+ar[1..ar.size-1].join(".") if ar.size>1
-                                                          v = find_var(ar[0])
-                                                         p "find:#{name}:#{v.inspect}"
-                                                         if v
-                                                            name  = v.newname+tail
-                                                       
-                                                         end
+                                                         name = procName(name)
                                                          src(name)
                               .)
                                 .
@@ -87,6 +79,7 @@ PRODUCTIONS
                                                           #  current_scope.pre += "#{name}=nil\n"
                                                          #   current_scope.add_var(name, nil)
                                                          end
+                                
                                                          src(name)
                               .)
     .
@@ -646,8 +639,8 @@ LikeDes =        "LIKE"
                    ).
  
 VariableDefineStatement =  ("DATA"|"STATICS" | "CLASS-DATA" | "CONSTANTS" ) (.t=prevString.upcase.) 
-    (
-            ( 
+            (
+                    ( 
                         "BEGIN" "OF" ( "COMMON" "PART" NameInVarDef | NameInVarDef (.modname=lus.) ["READ-ONLY"] ["OCCURS" number] )
                         (. 
                             if t == "CONSTANTS"
@@ -671,9 +664,10 @@ VariableDefineStatement =  ("DATA"|"STATICS" | "CLASS-DATA" | "CONSTANTS" ) (.t=
                                  .)| LikeDes)
                              
                     )
-                   { ["VALUE" (.value = nil.){  Expression (. value = "" if value ==nil;value += lus.)| "IS" "INITIAL" (.back_src();re(".init()").) }] 
-                    ["READ-ONLY"]
-                    ["OCCURS" number
+                    { 
+                        ["VALUE" (.value = nil.){  Expression (. value = "" if value ==nil;value += lus.)| "IS" "INITIAL" (.back_src();re(".init()").) }] 
+                        ["READ-ONLY"]
+                        ["OCCURS" number
                               ["WITH" "HEADER" "LINE"]]
                     }                
             
@@ -1222,7 +1216,14 @@ ClassStatement = "CLASS" identifier
                                   [( "PUBLIC"|"PROTECTED"|"PRIVATE")]
                                   {
                                  
-                                   ["INHERITING" "FROM" identifier (.  cls.parent = valid_class_name(prevString) .)] 
+                                   ["INHERITING" "FROM" identifier 
+                                       (. 
+                                            cls.parent = valid_class_name(prevString) 
+                                            out_scope()
+                                            load_file("#{prevString}.abap")
+                                           in_scope(cls)
+                                       .)
+                                    ] 
                                    ["ABSTRACT"] 
                                    ["FINAL"] 
                                    ["CREATE" {"PUBLIC"|"PROTECTED"|"PRIVATE"}] 
@@ -1464,7 +1465,7 @@ CallMethod =  "METHOD"
         (. param_hash = {};name = "".)
         ( 
             (
-              MethodName(.name+=lus.) {("->"|"=>") MethodName(.name+=".#{lus}".)}
+              MethodName(.name+=lus;name=procName(name).) {("->"|"=>") MethodName(.name+=".#{lus}".)}
                
                 
                /*["("](string1(.name+=strInQuote(prevString).)|identifier(.name+=prevString;.))[")"] [ ("->"|"=>") ["("](string1(.name+="."+strInQuote(prevString).)| identifier(.name+="."+prevString.)) [")"] ]
@@ -1889,7 +1890,8 @@ stINTERFACE = "INTERFACE" identifier (.
 
 (.in_scope(clsdef).)
   {
-      stTYPES | stINTERFACES | stINTERFACE | VariableDefineStatement | stINCLUDE | stALIASES | MethodsStatement
+      stTYPES | stINTERFACES | stINTERFACE | VariableDefineStatement | stINCLUDE | stALIASES 
+      | MethodsStatement | ClassStatement
   } 
   (.out_scope.)
 "ENDINTERFACE"  |   ("DEFERRED" ["PUBLIC"] | "LOAD" (.current_scope.add_src("include #{to_ruby_const(n)}").))  ) ".".
@@ -2407,7 +2409,7 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
                               
                               
   AllowedKeywordsExclude = "DATA" . 
-  AllowedKeywords = "DATA" | "MESSAGE" | "END" | "CREATE" | "KEY" |"ID". 
+  AllowedKeywords = "DATA" | "MESSAGE" | "END" | "CREATE" | "KEY" |"ID"|"VALUE"|"DEFAULT". 
   FunctionCall        =  "(" (.stop_autosrc;no_comments.)
   (
        {
@@ -2443,9 +2445,9 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
   AssignmentOperator   =    "="  | "*=" | "/=" | "%=" | "+=" | "-=" | "&="
                          | "^=" | "|=" | "<<=" | ">>=" | "?="(.re("=").)   .
 
-  UnaryOperator        =  "+" | MinusOperator | "*" | "!" | "&" | "~" | "NOT"(.re("!").) |  "INSTANCE" "OF" | "IN"    .
+  UnaryOperator        =  "+" | /*MinusOperator |*/ "-" | "*" | "!" | "&" | "~" | "NOT"(.re("!").) |  "INSTANCE" "OF" | "IN"    .
 
-  MinusOperator = space1 "-" | "-" space1 .
+ /* MinusOperator = space1 "-" | "-" space1 .*/
 
   PredefinedConstant = "INITIAL" | "BOUND" | "ASSIGNED" | "SUPPLIED" | "REQUESTED" .
 

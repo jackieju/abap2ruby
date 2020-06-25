@@ -9,6 +9,8 @@ require_relative "cl_a1fia_aar_create_qaf_eco.rb"
 require_relative "cl_a1fia_acproerr_qaf_eco.rb"
 
 require_relative "if_a1fia_aar_create_qaf_eco.rb"
+require_relative "if_esf_types.rb"
+
 require_relative "if_bsa_adaptation_handler.rb"
 
 a = Cl_a1fia_aar_create_qaf_eco.new
