@@ -1894,7 +1894,15 @@ stINTERFACE = "INTERFACE" identifier (.
       | MethodsStatement | ClassStatement
   } 
   (.out_scope.)
-"ENDINTERFACE"  |   ("DEFERRED" ["PUBLIC"] | "LOAD" (.current_scope.add_src("include #{to_ruby_const(n)}").))  ) ".".
+"ENDINTERFACE"  |   ("DEFERRED" ["PUBLIC"] | "LOAD" (.
+                                                        current_scope.add_src("include #{to_ruby_const(n)}\n")
+                                                        cp = current_scope
+                                                        out_scope
+                                                        load_file("#{n}.abap")
+                                                        in_scope(cp)
+                                                    .)
+        )  
+    ) ".".
 
 stINTERFACE_POOL = "INTERFACE-POOL"".".
 

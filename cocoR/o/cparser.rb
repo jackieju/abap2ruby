@@ -183,15 +183,14 @@ class CParser < CRRParser
       tail = ""
       tail = "."+ar[1..ar.size-1].join(".") if ar.size>1
       v = find_var(ar[0])
-      p "find:#{name}:#{v.inspect}", 100
-      dump_pos
+      p "find:#{name}:#{v.inspect}"
       if v
          name  = v.newname+tail
       else
          #current_scope.pre += "#{name}=nil\n"
          #current_scope.add_var(name, nil)
       end
-      p "newname2:#{name}"
+
       src(name);
 
       _out_()
@@ -617,7 +616,12 @@ class CParser < CRRParser
                if @sym==C_LOADSym
                   Get()
 
-                  current_scope.add_src("include #{to_ruby_const(n)}");
+
+                  current_scope.add_src("include #{to_ruby_const(n)}")
+                  cp = current_scope
+                  out_scope
+                  load_file("#{n}.abap")
+                  in_scope(cp);
 
                else
                   GenError(723)
@@ -12206,7 +12210,6 @@ class CParser < CRRParser
          MethodName()
 
          name+=lus;name=procName(name);
-         p "newname:#{name}"
 
          while (@sym>=C_MinusGreaterSym&&@sym<=C_EqualGreaterSym)
             if @sym==C_MinusGreaterSym
@@ -12799,7 +12802,6 @@ class CParser < CRRParser
       end
       r += pri;
 
-      p "pri:#{pri}"
       while (@sym==C_LparenSym||@sym==C_LbrackSym||@sym==C_ISSym||@sym>=C_MinusGreaterSym&&@sym<=C_EqualGreaterSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym)
          case @sym
 
@@ -12823,7 +12825,6 @@ class CParser < CRRParser
             else
                r+="#{lus}"
             end;
-            p "pri1:#{r}"
 
 
          when C_MinusGreaterSym
@@ -12882,7 +12883,7 @@ class CParser < CRRParser
       if r != ""
          src(r)
       end;
-      p "src3:#{src}"
+
       _out_()
    end
    def UnaryOperator()

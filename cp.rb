@@ -10,6 +10,7 @@ load 'cocoR/o/cparser.rb'
 
 def load_file(fname)
     p "load_file:#{fname}"
+    name = name.upcase
     # make sure include only once
     if (@included_files[fname] == 1)
         
