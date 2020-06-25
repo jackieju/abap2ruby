@@ -360,9 +360,12 @@ class CParser < CRRParser
                      Expect(C_identifierSym)
 
 
+                     n  = prevString
                      cls.parent = valid_class_name(prevString)
                      out_scope()
-                     load_file("#{prevString}.abap")
+                     load_file("#{n}")
+                     cls.add_require("#{n.downcase}.rb")
+
                      in_scope(cls);
 
                   end
@@ -617,10 +620,12 @@ class CParser < CRRParser
                   Get()
 
 
-                  current_scope.add_src("include #{to_ruby_const(n)}")
+                  cls = current_scope
+                  cls.add_src("include #{to_ruby_const(n)}\n")
                   cp = current_scope
                   out_scope
-                  load_file("#{n}.abap")
+                  load_file("#{n}")
+                  cls.add_require("#{n.downcase}.rb")
                   in_scope(cp);
 
                else

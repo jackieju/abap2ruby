@@ -10,14 +10,18 @@ load 'cocoR/o/cparser.rb'
 
 def load_file(fname)
     p "load_file:#{fname}"
-    name = name.upcase
+    fname = fname.upcase+".abap"
     # make sure include only once
     if (@included_files[fname] == 1)
         
     else
         dir = File.dirname($g_cur_parse_file)
-        parse_file(dir+"/"+fname, $preprocessor, false)
-        @included_files[fname] = 1
+        begin
+            parse_file(dir+"/"+fname, $preprocessor, false)
+            @included_files[fname] = 1
+        rescue Exception=>e
+            p "load file failed. #{fname}, #{pe(e)}"
+        end
     end
 end
     

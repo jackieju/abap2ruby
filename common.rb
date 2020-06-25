@@ -116,8 +116,13 @@ HERE
                 if (module_name && module_name != "")
                     class_name = "#{module_name}::#{class_name}"
                 end
+                requ = ""
+                v.require.each{|q|
+                    requ += "require_relative \"#{q}\"\n"
+                }
                 if v.class == ModuleDef
                     class_template =<<HERE
+                    #{requ}
                 module #{class_name}
                     #{includings}
                  #{s_methods}
@@ -128,6 +133,7 @@ HERE
                     
                     if v.parent
                         class_template =<<HERE
+                        #{requ}
                 class #{class_name} < #{v.parent}
                     #{includings}
                 #{s_methods}
@@ -136,6 +142,7 @@ HERE
 HERE
                     else
                         class_template =<<HERE
+                        #{requ}
                 class #{class_name}
                     #{includings}
                  #{s_methods}

@@ -1218,9 +1218,12 @@ ClassStatement = "CLASS" identifier
                                  
                                    ["INHERITING" "FROM" identifier 
                                        (. 
+                                           n  = prevString
                                             cls.parent = valid_class_name(prevString) 
                                             out_scope()
-                                            load_file("#{prevString}.abap")
+                                            load_file("#{n}")
+                                            cls.add_require("#{n.downcase}.rb")
+                                           
                                            in_scope(cls)
                                        .)
                                     ] 
@@ -1895,10 +1898,12 @@ stINTERFACE = "INTERFACE" identifier (.
   } 
   (.out_scope.)
 "ENDINTERFACE"  |   ("DEFERRED" ["PUBLIC"] | "LOAD" (.
-                                                        current_scope.add_src("include #{to_ruby_const(n)}\n")
+                                                        cls = current_scope
+                                                        cls.add_src("include #{to_ruby_const(n)}\n")
                                                         cp = current_scope
                                                         out_scope
-                                                        load_file("#{n}.abap")
+                                                        load_file("#{n}")
+                                                        cls.add_require("#{n.downcase}.rb")
                                                         in_scope(cp)
                                                     .)
         )  

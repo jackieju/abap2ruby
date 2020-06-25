@@ -78,7 +78,7 @@ class Scope
 end
 
 class ModuleDef < Scope
-    attr_accessor :class_name, :modules, :classes, :methods, :src, :functions, :includings
+    attr_accessor :class_name, :modules, :classes, :methods, :src, :functions, :includings, :require
   
     def initialize(class_name)
         super("module")
@@ -96,6 +96,10 @@ class ModuleDef < Scope
         #}
         @functions = {} 
         @includings = [] 
+        @require = []
+    end
+    def add_require(n)
+        @require.push(n) if @require.include?(n) == false
     end
     def add_src(src)
         @src = "" if !@src
