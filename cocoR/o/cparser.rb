@@ -3033,6 +3033,7 @@ class CParser < CRRParser
 
       impar.push("_i:nil")
       impar.push("_e:nil")
+      impar.push("_b:nil")
       pars = impar.join(",")
 
       if classdef
@@ -12415,7 +12416,7 @@ class CParser < CRRParser
 
 
 
-      params = {"_i"=>exporting, "_e"=>importing}
+      params = {"_i"=>exporting, "_e"=>importing, "_b"=>"binding"}
 
 
       #src("call_method(#{name1}.#{name2}, {#{params}})");
@@ -12907,7 +12908,7 @@ class CParser < CRRParser
             Get()
             Expect(C_identifierSym)
 
-            r+="::#{to_ruby_const(prevString)}";
+            r+="::#{prevString}";
 
 
          when C_PlusPlusSym
@@ -13065,7 +13066,7 @@ class CParser < CRRParser
                   Expect(C_EqualSym)
                   Expression()
 
-                  exporting+="\"#{idn}\" => #{lus},\n";
+                  exporting+="\"#{idn}\" => \"#{lus}\",\n";
 
                end
 
@@ -13148,6 +13149,7 @@ class CParser < CRRParser
          params[:_i]=importing
          params[:_e]=exporting
          params[:_c]=changing
+         params[:_b]="binding"
          src("(#{hash_to_params(params)})");
 
       else

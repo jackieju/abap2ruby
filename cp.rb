@@ -365,6 +365,13 @@ class Parser < CParser
         src("#{fn}(#{hash_to_params(cp)})\n")
     end
     
+    def in_method
+        s ="var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval(\"\#{k}=v\");varset(k, v)} if _i
+        _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval(\"\#{k}=v\");varset(k, v)} if _e"
+    end
+    def out_method
+        "_e.each{|k,v|_b.local_variable_set(v.to_sym, eval(\"\#{k}\"))} if _e && _b"
+    end
     def add_method(classdef, fname, head, args, source, deco, others=nil)
         pre = ""
         if others and others[:pre]
@@ -376,7 +383,8 @@ class Parser < CParser
         # setup importing parameter
      #   _i.each{|k,v| eval("\#{k} = \#{v}")} if _i  
       #  _i.each{|k,v| v = "\\\"\#{v}\\\"" if v.is_a?(String);eval("\#{k} = \#{v}")} if _i    
-      var(_i) if _i
+      #var(_i) if _i
+        #{in_method}
         ###################################
         
         
@@ -388,10 +396,11 @@ HERE
         
         ###################################
         # setup exporting 
-        _exp = {}
-        _e.each{|k,v| eval("_exp['\#{v}'] = \#{k}")} if _e
+        #_exp = {}
+       # _e.each{|k,v| eval("_exp['\#{v}'] = \#{k}")} if _e
         
-        return {:exp=>_exp}
+        #return {:exp=>_exp}
+        #{out_method}
         ###################################
 
 HERE

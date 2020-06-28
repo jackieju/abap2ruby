@@ -107,7 +107,9 @@ class ModuleDef < Scope
         @src = "" if !@src
         @src += src
     end
-    
+    def default_method_head
+        "(_i:nil,_e:nil,_b:nil)"
+    end
     # head: content in () in ruby code, including ()
     # will change it with new value if method already exists
     def add_method(method_name, head, args, src, acc="public", others=nil)
@@ -167,7 +169,7 @@ m[:src] = "" if m[:src] ==nil
             method_desc[:args] = args
             method_desc[:head] = head if head != nil
             if method_desc[:head] == nil
-                method_desc[:head] = "(_i:nil,_e:nil)"
+                method_desc[:head] = default_method_head
             end
             
             if src && src.strip != ""
@@ -197,7 +199,7 @@ m[:src] = "" if m[:src] ==nil
                 :head=>head
             }
             if @methods[method_sig][:head] == nil
-                @methods[method_sig][:head] = "(_i:nil,_e:nil)"
+                @methods[method_sig][:head] = default_method_head
             end
             
             if @methods[method_sig][:doc] == nil && others && others[:doc]

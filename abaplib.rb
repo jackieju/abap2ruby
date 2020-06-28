@@ -22,8 +22,13 @@
 #        }
 #    end
 #end
+class Binding
+  alias :g :local_variable_get
+  alias :s :local_variable_get
+end
 
 def var(hash)
+    p "self:#{self.class}"
     hash.each do |n, v|
       self.class.define_method(n) do
         instance_variable_get("@__#{n}")
@@ -144,6 +149,7 @@ def __in__(_i:nil,_e:nil, _b:nil)
     var(_e) if _e
     _e.each{|k,v|
         p "v:#{v}"
+        p "b:#{_b}"
         v = _b.local_variable_get(v.to_sym)
         p "v:#{v}"
         p "#{k}=v"
@@ -157,24 +163,35 @@ end
 def __out__
 end
 def t(_i:nil,_e:nil, _b:nil)
-    __in__(_i:_i,_e:_e, _b:_b)
-    #var(_i) if _i
-    #var(_e) if _e
-    #_e.each{|k,v|
-    #    p "v:#{v}"
-    #    v = _b.local_variable_get(v.to_sym)
-    #    p "v:#{v}"
-    #    p "#{k}=v"
-    #    eval("#{k}=v")
-    #    eval("v2=v")
-    #    varset(k, v)
-    #    p "v2:#{v2}"
-    #    p "out:#{k}=#{eval("k")}"
-    #}
-    #p "v2:#{v2}" 
+    #__in__(_i:_i,_e:_e, _b:_b)
+    var(_i) if _i
+    var(_e) if _e
+    _i.each{|k,v|
+        eval("#{k}=v")
+        varset(k, v)
+    }
+    _e.each{|k,v|
+        #p "v:#{v}"
+        #p "b:#{_b}"
+        v = _b.local_variable_get(v.to_sym)
+        #p "v:#{v}"
+        #p "#{k}=v"
+        eval("#{k}=v")
+        #eval("v2=v")
+        varset(k, v)
+        #p "v2:#{v2}"
+        #p "out:#{k}=#{eval("k")}"
+    }
+    p "33v2:#{v2}" 
+    p "33v1:#{v1}" 
+    v2 + 1
     v1 + 1
-    v2 = v1 + 1
-   
+    v1 + v2 + 1
+    v2 = v1 + v2 + 1
+    v2 = v2 + v1 + 1
+    v1 = v2 + v1 + 1
+    v1 = v1 + v2 + 1
+   p "v2:#{v2}" 
     _exp = {}
     _e.each{|k,v| 
      #   p "_exp['#{v}'] = #{k}"
@@ -191,8 +208,36 @@ end
 #p "--->#{d1}"
 
 v2 = 999
-t(_i:{"v1"=>1}, _e:{"v2"=>"v2"}, _b:binding)
+#t(_i:{"v1"=>1}, _e:{"v2"=>"v2"}, _b:binding)
 p v2
+
+def t2(_i:nil,_e:nil, _b:nil)
+    #__in__(_i:_i,_e:_e, _b:_b)
+    var(_i) if _i;var(_e) if _e
+    _i.each{|k,v|eval("#{k}=v");varset(k, v)}
+    _e.each{|k,v|v = _b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)}
+      
+    p "33v2:#{v2}" 
+    p "33v1:#{v1}" 
+    v2 + 1
+    v1 + 1
+    v1 + v2 + 1
+    v2 = v1 + v2 + 1
+    v2 = v2 + v1 + 1
+    v1 = v2 + v1 + 1
+    v1 = v1 + v2 + 1
+    p "v3:#{v3}"
+    v3 += "hhh" if v2 >100
+    
+    
+    _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
+end
+v3 = "fsfsf"
+t2(_i:{"v1"=>1}, _e:{"v2"=>"v2", "v3"=>"v3"}, _b:binding)
+p v2
+p v3
+
+
 
 =begin
 def test1(v1, importing, exporting)

@@ -17,19 +17,21 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #
    #
 
-   def modify_core_bo_from_eco_root(io_message_handler:nil,_i:nil,_e:nil)
+   def modify_core_bo_from_eco_root(io_message_handler:nil,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
 
-      lt_core_modification = nil # If_esf_provider_access::Tt_modifications.new
+      lt_core_modification = nil # If_esf_provider_access::tt_modifications.new
 
       lr_attribute_map = nil # ty_attribute_map.new
 
@@ -56,9 +58,9 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       lv_clear_cost_id = nil # syboolean.new
 
-      lt_message = nil # Cm_esi_root::Tt_esi_root.new
+      lt_message = nil # Cm_esi_root::tt_esi_root.new
 
-      ls_change_notification = nil # If_esf_types::Ty_change_notifications.new
+      ls_change_notification = nil # If_esf_types::ty_change_notifications.new
 
 
       lx_esf_core_service = nil # cx_esf_core_service.new
@@ -101,12 +103,12 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
 
             if lr_attribute_map.core_bo_node_id.isINITIAL()
-               ls_core_modification.change_mode = If_esf_provider_access::Co_change_mode_create
+               ls_core_modification.change_mode = If_esf_provider_access::co_change_mode_create
 
 
 
                if lr_attribute_map.core_bo_node_name != If_fia_acc_adjustment_run::Co_bo_node.root
-                  ls_core_modification.node_id = get_uuid()
+                  ls_core_modification.node_id = get_uuid(_b:binding)
 
 
                   #"Handle
@@ -116,7 +118,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
                   #"ECO root node ID is same as core BO ROOT node id (could be handle too!)
 
-                  ls_core_modification.source_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.root
+                  ls_core_modification.source_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.root
 
 
                   #"Assumption that the core bo node is directly under Root
@@ -164,13 +166,13 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
                   @mo_lcp_bo.retrieve_default_node_values(_i:{
                      "out_data" => lt_core_bo_defaulted_data,
                   }, _e:{
-                     "in_bo_node_name" => ls_core_modification.bo_node_name,
-                     "in_node_id_handles" => lt_node_id,
-                     "in_association_name" => ls_core_modification.association_name,
-                     "in_source_bo_node_name" => ls_core_modification.source_bo_node_name,
-                     "in_source_node_id" => ls_core_modification.source_node_id,
-                     "in_source_node_id_is_handle" => ls_core_modification.source_node_id_is_handle,
-                  })
+                     "in_bo_node_name" => "ls_core_modification.bo_node_name",
+                     "in_node_id_handles" => "lt_node_id",
+                     "in_association_name" => "ls_core_modification.association_name",
+                     "in_source_bo_node_name" => "ls_core_modification.source_bo_node_name",
+                     "in_source_node_id" => "ls_core_modification.source_node_id",
+                     "in_source_node_id_is_handle" => "ls_core_modification.source_node_id_is_handle",
+                  }, _b:binding)
 
                   read_table(id:lt_core_bo_defaulted_data, index:1)
                   if sy.subrc == 0
@@ -181,12 +183,12 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
                      assert(o:sy.subrc == 0)
 
                      extract_editable_non_init_attr(_e:{
-                        "is_co_attr_struct" => ls_core_bo_attr_struct,
-                        "is_node_data" => ls_core_bo_defaulted_data,
-                        "iv_bo_node_name" => ls_core_modification.bo_node_name,
+                        "is_co_attr_struct" => "ls_core_bo_attr_struct",
+                        "is_node_data" => "ls_core_bo_defaulted_data",
+                        "iv_bo_node_name" => "ls_core_modification.bo_node_name",
                      }, _c:{
                         "ct_changed_attributes" => ls_core_modification.changed_attributes,
-                     })
+                     }, _b:binding)
 
 
                      #"Fill up the defaulted attributes in the modifications structure
@@ -215,7 +217,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
 
             else
-               ls_core_modification.change_mode = If_esf_provider_access::Co_change_mode_update
+               ls_core_modification.change_mode = If_esf_provider_access::co_change_mode_update
 
                ls_core_modification.node_id = lr_attribute_map.core_bo_node_id
 
@@ -255,11 +257,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
                cl_a1fia_aar_util.create_message(_i:{
                   "iv_message_class" => 'A1FIA_AAR_CREATE_QAF',
                   "iv_message_number" => '030',
-                  "iv_severity" => Cm_esi_root::Co_severity_warning,
-                  "iv_lifetime" => Cm_esi_root::Co_lifetime_transition,
+                  "iv_severity" => Cm_esi_root::co_severity_warning,
+                  "iv_lifetime" => Cm_esi_root::co_lifetime_transition,
                }, _e:{
                   "eo_message" => lo_msg_grir,
-               })
+               }, _b:binding)
 
 
 
@@ -290,8 +292,8 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
             "out_change_notifications" => ls_change_notification,
             "out_messages" => lt_message,
          }, _e:{
-            "in_modifications" => lt_core_modification,
-         })
+            "in_modifications" => "lt_core_modification",
+         }, _b:binding)
 
 
       rescue cx_esf_core_service=>lx_esf_core_service
@@ -303,15 +305,15 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
       io_change_handler.get_change_notifications(_i:{
          "out_change_notifications" => ls_eco_change_notify,
       }, _e:{
-         "in_bo_name" => If_a1fia_aar_create_qaf_eco::Co_bo_name,
-         "in_bo_node_name" => If_a1fia_aar_create_qaf_eco::Co_bo_node.root,
-      })
+         "in_bo_name" => "If_a1fia_aar_create_qaf_eco::co_bo_name",
+         "in_bo_node_name" => "If_a1fia_aar_create_qaf_eco::co_bo_node.root",
+      }, _b:binding)
 
       if ls_eco_change_notify.isINITIAL()
          handle_notifications(_e:{
-            "is_change_notification" => ls_change_notification,
-            "io_change_handler" => io_change_handler,
-         })
+            "is_change_notification" => "ls_change_notification",
+            "io_change_handler" => "io_change_handler",
+         }, _b:binding)
 
 
 
@@ -329,10 +331,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -341,14 +344,16 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #     redefinition .
    #
 
-   def if_esf_provider_access_i_check(_i:nil,_e:nil)
+   def if_esf_provider_access_i_check(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -361,9 +366,9 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       lt_node_id = nil # sesf_bo_node_id_tab.new
 
-      lt_core_message = nil # Cm_esi_root::Tt_esi_root.new
+      lt_core_message = nil # Cm_esi_root::tt_esi_root.new
 
-      lt_core_message_aggregated = nil # Cm_esi_root::Tt_esi_root.new
+      lt_core_message_aggregated = nil # Cm_esi_root::tt_esi_root.new
 
       lx_esf_core_service = nil # cx_esf_core_service.new
 
@@ -380,8 +385,8 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       begin
          lo_node_desc = @mo_eco_descriptor.get_bo_node_descriptor(bo_node_proxy_name:in_bo_node_name)
-         lv_is_node_upd_enabled = lo_node_desc.get_property_value(property_name:If_esf_desc::Co_property_update_enabled)
-         lv_is_upd_enabled_final = lo_node_desc.is_property_value_final(property_name:If_esf_desc::Co_property_update_enabled)
+         lv_is_node_upd_enabled = lo_node_desc.get_property_value(property_name:If_esf_desc::co_property_update_enabled)
+         lv_is_upd_enabled_final = lo_node_desc.is_property_value_final(property_name:If_esf_desc::co_property_update_enabled)
 
       rescue cx_esf_metadata_error=>lx_esf_metadata_error
          raise cx_fatal_exception.new
@@ -397,11 +402,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       if in_bo_node_name != If_a1fia_aar_create_qaf_eco::Co_bo_node.root
          super.if_esf_provider_access_i_check(_e:{
-            "in_bo_node_name" => in_bo_node_name,
-            "in_node_ids" => in_node_ids,
-            "in_check_scope" => in_check_scope,
-            "in_message_handler" => in_message_handler,
-         })
+            "in_bo_node_name" => "in_bo_node_name",
+            "in_node_ids" => "in_node_ids",
+            "in_check_scope" => "in_check_scope",
+            "in_message_handler" => "in_message_handler",
+         }, _b:binding)
 
 
 
@@ -413,7 +418,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       begin
          if @mt_attribute_map.isINITIAL()
-            init_buffers()
+            init_buffers(_b:binding)
 
 
 
@@ -452,10 +457,10 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
                @mo_lcp_bo.check(_i:{
                   "out_messages" => lt_core_message,
                }, _e:{
-                  "in_bo_node_name" => lv_core_bo_node_name,
-                  "in_node_ids" => lt_node_id,
-                  "in_check_scope" => in_check_scope,
-               })
+                  "in_bo_node_name" => "lv_core_bo_node_name",
+                  "in_node_ids" => "lt_node_id",
+                  "in_check_scope" => "in_check_scope",
+               }, _b:binding)
 
                #"#EC CI_LCP_LOOP  "No single BO node is being checked-on more than once
 
@@ -470,14 +475,14 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
          }
 
       rescue cx_a1fia_aar_create_qaf_eco=>lx_a1fia_aar_create_qaf_eco
-         Cl_a1fia_aar_util::Create_message(_i:{
+         Cl_a1fia_aar_util::create_message(_i:{
             "eo_message" => lo_message,
          }, _e:{
-            "iv_message_class" => 'A1FIA_AAR_CREATE_QAF_ECO',
-            "iv_message_number" => '018',
-            "iv_severity" => Cm_esi_root::Co_severity_error,
-            "iv_lifetime" => Cm_esi_root::Co_lifetime_transition,
-         })
+            "iv_message_class" => "'A1FIA_AAR_CREATE_QAF_ECO'",
+            "iv_message_number" => "'018'",
+            "iv_severity" => "Cm_esi_root::co_severity_error",
+            "iv_lifetime" => "Cm_esi_root::co_lifetime_transition",
+         }, _b:binding)
 
          begin
             in_message_handler.add_message(lo_message)
@@ -499,10 +504,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -511,19 +517,21 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #     redefinition .
    #
 
-   def if_esf_provider_access_i_modify(_i:nil,_e:nil)
+   def if_esf_provider_access_i_modify(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
 
-      lr_modification = nil # If_esf_provider_access::Ty_modifications.new
+      lr_modification = nil # If_esf_provider_access::ty_modifications.new
 
       lx_a1fia_aar_create_qaf_eco = nil # cx_a1fia_aar_create_qaf_eco.new
 
@@ -533,9 +541,9 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       lt_changed_attributes = nil # sesf_string_tab.new
 
-      lt_sub_node_modify = nil # If_esf_provider_access::Tt_modifications.new
+      lt_sub_node_modify = nil # If_esf_provider_access::tt_modifications.new
 
-      lt_modification = nil # If_esf_provider_access::Tt_modifications.new
+      lt_modification = nil # If_esf_provider_access::tt_modifications.new
 
 
       lt_modification = in_modifications
@@ -553,7 +561,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
          begin
             if @mt_attribute_map.isINITIAL()
-               init_buffers()
+               init_buffers(_b:binding)
 
 
 
@@ -580,26 +588,26 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
             handle_dedicated_attr_modific(_c:{
                "cs_root" => ls_eco_root,
                "ct_changed_attr" => lr_modification.changed_attributes,
-            })
+            }, _b:binding)
 
             #"Create or update the core BO nodes
             modify_core_bo_from_eco_root(_e:{
-               "it_changed_attributes" => lr_modification.changed_attributes,
-               "is_eco_root" => ls_eco_root,
-               "io_change_handler" => in_change_handler,
-               "io_message_handler" => in_message_handler,
-            })
+               "it_changed_attributes" => "lr_modification.changed_attributes",
+               "is_eco_root" => "ls_eco_root",
+               "io_change_handler" => "in_change_handler",
+               "io_message_handler" => "in_message_handler",
+            }, _b:binding)
 
 
          rescue cx_a1fia_aar_create_qaf_eco=>lx_a1fia_aar_create_qaf_eco
-            Cl_a1fia_aar_util::Create_message(_i:{
+            Cl_a1fia_aar_util::create_message(_i:{
                "eo_message" => lo_message,
             }, _e:{
-               "iv_message_class" => 'A1FIA_AAR_CREATE_QAF_ECO',
-               "iv_message_number" => '018',
-               "iv_severity" => Cm_esi_root::Co_severity_error,
-               "iv_lifetime" => Cm_esi_root::Co_lifetime_transition,
-            })
+               "iv_message_class" => "'A1FIA_AAR_CREATE_QAF_ECO'",
+               "iv_message_number" => "'018'",
+               "iv_severity" => "Cm_esi_root::co_severity_error",
+               "iv_lifetime" => "Cm_esi_root::co_lifetime_transition",
+            }, _b:binding)
 
             begin
                in_message_handler.add_message(lo_message)
@@ -619,11 +627,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       if lt_sub_node_modify.isNotINITIAL()
          super.if_esf_provider_access_i_modify(_e:{
-            "in_change_handler" => in_change_handler,
-            "in_message_handler" => in_message_handler,
+            "in_change_handler" => "in_change_handler",
+            "in_message_handler" => "in_message_handler",
          }, _c:{
             "in_modifications" => lt_sub_node_modify,
-         })
+         }, _b:binding)
 
 
 
@@ -638,10 +646,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -650,14 +659,16 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #     redefinition .
    #
 
-   def if_esf_provider_access_i_retrieve(_i:nil,_e:nil)
+   def if_esf_provider_access_i_retrieve(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -712,10 +723,10 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
             @mo_lcp_bo.retrieve(_i:{
                "out_data" => lt_core_bo_data,
             }, _e:{
-               "in_bo_node_name" => If_fia_acc_adjustment_run::Co_bo_node.root,
-               "in_node_ids" => lt_node_id,
-               "in_requested_image" => If_esf_types::Co_image_current_data,
-            })
+               "in_bo_node_name" => "If_fia_acc_adjustment_run::co_bo_node.root",
+               "in_node_ids" => "lt_node_id",
+               "in_requested_image" => "If_esf_types::co_image_current_data",
+            }, _b:binding)
 
 
          rescue cx_esf_core_service=>lx_esf_core_service
@@ -731,10 +742,10 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
       end
 
       case in_bo_node_name
-      when If_a1fia_aar_create_qaf_eco::Co_bo_node.root
+      when If_a1fia_aar_create_qaf_eco::co_bo_node.root
          begin
             if @mt_attribute_map.isINITIAL()
-               init_buffers()
+               init_buffers(_b:binding)
 
 
 
@@ -787,13 +798,13 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
 
 
-                  append(from:If_a1fia_aar_create_qaf_eco::Co_attr.root.acl_company_uuid.content, to:lt_eco_req_attr)
+                  append(from:If_a1fia_aar_create_qaf_eco::co_attr.root.acl_company_uuid.content, to:lt_eco_req_attr)
 
                   get_root_maped_attr_for_dedica(_i:{
                      "et_mapped_req_attributes" => lt_requested_attributes,
                   }, _e:{
-                     "it_requested_attributes" => lt_eco_req_attr,
-                  })
+                     "it_requested_attributes" => "lt_eco_req_attr",
+                  }, _b:binding)
 
 
 
@@ -861,11 +872,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
                      @mo_lcp_bo.retrieve(_i:{
                         "out_data" => lt_core_bo_data,
                      }, _e:{
-                        "in_bo_node_name" => lv_core_bo_node_name,
-                        "in_node_ids" => lt_node_id,
-                        "in_edit_mode" => in_edit_mode,
-                        "in_requested_attributes" => lt_requested_core_attr,
-                     })
+                        "in_bo_node_name" => "lv_core_bo_node_name",
+                        "in_node_ids" => "lt_node_id",
+                        "in_edit_mode" => "in_edit_mode",
+                        "in_requested_attributes" => "lt_requested_core_attr",
+                     }, _b:binding)
 
                      #"#EC CI_LCP_LOOP  "No single BO node is being retrieved on more than once
 
@@ -915,10 +926,10 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
 
                set_root_dedicated_attributes(_e:{
-                  "it_requested_attributes" => lt_eco_req_attr,
+                  "it_requested_attributes" => "lt_eco_req_attr",
                }, _c:{
                   "cs_eco_root" => ls_eco_root_data,
-               })
+               }, _b:binding)
 
 
                #"Buffer root structure for use in associations
@@ -956,14 +967,14 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
          rescue cx_a1fia_aar_create_qaf_eco=>lx_a1fia_aar_create_qaf_eco
             clear(id:out_data)
             append(from:lines, to:out_failed_node_ids)
-            Cl_a1fia_aar_util::Create_message(_i:{
+            Cl_a1fia_aar_util::create_message(_i:{
                "eo_message" => lo_message,
             }, _e:{
-               "iv_message_class" => 'A1FIA_AAR_CREATE_QAF_ECO',
-               "iv_message_number" => '018',
-               "iv_severity" => Cm_esi_root::Co_severity_error,
-               "iv_lifetime" => Cm_esi_root::Co_lifetime_transition,
-            })
+               "iv_message_class" => "'A1FIA_AAR_CREATE_QAF_ECO'",
+               "iv_message_number" => "'018'",
+               "iv_severity" => "Cm_esi_root::co_severity_error",
+               "iv_lifetime" => "Cm_esi_root::co_lifetime_transition",
+            }, _b:binding)
 
             @mo_message_manager.add_message(lo_message)
 
@@ -981,10 +992,10 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
          }, _e:{
             "out_data" => out_data,
             "out_failed_node_ids" => out_failed_node_ids,
-         })
+         }, _b:binding)
 
          begin
-            lv_parent_node_name = @mo_eco_descriptor.get_bo_node_descriptor(bo_node_proxy_name:in_bo_node_name).get_parent_bo_node_descriptor().get_proxy_name()
+            lv_parent_node_name = @mo_eco_descriptor.get_bo_node_descriptor(bo_node_proxy_name:in_bo_node_name).get_parent_bo_node_descriptor(_b:binding).get_proxy_name(_b:binding)
 
          rescue cx_esf_metadata_error=>lx_esf_metadata
             raise cx_fatal_exception.new
@@ -1013,10 +1024,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -1025,21 +1037,23 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #     redefinition .
    #
 
-   def if_esf_provider_access_i_retrieve_by_association(_i:nil,_e:nil)
+   def if_esf_provider_access_i_retrieve_by_association(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
 
-      lt_favpro_task = nil # If_fia_fav_project::Tt_task.new
+      lt_favpro_task = nil # If_fia_fav_project::tt_task.new
 
-      ls_favpro_task = nil # If_fia_fav_project::Ty_task.new
+      ls_favpro_task = nil # If_fia_fav_project::ty_task.new
 
       lv_bo_name = nil # string.new
 
@@ -1095,148 +1109,148 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
          #"Overridden for places where the association does not require convert keys call.
 
          case in_association_name
-         when If_a1fia_aar_create_qaf_eco::Co_assoc.root.to_open_task
+         when If_a1fia_aar_create_qaf_eco::co_assoc.root.to_open_task
             @mo_task_region_helper.retrieve_by_association(_i:{
                "in_source_node_ids" => in_node_ids,
-            })
+            }, _b:binding)
 
-         when If_a1fia_aar_create_qaf_eco::Co_assoc.root.bupa
+         when If_a1fia_aar_create_qaf_eco::co_assoc.root.bupa
             lv_bo_name = 'BUSINESS_PARTNER'
 
-            lv_bo_root_node_name = If_sp_bupa_template::Co_bo_node.root
+            lv_bo_root_node_name = If_sp_bupa_template::co_bo_node.root
 
-            lv_source_key_name = If_sp_bupa_template::Co_key.root.internal_id
+            lv_source_key_name = If_sp_bupa_template::co_key.root.internal_id
 
-            lr_source_key = If_sp_bupa_template::Ty_key.root.internal_id.new
+            lr_source_key = If_sp_bupa_template::ty_key.root.internal_id.new
 
             assign(to:ls_source_key)
             ls_source_key = @ms_readonly_eco_root.business_partner_id
 
-         when If_a1fia_aar_create_qaf_eco::Co_assoc.root.company
+         when If_a1fia_aar_create_qaf_eco::co_assoc.root.company
             lv_bo_name = '/MOM/COMPANY'
 
-            lv_bo_root_node_name = Mom::if_organisational_centre::Co_bo_node.root
+            lv_bo_root_node_name = Mom::if_organisational_centre::co_bo_node.root
 
-            lv_source_key_name = Mom::if_organisational_centre::Co_key.root.id
+            lv_source_key_name = Mom::if_organisational_centre::co_key.root.id
 
-            lr_source_key = Mom::if_organisational_centre::Ty_key.root.id.new
+            lr_source_key = Mom::if_organisational_centre::ty_key.root.id.new
 
             assign(to:ls_source_key)
             ls_source_key = @ms_readonly_eco_root.company_id
 
-         when If_a1fia_aar_create_qaf_eco::Co_assoc.root.cost_centre
+         when If_a1fia_aar_create_qaf_eco::co_assoc.root.cost_centre
             lv_bo_name = '/MOM/COST_CENTRE'
 
-            lv_bo_root_node_name = Mom::if_organisational_centre::Co_bo_node.root
+            lv_bo_root_node_name = Mom::if_organisational_centre::co_bo_node.root
 
-            lv_source_key_name = Mom::if_organisational_centre::Co_key.root.id
+            lv_source_key_name = Mom::if_organisational_centre::co_key.root.id
 
-            lr_source_key = Mom::if_organisational_centre::Ty_key.root.id.new
+            lr_source_key = Mom::if_organisational_centre::ty_key.root.id.new
 
             assign(to:ls_source_key)
             ls_source_key = @ms_readonly_eco_root.cost_centre_id
 
-         when If_a1fia_aar_create_qaf_eco::Co_assoc.root.cust_ser_org
+         when If_a1fia_aar_create_qaf_eco::co_assoc.root.cust_ser_org
             lv_bo_name = '/MOM/FUNCTIONAL_UNIT'
 
-            lv_bo_root_node_name = Mom::if_organisational_centre::Co_bo_node.root
+            lv_bo_root_node_name = Mom::if_organisational_centre::co_bo_node.root
 
-            lv_source_key_name = Mom::if_organisational_centre::Co_key.root.id
+            lv_source_key_name = Mom::if_organisational_centre::co_key.root.id
 
-            lr_source_key = Mom::if_organisational_centre::Ty_key.root.id.new
+            lr_source_key = Mom::if_organisational_centre::ty_key.root.id.new
 
             assign(to:ls_source_key)
             ls_source_key = @ms_readonly_eco_root.cust_ser_org_id
 
-         when If_a1fia_aar_create_qaf_eco::Co_assoc.root.fixed_asset
-            lv_bo_name = If_fia_fixed_asset::Co_bo_name
+         when If_a1fia_aar_create_qaf_eco::co_assoc.root.fixed_asset
+            lv_bo_name = If_fia_fixed_asset::co_bo_name
 
-            lv_bo_root_node_name = If_fia_fixed_asset::Co_bo_node.root
+            lv_bo_root_node_name = If_fia_fixed_asset::co_bo_node.root
 
-            lv_source_key_name = If_fia_fixed_asset::Co_key.root.key
+            lv_source_key_name = If_fia_fixed_asset::co_key.root.key
 
-            lr_source_key = If_fia_fixed_asset::Ty_key.root.key.new
+            lr_source_key = If_fia_fixed_asset::ty_key.root.key.new
 
             assign(to:ls_source_key)
             @ms_readonly_eco_root.fixed_asset_key.company_uuid.content = @ms_readonly_eco_root.acl_company_uuid.content
 
             ls_source_key = @ms_readonly_eco_root.fixed_asset_key
 
-         when If_a1fia_aar_create_qaf_eco::Co_assoc.root.house_bank
+         when If_a1fia_aar_create_qaf_eco::co_assoc.root.house_bank
             lv_bo_name = 'HOUSE_BANK'
 
-            lv_bo_root_node_name = If_sp_bupa_template::Co_bo_node.root
+            lv_bo_root_node_name = If_sp_bupa_template::co_bo_node.root
 
-            lv_source_key_name = If_sp_bupa_template::Co_key.root.internal_id
+            lv_source_key_name = If_sp_bupa_template::co_key.root.internal_id
 
-            lr_source_key = If_sp_bupa_template::Ty_key.root.internal_id.new
+            lr_source_key = If_sp_bupa_template::ty_key.root.internal_id.new
 
             assign(to:ls_source_key)
             ls_source_key = @ms_readonly_eco_root.house_bank_id
 
-         when If_a1fia_aar_create_qaf_eco::Co_assoc.root.ovh_asses_rule
+         when If_a1fia_aar_create_qaf_eco::co_assoc.root.ovh_asses_rule
             lv_bo_name = 'FIA_OHC_ASSES_RULE'
 
-            lv_bo_root_node_name = If_fia_asses_distr_rule::Co_bo_node.root
+            lv_bo_root_node_name = If_fia_asses_distr_rule::co_bo_node.root
 
-            lv_source_key_name = If_fia_asses_distr_rule::Co_key.root.id
+            lv_source_key_name = If_fia_asses_distr_rule::co_key.root.id
 
-            lr_source_key = If_fia_asses_distr_rule::Ty_key.root.id.new
+            lr_source_key = If_fia_asses_distr_rule::ty_key.root.id.new
 
             assign(to:ls_source_key)
             ls_source_key = @ms_readonly_eco_root.ovh_assess_rule_id
 
-         when If_a1fia_aar_create_qaf_eco::Co_assoc.root.permanent_establishment
+         when If_a1fia_aar_create_qaf_eco::co_assoc.root.permanent_establishment
             lv_bo_name = '/MOM/PERM_ESTABLISHMENT'
 
-            lv_bo_root_node_name = Mom::if_organisational_centre::Co_bo_node.root
+            lv_bo_root_node_name = Mom::if_organisational_centre::co_bo_node.root
 
-            lv_source_key_name = Mom::if_organisational_centre::Co_key.root.id
+            lv_source_key_name = Mom::if_organisational_centre::co_key.root.id
 
-            lr_source_key = Mom::if_organisational_centre::Ty_key.root.id.new
+            lr_source_key = Mom::if_organisational_centre::ty_key.root.id.new
 
             assign(to:ls_source_key)
             ls_source_key = @ms_readonly_eco_root.permanent_establishment_id
 
-         when If_a1fia_aar_create_qaf_eco::Co_assoc.root.project
-            lv_bo_name = If_pro_project::Co_bo_name
+         when If_a1fia_aar_create_qaf_eco::co_assoc.root.project
+            lv_bo_name = If_pro_project::co_bo_name
 
-            lv_bo_root_node_name = If_pro_project::Co_bo_node.root
+            lv_bo_root_node_name = If_pro_project::co_bo_node.root
 
-            lv_source_key_name = If_pro_project::Co_key.root.project_id
+            lv_source_key_name = If_pro_project::co_key.root.project_id
 
-            lr_source_key = If_pro_project::Ty_key.root.project_id.new
+            lr_source_key = If_pro_project::ty_key.root.project_id.new
 
             assign(to:ls_source_key)
             ls_source_key = @ms_readonly_eco_root.project_id
 
-         when If_a1fia_aar_create_qaf_eco::Co_assoc.root.sales_organisation
+         when If_a1fia_aar_create_qaf_eco::co_assoc.root.sales_organisation
             lv_bo_name = '/MOM/FUNCTIONAL_UNIT'
 
-            lv_bo_root_node_name = Mom::if_organisational_centre::Co_bo_node.root
+            lv_bo_root_node_name = Mom::if_organisational_centre::co_bo_node.root
 
-            lv_source_key_name = Mom::if_organisational_centre::Co_key.root.id
+            lv_source_key_name = Mom::if_organisational_centre::co_key.root.id
 
-            lr_source_key = Mom::if_organisational_centre::Ty_key.root.id.new
+            lr_source_key = Mom::if_organisational_centre::ty_key.root.id.new
 
             assign(to:ls_source_key)
             ls_source_key = @ms_readonly_eco_root.sales_organisation_id
 
-         when If_a1fia_aar_create_qaf_eco::Co_assoc.root.fav_cost_object
+         when If_a1fia_aar_create_qaf_eco::co_assoc.root.fav_cost_object
             if @ms_readonly_eco_root.key.cost_object_id.isNotINITIAL()
-               lv_bo_name = If_fia_fav_cost_object::Co_bo_name
+               lv_bo_name = If_fia_fav_cost_object::co_bo_name
 
 
 
-               lv_bo_root_node_name = If_fia_fav_cost_object::Co_bo_node.root
+               lv_bo_root_node_name = If_fia_fav_cost_object::co_bo_node.root
 
 
 
-               lv_source_key_name = If_fia_fav_cost_object::Co_key.root.key
+               lv_source_key_name = If_fia_fav_cost_object::co_key.root.key
 
 
 
-               lr_source_key = If_fia_fav_cost_object::Ty_key.root.key.new
+               lr_source_key = If_fia_fav_cost_object::ty_key.root.key.new
 
 
                assign(to:ls_source_key)
@@ -1249,22 +1263,22 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
             end
 
-         when If_a1fia_aar_create_qaf_eco::Co_assoc.root.set_of_books
-            lv_bo_name = If_fia_set_of_books::Co_bo_name
+         when If_a1fia_aar_create_qaf_eco::co_assoc.root.set_of_books
+            lv_bo_name = If_fia_set_of_books::co_bo_name
 
-            lv_bo_root_node_name = If_fia_set_of_books::Co_bo_node.root
+            lv_bo_root_node_name = If_fia_set_of_books::co_bo_node.root
 
-            lv_source_key_name = If_fia_set_of_books::Co_key.root.id
+            lv_source_key_name = If_fia_set_of_books::co_key.root.id
 
-            lr_source_key = If_fia_set_of_books::Ty_key.root.id.new
+            lr_source_key = If_fia_set_of_books::ty_key.root.id.new
 
             assign(to:ls_source_key)
             ls_source_key = @ms_readonly_eco_root.set_of_books_id
 
-         when If_a1fia_aar_create_qaf_eco::Co_assoc.root.production_lot
+         when If_a1fia_aar_create_qaf_eco::co_assoc.root.production_lot
             if @ms_readonly_eco_root.production_lot_formatted_id.formatted_id.isNotINITIAL()
                begin
-                  lo_lcp = @mo_adaptation_handler.get_lcp(If_fia_fav_production_doc::Co_bo_name)
+                  lo_lcp = @mo_adaptation_handler.get_lcp(If_fia_fav_production_doc::co_bo_name)
 
 
                rescue cx_bsa_runtime=>lx_bsa_runtime
@@ -1273,7 +1287,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
                end
 
-               ls_sel_params.attribute_name = If_fia_fav_production_doc::Co_query_p_attr.root.query_by_operational_doc.operational_document_reference.formatted_id
+               ls_sel_params.attribute_name = If_fia_fav_production_doc::co_query_p_attr.root.query_by_operational_doc.operational_document_reference.formatted_id
 
 
 
@@ -1293,13 +1307,13 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
                begin
                   lo_lcp.query(_i:{
-                     "in_bo_node_name" => If_fia_fav_production_doc::Co_bo_node.root,
-                     "in_query_name" => If_fia_fav_production_doc::Co_query.root.query_by_operational_doc,
+                     "in_bo_node_name" => If_fia_fav_production_doc::co_bo_node.root,
+                     "in_query_name" => If_fia_fav_production_doc::co_query.root.query_by_operational_doc,
                      "in_selection_parameters" => lt_sel_params,
                      "in_fill_data" => abap_false,
                   }, _e:{
                      "out_node_ids" => lt_target_node_id,
-                  })
+                  }, _b:binding)
 
 
 
@@ -1331,10 +1345,10 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
             end
 
-         when If_a1fia_aar_create_qaf_eco::Co_assoc.root.sal_ser_doc
+         when If_a1fia_aar_create_qaf_eco::co_assoc.root.sal_ser_doc
             if @ms_readonly_eco_root.cust_ser_document_id.formatted_id.isNotINITIAL()
                begin
-                  lo_lcp = @mo_adaptation_handler.get_lcp(If_fia_fav_sls_srv_doc::Co_bo_name)
+                  lo_lcp = @mo_adaptation_handler.get_lcp(If_fia_fav_sls_srv_doc::co_bo_name)
 
 
                rescue cx_bsa_runtime=>lx_bsa_runtime
@@ -1352,7 +1366,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
 
                if @ms_readonly_eco_root.cust_ser_document_id.uuid.isNotINITIAL()
-                  ls_sel_params.attribute_name = If_fia_fav_sls_srv_doc::Co_query_p_attr.root.query_by_operational_doc.operational_document_reference.uuid.content
+                  ls_sel_params.attribute_name = If_fia_fav_sls_srv_doc::co_query_p_attr.root.query_by_operational_doc.operational_document_reference.uuid.content
 
 
 
@@ -1363,7 +1377,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
                else
                   if @ms_readonly_eco_root.cust_ser_document_type.content.isNotINITIAL()
-                     ls_sel_params.attribute_name = If_fia_fav_sls_srv_doc::Co_query_p_attr.root.query_by_operational_doc.operational_document_reference.object_type_code.content
+                     ls_sel_params.attribute_name = If_fia_fav_sls_srv_doc::co_query_p_attr.root.query_by_operational_doc.operational_document_reference.object_type_code.content
 
 
 
@@ -1377,7 +1391,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
                   end
 
-                  ls_sel_params.attribute_name = If_fia_fav_sls_srv_doc::Co_query_p_attr.root.query_by_operational_doc.operational_document_reference.formatted_id
+                  ls_sel_params.attribute_name = If_fia_fav_sls_srv_doc::co_query_p_attr.root.query_by_operational_doc.operational_document_reference.formatted_id
 
                   ls_sel_params.low = @ms_readonly_eco_root.cust_ser_document_id.formatted_id
 
@@ -1390,13 +1404,13 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
                begin
                   lo_lcp.query(_i:{
-                     "in_bo_node_name" => If_fia_fav_sls_srv_doc::Co_bo_node.root,
-                     "in_query_name" => If_fia_fav_sls_srv_doc::Co_query.root.query_by_operational_doc,
+                     "in_bo_node_name" => If_fia_fav_sls_srv_doc::co_bo_node.root,
+                     "in_query_name" => If_fia_fav_sls_srv_doc::co_query.root.query_by_operational_doc,
                      "in_selection_parameters" => lt_sel_params,
                      "in_fill_data" => abap_false,
                   }, _e:{
                      "out_node_ids" => lt_target_node_id,
-                  })
+                  }, _b:binding)
 
 
 
@@ -1423,10 +1437,10 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
             end
 
-         when If_a1fia_aar_create_qaf_eco::Co_assoc.root.purchase_doc , If_a1fia_aar_create_qaf_eco::Co_assoc.root.purchase_doc_upb
+         when If_a1fia_aar_create_qaf_eco::co_assoc.root.purchase_doc , If_a1fia_aar_create_qaf_eco::co_assoc.root.purchase_doc_upb
             if @ms_readonly_eco_root.purchase_doc_id.formatted_id.isNotINITIAL() || @ms_readonly_eco_root.purchase_doc_id_upb.formatted_id.isNotINITIAL()
                begin
-                  lo_lcp = @mo_adaptation_handler.get_lcp(If_fia_fav_purchasing_doc::Co_bo_name)
+                  lo_lcp = @mo_adaptation_handler.get_lcp(If_fia_fav_purchasing_doc::co_bo_name)
 
 
                rescue cx_bsa_runtime=>lx_bsa_runtime
@@ -1444,7 +1458,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
 
                if @ms_readonly_eco_root.purchase_doc_id.uuid.isNotINITIAL()
-                  ls_sel_params.attribute_name = If_fia_fav_purchasing_doc::Co_query_p_attr.root.query_by_operational_doc.operational_document_reference.uuid.content
+                  ls_sel_params.attribute_name = If_fia_fav_purchasing_doc::co_query_p_attr.root.query_by_operational_doc.operational_document_reference.uuid.content
 
 
 
@@ -1455,7 +1469,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
                else
                   if @ms_readonly_eco_root.purchase_doc_type.content.isNotINITIAL()
-                     ls_sel_params.attribute_name = If_fia_fav_purchasing_doc::Co_query_p_attr.root.query_by_operational_doc.operational_document_reference.object_type_code.content
+                     ls_sel_params.attribute_name = If_fia_fav_purchasing_doc::co_query_p_attr.root.query_by_operational_doc.operational_document_reference.object_type_code.content
 
 
 
@@ -1469,7 +1483,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
                   end
 
-                  ls_sel_params.attribute_name = If_fia_fav_purchasing_doc::Co_query_p_attr.root.query_by_operational_doc.operational_document_reference.object_id.content
+                  ls_sel_params.attribute_name = If_fia_fav_purchasing_doc::co_query_p_attr.root.query_by_operational_doc.operational_document_reference.object_id.content
 
                   ls_sel_params.low = @ms_readonly_eco_root.purchase_doc_id.object_id.content
 
@@ -1481,7 +1495,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
                append(from:ls_sel_params, to:lt_sel_params)
 
                if @ms_readonly_eco_root.purchase_doc_id_upb.uuid.isNotINITIAL()
-                  ls_sel_params.attribute_name = If_fia_fav_purchasing_doc::Co_query_p_attr.root.query_by_operational_doc.operational_document_reference.uuid.content
+                  ls_sel_params.attribute_name = If_fia_fav_purchasing_doc::co_query_p_attr.root.query_by_operational_doc.operational_document_reference.uuid.content
 
 
 
@@ -1492,7 +1506,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
                else
                   if @ms_readonly_eco_root.purchase_doc_type.content.isNotINITIAL()
-                     ls_sel_params.attribute_name = If_fia_fav_purchasing_doc::Co_query_p_attr.root.query_by_operational_doc.operational_document_reference.object_type_code.content
+                     ls_sel_params.attribute_name = If_fia_fav_purchasing_doc::co_query_p_attr.root.query_by_operational_doc.operational_document_reference.object_type_code.content
 
 
 
@@ -1506,7 +1520,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
                   end
 
-                  ls_sel_params.attribute_name = If_fia_fav_purchasing_doc::Co_query_p_attr.root.query_by_operational_doc.operational_document_reference.object_id.content
+                  ls_sel_params.attribute_name = If_fia_fav_purchasing_doc::co_query_p_attr.root.query_by_operational_doc.operational_document_reference.object_id.content
 
                   ls_sel_params.high = @ms_readonly_eco_root.purchase_doc_id_upb.object_id.content
 
@@ -1519,13 +1533,13 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
                begin
                   lo_lcp.query(_i:{
-                     "in_bo_node_name" => If_fia_fav_purchasing_doc::Co_bo_node.root,
-                     "in_query_name" => If_fia_fav_purchasing_doc::Co_query.root.query_by_operational_doc,
+                     "in_bo_node_name" => If_fia_fav_purchasing_doc::co_bo_node.root,
+                     "in_query_name" => If_fia_fav_purchasing_doc::co_query.root.query_by_operational_doc,
                      "in_selection_parameters" => lt_sel_params,
                      "in_fill_data" => abap_false,
                   }, _e:{
                      "out_node_ids" => lt_target_node_id,
-                  })
+                  }, _b:binding)
 
 
 
@@ -1552,10 +1566,10 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
             end
 
-         when If_a1fia_aar_create_qaf_eco::Co_assoc.root.project_task
+         when If_a1fia_aar_create_qaf_eco::co_assoc.root.project_task
             if @ms_readonly_eco_root.project_task_id.isNotINITIAL()
                begin
-                  lo_lcp = @mo_adaptation_handler.get_lcp(If_fia_fav_project::Co_bo_name)
+                  lo_lcp = @mo_adaptation_handler.get_lcp(If_fia_fav_project::co_bo_name)
 
 
                rescue cx_bsa_runtime=>lx_bsa_runtime
@@ -1564,7 +1578,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
                end
 
-               ls_sel_params.attribute_name = If_fia_fav_project::Co_query_p_attr.task.query_by_task.task_reference.formatted_id
+               ls_sel_params.attribute_name = If_fia_fav_project::co_query_p_attr.task.query_by_task.task_reference.formatted_id
 
 
 
@@ -1584,13 +1598,13 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
                begin
                   lo_lcp.query(_i:{
-                     "in_bo_node_name" => If_fia_fav_project::Co_bo_node.task,
-                     "in_query_name" => If_fia_fav_project::Co_query.task.query_by_task,
+                     "in_bo_node_name" => If_fia_fav_project::co_bo_node.task,
+                     "in_query_name" => If_fia_fav_project::co_query.task.query_by_task,
                      "in_selection_parameters" => lt_sel_params,
                      "in_fill_data" => abap_true,
                   }, _e:{
                      "out_data" => lt_favpro_task,
-                  })
+                  }, _b:binding)
 
 
                rescue cx_esf_core_service=>lx_esf_core_service
@@ -1629,7 +1643,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
             #********FCRE Execlution Logic*******************************************************
 
-         when If_a1fia_aar_create_qaf_eco::Co_assoc.root.fcre_root
+         when If_a1fia_aar_create_qaf_eco::co_assoc.root.fcre_root
             lv_is_key_based_assoc = abap_false
 
             if @mv_eco_root_node_id.isNotINITIAL()
@@ -1709,11 +1723,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
                      "out_target_keys" => lt_target_node_id,
                      "out_failed" => lt_failed,
                   }, _e:{
-                     "in_bo_node_name" => lv_bo_root_node_name,
-                     "in_source_key_name" => lv_source_key_name,
-                     "in_target_key_name" => If_esf_types::Co_node_id_proxy_name,
-                     "in_source_keys" => lt_source_key,
-                  })
+                     "in_bo_node_name" => "lv_bo_root_node_name",
+                     "in_source_key_name" => "lv_source_key_name",
+                     "in_target_key_name" => "If_esf_types::co_node_id_proxy_name",
+                     "in_source_keys" => "lt_source_key",
+                  }, _b:binding)
 
 
                rescue cx_esf_core_service=>lx_esf_core_service
@@ -1765,13 +1779,13 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
             if_esf_provider_access_i_retrieve(_i:{
                "out_data" => out_data,
             }, _e:{
-               "in_bo_node_name" => lv_eco_node_name,
-               "in_node_ids" => lt_target_node_id,
-               "in_edit_mode" => If_esf_types::Co_read_only,
-               "in_requested_attributes" => in_requested_attributes,
-               "in_message_handler" => in_message_handler,
-               "in_buffer_sync_handler" => in_buffer_sync_handler,
-            })
+               "in_bo_node_name" => "lv_eco_node_name",
+               "in_node_ids" => "lt_target_node_id",
+               "in_edit_mode" => "If_esf_types::co_read_only",
+               "in_requested_attributes" => "in_requested_attributes",
+               "in_message_handler" => "in_message_handler",
+               "in_buffer_sync_handler" => "in_buffer_sync_handler",
+            }, _b:binding)
 
 
 
@@ -1795,20 +1809,20 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
             "out_data" => out_data,
             "out_failed_source_node_ids" => out_failed_source_node_ids,
          }, _e:{
-            "in_bo_name" => in_bo_name,
-            "in_bo_node_name" => in_bo_node_name,
-            "in_association_name" => in_association_name,
-            "in_node_ids" => in_node_ids,
-            "in_fill_data" => in_fill_data,
-            "in_fill_failed_source_node_ids" => in_fill_failed_source_node_ids,
-            "in_filter_parameters" => in_filter_parameters,
-            "in_filtered_attributes" => in_filtered_attributes,
-            "in_requested_image" => in_requested_image,
-            "in_edit_mode" => in_edit_mode,
-            "in_requested_attributes" => in_requested_attributes,
-            "in_message_handler" => in_message_handler,
-            "in_buffer_sync_handler" => in_buffer_sync_handler,
-         })
+            "in_bo_name" => "in_bo_name",
+            "in_bo_node_name" => "in_bo_node_name",
+            "in_association_name" => "in_association_name",
+            "in_node_ids" => "in_node_ids",
+            "in_fill_data" => "in_fill_data",
+            "in_fill_failed_source_node_ids" => "in_fill_failed_source_node_ids",
+            "in_filter_parameters" => "in_filter_parameters",
+            "in_filtered_attributes" => "in_filtered_attributes",
+            "in_requested_image" => "in_requested_image",
+            "in_edit_mode" => "in_edit_mode",
+            "in_requested_attributes" => "in_requested_attributes",
+            "in_message_handler" => "in_message_handler",
+            "in_buffer_sync_handler" => "in_buffer_sync_handler",
+         }, _b:binding)
 
 
 
@@ -1821,10 +1835,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -1833,14 +1848,16 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #     redefinition .
    #
 
-   def if_esf_provider_access_i_retrieve_default_node_values(_i:nil,_e:nil)
+   def if_esf_provider_access_i_retrieve_default_node_values(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -1849,16 +1866,16 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
          super.if_esf_provider_access_i_retrieve_default_node_values(_i:{
             "out_data" => out_data,
          }, _e:{
-            "in_bo_node_name" => in_bo_node_name,
-            "in_node_id_handles" => in_node_id_handles,
-            "in_association_name" => in_association_name,
-            "in_association_filter_struct" => in_association_filter_struct,
-            "in_association_filter_attribs" => in_association_filter_attribs,
-            "in_source_bo_node_name" => in_source_bo_node_name,
-            "in_source_node_id" => in_source_node_id,
-            "in_source_node_id_is_handle" => in_source_node_id_is_handle,
-            "in_property_handler" => in_property_handler,
-         })
+            "in_bo_node_name" => "in_bo_node_name",
+            "in_node_id_handles" => "in_node_id_handles",
+            "in_association_name" => "in_association_name",
+            "in_association_filter_struct" => "in_association_filter_struct",
+            "in_association_filter_attribs" => "in_association_filter_attribs",
+            "in_source_bo_node_name" => "in_source_bo_node_name",
+            "in_source_node_id" => "in_source_node_id",
+            "in_source_node_id_is_handle" => "in_source_node_id_is_handle",
+            "in_property_handler" => "in_property_handler",
+         }, _b:binding)
 
 
 
@@ -1873,10 +1890,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -1885,14 +1903,16 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #     redefinition .
    #
 
-   def if_esf_provider_access_i_retrieve_properties(_i:nil,_e:nil)
+   def if_esf_provider_access_i_retrieve_properties(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -1903,12 +1923,12 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       lt_core_bo_attr_name = nil # sesf_string_tab.new
 
-      ls_property_scope = nil # If_esf_types::Ty_property_scope.new
+      ls_property_scope = nil # If_esf_types::ty_property_scope.new
 
-      ls_property = nil # If_esf_types::Ty_properties.new
+      ls_property = nil # If_esf_types::ty_properties.new
 
 
-      ls_node_elem_property = nil # If_esf_types::Ty_node_element_property.new
+      ls_node_elem_property = nil # If_esf_types::ty_node_element_property.new
 
       lr_attr_map = nil # ty_attribute_map.new
 
@@ -1940,12 +1960,12 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       if @mv_eco_root_node_id.isNotINITIAL()
          case in_bo_node_name
-         when If_a1fia_aar_create_qaf_eco::Co_bo_node.root
+         when If_a1fia_aar_create_qaf_eco::co_bo_node.root
             #"Set action properties
             if abap_true == abap_true
-               append(from:If_a1fia_aar_create_qaf_eco::Co_action.root.compound_schedule, to:lt_requested_actions)
+               append(from:If_a1fia_aar_create_qaf_eco::co_action.root.compound_schedule, to:lt_requested_actions)
 
-               append(from:If_a1fia_aar_create_qaf_eco::Co_action.root.execute, to:lt_requested_actions)
+               append(from:If_a1fia_aar_create_qaf_eco::co_action.root.execute, to:lt_requested_actions)
 
 
             elsif in_property_scope.requested_actions.isNotINITIAL()
@@ -1972,10 +1992,10 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
             loop(at:lt_requested_actions, into:lv_action_name){
                begin
                   in_property_handler.set_action_enabled(_e:{
-                     "in_action_name" => lv_action_name,
-                     "in_value" => lv_action_enabled,
-                     "in_bo_node_id" => @mv_eco_root_node_id,
-                  })
+                     "in_action_name" => "lv_action_name",
+                     "in_value" => "lv_action_enabled",
+                     "in_bo_node_id" => "@mv_eco_root_node_id",
+                  }, _b:binding)
 
 
                rescue cx_esf_property_handler=>lx_esf_property_handler
@@ -1988,9 +2008,9 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
             if is_floorplan_editable == abap_false
                begin
                   in_property_handler.set_node_elem_update_enabled(_e:{
-                     "in_bo_node_id" => @mv_eco_root_node_id,
-                     "in_value" => abap_false,
-                  })
+                     "in_bo_node_id" => "@mv_eco_root_node_id",
+                     "in_value" => "abap_false",
+                  }, _b:binding)
 
 
                rescue cx_esf_property_handler=>lx_esf_property_handler
@@ -2057,11 +2077,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
                   if ( lv_is_read_only_attr == abap_true )
                      begin
                         in_property_handler.set_attribute_property(_e:{
-                           "in_attribute_name" => lv_eco_attr_name,
-                           "in_property_name" => If_esf_desc::Co_property_read_only,
-                           "in_value" => abap_true,
-                           "in_bo_node_id" => @mv_eco_root_node_id,
-                        })
+                           "in_attribute_name" => "lv_eco_attr_name",
+                           "in_property_name" => "If_esf_desc::co_property_read_only",
+                           "in_value" => "abap_true",
+                           "in_bo_node_id" => "@mv_eco_root_node_id",
+                        }, _b:binding)
 
 
                      rescue cx_esf_property_handler=>lx_esf_property_handler
@@ -2091,8 +2111,8 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
                         "et_eco_core_attr_pair" => lt_attr_pair_for_node,
                         "et_core_bo_attr_name" => lt_core_bo_attr_name,
                      }, _e:{
-                        "iv_core_bo_node_name" => lr_attr_map.core_bo_node_name,
-                     })
+                        "iv_core_bo_node_name" => "lr_attr_map.core_bo_node_name",
+                     }, _b:binding)
 
                      clear(id:lt_node_id)
                      clear(id:ls_property)
@@ -2106,10 +2126,10 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
                         @mo_lcp_bo.retrieve_properties(_i:{
                            "out_properties" => ls_property,
                         }, _e:{
-                           "in_bo_node_name" => lr_attr_map.core_bo_node_name,
-                           "in_node_ids" => lt_node_id,
-                           "in_property_scope" => ls_property_scope,
-                        })
+                           "in_bo_node_name" => "lr_attr_map.core_bo_node_name",
+                           "in_node_ids" => "lt_node_id",
+                           "in_property_scope" => "ls_property_scope",
+                        }, _b:binding)
 
                         #"#EC CI_LCP_LOOP  "No single BO node is being retrieved-on more than once
 
@@ -2131,9 +2151,9 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
                         if lr_attr_map.core_bo_node_name == If_fia_acc_adjustment_run::Co_bo_node.root
                            begin
                               in_property_handler.set_node_elem_update_enabled(_e:{
-                                 "in_bo_node_id" => @mv_eco_root_node_id,
-                                 "in_value" => lv_prop_value,
-                              })
+                                 "in_bo_node_id" => "@mv_eco_root_node_id",
+                                 "in_value" => "lv_prop_value",
+                              }, _b:binding)
 
 
                            rescue cx_esf_property_handler=>lx_esf_property_handler
@@ -2158,12 +2178,12 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
                            end
 
                            set_attr_properties(_e:{
-                              "it_eco_attr_name" => lt_eco_attr_name,
-                              "iv_eco_node_id" => @mv_eco_root_node_id,
-                              "io_property_handler" => in_property_handler,
-                              "iv_property_name" => If_esf_desc::Co_property_read_only,
-                              "iv_property_value" => lv_prop_value,
-                           })
+                              "it_eco_attr_name" => "lt_eco_attr_name",
+                              "iv_eco_node_id" => "@mv_eco_root_node_id",
+                              "io_property_handler" => "in_property_handler",
+                              "iv_property_name" => "If_esf_desc::co_property_read_only",
+                              "iv_property_value" => "lv_prop_value",
+                           }, _b:binding)
 
                            lv_attr_readonly_set = abap_true
 
@@ -2192,11 +2212,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
                         if sy.subrc == 0
                            begin
                               in_property_handler.set_attribute_property(_e:{
-                                 "in_attribute_name" => ls_attr_pair.eco_attr_name,
-                                 "in_property_name" => ls_attr_property.property_name,
-                                 "in_value" => ls_attr_property.property_value,
-                                 "in_bo_node_id" => @mv_eco_root_node_id,
-                              })
+                                 "in_attribute_name" => "ls_attr_pair.eco_attr_name",
+                                 "in_property_name" => "ls_attr_property.property_name",
+                                 "in_value" => "ls_attr_property.property_value",
+                                 "in_bo_node_id" => "@mv_eco_root_node_id",
+                              }, _b:binding)
 
 
                            rescue cx_esf_property_handler=>lx_esf_property_handler
@@ -2221,10 +2241,10 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
                if @ms_readonly_eco_root.mdro_type_code == If_ap_object_type_code_c::Gc_arpl_acc_for_cur_rem_run
                   begin
                      in_property_handler.set_association_enabled(_e:{
-                        "in_association_name" => If_a1fia_aar_create_qaf_eco::Co_assoc.root.fcre_root,
-                        "in_value" => abap_true,
-                        "in_bo_node_id" => @mv_eco_root_node_id,
-                     })
+                        "in_association_name" => "If_a1fia_aar_create_qaf_eco::co_assoc.root.fcre_root",
+                        "in_value" => "abap_true",
+                        "in_bo_node_id" => "@mv_eco_root_node_id",
+                     }, _b:binding)
 
 
                   rescue cx_esf_property_handler=>lx_esf_property_handler
@@ -2244,18 +2264,18 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
             #"IF ms_eco_root-life_cycle_status <> mc_life_cycle_status-in_preparation.
          else
             super.if_esf_provider_access_i_retrieve_properties(_e:{
-               "in_bo_node_name" => in_bo_node_name,
-               "in_node_ids" => in_node_ids,
-               "in_property_handler" => in_property_handler,
-               "in_property_scope" => in_property_scope,
-            })
+               "in_bo_node_name" => "in_bo_node_name",
+               "in_node_ids" => "in_node_ids",
+               "in_property_handler" => "in_property_handler",
+               "in_property_scope" => "in_property_scope",
+            }, _b:binding)
 
             if is_floorplan_editable == abap_false
                set_node_n_assoc_read_only(_e:{
-                  "iv_node_name" => in_bo_node_name,
-                  "io_property_handler" => in_property_handler,
-                  "it_node_ids" => in_node_ids,
-               })
+                  "iv_node_name" => "in_bo_node_name",
+                  "io_property_handler" => "in_property_handler",
+                  "it_node_ids" => "in_node_ids",
+               }, _b:binding)
 
 
 
@@ -2278,10 +2298,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -2290,14 +2311,16 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #     redefinition .
    #
 
-   def if_esf_provider_access_i_retrieve_root_node_id(_i:nil,_e:nil)
+   def if_esf_provider_access_i_retrieve_root_node_id(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -2333,10 +2356,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -2345,28 +2369,30 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #     redefinition .
    #
 
-   def if_esf_provider_action_i_execute_action(_i:nil,_e:nil)
+   def if_esf_provider_action_i_execute_action(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
 
-      ls_change_notification = nil # If_esf_types::Ty_change_notifications.new
+      ls_change_notification = nil # If_esf_types::ty_change_notifications.new
 
       #"#EC NEEDED
       lv_has_errors = nil # sesf_boolean.new
 
-      lt_message = nil # If_esf_lcp::Ty_message_list.new
+      lt_message = nil # If_esf_lcp::ty_message_list.new
 
-      ls_eco_root = nil # If_a1fia_aar_create_qaf_eco::Ty_root.new
+      ls_eco_root = nil # If_a1fia_aar_create_qaf_eco::ty_root.new
 
-      lt_eco_root = nil # If_a1fia_aar_create_qaf_eco::Tt_root.new
+      lt_eco_root = nil # If_a1fia_aar_create_qaf_eco::tt_root.new
 
       lt_changed_attributes = nil # sesf_string_tab.new
 
@@ -2376,7 +2402,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       lx_bsa_runtime = nil # cx_bsa_runtime.new
 
-      ls_create_action_param = nil # If_a1fia_aar_create_qaf_eco::Ty_action_p.root.create.new
+      ls_create_action_param = nil # If_a1fia_aar_create_qaf_eco::ty_action_p.root.create.new
 
       #"lv_ap_or_ar_code TYPE if_a1fia_aar_create_qaf_eco=>ty_action_p-root-create-ap_or_ar,
       lt_eco_root_node_id = nil # sesf_bo_node_id_tab.new
@@ -2392,7 +2418,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       lv_tab_count = nil # i.new
 
-      ls_create_notification = nil # If_esf_types::Ty_create_notification.new
+      ls_create_notification = nil # If_esf_types::ty_create_notification.new
 
       ls_mdro_root_node_id = nil # sesf_bo_node_id.new
 
@@ -2430,13 +2456,13 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
 
             end
-            init_buffers()
+            init_buffers(_b:binding)
 
             read_table(id:in_referencing_node_elements, into:ls_referencing_node_elements, index:1)
             if ls_referencing_node_elements.bo_name.isINITIAL() || ls_referencing_node_elements.bo_node_name.isINITIAL() || ls_referencing_node_elements.bo_node_id.isINITIAL()
-               append(from:If_a1fia_aar_create_qaf_eco::Co_attr.root.id.content, to:lt_changed_attributes)
+               append(from:If_a1fia_aar_create_qaf_eco::co_attr.root.id.content, to:lt_changed_attributes)
 
-               ls_eco_root.node_id = get_uuid()
+               ls_eco_root.node_id = get_uuid(_b:binding)
 
 
                #"If it is Regrouping Run or the Remeasurement Run then populate the party role category code as well
@@ -2447,11 +2473,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
 
                   case @ms_readonly_eco_root.ap_or_ar
-                  when If_a1fia_aar_create_qaf_eco_c::Co_ap_or_ar_code.ap
-                     ls_eco_root.party_role_category_code = If_ap_party_role_cat_code_c::Gc_creditor
+                  when If_a1fia_aar_create_qaf_eco_c::co_ap_or_ar_code.ap
+                     ls_eco_root.party_role_category_code = If_ap_party_role_cat_code_c::gc_creditor
 
-                  when If_a1fia_aar_create_qaf_eco_c::Co_ap_or_ar_code.ar
-                     ls_eco_root.party_role_category_code = If_ap_party_role_cat_code_c::Gc_debtor
+                  when If_a1fia_aar_create_qaf_eco_c::co_ap_or_ar_code.ar
+                     ls_eco_root.party_role_category_code = If_ap_party_role_cat_code_c::gc_debtor
 
                   else
                      raise cx_fatal_exception.new
@@ -2459,7 +2485,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
                      #"Should be either AP or AR
                   end
 
-                  append(from:If_a1fia_aar_create_qaf_eco::Co_attr.root.party_role_category_code, to:lt_changed_attributes)
+                  append(from:If_a1fia_aar_create_qaf_eco::co_attr.root.party_role_category_code, to:lt_changed_attributes)
 
 
 
@@ -2468,24 +2494,24 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
                #"Create or update the core BO nodes
 
                modify_core_bo_from_eco_root(_e:{
-                  "it_changed_attributes" => lt_changed_attributes,
-                  "is_eco_root" => ls_eco_root,
-                  "io_change_handler" => in_change_handler,
-                  "io_message_handler" => in_message_handler,
-               })
+                  "it_changed_attributes" => "lt_changed_attributes",
+                  "is_eco_root" => "ls_eco_root",
+                  "io_change_handler" => "in_change_handler",
+                  "io_message_handler" => "in_message_handler",
+               }, _b:binding)
 
 
 
 
             else
                handle_create_with_ref_actions(_e:{
-                  "iv_for_cancellation" => ls_create_action_param.cancellation_run_indicator,
-                  "iv_is_test_run" => ls_create_action_param.test_run_indicator,
-                  "it_node_id" => in_node_ids,
-                  "it_referencing_node_elements" => in_referencing_node_elements,
-                  "io_change_handler" => in_change_handler,
-                  "io_message_handler" => in_message_handler,
-               })
+                  "iv_for_cancellation" => "ls_create_action_param.cancellation_run_indicator",
+                  "iv_is_test_run" => "ls_create_action_param.test_run_indicator",
+                  "it_node_id" => "in_node_ids",
+                  "it_referencing_node_elements" => "in_referencing_node_elements",
+                  "io_change_handler" => "in_change_handler",
+                  "io_message_handler" => "in_message_handler",
+               }, _b:binding)
 
 
 
@@ -2502,14 +2528,14 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
 
          rescue cx_a1fia_aar_create_qaf_eco=>lx_a1fia_aar_create_qaf_eco
-            Cl_a1fia_aar_util::Create_message(_i:{
+            Cl_a1fia_aar_util::create_message(_i:{
                "eo_message" => lo_message,
             }, _e:{
-               "iv_message_class" => 'A1FIA_AAR_CREATE_QAF_ECO',
-               "iv_message_number" => '018',
-               "iv_severity" => Cm_esi_root::Co_severity_error,
-               "iv_lifetime" => Cm_esi_root::Co_lifetime_transition,
-            })
+               "iv_message_class" => "'A1FIA_AAR_CREATE_QAF_ECO'",
+               "iv_message_number" => "'018'",
+               "iv_severity" => "Cm_esi_root::co_severity_error",
+               "iv_lifetime" => "Cm_esi_root::co_lifetime_transition",
+            }, _b:binding)
 
             begin
                in_message_handler.add_message(lo_message)
@@ -2552,13 +2578,13 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
          begin
             if check_activate_enabled == abap_true
                @mo_lcp_bo.execute_action(_i:{
-                  "in_bo_node_name" => If_fia_acc_adjustment_run::Co_bo_node.root,
-                  "in_action_name" => If_fia_acc_adjustment_run::Co_action.root.activate,
+                  "in_bo_node_name" => If_fia_acc_adjustment_run::co_bo_node.root,
+                  "in_action_name" => If_fia_acc_adjustment_run::co_action.root.activate,
                   "in_node_ids" => in_node_ids,
                }, _e:{
                   "out_change_notifications" => ls_change_notification,
                   "out_messages" => lt_message,
-               })
+               }, _b:binding)
 
 
 
@@ -2582,8 +2608,8 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
 
             me.raise_stop_message(_e:{
-               "io_message_handler" => in_message_handler,
-            })
+               "io_message_handler" => "in_message_handler",
+            }, _b:binding)
 
 
 
@@ -2602,14 +2628,14 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
             begin
                @mo_lcp_bo.execute_action(_i:{
-                  "in_bo_node_name" => If_fia_acc_adjustment_run::Co_bo_node.root,
-                  "in_action_name" => If_fia_acc_adjustment_run::Co_action.root.schedule_directly,
+                  "in_bo_node_name" => If_fia_acc_adjustment_run::co_bo_node.root,
+                  "in_action_name" => If_fia_acc_adjustment_run::co_action.root.schedule_directly,
                   "in_action_parameters" => @ms_action_parameters,
                   "in_node_ids" => in_node_ids,
                }, _e:{
                   "out_change_notifications" => ls_change_notification,
                   "out_messages" => lt_message,
-               })
+               }, _b:binding)
 
 
             rescue cx_esf_core_service=>lx_esf_core_service
@@ -2632,8 +2658,8 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
             if check_for_errors == abap_true
                me.raise_stop_message(_e:{
-                  "io_message_handler" => in_message_handler,
-               })
+                  "io_message_handler" => "in_message_handler",
+               }, _b:binding)
 
 
 
@@ -2654,7 +2680,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
          if in_action_name == if_a1fia_aar_create_qaf_eco_i_co_action.root.execute && lv_has_errors == abap_false
             if @mo_mdro_schedule_immediately.isNotBOUND()
-               @mo_mdro_schedule_immediately = Cl_ap_mdro_sched_immed_wait::Get_instance(iv_mdro_proxy_name:@mo_lcp_bo.bo_name, it_mdro_root_node_id:in_node_ids)
+               @mo_mdro_schedule_immediately = Cl_ap_mdro_sched_immed_wait::get_instance(iv_mdro_proxy_name:@mo_lcp_bo.bo_name, it_mdro_root_node_id:in_node_ids)
 
 
 
@@ -2667,8 +2693,8 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
                "et_messages" => lt_message,
                "et_mdro_root_to_bgjobsch_map" => lt_mdro_root_to_bgjobsch_map,
             }, _e:{
-               "io_facade" => me.mo_provider_context.get_lcp_facade(),
-            })
+               "io_facade" => "me.mo_provider_context.get_lcp_facade(_b:binding)",
+            }, _b:binding)
 
 
 
@@ -2689,8 +2715,8 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
             if check_for_errors == abap_true
                me.raise_stop_message(_e:{
-                  "io_message_handler" => in_message_handler,
-               })
+                  "io_message_handler" => "in_message_handler",
+               }, _b:binding)
 
 
 
@@ -2714,10 +2740,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -2726,14 +2753,16 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #     redefinition .
    #
 
-   def if_esf_provider_action_i_retrieve_default_action_param(_i:nil,_e:nil)
+   def if_esf_provider_action_i_retrieve_default_action_param(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -2745,10 +2774,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -2757,14 +2787,16 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #     redefinition .
    #
 
-   def if_esf_provider_init_i_init(_i:nil,_e:nil)
+   def if_esf_provider_init_i_init(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -2772,13 +2804,13 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
       super.if_esf_provider_init_i_init(_i:{
          "in_provider_context" => in_provider_context,
          "in_bo_name" => in_bo_name,
-      })
+      }, _b:binding)
 
       #"Get LCP facade
-      @mo_lcp_facade = in_provider_context.get_lcp_facade()
+      @mo_lcp_facade = in_provider_context.get_lcp_facade(_b:binding)
 
       begin
-         @mo_eco_descriptor = @mo_lcp_facade.get_bo_descriptor(in_bo_proxy_name:If_a1fia_aar_create_qaf_eco::Co_bo_name)
+         @mo_eco_descriptor = @mo_lcp_facade.get_bo_descriptor(in_bo_proxy_name:If_a1fia_aar_create_qaf_eco::co_bo_name)
 
 
       rescue cx_esf_core_service=>lx_esf_core_service
@@ -2793,10 +2825,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -2805,25 +2838,27 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #     redefinition .
    #
 
-   def if_esf_provider_interact_ctrl_i_do_post_processing(_i:nil,_e:nil)
+   def if_esf_provider_interact_ctrl_i_do_post_processing(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
 
       super.if_esf_provider_interact_ctrl_i_do_post_processing(_i:{
          "in_overruling_code" => in_overruling_code,
-      })
+      }, _b:binding)
 
-      Cl_a1fia_aar_util::Chk_for_fy_vrnt_msg_n_add_info(_c:{
+      Cl_a1fia_aar_util::chk_for_fy_vrnt_msg_n_add_info(_c:{
          "ct_message" => inout_messages,
-      })
+      }, _b:binding)
 
 
 
@@ -2832,10 +2867,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -2844,14 +2880,16 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #     redefinition .
    #
 
-   def if_esf_provider_subscription_i_on_bo_changed(_i:nil,_e:nil)
+   def if_esf_provider_subscription_i_on_bo_changed(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -2860,13 +2898,13 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
          "in_publisher_bo_name" => in_publisher_bo_name,
          "in_bo_changes" => in_bo_changes,
          "in_change_handler" => in_change_handler,
-      })
+      }, _b:binding)
 
       if in_publisher_bo_name == @ms_readonly_eco_root.projection_bo_name
          handle_notifications(_e:{
-            "is_change_notification" => in_bo_changes,
-            "io_change_handler" => in_change_handler,
-         })
+            "is_change_notification" => "in_bo_changes",
+            "io_change_handler" => "in_change_handler",
+         }, _b:binding)
 
 
 
@@ -2881,10 +2919,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -2893,21 +2932,23 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #     redefinition .
    #
 
-   def if_esf_provider_transact_ctrl_i_on_after_cleanup_transaction(_i:nil,_e:nil)
+   def if_esf_provider_transact_ctrl_i_on_after_cleanup_transaction(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
 
-      super.if_esf_provider_transact_ctrl_i_on_after_cleanup_transaction()
+      super.if_esf_provider_transact_ctrl_i_on_after_cleanup_transaction(_b:binding)
 
-      clear_buffers()
+      clear_buffers(_b:binding)
 
 
 
@@ -2916,10 +2957,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -2928,29 +2970,31 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #     redefinition .
    #
 
-   def if_esf_provider_transact_ctrl_i_on_after_save_transaction(_i:nil,_e:nil)
+   def if_esf_provider_transact_ctrl_i_on_after_save_transaction(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
 
       lv_rejected = nil # sesf_boolean.new
 
-      lt_change_notifications = nil # If_esf_types::Ty_change_notifications.new
+      lt_change_notifications = nil # If_esf_types::ty_change_notifications.new
 
       #"#EC NEEDED
-      lt_message = nil # If_esf_lcp::Ty_message_list.new
+      lt_message = nil # If_esf_lcp::ty_message_list.new
 
       ls_attribute_map = nil # ty_attribute_map.new
 
 
-      lt_eco_message = nil # Cm_esi_root::Tt_esi_root.new
+      lt_eco_message = nil # Cm_esi_root::tt_esi_root.new
 
       lo_esi_t100 = nil # cm_esi_t100.new
 
@@ -2967,9 +3011,9 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
                   "et_messages" => lt_message,
                   "es_change_notification" => lt_change_notifications,
                }, _e:{
-                  "io_facade" => me.mo_provider_context.get_lcp_facade(),
-                  "iv_max_wait_time" => 300,
-               })
+                  "io_facade" => "me.mo_provider_context.get_lcp_facade(_b:binding)",
+                  "iv_max_wait_time" => "300",
+               }, _b:binding)
 
 
 
@@ -2982,9 +3026,9 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
             if ls_attribute_map.core_bo_node_id.isINITIAL()
                handle_notifications(_e:{
-                  "is_change_notification" => lt_change_notifications,
-                  "io_change_handler" => @mo_change_handler,
-               })
+                  "is_change_notification" => "lt_change_notifications",
+                  "io_change_handler" => "@mo_change_handler",
+               }, _b:binding)
 
 
 
@@ -2996,8 +3040,8 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
             add_mapped_messages_int(_i:{
                "et_eco_message" => lt_eco_message,
             }, _e:{
-               "it_message" => lt_message,
-            })
+               "it_message" => "lt_message",
+            }, _b:binding)
 
 
 
@@ -3014,7 +3058,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       super.if_esf_provider_transact_ctrl_i_on_after_save_transaction(_i:{
          "in_rejected" => in_rejected,
-      })
+      }, _b:binding)
 
 
 
@@ -3023,10 +3067,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -3035,14 +3080,16 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #     redefinition .
    #
 
-   def if_esf_provider_transact_ctrl_i_on_before_save_transaction(_i:nil,_e:nil)
+   def if_esf_provider_transact_ctrl_i_on_before_save_transaction(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -3050,20 +3097,20 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
       super.if_esf_provider_transact_ctrl_i_on_before_save_transaction(_e:{
          "out_rejected" => out_rejected,
          "out_messages" => out_messages,
-      })
+      }, _b:binding)
 
       #* Any "mandatory fields missing" - raise msgs below
 
-      me.check_mandatory_attr_filled()
+      me.check_mandatory_attr_filled(_b:binding)
 
-      Cl_a1fia_aar_util::Prevent_inconsistent_save(_e:{
-         "iv_core_root_node_id" => @mv_eco_root_node_id,
-         "io_lcp_core_bo" => @mo_lcp_bo,
-         "iv_scheduled_bgjob_node_id" => @mv_bgjob_scheduled_node_id,
+      Cl_a1fia_aar_util::prevent_inconsistent_save(_e:{
+         "iv_core_root_node_id" => "@mv_eco_root_node_id",
+         "io_lcp_core_bo" => "@mo_lcp_bo",
+         "iv_scheduled_bgjob_node_id" => "@mv_bgjob_scheduled_node_id",
       }, _c:{
          "cv_rejected" => out_rejected,
          "ct_message" => out_messages,
-      })
+      }, _b:binding)
 
 
 
@@ -3072,10 +3119,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -3084,14 +3132,16 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #     redefinition .
    #
 
-   def if_esf_provider_value_set_i_retrieve_code_values(_i:nil,_e:nil)
+   def if_esf_provider_value_set_i_retrieve_code_values(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -3113,7 +3163,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       lv_bo_node_name = nil # string.new
 
-      lt_code_values = nil # If_esf_types::Tt_code_values.new
+      lt_code_values = nil # If_esf_types::tt_code_values.new
 
 
       if @mv_eco_root_node_id.isNotINITIAL()
@@ -3123,12 +3173,12 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
             assert(id:a1fia_aar_create_qaf_eco, o:sy.subrc != 0 && ( in_context_parameters.isNotSUPPLIED() || in_context_parameters.isINITIAL() ))
 
             if in_attribute_name == If_a1fia_aar_create_qaf_eco::Co_attr.root.assignment_type
-               Cl_fia_cost_object_type_util::Get_cost_object_types_by_usage(_i:{
+               Cl_fia_cost_object_type_util::get_cost_object_types_by_usage(_i:{
                   "et_cost_object_type" => lt_cost_object_type_list,
                }, _e:{
-                  "iv_usage" => If_fia_costobj_type_usage_c::Gc_depreciation,
-                  "iv_free_co_only" => abap_false,
-               })
+                  "iv_usage" => "If_fia_costobj_type_usage_c::gc_depreciation",
+                  "iv_free_co_only" => "abap_false",
+               }, _b:binding)
 
 
 
@@ -3153,21 +3203,21 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
                   "ev_core_bo_node_id_is_handle" => lv_is_node_id_handle,
                   "ev_core_bo_attr_name" => lv_core_bo_attr_name,
                }, _e:{
-                  "iv_eco_node_name" => in_bo_node_name,
-                  "iv_eco_attr_name" => lv_attribute_name,
-                  "iv_eco_node_id" => in_node_id,
-               })
+                  "iv_eco_node_name" => "in_bo_node_name",
+                  "iv_eco_attr_name" => "lv_attribute_name",
+                  "iv_eco_node_id" => "in_node_id",
+               }, _b:binding)
 
                if lv_core_bo_node_id.isNotINITIAL()
                   begin
                      @mo_lcp_bo.retrieve_code_values(_i:{
                         "out_code_values" => out_code_values,
                      }, _e:{
-                        "in_bo_node_name" => lv_core_bo_node_name,
-                        "in_node_id" => lv_core_bo_node_id,
-                        "in_node_id_is_handle" => lv_is_node_id_handle,
-                        "in_attribute_name" => lv_core_bo_attr_name,
-                     })
+                        "in_bo_node_name" => "lv_core_bo_node_name",
+                        "in_node_id" => "lv_core_bo_node_id",
+                        "in_node_id_is_handle" => "lv_is_node_id_handle",
+                        "in_attribute_name" => "lv_core_bo_attr_name",
+                     }, _b:binding)
 
 
                   rescue cx_esf_core_service=>lx_esf_core_service
@@ -3190,13 +3240,13 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
             super.if_esf_provider_value_set_i_retrieve_code_values(_i:{
                "out_code_values" => out_code_values,
             }, _e:{
-               "in_bo_node_name" => in_bo_node_name,
-               "in_node_id" => in_node_id,
-               "in_node_id_is_handle" => in_node_id_is_handle,
-               "in_attribute_name" => in_attribute_name,
-               "in_context_parameters" => in_context_parameters,
-               "in_context_attributes" => in_context_attributes,
-            })
+               "in_bo_node_name" => "in_bo_node_name",
+               "in_node_id" => "in_node_id",
+               "in_node_id_is_handle" => "in_node_id_is_handle",
+               "in_attribute_name" => "in_attribute_name",
+               "in_context_parameters" => "in_context_parameters",
+               "in_context_attributes" => "in_context_attributes",
+            }, _b:binding)
 
 
 
@@ -3216,10 +3266,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -3227,14 +3278,16 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    # methods IF_ESF_PROVIDER_VALUE_SET~RETRIEVE_VALUE_SET
    #     redefinition .
 
-   def if_esf_provider_value_set_i_retrieve_value_set(_i:nil,_e:nil)
+   def if_esf_provider_value_set_i_retrieve_value_set(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -3260,18 +3313,18 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
                "ev_core_bo_node_id_is_handle" => lv_is_node_id_handle,
                "ev_core_bo_attr_name" => lv_core_bo_attr_name,
             }, _e:{
-               "iv_eco_node_name" => in_bo_node_name,
-               "iv_eco_attr_name" => in_attribute_name,
-               "iv_eco_node_id" => in_node_id,
-            })
+               "iv_eco_node_name" => "in_bo_node_name",
+               "iv_eco_attr_name" => "in_attribute_name",
+               "iv_eco_node_id" => "in_node_id",
+            }, _b:binding)
 
 
 
             if lv_core_bo_node_id.isNotINITIAL()
                if in_attribute_name == If_a1fia_aar_create_qaf_eco::Co_attr.root.project_id.content
                   restrict_projectid_value_set(_e:{
-                     "in_selection_parameters" => in_selection_parameters,
-                  })
+                     "in_selection_parameters" => "in_selection_parameters",
+                  }, _b:binding)
 
 
                   #*        ELSEIF in_attribute_name =  if_a1fia_aar_create_qaf_eco=>co_attr-root-cust_ser_document_id-formatted_id OR
@@ -3411,15 +3464,15 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
                      @mo_lcp_bo.retrieve_value_set(_i:{
                         "out_value_set_node_ids" => out_value_set_node_ids,
                      }, _e:{
-                        "in_bo_node_name" => lv_core_bo_node_name,
-                        "in_node_id" => lv_core_bo_node_id,
-                        "in_node_id_is_handle" => lv_is_node_id_handle,
-                        "in_attribute_name" => lv_core_bo_attr_name,
-                        "in_selection_parameters" => in_selection_parameters,
-                        "in_query_options" => in_query_options,
-                        "in_authorization_context" => in_authorization_context,
-                        "in_fill_data" => abap_false,
-                     })
+                        "in_bo_node_name" => "lv_core_bo_node_name",
+                        "in_node_id" => "lv_core_bo_node_id",
+                        "in_node_id_is_handle" => "lv_is_node_id_handle",
+                        "in_attribute_name" => "lv_core_bo_attr_name",
+                        "in_selection_parameters" => "in_selection_parameters",
+                        "in_query_options" => "in_query_options",
+                        "in_authorization_context" => "in_authorization_context",
+                        "in_fill_data" => "abap_false",
+                     }, _b:binding)
 
 
                   rescue cx_esf_core_service=>lx_esf_core_service
@@ -3440,14 +3493,14 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
          else
             super.if_esf_provider_value_set_i_retrieve_value_set(_e:{
-               "in_bo_node_name" => in_bo_node_name,
-               "in_node_id" => in_node_id,
-               "in_node_id_is_handle" => in_node_id_is_handle,
-               "in_attribute_name" => in_attribute_name,
-               "in_selection_parameters" => in_selection_parameters,
-               "in_query_options" => in_query_options,
-               "in_authorization_context" => in_authorization_context,
-            })
+               "in_bo_node_name" => "in_bo_node_name",
+               "in_node_id" => "in_node_id",
+               "in_node_id_is_handle" => "in_node_id_is_handle",
+               "in_attribute_name" => "in_attribute_name",
+               "in_selection_parameters" => "in_selection_parameters",
+               "in_query_options" => "in_query_options",
+               "in_authorization_context" => "in_authorization_context",
+            }, _b:binding)
 
 
 
@@ -3467,10 +3520,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -3479,14 +3533,16 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #     redefinition .
    #
 
-   def get_sub_context(_i:nil,_e:nil)
+   def get_sub_context(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -3500,10 +3556,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -3511,14 +3568,16 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    # methods GET_TASK_REGION_BO_DETAILS
    #     redefinition .
 
-   def get_task_region_bo_details(_i:nil,_e:nil)
+   def get_task_region_bo_details(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -3533,10 +3592,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -3549,21 +3609,23 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #       !ET_ECO_MESSAGE type CM_ESI_ROOT=>TT_ESI_ROOT .
    #
 
-   def add_mapped_messages_int(io_message_handler:nil,_i:nil,_e:nil)
+   def add_mapped_messages_int(io_message_handler:nil,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
 
       lo_message = nil # cm_esi_root.new
 
-      lt_message_map = nil # If_bsa_cb_message_mapping::Tt_message_mapping.new
+      lt_message_map = nil # If_bsa_cb_message_mapping::tt_message_mapping.new
 
 
       lx_esf_message_handler = nil # cx_esf_message_handler.new
@@ -3589,7 +3651,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
          "et_eco_message" => et_eco_message,
       }, _c:{
          "ct_message_map" => lt_message_map,
-      })
+      }, _b:binding)
 
       if et_eco_message.isNotREQUESTED()
          if io_message_handler.isSUPPLIED()
@@ -3623,10 +3685,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -3638,14 +3701,16 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #       !CT_MESSAGE_MAP type IF_BSA_CB_MESSAGE_MAPPING=>TT_MESSAGE_MAPPING .
    #
 
-   def adjust_messages_int(_i:nil,_e:nil)
+   def adjust_messages_int(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -3654,13 +3719,13 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       lo_source_for_copying = nil # cm_esi_root.new
 
-      ls_new_msg_origin_loc = nil # Cm_esi_root::Ty_message_location.new
+      ls_new_msg_origin_loc = nil # Cm_esi_root::ty_message_location.new
 
-      ls_new_msg_envr_location = nil # Cm_esi_root::Ty_message_location.new
+      ls_new_msg_envr_location = nil # Cm_esi_root::ty_message_location.new
 
-      lr_location = nil # Cm_esi_root::Ty_message_location.new
+      lr_location = nil # Cm_esi_root::ty_message_location.new
 
-      lt_new_msg_envr_location = nil # Cm_esi_root::Tt_message_locations.new
+      lt_new_msg_envr_location = nil # Cm_esi_root::tt_message_locations.new
 
       clear(id:et_eco_message)
       if @mv_eco_root_node_id.isINITIAL()
@@ -3697,11 +3762,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
          }
 
          if ls_new_msg_origin_loc.isINITIAL()
-            ls_new_msg_origin_loc.bo_name = If_a1fia_aar_create_qaf_eco::Co_bo_name
+            ls_new_msg_origin_loc.bo_name = If_a1fia_aar_create_qaf_eco::co_bo_name
 
 
 
-            ls_new_msg_origin_loc.bo_node_name = If_a1fia_aar_create_qaf_eco::Co_bo_node.root
+            ls_new_msg_origin_loc.bo_node_name = If_a1fia_aar_create_qaf_eco::co_bo_node.root
 
 
 
@@ -3753,10 +3818,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -3768,37 +3834,39 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #       value(RT_ENABLED) type SESF_BOOLEAN .
    #
 
-   def check_activate_enabled(in_node_ids:nil,_i:nil,_e:nil)
+   def check_activate_enabled(in_node_ids:nil,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
 
       lo_ex = nil # cx_esf_core_service.new
 
-      ls_property_scope = nil # If_esf_types::Ty_property_scope.new
+      ls_property_scope = nil # If_esf_types::ty_property_scope.new
 
       lt_actions = nil # sesf_string_tab.new
 
-      lt_out_properties = nil # If_esf_types::Ty_properties.new
+      lt_out_properties = nil # If_esf_types::ty_properties.new
 
       begin
-         append(from:If_fia_acc_adjustment_run::Co_action.root.activate, to:lt_actions)
+         append(from:If_fia_acc_adjustment_run::co_action.root.activate, to:lt_actions)
          ls_property_scope.requested_actions = lt_actions
 
          @mo_lcp_bo.retrieve_properties(_i:{
-            "in_bo_node_name" => If_fia_acc_adjustment_run::Co_bo_node.root,
+            "in_bo_node_name" => If_fia_acc_adjustment_run::co_bo_node.root,
             "in_node_ids" => in_node_ids,
             "in_property_scope" => ls_property_scope,
          }, _e:{
             "out_properties" => lt_out_properties,
-         })
+         }, _b:binding)
 
          read_table(id:in_node_ids, index:1)
          read_table(id:lt_out_properties.action_properties)
@@ -3838,10 +3906,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -3852,14 +3921,16 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #       !IO_MESSAGE_HANDLER type ref to IF_ESF_MESSAGE_HANDLER .
    #
 
-   def check_and_fill_sob_comp(io_message_handler:nil,_i:nil,_e:nil)
+   def check_and_fill_sob_comp(io_message_handler:nil,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -3870,9 +3941,9 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       lv_partially_active_assgn = nil # sesf_boolean.new
 
-      lt_sob_id = nil # If_fia_set_of_books::Tt_key.root.id.new
+      lt_sob_id = nil # If_fia_set_of_books::tt_key.root.id.new
 
-      lt_company_id = nil # Mom::if_organisational_centre::Tt_key.root.id.new
+      lt_company_id = nil # Mom::if_organisational_centre::tt_key.root.id.new
 
       assign(to:ls_eco_root)
       check( sy.subrc == 0 )
@@ -3927,7 +3998,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
                "io_adaption_handler" => @mo_adaptation_handler,
             }, _e:{
                "et_sob_id" => lt_sob_id,
-            })
+            }, _b:binding)
 
 
 
@@ -3945,7 +4016,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
                end
 
 
-               append(from:If_a1fia_aar_create_qaf_eco::Co_attr.root.set_of_books_id.content, to:ir_root_modification.changed_attributes)
+               append(from:If_a1fia_aar_create_qaf_eco::co_attr.root.set_of_books_id.content, to:ir_root_modification.changed_attributes)
 
 
 
@@ -3960,7 +4031,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
                "io_adaption_handler" => @mo_adaptation_handler,
             }, _e:{
                "et_company_id" => lt_company_id,
-            })
+            }, _b:binding)
 
             read_table(id:lt_company_id)
             if sy.subrc != 0
@@ -3975,7 +4046,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
                end
 
 
-               append(from:If_a1fia_aar_create_qaf_eco::Co_attr.root.company_id, to:ir_root_modification.changed_attributes)
+               append(from:If_a1fia_aar_create_qaf_eco::co_attr.root.company_id, to:ir_root_modification.changed_attributes)
 
 
 
@@ -3997,10 +4068,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -4012,14 +4084,16 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #       value(RT_HAS_ERRORS) type SESF_BOOLEAN .
    #
 
-   def check_for_errors(in_messages:nil,_i:nil,_e:nil)
+   def check_for_errors(in_messages:nil,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -4046,10 +4120,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -4060,14 +4135,16 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #       !CT_MESSAGE type CM_ESI_ROOT=>TT_ESI_ROOT .
    #
 
-   def check_mandatory_attr_filled(_i:nil,_e:nil)
+   def check_mandatory_attr_filled(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -4089,10 +4166,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -4100,14 +4178,16 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    # methods CLEAR_BUFFERS .
    #
 
-   def clear_buffers(_i:nil,_e:nil)
+   def clear_buffers(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -4129,10 +4209,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -4144,14 +4225,16 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #       value(RT_AFFECTED_ASSOCIATIONS) type SESF_STRING_TAB .
    #
 
-   def derive_affected_associations(is_change_notification:nil,_i:nil,_e:nil)
+   def derive_affected_associations(is_change_notification:nil,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -4165,39 +4248,39 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       loop(at:lt_affected_core_nodes, into:lv_affected_core_node){
          case lv_affected_core_node
-         when If_fia_acc_adjustment_run::Co_bo_node.sel_by_company
-            append(from:If_a1fia_aar_create_qaf_eco::Co_assoc.root.comp_fin_proc_ctrl, to:rt_affected_associations)
-            append(from:If_a1fia_aar_create_qaf_eco::Co_assoc.root.company, to:rt_affected_associations)
-         when If_fia_acc_adjustment_run::Co_bo_node.sel_by_set_of_books
-            append(from:If_a1fia_aar_create_qaf_eco::Co_assoc.root.set_of_books, to:rt_affected_associations)
-         when If_fia_acc_adjustment_run::Co_bo_node.sel_by_business_partner
-            append(from:If_a1fia_aar_create_qaf_eco::Co_assoc.root.bupa, to:rt_affected_associations)
-         when If_fia_acc_adjustment_run::Co_bo_node.sel_by_cost_centre
-            append(from:If_a1fia_aar_create_qaf_eco::Co_assoc.root.cost_centre, to:rt_affected_associations)
-         when If_fia_acc_adjustment_run::Co_bo_node.sel_by_production_lot
-            append(from:If_a1fia_aar_create_qaf_eco::Co_assoc.root.production_lot, to:rt_affected_associations)
-         when If_fia_acc_adjustment_run::Co_bo_node.sel_by_cust_srvorg
-            append(from:If_a1fia_aar_create_qaf_eco::Co_assoc.root.cust_ser_org, to:rt_affected_associations)
-         when If_fia_acc_adjustment_run::Co_bo_node.sel_by_fixed_asset
-            append(from:If_a1fia_aar_create_qaf_eco::Co_assoc.root.fixed_asset, to:rt_affected_associations)
-         when If_fia_acc_adjustment_run::Co_bo_node.sel_by_house_bank
-            append(from:If_a1fia_aar_create_qaf_eco::Co_assoc.root.house_bank, to:rt_affected_associations)
-         when If_fia_acc_adjustment_run::Co_bo_node.sel_by_ohc_asses_rule
-            append(from:If_a1fia_aar_create_qaf_eco::Co_assoc.root.ovh_asses_rule, to:rt_affected_associations)
-         when If_fia_acc_adjustment_run::Co_bo_node.sel_by_permest
-            append(from:If_a1fia_aar_create_qaf_eco::Co_assoc.root.permanent_establishment, to:rt_affected_associations)
-         when If_fia_acc_adjustment_run::Co_bo_node.sel_by_project
-            append(from:If_a1fia_aar_create_qaf_eco::Co_assoc.root.project, to:rt_affected_associations)
-         when If_fia_acc_adjustment_run::Co_bo_node.sel_by_sales_org
-            append(from:If_a1fia_aar_create_qaf_eco::Co_assoc.root.sales_organisation, to:rt_affected_associations)
-         when If_fia_acc_adjustment_run::Co_bo_node.execution
-            append(from:If_a1fia_aar_create_qaf_eco::Co_assoc.root.to_open_task, to:rt_affected_associations)
-         when If_fia_acc_adjustment_run::Co_bo_node.sel_by_oed_ref
+         when If_fia_acc_adjustment_run::co_bo_node.sel_by_company
+            append(from:If_a1fia_aar_create_qaf_eco::co_assoc.root.comp_fin_proc_ctrl, to:rt_affected_associations)
+            append(from:If_a1fia_aar_create_qaf_eco::co_assoc.root.company, to:rt_affected_associations)
+         when If_fia_acc_adjustment_run::co_bo_node.sel_by_set_of_books
+            append(from:If_a1fia_aar_create_qaf_eco::co_assoc.root.set_of_books, to:rt_affected_associations)
+         when If_fia_acc_adjustment_run::co_bo_node.sel_by_business_partner
+            append(from:If_a1fia_aar_create_qaf_eco::co_assoc.root.bupa, to:rt_affected_associations)
+         when If_fia_acc_adjustment_run::co_bo_node.sel_by_cost_centre
+            append(from:If_a1fia_aar_create_qaf_eco::co_assoc.root.cost_centre, to:rt_affected_associations)
+         when If_fia_acc_adjustment_run::co_bo_node.sel_by_production_lot
+            append(from:If_a1fia_aar_create_qaf_eco::co_assoc.root.production_lot, to:rt_affected_associations)
+         when If_fia_acc_adjustment_run::co_bo_node.sel_by_cust_srvorg
+            append(from:If_a1fia_aar_create_qaf_eco::co_assoc.root.cust_ser_org, to:rt_affected_associations)
+         when If_fia_acc_adjustment_run::co_bo_node.sel_by_fixed_asset
+            append(from:If_a1fia_aar_create_qaf_eco::co_assoc.root.fixed_asset, to:rt_affected_associations)
+         when If_fia_acc_adjustment_run::co_bo_node.sel_by_house_bank
+            append(from:If_a1fia_aar_create_qaf_eco::co_assoc.root.house_bank, to:rt_affected_associations)
+         when If_fia_acc_adjustment_run::co_bo_node.sel_by_ohc_asses_rule
+            append(from:If_a1fia_aar_create_qaf_eco::co_assoc.root.ovh_asses_rule, to:rt_affected_associations)
+         when If_fia_acc_adjustment_run::co_bo_node.sel_by_permest
+            append(from:If_a1fia_aar_create_qaf_eco::co_assoc.root.permanent_establishment, to:rt_affected_associations)
+         when If_fia_acc_adjustment_run::co_bo_node.sel_by_project
+            append(from:If_a1fia_aar_create_qaf_eco::co_assoc.root.project, to:rt_affected_associations)
+         when If_fia_acc_adjustment_run::co_bo_node.sel_by_sales_org
+            append(from:If_a1fia_aar_create_qaf_eco::co_assoc.root.sales_organisation, to:rt_affected_associations)
+         when If_fia_acc_adjustment_run::co_bo_node.execution
+            append(from:If_a1fia_aar_create_qaf_eco::co_assoc.root.to_open_task, to:rt_affected_associations)
+         when If_fia_acc_adjustment_run::co_bo_node.sel_by_oed_ref
             case @ms_readonly_eco_root.mdro_type_code
-            when If_a1fia_aar_create_qaf_eco_c::Mc_mdro_type_code.fia_grir_clearing_run
-               append(from:If_a1fia_aar_create_qaf_eco::Co_assoc.root.purchase_doc, to:rt_affected_associations)
-            when If_a1fia_aar_create_qaf_eco_c::Mc_mdro_type_code.fia_slsla_accruals_run , If_a1fia_aar_create_qaf_eco_c::Mc_mdro_type_code.fia_slsla_overhead_run
-               append(from:If_a1fia_aar_create_qaf_eco::Co_assoc.root.sal_ser_doc, to:rt_affected_associations)
+            when If_a1fia_aar_create_qaf_eco_c::mc_mdro_type_code.fia_grir_clearing_run
+               append(from:If_a1fia_aar_create_qaf_eco::co_assoc.root.purchase_doc, to:rt_affected_associations)
+            when If_a1fia_aar_create_qaf_eco_c::mc_mdro_type_code.fia_slsla_accruals_run , If_a1fia_aar_create_qaf_eco_c::mc_mdro_type_code.fia_slsla_overhead_run
+               append(from:If_a1fia_aar_create_qaf_eco::co_assoc.root.sal_ser_doc, to:rt_affected_associations)
             end
          end
 
@@ -4209,10 +4292,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -4226,14 +4310,16 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #       !CT_CHANGED_ATTRIBUTES type SESF_STRING_TAB .
    #
 
-   def extract_editable_non_init_attr(iv_bo_node_name:nil,_i:nil,_e:nil)
+   def extract_editable_non_init_attr(iv_bo_node_name:nil,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -4258,12 +4344,12 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
          assign(to:lv_field_value)
          if sy.subrc == 0
             extract_editable_non_init_attr(_e:{
-               "is_co_attr_struct" => lv_co_attr_field_struct,
-               "is_node_data" => is_node_data,
-               "iv_bo_node_name" => iv_bo_node_name,
+               "is_co_attr_struct" => "lv_co_attr_field_struct",
+               "is_node_data" => "is_node_data",
+               "iv_bo_node_name" => "iv_bo_node_name",
             }, _c:{
                "ct_changed_attributes" => ct_changed_attributes,
-            })
+            }, _b:binding)
 
 
 
@@ -4277,7 +4363,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
                   lo_bo_node_desc = lo_bo_desc.get_bo_node_descriptor(bo_node_proxy_name:iv_bo_node_name)
 
-                  lv_is_read_only = lo_bo_node_desc.get_attribute_property_value(attribute_proxy_name:lv_co_attr_field_struct, property_name:If_esf_desc::Co_property_read_only)
+                  lv_is_read_only = lo_bo_node_desc.get_attribute_property_value(attribute_proxy_name:lv_co_attr_field_struct, property_name:If_esf_desc::co_property_read_only)
 
                   #*            This should always be an enabled attribute as the default value is non-initial for this. If it fails here the BO impl is wrong
 
@@ -4318,10 +4404,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -4333,27 +4420,29 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #       value(RT_AFFECTED_CORE_NODES) type SESF_STRING_TAB .
    #
 
-   def get_affected_core_bo_nodes(is_change_notification:nil,_i:nil,_e:nil)
+   def get_affected_core_bo_nodes(is_change_notification:nil,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
 
-      ls_create_notify = nil # If_esf_types::Ty_create_notification.new
+      ls_create_notify = nil # If_esf_types::ty_create_notification.new
 
-      ls_suc_create_notify = nil # If_esf_types::Ty_suc_create_notification.new
+      ls_suc_create_notify = nil # If_esf_types::ty_suc_create_notification.new
 
-      ls_delete_notify = nil # If_esf_types::Ty_delete_notification.new
+      ls_delete_notify = nil # If_esf_types::ty_delete_notification.new
 
-      ls_update_notify = nil # If_esf_types::Ty_update_notification.new
+      ls_update_notify = nil # If_esf_types::ty_update_notification.new
 
-      ls_sync_notify = nil # If_esf_types::Ty_sync_notifications.new
+      ls_sync_notify = nil # If_esf_types::ty_sync_notifications.new
 
       clear(id:rt_affected_core_nodes)
       loop(at:is_change_notification.create_notifications, into:ls_create_notify){
@@ -4423,10 +4512,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -4440,76 +4530,78 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #       CX_A1FIA_AAR_CREATE_QAF_ECO .
    #
 
-   def get_bo_name_from_mdro_type(iv_mdro_type_code:nil,_i:nil,_e:nil)
+   def get_bo_name_from_mdro_type(iv_mdro_type_code:nil,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
 
       case iv_mdro_type_code
-      when If_a1fia_aar_create_qaf_eco_c::Mc_mdro_type_code.fia_arpla_rgrp_run
+      when If_a1fia_aar_create_qaf_eco_c::mc_mdro_type_code.fia_arpla_rgrp_run
          #"11
          rv_bo_name = 'FIA_ARPLA_RGRP_RUN'
 
-      when If_a1fia_aar_create_qaf_eco_c::Mc_mdro_type_code.fia_arp_ledger_acct_rem
+      when If_a1fia_aar_create_qaf_eco_c::mc_mdro_type_code.fia_arp_ledger_acct_rem
          #"10
          rv_bo_name = 'FIA_ARP_LEDGER_ACCT_REM'
 
-      when If_a1fia_aar_create_qaf_eco_c::Mc_mdro_type_code.fia_bal_carfwd_run
+      when If_a1fia_aar_create_qaf_eco_c::mc_mdro_type_code.fia_bal_carfwd_run
          #"13
          rv_bo_name = 'FIA_BAL_CARFWD_RUN'
 
-      when If_a1fia_aar_create_qaf_eco_c::Mc_mdro_type_code.fia_cashla_fcr_run
+      when If_a1fia_aar_create_qaf_eco_c::mc_mdro_type_code.fia_cashla_fcr_run
          #"19
          rv_bo_name = 'FIA_CASHLA_FCR_RUN'
 
-      when If_a1fia_aar_create_qaf_eco_c::Mc_mdro_type_code.fia_fixed_asset_depr
+      when If_a1fia_aar_create_qaf_eco_c::mc_mdro_type_code.fia_fixed_asset_depr
          #"52
          rv_bo_name = 'FIA_FIXED_ASSET_DEPR'
 
-      when If_a1fia_aar_create_qaf_eco_c::Mc_mdro_type_code.fia_grir_clearing_run
+      when If_a1fia_aar_create_qaf_eco_c::mc_mdro_type_code.fia_grir_clearing_run
          #"57
          rv_bo_name = 'FIA_GRIR_CLEARING_RUN'
 
-      when If_a1fia_aar_create_qaf_eco_c::Mc_mdro_type_code.fia_odcla_overhead_run
+      when If_a1fia_aar_create_qaf_eco_c::mc_mdro_type_code.fia_odcla_overhead_run
          #"444
          rv_bo_name = 'FIA_ODCLA_OVERHEAD_RUN'
 
-      when If_a1fia_aar_create_qaf_eco_c::Mc_mdro_type_code.fia_ohcla_overhead_run
+      when If_a1fia_aar_create_qaf_eco_c::mc_mdro_type_code.fia_ohcla_overhead_run
          #"78
          rv_bo_name = 'FIA_OHCLA_OVERHEAD_RUN'
 
-      when If_a1fia_aar_create_qaf_eco_c::Mc_mdro_type_code.fia_ohc_asses_run
+      when If_a1fia_aar_create_qaf_eco_c::mc_mdro_type_code.fia_ohc_asses_run
          #"425
          rv_bo_name = 'FIA_OHC_ASSES_RUN'
 
-      when If_a1fia_aar_create_qaf_eco_c::Mc_mdro_type_code.fia_prdla_overhead_run
+      when If_a1fia_aar_create_qaf_eco_c::mc_mdro_type_code.fia_prdla_overhead_run
          #"95
          rv_bo_name = 'FIA_PRDLA_OVERHEAD_RUN'
 
-      when If_a1fia_aar_create_qaf_eco_c::Mc_mdro_type_code.fia_slsla_accruals_run
+      when If_a1fia_aar_create_qaf_eco_c::mc_mdro_type_code.fia_slsla_accruals_run
          #"112
          rv_bo_name = 'FIA_SLSLA_ACCRUALS_RUN'
 
-      when If_a1fia_aar_create_qaf_eco_c::Mc_mdro_type_code.fia_slsla_overhead_run
+      when If_a1fia_aar_create_qaf_eco_c::mc_mdro_type_code.fia_slsla_overhead_run
          #"113
          rv_bo_name = 'FIA_SLSLA_OVERHEAD_RUN'
 
-      when If_a1fia_aar_create_qaf_eco_c::Mc_mdro_type_code.fia_wip_clearing_run
+      when If_a1fia_aar_create_qaf_eco_c::mc_mdro_type_code.fia_wip_clearing_run
          #"135
          rv_bo_name = 'FIA_WIP_CLEARING_RUN'
 
-      when If_a1fia_aar_create_qaf_eco_c::Mc_mdro_type_code.fia_settlment_run
+      when If_a1fia_aar_create_qaf_eco_c::mc_mdro_type_code.fia_settlment_run
          #"1436
          rv_bo_name = 'FIA_COB_SETTLEMENT_RUN'
 
-      when If_a1fia_aar_create_qaf_eco_c::Mc_mdro_type_code.fia_fixed_asset_setlmnt_run
+      when If_a1fia_aar_create_qaf_eco_c::mc_mdro_type_code.fia_fixed_asset_setlmnt_run
          #"1807
          rv_bo_name = 'FIA_FIXED_ASSET_SETLMNT_RUN'
 
@@ -4524,10 +4616,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -4541,14 +4634,16 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #       !ET_CORE_BO_ATTR_NAME type SESF_STRING_TAB .
    #
 
-   def get_eco_core_attr_pair_for_nod(iv_core_bo_node_name:nil,_i:nil,_e:nil)
+   def get_eco_core_attr_pair_for_nod(iv_core_bo_node_name:nil,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -4586,10 +4681,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -4599,14 +4695,16 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #       value(RT_ROOT_DEDICATED_ATTRIBUTES) type SESF_STRING_TAB .
    #
 
-   def get_root_dedicated_attr_names(_i:nil,_e:nil)
+   def get_root_dedicated_attr_names(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -4614,8 +4712,8 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
       handle_root_dedicated_fields(_i:{
          "et_eco_attributes" => rt_root_dedicated_attributes,
       }, _e:{
-         "iv_mode_get_all_dedicated_attr" => abap_true,
-      })
+         "iv_mode_get_all_dedicated_attr" => "abap_true",
+      }, _b:binding)
 
 
 
@@ -4624,10 +4722,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -4639,14 +4738,16 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #       !ET_MAPPED_REQ_ATTRIBUTES type SESF_STRING_TAB .
    #
 
-   def get_root_maped_attr_for_dedica(it_requested_attributes:nil,_i:nil,_e:nil)
+   def get_root_maped_attr_for_dedica(it_requested_attributes:nil,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -4667,7 +4768,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
          if sy.subrc == 0 && lr_attribute_map.is_dedicated == abap_true
             lr_attribute_map.dedicated_exit.get_related_mapped_eco_attrib(_i:{
                "et_eco_attributes" => lt_mapped_eco_attr,
-            })
+            }, _b:binding)
 
 
 
@@ -4692,10 +4793,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -4705,14 +4807,16 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #       value(RV_UUID) type SYSUUID_C32 .
    #
 
-   def get_uuid(_i:nil,_e:nil)
+   def get_uuid(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -4722,7 +4826,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
       lx_uuid_error = nil # cx_uuid_error.new
 
       if ! lr_uuid_generator.isBOUND()
-         lr_uuid_generator = Cl_uuid_factory::Create_system_uuid()
+         lr_uuid_generator = Cl_uuid_factory::create_system_uuid(_b:binding)
 
 
 
@@ -4731,7 +4835,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
       end
 
       begin
-         rv_uuid = lr_uuid_generator.create_uuid_c32()
+         rv_uuid = lr_uuid_generator.create_uuid_c32(_b:binding)
 
 
       rescue cx_uuid_error=>lx_uuid_error
@@ -4746,10 +4850,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -4764,49 +4869,51 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #       !IO_MESSAGE_HANDLER type ref to IF_ESF_MESSAGE_HANDLER .
    #
 
-   def handle_create_with_ref_actions(io_message_handler:nil,_i:nil,_e:nil)
+   def handle_create_with_ref_actions(io_message_handler:nil,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
 
       lt_can_mdro_rt_node_id = nil # sesf_bo_node_id_tab.new
 
-      ls_can_mdro_root = nil # If_fia_acc_adjustment_run::Ty_root.new
+      ls_can_mdro_root = nil # If_fia_acc_adjustment_run::ty_root.new
 
-      lt_can_mdro_root = nil # If_fia_acc_adjustment_run::Tt_root.new
+      lt_can_mdro_root = nil # If_fia_acc_adjustment_run::tt_root.new
 
-      ls_can_mdro_descr = nil # If_fia_acc_adjustment_run::Ty_description.new
+      ls_can_mdro_descr = nil # If_fia_acc_adjustment_run::ty_description.new
 
-      lt_can_mdro_descr = nil # If_fia_acc_adjustment_run::Tt_description.new
+      lt_can_mdro_descr = nil # If_fia_acc_adjustment_run::tt_description.new
 
       lv_create_with_ref_action = nil # string.new
 
-      ls_eco_change_notify = nil # If_esf_types::Ty_change_notifications.new
+      ls_eco_change_notify = nil # If_esf_types::ty_change_notifications.new
 
-      ls_change_notification = nil # If_esf_types::Ty_change_notifications.new
+      ls_change_notification = nil # If_esf_types::ty_change_notifications.new
 
-      lt_message = nil # Cm_esi_root::Tt_esi_root.new
+      lt_message = nil # Cm_esi_root::tt_esi_root.new
 
-      ls_action_parameters_create = nil # If_fia_acc_adjustment_run::Ty_action_p.root.create_with_reference.new
+      ls_action_parameters_create = nil # If_fia_acc_adjustment_run::ty_action_p.root.create_with_reference.new
 
-      ls_action_parameters_cancel = nil # If_fia_acc_adjustment_run::Ty_action_p.root.create_with_ref_for_canc.new
+      ls_action_parameters_cancel = nil # If_fia_acc_adjustment_run::ty_action_p.root.create_with_ref_for_canc.new
 
 
-      ls_descr_assoc_param = nil # If_fia_acc_adjustment_run::Ty_assoc_p.root.description.new
+      ls_descr_assoc_param = nil # If_fia_acc_adjustment_run::ty_assoc_p.root.description.new
 
       lx_esf_core_service = nil # cx_esf_core_service.new
 
       assert(id:a1fia_aar_create_qaf_eco, o:lines == 1)
       read_table(id:it_referencing_node_elements, into:ls_referencing_node_elements, index:1)
       if iv_for_cancellation == abap_true
-         lv_create_with_ref_action = If_fia_acc_adjustment_run::Co_action.root.create_with_ref_for_canc
+         lv_create_with_ref_action = If_fia_acc_adjustment_run::co_action.root.create_with_ref_for_canc
 
 
          #"Get the Description of MDRO which is to be cancelled
@@ -4817,9 +4924,9 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
             @mo_lcp_bo.retrieve(_i:{
                "out_data" => lt_can_mdro_root,
             }, _e:{
-               "in_bo_node_name" => If_fia_acc_adjustment_run::Co_bo_node.root,
-               "in_node_ids" => lt_can_mdro_rt_node_id,
-            })
+               "in_bo_node_name" => "If_fia_acc_adjustment_run::co_bo_node.root",
+               "in_node_ids" => "lt_can_mdro_rt_node_id",
+            }, _b:binding)
 
             read_table(id:lt_can_mdro_root, into:ls_can_mdro_root, index:1)
             if sy.subrc == 0
@@ -4834,12 +4941,12 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
                @mo_lcp_bo.retrieve_by_association(_i:{
                   "out_data" => lt_can_mdro_descr,
                }, _e:{
-                  "in_bo_node_name" => If_fia_acc_adjustment_run::Co_bo_node.root,
-                  "in_association_name" => If_fia_acc_adjustment_run::Co_assoc.root.description,
-                  "in_node_ids" => lt_can_mdro_rt_node_id,
-                  "in_filter_parameters" => ls_descr_assoc_param,
-                  "in_fill_data" => abap_true,
-               })
+                  "in_bo_node_name" => "If_fia_acc_adjustment_run::co_bo_node.root",
+                  "in_association_name" => "If_fia_acc_adjustment_run::co_assoc.root.description",
+                  "in_node_ids" => "lt_can_mdro_rt_node_id",
+                  "in_filter_parameters" => "ls_descr_assoc_param",
+                  "in_fill_data" => "abap_true",
+               }, _b:binding)
 
 
 
@@ -4871,7 +4978,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
 
       else
-         lv_create_with_ref_action = If_fia_acc_adjustment_run::Co_action.root.create_with_reference
+         lv_create_with_ref_action = If_fia_acc_adjustment_run::co_action.root.create_with_reference
 
          if ls_referencing_node_elements.bo_name == If_fia_set_of_books::Co_bo_name
             @ms_readonly_eco_root.is_period_end_close_triggered = abap_true
@@ -4902,12 +5009,12 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
             "out_change_notifications" => ls_change_notification,
             "out_messages" => lt_message,
          }, _e:{
-            "in_bo_node_name" => If_fia_acc_adjustment_run::Co_bo_node.root,
-            "in_action_name" => lv_create_with_ref_action,
-            "in_node_ids" => it_node_id,
-            "in_referencing_node_elements" => it_referencing_node_elements,
-            "in_action_parameters" => ls_action_parameters,
-         })
+            "in_bo_node_name" => "If_fia_acc_adjustment_run::co_bo_node.root",
+            "in_action_name" => "lv_create_with_ref_action",
+            "in_node_ids" => "it_node_id",
+            "in_referencing_node_elements" => "it_referencing_node_elements",
+            "in_action_parameters" => "ls_action_parameters",
+         }, _b:binding)
 
 
       rescue cx_esf_core_service=>lx_esf_core_service
@@ -4919,15 +5026,15 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
       io_change_handler.get_change_notifications(_i:{
          "out_change_notifications" => ls_eco_change_notify,
       }, _e:{
-         "in_bo_name" => If_a1fia_aar_create_qaf_eco::Co_bo_name,
-         "in_bo_node_name" => If_a1fia_aar_create_qaf_eco::Co_bo_node.root,
-      })
+         "in_bo_name" => "If_a1fia_aar_create_qaf_eco::co_bo_name",
+         "in_bo_node_name" => "If_a1fia_aar_create_qaf_eco::co_bo_node.root",
+      }, _b:binding)
 
       if ls_eco_change_notify.isINITIAL()
          handle_notifications(_e:{
-            "is_change_notification" => ls_change_notification,
-            "io_change_handler" => io_change_handler,
-         })
+            "is_change_notification" => "ls_change_notification",
+            "io_change_handler" => "io_change_handler",
+         }, _b:binding)
 
 
 
@@ -4945,10 +5052,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -4959,14 +5067,16 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #       !CT_CHANGED_ATTR type SESF_STRING_TAB .
    #
 
-   def handle_dedicated_attr_modific(_i:nil,_e:nil)
+   def handle_dedicated_attr_modific(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -4982,7 +5092,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
             lr_attribute_map.dedicated_exit.modif_mapped_attrib_frm_dedic(_c:{
                "cs_modif_eco_root" => cs_root,
                "ct_changed_attr" => ct_changed_attr,
-            })
+            }, _b:binding)
 
 
 
@@ -5002,10 +5112,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -5016,14 +5127,16 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #       !IO_CHANGE_HANDLER type ref to IF_ESF_CHANGE_HANDLER .
    #
 
-   def handle_notifications(io_change_handler:nil,_i:nil,_e:nil)
+   def handle_notifications(io_change_handler:nil,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -5041,7 +5154,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       lv_notify_sync = nil # sesf_boolean.new
 
-      lv_sync_scope = nil # If_esf_types::Ty_scope.new
+      lv_sync_scope = nil # If_esf_types::ty_scope.new
 
       lv_node_name = nil # string.new
 
@@ -5051,7 +5164,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       lt_node_id = nil # sesf_bo_node_id_tab.new
 
-      lt_bo_root_data_dummy = nil # If_fia_acc_adjustment_run::Tt_root.new
+      lt_bo_root_data_dummy = nil # If_fia_acc_adjustment_run::tt_root.new
 
       lx_esf_core_service = nil # cx_esf_core_service.new
 
@@ -5138,7 +5251,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
 
 
-         lv_sync_scope = If_esf_types::Co_scope_local
+         lv_sync_scope = If_esf_types::co_scope_local
 
 
          #"Only re-read root node.
@@ -5153,7 +5266,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
 
 
-               lv_sync_scope = If_esf_types::Co_scope_substructure
+               lv_sync_scope = If_esf_types::co_scope_substructure
 
 
                #"don't know which node has been changed, read all sub nodes as well. Shouldn't occur usually.
@@ -5215,9 +5328,9 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
       if lv_notify_create == abap_true
          begin
             io_change_handler.notify_create(_i:{
-               "in_bo_node_name" => If_a1fia_aar_create_qaf_eco::Co_bo_node.root,
+               "in_bo_node_name" => If_a1fia_aar_create_qaf_eco::co_bo_node.root,
                "in_bo_node_id" => @mv_eco_root_node_id,
-            })
+            }, _b:binding)
 
             #"in_create_key_handle = lv_eco_root_node_id_handle  "No handle currently as the create is always through CreateWithReference actions
 
@@ -5246,21 +5359,21 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
          io_change_handler.notify_update(_i:{
             "in_bo_node_id" => @mv_eco_root_node_id,
-            "in_bo_node_name" => If_a1fia_aar_create_qaf_eco::Co_bo_node.root,
+            "in_bo_node_name" => If_a1fia_aar_create_qaf_eco::co_bo_node.root,
             "in_associations_changed" => lv_associations_changed,
             "in_affected_associations" => lt_affected_associations,
-         })
+         }, _b:binding)
 
 
       elsif lv_notify_sync == abap_true
          begin
             io_change_handler.notify_buffer_sync(_e:{
-               "in_bo_node_name" => If_a1fia_aar_create_qaf_eco::Co_bo_node.root,
-               "in_bo_node_id" => @mv_eco_root_node_id,
-               "in_sync_scope" => lv_sync_scope,
-               "in_is_deleted" => abap_false,
-               "in_sync_type" => If_esf_types::Co_buffer_change,
-            })
+               "in_bo_node_name" => "If_a1fia_aar_create_qaf_eco::co_bo_node.root",
+               "in_bo_node_id" => "@mv_eco_root_node_id",
+               "in_sync_scope" => "lv_sync_scope",
+               "in_is_deleted" => "abap_false",
+               "in_sync_type" => "If_esf_types::co_buffer_change",
+            }, _b:binding)
 
 
          rescue cx_esf_sync_handler=>lx_esf_sync_handler
@@ -5315,10 +5428,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -5335,14 +5449,16 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #       !CS_ECO_ROOT type IF_A1FIA_AAR_CREATE_QAF_ECO=>TY_ROOT optional .
    #
 
-   def handle_root_dedicated_fields(iv_mode_fill_dedicted_attr_val:nil,_i:nil,_e:nil)
+   def handle_root_dedicated_fields(iv_mode_fill_dedicted_attr_val:nil,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -5354,10 +5470,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -5367,14 +5484,16 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #       CX_A1FIA_AAR_CREATE_QAF_ECO .
    #
 
-   def init_buffers(_i:nil,_e:nil)
+   def init_buffers(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -5391,18 +5510,18 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       @mo_provider_context.register_on_bo_changes(@ms_readonly_eco_root.projection_bo_name)
 
-      @mo_provider_context.register_on_bo_changes(If_background_job::Co_bo_name)
+      @mo_provider_context.register_on_bo_changes(If_background_job::co_bo_name)
 
-      populate_run_specific_nodes()
+      populate_run_specific_nodes(_b:binding)
 
-      populate_attribute_map()
+      populate_attribute_map(_b:binding)
 
-      populate_dedicated_attrib()
+      populate_dedicated_attrib(_b:binding)
 
-      populate_eco_root_attr_names()
+      populate_eco_root_attr_names(_b:binding)
 
       if @mo_task_region_helper.isNotBOUND()
-         @mo_task_region_helper = Cl_coutl_task_region_helper::Create_task_region_helper(in_bo_name:@ms_readonly_eco_root.projection_bo_name, in_bo_node_name:If_fia_acc_adjustment_run::Co_bo_node.root, in_lcp_facade:@mo_provider_context.get_lcp_facade())
+         @mo_task_region_helper = Cl_coutl_task_region_helper::create_task_region_helper(in_bo_name:@ms_readonly_eco_root.projection_bo_name, in_bo_node_name:If_fia_acc_adjustment_run::co_bo_node.root, in_lcp_facade:@mo_provider_context.get_lcp_facade(_b:binding))
 
 
 
@@ -5417,10 +5536,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -5428,14 +5548,16 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    # methods POPULATE_ATTRIBUTE_MAP .
    #
 
-   def populate_attribute_map(_i:nil,_e:nil)
+   def populate_attribute_map(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -5443,46 +5565,46 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
       ls_attribute_map = nil # ty_attribute_map.new
 
       clear(id:@mt_attribute_map)
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.acl_company_uuid.content
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.acl_company_uuid.content
 
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.root
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.root
 
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.root.company_uuid.content
-
-      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.accounting_closing_step_code
-
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.parameters
-
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.parameters.accounting_closing_step_code
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.root.company_uuid.content
 
       abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.accounting_period_id
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.accounting_closing_step_code
 
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_time
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.parameters
 
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_time.lowb_accounting_period_id
-
-      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.business_partner_id
-
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_business_partner
-
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_business_partner.lowb_business_partner_id
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.parameters.accounting_closing_step_code
 
       abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.can_mdro_id.content
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.accounting_period_id
 
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_aar_for_cancel
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_time
 
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_aar_for_cancel.cancel_mdro_id.content
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_time.lowb_accounting_period_id
 
       abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.can_mdro_uuid.content
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.business_partner_id
 
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_aar_for_cancel
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_business_partner
 
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_aar_for_cancel.cancellation_mass_data_run_obj.content
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_business_partner.lowb_business_partner_id
+
+      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.can_mdro_id.content
+
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_aar_for_cancel
+
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_aar_for_cancel.cancel_mdro_id.content
+
+      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.can_mdro_uuid.content
+
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_aar_for_cancel
+
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_aar_for_cancel.cancellation_mass_data_run_obj.content
 
       abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
       #*    ls_attribute_map-eco_attr_name = if_a1fia_aar_create_qaf_eco=>co_attr-root-chart_of_accounts_code.
@@ -5501,81 +5623,81 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       #*    INSERT ls_attribute_map INTO TABLE mt_attribute_map.
 
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.company_id
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.company_id
 
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_company
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_company
 
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_company.lowb_company_id
-
-      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.cost_centre_id
-
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_cost_centre
-
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_cost_centre.lowb_cost_centre_id
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_company.lowb_company_id
 
       abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.currency_code
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.cost_centre_id
 
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_currency
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_cost_centre
 
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_currency.lowb_currency_code
-
-      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.cust_ser_org_id
-
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_cust_srvorg
-
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_cust_srvorg.lower_boundary_customer_servi1
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_cost_centre.lowb_cost_centre_id
 
       abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.description.content
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.currency_code
 
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.description
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_currency
 
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.description.description.content
-
-      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.description.language_code
-
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.description
-
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.description.description.language_code
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_currency.lowb_currency_code
 
       abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.fiscal_year_id
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.cust_ser_org_id
 
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_time
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_cust_srvorg
 
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_time.lowb_fiscal_year_id
-
-      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.fixed_asset_class
-
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_fixed_asset_class
-
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_fixed_asset_class.lowb_fixed_asset_class_code
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_cust_srvorg.lower_boundary_customer_servi1
 
       abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.fixed_asset_key.company_uuid.content
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.description.content
 
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_fixed_asset
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.description
 
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_fixed_asset.lower_boundary_fixed_asset_key.company_uuid.content
-
-      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.fixed_asset_key.id.content
-
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_fixed_asset
-
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_fixed_asset.lower_boundary_fixed_asset_key.id.content
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.description.description.content
 
       abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.fixed_asset_key.master_fixed_asset_id.content
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.description.language_code
 
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_fixed_asset
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.description
 
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_fixed_asset.lower_boundary_fixed_asset_key.master_fixed_asset_id.content
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.description.description.language_code
+
+      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.fiscal_year_id
+
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_time
+
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_time.lowb_fiscal_year_id
+
+      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.fixed_asset_class
+
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_fixed_asset_class
+
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_fixed_asset_class.lowb_fixed_asset_class_code
+
+      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.fixed_asset_key.company_uuid.content
+
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_fixed_asset
+
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_fixed_asset.lower_boundary_fixed_asset_key.company_uuid.content
+
+      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.fixed_asset_key.id.content
+
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_fixed_asset
+
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_fixed_asset.lower_boundary_fixed_asset_key.id.content
+
+      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.fixed_asset_key.master_fixed_asset_id.content
+
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_fixed_asset
+
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_fixed_asset.lower_boundary_fixed_asset_key.master_fixed_asset_id.content
 
       abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
       #*    ls_attribute_map-eco_attr_name = if_a1fia_aar_create_qaf_eco=>co_attr-root-house_bank_id.
@@ -5586,452 +5708,452 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       #*    INSERT ls_attribute_map INTO TABLE mt_attribute_map.
 
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.id.content
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.id.content
 
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.root
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.root
 
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.root.id.content
-
-      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.life_cycle_status
-
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.root
-
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.root.status.life_cycle_status_code
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.root.id.content
 
       abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.ovh_assess_rule_id
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.life_cycle_status
 
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_ohc_asses_rule
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.root
 
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_ohc_asses_rule.lowb_ohc_asses_rule_id
-
-      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.party_role_category_code
-
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_party_role
-
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_party_role.lowb_party_role_category_code
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.root.status.life_cycle_status_code
 
       abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.permanent_establishment_id
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.ovh_assess_rule_id
 
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_permest
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_ohc_asses_rule
 
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_permest.lowb_permest_id
-
-      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.processing_status.processing_status_code
-
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.execution
-
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.execution.status.processing_status_code
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_ohc_asses_rule.lowb_ohc_asses_rule_id
 
       abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.production_lot_formatted_id.formatted_id
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.party_role_category_code
 
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_production_lot
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_party_role
 
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_production_lot.lowb_prod_lot_formatted_id
-
-      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.production_lot_formatted_id.uuid.content
-
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_production_lot
-
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_production_lot.lowb_prod_lot_uuid.content
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_party_role.lowb_party_role_category_code
 
       abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.project_id.content
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.permanent_establishment_id
 
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_project
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_permest
 
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_project.lowb_project_id.content
-
-      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.project_task_id
-
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_project
-
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_project.lowb_taskref_id
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_permest.lowb_permest_id
 
       abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.sales_organisation_id
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.processing_status.processing_status_code
 
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_sales_org
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.execution
 
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_sales_org.lowb_sales_organisation_id
-
-      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.set_of_books_id.content
-
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_set_of_books
-
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_set_of_books.lowb_set_of_books_id.content
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.execution.status.processing_status_code
 
       abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.test_run_indicator
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.production_lot_formatted_id.formatted_id
 
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.parameters
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_production_lot
 
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.parameters.test_run_indicator
-
-      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.sob_asset_valuation_view_key.set_of_books_id.content
-
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_valuation_view
-
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_valuation_view.lower_boundary_sob_asset_vv_k.set_of_books_id.content
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_production_lot.lowb_prod_lot_formatted_id
 
       abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.sob_asset_valuation_view_key.sob_asset_valuation_view_id.content
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.production_lot_formatted_id.uuid.content
 
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_valuation_view
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_production_lot
 
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_valuation_view.lower_boundary_sob_asset_vv_k.sob_asset_valuation_view_id.content
-
-      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.sales_document_id.formatted_id
-
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_oed_ref
-
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_oed_ref.lowb_oed_ref.formatted_id
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_production_lot.lowb_prod_lot_uuid.content
 
       abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.sales_document_id.object_id.content
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.project_id.content
 
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_oed_ref
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_project
 
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_oed_ref.lowb_oed_ref.object_id.content
-
-      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.sales_document_id.object_id.scheme_agency_id
-
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_oed_ref
-
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_oed_ref.lowb_oed_ref.object_id.scheme_agency_id
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_project.lowb_project_id.content
 
       abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.sales_document_id.object_id.scheme_id
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.project_task_id
 
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_oed_ref
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_project
 
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_oed_ref.lowb_oed_ref.object_id.scheme_id
-
-      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.sales_document_id.object_type_code.content
-
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_oed_ref
-
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_oed_ref.lowb_oed_ref.object_type_code.content
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_project.lowb_taskref_id
 
       abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.sales_document_id.object_node_type_code.content
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.sales_organisation_id
 
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_oed_ref
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_sales_org
 
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_oed_ref.lowb_oed_ref.object_node_type_code.content
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_sales_org.lowb_sales_organisation_id
 
       abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.sales_document_id.uuid.content
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.set_of_books_id.content
 
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_oed_ref
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_set_of_books
 
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_oed_ref.lowb_oed_ref.uuid.content
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_set_of_books.lowb_set_of_books_id.content
+
+      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.test_run_indicator
+
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.parameters
+
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.parameters.test_run_indicator
+
+      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.sob_asset_valuation_view_key.set_of_books_id.content
+
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_valuation_view
+
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_valuation_view.lower_boundary_sob_asset_vv_k.set_of_books_id.content
+
+      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.sob_asset_valuation_view_key.sob_asset_valuation_view_id.content
+
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_valuation_view
+
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_valuation_view.lower_boundary_sob_asset_vv_k.sob_asset_valuation_view_id.content
+
+      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.sales_document_id.formatted_id
+
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_oed_ref
+
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_oed_ref.lowb_oed_ref.formatted_id
+
+      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.sales_document_id.object_id.content
+
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_oed_ref
+
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_oed_ref.lowb_oed_ref.object_id.content
+
+      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.sales_document_id.object_id.scheme_agency_id
+
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_oed_ref
+
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_oed_ref.lowb_oed_ref.object_id.scheme_agency_id
+
+      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.sales_document_id.object_id.scheme_id
+
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_oed_ref
+
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_oed_ref.lowb_oed_ref.object_id.scheme_id
+
+      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.sales_document_id.object_type_code.content
+
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_oed_ref
+
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_oed_ref.lowb_oed_ref.object_type_code.content
+
+      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.sales_document_id.object_node_type_code.content
+
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_oed_ref
+
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_oed_ref.lowb_oed_ref.object_node_type_code.content
+
+      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.sales_document_id.uuid.content
+
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_oed_ref
+
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_oed_ref.lowb_oed_ref.uuid.content
 
       abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
       #*--> Start of Changes (1802)
 
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.rac_id.formatted_id
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.rac_id.formatted_id
 
 
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_oed_ref
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_oed_ref
 
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_oed_ref.lowb_oed_ref.formatted_id
-
-      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.rac_id.object_id.content
-
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_oed_ref
-
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_oed_ref.lowb_oed_ref.object_id.content
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_oed_ref.lowb_oed_ref.formatted_id
 
       abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.rac_id.object_id.scheme_agency_id
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.rac_id.object_id.content
 
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_oed_ref
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_oed_ref
 
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_oed_ref.lowb_oed_ref.object_id.scheme_agency_id
-
-      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.rac_id.object_id.scheme_id
-
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_oed_ref
-
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_oed_ref.lowb_oed_ref.object_id.scheme_id
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_oed_ref.lowb_oed_ref.object_id.content
 
       abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.rac_id.object_type_code.content
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.rac_id.object_id.scheme_agency_id
 
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_oed_ref
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_oed_ref
 
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_oed_ref.lowb_oed_ref.object_type_code.content
-
-      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.rac_id.object_node_type_code.content
-
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_oed_ref
-
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_oed_ref.lowb_oed_ref.object_node_type_code.content
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_oed_ref.lowb_oed_ref.object_id.scheme_agency_id
 
       abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.rac_id.uuid.content
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.rac_id.object_id.scheme_id
 
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_oed_ref
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_oed_ref
 
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_oed_ref.lowb_oed_ref.uuid.content
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_oed_ref.lowb_oed_ref.object_id.scheme_id
+
+      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.rac_id.object_type_code.content
+
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_oed_ref
+
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_oed_ref.lowb_oed_ref.object_type_code.content
+
+      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.rac_id.object_node_type_code.content
+
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_oed_ref
+
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_oed_ref.lowb_oed_ref.object_node_type_code.content
+
+      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.rac_id.uuid.content
+
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_oed_ref
+
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_oed_ref.lowb_oed_ref.uuid.content
 
       abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
       #*<-- End of Changes (1802)
 
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.sales_document_type.content
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.sales_document_type.content
 
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_oed_ref
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_oed_ref
 
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_oed_ref.lowb_oed_ref.object_type_code.content
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_oed_ref.lowb_oed_ref.object_type_code.content
 
       abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.sales_organisation_id
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.sales_organisation_id
 
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_sales_org
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_sales_org
 
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_sales_org.lowb_sales_organisation_id
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_sales_org.lowb_sales_organisation_id
 
       abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
       #" Start Customer Service Document ID
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.cust_ser_document_id.formatted_id
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.cust_ser_document_id.formatted_id
 
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_oed_ref
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_oed_ref
 
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_oed_ref.lowb_oed_ref.formatted_id
-
-      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.cust_ser_document_id.object_id.content
-
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_oed_ref
-
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_oed_ref.lowb_oed_ref.object_id.content
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_oed_ref.lowb_oed_ref.formatted_id
 
       abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.cust_ser_document_id.object_id.scheme_agency_id
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.cust_ser_document_id.object_id.content
 
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_oed_ref
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_oed_ref
 
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_oed_ref.lowb_oed_ref.object_id.scheme_agency_id
-
-      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.cust_ser_document_id.object_id.scheme_id
-
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_oed_ref
-
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_oed_ref.lowb_oed_ref.object_id.scheme_id
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_oed_ref.lowb_oed_ref.object_id.content
 
       abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.cust_ser_document_id.object_node_type_code.content
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.cust_ser_document_id.object_id.scheme_agency_id
 
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_oed_ref
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_oed_ref
 
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_oed_ref.lowb_oed_ref.object_node_type_code.content
-
-      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.cust_ser_document_id.object_type_code.content
-
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_oed_ref
-
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_oed_ref.lowb_oed_ref.object_type_code.content
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_oed_ref.lowb_oed_ref.object_id.scheme_agency_id
 
       abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.cust_ser_document_id.uuid.content
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.cust_ser_document_id.object_id.scheme_id
 
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_oed_ref
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_oed_ref
 
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_oed_ref.lowb_oed_ref.uuid.content
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_oed_ref.lowb_oed_ref.object_id.scheme_id
+
+      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.cust_ser_document_id.object_node_type_code.content
+
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_oed_ref
+
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_oed_ref.lowb_oed_ref.object_node_type_code.content
+
+      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.cust_ser_document_id.object_type_code.content
+
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_oed_ref
+
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_oed_ref.lowb_oed_ref.object_type_code.content
+
+      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.cust_ser_document_id.uuid.content
+
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_oed_ref
+
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_oed_ref.lowb_oed_ref.uuid.content
 
       abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
       #" End Customer Service Document ID
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.cust_ser_document_type.content
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.cust_ser_document_type.content
 
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_oed_ref
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_oed_ref
 
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_oed_ref.lowb_oed_ref.object_type_code.content
-
-      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.cust_ser_org_id
-
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_cust_srvorg
-
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_cust_srvorg.lower_boundary_customer_servi1
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_oed_ref.lowb_oed_ref.object_type_code.content
 
       abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.bcf_step_code
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.cust_ser_org_id
 
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.parameters
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_cust_srvorg
 
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.parameters.bcf_step_code
-
-      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.purchase_doc_id_upb.formatted_id
-
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_oed_ref
-
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_oed_ref.upb_oed_ref.formatted_id
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_cust_srvorg.lower_boundary_customer_servi1
 
       abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.purchase_doc_id_upb.object_id.content
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.bcf_step_code
 
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_oed_ref
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.parameters
 
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_oed_ref.upb_oed_ref.object_id.content
-
-      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.purchase_doc_id_upb.object_id.scheme_id
-
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_oed_ref
-
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_oed_ref.upb_oed_ref.object_id.scheme_id
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.parameters.bcf_step_code
 
       abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.purchase_doc_id_upb.object_id.scheme_agency_id
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.purchase_doc_id_upb.formatted_id
 
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_oed_ref
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_oed_ref
 
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_oed_ref.upb_oed_ref.object_id.scheme_agency_id
-
-      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.purchase_doc_id_upb.object_node_type_code.content
-
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_oed_ref
-
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_oed_ref.upb_oed_ref.object_node_type_code.content
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_oed_ref.upb_oed_ref.formatted_id
 
       abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.purchase_doc_id_upb.object_type_code.content
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.purchase_doc_id_upb.object_id.content
 
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_oed_ref
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_oed_ref
 
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_oed_ref.upb_oed_ref.object_type_code.content
-
-      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.purchase_doc_id_upb.uuid.content
-
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_oed_ref
-
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_oed_ref.upb_oed_ref.uuid.content
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_oed_ref.upb_oed_ref.object_id.content
 
       abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.purchase_doc_type.content
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.purchase_doc_id_upb.object_id.scheme_id
 
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_oed_ref
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_oed_ref
 
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_oed_ref.upb_oed_ref.object_type_code.content
-
-      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.purchase_doc_id.formatted_id
-
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_oed_ref
-
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_oed_ref.lowb_oed_ref.formatted_id
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_oed_ref.upb_oed_ref.object_id.scheme_id
 
       abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.purchase_doc_id.object_id.content
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.purchase_doc_id_upb.object_id.scheme_agency_id
 
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_oed_ref
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_oed_ref
 
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_oed_ref.lowb_oed_ref.object_id.content
-
-      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.purchase_doc_id.object_id.scheme_id
-
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_oed_ref
-
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_oed_ref.lowb_oed_ref.object_id.scheme_id
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_oed_ref.upb_oed_ref.object_id.scheme_agency_id
 
       abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.purchase_doc_id.object_id.scheme_agency_id
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.purchase_doc_id_upb.object_node_type_code.content
 
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_oed_ref
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_oed_ref
 
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_oed_ref.lowb_oed_ref.object_id.scheme_agency_id
-
-      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.purchase_doc_id.object_node_type_code.content
-
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_oed_ref
-
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_oed_ref.lowb_oed_ref.object_node_type_code.content
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_oed_ref.upb_oed_ref.object_node_type_code.content
 
       abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.purchase_doc_id.object_type_code.content
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.purchase_doc_id_upb.object_type_code.content
 
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_oed_ref
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_oed_ref
 
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_oed_ref.lowb_oed_ref.object_type_code.content
-
-      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.purchase_doc_id.uuid.content
-
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_oed_ref
-
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_oed_ref.lowb_oed_ref.uuid.content
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_oed_ref.upb_oed_ref.object_type_code.content
 
       abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.purchase_doc_type.content
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.purchase_doc_id_upb.uuid.content
 
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_oed_ref
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_oed_ref
 
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_oed_ref.lowb_oed_ref.object_type_code.content
-
-      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.correction_run_indicator
-
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.parameters
-
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.parameters.correction_run_indicator
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_oed_ref.upb_oed_ref.uuid.content
 
       abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.log_section_uuid.content
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.purchase_doc_type.content
 
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.root
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_oed_ref
 
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.root.log_section_uuid.content
-
-      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.key.cost_object_id
-
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_cost_object
-
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_cost_object.lowb_cost_object_key.cost_object_id
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_oed_ref.upb_oed_ref.object_type_code.content
 
       abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.key.cost_object_type_code
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.purchase_doc_id.formatted_id
 
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.sel_by_cost_object
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_oed_ref
 
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.sel_by_cost_object.lowb_cost_object_key.cost_object_type_code
-
-      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.multi_customer_proj_indicator
-
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.parameters
-
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.parameters.multi_customer_proj_indicator
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_oed_ref.lowb_oed_ref.formatted_id
 
       abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.fxasr_type_code
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.purchase_doc_id.object_id.content
 
-      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::Co_bo_node.parameters
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_oed_ref
 
-      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::Co_attr.parameters.type_code
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_oed_ref.lowb_oed_ref.object_id.content
+
+      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.purchase_doc_id.object_id.scheme_id
+
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_oed_ref
+
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_oed_ref.lowb_oed_ref.object_id.scheme_id
+
+      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.purchase_doc_id.object_id.scheme_agency_id
+
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_oed_ref
+
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_oed_ref.lowb_oed_ref.object_id.scheme_agency_id
+
+      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.purchase_doc_id.object_node_type_code.content
+
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_oed_ref
+
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_oed_ref.lowb_oed_ref.object_node_type_code.content
+
+      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.purchase_doc_id.object_type_code.content
+
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_oed_ref
+
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_oed_ref.lowb_oed_ref.object_type_code.content
+
+      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.purchase_doc_id.uuid.content
+
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_oed_ref
+
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_oed_ref.lowb_oed_ref.uuid.content
+
+      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.purchase_doc_type.content
+
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_oed_ref
+
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_oed_ref.lowb_oed_ref.object_type_code.content
+
+      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.correction_run_indicator
+
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.parameters
+
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.parameters.correction_run_indicator
+
+      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.log_section_uuid.content
+
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.root
+
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.root.log_section_uuid.content
+
+      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.key.cost_object_id
+
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_cost_object
+
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_cost_object.lowb_cost_object_key.cost_object_id
+
+      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.key.cost_object_type_code
+
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.sel_by_cost_object
+
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.sel_by_cost_object.lowb_cost_object_key.cost_object_type_code
+
+      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.multi_customer_proj_indicator
+
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.parameters
+
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.parameters.multi_customer_proj_indicator
+
+      abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.fxasr_type_code
+
+      ls_attribute_map.core_bo_node_name = If_fia_acc_adjustment_run::co_bo_node.parameters
+
+      ls_attribute_map.core_bo_attr_name = If_fia_acc_adjustment_run::co_attr.parameters.type_code
 
       abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
       #*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
@@ -6049,7 +6171,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
       #***************************************************************************************************************************
 
       clear(id:ls_attribute_map)
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.projection_bo_name
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.projection_bo_name
 
       ls_attribute_map.is_dedicated = abap_true
 
@@ -6059,7 +6181,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
       clear(id:ls_attribute_map.core_bo_attr_name)
       abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
       clear(id:ls_attribute_map)
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.mdro_type_code
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.mdro_type_code
 
       ls_attribute_map.is_dedicated = abap_true
 
@@ -6069,7 +6191,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
       clear(id:ls_attribute_map.core_bo_attr_name)
       abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
       clear(id:ls_attribute_map)
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.is_period_end_close_triggered
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.is_period_end_close_triggered
 
       ls_attribute_map.is_dedicated = abap_true
 
@@ -6079,7 +6201,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
       clear(id:ls_attribute_map.core_bo_attr_name)
       abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
       clear(id:ls_attribute_map)
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.can_mdro_log_section_uuid.content
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.can_mdro_log_section_uuid.content
 
       ls_attribute_map.is_dedicated = abap_true
 
@@ -6089,7 +6211,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
       clear(id:ls_attribute_map.core_bo_attr_name)
       abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
       clear(id:ls_attribute_map)
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.can_mdro_description.content
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.can_mdro_description.content
 
       ls_attribute_map.is_dedicated = abap_true
 
@@ -6099,7 +6221,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
       clear(id:ls_attribute_map.core_bo_attr_name)
       abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
       clear(id:ls_attribute_map)
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.can_mdro_description.language_code
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.can_mdro_description.language_code
 
       ls_attribute_map.is_dedicated = abap_true
 
@@ -6109,7 +6231,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
       clear(id:ls_attribute_map.core_bo_attr_name)
       abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
       clear(id:ls_attribute_map)
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.ap_or_ar
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.ap_or_ar
 
       ls_attribute_map.is_dedicated = abap_true
 
@@ -6127,7 +6249,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
       #******************************************************************************************************************************************************
 
       clear(id:ls_attribute_map)
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.enable_diplay_log
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.enable_diplay_log
 
       ls_attribute_map.is_dedicated = abap_true
 
@@ -6137,7 +6259,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
       clear(id:ls_attribute_map.core_bo_attr_name)
       abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
       clear(id:ls_attribute_map)
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.assignment_type
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.assignment_type
 
       ls_attribute_map.is_dedicated = abap_true
 
@@ -6147,7 +6269,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
       clear(id:ls_attribute_map.core_bo_attr_name)
       abap("INSERT ls_attribute_map INTO TABLE mt_attribute_map")
       clear(id:ls_attribute_map)
-      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::Co_attr.root.sales_obj_sel_code
+      ls_attribute_map.eco_attr_name = If_a1fia_aar_create_qaf_eco::co_attr.root.sales_obj_sel_code
 
       ls_attribute_map.is_dedicated = abap_true
 
@@ -6163,10 +6285,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -6174,14 +6297,16 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    # methods POPULATE_DEDICATED_ATTRIB .
    #
 
-   def populate_dedicated_attrib(_i:nil,_e:nil)
+   def populate_dedicated_attrib(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -6201,10 +6326,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -6218,14 +6344,16 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #       CX_A1FIA_AAR_CREATE_QAF_ECO .
    #
 
-   def populate_eco_root_attr_names(is_co_attr_struct:nil,_i:nil,_e:nil)
+   def populate_eco_root_attr_names(is_co_attr_struct:nil,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -6281,10 +6409,10 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
          assign(to:lv_field_value)
          if sy.subrc == 0
             populate_eco_root_attr_names(_e:{
-               "is_co_attr_struct" => lv_co_attr_field_struct,
+               "is_co_attr_struct" => "lv_co_attr_field_struct",
             }, _c:{
                "ct_eco_node_attributes" => ct_eco_node_attributes,
-            })
+            }, _b:binding)
 
 
 
@@ -6327,10 +6455,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -6340,14 +6469,16 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #       CX_A1FIA_AAR_CREATE_QAF_ECO .
    #
 
-   def populate_run_specific_nodes(_i:nil,_e:nil)
+   def populate_run_specific_nodes(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -6372,15 +6503,15 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
       end
 
       clear(id:@mt_run_specific_node)
-      append(from:If_fia_acc_adjustment_run::Co_bo_node.description, to:@mt_run_specific_node)
-      append(from:If_fia_acc_adjustment_run::Co_bo_node.execution, to:@mt_run_specific_node)
-      append(from:If_fia_acc_adjustment_run::Co_bo_node.parameters, to:@mt_run_specific_node)
-      append(from:If_fia_acc_adjustment_run::Co_bo_node.root, to:@mt_run_specific_node)
+      append(from:If_fia_acc_adjustment_run::co_bo_node.description, to:@mt_run_specific_node)
+      append(from:If_fia_acc_adjustment_run::co_bo_node.execution, to:@mt_run_specific_node)
+      append(from:If_fia_acc_adjustment_run::co_bo_node.parameters, to:@mt_run_specific_node)
+      append(from:If_fia_acc_adjustment_run::co_bo_node.root, to:@mt_run_specific_node)
       begin
-         lo_bo_desc = Cl_esf_descriptor_factory::Get_bo_descriptor(in_bo_proxy_name:@ms_readonly_eco_root.projection_bo_name)
+         lo_bo_desc = Cl_esf_descriptor_factory::get_bo_descriptor(in_bo_proxy_name:@ms_readonly_eco_root.projection_bo_name)
 
-         loop(at:lo_bo_desc.get_bo_node_descriptors(), into:lo_bo_node_desc){
-            lv_node_proxy_name = lo_bo_node_desc.get_proxy_name()
+         loop(at:lo_bo_desc.get_bo_node_descriptors(_b:binding), into:lo_bo_node_desc){
+            lv_node_proxy_name = lo_bo_node_desc.get_proxy_name(_b:binding)
 
 
 
@@ -6414,10 +6545,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -6434,14 +6566,16 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #       !EV_CORE_BO_ATTR_NAME type STRING .
    #
 
-   def prepare_core_val_help_retrieve(iv_eco_node_id:nil,_i:nil,_e:nil)
+   def prepare_core_val_help_retrieve(iv_eco_node_id:nil,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -6477,7 +6611,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
 
 
-         ev_core_bo_node_id = get_uuid()
+         ev_core_bo_node_id = get_uuid(_b:binding)
 
 
 
@@ -6496,13 +6630,13 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
             @mo_lcp_bo.retrieve_default_node_values(_i:{
                "out_data" => lt_dummy_data,
             }, _e:{
-               "in_bo_node_name" => ls_attribute_map.core_bo_node_name,
-               "in_node_id_handles" => lt_single_node_id_handle,
-               "in_association_name" => ls_attribute_map.core_bo_node_name,
-               "in_source_bo_node_name" => If_fia_acc_adjustment_run::Co_bo_node.root,
-               "in_source_node_id" => @mv_eco_root_node_id,
-               "in_source_node_id_is_handle" => abap_false,
-            })
+               "in_bo_node_name" => "ls_attribute_map.core_bo_node_name",
+               "in_node_id_handles" => "lt_single_node_id_handle",
+               "in_association_name" => "ls_attribute_map.core_bo_node_name",
+               "in_source_bo_node_name" => "If_fia_acc_adjustment_run::co_bo_node.root",
+               "in_source_node_id" => "@mv_eco_root_node_id",
+               "in_source_node_id_is_handle" => "abap_false",
+            }, _b:binding)
 
 
          rescue cx_esf_core_service=>lx_esf_core_service
@@ -6522,10 +6656,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -6538,14 +6673,16 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #       !ET_DATA_COMP_ACTIVATION_STAT type IF_FIA_SET_OF_BOOKS=>TT_COMPANY_ASSIGNMENT .
    #
 
-   def query_sob_by_comp_sob(it_requested_attr:nil,_i:nil,_e:nil)
+   def query_sob_by_comp_sob(it_requested_attr:nil,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -6556,7 +6693,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       if @mo_sob_lcp.isNotBOUND()
          begin
-            @mo_sob_lcp = @mo_adaptation_handler.get_lcp(If_fia_set_of_books::Co_bo_name)
+            @mo_sob_lcp = @mo_adaptation_handler.get_lcp(If_fia_set_of_books::co_bo_name)
 
 
          rescue cx_bsa_runtime=>lx_bsa_runtime
@@ -6573,12 +6710,12 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
          @mo_sob_lcp.query(_i:{
             "out_data" => et_data_comp_activation_stat,
          }, _e:{
-            "in_bo_node_name" => If_fia_set_of_books::Co_bo_node.company_assignment,
-            "in_query_name" => If_fia_set_of_books::Co_query.company_assignment.by_sob_and_company,
-            "in_selection_parameters" => it_selection_param,
-            "in_requested_attributes" => it_requested_attr,
-            "in_fill_data" => abap_true,
-         })
+            "in_bo_node_name" => "If_fia_set_of_books::co_bo_node.company_assignment",
+            "in_query_name" => "If_fia_set_of_books::co_query.company_assignment.by_sob_and_company",
+            "in_selection_parameters" => "it_selection_param",
+            "in_requested_attributes" => "it_requested_attr",
+            "in_fill_data" => "abap_true",
+         }, _b:binding)
 
          #*   We are intereted only in the active SOB-Company assignments
 
@@ -6606,10 +6743,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -6619,35 +6757,37 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #       !IO_MESSAGE_HANDLER type ref to IF_ESF_MESSAGE_HANDLER .
    #
 
-   def raise_stop_message(io_message_handler:nil,_i:nil,_e:nil)
+   def raise_stop_message(io_message_handler:nil,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
 
-      lt_message = nil # Cm_esi_root::Tt_esi_root.new
+      lt_message = nil # Cm_esi_root::tt_esi_root.new
 
       lx_message_handler = nil # cx_esf_message_handler.new
 
-      Cl_a1fia_aar_util::Create_message(_e:{
-         "iv_message_class" => 'A1FIA_ACCOUNTING',
-         "iv_message_number" => '103',
-         "iv_severity" => Cm_esi_root::Co_severity_error,
-         "iv_lifetime" => Cm_esi_root::Co_lifetime_transition,
+      Cl_a1fia_aar_util::create_message(_e:{
+         "iv_message_class" => "'A1FIA_ACCOUNTING'",
+         "iv_message_number" => "'103'",
+         "iv_severity" => "Cm_esi_root::co_severity_error",
+         "iv_lifetime" => "Cm_esi_root::co_lifetime_transition",
       }, _c:{
          "ct_message" => lt_message,
-      })
+      }, _b:binding)
 
       begin
          io_message_handler.add_messages(_i:{
             "in_messages" => lt_message,
-         })
+         }, _b:binding)
 
 
       rescue cx_esf_message_handler=>lx_message_handler
@@ -6662,10 +6802,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -6677,14 +6818,16 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #       value(OUT_VALUE_SET_NODE_IDS) type SESF_BO_NODE_ID_TAB .
    #
 
-   def restrict_projectid_value_set(in_selection_parameters:nil,_i:nil,_e:nil)
+   def restrict_projectid_value_set(in_selection_parameters:nil,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -6705,9 +6848,9 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       lx_bsa_runtime = nil # cx_bsa_runtime.new
 
-      lt_pro_data = nil # If_pro_protype::Tt_root.new
+      lt_pro_data = nil # If_pro_protype::tt_root.new
 
-      ls_pro_data = nil # If_pro_protype::Ty_root.new
+      ls_pro_data = nil # If_pro_protype::ty_root.new
 
       #* first query the Pro_project BO with the in_selection_parameters (coming from the UI)
 
@@ -6715,7 +6858,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       #*exclude projects which are still "in planning" status
 
-      ls_sel_params.attribute_name = If_pro_project_bo_template_sp::Co_query_p_attr.root.qu_by_creatn_idty.project_lfcyc_stat_c
+      ls_sel_params.attribute_name = If_pro_project_bo_template_sp::co_query_p_attr.root.qu_by_creatn_idty.project_lfcyc_stat_c
 
       ls_sel_params.option = 'NE'
 
@@ -6736,13 +6879,13 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
       end
       begin
          mo_pro_lcp.query(_i:{
-            "in_bo_node_name" => If_pro_project_bo_template_sp::Co_bo_node.root,
-            "in_query_name" => If_pro_project_bo_template_sp::Co_query.root.qu_by_creatn_idty,
+            "in_bo_node_name" => If_pro_project_bo_template_sp::co_bo_node.root,
+            "in_query_name" => If_pro_project_bo_template_sp::co_query.root.qu_by_creatn_idty,
             "in_selection_parameters" => lt_selection_params,
             "in_fill_data" => abap_false,
          }, _e:{
             "out_node_ids" => lt_target_node_ids,
-         })
+         }, _b:binding)
 
 
       rescue cx_esf_core_service=>lx_esf_core_service
@@ -6754,7 +6897,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
          clear(id:lt_selection_params)
 
          begin
-            mo_pro_bco_lcp = @mo_adaptation_handler.get_lcp(If_pro_protype::Co_bo_name)
+            mo_pro_bco_lcp = @mo_adaptation_handler.get_lcp(If_pro_protype::co_bo_name)
 
 
          rescue cx_bsa_runtime=>lx_bsa_runtime
@@ -6763,12 +6906,12 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
          end
 
-         lv_ps_scope = Cl_fia_bus_feature_scope_check::Is_business_feature_in_scope(iv_business_feature_name:'TOB_PS_PUBLICSECTOR')
+         lv_ps_scope = Cl_fia_bus_feature_scope_check::is_business_feature_in_scope(iv_business_feature_name:'TOB_PS_PUBLICSECTOR')
 
          clear(id:ls_sel_params)
 
          if @ms_readonly_eco_root.projection_bo_name == 'FIA_ODCLA_OVERHEAD_RUN'
-            ls_sel_params.attribute_name = If_pro_protype::Co_query_p_attr.root.query_by_elements.bpv_type_code
+            ls_sel_params.attribute_name = If_pro_protype::co_query_p_attr.root.query_by_elements.bpv_type_code
 
 
 
@@ -6788,7 +6931,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
             append(from:ls_sel_params, to:lt_sel_params)
 
             if lv_ps_scope == abap_true
-               ls_sel_params.attribute_name = If_pro_protype::Co_query_p_attr.root.query_by_elements.bpv_type_code
+               ls_sel_params.attribute_name = If_pro_protype::co_query_p_attr.root.query_by_elements.bpv_type_code
 
 
 
@@ -6814,7 +6957,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
 
          elsif @ms_readonly_eco_root.projection_bo_name == 'FIA_OHCLA_OVERHEAD_RUN'
-            ls_sel_params.attribute_name = If_pro_protype::Co_query_p_attr.root.query_by_elements.bpv_type_code
+            ls_sel_params.attribute_name = If_pro_protype::co_query_p_attr.root.query_by_elements.bpv_type_code
 
             ls_sel_params.option = 'EQ'
 
@@ -6831,13 +6974,13 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
          begin
             mo_pro_bco_lcp.query(_i:{
-               "in_bo_node_name" => If_pro_protype::Co_bo_node.root,
-               "in_query_name" => If_pro_protype::Co_query.root.query_by_elements,
+               "in_bo_node_name" => If_pro_protype::co_bo_node.root,
+               "in_query_name" => If_pro_protype::co_query.root.query_by_elements,
                "in_selection_parameters" => lt_sel_params,
                "in_fill_data" => abap_true,
             }, _e:{
                "out_data" => lt_pro_data,
-            })
+            }, _b:binding)
 
 
          rescue cx_esf_core_service=>lx_esf_core_service
@@ -6851,7 +6994,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
          if lt_pro_data.isNotINITIAL()
             begin
                loop(at:lt_pro_data, into:ls_pro_data){
-                  ls_sel_params.attribute_name = If_pro_project_bo_template_sp::Co_query_p_attr.root.qu_by_creatn_idty.type_code.content
+                  ls_sel_params.attribute_name = If_pro_project_bo_template_sp::co_query_p_attr.root.qu_by_creatn_idty.type_code.content
 
 
 
@@ -6896,14 +7039,14 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
          begin
             mo_pro_lcp.query(_i:{
-               "in_bo_node_name" => If_pro_project_bo_template_sp::Co_bo_node.root,
-               "in_query_name" => If_pro_project_bo_template_sp::Co_query.root.qu_by_creatn_idty,
+               "in_bo_node_name" => If_pro_project_bo_template_sp::co_bo_node.root,
+               "in_query_name" => If_pro_project_bo_template_sp::co_query.root.qu_by_creatn_idty,
                "in_selection_parameters" => lt_selection_params,
                "in_fill_data" => abap_false,
                "in_filter_node_ids" => lt_target_node_ids,
             }, _e:{
                "out_node_ids" => out_value_set_node_ids,
-            })
+            }, _b:binding)
 
 
          rescue cx_esf_core_service=>lx_esf_core_service
@@ -6923,10 +7066,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -6938,14 +7082,16 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #       !ET_DATA_SOB_ROOT type IF_FIA_SET_OF_BOOKS=>TT_ROOT .
    #
 
-   def retrive_sob_root_id_by_node_id(in_node_ids:nil,_i:nil,_e:nil)
+   def retrive_sob_root_id_by_node_id(in_node_ids:nil,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -6958,7 +7104,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       if @mo_sob_lcp.isNotBOUND()
          begin
-            @mo_sob_lcp = @mo_adaptation_handler.get_lcp(If_fia_set_of_books::Co_bo_name)
+            @mo_sob_lcp = @mo_adaptation_handler.get_lcp(If_fia_set_of_books::co_bo_name)
 
 
          rescue cx_bsa_runtime=>lx_bsa_runtime
@@ -6971,15 +7117,15 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       end
 
-      append(from:If_fia_set_of_books::Co_attr.root.id.content, to:lt_attr_sob_id_content)
+      append(from:If_fia_set_of_books::co_attr.root.id.content, to:lt_attr_sob_id_content)
       begin
          @mo_sob_lcp.retrieve(_i:{
             "out_data" => et_data_sob_root,
          }, _e:{
-            "in_bo_node_name" => If_fia_set_of_books::Co_bo_node.root,
-            "in_node_ids" => in_node_ids,
-            "in_requested_attributes" => lt_attr_sob_id_content,
-         })
+            "in_bo_node_name" => "If_fia_set_of_books::co_bo_node.root",
+            "in_node_ids" => "in_node_ids",
+            "in_requested_attributes" => "lt_attr_sob_id_content",
+         }, _b:binding)
 
 
       rescue cx_esf_core_service=>lx_esf_core_service
@@ -6994,10 +7140,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -7009,21 +7156,23 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #       value(RV_ROOT_NODE_ID_EXISTS) type SESF_BOOLEAN .
    #
 
-   def root_node_id_exists(iv_root_node_id:nil,_i:nil,_e:nil)
+   def root_node_id_exists(iv_root_node_id:nil,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
 
       lt_node_id = nil # sesf_bo_node_id_tab.new
 
-      lt_dummy_data = nil # If_fia_acc_adjustment_run::Tt_root.new
+      lt_dummy_data = nil # If_fia_acc_adjustment_run::tt_root.new
 
       lt_failed_node_id = nil # sesf_bo_node_id_tab.new
 
@@ -7035,9 +7184,9 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
             "out_data" => lt_dummy_data,
             "out_failed_node_ids" => lt_failed_node_id,
          }, _e:{
-            "in_bo_node_name" => If_fia_acc_adjustment_run::Co_bo_node.root,
-            "in_node_ids" => lt_node_id,
-         })
+            "in_bo_node_name" => "If_fia_acc_adjustment_run::co_bo_node.root",
+            "in_node_ids" => "lt_node_id",
+         }, _b:binding)
 
 
       rescue cx_esf_core_service=>lx_esf_core_service
@@ -7065,10 +7214,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -7082,14 +7232,16 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #       !IV_ECO_NODE_ID type SESF_BO_NODE_ID .
    #
 
-   def set_attr_properties(iv_eco_node_id:nil,_i:nil,_e:nil)
+   def set_attr_properties(iv_eco_node_id:nil,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -7101,11 +7253,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
       loop(at:it_eco_attr_name, into:lv_eco_attr_name){
          begin
             io_property_handler.set_attribute_property(_e:{
-               "in_attribute_name" => lv_eco_attr_name,
-               "in_property_name" => iv_property_name,
-               "in_value" => iv_property_value,
-               "in_bo_node_id" => iv_eco_node_id,
-            })
+               "in_attribute_name" => "lv_eco_attr_name",
+               "in_property_name" => "iv_property_name",
+               "in_value" => "iv_property_value",
+               "in_bo_node_id" => "iv_eco_node_id",
+            }, _b:binding)
 
 
          rescue cx_esf_property_handler=>lx_esf_property_handler
@@ -7122,10 +7274,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -7137,14 +7290,16 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #       !CS_ECO_ROOT type IF_A1FIA_AAR_CREATE_QAF_ECO=>TY_ROOT .
    #
 
-   def set_root_dedicated_attributes(it_requested_attributes:nil,_i:nil,_e:nil)
+   def set_root_dedicated_attributes(it_requested_attributes:nil,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -7176,7 +7331,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
          if sy.subrc == 0 && lr_attribute_map.is_dedicated == abap_true
             lr_attribute_map.dedicated_exit.fill_dedicated_attribute_val(_c:{
                "cs_retrieved_eco_root" => cs_eco_root,
-            })
+            }, _b:binding)
 
 
 
@@ -7193,10 +7348,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -7208,14 +7364,16 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #       value(RS_NEW_MESSAGE_LOCATION) type CM_ESI_ROOT=>TY_MESSAGE_LOCATION .
    #
 
-   def translate_message_location(is_message_location:nil,_i:nil,_e:nil)
+   def translate_message_location(is_message_location:nil,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -7257,11 +7415,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       }
       if rs_new_message_location.attributes.isNotINITIAL()
-         rs_new_message_location.bo_name = If_a1fia_aar_create_qaf_eco::Co_bo_name
+         rs_new_message_location.bo_name = If_a1fia_aar_create_qaf_eco::co_bo_name
 
 
 
-         rs_new_message_location.bo_node_name = If_a1fia_aar_create_qaf_eco::Co_bo_node.root
+         rs_new_message_location.bo_node_name = If_a1fia_aar_create_qaf_eco::co_bo_node.root
 
 
 
@@ -7283,10 +7441,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -7298,25 +7457,27 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #       !IV_NODE_NAME type STRING .
    #
 
-   def set_node_n_assoc_read_only(iv_node_name:nil,_i:nil,_e:nil)
+   def set_node_n_assoc_read_only(iv_node_name:nil,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
 
-      ls_properties = nil # If_esf_types::Ty_properties.new
+      ls_properties = nil # If_esf_types::ty_properties.new
 
       lx_esf_property_handler = nil # cx_esf_property_handler.new
 
       begin
          lo_node_desc = @mo_eco_descriptor.get_bo_node_descriptor(bo_node_proxy_name:iv_node_name)
-         lt_node_assoc_desc = lo_node_desc.get_association_descriptors()
+         lt_node_assoc_desc = lo_node_desc.get_association_descriptors(_b:binding)
          loop(at:it_node_ids){
             append(to:ls_properties.node_element_properties)
 
@@ -7324,7 +7485,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
 
 
-            ls_node_element_property.property_name = If_esf_property_handler::Esf_update_enabled
+            ls_node_element_property.property_name = If_esf_property_handler::esf_update_enabled
 
 
 
@@ -7340,7 +7501,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
 
 
-            ls_node_element_property.property_name = If_esf_property_handler::Esf_delete_enabled
+            ls_node_element_property.property_name = If_esf_property_handler::esf_delete_enabled
 
 
 
@@ -7354,7 +7515,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
                if lo_node_assoc_desc.is_property_value_final == abap_false
                   append(to:ls_properties.association_properties)
 
-                  ls_assoc_property.association_name = lo_node_assoc_desc.get_proxy_name()
+                  ls_assoc_property.association_name = lo_node_assoc_desc.get_proxy_name(_b:binding)
 
 
 
@@ -7362,7 +7523,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
 
 
-                  ls_assoc_property.property_name = If_esf_property_handler::Esf_create_enabled
+                  ls_assoc_property.property_name = If_esf_property_handler::esf_create_enabled
 
 
 
@@ -7400,10 +7561,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -7412,14 +7574,16 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #     returning
    #       value(RV_IS_EDITABLE) type SYBOOLEAN .
 
-   def is_floorplan_editable(_i:nil,_e:nil)
+   def is_floorplan_editable(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -7444,30 +7608,33 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
    end
 
-   def if_bsa_cb_message_mapping_i_adjust_messages(_i:nil,_e:nil)
+   def if_bsa_cb_message_mapping_i_adjust_messages(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
 
       adjust_messages_int(_c:{
          "ct_message_map" => inout_messages,
-      })
+      }, _b:binding)
 
 
 
@@ -7476,32 +7643,35 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
    end
 
-   def if_bsa_cb_path_i_resolve(_i:nil,_e:nil)
+   def if_bsa_cb_path_i_resolve(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
 
       ls_link = nil # sesf_association_link.new
 
-      lt_fia_fav_sls_srv_data = nil # If_fia_fav_sls_srv_doc::Tt_root.new
+      lt_fia_fav_sls_srv_data = nil # If_fia_fav_sls_srv_doc::tt_root.new
 
-      lr_fia_fav_sls_srv_data = nil # If_fia_fav_sls_srv_doc::Ty_root.new
+      lr_fia_fav_sls_srv_data = nil # If_fia_fav_sls_srv_doc::ty_root.new
 
       lo_lcp = nil # if_esf_lcp.new
 
@@ -7516,11 +7686,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       lv_bo_name = nil # string.new
 
-      lt_message = nil # Cm_esi_root::Tt_esi_root.new
+      lt_message = nil # Cm_esi_root::tt_esi_root.new
 
       lr_table_data = nil # data.new
 
-      lt_eco_message = nil # Cm_esi_root::Tt_esi_root.new
+      lt_eco_message = nil # Cm_esi_root::tt_esi_root.new
 
       clear(id:out_data)
       clear(id:out_links)
@@ -7528,22 +7698,22 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
       clear(id:out_sync_notifications)
       case in_path_callback_id
       when 'SAL_ORD'
-         lv_object_type_code = If_ap_object_type_code_c::Gc_sales_order
+         lv_object_type_code = If_ap_object_type_code_c::gc_sales_order
 
          lv_bo_name = 'SALES_ORDER'
 
       when 'SER_ORD'
-         lv_object_type_code = If_ap_object_type_code_c::Gc_service_order
+         lv_object_type_code = If_ap_object_type_code_c::gc_service_order
 
          lv_bo_name = 'SERVICE_ORDER'
 
       when 'CUST_RET'
-         lv_object_type_code = If_ap_object_type_code_c::Gc_customer_return
+         lv_object_type_code = If_ap_object_type_code_c::gc_customer_return
 
          lv_bo_name = 'CUSTOMER_RETURN'
 
       when 'SER_CONF'
-         lv_object_type_code = If_ap_object_type_code_c::Gc_service_confirmation
+         lv_object_type_code = If_ap_object_type_code_c::gc_service_confirmation
 
          lv_bo_name = 'SERVICE_CONFIRMATION'
 
@@ -7580,16 +7750,16 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
                @mo_adaptation_handler.get_lcp(_i:{
                   "in_bo_name" => lv_bo_name,
-               })
+               }, _b:binding)
 
                lo_lcp.convert_keys(_i:{
                   "in_bo_node_name" => 'ROOT',
                   "in_source_key_name" => 'UUID',
-                  "in_target_key_name" => If_esf_types::Co_node_id_proxy_name,
+                  "in_target_key_name" => If_esf_types::co_node_id_proxy_name,
                   "in_source_keys" => lt_single_uuid_key,
                }, _e:{
                   "out_target_keys" => lt_sngle_trgt_node_id,
-               })
+               }, _b:binding)
 
                read_table(id:lt_sngle_trgt_node_id, into:lv_target_node_id, index:1)
                if lv_target_node_id.isNotINITIAL()
@@ -7599,7 +7769,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
                   }, _e:{
                      "out_data" => lt_data,
                      "out_messages" => lt_message,
-                  })
+                  }, _b:binding)
 
 
 
@@ -7622,8 +7792,8 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
                   add_mapped_messages_int(_i:{
                      "et_eco_message" => lt_eco_message,
                   }, _e:{
-                     "it_message" => lt_message,
-                  })
+                     "it_message" => "lt_message",
+                  }, _b:binding)
 
 
 
@@ -7658,10 +7828,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -7683,7 +7854,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    @mo_mdro_schedule_immediately = nil # cl_ap_mdro_sched_immed_wait.new
    @mo_task_region_helper = nil # if_coutl_task_region_helper.new
    include If_a1fia_aar_create_qaf_eco
-   @ms_readonly_eco_root = nil # If_a1fia_aar_create_qaf_eco::Ty_root.new
+   @ms_readonly_eco_root = nil # If_a1fia_aar_create_qaf_eco::ty_root.new
    @mt_attribute_map = nil # tt_attribute_map.new
    @mt_eco_root_attributes = nil # WITH.new
    @mt_run_specific_node = nil # sesf_string_tab.new

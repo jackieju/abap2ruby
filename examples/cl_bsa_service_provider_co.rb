@@ -9,14 +9,16 @@ class Cl_bsa_service_provider_co
    #         !in_change_handler TYPE REF TO if_esf_change_handler .
    #
 
-   def put_change_notifs_into_handler(in_change_handler:nil,_i:nil,_e:nil)
+   def put_change_notifs_into_handler(in_change_handler:nil,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -30,7 +32,7 @@ class Cl_bsa_service_provider_co
             in_change_handler.notify_create(_i:{
                "in_bo_node_name" => fs_create_notif.bo_node_name,
                "in_bo_node_id" => fs_create_notif.node_id,
-            })
+            }, _b:binding)
 
 
          rescue cx_esf_change_handler=>lx_esf_change_handler
@@ -44,7 +46,7 @@ class Cl_bsa_service_provider_co
                "in_bo_node_name" => fs_suc_create_notif.bo_node_name,
                "in_bo_node_id" => fs_suc_create_notif.node_id,
                "in_create_key_handle" => fs_suc_create_notif.node_id_handle,
-            })
+            }, _b:binding)
 
 
          rescue cx_esf_change_handler=>lx_esf_change_handler
@@ -57,7 +59,7 @@ class Cl_bsa_service_provider_co
             in_change_handler.notify_failed_create(_i:{
                "in_bo_node_name" => fs_failed_create_notif.bo_node_name,
                "in_create_key_handle" => fs_failed_create_notif.node_id_handle,
-            })
+            }, _b:binding)
 
 
          rescue cx_esf_change_handler=>lx_esf_change_handler
@@ -75,7 +77,7 @@ class Cl_bsa_service_provider_co
                "in_associations_changed" => fs_update_notif.associations_changed,
                "in_affected_associations" => fs_update_notif.affected_associations,
                "in_property_change_scope" => fs_update_notif.property_scope,
-            })
+            }, _b:binding)
 
 
          rescue cx_esf_change_handler=>lx_esf_change_handler
@@ -88,7 +90,7 @@ class Cl_bsa_service_provider_co
             in_change_handler.notify_delete(_i:{
                "in_bo_node_name" => fs_delete_notif.bo_node_name,
                "in_bo_node_id" => fs_delete_notif.node_id,
-            })
+            }, _b:binding)
 
 
          rescue cx_esf_change_handler=>lx_esf_change_handler
@@ -99,7 +101,7 @@ class Cl_bsa_service_provider_co
       begin
          in_change_handler.notify_buffer_syncs(_i:{
             "in_sync_notifications" => in_change_notifications.sync_notifications,
-         })
+         }, _b:binding)
 
 
       rescue cx_esf_sync_handler=>lx_esf_sync_handler
@@ -114,10 +116,11 @@ class Cl_bsa_service_provider_co
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -128,14 +131,16 @@ class Cl_bsa_service_provider_co
    #         !in_messages TYPE cm_esi_root=>tt_esi_root .
    #
 
-   def put_messages_into_handler(in_messages:nil,_i:nil,_e:nil)
+   def put_messages_into_handler(in_messages:nil,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -146,9 +151,9 @@ class Cl_bsa_service_provider_co
 
       lo_mapped_message = nil # cm_esi_root.new
 
-      lt_message = nil # Cm_esi_root::Tt_esi_root.new
+      lt_message = nil # Cm_esi_root::tt_esi_root.new
 
-      ls_origin_location = nil # Cm_esi_root::Ty_message_location.new
+      ls_origin_location = nil # Cm_esi_root::ty_message_location.new
 
       begin
          loop(at:in_messages, into:lo_message){
@@ -163,7 +168,7 @@ class Cl_bsa_service_provider_co
                   #"change lifetime to transition - no other chance, because state is not allowed
                   #"without location
 
-                  lo_mapped_message = lo_message.copy_with_new_location(new_origin_location:ls_origin_location, new_message_lifetime:Cm_esi_root::Co_lifetime_transition)
+                  lo_mapped_message = lo_message.copy_with_new_location(new_origin_location:ls_origin_location, new_message_lifetime:Cm_esi_root::co_lifetime_transition)
 
 
 
@@ -204,10 +209,11 @@ class Cl_bsa_service_provider_co
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -217,14 +223,16 @@ class Cl_bsa_service_provider_co
    #         !ix_exception TYPE REF TO cx_root .
    #
 
-   def handle_error(ix_exception:nil,_i:nil,_e:nil)
+   def handle_error(ix_exception:nil,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -239,10 +247,11 @@ class Cl_bsa_service_provider_co
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -253,14 +262,16 @@ class Cl_bsa_service_provider_co
    #         !in_sync_handler TYPE REF TO if_esf_buffer_sync_handler .
    #
 
-   def put_sync_notifs_into_handler(in_sync_handler:nil,_i:nil,_e:nil)
+   def put_sync_notifs_into_handler(in_sync_handler:nil,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -274,10 +285,11 @@ class Cl_bsa_service_provider_co
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -287,14 +299,16 @@ class Cl_bsa_service_provider_co
    #         !ix_exception TYPE REF TO cx_root .
    #
 
-   def handle_error_adaptation_hdlr(ix_exception:nil,_i:nil,_e:nil)
+   def handle_error_adaptation_hdlr(ix_exception:nil,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -308,10 +322,11 @@ class Cl_bsa_service_provider_co
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -322,14 +337,16 @@ class Cl_bsa_service_provider_co
    #       CHANGING
    #         !ct_messages TYPE cm_esi_root=>tt_esi_root .
 
-   def append_pre_exceptions_to_msgs(io_exception:nil,_i:nil,_e:nil)
+   def append_pre_exceptions_to_msgs(io_exception:nil,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -348,18 +365,18 @@ class Cl_bsa_service_provider_co
             #" append the previous message
             append(from:lr_t100_message, to:ct_messages)
             me.append_pre_exceptions_to_msgs(_e:{
-               "io_exception" => io_exception.previous,
+               "io_exception" => "io_exception.previous",
             }, _c:{
                "ct_messages" => ct_messages,
-            })
+            }, _b:binding)
 
 
          rescue cx_sy_conversion_no_number,cx_sy_conversion_overflow,cx_sy_move_cast_error=>lr_cast_exception
             me.append_pre_exceptions_to_msgs(_e:{
-               "io_exception" => io_exception.previous,
+               "io_exception" => "io_exception.previous",
             }, _c:{
                "ct_messages" => ct_messages,
-            })
+            }, _b:binding)
 
 
          end
@@ -375,23 +392,26 @@ class Cl_bsa_service_provider_co
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
    end
 
-   def if_esf_provider_access_i_check(_i:nil,_e:nil)
+   def if_esf_provider_access_i_check(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -400,16 +420,16 @@ class Cl_bsa_service_provider_co
 
       lx_root = nil # cx_root.new
 
-      lt_messages = nil # Cm_esi_root::Tt_esi_root.new
+      lt_messages = nil # Cm_esi_root::tt_esi_root.new
 
       begin
          @mo_adaptation_handler.check(_i:{
             "out_messages" => lt_messages,
          }, _e:{
-            "in_bo_node_name" => in_bo_node_name,
-            "in_node_ids" => in_node_ids,
-            "in_check_scope" => in_check_scope,
-         })
+            "in_bo_node_name" => "in_bo_node_name",
+            "in_node_ids" => "in_node_ids",
+            "in_check_scope" => "in_check_scope",
+         }, _b:binding)
 
          me.put_messages_into_handler(in_message_handler:in_message_handler, in_messages:lt_messages)
 
@@ -428,23 +448,26 @@ class Cl_bsa_service_provider_co
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
    end
 
-   def if_esf_provider_access_i_check_and_determine(_i:nil,_e:nil)
+   def if_esf_provider_access_i_check_and_determine(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -453,19 +476,19 @@ class Cl_bsa_service_provider_co
 
       lx_root = nil # cx_root.new
 
-      lt_messages = nil # Cm_esi_root::Tt_esi_root.new
+      lt_messages = nil # Cm_esi_root::tt_esi_root.new
 
-      ls_change_notifs = nil # If_esf_types::Ty_change_notifications.new
+      ls_change_notifs = nil # If_esf_types::ty_change_notifications.new
 
       begin
          @mo_adaptation_handler.check_and_determine(_i:{
             "out_messages" => lt_messages,
             "out_change_notifications" => ls_change_notifs,
          }, _e:{
-            "in_bo_node_name" => in_bo_node_name,
-            "in_node_ids" => in_node_ids,
-            "in_check_scope" => in_check_scope,
-         })
+            "in_bo_node_name" => "in_bo_node_name",
+            "in_node_ids" => "in_node_ids",
+            "in_check_scope" => "in_check_scope",
+         }, _b:binding)
 
          me.put_messages_into_handler(in_message_handler:in_message_handler, in_messages:lt_messages)
 
@@ -486,23 +509,26 @@ class Cl_bsa_service_provider_co
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
    end
 
-   def if_esf_provider_access_i_convert_keys(_i:nil,_e:nil)
+   def if_esf_provider_access_i_convert_keys(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -516,11 +542,11 @@ class Cl_bsa_service_provider_co
             "out_target_keys" => out_target_keys,
             "out_failed" => out_failed,
          }, _e:{
-            "in_bo_node_name" => in_bo_node_name,
-            "in_source_key_name" => in_source_key_name,
-            "in_target_key_name" => in_target_key_name,
-            "in_source_keys" => in_source_keys,
-         })
+            "in_bo_node_name" => "in_bo_node_name",
+            "in_source_key_name" => "in_source_key_name",
+            "in_target_key_name" => "in_target_key_name",
+            "in_source_keys" => "in_source_keys",
+         }, _b:binding)
 
 
       rescue cx_root=>lx_root
@@ -537,23 +563,26 @@ class Cl_bsa_service_provider_co
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
    end
 
-   def if_esf_provider_access_i_convert_key_to_node_id(_i:nil,_e:nil)
+   def if_esf_provider_access_i_convert_key_to_node_id(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -566,11 +595,11 @@ class Cl_bsa_service_provider_co
          @mo_adaptation_handler.convert_key_to_node_id(_i:{
             "out_key_mapping" => out_key_mapping,
          }, _e:{
-            "in_bo_node_name" => in_bo_node_name,
-            "in_key_name" => in_key_name,
-            "in_keys" => in_keys,
-            "in_requested_image" => in_requested_image,
-         })
+            "in_bo_node_name" => "in_bo_node_name",
+            "in_key_name" => "in_key_name",
+            "in_keys" => "in_keys",
+            "in_requested_image" => "in_requested_image",
+         }, _b:binding)
 
 
       rescue cx_root=>lx_root
@@ -587,23 +616,26 @@ class Cl_bsa_service_provider_co
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
    end
 
-   def if_esf_provider_access_i_modify(_i:nil,_e:nil)
+   def if_esf_provider_access_i_modify(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -612,17 +644,17 @@ class Cl_bsa_service_provider_co
 
       lx_root = nil # cx_root.new
 
-      lt_messages = nil # Cm_esi_root::Tt_esi_root.new
+      lt_messages = nil # Cm_esi_root::tt_esi_root.new
 
-      ls_change_notifs = nil # If_esf_types::Ty_change_notifications.new
+      ls_change_notifs = nil # If_esf_types::ty_change_notifications.new
 
       begin
          @mo_adaptation_handler.modify(_i:{
             "out_messages" => lt_messages,
             "out_change_notifications" => ls_change_notifs,
          }, _e:{
-            "in_modifications" => in_modifications,
-         })
+            "in_modifications" => "in_modifications",
+         }, _b:binding)
 
          me.put_messages_into_handler(in_message_handler:in_message_handler, in_messages:lt_messages)
 
@@ -643,23 +675,26 @@ class Cl_bsa_service_provider_co
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
    end
 
-   def if_esf_provider_access_i_retrieve(_i:nil,_e:nil)
+   def if_esf_provider_access_i_retrieve(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -668,9 +703,9 @@ class Cl_bsa_service_provider_co
 
       lx_root = nil # cx_root.new
 
-      lt_messages = nil # Cm_esi_root::Tt_esi_root.new
+      lt_messages = nil # Cm_esi_root::tt_esi_root.new
 
-      ls_change_notifs = nil # If_esf_types::Ty_change_notifications.new
+      ls_change_notifs = nil # If_esf_types::ty_change_notifications.new
 
       if in_edit_mode != If_esf_types::Co_read_only
          assert(o:in_buffer_sync_handler.isBOUND())
@@ -686,12 +721,12 @@ class Cl_bsa_service_provider_co
             "out_messages" => lt_messages,
             "out_sync_notifications" => ls_change_notifs.sync_notifications,
          }, _e:{
-            "in_bo_node_name" => in_bo_node_name,
-            "in_node_ids" => in_node_ids,
-            "in_requested_image" => in_requested_image,
-            "in_edit_mode" => in_edit_mode,
-            "in_requested_attributes" => in_requested_attributes,
-         })
+            "in_bo_node_name" => "in_bo_node_name",
+            "in_node_ids" => "in_node_ids",
+            "in_requested_image" => "in_requested_image",
+            "in_edit_mode" => "in_edit_mode",
+            "in_requested_attributes" => "in_requested_attributes",
+         }, _b:binding)
 
          me.put_messages_into_handler(in_message_handler:in_message_handler, in_messages:lt_messages)
 
@@ -719,23 +754,26 @@ class Cl_bsa_service_provider_co
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
    end
 
-   def if_esf_provider_access_i_retrieve_by_association(_i:nil,_e:nil)
+   def if_esf_provider_access_i_retrieve_by_association(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -744,9 +782,9 @@ class Cl_bsa_service_provider_co
 
       lx_root = nil # cx_root.new
 
-      lt_messages = nil # Cm_esi_root::Tt_esi_root.new
+      lt_messages = nil # Cm_esi_root::tt_esi_root.new
 
-      ls_change_notifs = nil # If_esf_types::Ty_change_notifications.new
+      ls_change_notifs = nil # If_esf_types::ty_change_notifications.new
 
       if in_edit_mode != If_esf_types::Co_read_only
          assert(o:in_buffer_sync_handler.isBOUND())
@@ -763,16 +801,16 @@ class Cl_bsa_service_provider_co
             "out_messages" => lt_messages,
             "out_sync_notifications" => ls_change_notifs.sync_notifications,
          }, _e:{
-            "in_bo_node_name" => in_bo_node_name,
-            "in_association_name" => in_association_name,
-            "in_node_ids" => in_node_ids,
-            "in_fill_data" => in_fill_data,
-            "in_filter_parameters" => in_filter_parameters,
-            "in_filtered_attributes" => in_filtered_attributes,
-            "in_requested_image" => in_requested_image,
-            "in_edit_mode" => in_edit_mode,
-            "in_requested_attributes" => in_requested_attributes,
-         })
+            "in_bo_node_name" => "in_bo_node_name",
+            "in_association_name" => "in_association_name",
+            "in_node_ids" => "in_node_ids",
+            "in_fill_data" => "in_fill_data",
+            "in_filter_parameters" => "in_filter_parameters",
+            "in_filtered_attributes" => "in_filtered_attributes",
+            "in_requested_image" => "in_requested_image",
+            "in_edit_mode" => "in_edit_mode",
+            "in_requested_attributes" => "in_requested_attributes",
+         }, _b:binding)
 
          me.put_messages_into_handler(in_message_handler:in_message_handler, in_messages:lt_messages)
 
@@ -800,23 +838,26 @@ class Cl_bsa_service_provider_co
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
    end
 
-   def if_esf_provider_access_i_retrieve_default_node_values(_i:nil,_e:nil)
+   def if_esf_provider_access_i_retrieve_default_node_values(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -825,7 +866,7 @@ class Cl_bsa_service_provider_co
 
       lx_root = nil # cx_root.new
 
-      ls_properties = nil # If_esf_types::Ty_properties.new
+      ls_properties = nil # If_esf_types::ty_properties.new
 
       assert(o:in_property_handler.isBOUND())
       begin
@@ -833,19 +874,19 @@ class Cl_bsa_service_provider_co
             "out_data" => out_data,
             "out_properties" => ls_properties,
          }, _e:{
-            "in_bo_node_name" => in_bo_node_name,
-            "in_node_id_handles" => in_node_id_handles,
-            "in_association_name" => in_association_name,
-            "in_association_filter_struct" => in_association_filter_struct,
-            "in_association_filter_attribs" => in_association_filter_attribs,
-            "in_source_bo_node_name" => in_source_bo_node_name,
-            "in_source_node_id" => in_source_node_id,
-            "in_source_node_id_is_handle" => in_source_node_id_is_handle,
-         })
+            "in_bo_node_name" => "in_bo_node_name",
+            "in_node_id_handles" => "in_node_id_handles",
+            "in_association_name" => "in_association_name",
+            "in_association_filter_struct" => "in_association_filter_struct",
+            "in_association_filter_attribs" => "in_association_filter_attribs",
+            "in_source_bo_node_name" => "in_source_bo_node_name",
+            "in_source_node_id" => "in_source_node_id",
+            "in_source_node_id_is_handle" => "in_source_node_id_is_handle",
+         }, _b:binding)
 
          in_property_handler.set_properties(_e:{
-            "in_properties" => ls_properties,
-         })
+            "in_properties" => "ls_properties",
+         }, _b:binding)
 
 
       rescue cx_root=>lx_root
@@ -862,23 +903,26 @@ class Cl_bsa_service_provider_co
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
    end
 
-   def if_esf_provider_access_i_retrieve_properties(_i:nil,_e:nil)
+   def if_esf_provider_access_i_retrieve_properties(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -887,20 +931,20 @@ class Cl_bsa_service_provider_co
 
       lx_root = nil # cx_root.new
 
-      ls_properties = nil # If_esf_types::Ty_properties.new
+      ls_properties = nil # If_esf_types::ty_properties.new
 
       begin
          @mo_adaptation_handler.retrieve_properties(_i:{
             "out_properties" => ls_properties,
          }, _e:{
-            "in_bo_node_name" => in_bo_node_name,
-            "in_node_ids" => in_node_ids,
-            "in_property_scope" => in_property_scope,
-         })
+            "in_bo_node_name" => "in_bo_node_name",
+            "in_node_ids" => "in_node_ids",
+            "in_property_scope" => "in_property_scope",
+         }, _b:binding)
 
          in_property_handler.set_properties(_e:{
-            "in_properties" => ls_properties,
-         })
+            "in_properties" => "ls_properties",
+         }, _b:binding)
 
 
       rescue cx_root=>lx_root
@@ -917,23 +961,26 @@ class Cl_bsa_service_provider_co
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
    end
 
-   def if_esf_provider_access_i_retrieve_root_node_id(_i:nil,_e:nil)
+   def if_esf_provider_access_i_retrieve_root_node_id(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -946,10 +993,10 @@ class Cl_bsa_service_provider_co
          @mo_adaptation_handler.retrieve_root_node_id(_i:{
             "out_links" => out_links,
          }, _e:{
-            "in_bo_node_name" => in_bo_node_name,
-            "in_node_ids" => in_node_ids,
-            "in_requested_image" => in_requested_image,
-         })
+            "in_bo_node_name" => "in_bo_node_name",
+            "in_node_ids" => "in_node_ids",
+            "in_requested_image" => "in_requested_image",
+         }, _b:binding)
 
 
       rescue cx_root=>lx_root
@@ -966,23 +1013,26 @@ class Cl_bsa_service_provider_co
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
    end
 
-   def if_esf_provider_action_i_execute_action(_i:nil,_e:nil)
+   def if_esf_provider_action_i_execute_action(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -991,21 +1041,21 @@ class Cl_bsa_service_provider_co
 
       lx_root = nil # cx_root.new
 
-      lt_messages = nil # Cm_esi_root::Tt_esi_root.new
+      lt_messages = nil # Cm_esi_root::tt_esi_root.new
 
-      ls_change_notifs = nil # If_esf_types::Ty_change_notifications.new
+      ls_change_notifs = nil # If_esf_types::ty_change_notifications.new
 
       begin
          @mo_adaptation_handler.execute_action(_i:{
             "out_messages" => lt_messages,
             "out_change_notifications" => ls_change_notifs,
          }, _e:{
-            "in_bo_node_name" => in_bo_node_name,
-            "in_action_name" => in_action_name,
-            "in_node_ids" => in_node_ids,
-            "in_action_parameters" => in_action_parameters,
-            "in_referencing_node_elements" => in_referencing_node_elements,
-         })
+            "in_bo_node_name" => "in_bo_node_name",
+            "in_action_name" => "in_action_name",
+            "in_node_ids" => "in_node_ids",
+            "in_action_parameters" => "in_action_parameters",
+            "in_referencing_node_elements" => "in_referencing_node_elements",
+         }, _b:binding)
 
          me.put_messages_into_handler(in_message_handler:in_message_handler, in_messages:lt_messages)
 
@@ -1026,23 +1076,26 @@ class Cl_bsa_service_provider_co
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
    end
 
-   def if_esf_provider_action_i_retrieve_default_action_param(_i:nil,_e:nil)
+   def if_esf_provider_action_i_retrieve_default_action_param(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -1055,10 +1108,10 @@ class Cl_bsa_service_provider_co
          @mo_adaptation_handler.retrieve_default_action_param(_i:{
             "out_action_parameters" => out_action_parameters,
          }, _e:{
-            "in_bo_node_name" => in_bo_node_name,
-            "in_action_name" => in_action_name,
-            "in_node_ids" => in_node_ids,
-         })
+            "in_bo_node_name" => "in_bo_node_name",
+            "in_action_name" => "in_action_name",
+            "in_node_ids" => "in_node_ids",
+         }, _b:binding)
 
 
       rescue cx_root=>lx_root
@@ -1075,23 +1128,26 @@ class Cl_bsa_service_provider_co
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
    end
 
-   def if_esf_provider_init_i_init(_i:nil,_e:nil)
+   def if_esf_provider_init_i_init(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -1099,7 +1155,7 @@ class Cl_bsa_service_provider_co
       lx_bsa_runtime = nil # cx_bsa_runtime.new
 
       begin
-         @mo_adaptation_handler = Cl_bsa_factory::Get_adaptation_handler_for_co(in_bo_name:in_bo_name, in_provider_context:in_provider_context)
+         @mo_adaptation_handler = Cl_bsa_factory::get_adaptation_handler_for_co(in_bo_name:in_bo_name, in_provider_context:in_provider_context)
 
 
       rescue cx_bsa_runtime=>lx_bsa_runtime
@@ -1114,23 +1170,26 @@ class Cl_bsa_service_provider_co
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
    end
 
-   def if_esf_provider_interact_ctrl_i_close_session(_i:nil,_e:nil)
+   def if_esf_provider_interact_ctrl_i_close_session(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -1142,23 +1201,26 @@ class Cl_bsa_service_provider_co
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
    end
 
-   def if_esf_provider_interact_ctrl_i_do_post_processing(_i:nil,_e:nil)
+   def if_esf_provider_interact_ctrl_i_do_post_processing(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -1171,23 +1233,26 @@ class Cl_bsa_service_provider_co
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
    end
 
-   def if_esf_provider_interact_ctrl_i_do_pre_processing(_i:nil,_e:nil)
+   def if_esf_provider_interact_ctrl_i_do_pre_processing(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -1199,23 +1264,26 @@ class Cl_bsa_service_provider_co
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
    end
 
-   def if_esf_provider_query_i_query(_i:nil,_e:nil)
+   def if_esf_provider_query_i_query(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -1224,7 +1292,7 @@ class Cl_bsa_service_provider_co
 
       lx_root = nil # cx_root.new
 
-      lt_messages = nil # Cm_esi_root::Tt_esi_root.new
+      lt_messages = nil # Cm_esi_root::tt_esi_root.new
 
       begin
          @mo_adaptation_handler.if_esf_lcp_i_query(_i:{
@@ -1233,15 +1301,15 @@ class Cl_bsa_service_provider_co
             "out_query_info" => out_query_info,
             "out_messages" => lt_messages,
          }, _e:{
-            "in_bo_node_name" => in_bo_node_name,
-            "in_query_name" => in_query_name,
-            "in_selection_parameters" => in_selection_parameters,
-            "in_query_options" => in_query_options,
-            "in_requested_attributes" => in_requested_attributes,
-            "in_authorization_context" => in_authorization_context,
-            "in_fill_data" => in_fill_data,
-            "in_filter_node_ids" => in_filter_node_ids,
-         })
+            "in_bo_node_name" => "in_bo_node_name",
+            "in_query_name" => "in_query_name",
+            "in_selection_parameters" => "in_selection_parameters",
+            "in_query_options" => "in_query_options",
+            "in_requested_attributes" => "in_requested_attributes",
+            "in_authorization_context" => "in_authorization_context",
+            "in_fill_data" => "in_fill_data",
+            "in_filter_node_ids" => "in_filter_node_ids",
+         }, _b:binding)
 
          me.put_messages_into_handler(in_message_handler:in_message_handler, in_messages:lt_messages)
 
@@ -1260,23 +1328,26 @@ class Cl_bsa_service_provider_co
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
    end
 
-   def if_esf_provider_query_i_retrieve_default_query_param(_i:nil,_e:nil)
+   def if_esf_provider_query_i_retrieve_default_query_param(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -1289,9 +1360,9 @@ class Cl_bsa_service_provider_co
          @mo_adaptation_handler.retrieve_default_query_param(_i:{
             "out_selection_parameters" => out_selection_parameters,
          }, _e:{
-            "in_bo_node_name" => in_bo_node_name,
-            "in_query_name" => in_query_name,
-         })
+            "in_bo_node_name" => "in_bo_node_name",
+            "in_query_name" => "in_query_name",
+         }, _b:binding)
 
 
       rescue cx_root=>lx_root
@@ -1308,23 +1379,26 @@ class Cl_bsa_service_provider_co
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
    end
 
-   def if_esf_provider_subscription_i_on_bo_changed(_i:nil,_e:nil)
+   def if_esf_provider_subscription_i_on_bo_changed(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -1336,23 +1410,26 @@ class Cl_bsa_service_provider_co
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
    end
 
-   def if_esf_provider_transact_ctrl_i_on_after_check_transaction(_i:nil,_e:nil)
+   def if_esf_provider_transact_ctrl_i_on_after_check_transaction(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -1364,23 +1441,26 @@ class Cl_bsa_service_provider_co
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
    end
 
-   def if_esf_provider_transact_ctrl_i_on_after_cleanup_transaction(_i:nil,_e:nil)
+   def if_esf_provider_transact_ctrl_i_on_after_cleanup_transaction(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -1392,23 +1472,26 @@ class Cl_bsa_service_provider_co
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
    end
 
-   def if_esf_provider_transact_ctrl_i_on_after_save_transaction(_i:nil,_e:nil)
+   def if_esf_provider_transact_ctrl_i_on_after_save_transaction(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -1420,23 +1503,26 @@ class Cl_bsa_service_provider_co
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
    end
 
-   def if_esf_provider_transact_ctrl_i_on_before_check_transaction(_i:nil,_e:nil)
+   def if_esf_provider_transact_ctrl_i_on_before_check_transaction(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -1448,23 +1534,26 @@ class Cl_bsa_service_provider_co
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
    end
 
-   def if_esf_provider_transact_ctrl_i_on_before_cleanup_transaction(_i:nil,_e:nil)
+   def if_esf_provider_transact_ctrl_i_on_before_cleanup_transaction(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -1476,23 +1565,26 @@ class Cl_bsa_service_provider_co
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
    end
 
-   def if_esf_provider_transact_ctrl_i_on_before_save_transaction(_i:nil,_e:nil)
+   def if_esf_provider_transact_ctrl_i_on_before_save_transaction(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -1504,23 +1596,26 @@ class Cl_bsa_service_provider_co
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
    end
 
-   def if_esf_provider_value_set_i_retrieve_action_code_values(_i:nil,_e:nil)
+   def if_esf_provider_value_set_i_retrieve_action_code_values(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -1535,13 +1630,13 @@ class Cl_bsa_service_provider_co
          @mo_adaptation_handler.retrieve_action_code_values(_i:{
             "out_code_values" => out_code_values,
          }, _e:{
-            "in_bo_node_name" => in_bo_node_name,
-            "in_node_ids" => in_node_ids,
-            "in_action_name" => in_action_name,
-            "in_attribute_name" => in_attribute_name,
-            "in_context_parameters" => in_context_parameters,
-            "in_context_attributes" => in_context_attributes,
-         })
+            "in_bo_node_name" => "in_bo_node_name",
+            "in_node_ids" => "in_node_ids",
+            "in_action_name" => "in_action_name",
+            "in_attribute_name" => "in_attribute_name",
+            "in_context_parameters" => "in_context_parameters",
+            "in_context_attributes" => "in_context_attributes",
+         }, _b:binding)
 
 
       rescue cx_root=>lx_root
@@ -1558,23 +1653,26 @@ class Cl_bsa_service_provider_co
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
    end
 
-   def if_esf_provider_value_set_i_retrieve_action_value_set(_i:nil,_e:nil)
+   def if_esf_provider_value_set_i_retrieve_action_value_set(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -1589,14 +1687,14 @@ class Cl_bsa_service_provider_co
          @mo_adaptation_handler.retrieve_action_value_set(_i:{
             "out_value_set_node_ids" => out_value_set_node_ids,
          }, _e:{
-            "in_bo_node_name" => in_bo_node_name,
-            "in_action_name" => in_action_name,
-            "in_node_ids" => in_node_ids,
-            "in_attribute_name" => in_attribute_name,
-            "in_selection_parameters" => in_selection_parameters,
-            "in_query_options" => in_query_options,
-            "in_authorization_context" => in_authorization_context,
-         })
+            "in_bo_node_name" => "in_bo_node_name",
+            "in_action_name" => "in_action_name",
+            "in_node_ids" => "in_node_ids",
+            "in_attribute_name" => "in_attribute_name",
+            "in_selection_parameters" => "in_selection_parameters",
+            "in_query_options" => "in_query_options",
+            "in_authorization_context" => "in_authorization_context",
+         }, _b:binding)
 
 
       rescue cx_root=>lx_root
@@ -1613,23 +1711,26 @@ class Cl_bsa_service_provider_co
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
    end
 
-   def if_esf_provider_value_set_i_retrieve_code_values(_i:nil,_e:nil)
+   def if_esf_provider_value_set_i_retrieve_code_values(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -1644,13 +1745,13 @@ class Cl_bsa_service_provider_co
          @mo_adaptation_handler.retrieve_code_values(_i:{
             "out_code_values" => out_code_values,
          }, _e:{
-            "in_bo_node_name" => in_bo_node_name,
-            "in_node_id" => in_node_id,
-            "in_node_id_is_handle" => in_node_id_is_handle,
-            "in_attribute_name" => in_attribute_name,
-            "in_context_parameters" => in_context_parameters,
-            "in_context_attributes" => in_context_attributes,
-         })
+            "in_bo_node_name" => "in_bo_node_name",
+            "in_node_id" => "in_node_id",
+            "in_node_id_is_handle" => "in_node_id_is_handle",
+            "in_attribute_name" => "in_attribute_name",
+            "in_context_parameters" => "in_context_parameters",
+            "in_context_attributes" => "in_context_attributes",
+         }, _b:binding)
 
 
       rescue cx_root=>lx_root
@@ -1667,23 +1768,26 @@ class Cl_bsa_service_provider_co
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
    end
 
-   def if_esf_provider_value_set_i_retrieve_query_code_values(_i:nil,_e:nil)
+   def if_esf_provider_value_set_i_retrieve_query_code_values(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -1698,12 +1802,12 @@ class Cl_bsa_service_provider_co
          @mo_adaptation_handler.retrieve_query_code_values(_i:{
             "out_code_values" => out_code_values,
          }, _e:{
-            "in_bo_node_name" => in_bo_node_name,
-            "in_query_name" => in_query_name,
-            "in_attribute_name" => in_attribute_name,
-            "in_context_parameters" => in_context_parameters,
-            "in_context_attributes" => in_context_attributes,
-         })
+            "in_bo_node_name" => "in_bo_node_name",
+            "in_query_name" => "in_query_name",
+            "in_attribute_name" => "in_attribute_name",
+            "in_context_parameters" => "in_context_parameters",
+            "in_context_attributes" => "in_context_attributes",
+         }, _b:binding)
 
 
       rescue cx_root=>lx_root
@@ -1720,23 +1824,26 @@ class Cl_bsa_service_provider_co
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
    end
 
-   def if_esf_provider_value_set_i_retrieve_query_value_set(_i:nil,_e:nil)
+   def if_esf_provider_value_set_i_retrieve_query_value_set(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -1751,13 +1858,13 @@ class Cl_bsa_service_provider_co
          @mo_adaptation_handler.retrieve_query_value_set(_i:{
             "out_value_set_node_ids" => out_value_set_node_ids,
          }, _e:{
-            "in_bo_node_name" => in_bo_node_name,
-            "in_query_name" => in_query_name,
-            "in_attribute_name" => in_attribute_name,
-            "in_selection_parameters" => in_selection_parameters,
-            "in_query_options" => in_query_options,
-            "in_authorization_context" => in_authorization_context,
-         })
+            "in_bo_node_name" => "in_bo_node_name",
+            "in_query_name" => "in_query_name",
+            "in_attribute_name" => "in_attribute_name",
+            "in_selection_parameters" => "in_selection_parameters",
+            "in_query_options" => "in_query_options",
+            "in_authorization_context" => "in_authorization_context",
+         }, _b:binding)
 
 
       rescue cx_root=>lx_root
@@ -1774,23 +1881,26 @@ class Cl_bsa_service_provider_co
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
    end
 
-   def if_esf_provider_value_set_i_retrieve_value_set(_i:nil,_e:nil)
+   def if_esf_provider_value_set_i_retrieve_value_set(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -1805,14 +1915,14 @@ class Cl_bsa_service_provider_co
          @mo_adaptation_handler.retrieve_value_set(_i:{
             "out_value_set_node_ids" => out_value_set_node_ids,
          }, _e:{
-            "in_bo_node_name" => in_bo_node_name,
-            "in_node_id" => in_node_id,
-            "in_node_id_is_handle" => in_node_id_is_handle,
-            "in_selection_parameters" => in_selection_parameters,
-            "in_query_options" => in_query_options,
-            "in_authorization_context" => in_authorization_context,
-            "in_attribute_name" => in_attribute_name,
-         })
+            "in_bo_node_name" => "in_bo_node_name",
+            "in_node_id" => "in_node_id",
+            "in_node_id_is_handle" => "in_node_id_is_handle",
+            "in_selection_parameters" => "in_selection_parameters",
+            "in_query_options" => "in_query_options",
+            "in_authorization_context" => "in_authorization_context",
+            "in_attribute_name" => "in_attribute_name",
+         }, _b:binding)
 
 
       rescue cx_root=>lx_root
@@ -1829,10 +1939,11 @@ class Cl_bsa_service_provider_co
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 

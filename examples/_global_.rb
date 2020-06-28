@@ -3,7 +3,7 @@
 def t()
 
 
-   mo_adaptation_handler = Cl_bsa_factory::Get_adaptation_handler_for_co()
+   mo_adaptation_handler = Cl_bsa_factory::get_adaptation_handler_for_co(_b:binding)
 
 
 end

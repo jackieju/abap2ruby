@@ -30,7 +30,7 @@ in_edit_mode = "fff"
 in_requested_attributes = "eee"
 out_data=lt_messages=out_failed_node_ids=lt_sync_notifications="ffff"
 a.if_esf_provider_access_i_retrieve(_i:{"in_bo_node_name"=>in_bo_node_name,"in_node_ids"=>in_node_ids,"in_requested_image"=>in_requested_image,
-    "in_edit_mode"=>in_edit_mode,"in_requested_attributes"=>in_requested_attributes},_e:{"out_data" => out_data,
-            "out_messages" => lt_messages,
-            "out_failed_node_ids" => out_failed_node_ids,
-            "out_sync_notifications" => lt_sync_notifications})
+    "in_edit_mode"=>in_edit_mode,"in_requested_attributes"=>in_requested_attributes},_e:{"out_data" => "out_data",
+            "out_messages" => "lt_messages",
+            "out_failed_node_ids" => "out_failed_node_ids",
+            "out_sync_notifications" => "lt_sync_notifications"}, _b:binding)

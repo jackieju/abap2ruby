@@ -7,14 +7,16 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
    #     redefinition .
    #
 
-   def if_esf_provider_access_i_modify(_i:nil,_e:nil)
+   def if_esf_provider_access_i_modify(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -31,7 +33,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
       super.if_esf_provider_access_i_modify(_i:{
          "in_change_handler" => in_change_handler,
          "in_message_handler" => in_message_handler,
-      })
+      }, _b:binding)
 
 
 
@@ -40,10 +42,11 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -52,19 +55,21 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
    #     redefinition .
    #
 
-   def if_esf_provider_access_i_retrieve(_i:nil,_e:nil)
+   def if_esf_provider_access_i_retrieve(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
 
-      lt_message = nil # Cm_esi_root::Tt_esi_root.new
+      lt_message = nil # Cm_esi_root::tt_esi_root.new
 
       lx_esf_core_service = nil # cx_esf_core_service.new
 
@@ -79,17 +84,17 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
       }, _e:{
          "out_data" => out_data,
          "out_failed_node_ids" => out_failed_node_ids,
-      })
+      }, _b:binding)
 
       if @mv_do_retrieve_check == abap_true && in_requested_image == If_esf_types::Co_image_transactional_buffer && lines != lines
          begin
             @mo_adaptation_handler.check(_i:{
                "out_messages" => lt_message,
             }, _e:{
-               "in_bo_node_name" => in_bo_node_name,
-               "in_node_ids" => in_node_ids,
-               "in_check_scope" => If_esf_types::Co_check_scope_substructure,
-            })
+               "in_bo_node_name" => "in_bo_node_name",
+               "in_node_ids" => "in_node_ids",
+               "in_check_scope" => "If_esf_types::co_check_scope_substructure",
+            }, _b:binding)
 
 
          rescue cx_esf_core_service=>lx_esf_core_service
@@ -123,10 +128,11 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -135,14 +141,16 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
    #     redefinition .
    #
 
-   def if_esf_provider_access_i_retrieve_root_node_id(_i:nil,_e:nil)
+   def if_esf_provider_access_i_retrieve_root_node_id(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -157,10 +165,10 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
                heuristic_rrnid(_i:{
                   "out_links" => out_links,
                }, _e:{
-                  "in_bo_node_name" => in_bo_node_name,
-                  "in_node_ids" => in_node_ids,
-                  "in_requested_image" => in_requested_image,
-               })
+                  "in_bo_node_name" => "in_bo_node_name",
+                  "in_node_ids" => "in_node_ids",
+                  "in_requested_image" => "in_requested_image",
+               }, _b:binding)
 
 
 
@@ -169,30 +177,30 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
                delegation_rrnid(_i:{
                   "out_links" => out_links,
                }, _e:{
-                  "in_bo_node_name" => in_bo_node_name,
-                  "in_node_ids" => in_node_ids,
-                  "in_requested_image" => in_requested_image,
-               })
+                  "in_bo_node_name" => "in_bo_node_name",
+                  "in_node_ids" => "in_node_ids",
+                  "in_requested_image" => "in_requested_image",
+               }, _b:binding)
 
 
             elsif use_callback_for_rrnid == abap_true
                callback_rrnid(_i:{
                   "out_links" => out_links,
                }, _e:{
-                  "in_bo_node_name" => in_bo_node_name,
-                  "in_node_ids" => in_node_ids,
-                  "in_requested_image" => in_requested_image,
-               })
+                  "in_bo_node_name" => "in_bo_node_name",
+                  "in_node_ids" => "in_node_ids",
+                  "in_requested_image" => "in_requested_image",
+               }, _b:binding)
 
 
             else
                @mo_adaptation_handler.retrieve_root_node_id(_i:{
                   "out_links" => out_links,
                }, _e:{
-                  "in_bo_node_name" => in_bo_node_name,
-                  "in_node_ids" => in_node_ids,
-                  "in_requested_image" => in_requested_image,
-               })
+                  "in_bo_node_name" => "in_bo_node_name",
+                  "in_node_ids" => "in_node_ids",
+                  "in_requested_image" => "in_requested_image",
+               }, _b:binding)
 
 
 
@@ -207,10 +215,10 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
                super.if_esf_provider_access_i_retrieve_root_node_id(_i:{
                   "out_links" => out_links,
                }, _e:{
-                  "in_bo_node_name" => in_bo_node_name,
-                  "in_node_ids" => in_node_ids,
-                  "in_requested_image" => in_requested_image,
-               })
+                  "in_bo_node_name" => "in_bo_node_name",
+                  "in_node_ids" => "in_node_ids",
+                  "in_requested_image" => "in_requested_image",
+               }, _b:binding)
 
 
 
@@ -219,40 +227,40 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
                heuristic_rrnid(_i:{
                   "out_links" => out_links,
                }, _e:{
-                  "in_bo_node_name" => in_bo_node_name,
-                  "in_node_ids" => in_node_ids,
-                  "in_requested_image" => in_requested_image,
-               })
+                  "in_bo_node_name" => "in_bo_node_name",
+                  "in_node_ids" => "in_node_ids",
+                  "in_requested_image" => "in_requested_image",
+               }, _b:binding)
 
 
             elsif use_delegation_for_rrnid == abap_true
                delegation_rrnid(_i:{
                   "out_links" => out_links,
                }, _e:{
-                  "in_bo_node_name" => in_bo_node_name,
-                  "in_node_ids" => in_node_ids,
-                  "in_requested_image" => in_requested_image,
-               })
+                  "in_bo_node_name" => "in_bo_node_name",
+                  "in_node_ids" => "in_node_ids",
+                  "in_requested_image" => "in_requested_image",
+               }, _b:binding)
 
 
             elsif use_callback_for_rrnid == abap_true
                callback_rrnid(_i:{
                   "out_links" => out_links,
                }, _e:{
-                  "in_bo_node_name" => in_bo_node_name,
-                  "in_node_ids" => in_node_ids,
-                  "in_requested_image" => in_requested_image,
-               })
+                  "in_bo_node_name" => "in_bo_node_name",
+                  "in_node_ids" => "in_node_ids",
+                  "in_requested_image" => "in_requested_image",
+               }, _b:binding)
 
 
             else
                super.if_esf_provider_access_i_retrieve_root_node_id(_i:{
                   "out_links" => out_links,
                }, _e:{
-                  "in_bo_node_name" => in_bo_node_name,
-                  "in_node_ids" => in_node_ids,
-                  "in_requested_image" => in_requested_image,
-               })
+                  "in_bo_node_name" => "in_bo_node_name",
+                  "in_node_ids" => "in_node_ids",
+                  "in_requested_image" => "in_requested_image",
+               }, _b:binding)
 
 
 
@@ -277,10 +285,11 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -289,14 +298,16 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
    #     redefinition .
    #
 
-   def if_esf_provider_action_i_execute_action(_i:nil,_e:nil)
+   def if_esf_provider_action_i_execute_action(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -337,7 +348,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
          "in_referencing_node_elements" => in_referencing_node_elements,
          "in_change_handler" => in_change_handler,
          "in_message_handler" => in_message_handler,
-      })
+      }, _b:binding)
 
 
 
@@ -346,10 +357,11 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -358,24 +370,26 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
    #     redefinition .
    #
 
-   def if_esf_provider_init_i_init(_i:nil,_e:nil)
+   def if_esf_provider_init_i_init(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
 
       super.if_esf_provider_init_i_init(_e:{
-         "in_provider_context" => in_provider_context,
-         "in_bo_name" => in_bo_name,
+         "in_provider_context" => "in_provider_context",
+         "in_bo_name" => "in_bo_name",
       }, _c:{
          "inout_preferred_trx_pattern" => inout_preferred_trx_pattern,
-      })
+      }, _b:binding)
 
       @mo_provider_context = in_provider_context
 
@@ -386,10 +400,11 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -397,21 +412,23 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
    # methods IF_ESF_PROVIDER_TRANSACT_CTRL~ON_AFTER_SAVE_TRANSACTION
    #     redefinition .
 
-   def if_esf_provider_transact_ctrl_i_on_after_save_transaction(_i:nil,_e:nil)
+   def if_esf_provider_transact_ctrl_i_on_after_save_transaction(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
 
       super.if_esf_provider_transact_ctrl_i_on_after_save_transaction(_i:{
          "in_rejected" => in_rejected,
-      })
+      }, _b:binding)
 
       #* remove last action for next save cycle
 
@@ -423,10 +440,11 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -436,14 +454,16 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
    #       !IV_BO_NODE_NAME type STRING .
    #
 
-   def add_node_for_callback_rrnid(iv_bo_node_name:nil,_i:nil,_e:nil)
+   def add_node_for_callback_rrnid(iv_bo_node_name:nil,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -465,10 +485,11 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -478,14 +499,16 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
    #       !IV_BO_NODE_NAME type STRING .
    #
 
-   def add_node_for_heuristic_rrnid(iv_bo_node_name:nil,_i:nil,_e:nil)
+   def add_node_for_heuristic_rrnid(iv_bo_node_name:nil,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -507,10 +530,11 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -522,14 +546,16 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
    #       !IV_CORE_BO_NODE_NAME type STRING .
    #
 
-   def add_node_for_delegation_rrnid(iv_core_bo_node_name:nil,_i:nil,_e:nil)
+   def add_node_for_delegation_rrnid(iv_core_bo_node_name:nil,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -559,10 +585,11 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -578,14 +605,16 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
    #       CX_ESF_CORE_SERVICE .
    #
 
-   def callback_rrnid(in_requested_image:nil,_i:nil,_e:nil)
+   def callback_rrnid(in_requested_image:nil,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -598,24 +627,27 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
    end
    # methods DISABLE_RETRIEVE_CHECK .
 
-   def disable_retrieve_check(_i:nil,_e:nil)
+   def disable_retrieve_check(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -629,10 +661,11 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -644,14 +677,16 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
    #       value(RV_RESULT) type BOOLEAN .
    #
 
-   def use_callback_for_rrnid(iv_bo_node_name:nil,_i:nil,_e:nil)
+   def use_callback_for_rrnid(iv_bo_node_name:nil,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -677,10 +712,11 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -692,14 +728,16 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
    #       value(RV_RESULT) type BOOLEAN .
    #
 
-   def use_delegation_for_rrnid(iv_bo_node_name:nil,_i:nil,_e:nil)
+   def use_delegation_for_rrnid(iv_bo_node_name:nil,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -725,10 +763,11 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -740,14 +779,16 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
    #       value(RV_RESULT) type BOOLEAN .
    #
 
-   def use_heuristic_for_rrnid(iv_bo_node_name:nil,_i:nil,_e:nil)
+   def use_heuristic_for_rrnid(iv_bo_node_name:nil,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -773,10 +814,11 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -792,14 +834,16 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
    #       CX_ESF_CORE_SERVICE .
    #
 
-   def heuristic_rrnid(in_requested_image:nil,_i:nil,_e:nil)
+   def heuristic_rrnid(in_requested_image:nil,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -808,7 +852,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
       lv_node_id_determined = nil # boolean.new
 
-      ls_origin_location = nil # Cm_esi_root::Ty_message_location.new
+      ls_origin_location = nil # Cm_esi_root::ty_message_location.new
 
       lo_message = nil # cm_a1fia_common_eco.new
 
@@ -824,12 +868,12 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
       lt_requested_attributes = nil # sesf_string_tab.new
 
 
-      lv_root_node_name = if_a1s_service_provider_eco_i_get_bo_root_node_name()
+      lv_root_node_name = if_a1s_service_provider_eco_i_get_bo_root_node_name(_b:binding)
 
-      lv_bo_name = if_a1s_service_provider_eco_i_get_bo_name()
+      lv_bo_name = if_a1s_service_provider_eco_i_get_bo_name(_b:binding)
 
       if in_bo_node_name == lv_root_node_name
-         lrt_core_bo_out_data = @mo_provider_context.get_lcp_facade().get_bo_node_table_container(in_bo_name:lv_bo_name, in_bo_node_name:lv_root_node_name)
+         lrt_core_bo_out_data = @mo_provider_context.get_lcp_facade(_b:binding).get_bo_node_table_container(in_bo_name:lv_bo_name, in_bo_node_name:lv_root_node_name)
 
 
 
@@ -841,13 +885,13 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
          @mo_adaptation_handler.if_esf_lcp_i_retrieve(_i:{
             "in_bo_node_name" => in_bo_node_name,
             "in_node_ids" => in_node_ids,
-            "in_edit_mode" => If_esf_types::Co_read_only,
+            "in_edit_mode" => If_esf_types::co_read_only,
             "in_requested_image" => in_requested_image,
             "in_requested_attributes" => lt_requested_attributes,
          }, _e:{
             "out_failed_node_ids" => lt_out_failed_node_id,
             "out_data" => lt_core_bo_out_data,
-         })
+         }, _b:binding)
 
 
 
@@ -866,7 +910,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
          @mo_adaptation_handler.get_first_retrved_root_node_id(_i:{
             "ev_first_ret_data_root_node_id" => lv_node_id,
             "ev_first_root_id_determined" => lv_node_id_determined,
-         })
+         }, _b:binding)
 
          if lv_node_id_determined == abap_false || ( lv_node_id.isINITIAL() && lv_node_id_determined == abap_true )
             ls_origin_location.bo_name = lv_bo_name
@@ -916,10 +960,11 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
@@ -934,14 +979,16 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
    #     raising
    #       CX_ESF_CORE_SERVICE .
 
-   def delegation_rrnid(in_requested_image:nil,_i:nil,_e:nil)
+   def delegation_rrnid(in_requested_image:nil,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -958,7 +1005,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
          "in_requested_image" => in_requested_image,
       }, _e:{
          "out_links" => out_links,
-      })
+      }, _b:binding)
 
 
 
@@ -967,23 +1014,26 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
    end
 
-   def if_a1fia_common_eco_i_check_root_node_existence(_i:nil,_e:nil)
+   def if_a1fia_common_eco_i_check_root_node_existence(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -994,12 +1044,12 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
       abap("INSERT iv_node_id INTO TABLE lt_node_id")
       if_esf_provider_access_i_retrieve_root_node_id(_i:{
-         "in_bo_node_name" => if_a1s_service_provider_eco_i_get_bo_root_node_name(),
+         "in_bo_node_name" => if_a1s_service_provider_eco_i_get_bo_root_node_name(_b:binding),
          "in_node_ids" => lt_node_id,
          "in_requested_image" => iv_requested_image,
       }, _e:{
          "out_links" => lt_out_links,
-      })
+      }, _b:binding)
 
       if lines > 0
          rv_exists = abap_true
@@ -1021,23 +1071,26 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
    end
 
-   def if_a1fia_common_eco_i_get_last_executed_action(_i:nil,_e:nil)
+   def if_a1fia_common_eco_i_get_last_executed_action(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -1051,23 +1104,26 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
    end
 
-   def if_a1fia_common_eco_i_raise_stop_save_message(_i:nil,_e:nil)
+   def if_a1fia_common_eco_i_raise_stop_save_message(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -1078,11 +1134,11 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
       ls_msg = nil # symsg.new
 
-      ls_orig_loc = nil # Cm_esi_root::Ty_message_location.new
+      ls_orig_loc = nil # Cm_esi_root::ty_message_location.new
 
-      lt_out_messages = nil # Cm_esi_root::Tt_esi_root.new
+      lt_out_messages = nil # Cm_esi_root::tt_esi_root.new
 
-      ls_orig_loc.bo_name = if_a1s_service_provider_eco_i_get_bo_name()
+      ls_orig_loc.bo_name = if_a1s_service_provider_eco_i_get_bo_name(_b:binding)
 
       ls_msg.msgno = '103'
 
@@ -1090,13 +1146,13 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
       ls_msg.msgid = 'A1FIA_ACCOUNTING'
 
-      lo_message = Cm_esi_t100_adapter::Create(symptom:Cl_esi_message_symptom_code::Co_bo_inconsistency, lifetime:Cm_esi_root::Co_lifetime_transition, origin_location:ls_orig_loc, symsg:ls_msg)
+      lo_message = Cm_esi_t100_adapter::create(symptom:Cl_esi_message_symptom_code::co_bo_inconsistency, lifetime:Cm_esi_root::co_lifetime_transition, origin_location:ls_orig_loc, symsg:ls_msg)
 
       append(from:lo_message, to:lt_out_messages)
       begin
          io_message_handler.add_messages(_i:{
             "in_messages" => lt_out_messages,
-         })
+         }, _b:binding)
 
 
       rescue cx_esf_message_handler=>lo_ex_message
@@ -1111,23 +1167,26 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
    end
 
-   def if_a1fia_common_eco_i_source_to_target_mapping(_i:nil,_e:nil)
+   def if_a1fia_common_eco_i_source_to_target_mapping(_i:nil,_e:nil,_b:nil)
 
 
       ###################################
       # setup importing parameter
       #   _i.each{|k,v| eval("#{k} = #{v}")} if _i
       #  _i.each{|k,v| v = "\"#{v}\"" if v.is_a?(String);eval("#{k} = #{v}")} if _i
-      var(_i) if _i
+      #var(_i) if _i
+      var(_i) if _i;var(_e) if _e;_i.each{|k,v|eval("#{k}=v");varset(k, v)} if _i
+      _e.each{|k,v|v=_b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)} if _e
       ###################################
 
 
@@ -1148,17 +1207,18 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
       ###################################
       # setup exporting
-      _exp = {}
-      _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
+      #_exp = {}
+      # _e.each{|k,v| eval("_exp['#{v}'] = #{k}")} if _e
 
-      return {:exp=>_exp}
+      #return {:exp=>_exp}
+      _e.each{|k,v|_b.local_variable_set(v.to_sym, eval("#{k}"))} if _e && _b
       ###################################
 
 
    end
 
    @mo_provider_context = nil # if_esf_provider_context.new
-   @ms_execute_action_parameter = nil # If_a1fia_common_eco::Ty_execute_action_parameter.new
+   @ms_execute_action_parameter = nil # If_a1fia_common_eco::ty_execute_action_parameter.new
    @mt_lcp_bo_node_name = nil # tt_lcp_bo_node_name.new
    @mt_callback_bo_node_name = nil # tt_heuristic_bo_node_name.new
    @mt_heuristic_bo_node_name = nil # tt_heuristic_bo_node_name.new
