@@ -139,8 +139,7 @@ end
 
 a(1, x:0, y:1)
 
-
-def t(_i:nil,_e:nil, _b:nil)
+def __in__(_i:nil,_e:nil, _b:nil)
     var(_i) if _i
     var(_e) if _e
     _e.each{|k,v|
@@ -154,7 +153,25 @@ def t(_i:nil,_e:nil, _b:nil)
         p "v2:#{v2}"
         p "out:#{k}=#{eval("k")}"
     }
-    p "v2:#{v2}" 
+end
+def __out__
+end
+def t(_i:nil,_e:nil, _b:nil)
+    __in__(_i:_i,_e:_e, _b:_b)
+    #var(_i) if _i
+    #var(_e) if _e
+    #_e.each{|k,v|
+    #    p "v:#{v}"
+    #    v = _b.local_variable_get(v.to_sym)
+    #    p "v:#{v}"
+    #    p "#{k}=v"
+    #    eval("#{k}=v")
+    #    eval("v2=v")
+    #    varset(k, v)
+    #    p "v2:#{v2}"
+    #    p "out:#{k}=#{eval("k")}"
+    #}
+    #p "v2:#{v2}" 
     v1 + 1
     v2 = v1 + 1
    
