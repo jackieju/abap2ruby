@@ -6,6 +6,23 @@
 #    include variable_name
 #    instance_variable_set("@#{variable_name}", nil)
 #end
+
+#class V
+#    def create_method( name, &block )
+#        self.class.send( :define_method, name, &block )
+#    end
+#
+#    def create_attr( name )
+#        create_method( "#{name}=".to_sym ) { |val| 
+#            instance_variable_set( "@__" + name, val)
+#        }
+#
+#        create_method( name.to_sym ) { 
+#            instance_variable_get( "@__" + name ) 
+#        }
+#    end
+#end
+
 def var(hash)
     hash.each do |n, v|
       self.class.define_method(n) do
@@ -13,6 +30,19 @@ def var(hash)
       end
       instance_variable_set("@__#{n}", v)
     end
+end
+def varset(n,v)
+    instance_variable_set("@__#{n}", v)
+end
+
+def var1(hash)
+    hash.each{|k,v|
+        self.class.send( :define_method, "#{k}=".to_sym){|val| 
+            instance_variable_set( "@__" + k, v)}
+            self.class.send( :define_method, "#{k}".to_sym){
+                instance_variable_get( "@__" + k ) 
+                }
+    }
 end
 
 # util
@@ -110,7 +140,42 @@ end
 a(1, x:0, y:1)
 
 
+def t(_i:nil,_e:nil, _b:nil)
+    var(_i) if _i
+    var(_e) if _e
+    _e.each{|k,v|
+        p "v:#{v}"
+        v = _b.local_variable_get(v.to_sym)
+        p "v:#{v}"
+        p "#{k}=v"
+        eval("#{k}=v")
+        eval("v2=v")
+        varset(k, v)
+        p "v2:#{v2}"
+        p "out:#{k}=#{eval("k")}"
+    }
+    p "v2:#{v2}" 
+    v1 + 1
+    v2 = v1 + 1
+   
+    _exp = {}
+    _e.each{|k,v| 
+     #   p "_exp['#{v}'] = #{k}"
+     #   eval("#{v} = #{k}")
+     _b.local_variable_set(v.to_sym, eval("#{k}")) if v
+        } if _e && _b
+    return {:exp=>_exp}
+end
+#
+#var({"d1"=>3})
+#var({"d2"=>4})
+#
+#d1 +1
+#p "--->#{d1}"
 
+v2 = 999
+t(_i:{"v1"=>1}, _e:{"v2"=>"v2"}, _b:binding)
+p v2
 
 =begin
 def test1(v1, importing, exporting)

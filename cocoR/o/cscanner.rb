@@ -1319,6 +1319,10 @@ class CScanner < CRScanner
             return C_LOOPSym
          end
 
+         if EqualStr("LENGTH")
+            return C_LENGTHSym
+         end
+
          if EqualStr("LOB")
             return C_LOBSym
          end
@@ -2315,6 +2319,10 @@ class CScanner < CRScanner
 
 
       when 'T'
+         if EqualStr("TYPE-POOL")
+            return C_TYPEMinusPOOLSym
+         end
+
          if EqualStr("TABLE")
             return C_TABLESym
          end
@@ -2441,10 +2449,6 @@ class CScanner < CRScanner
 
          if EqualStr("TRUNCATE")
             return C_TRUNCATESym
-         end
-
-         if EqualStr("TYPE-POOL")
-            return C_TYPEMinusPOOLSym
          end
 
          if EqualStr("TYPE-POOLS")

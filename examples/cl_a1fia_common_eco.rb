@@ -64,7 +64,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
 
 
-      lt_message = nil # cm_esi_root::Tt_esi_root.new
+      lt_message = nil # Cm_esi_root::Tt_esi_root.new
 
       lx_esf_core_service = nil # cx_esf_core_service.new
 
@@ -88,7 +88,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
             }, _e:{
                "in_bo_node_name" => in_bo_node_name,
                "in_node_ids" => in_node_ids,
-               "in_check_scope" => if_esf_types::Co_check_scope_substructure,
+               "in_check_scope" => If_esf_types::Co_check_scope_substructure,
             })
 
 
@@ -808,7 +808,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
       lv_node_id_determined = nil # boolean.new
 
-      ls_origin_location = nil # cm_esi_root::Ty_message_location.new
+      ls_origin_location = nil # Cm_esi_root::Ty_message_location.new
 
       lo_message = nil # cm_a1fia_common_eco.new
 
@@ -841,7 +841,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
          @mo_adaptation_handler.if_esf_lcp_i_retrieve(_i:{
             "in_bo_node_name" => in_bo_node_name,
             "in_node_ids" => in_node_ids,
-            "in_edit_mode" => if_esf_types::Co_read_only,
+            "in_edit_mode" => If_esf_types::Co_read_only,
             "in_requested_image" => in_requested_image,
             "in_requested_attributes" => lt_requested_attributes,
          }, _e:{
@@ -1078,9 +1078,9 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
       ls_msg = nil # symsg.new
 
-      ls_orig_loc = nil # cm_esi_root::Ty_message_location.new
+      ls_orig_loc = nil # Cm_esi_root::Ty_message_location.new
 
-      lt_out_messages = nil # cm_esi_root::Tt_esi_root.new
+      lt_out_messages = nil # Cm_esi_root::Tt_esi_root.new
 
       ls_orig_loc.bo_name = if_a1s_service_provider_eco_i_get_bo_name()
 
@@ -1090,7 +1090,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
       ls_msg.msgid = 'A1FIA_ACCOUNTING'
 
-      lo_message = cm_esi_t100_adapter::Create(symptom:cl_esi_message_symptom_code::Co_bo_inconsistency, lifetime:cm_esi_root::Co_lifetime_transition, origin_location:ls_orig_loc, symsg:ls_msg)
+      lo_message = Cm_esi_t100_adapter::Create(symptom:Cl_esi_message_symptom_code::Co_bo_inconsistency, lifetime:Cm_esi_root::Co_lifetime_transition, origin_location:ls_orig_loc, symsg:ls_msg)
 
       append(from:lo_message, to:lt_out_messages)
       begin
@@ -1158,7 +1158,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
    end
 
    @mo_provider_context = nil # if_esf_provider_context.new
-   @ms_execute_action_parameter = nil # if_a1fia_common_eco::Ty_execute_action_parameter.new
+   @ms_execute_action_parameter = nil # If_a1fia_common_eco::Ty_execute_action_parameter.new
    @mt_lcp_bo_node_name = nil # tt_lcp_bo_node_name.new
    @mt_callback_bo_node_name = nil # tt_heuristic_bo_node_name.new
    @mt_heuristic_bo_node_name = nil # tt_heuristic_bo_node_name.new

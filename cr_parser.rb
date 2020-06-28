@@ -1,5 +1,6 @@
 load 'log.rb'
 def to_ruby_const(s)
+    p "33333:#{s}", 20
     a = s[0].upcase
     return a if s.size ==1
     return "#{a}#{s[1..s.size-1]}"
@@ -100,6 +101,7 @@ class ModuleDef < Scope
     end
     def add_require(n)
         @require.push(n) if @require.include?(n) == false
+        p "added require #{n} to #{name} #{class_name}"
     end
     def add_src(src)
         @src = "" if !@src

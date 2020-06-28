@@ -84,7 +84,21 @@ PRODUCTIONS
                               .)
     .
     
-    C                  =      (.in_scope(@root_class).){ ReportDef | FunctionDef | ClassStatement | stINTERFACE}.
+    C                  =      (.in_scope(@root_class).){ ReportDef | FunctionDef | ClassStatement | stINTERFACE | stTYPE_POOL}.
+    
+    stTYPE_POOL = "TYPE-POOL" identifier (.
+        n = prevString
+        clsdef = ModuleDef.new(n)
+        current_ruby_scope.add_module(clsdef)
+        clsdef.add_src("#{n}=#{to_ruby_const(n)}\nmodule_function\n")
+    .)     "." 
+
+(.in_scope(clsdef).)
+  {
+      stTYPES |  VariableDefineStatement 
+  } 
+  (.out_scope.)
+     .
     
     ReportDef          = "REPORT" (.  fn_name=curString() .) identifier  (. src("") .) 
             {
@@ -560,7 +574,7 @@ LoopStatement = "LOOP" (.params = {};stmts ="".)
 TypeDes = "TYPE"  
             (
                          Expression  (.ret = VarType.new(lus.strip).) (
-                                             [identifier(.is('LENGTH').) number] ["DECIMALS" number] 
+                                             ["LENGTH" Expression] ["DECIMALS" number] 
                                          |
                                               ( "READER"|"LOCATOR"|"LOB" "HANDLE" )
                                          |
@@ -583,7 +597,7 @@ TypeDes = "TYPE"
                                   |
                                       [("UNIQUE"|"NON-UNIQUE")] ["HASHED"|"SORTED"]
                                       (
-                                            "KEY" ["PRIMARY_KEY" ["ALIAS" identifier]|identifier] ["COMPONENTS" identifier {identifier}]
+                                            "KEY" ["PRIMARY_KEY" ["ALIAS" Name] "COMPONENTS"] Name {Name}
                                           | 
                                               "DEFAULT" "KEY" 
                                       )
@@ -1894,7 +1908,7 @@ stINTERFACE = "INTERFACE" identifier (.
 (.in_scope(clsdef).)
   {
       stTYPES | stINTERFACES | stINTERFACE | VariableDefineStatement | stINCLUDE | stALIASES 
-      | MethodsStatement | ClassStatement
+      | MethodsStatement | ClassStatement | stTYPE_POOLS
   } 
   (.out_scope.)
 "ENDINTERFACE"  |   ("DEFERRED" ["PUBLIC"] | "LOAD" (.
@@ -2204,9 +2218,18 @@ stTRANSLATE = "TRANSLATE" identifier ("TO" ("UPPER"|"LOWER") "CASE")
 
 stTRUNCATE = "TRUNCATE" "DATASET" identifier "AT" ("CURRENT" "POSITION")|("POSITION" number)".".
 
-stTYPE_POOL = "TYPE-POOL" identifier ".".
 
-stTYPE_POOLS = "TYPE-POOLS" identifier ".".
+
+stTYPE_POOLS = "TYPE-POOLS" identifier (.
+                                                        n = prevString
+                                                        src("include #{to_ruby_const(n)}")
+                                                        cp = current_scope
+                                                        out_scope
+                                                        load_file("#{n}")
+                                                        cp.add_require("#{n.downcase}.rb")
+                                                        in_scope(cp)
+    
+    .)".".
 
 stULINE = "ULINE" (["AT"] ["/"] [number] [ "("number")"]) ["NO-GAP"]".".
 
@@ -2283,7 +2306,7 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
 
   PostFixExp           =  (.no_space;r="".) Primary (. 
                                                       pri = lus
-                                                      if GetNext() == C_EqualGreaterSym
+                                                      if @sym == C_EqualGreaterSym
                                                           pri = to_ruby_const(pri)
                                                       end
                                                       r += pri
@@ -2299,7 +2322,7 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
                         /*  | "~" identifier
                           | "-" identifier*/
                           | "->" identifier (.r+=".#{prevString}".)
-                          | "=>" identifier  (.r+="::#{to_ruby_const(prevString)}".)
+                          | "=>" identifier  (.r+="::#{prevString}".)
                           | "++" (.r+="++".)
                           | "--"(.r+="--".)
                         /*  | "IS"(.re(".is(");br = true.) ["NOT"(.back_src();re(".isnot(");_not=true.)] ["INITIAL"(.back_src();if _not 
@@ -2422,7 +2445,8 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
                               
                               
   AllowedKeywordsExclude = "DATA" . 
-  AllowedKeywords = "DATA" | "MESSAGE" | "END" | "CREATE" | "KEY" |"ID"|"VALUE"|"DEFAULT". 
+  AllowedKeywords = "DATA" | "MESSAGE" | "END" | "CREATE" | "KEY" |"ID"|"VALUE"|"DEFAULT"|"LENGTH"|"DECIMALS"|"BOXED"|"TYPE"
+                          |"SUFFIX" | "COMPONENTS" | "PARAMETERS" |"EXCEPTIONS" | "KIND" |"DELETE" | "ACTIVATION" | "STANDARD". 
   FunctionCall        =  "(" (.stop_autosrc;no_comments.)
   (
        {

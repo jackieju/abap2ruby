@@ -209,6 +209,17 @@ end of CO_BO_NODE .
     
 endinterface.
 HERE
+
+s9=<<HERE
+REPORT TEST.
+    CASE lv_affected_core_node.
+      WHEN if_fia_acc_adjustment_run=>co_bo_node-sel_by_company.
+    ENDCASE          .
+HERE
+s10=<<HERE
+REPORT T.
+ mo_adaptation_handler = cl_bsa_factory=>get_adaptation_handler_for_co().
+HERE
 $ar = []
 #def dump_testcase
     p "==>dump_testcase"

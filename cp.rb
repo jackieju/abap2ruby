@@ -16,11 +16,14 @@ def load_file(fname)
         
     else
         dir = File.dirname($g_cur_parse_file)
+        
         begin
+            p "load file:#{dir+"/"+fname}"
+            
             parse_file(dir+"/"+fname, $preprocessor, false)
             @included_files[fname] = 1
         rescue Exception=>e
-            p "load file failed. #{fname}, #{pe(e)}"
+            p "load file failed. #{dir+"/"+fname}, #{pe(e)}"
         end
     end
 end

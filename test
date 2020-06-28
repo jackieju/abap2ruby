@@ -1,5 +1,6 @@
 set -e
 
+ruby translate.rb examples/CL_BSA_FACTORY.abap -d examples
 ruby translate.rb examples/CL_A1FIA_COMMON_ECO.abap -d examples
 ruby translate.rb examples/CL_A1S_SERVICE_PROVIDER_ECO.abap -d examples
 ruby translate.rb examples/CL_BSA_SERVICE_PROVIDER_CO.abap -d examples
