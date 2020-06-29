@@ -555,7 +555,7 @@ class CRRParser < CRParser
 # p "Get0:@sym=#{@sym}, len=#{@scanner.nextSym.len}, nextSym=#{@scanner.nextSym.sym}, string=#{@scanner.GetSymString(@scanner.nextSym)}, pos=#{@scanner.buffPos}, @ch=#{@scanner.ch}"
             @prev_sym = @sym
             @sym = @scanner.Get(ignore_crlf)
- # p "Get1:@sym=#{@sym}, len=#{@scanner.nextSym.len}, nextSym=#{@scanner.nextSym.sym}, string=#{@scanner.GetSymString(@scanner.nextSym)}, pos=#{@scanner.buffPos}, @ch=#{@scanner.ch}"
+  p "Get1:@sym=#{@sym}, len=#{@scanner.nextSym.len}, nextSym=#{@scanner.nextSym.sym}, string=#{@scanner.GetSymString(@scanner.nextSym)}, pos=#{@scanner.buffPos}, @ch=#{@scanner.ch}"
             # p "Get(): sym = #{@sym}, line #{@scanner.nextSym.line} col #{@scanner.nextSym.col} pos #{@scanner.nextSym.pos} sym #{SYMS[@sym]}"
             # p "sym1=#{@sym}"
             # pp("hhhh", 30) if @sym==9
@@ -631,7 +631,7 @@ class CRRParser < CRParser
                 end
             end
         end while (@sym > C_MAXT || (self.class.to_s!= "Preprocessor" &&ignoreSym?(@sym) ) )
-       #  p "get()2: #{@sym}, #{curString}"
+         p "get()2: #{@sym}, #{curString}"
         # p "Get()2 #{@scanner.nextSym.sym}, line #{@scanner.nextSym.line}, col #{@scanner.nextSym.col}, value #{curString()}"
         # p("Get()3:#{@sym}, #{curString()}, line #{curLine}", 20)
         return @scanner.nextSym.sym

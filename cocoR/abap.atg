@@ -1015,7 +1015,7 @@ stREAD = "READ"
                          
                   
                  | 
-                     "INDEX" number (.params["index"]=prevString.)["USING" "KEY" ["("]identifier[")"] ] 
+                     "INDEX" Name (.params["index"]=lus.)["USING" "KEY" ["("]identifier[")"] ] 
                )]
                
                [

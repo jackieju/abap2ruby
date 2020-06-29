@@ -4845,9 +4845,9 @@ class CParser < CRRParser
                   else
                      if @sym==C_INDEXSym
                         Get()
-                        Expect(C_numberSym)
+                        Name()
 
-                        params["index"]=prevString;
+                        params["index"]=lus;
 
                         if @sym==C_USINGSym
                            Get()

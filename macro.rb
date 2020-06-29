@@ -29,6 +29,8 @@ class Preprocessor < PreParser
             @linestart = false
         end
     end
+    
+
     def Preprocess(include_predined_file = true)
         if $g_cur_parse_file
             @file_save = "pre.part.#{$g_cur_parse_file.split("/").last}.#{Time.now.to_i}" 
@@ -224,12 +226,12 @@ class Preprocessor < PreParser
                 
                 pstart = @scanner.nextSym.pos
                 while @sym != C_PointSym && @sym != C_ColonSym && @sym != C_CRLF_Sym && @sym != C_CommaSym
-                    Get()
+                    PreParser.instance_method(:Get).bind(self).call(false)
                     p "==>#{@sym}, #{curString}"
                 end
                 p "before delete3:#{@scanner.nextSym.pos}, #{@scanner.buffer[@scanner.nextSym.pos..@scanner.nextSym.pos+10]}", 10
                 
-                @scanner.delete_in_line(pstart, @scanner.nextSym.pos-1)
+                @scanner.delete_in_line(pstart, @scanner.nextSym.pos)
                  p "after delete:#{@scanner.buffPos}, #{@scanner.buffer[@scanner.buffPos-5..@scanner.buffPos+15]}", 10
                 #  Get()
                #  p "get:#{@scanner.nextSym.inspect}, #{@scanner.ch} #{curString}"

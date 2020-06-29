@@ -221,6 +221,11 @@ REPORT T.
  mo_adaptation_handler = cl_bsa_factory=>get_adaptation_handler_for_co().
 HERE
 s11=<<HERE
+CLASS ABC IMPLEMENTATION.
+METHOD fill_eco_assoc_cb_buffer. ##NEEDED
+a
+ENDMETHOD.
+ENDCLASS.
 HERE
 $ar = []
 #def dump_testcase

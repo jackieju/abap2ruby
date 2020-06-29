@@ -654,7 +654,9 @@ public
         end
     end
     
-    def delete_in_line(from, to) # delete content from pos(from) to pos(to)(not include to)
+    # delete content from pos(from) to pos(to)(not include to)
+    # e.g.    "abcdef" from:2, to:5, result:"abf"
+    def delete_in_line(from, to) 
         __t = Time.now.to_f
         
         p ("delete_in_line:from #{from}(#{buffer[from..from+5]}), #{to}(#{buffer[to..to+5]}), #{@buffPos}"), 10

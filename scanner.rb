@@ -1421,9 +1421,11 @@ public
                    if !ignore_crlf && ( @ch.to_byte == 13|| ch.to_byte == 10)
                        p "crlf:#{@ch.to_byte}, pos #{@buffPos}"
                         Scan_NextCh()
+                        nextSym.len += 1
                        return C_CRLF_Sym
                    end
                    Scan_NextCh()
+                   nextSym.len += 1
                     #p "get31:#{@ch}, #{@buffPos}"
                    return C_EOF_Sym if @ch == nil 
            end
@@ -1443,16 +1445,20 @@ public
    end
    
    def Get(ignore_crlf=true)
+       @currSym = nextSym.clone
+      
+       nextSym.init(0, @currLine, @currCol - 1, @buffPos, 0)
+       nextSym.len  = 0
+       
        # int state, ctx
        r = skip(ignore_crlf, false)
-       return r if r
-       
+     #  p "skip return #{r}"
+        return r if r
+
+        nextSym.init(0, @currLine, @currCol - 1, @buffPos, 0)
+        nextSym.len  = 0
 
 
-          @currSym = nextSym.clone
-         
-          nextSym.init(0, @currLine, @currCol - 1, @buffPos, 0)
-          nextSym.len  = 0
            ctx = 0
          #   p "==>>>check comments"
            if Comment()==1
