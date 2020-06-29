@@ -684,8 +684,12 @@ class CRRParser < CRParser
         ar = method.split(".")
         
         if (ar.size >1)
-         
-            clsdef = find_class(ar[0])[:v]
+            c = find_var(ar[0])
+            if c && c.type
+                
+              #  clsdef = find_class(ar[0])[:v]
+               clsdef = find_class(c.type)[:v]
+            end
         else
             clsdef = @root_class
         end

@@ -108,7 +108,7 @@ class ModuleDef < Scope
         @src += src
     end
     def default_method_head
-        "(_i:nil,_e:nil,_b:nil)"
+        "(*_a,_i:nil,_e:nil,_b:nil)"
     end
     # head: content in () in ruby code, including ()
     # will change it with new value if method already exists

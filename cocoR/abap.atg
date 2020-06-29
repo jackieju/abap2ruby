@@ -1006,26 +1006,29 @@ stREAD = "READ"
        | /* READ TABLE itab*/
        "TABLE" (.fn="read_table".)Name (.params["id"]=lus.)(
            {
-           [(
+               [(
             
-                ("FROM" identifier (.params["from"]=prevString.)["USING" "KEY" ["("] identifier [")"]]) 
-             |
-                  "WITH" ["TABLE"] "KEY" 
-                  ["("]identifier[")"] ("COMPONENTS" | "=" Expression ){ ["("]identifier[")"] "=" Expression } ["BINARY" "SEARCH"]
+                    ("FROM" identifier (.params["from"]=prevString.)["USING" "KEY" ["("] identifier [")"]]) 
+                 |
+                      "WITH" ["TABLE"] "KEY" 
+                      ["("]identifier[")"] ("COMPONENTS" | "=" Expression ){ ["("]identifier[")"] "=" Expression } 
                          
                   
-             | 
-                 "INDEX" number (.params["index"]=prevString.)["USING" "KEY" ["("]identifier[")"] ] 
-          )]
-          [
-            ("INTO" Var (.params["into"]=lus.)
-              ["COMPARING" (  "ALL" "FIELDS" | "NO" "FIELDS" |identifier{identifier} )] 
-              ["TRANSPORTING" ( "ALL" "FIELDS"  | identifier{identifier} )]) 
-           |  "ASSIGNING" identifier ["CASTING"]  
-           |  "REFERENCE" "INTO" identifier 
-           | "TRANSPORTING" "NO" "FIELDS"
-           ]
-       }
+                 | 
+                     "INDEX" number (.params["index"]=prevString.)["USING" "KEY" ["("]identifier[")"] ] 
+               )]
+               
+               [
+                       
+                    ("INTO" Var (.params["into"]=lus.)
+                      ["COMPARING" (  "ALL" "FIELDS" | "NO" "FIELDS" |identifier{identifier} )] 
+                      ["TRANSPORTING" ( "ALL" "FIELDS"  | identifier{identifier} )]) 
+                   |  "ASSIGNING" Var ["CASTING"]  
+                   |  "REFERENCE" "INTO" identifier 
+                   | "TRANSPORTING" "NO" "FIELDS"
+                   | "BINARY" "SEARCH"
+               ]
+           }
     )
     |/* READ TEXTPOOL */
      "TEXTPOOL" identifier "INTO" identifier "LANGUAGE" identifier ) "."
@@ -1070,7 +1073,7 @@ stSUBMIT = "SUBMIT" (identifier|"("identifier")")
 stTRY = "TRY"  "." (. stmt_try="";stmt_catch="";.)
     {Statement(. stmt_try+=lus.)}
   {
-      "CATCH"  (.ar=[].)["BEFORE" "UNWIND"] {Name(.ar.push(lus).)} ["INTO" Var(.e=lus.)]"." 
+      "CATCH"  (.ar=[].)["BEFORE" "UNWIND"] {Name(.ar.push(to_ruby_const(lus)).)} ["INTO" Var(.e=lus.)]"." 
           {Statement(. stmt_catch+=lus.)}
   }
   
@@ -1309,10 +1312,10 @@ Typing = (
  .
          
           
-MethodsStatement =  ("METHODS" | "CLASS-METHODS") identifier["~"identifier] 
+MethodsStatement =  ("METHODS" | "CLASS-METHODS" (.static=true.)) identifier["~"identifier] 
 (.     
     fname = prevString
-      if current_scope.is_a?(ClassDef)
+      if current_scope.is_a?(ModuleDef)
           classdef = current_scope
          
       end
@@ -1321,11 +1324,12 @@ MethodsStatement =  ("METHODS" | "CLASS-METHODS") identifier["~"identifier]
         (
                 
                 "FOR" "TESTING" 
-            |   ["FINAL"] "REDEFINITION"
+            |  
+                ["FINAL"] "REDEFINITION"
             |   
                 ["DEFAULT" ("IGNORE"|"FAIL")] 
                 ["FOR" "EVENT" identifier "OF" identifier] 
-                [ "IMPORTING" { (.impar = [].)
+                [ "IMPORTING" (.impar = [].) { 
                                   ( 
                                           "VALUE" "(" identifier (.impar.push(prevString).)")" 
                                       |  
@@ -1364,7 +1368,7 @@ MethodsStatement =  ("METHODS" | "CLASS-METHODS") identifier["~"identifier]
      
       args = nil
       if impar
-           args = impar
+           args = impar.clone
           for i in 0..impar.size-1
            impar[i] += ":nil"
           end
@@ -1377,9 +1381,11 @@ MethodsStatement =  ("METHODS" | "CLASS-METHODS") identifier["~"identifier]
       impar.push("_b:nil")
       pars = impar.join(",")
       
-          if classdef
-             classdef.add_method(fname, "(#{pars})", [], nil ,"", {:doc=>doc,:import=>args})
-        end 
+       if classdef
+              dec = ""
+              dec = "static" if static
+             classdef.add_method(fname, "(*_a,#{pars})", [], nil , dec, {:doc=>doc,:import=>args})
+       end 
   .)
    . 
   
@@ -1570,8 +1576,12 @@ stCLEAR = "CLEAR" (.params={}.) Expression(.params[:id]=lus.) [ ("WITH" identifi
 
 stCLOSE = "CLOSE"(  "CURSOR" "@"identifier |  "DATASET" identifier ) ".".
 
-stCOLLECT = "COLLECT" identifier "INTO" identifier ( ["ASSIGNING" identifier ["CASTING"]] 
-                     | ["REFERENCE" "INTO" identifier] )".".
+stCOLLECT = "COLLECT" (.params={}.)Name(.params[:id]=lus.) "INTO" Name(.params[:into]=lus.) ( ["ASSIGNING" identifier ["CASTING"]] 
+                     | ["REFERENCE" "INTO" identifier] )"."
+                     (.
+                        src("collect(#{hash_to_params(params)})\n")
+                      .)
+                     .
 
 stCOMMIT = "COMMIT"(  "WORK" ["AND" "WAIT"] |  "CONNECTION" identifier ) ".".
 
@@ -2313,7 +2323,7 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
                                                       r += pri
                                                        .)
                          { "[" [Expression] "]" (.r+="[#{lus}]".)
-                          | FunctionCall (.
+                          | FunctionCall<r> (.
                               if r == "DATA"
                                  r = lus[1..lus.size-2]
                               else
@@ -2353,7 +2363,7 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
                            | "/" identifier {"/" identifier }*/
                               .
                               
-  Creator = identifier (.name=prevString.)[FunctionCall] (.src("#{name}.new#{lus}").).
+  Creator = identifier (.name=prevString.)[FunctionCall<name>] (.src("#{name}.new#{lus}").).
   
                               /* abap logicexp is conditional */
                             
@@ -2406,7 +2416,7 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
                                                                           end
                                                                           r += pri.)
                                                      { "[" [Expression] "]"
-                                                      | FunctionCall(.
+                                                      | FunctionCall<pri>(.
                                                           if pri == "DATA"
                                                               src(lus[1..lus.size-2])
                                                           else
@@ -2447,15 +2457,16 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
                               
   AllowedKeywordsExclude = "DATA" . 
   AllowedKeywords = "DATA" | "MESSAGE" | "END" | "CREATE" | "KEY" |"ID"|"VALUE"|"DEFAULT"|"LENGTH"|"DECIMALS"|"BOXED"|"TYPE"
-                          |"SUFFIX" | "COMPONENTS" | "PARAMETERS" |"EXCEPTIONS" | "KIND" |"DELETE" | "ACTIVATION" | "STANDARD". 
-  FunctionCall        =  "(" (.stop_autosrc;no_comments.)
+                          |"SUFFIX" | "COMPONENTS" | "PARAMETERS" |"EXCEPTIONS" | "KIND" |"DELETE" | "ACTIVATION" | "STANDARD" |"SORTED". 
+  FunctionCall<A *name>        =  "(" (.stop_autosrc;no_comments.)
   (
        {
           ["EXPORTING" (. exporting = "{\n".){ identifier(.idn = prevString.) "=" Expression (.exporting+="\"#{idn}\" => \"#{lus}\",\n".)} (. exporting += "}".)  ] 
           ["IMPORTING" (. importing = "{\n".) { identifier(.idn = prevString.) "=" Expression (.importing+="\"#{idn}\" => #{lus},\n".)} (. importing += "}".)  ] 
           ["CHANGING" (. changing = "{\n".) { identifier(.idn = prevString.) "=" Expression (.changing+="\"#{idn}\" => #{lus},\n".)} (. changing += "}".)  ] 
           ["RECEIVING" (. receiving = "{\n".) { identifier(.idn = prevString.) "=" Expression (.receiving+="\"#{idn}\" => #{lus},\n".)} (. receiving += "}".)  ] 
-
+          ["EXCEPTIONS" (. exceptions = "{\n".) { identifier(.idn = prevString.) "=" Expression (.exceptions+="\"#{idn}\" => #{lus},\n".)} (. exceptions += "}".) ["OTHERS" "=" Expression ] ] 
+          
        }
        (.
            params= {}
@@ -2472,7 +2483,11 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
            if e.keys.size>0
                src("(#{hash_to_params(e)})")
            else
-               src("(#{s[0..s.size-2]})")
+               if name == "DATA"
+                  src("(#{s[0..s.size-2]})")
+              else
+                   src("(#{s[0..s.size-2]})")
+              end
            end
        .)
    ) ")"     

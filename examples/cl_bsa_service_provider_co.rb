@@ -9,7 +9,12 @@ class Cl_bsa_service_provider_co
    #         !in_change_handler TYPE REF TO if_esf_change_handler .
    #
 
-   def put_change_notifs_into_handler(in_change_handler:nil,_i:nil,_e:nil,_b:nil)
+   def self.put_change_notifs_into_handler(*_a,in_change_notifications:nil,in_change_handler:nil,_i:nil,_e:nil,_b:nil)
+      in_change_notifications=in_change_handler=nil
+      if _a && _a.size>0
+         in_change_notifications=_a[0]
+         in_change_handler=_a[1] if _a.size>1
+      end
 
 
       ###################################
@@ -35,7 +40,7 @@ class Cl_bsa_service_provider_co
             }, _b:binding)
 
 
-         rescue cx_esf_change_handler=>lx_esf_change_handler
+         rescue Cx_esf_change_handler=>lx_esf_change_handler
 
          end
 
@@ -49,7 +54,7 @@ class Cl_bsa_service_provider_co
             }, _b:binding)
 
 
-         rescue cx_esf_change_handler=>lx_esf_change_handler
+         rescue Cx_esf_change_handler=>lx_esf_change_handler
 
          end
 
@@ -62,7 +67,7 @@ class Cl_bsa_service_provider_co
             }, _b:binding)
 
 
-         rescue cx_esf_change_handler=>lx_esf_change_handler
+         rescue Cx_esf_change_handler=>lx_esf_change_handler
 
          end
 
@@ -80,7 +85,7 @@ class Cl_bsa_service_provider_co
             }, _b:binding)
 
 
-         rescue cx_esf_change_handler=>lx_esf_change_handler
+         rescue Cx_esf_change_handler=>lx_esf_change_handler
 
          end
 
@@ -93,7 +98,7 @@ class Cl_bsa_service_provider_co
             }, _b:binding)
 
 
-         rescue cx_esf_change_handler=>lx_esf_change_handler
+         rescue Cx_esf_change_handler=>lx_esf_change_handler
 
          end
 
@@ -104,7 +109,7 @@ class Cl_bsa_service_provider_co
          }, _b:binding)
 
 
-      rescue cx_esf_sync_handler=>lx_esf_sync_handler
+      rescue Cx_esf_sync_handler=>lx_esf_sync_handler
          raise cx_fatal_exception.new
 
 
@@ -131,7 +136,12 @@ class Cl_bsa_service_provider_co
    #         !in_messages TYPE cm_esi_root=>tt_esi_root .
    #
 
-   def put_messages_into_handler(in_messages:nil,_i:nil,_e:nil,_b:nil)
+   def put_messages_into_handler(*_a,in_message_handler:nil,in_messages:nil,_i:nil,_e:nil,_b:nil)
+      in_message_handler=in_messages=nil
+      if _a && _a.size>0
+         in_message_handler=_a[0]
+         in_messages=_a[1] if _a.size>1
+      end
 
 
       ###################################
@@ -197,7 +207,7 @@ class Cl_bsa_service_provider_co
          end
 
 
-      rescue cx_esf_message_handler=>lx_exception
+      rescue Cx_esf_message_handler=>lx_exception
          raise cx_fatal_exception.new
 
 
@@ -223,7 +233,11 @@ class Cl_bsa_service_provider_co
    #         !ix_exception TYPE REF TO cx_root .
    #
 
-   def handle_error(ix_exception:nil,_i:nil,_e:nil,_b:nil)
+   def handle_error(*_a,ix_exception:nil,_i:nil,_e:nil,_b:nil)
+      ix_exception=nil
+      if _a && _a.size>0
+         ix_exception=_a[0]
+      end
 
 
       ###################################
@@ -262,7 +276,12 @@ class Cl_bsa_service_provider_co
    #         !in_sync_handler TYPE REF TO if_esf_buffer_sync_handler .
    #
 
-   def put_sync_notifs_into_handler(in_sync_handler:nil,_i:nil,_e:nil,_b:nil)
+   def put_sync_notifs_into_handler(*_a,in_sync_notifications:nil,in_sync_handler:nil,_i:nil,_e:nil,_b:nil)
+      in_sync_notifications=in_sync_handler=nil
+      if _a && _a.size>0
+         in_sync_notifications=_a[0]
+         in_sync_handler=_a[1] if _a.size>1
+      end
 
 
       ###################################
@@ -299,7 +318,11 @@ class Cl_bsa_service_provider_co
    #         !ix_exception TYPE REF TO cx_root .
    #
 
-   def handle_error_adaptation_hdlr(ix_exception:nil,_i:nil,_e:nil,_b:nil)
+   def handle_error_adaptation_hdlr(*_a,ix_exception:nil,_i:nil,_e:nil,_b:nil)
+      ix_exception=nil
+      if _a && _a.size>0
+         ix_exception=_a[0]
+      end
 
 
       ###################################
@@ -337,7 +360,11 @@ class Cl_bsa_service_provider_co
    #       CHANGING
    #         !ct_messages TYPE cm_esi_root=>tt_esi_root .
 
-   def append_pre_exceptions_to_msgs(io_exception:nil,_i:nil,_e:nil,_b:nil)
+   def append_pre_exceptions_to_msgs(*_a,io_exception:nil,_i:nil,_e:nil,_b:nil)
+      io_exception=nil
+      if _a && _a.size>0
+         io_exception=_a[0]
+      end
 
 
       ###################################
@@ -371,7 +398,7 @@ class Cl_bsa_service_provider_co
             }, _b:binding)
 
 
-         rescue cx_sy_conversion_no_number,cx_sy_conversion_overflow,cx_sy_move_cast_error=>lr_cast_exception
+         rescue Cx_sy_conversion_no_number,Cx_sy_conversion_overflow,Cx_sy_move_cast_error=>lr_cast_exception
             me.append_pre_exceptions_to_msgs(_e:{
                "io_exception" => "io_exception.previous",
             }, _c:{
@@ -402,7 +429,7 @@ class Cl_bsa_service_provider_co
 
    end
 
-   def if_esf_provider_access_i_check(_i:nil,_e:nil,_b:nil)
+   def if_esf_provider_access_i_check(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -434,7 +461,7 @@ class Cl_bsa_service_provider_co
          me.put_messages_into_handler(in_message_handler:in_message_handler, in_messages:lt_messages)
 
 
-      rescue cx_root=>lx_root
+      rescue Cx_root=>lx_root
          handle_error_adaptation_hdlr(ix_exception:lx_bsa_runtime)
 
          handle_error(ix_exception:lx_root)
@@ -458,7 +485,7 @@ class Cl_bsa_service_provider_co
 
    end
 
-   def if_esf_provider_access_i_check_and_determine(_i:nil,_e:nil,_b:nil)
+   def if_esf_provider_access_i_check_and_determine(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -495,7 +522,7 @@ class Cl_bsa_service_provider_co
          me.put_change_notifs_into_handler(in_change_notifications:ls_change_notifs, in_change_handler:in_change_handler)
 
 
-      rescue cx_root=>lx_root
+      rescue Cx_root=>lx_root
          handle_error_adaptation_hdlr(ix_exception:lx_bsa_runtime)
 
          handle_error(ix_exception:lx_root)
@@ -519,7 +546,7 @@ class Cl_bsa_service_provider_co
 
    end
 
-   def if_esf_provider_access_i_convert_keys(_i:nil,_e:nil,_b:nil)
+   def if_esf_provider_access_i_convert_keys(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -549,7 +576,7 @@ class Cl_bsa_service_provider_co
          }, _b:binding)
 
 
-      rescue cx_root=>lx_root
+      rescue Cx_root=>lx_root
          handle_error_adaptation_hdlr(ix_exception:lx_bsa_runtime)
 
          handle_error(ix_exception:lx_root)
@@ -573,7 +600,7 @@ class Cl_bsa_service_provider_co
 
    end
 
-   def if_esf_provider_access_i_convert_key_to_node_id(_i:nil,_e:nil,_b:nil)
+   def if_esf_provider_access_i_convert_key_to_node_id(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -602,7 +629,7 @@ class Cl_bsa_service_provider_co
          }, _b:binding)
 
 
-      rescue cx_root=>lx_root
+      rescue Cx_root=>lx_root
          handle_error_adaptation_hdlr(ix_exception:lx_bsa_runtime)
 
          handle_error(ix_exception:lx_root)
@@ -626,7 +653,7 @@ class Cl_bsa_service_provider_co
 
    end
 
-   def if_esf_provider_access_i_modify(_i:nil,_e:nil,_b:nil)
+   def if_esf_provider_access_i_modify(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -661,7 +688,7 @@ class Cl_bsa_service_provider_co
          me.put_change_notifs_into_handler(in_change_notifications:ls_change_notifs, in_change_handler:in_change_handler)
 
 
-      rescue cx_root=>lx_root
+      rescue Cx_root=>lx_root
          handle_error_adaptation_hdlr(ix_exception:lx_bsa_runtime)
 
          handle_error(ix_exception:lx_root)
@@ -685,7 +712,7 @@ class Cl_bsa_service_provider_co
 
    end
 
-   def if_esf_provider_access_i_retrieve(_i:nil,_e:nil,_b:nil)
+   def if_esf_provider_access_i_retrieve(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -740,7 +767,7 @@ class Cl_bsa_service_provider_co
          end
 
 
-      rescue cx_root=>lx_root
+      rescue Cx_root=>lx_root
          handle_error_adaptation_hdlr(ix_exception:lx_bsa_runtime)
 
          handle_error(ix_exception:lx_root)
@@ -764,7 +791,7 @@ class Cl_bsa_service_provider_co
 
    end
 
-   def if_esf_provider_access_i_retrieve_by_association(_i:nil,_e:nil,_b:nil)
+   def if_esf_provider_access_i_retrieve_by_association(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -824,7 +851,7 @@ class Cl_bsa_service_provider_co
          end
 
 
-      rescue cx_root=>lx_root
+      rescue Cx_root=>lx_root
          handle_error_adaptation_hdlr(ix_exception:lx_bsa_runtime)
 
          handle_error(ix_exception:lx_root)
@@ -848,7 +875,7 @@ class Cl_bsa_service_provider_co
 
    end
 
-   def if_esf_provider_access_i_retrieve_default_node_values(_i:nil,_e:nil,_b:nil)
+   def if_esf_provider_access_i_retrieve_default_node_values(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -889,7 +916,7 @@ class Cl_bsa_service_provider_co
          }, _b:binding)
 
 
-      rescue cx_root=>lx_root
+      rescue Cx_root=>lx_root
          handle_error_adaptation_hdlr(ix_exception:lx_bsa_runtime)
 
          handle_error(ix_exception:lx_root)
@@ -913,7 +940,7 @@ class Cl_bsa_service_provider_co
 
    end
 
-   def if_esf_provider_access_i_retrieve_properties(_i:nil,_e:nil,_b:nil)
+   def if_esf_provider_access_i_retrieve_properties(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -947,7 +974,7 @@ class Cl_bsa_service_provider_co
          }, _b:binding)
 
 
-      rescue cx_root=>lx_root
+      rescue Cx_root=>lx_root
          handle_error_adaptation_hdlr(ix_exception:lx_bsa_runtime)
 
          handle_error(ix_exception:lx_root)
@@ -971,7 +998,7 @@ class Cl_bsa_service_provider_co
 
    end
 
-   def if_esf_provider_access_i_retrieve_root_node_id(_i:nil,_e:nil,_b:nil)
+   def if_esf_provider_access_i_retrieve_root_node_id(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -999,7 +1026,7 @@ class Cl_bsa_service_provider_co
          }, _b:binding)
 
 
-      rescue cx_root=>lx_root
+      rescue Cx_root=>lx_root
          handle_error_adaptation_hdlr(ix_exception:lx_bsa_runtime)
 
          handle_error(ix_exception:lx_root)
@@ -1023,7 +1050,7 @@ class Cl_bsa_service_provider_co
 
    end
 
-   def if_esf_provider_action_i_execute_action(_i:nil,_e:nil,_b:nil)
+   def if_esf_provider_action_i_execute_action(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -1062,7 +1089,7 @@ class Cl_bsa_service_provider_co
          me.put_change_notifs_into_handler(in_change_notifications:ls_change_notifs, in_change_handler:in_change_handler)
 
 
-      rescue cx_root=>lx_root
+      rescue Cx_root=>lx_root
          handle_error_adaptation_hdlr(ix_exception:lx_bsa_runtime)
 
          handle_error(ix_exception:lx_root)
@@ -1086,7 +1113,7 @@ class Cl_bsa_service_provider_co
 
    end
 
-   def if_esf_provider_action_i_retrieve_default_action_param(_i:nil,_e:nil,_b:nil)
+   def if_esf_provider_action_i_retrieve_default_action_param(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -1114,7 +1141,7 @@ class Cl_bsa_service_provider_co
          }, _b:binding)
 
 
-      rescue cx_root=>lx_root
+      rescue Cx_root=>lx_root
          handle_error(ix_exception:lx_bsa_runtime)
 
          handle_error(ix_exception:lx_root)
@@ -1138,7 +1165,7 @@ class Cl_bsa_service_provider_co
 
    end
 
-   def if_esf_provider_init_i_init(_i:nil,_e:nil,_b:nil)
+   def if_esf_provider_init_i_init(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -1158,7 +1185,7 @@ class Cl_bsa_service_provider_co
          @mo_adaptation_handler = Cl_bsa_factory::get_adaptation_handler_for_co(in_bo_name:in_bo_name, in_provider_context:in_provider_context)
 
 
-      rescue cx_bsa_runtime=>lx_bsa_runtime
+      rescue Cx_bsa_runtime=>lx_bsa_runtime
          handle_error(ix_exception:lx_bsa_runtime)
 
 
@@ -1180,7 +1207,7 @@ class Cl_bsa_service_provider_co
 
    end
 
-   def if_esf_provider_interact_ctrl_i_close_session(_i:nil,_e:nil,_b:nil)
+   def if_esf_provider_interact_ctrl_i_close_session(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -1211,7 +1238,7 @@ class Cl_bsa_service_provider_co
 
    end
 
-   def if_esf_provider_interact_ctrl_i_do_post_processing(_i:nil,_e:nil,_b:nil)
+   def if_esf_provider_interact_ctrl_i_do_post_processing(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -1243,7 +1270,7 @@ class Cl_bsa_service_provider_co
 
    end
 
-   def if_esf_provider_interact_ctrl_i_do_pre_processing(_i:nil,_e:nil,_b:nil)
+   def if_esf_provider_interact_ctrl_i_do_pre_processing(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -1274,7 +1301,7 @@ class Cl_bsa_service_provider_co
 
    end
 
-   def if_esf_provider_query_i_query(_i:nil,_e:nil,_b:nil)
+   def if_esf_provider_query_i_query(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -1314,7 +1341,7 @@ class Cl_bsa_service_provider_co
          me.put_messages_into_handler(in_message_handler:in_message_handler, in_messages:lt_messages)
 
 
-      rescue cx_root=>lx_root
+      rescue Cx_root=>lx_root
          handle_error_adaptation_hdlr(ix_exception:lx_bsa_runtime)
 
          handle_error(ix_exception:lx_root)
@@ -1338,7 +1365,7 @@ class Cl_bsa_service_provider_co
 
    end
 
-   def if_esf_provider_query_i_retrieve_default_query_param(_i:nil,_e:nil,_b:nil)
+   def if_esf_provider_query_i_retrieve_default_query_param(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -1365,7 +1392,7 @@ class Cl_bsa_service_provider_co
          }, _b:binding)
 
 
-      rescue cx_root=>lx_root
+      rescue Cx_root=>lx_root
          handle_error_adaptation_hdlr(ix_exception:lx_bsa_runtime)
 
          handle_error(ix_exception:lx_root)
@@ -1389,7 +1416,7 @@ class Cl_bsa_service_provider_co
 
    end
 
-   def if_esf_provider_subscription_i_on_bo_changed(_i:nil,_e:nil,_b:nil)
+   def if_esf_provider_subscription_i_on_bo_changed(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -1420,7 +1447,7 @@ class Cl_bsa_service_provider_co
 
    end
 
-   def if_esf_provider_transact_ctrl_i_on_after_check_transaction(_i:nil,_e:nil,_b:nil)
+   def if_esf_provider_transact_ctrl_i_on_after_check_transaction(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -1451,7 +1478,7 @@ class Cl_bsa_service_provider_co
 
    end
 
-   def if_esf_provider_transact_ctrl_i_on_after_cleanup_transaction(_i:nil,_e:nil,_b:nil)
+   def if_esf_provider_transact_ctrl_i_on_after_cleanup_transaction(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -1482,7 +1509,7 @@ class Cl_bsa_service_provider_co
 
    end
 
-   def if_esf_provider_transact_ctrl_i_on_after_save_transaction(_i:nil,_e:nil,_b:nil)
+   def if_esf_provider_transact_ctrl_i_on_after_save_transaction(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -1513,7 +1540,7 @@ class Cl_bsa_service_provider_co
 
    end
 
-   def if_esf_provider_transact_ctrl_i_on_before_check_transaction(_i:nil,_e:nil,_b:nil)
+   def if_esf_provider_transact_ctrl_i_on_before_check_transaction(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -1544,7 +1571,7 @@ class Cl_bsa_service_provider_co
 
    end
 
-   def if_esf_provider_transact_ctrl_i_on_before_cleanup_transaction(_i:nil,_e:nil,_b:nil)
+   def if_esf_provider_transact_ctrl_i_on_before_cleanup_transaction(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -1575,7 +1602,7 @@ class Cl_bsa_service_provider_co
 
    end
 
-   def if_esf_provider_transact_ctrl_i_on_before_save_transaction(_i:nil,_e:nil,_b:nil)
+   def if_esf_provider_transact_ctrl_i_on_before_save_transaction(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -1606,7 +1633,7 @@ class Cl_bsa_service_provider_co
 
    end
 
-   def if_esf_provider_value_set_i_retrieve_action_code_values(_i:nil,_e:nil,_b:nil)
+   def if_esf_provider_value_set_i_retrieve_action_code_values(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -1639,7 +1666,7 @@ class Cl_bsa_service_provider_co
          }, _b:binding)
 
 
-      rescue cx_root=>lx_root
+      rescue Cx_root=>lx_root
          handle_error_adaptation_hdlr(ix_exception:lx_bsa_runtime)
 
          handle_error(ix_exception:lx_root)
@@ -1663,7 +1690,7 @@ class Cl_bsa_service_provider_co
 
    end
 
-   def if_esf_provider_value_set_i_retrieve_action_value_set(_i:nil,_e:nil,_b:nil)
+   def if_esf_provider_value_set_i_retrieve_action_value_set(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -1697,7 +1724,7 @@ class Cl_bsa_service_provider_co
          }, _b:binding)
 
 
-      rescue cx_root=>lx_root
+      rescue Cx_root=>lx_root
          handle_error_adaptation_hdlr(ix_exception:lx_bsa_runtime)
 
          handle_error(ix_exception:lx_root)
@@ -1721,7 +1748,7 @@ class Cl_bsa_service_provider_co
 
    end
 
-   def if_esf_provider_value_set_i_retrieve_code_values(_i:nil,_e:nil,_b:nil)
+   def if_esf_provider_value_set_i_retrieve_code_values(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -1754,7 +1781,7 @@ class Cl_bsa_service_provider_co
          }, _b:binding)
 
 
-      rescue cx_root=>lx_root
+      rescue Cx_root=>lx_root
          handle_error_adaptation_hdlr(ix_exception:lx_bsa_runtime)
 
          handle_error(ix_exception:lx_root)
@@ -1778,7 +1805,7 @@ class Cl_bsa_service_provider_co
 
    end
 
-   def if_esf_provider_value_set_i_retrieve_query_code_values(_i:nil,_e:nil,_b:nil)
+   def if_esf_provider_value_set_i_retrieve_query_code_values(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -1810,7 +1837,7 @@ class Cl_bsa_service_provider_co
          }, _b:binding)
 
 
-      rescue cx_root=>lx_root
+      rescue Cx_root=>lx_root
          handle_error_adaptation_hdlr(ix_exception:lx_bsa_runtime)
 
          handle_error(ix_exception:lx_root)
@@ -1834,7 +1861,7 @@ class Cl_bsa_service_provider_co
 
    end
 
-   def if_esf_provider_value_set_i_retrieve_query_value_set(_i:nil,_e:nil,_b:nil)
+   def if_esf_provider_value_set_i_retrieve_query_value_set(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -1867,7 +1894,7 @@ class Cl_bsa_service_provider_co
          }, _b:binding)
 
 
-      rescue cx_root=>lx_root
+      rescue Cx_root=>lx_root
          handle_error_adaptation_hdlr(ix_exception:lx_bsa_runtime)
 
          handle_error(ix_exception:lx_root)
@@ -1891,7 +1918,7 @@ class Cl_bsa_service_provider_co
 
    end
 
-   def if_esf_provider_value_set_i_retrieve_value_set(_i:nil,_e:nil,_b:nil)
+   def if_esf_provider_value_set_i_retrieve_value_set(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -1925,7 +1952,7 @@ class Cl_bsa_service_provider_co
          }, _b:binding)
 
 
-      rescue cx_root=>lx_root
+      rescue Cx_root=>lx_root
          handle_error_adaptation_hdlr(ix_exception:lx_bsa_runtime)
 
          handle_error(ix_exception:lx_root)

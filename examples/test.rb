@@ -2,6 +2,14 @@
 require_relative "../abaplib.rb"
 require_relative "abap.rb"
 include Abap
+begin
+
+rescue Cx_bsa_runtime=>lx_bsa_runtime
+
+end
+require_relative "cl_bsa_adaptation_handler_base.rb"
+
+require_relative "cl_bsa_adaptation_handler_co.rb"
 require_relative "cl_bsa_factory.rb"
 require_relative "cl_bsa_service_provider_co.rb"
 

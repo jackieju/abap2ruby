@@ -7,7 +7,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
    #     redefinition .
    #
 
-   def if_esf_provider_access_i_modify(_i:nil,_e:nil,_b:nil)
+   def if_esf_provider_access_i_modify(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -55,7 +55,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
    #     redefinition .
    #
 
-   def if_esf_provider_access_i_retrieve(_i:nil,_e:nil,_b:nil)
+   def if_esf_provider_access_i_retrieve(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -97,7 +97,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
             }, _b:binding)
 
 
-         rescue cx_esf_core_service=>lx_esf_core_service
+         rescue Cx_esf_core_service=>lx_esf_core_service
             raise cx_fatal_exception.new
 
 
@@ -141,7 +141,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
    #     redefinition .
    #
 
-   def if_esf_provider_access_i_retrieve_root_node_id(_i:nil,_e:nil,_b:nil)
+   def if_esf_provider_access_i_retrieve_root_node_id(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -271,7 +271,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
          end
 
 
-      rescue cx_root=>lx_root
+      rescue Cx_root=>lx_root
          handle_error_adaptation_hdlr(ix_exception:lx_bsa_runtime)
 
          handle_error(ix_exception:lx_root)
@@ -298,7 +298,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
    #     redefinition .
    #
 
-   def if_esf_provider_action_i_execute_action(_i:nil,_e:nil,_b:nil)
+   def if_esf_provider_action_i_execute_action(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -370,7 +370,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
    #     redefinition .
    #
 
-   def if_esf_provider_init_i_init(_i:nil,_e:nil,_b:nil)
+   def if_esf_provider_init_i_init(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -412,7 +412,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
    # methods IF_ESF_PROVIDER_TRANSACT_CTRL~ON_AFTER_SAVE_TRANSACTION
    #     redefinition .
 
-   def if_esf_provider_transact_ctrl_i_on_after_save_transaction(_i:nil,_e:nil,_b:nil)
+   def if_esf_provider_transact_ctrl_i_on_after_save_transaction(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -454,7 +454,11 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
    #       !IV_BO_NODE_NAME type STRING .
    #
 
-   def add_node_for_callback_rrnid(iv_bo_node_name:nil,_i:nil,_e:nil,_b:nil)
+   def add_node_for_callback_rrnid(*_a,iv_bo_node_name:nil,_i:nil,_e:nil,_b:nil)
+      iv_bo_node_name=nil
+      if _a && _a.size>0
+         iv_bo_node_name=_a[0]
+      end
 
 
       ###################################
@@ -499,7 +503,11 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
    #       !IV_BO_NODE_NAME type STRING .
    #
 
-   def add_node_for_heuristic_rrnid(iv_bo_node_name:nil,_i:nil,_e:nil,_b:nil)
+   def add_node_for_heuristic_rrnid(*_a,iv_bo_node_name:nil,_i:nil,_e:nil,_b:nil)
+      iv_bo_node_name=nil
+      if _a && _a.size>0
+         iv_bo_node_name=_a[0]
+      end
 
 
       ###################################
@@ -546,7 +554,13 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
    #       !IV_CORE_BO_NODE_NAME type STRING .
    #
 
-   def add_node_for_delegation_rrnid(iv_core_bo_node_name:nil,_i:nil,_e:nil,_b:nil)
+   def add_node_for_delegation_rrnid(*_a,iv_bo_node_name:nil,iv_core_bo_name:nil,iv_core_bo_node_name:nil,_i:nil,_e:nil,_b:nil)
+      iv_bo_node_name=iv_core_bo_name=iv_core_bo_node_name=nil
+      if _a && _a.size>0
+         iv_bo_node_name=_a[0]
+         iv_core_bo_name=_a[1] if _a.size>1
+         iv_core_bo_node_name=_a[2] if _a.size>2
+      end
 
 
       ###################################
@@ -605,7 +619,13 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
    #       CX_ESF_CORE_SERVICE .
    #
 
-   def callback_rrnid(in_requested_image:nil,_i:nil,_e:nil,_b:nil)
+   def callback_rrnid(*_a,in_bo_node_name:nil,in_node_ids:nil,in_requested_image:nil,_i:nil,_e:nil,_b:nil)
+      in_bo_node_name=in_node_ids=in_requested_image=nil
+      if _a && _a.size>0
+         in_bo_node_name=_a[0]
+         in_node_ids=_a[1] if _a.size>1
+         in_requested_image=_a[2] if _a.size>2
+      end
 
 
       ###################################
@@ -638,7 +658,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
    end
    # methods DISABLE_RETRIEVE_CHECK .
 
-   def disable_retrieve_check(_i:nil,_e:nil,_b:nil)
+   def disable_retrieve_check(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -677,7 +697,11 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
    #       value(RV_RESULT) type BOOLEAN .
    #
 
-   def use_callback_for_rrnid(iv_bo_node_name:nil,_i:nil,_e:nil,_b:nil)
+   def use_callback_for_rrnid(*_a,iv_bo_node_name:nil,_i:nil,_e:nil,_b:nil)
+      iv_bo_node_name=nil
+      if _a && _a.size>0
+         iv_bo_node_name=_a[0]
+      end
 
 
       ###################################
@@ -728,7 +752,11 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
    #       value(RV_RESULT) type BOOLEAN .
    #
 
-   def use_delegation_for_rrnid(iv_bo_node_name:nil,_i:nil,_e:nil,_b:nil)
+   def use_delegation_for_rrnid(*_a,iv_bo_node_name:nil,_i:nil,_e:nil,_b:nil)
+      iv_bo_node_name=nil
+      if _a && _a.size>0
+         iv_bo_node_name=_a[0]
+      end
 
 
       ###################################
@@ -779,7 +807,11 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
    #       value(RV_RESULT) type BOOLEAN .
    #
 
-   def use_heuristic_for_rrnid(iv_bo_node_name:nil,_i:nil,_e:nil,_b:nil)
+   def use_heuristic_for_rrnid(*_a,iv_bo_node_name:nil,_i:nil,_e:nil,_b:nil)
+      iv_bo_node_name=nil
+      if _a && _a.size>0
+         iv_bo_node_name=_a[0]
+      end
 
 
       ###################################
@@ -834,7 +866,13 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
    #       CX_ESF_CORE_SERVICE .
    #
 
-   def heuristic_rrnid(in_requested_image:nil,_i:nil,_e:nil,_b:nil)
+   def heuristic_rrnid(*_a,in_bo_node_name:nil,in_node_ids:nil,in_requested_image:nil,_i:nil,_e:nil,_b:nil)
+      in_bo_node_name=in_node_ids=in_requested_image=nil
+      if _a && _a.size>0
+         in_bo_node_name=_a[0]
+         in_node_ids=_a[1] if _a.size>1
+         in_requested_image=_a[2] if _a.size>2
+      end
 
 
       ###################################
@@ -979,7 +1017,13 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
    #     raising
    #       CX_ESF_CORE_SERVICE .
 
-   def delegation_rrnid(in_requested_image:nil,_i:nil,_e:nil,_b:nil)
+   def delegation_rrnid(*_a,in_bo_node_name:nil,in_node_ids:nil,in_requested_image:nil,_i:nil,_e:nil,_b:nil)
+      in_bo_node_name=in_node_ids=in_requested_image=nil
+      if _a && _a.size>0
+         in_bo_node_name=_a[0]
+         in_node_ids=_a[1] if _a.size>1
+         in_requested_image=_a[2] if _a.size>2
+      end
 
 
       ###################################
@@ -1024,7 +1068,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
    end
 
-   def if_a1fia_common_eco_i_check_root_node_existence(_i:nil,_e:nil,_b:nil)
+   def if_a1fia_common_eco_i_check_root_node_existence(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -1081,7 +1125,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
    end
 
-   def if_a1fia_common_eco_i_get_last_executed_action(_i:nil,_e:nil,_b:nil)
+   def if_a1fia_common_eco_i_get_last_executed_action(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -1114,7 +1158,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
    end
 
-   def if_a1fia_common_eco_i_raise_stop_save_message(_i:nil,_e:nil,_b:nil)
+   def if_a1fia_common_eco_i_raise_stop_save_message(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -1155,7 +1199,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
          }, _b:binding)
 
 
-      rescue cx_esf_message_handler=>lo_ex_message
+      rescue Cx_esf_message_handler=>lo_ex_message
          raise cx_fatal_exception.new
 
 
@@ -1177,7 +1221,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
    end
 
-   def if_a1fia_common_eco_i_source_to_target_mapping(_i:nil,_e:nil,_b:nil)
+   def if_a1fia_common_eco_i_source_to_target_mapping(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################

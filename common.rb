@@ -77,7 +77,10 @@ def dump_one_as_ruby(v, module_name=nil)
                 if v[:decoration] =~ /static/
                     method_name = "self.#{v[:name]}"
                 end
-            
+                
+                if v[:src] == nil
+                    v[:src] = "raise \"Not implemented\"\n"
+                end 
             
                 if v[:src] #&& v[:src].strip != ""
                     p "src:#{v[:src]}"
@@ -87,6 +90,24 @@ def dump_one_as_ruby(v, module_name=nil)
                     #        pre +="#{vn} = nil\n"
                     #    }
                     #end
+                    if v[:import]
+                        pre += v[:import].join("=")+"=nil\n"
+                        #pre += "_i_=#{v[:import]}\n"
+                        #pre +="if _a && _a.size>0
+                        #    _a.each_with_index{|a,i| _i_[i]=a}
+                        #end\n"
+                        
+                        pre += "if _a && _a.size>0\n"
+                        v[:import].each_with_index{|t,i|
+                            if i == 0
+                                pre += "#{t}=_a[0]\n"
+                            else
+                                pre += "#{t}=_a[#{i}] if _a.size>#{i}\n"
+                            end
+                        }
+                        pre += "end\n"
+                        
+                    end
                     method_template =<<HERE
                     #{v[:doc]}
                 def #{method_name}#{v[:head]}

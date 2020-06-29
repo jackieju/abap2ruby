@@ -27,6 +27,7 @@ class Binding
   alias :s :local_variable_get
 end
 
+
 def var(hash)
     p "self:#{self.class}"
     hash.each do |n, v|
@@ -65,9 +66,10 @@ class Object
 end
 
 ##
-# method
+# method for abap keyword
 ##
-
+def collect()
+end
 def clear(b)
     p "calling abap function CLEAR"
 end
@@ -209,7 +211,7 @@ end
 
 v2 = 999
 #t(_i:{"v1"=>1}, _e:{"v2"=>"v2"}, _b:binding)
-p v2
+p "==>1:v2(#{v2.hash})=#{v2}"
 
 def t2(_i:nil,_e:nil, _b:nil)
     #__in__(_i:_i,_e:_e, _b:_b)
@@ -234,8 +236,15 @@ def t2(_i:nil,_e:nil, _b:nil)
 end
 v3 = "fsfsf"
 t2(_i:{"v1"=>1}, _e:{"v2"=>"v2", "v3"=>"v3"}, _b:binding)
-p v2
+p "==>2:v2(#{v2.hash})=#{v2}"
 p v3
+
+def t3
+    p "==>3:v2(#{v2.hash})=#{v2}"
+end
+t3
+p "==>4:v2(#{v2.hash})=#{v2}"
+
 
 
 

@@ -40,7 +40,7 @@ class CParser < CRRParser
       if @sym==C_identifierSym
          Get()
       else
-         if @sym==C_DATASym||@sym==C_STANDARDSym||@sym==C_KEYSym||@sym>=C_TYPESym&&@sym<=C_IDSym||@sym>=C_LENGTHSym&&@sym<=C_DECIMALSSym||@sym==C_BOXEDSym||@sym>=C_COMPONENTSSym&&@sym<=C_DEFAULTSym||@sym==C_ENDSym||@sym==C_VALUESym||@sym==C_DELETESym||@sym==C_PARAMETERSSym||@sym==C_EXCEPTIONSSym||@sym==C_CREATESym||@sym==C_KINDSym||@sym==C_SUFFIXSym||@sym==C_ACTIVATIONSym
+         if @sym==C_DATASym||@sym==C_STANDARDSym||@sym==C_KEYSym||@sym==C_SORTEDSym||@sym>=C_TYPESym&&@sym<=C_IDSym||@sym>=C_LENGTHSym&&@sym<=C_DECIMALSSym||@sym==C_BOXEDSym||@sym>=C_COMPONENTSSym&&@sym<=C_DEFAULTSym||@sym==C_ENDSym||@sym==C_VALUESym||@sym==C_DELETESym||@sym==C_PARAMETERSSym||@sym==C_EXCEPTIONSSym||@sym==C_CREATESym||@sym==C_KINDSym||@sym==C_SUFFIXSym||@sym==C_ACTIVATIONSym
             AllowedKeywords()
          else
             GenError(709)
@@ -83,7 +83,7 @@ class CParser < CRRParser
       if @sym==C_identifierSym
          Get()
       else
-         if @sym==C_DATASym||@sym==C_STANDARDSym||@sym==C_KEYSym||@sym>=C_TYPESym&&@sym<=C_IDSym||@sym>=C_LENGTHSym&&@sym<=C_DECIMALSSym||@sym==C_BOXEDSym||@sym>=C_COMPONENTSSym&&@sym<=C_DEFAULTSym||@sym==C_ENDSym||@sym==C_VALUESym||@sym==C_DELETESym||@sym==C_PARAMETERSSym||@sym==C_EXCEPTIONSSym||@sym==C_CREATESym||@sym==C_KINDSym||@sym==C_SUFFIXSym||@sym==C_ACTIVATIONSym
+         if @sym==C_DATASym||@sym==C_STANDARDSym||@sym==C_KEYSym||@sym==C_SORTEDSym||@sym>=C_TYPESym&&@sym<=C_IDSym||@sym>=C_LENGTHSym&&@sym<=C_DECIMALSSym||@sym==C_BOXEDSym||@sym>=C_COMPONENTSSym&&@sym<=C_DEFAULTSym||@sym==C_ENDSym||@sym==C_VALUESym||@sym==C_DELETESym||@sym==C_PARAMETERSSym||@sym==C_EXCEPTIONSSym||@sym==C_CREATESym||@sym==C_KINDSym||@sym==C_SUFFIXSym||@sym==C_ACTIVATIONSym
             AllowedKeywords()
          else
             GenError(710)
@@ -162,6 +162,9 @@ class CParser < CRRParser
          Get()
 
       when C_STANDARDSym
+         Get()
+
+      when C_SORTEDSym
          Get()
 
       else
@@ -805,7 +808,7 @@ class CParser < CRRParser
                Expect(C_MESHSym)
                Expect(C_identifierSym)
             else
-               if @sym>=C_identifierSym&&@sym<=C_DATASym||@sym==C_STANDARDSym||@sym==C_KEYSym||@sym>=C_TYPESym&&@sym<=C_IDSym||@sym>=C_LENGTHSym&&@sym<=C_DECIMALSSym||@sym==C_BOXEDSym||@sym>=C_COMPONENTSSym&&@sym<=C_DEFAULTSym||@sym==C_ENDSym||@sym==C_VALUESym||@sym==C_DELETESym||@sym==C_PARAMETERSSym||@sym==C_EXCEPTIONSSym||@sym==C_CREATESym||@sym==C_KINDSym||@sym==C_SUFFIXSym||@sym==C_ACTIVATIONSym
+               if @sym>=C_identifierSym&&@sym<=C_DATASym||@sym==C_STANDARDSym||@sym==C_KEYSym||@sym==C_SORTEDSym||@sym>=C_TYPESym&&@sym<=C_IDSym||@sym>=C_LENGTHSym&&@sym<=C_DECIMALSSym||@sym==C_BOXEDSym||@sym>=C_COMPONENTSSym&&@sym<=C_DEFAULTSym||@sym==C_ENDSym||@sym==C_VALUESym||@sym==C_DELETESym||@sym==C_PARAMETERSSym||@sym==C_EXCEPTIONSSym||@sym==C_CREATESym||@sym==C_KINDSym||@sym==C_SUFFIXSym||@sym==C_ACTIVATIONSym
                   NameInVarDef()
                else
                   GenError(729)
@@ -821,7 +824,7 @@ class CParser < CRRParser
             Expect(C_OFSym)
             Expect(C_identifierSym)
          else
-            if @sym>=C_identifierSym&&@sym<=C_DATASym||@sym==C_STANDARDSym||@sym==C_KEYSym||@sym>=C_TYPESym&&@sym<=C_IDSym||@sym>=C_LENGTHSym&&@sym<=C_DECIMALSSym||@sym==C_BOXEDSym||@sym>=C_COMPONENTSSym&&@sym<=C_DEFAULTSym||@sym==C_VALUESym||@sym==C_DELETESym||@sym==C_PARAMETERSSym||@sym==C_EXCEPTIONSSym||@sym==C_CREATESym||@sym==C_KINDSym||@sym==C_SUFFIXSym||@sym==C_ACTIVATIONSym
+            if @sym>=C_identifierSym&&@sym<=C_DATASym||@sym==C_STANDARDSym||@sym==C_KEYSym||@sym==C_SORTEDSym||@sym>=C_TYPESym&&@sym<=C_IDSym||@sym>=C_LENGTHSym&&@sym<=C_DECIMALSSym||@sym==C_BOXEDSym||@sym>=C_COMPONENTSSym&&@sym<=C_DEFAULTSym||@sym==C_VALUESym||@sym==C_DELETESym||@sym==C_PARAMETERSSym||@sym==C_EXCEPTIONSSym||@sym==C_CREATESym||@sym==C_KINDSym||@sym==C_SUFFIXSym||@sym==C_ACTIVATIONSym
                NameInVarDef()
                if @sym==C_LparenSym
                   Get()
@@ -875,7 +878,7 @@ class CParser < CRRParser
 
       t=prevString.upcase;
 
-      if @sym>=C_identifierSym&&@sym<=C_DATASym||@sym==C_STANDARDSym||@sym==C_KEYSym||@sym>=C_TYPESym&&@sym<=C_IDSym||@sym>=C_LENGTHSym&&@sym<=C_DECIMALSSym||@sym==C_BOXEDSym||@sym>=C_COMPONENTSSym&&@sym<=C_DEFAULTSym||@sym==C_BEGINSym||@sym==C_ENDSym||@sym==C_VALUESym||@sym==C_DELETESym||@sym==C_PARAMETERSSym||@sym==C_EXCEPTIONSSym||@sym==C_CREATESym||@sym==C_KINDSym||@sym==C_SUFFIXSym||@sym==C_ACTIVATIONSym
+      if @sym>=C_identifierSym&&@sym<=C_DATASym||@sym==C_STANDARDSym||@sym==C_KEYSym||@sym==C_SORTEDSym||@sym>=C_TYPESym&&@sym<=C_IDSym||@sym>=C_LENGTHSym&&@sym<=C_DECIMALSSym||@sym==C_BOXEDSym||@sym>=C_COMPONENTSSym&&@sym<=C_DEFAULTSym||@sym==C_BEGINSym||@sym==C_ENDSym||@sym==C_VALUESym||@sym==C_DELETESym||@sym==C_PARAMETERSSym||@sym==C_EXCEPTIONSSym||@sym==C_CREATESym||@sym==C_KINDSym||@sym==C_SUFFIXSym||@sym==C_ACTIVATIONSym
          if @sym==C_BEGINSym
             Get()
             Expect(C_OFSym)
@@ -884,7 +887,7 @@ class CParser < CRRParser
                Expect(C_PARTSym)
                NameInVarDef()
             else
-               if @sym>=C_identifierSym&&@sym<=C_DATASym||@sym==C_STANDARDSym||@sym==C_KEYSym||@sym>=C_TYPESym&&@sym<=C_IDSym||@sym>=C_LENGTHSym&&@sym<=C_DECIMALSSym||@sym==C_BOXEDSym||@sym>=C_COMPONENTSSym&&@sym<=C_DEFAULTSym||@sym==C_ENDSym||@sym==C_VALUESym||@sym==C_DELETESym||@sym==C_PARAMETERSSym||@sym==C_EXCEPTIONSSym||@sym==C_CREATESym||@sym==C_KINDSym||@sym==C_SUFFIXSym||@sym==C_ACTIVATIONSym
+               if @sym>=C_identifierSym&&@sym<=C_DATASym||@sym==C_STANDARDSym||@sym==C_KEYSym||@sym==C_SORTEDSym||@sym>=C_TYPESym&&@sym<=C_IDSym||@sym>=C_LENGTHSym&&@sym<=C_DECIMALSSym||@sym==C_BOXEDSym||@sym>=C_COMPONENTSSym&&@sym<=C_DEFAULTSym||@sym==C_ENDSym||@sym==C_VALUESym||@sym==C_DELETESym||@sym==C_PARAMETERSSym||@sym==C_EXCEPTIONSSym||@sym==C_CREATESym||@sym==C_KINDSym||@sym==C_SUFFIXSym||@sym==C_ACTIVATIONSym
                   NameInVarDef()
 
                   modname=lus;
@@ -920,7 +923,7 @@ class CParser < CRRParser
                   Expect(C_PARTSym)
                   NameInVarDef()
                else
-                  if @sym>=C_identifierSym&&@sym<=C_DATASym||@sym==C_STANDARDSym||@sym==C_KEYSym||@sym>=C_TYPESym&&@sym<=C_IDSym||@sym>=C_LENGTHSym&&@sym<=C_DECIMALSSym||@sym==C_BOXEDSym||@sym>=C_COMPONENTSSym&&@sym<=C_DEFAULTSym||@sym==C_ENDSym||@sym==C_VALUESym||@sym==C_DELETESym||@sym==C_PARAMETERSSym||@sym==C_EXCEPTIONSSym||@sym==C_CREATESym||@sym==C_KINDSym||@sym==C_SUFFIXSym||@sym==C_ACTIVATIONSym
+                  if @sym>=C_identifierSym&&@sym<=C_DATASym||@sym==C_STANDARDSym||@sym==C_KEYSym||@sym==C_SORTEDSym||@sym>=C_TYPESym&&@sym<=C_IDSym||@sym>=C_LENGTHSym&&@sym<=C_DECIMALSSym||@sym==C_BOXEDSym||@sym>=C_COMPONENTSSym&&@sym<=C_DEFAULTSym||@sym==C_ENDSym||@sym==C_VALUESym||@sym==C_DELETESym||@sym==C_PARAMETERSSym||@sym==C_EXCEPTIONSSym||@sym==C_CREATESym||@sym==C_KINDSym||@sym==C_SUFFIXSym||@sym==C_ACTIVATIONSym
                      NameInVarDef()
                      if @sym==C_VALIDSym
                         Get()
@@ -942,7 +945,7 @@ class CParser < CRRParser
                current_ruby_scope.add_src("end\n");
 
             else
-               if @sym>=C_identifierSym&&@sym<=C_DATASym||@sym==C_STANDARDSym||@sym==C_KEYSym||@sym>=C_TYPESym&&@sym<=C_IDSym||@sym>=C_LENGTHSym&&@sym<=C_DECIMALSSym||@sym==C_BOXEDSym||@sym>=C_COMPONENTSSym&&@sym<=C_DEFAULTSym||@sym==C_VALUESym||@sym==C_DELETESym||@sym==C_PARAMETERSSym||@sym==C_EXCEPTIONSSym||@sym==C_CREATESym||@sym==C_KINDSym||@sym==C_SUFFIXSym||@sym==C_ACTIVATIONSym
+               if @sym>=C_identifierSym&&@sym<=C_DATASym||@sym==C_STANDARDSym||@sym==C_KEYSym||@sym==C_SORTEDSym||@sym>=C_TYPESym&&@sym<=C_IDSym||@sym>=C_LENGTHSym&&@sym<=C_DECIMALSSym||@sym==C_BOXEDSym||@sym>=C_COMPONENTSSym&&@sym<=C_DEFAULTSym||@sym==C_VALUESym||@sym==C_DELETESym||@sym==C_PARAMETERSSym||@sym==C_EXCEPTIONSSym||@sym==C_CREATESym||@sym==C_KINDSym||@sym==C_SUFFIXSym||@sym==C_ACTIVATIONSym
                   NameInVarDef()
 
                   name = lus
@@ -2728,6 +2731,9 @@ class CParser < CRRParser
       else
          if @sym==C_CLASSMinusMETHODSSym
             Get()
+
+            static=true;
+
          else
             GenError(759)
          end
@@ -2743,7 +2749,7 @@ class CParser < CRRParser
 
 
       fname = prevString
-      if current_scope.is_a?(ClassDef)
+      if current_scope.is_a?(ModuleDef)
          classdef = current_scope
 
       end;
@@ -2799,10 +2805,10 @@ class CParser < CRRParser
 
                if @sym==C_IMPORTINGSym
                   Get()
+
+                  impar = [];
+
                   while (@sym==C_identifierSym||@sym==C_REFERENCESym||@sym==C_VALUESym)
-
-                     impar = [];
-
                      if @sym==C_VALUESym
                         Get()
                         Expect(C_LparenSym)
@@ -3023,7 +3029,7 @@ class CParser < CRRParser
 
       args = nil
       if impar
-         args = impar
+         args = impar.clone
          for i in 0..impar.size-1
             impar[i] += ":nil"
          end
@@ -3037,7 +3043,9 @@ class CParser < CRRParser
       pars = impar.join(",")
 
       if classdef
-         classdef.add_method(fname, "(#{pars})", [], nil ,"", {:doc=>doc,:import=>args})
+         dec = ""
+         dec = "static" if static
+         classdef.add_method(fname, "(*_a,#{pars})", [], nil , dec, {:doc=>doc,:import=>args})
       end ;
 
       _out_()
@@ -4769,7 +4777,7 @@ class CParser < CRRParser
 
          params["id"]=lus;
 
-         while (@sym==C_FROMSym||@sym==C_INTOSym||@sym==C_WITHSym||@sym==C_ASSIGNINGSym||@sym==C_REFERENCESym||@sym==C_INDEXSym||@sym==C_TRANSPORTINGSym)
+         while (@sym==C_FROMSym||@sym==C_INTOSym||@sym==C_WITHSym||@sym==C_ASSIGNINGSym||@sym==C_REFERENCESym||@sym==C_INDEXSym||@sym==C_TRANSPORTINGSym||@sym==C_BINARYSym)
             if @sym==C_FROMSym||@sym==C_WITHSym||@sym==C_INDEXSym
                if @sym==C_FROMSym
                   Get()
@@ -4834,11 +4842,6 @@ class CParser < CRRParser
                         Expression()
                      end
 
-                     if @sym==C_BINARYSym
-                        Get()
-                        Expect(C_SEARCHSym)
-                     end
-
                   else
                      if @sym==C_INDEXSym
                         Get()
@@ -4870,7 +4873,7 @@ class CParser < CRRParser
 
             end
 
-            if @sym==C_INTOSym||@sym==C_ASSIGNINGSym||@sym==C_REFERENCESym||@sym==C_TRANSPORTINGSym
+            if @sym==C_INTOSym||@sym==C_ASSIGNINGSym||@sym==C_REFERENCESym||@sym==C_TRANSPORTINGSym||@sym==C_BINARYSym
                case @sym
 
                when C_INTOSym
@@ -4928,7 +4931,7 @@ class CParser < CRRParser
 
                when C_ASSIGNINGSym
                   Get()
-                  Expect(C_identifierSym)
+                  Var()
                   if @sym==C_CASTINGSym
                      Get()
                   end
@@ -4943,6 +4946,10 @@ class CParser < CRRParser
                   Get()
                   Expect(C_NOSym)
                   Expect(C_FIELDSSym)
+
+               when C_BINARYSym
+                  Get()
+                  Expect(C_SEARCHSym)
 
                else
                   GenError(827)
@@ -5301,10 +5308,10 @@ class CParser < CRRParser
             Expect(C_UNWINDSym)
          end
 
-         while (@sym>=C_identifierSym&&@sym<=C_DATASym||@sym==C_STANDARDSym||@sym==C_KEYSym||@sym>=C_TYPESym&&@sym<=C_IDSym||@sym>=C_LENGTHSym&&@sym<=C_DECIMALSSym||@sym==C_BOXEDSym||@sym>=C_COMPONENTSSym&&@sym<=C_DEFAULTSym||@sym==C_ENDSym||@sym==C_VALUESym||@sym==C_DELETESym||@sym==C_PARAMETERSSym||@sym==C_EXCEPTIONSSym||@sym==C_CREATESym||@sym==C_KINDSym||@sym==C_SUFFIXSym||@sym==C_ACTIVATIONSym)
+         while (@sym>=C_identifierSym&&@sym<=C_DATASym||@sym==C_STANDARDSym||@sym==C_KEYSym||@sym==C_SORTEDSym||@sym>=C_TYPESym&&@sym<=C_IDSym||@sym>=C_LENGTHSym&&@sym<=C_DECIMALSSym||@sym==C_BOXEDSym||@sym>=C_COMPONENTSSym&&@sym<=C_DEFAULTSym||@sym==C_ENDSym||@sym==C_VALUESym||@sym==C_DELETESym||@sym==C_PARAMETERSSym||@sym==C_EXCEPTIONSSym||@sym==C_CREATESym||@sym==C_KINDSym||@sym==C_SUFFIXSym||@sym==C_ACTIVATIONSym)
             Name()
 
-            ar.push(lus);
+            ar.push(to_ruby_const(lus));
 
          end
 
@@ -5524,11 +5531,11 @@ class CParser < CRRParser
 
                         end
 
-                        if @sym>=C_identifierSym&&@sym<=C_DATASym||@sym==C_STANDARDSym||@sym==C_StarSym||@sym==C_KEYSym||@sym>=C_TYPESym&&@sym<=C_IDSym||@sym>=C_LENGTHSym&&@sym<=C_DECIMALSSym||@sym==C_BOXEDSym||@sym>=C_COMPONENTSSym&&@sym<=C_DEFAULTSym||@sym==C_ENDSym||@sym==C_VALUESym||@sym==C_DELETESym||@sym==C_PARAMETERSSym||@sym==C_EXCEPTIONSSym||@sym==C_CREATESym||@sym==C_KINDSym||@sym==C_SUFFIXSym||@sym==C_ACTIVATIONSym
+                        if @sym>=C_identifierSym&&@sym<=C_DATASym||@sym==C_STANDARDSym||@sym==C_StarSym||@sym==C_KEYSym||@sym==C_SORTEDSym||@sym>=C_TYPESym&&@sym<=C_IDSym||@sym>=C_LENGTHSym&&@sym<=C_DECIMALSSym||@sym==C_BOXEDSym||@sym>=C_COMPONENTSSym&&@sym<=C_DEFAULTSym||@sym==C_ENDSym||@sym==C_VALUESym||@sym==C_DELETESym||@sym==C_PARAMETERSSym||@sym==C_EXCEPTIONSSym||@sym==C_CREATESym||@sym==C_KINDSym||@sym==C_SUFFIXSym||@sym==C_ACTIVATIONSym
                            if @sym==C_StarSym
                               Get()
                            else
-                              if @sym>=C_identifierSym&&@sym<=C_DATASym||@sym==C_STANDARDSym||@sym==C_KEYSym||@sym>=C_TYPESym&&@sym<=C_IDSym||@sym>=C_LENGTHSym&&@sym<=C_DECIMALSSym||@sym==C_BOXEDSym||@sym>=C_COMPONENTSSym&&@sym<=C_DEFAULTSym||@sym==C_ENDSym||@sym==C_VALUESym||@sym==C_DELETESym||@sym==C_PARAMETERSSym||@sym==C_EXCEPTIONSSym||@sym==C_CREATESym||@sym==C_KINDSym||@sym==C_SUFFIXSym||@sym==C_ACTIVATIONSym
+                              if @sym>=C_identifierSym&&@sym<=C_DATASym||@sym==C_STANDARDSym||@sym==C_KEYSym||@sym==C_SORTEDSym||@sym>=C_TYPESym&&@sym<=C_IDSym||@sym>=C_LENGTHSym&&@sym<=C_DECIMALSSym||@sym==C_BOXEDSym||@sym>=C_COMPONENTSSym&&@sym<=C_DEFAULTSym||@sym==C_ENDSym||@sym==C_VALUESym||@sym==C_DELETESym||@sym==C_PARAMETERSSym||@sym==C_EXCEPTIONSSym||@sym==C_CREATESym||@sym==C_KINDSym||@sym==C_SUFFIXSym||@sym==C_ACTIVATIONSym
                                  Name()
                               else
                                  GenError(839)
@@ -5805,9 +5812,18 @@ class CParser < CRRParser
    def stCOLLECT()
       _in_()
       Expect(C_COLLECTSym)
-      Expect(C_identifierSym)
+
+      params={};
+
+      Name()
+
+      params[:id]=lus;
+
       Expect(C_INTOSym)
-      Expect(C_identifierSym)
+      Name()
+
+      params[:into]=lus;
+
       if @sym==C_PointSym||@sym==C_ASSIGNINGSym
          if @sym==C_ASSIGNINGSym
             Get()
@@ -5831,6 +5847,10 @@ class CParser < CRRParser
       end
 
       Expect(C_PointSym)
+
+
+      src("collect(#{hash_to_params(params)})\n");
+
       _out_()
    end
    def stCOMMIT()
@@ -8397,7 +8417,7 @@ class CParser < CRRParser
             if @sym==C_INSym
                Get()
                Expect(C_PROGRAMSym)
-               if @sym>=C_identifierSym&&@sym<=C_DATASym||@sym==C_STANDARDSym||@sym==C_KEYSym||@sym>=C_TYPESym&&@sym<=C_IDSym||@sym>=C_LENGTHSym&&@sym<=C_DECIMALSSym||@sym==C_BOXEDSym||@sym>=C_COMPONENTSSym&&@sym<=C_DEFAULTSym||@sym==C_ENDSym||@sym==C_VALUESym||@sym==C_DELETESym||@sym==C_PARAMETERSSym||@sym==C_EXCEPTIONSSym||@sym==C_CREATESym||@sym==C_KINDSym||@sym==C_SUFFIXSym||@sym==C_ACTIVATIONSym
+               if @sym>=C_identifierSym&&@sym<=C_DATASym||@sym==C_STANDARDSym||@sym==C_KEYSym||@sym==C_SORTEDSym||@sym>=C_TYPESym&&@sym<=C_IDSym||@sym>=C_LENGTHSym&&@sym<=C_DECIMALSSym||@sym==C_BOXEDSym||@sym>=C_COMPONENTSSym&&@sym<=C_DEFAULTSym||@sym==C_ENDSym||@sym==C_VALUESym||@sym==C_DELETESym||@sym==C_PARAMETERSSym||@sym==C_EXCEPTIONSSym||@sym==C_CREATESym||@sym==C_KINDSym||@sym==C_SUFFIXSym||@sym==C_ACTIVATIONSym
                   Name()
                end
 
@@ -11055,7 +11075,7 @@ class CParser < CRRParser
                         end
 
                         Name()
-                        while (@sym>=C_identifierSym&&@sym<=C_DATASym||@sym==C_STANDARDSym||@sym==C_KEYSym||@sym>=C_TYPESym&&@sym<=C_IDSym||@sym>=C_LENGTHSym&&@sym<=C_DECIMALSSym||@sym==C_BOXEDSym||@sym>=C_COMPONENTSSym&&@sym<=C_DEFAULTSym||@sym==C_ENDSym||@sym==C_VALUESym||@sym==C_DELETESym||@sym==C_PARAMETERSSym||@sym==C_EXCEPTIONSSym||@sym==C_CREATESym||@sym==C_KINDSym||@sym==C_SUFFIXSym||@sym==C_ACTIVATIONSym)
+                        while (@sym>=C_identifierSym&&@sym<=C_DATASym||@sym==C_STANDARDSym||@sym==C_KEYSym||@sym==C_SORTEDSym||@sym>=C_TYPESym&&@sym<=C_IDSym||@sym>=C_LENGTHSym&&@sym<=C_DECIMALSSym||@sym==C_BOXEDSym||@sym>=C_COMPONENTSSym&&@sym<=C_DEFAULTSym||@sym==C_ENDSym||@sym==C_VALUESym||@sym==C_DELETESym||@sym==C_PARAMETERSSym||@sym==C_EXCEPTIONSSym||@sym==C_CREATESym||@sym==C_KINDSym||@sym==C_SUFFIXSym||@sym==C_ACTIVATIONSym)
                            Name()
                         end
 
@@ -12887,7 +12907,7 @@ class CParser < CRRParser
 
 
          when C_LparenSym
-            FunctionCall()
+            FunctionCall(r)
 
 
             if r == "DATA"
@@ -13045,14 +13065,14 @@ class CParser < CRRParser
 
       _out_()
    end
-   def FunctionCall()
+   def FunctionCall(name)
       _in_()
       Expect(C_LparenSym)
 
       stop_autosrc;no_comments;
 
-      if @sym==C_RparenSym||@sym==C_EXPORTINGSym||@sym>=C_IMPORTINGSym&&@sym<=C_CHANGINGSym||@sym==C_RECEIVINGSym
-         while (@sym==C_EXPORTINGSym||@sym>=C_IMPORTINGSym&&@sym<=C_CHANGINGSym||@sym==C_RECEIVINGSym)
+      if @sym==C_RparenSym||@sym==C_EXPORTINGSym||@sym>=C_IMPORTINGSym&&@sym<=C_EXCEPTIONSSym||@sym==C_RECEIVINGSym
+         while (@sym==C_EXPORTINGSym||@sym>=C_IMPORTINGSym&&@sym<=C_EXCEPTIONSSym||@sym==C_RECEIVINGSym)
             if @sym==C_EXPORTINGSym
                Get()
 
@@ -13141,6 +13161,34 @@ class CParser < CRRParser
 
             end
 
+            if @sym==C_EXCEPTIONSSym
+               Get()
+
+               exceptions = "{\n";
+
+               while (@sym==C_identifierSym)
+                  Get()
+
+                  idn = prevString;
+
+                  Expect(C_EqualSym)
+                  Expression()
+
+                  exceptions+="\"#{idn}\" => #{lus},\n";
+
+               end
+
+
+               exceptions += "}";
+
+               if @sym==C_OTHERSSym
+                  Get()
+                  Expect(C_EqualSym)
+                  Expression()
+               end
+
+            end
+
          end
 
 
@@ -13180,7 +13228,11 @@ class CParser < CRRParser
             if e.keys.size>0
                src("(#{hash_to_params(e)})")
             else
-               src("(#{s[0..s.size-2]})")
+               if name == "DATA"
+                  src("(#{s[0..s.size-2]})")
+               else
+                  src("(#{s[0..s.size-2]})")
+               end
             end;
 
          end
@@ -13226,7 +13278,7 @@ class CParser < CRRParser
       name=prevString;
 
       if @sym==C_LparenSym
-         FunctionCall()
+         FunctionCall(name)
       end
 
 
@@ -13574,7 +13626,7 @@ class CParser < CRRParser
             Expect(C_RbrackSym)
 
          when C_LparenSym
-            FunctionCall()
+            FunctionCall(pri)
 
 
             if pri == "DATA"

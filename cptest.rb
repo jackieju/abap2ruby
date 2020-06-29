@@ -220,6 +220,8 @@ s10=<<HERE
 REPORT T.
  mo_adaptation_handler = cl_bsa_factory=>get_adaptation_handler_for_co().
 HERE
+s11=<<HERE
+HERE
 $ar = []
 #def dump_testcase
     p "==>dump_testcase"

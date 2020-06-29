@@ -9,7 +9,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
    #     redefinition .
    #
 
-   def if_esf_provider_access_i_check(_i:nil,_e:nil,_b:nil)
+   def if_esf_provider_access_i_check(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -48,7 +48,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
 
          #"XRG: ignore wrong (non ECO) origin location as otherwise we would break the lifetime handling mechanism or handler would dump
 
-      rescue cx_root=>lx_root
+      rescue Cx_root=>lx_root
          handle_error_adaptation_hdlr(ix_exception:lx_bsa_runtime)
 
          handle_error(ix_exception:lx_root)
@@ -75,7 +75,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
    #     redefinition .
    #
 
-   def if_esf_provider_access_i_modify(_i:nil,_e:nil,_b:nil)
+   def if_esf_provider_access_i_modify(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -122,7 +122,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
    #     redefinition .
    #
 
-   def if_esf_provider_access_i_retrieve(_i:nil,_e:nil,_b:nil)
+   def if_esf_provider_access_i_retrieve(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -180,7 +180,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
          }, _b:binding)
 
 
-      rescue cx_root=>lx_root
+      rescue Cx_root=>lx_root
          handle_error_adaptation_hdlr(ix_exception:lx_bsa_runtime)
 
          handle_error(ix_exception:lx_root)
@@ -207,7 +207,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
    #     redefinition .
    #
 
-   def if_esf_provider_access_i_retrieve_by_association(_i:nil,_e:nil,_b:nil)
+   def if_esf_provider_access_i_retrieve_by_association(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -287,7 +287,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
             end
 
 
-         rescue cx_root=>lx_root
+         rescue Cx_root=>lx_root
             handle_error_adaptation_hdlr(ix_exception:lx_bsa_runtime)
 
             handle_error(ix_exception:lx_root)
@@ -343,7 +343,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
             }, _b:binding)
 
 
-         rescue cx_root=>lx_root
+         rescue Cx_root=>lx_root
             handle_error_adaptation_hdlr(ix_exception:lx_bsa_runtime)
 
             handle_error(ix_exception:lx_root)
@@ -381,7 +381,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
    #     redefinition .
    #
 
-   def if_esf_provider_access_i_retrieve_root_node_id(_i:nil,_e:nil,_b:nil)
+   def if_esf_provider_access_i_retrieve_root_node_id(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -443,7 +443,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
    #     redefinition .
    #
 
-   def if_esf_provider_init_i_init(_i:nil,_e:nil,_b:nil)
+   def if_esf_provider_init_i_init(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -476,7 +476,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
          lo_lcp_facade = in_provider_context.get_lcp_facade(_b:binding)
 
 
-      rescue cx_esf_core_service=>lx_esf_core_service
+      rescue Cx_esf_core_service=>lx_esf_core_service
          handle_error(ix_exception:lx_esf_core_service)
 
 
@@ -525,7 +525,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
       begin
 
 
-      rescue cx_esf_core_service=>lx_esf_core_service
+      rescue Cx_esf_core_service=>lx_esf_core_service
          handle_error(ix_exception:lx_esf_core_service)
 
 
@@ -552,7 +552,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
    #     redefinition .
    #
 
-   def if_esf_provider_interact_ctrl_i_close_session(_i:nil,_e:nil,_b:nil)
+   def if_esf_provider_interact_ctrl_i_close_session(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -593,7 +593,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
    #     redefinition .
    #
 
-   def if_esf_provider_interact_ctrl_i_do_post_processing(_i:nil,_e:nil,_b:nil)
+   def if_esf_provider_interact_ctrl_i_do_post_processing(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -630,7 +630,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
          inout_messages = lt_out_message
 
 
-      rescue cx_bsa_runtime=>lx_bsa_runtime
+      rescue Cx_bsa_runtime=>lx_bsa_runtime
          handle_error(lx_bsa_runtime)
 
 
@@ -676,7 +676,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
    #     redefinition .
    #
 
-   def if_esf_provider_query_i_query(_i:nil,_e:nil,_b:nil)
+   def if_esf_provider_query_i_query(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -732,7 +732,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
    #     redefinition .
    #
 
-   def if_esf_provider_transact_ctrl_i_on_after_save_transaction(_i:nil,_e:nil,_b:nil)
+   def if_esf_provider_transact_ctrl_i_on_after_save_transaction(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -773,7 +773,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
    # methods IF_ESF_PROVIDER_ACTION~EXECUTE_ACTION
    #     redefinition .
 
-   def if_esf_provider_action_i_execute_action(_i:nil,_e:nil,_b:nil)
+   def if_esf_provider_action_i_execute_action(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -837,7 +837,11 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
    #       !IV_REJECTED type SESF_BOOLEAN .
    #
 
-   def add_message_on_after_save_trx(iv_rejected:nil,_i:nil,_e:nil,_b:nil)
+   def add_message_on_after_save_trx(*_a,iv_rejected:nil,_i:nil,_e:nil,_b:nil)
+      iv_rejected=nil
+      if _a && _a.size>0
+         iv_rejected=_a[0]
+      end
 
 
       ###################################
@@ -907,7 +911,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
    #       value(RV_CHECK_INCOMMING) type SESF_BOOLEAN .
    #
 
-   def get_map_msgs_check_incoming(_i:nil,_e:nil,_b:nil)
+   def get_map_msgs_check_incoming(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -946,7 +950,11 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
    #       value(RT_NODE_ID) type SESF_BO_NODE_ID_TAB .
    #
 
-   def get_node_id_for_task_region(it_node_id:nil,_i:nil,_e:nil,_b:nil)
+   def get_node_id_for_task_region(*_a,it_node_id:nil,_i:nil,_e:nil,_b:nil)
+      it_node_id=nil
+      if _a && _a.size>0
+         it_node_id=_a[0]
+      end
 
 
       ###################################
@@ -983,7 +991,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
    #       value(RV_SUB_CONTEXT) type IF_MSGM_MESSAGE_MANAGER=>TY_SUB_CONTEXT .
    #
 
-   def get_sub_context(_i:nil,_e:nil,_b:nil)
+   def get_sub_context(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -1024,7 +1032,11 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
    #       !EV_BO_NODE_NAME type STRING .
    #
 
-   def get_task_region_bo_details(iv_eco_name:nil,_i:nil,_e:nil,_b:nil)
+   def get_task_region_bo_details(*_a,iv_eco_name:nil,_i:nil,_e:nil,_b:nil)
+      iv_eco_name=nil
+      if _a && _a.size>0
+         iv_eco_name=_a[0]
+      end
 
 
       ###################################
@@ -1064,7 +1076,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
          ev_eco_root_node_name = lo_root_node_descriptor.get_proxy_name(_b:binding)
 
 
-      rescue cx_esf_metadata_error=>lx_esf_metadata_error
+      rescue Cx_esf_metadata_error=>lx_esf_metadata_error
          handle_error(ix_exception:lx_esf_metadata_error)
 
 
@@ -1102,7 +1114,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
          end
 
 
-      rescue cx_esf_metadata_error
+      rescue Cx_esf_metadata_error
          ev_has_task_region = abap_false
 
          ev_bo_name = space
@@ -1131,7 +1143,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
    #
    #
 
-   def send_update_task_association(_i:nil,_e:nil,_b:nil)
+   def send_update_task_association(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -1188,7 +1200,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
    # methods PUT_MESSAGES_INTO_HANDLER
    #     redefinition .
 
-   def put_messages_into_handler(_i:nil,_e:nil,_b:nil)
+   def put_messages_into_handler(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -1297,7 +1309,13 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
    #       !IT_MESSAGES type CM_ESI_ROOT=>TT_ESI_ROOT
    #       !IV_IGNORE_WRONG_ORIG_LOCATION type SYBOOLEAN default ABAP_FALSE .
 
-   def put_messages(iv_ignore_wrong_orig_location:nil,_i:nil,_e:nil,_b:nil)
+   def put_messages(*_a,io_message_handler:nil,it_messages:nil,iv_ignore_wrong_orig_location:nil,_i:nil,_e:nil,_b:nil)
+      io_message_handler=it_messages=iv_ignore_wrong_orig_location=nil
+      if _a && _a.size>0
+         io_message_handler=_a[0]
+         it_messages=_a[1] if _a.size>1
+         iv_ignore_wrong_orig_location=_a[2] if _a.size>2
+      end
 
 
       ###################################
@@ -1402,7 +1420,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
          end
 
 
-      rescue cx_esf_message_handler=>lx_exception
+      rescue Cx_esf_message_handler=>lx_exception
          raise cx_fatal_exception.new
 
 
@@ -1424,7 +1442,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
 
    end
 
-   def if_a1s_service_provider_eco_i_add_mapped_messages(_i:nil,_e:nil,_b:nil)
+   def if_a1s_service_provider_eco_i_add_mapped_messages(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -1464,7 +1482,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
 
    end
 
-   def if_a1s_service_provider_eco_i_add_mapped_notifications(_i:nil,_e:nil,_b:nil)
+   def if_a1s_service_provider_eco_i_add_mapped_notifications(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -1500,7 +1518,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
 
    end
 
-   def if_a1s_service_provider_eco_i_get_bo_name(_i:nil,_e:nil,_b:nil)
+   def if_a1s_service_provider_eco_i_get_bo_name(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -1533,7 +1551,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
 
    end
 
-   def if_a1s_service_provider_eco_i_get_bo_root_node_name(_i:nil,_e:nil,_b:nil)
+   def if_a1s_service_provider_eco_i_get_bo_root_node_name(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -1566,7 +1584,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
 
    end
 
-   def if_a1s_service_provider_eco_i_map_change_notifications(_i:nil,_e:nil,_b:nil)
+   def if_a1s_service_provider_eco_i_map_change_notifications(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -1603,7 +1621,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
 
    end
 
-   def if_a1s_service_provider_eco_i_map_put_messages_into_handler(_i:nil,_e:nil,_b:nil)
+   def if_a1s_service_provider_eco_i_map_put_messages_into_handler(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -1631,7 +1649,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
          put_messages(io_message_handler:io_message_handler, it_messages:lt_messages)
 
 
-      rescue cx_bsa_runtime=>lx_exception
+      rescue Cx_bsa_runtime=>lx_exception
          raise cx_fatal_exception.new
 
 

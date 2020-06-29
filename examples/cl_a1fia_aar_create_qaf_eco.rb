@@ -17,7 +17,14 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #
    #
 
-   def modify_core_bo_from_eco_root(io_message_handler:nil,_i:nil,_e:nil,_b:nil)
+   def modify_core_bo_from_eco_root(*_a,it_changed_attributes:nil,is_eco_root:nil,io_change_handler:nil,io_message_handler:nil,_i:nil,_e:nil,_b:nil)
+      it_changed_attributes=is_eco_root=io_change_handler=io_message_handler=nil
+      if _a && _a.size>0
+         it_changed_attributes=_a[0]
+         is_eco_root=_a[1] if _a.size>1
+         io_change_handler=_a[2] if _a.size>2
+         io_message_handler=_a[3] if _a.size>3
+      end
 
 
       ###################################
@@ -202,7 +209,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
                   free(lt_core_bo_defaulted_data)
                   unassign(lt_core_bo_defaulted_data)
 
-               rescue cx_esf_core_service=>lx_esf_core_service
+               rescue Cx_esf_core_service=>lx_esf_core_service
                   raise cx_fatal_exception.new
 
 
@@ -269,7 +276,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
                   io_message_handler.add_message(in_message:lo_msg_grir)
 
 
-               rescue cx_esf_message_handler=>lx_esf_message_handler
+               rescue Cx_esf_message_handler=>lx_esf_message_handler
                   raise cx_fatal_exception.new
 
 
@@ -296,7 +303,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
          }, _b:binding)
 
 
-      rescue cx_esf_core_service=>lx_esf_core_service
+      rescue Cx_esf_core_service=>lx_esf_core_service
          raise cx_fatal_exception.new
 
 
@@ -344,7 +351,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #     redefinition .
    #
 
-   def if_esf_provider_access_i_check(_i:nil,_e:nil,_b:nil)
+   def if_esf_provider_access_i_check(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -388,7 +395,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
          lv_is_node_upd_enabled = lo_node_desc.get_property_value(property_name:If_esf_desc::co_property_update_enabled)
          lv_is_upd_enabled_final = lo_node_desc.is_property_value_final(property_name:If_esf_desc::co_property_update_enabled)
 
-      rescue cx_esf_metadata_error=>lx_esf_metadata_error
+      rescue Cx_esf_metadata_error=>lx_esf_metadata_error
          raise cx_fatal_exception.new
 
 
@@ -464,7 +471,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
                #"#EC CI_LCP_LOOP  "No single BO node is being checked-on more than once
 
-            rescue cx_esf_core_service=>lx_esf_core_service
+            rescue Cx_esf_core_service=>lx_esf_core_service
                raise cx_fatal_exception.new
 
 
@@ -474,7 +481,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
          }
 
-      rescue cx_a1fia_aar_create_qaf_eco=>lx_a1fia_aar_create_qaf_eco
+      rescue Cx_a1fia_aar_create_qaf_eco=>lx_a1fia_aar_create_qaf_eco
          Cl_a1fia_aar_util::create_message(_i:{
             "eo_message" => lo_message,
          }, _e:{
@@ -488,7 +495,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
             in_message_handler.add_message(lo_message)
 
 
-         rescue cx_esf_message_handler=>lx_esf_message_handler
+         rescue Cx_esf_message_handler=>lx_esf_message_handler
             raise cx_fatal_exception.new
 
 
@@ -517,7 +524,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #     redefinition .
    #
 
-   def if_esf_provider_access_i_modify(_i:nil,_e:nil,_b:nil)
+   def if_esf_provider_access_i_modify(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -599,7 +606,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
             }, _b:binding)
 
 
-         rescue cx_a1fia_aar_create_qaf_eco=>lx_a1fia_aar_create_qaf_eco
+         rescue Cx_a1fia_aar_create_qaf_eco=>lx_a1fia_aar_create_qaf_eco
             Cl_a1fia_aar_util::create_message(_i:{
                "eo_message" => lo_message,
             }, _e:{
@@ -613,7 +620,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
                in_message_handler.add_message(lo_message)
 
 
-            rescue cx_esf_message_handler=>lx_esf_message_handler
+            rescue Cx_esf_message_handler=>lx_esf_message_handler
                raise cx_fatal_exception.new
 
 
@@ -659,7 +666,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #     redefinition .
    #
 
-   def if_esf_provider_access_i_retrieve(_i:nil,_e:nil,_b:nil)
+   def if_esf_provider_access_i_retrieve(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -729,7 +736,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
             }, _b:binding)
 
 
-         rescue cx_esf_core_service=>lx_esf_core_service
+         rescue Cx_esf_core_service=>lx_esf_core_service
             raise cx_fatal_exception.new
 
 
@@ -880,7 +887,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
                      #"#EC CI_LCP_LOOP  "No single BO node is being retrieved on more than once
 
-                  rescue cx_esf_core_service=>lx_esf_core_service
+                  rescue Cx_esf_core_service=>lx_esf_core_service
                      raise cx_fatal_exception.new
 
 
@@ -964,7 +971,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
             #"IF out_failed_node_ids IS INITIAL.
 
-         rescue cx_a1fia_aar_create_qaf_eco=>lx_a1fia_aar_create_qaf_eco
+         rescue Cx_a1fia_aar_create_qaf_eco=>lx_a1fia_aar_create_qaf_eco
             clear(id:out_data)
             append(from:lines, to:out_failed_node_ids)
             Cl_a1fia_aar_util::create_message(_i:{
@@ -997,7 +1004,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
          begin
             lv_parent_node_name = @mo_eco_descriptor.get_bo_node_descriptor(bo_node_proxy_name:in_bo_node_name).get_parent_bo_node_descriptor(_b:binding).get_proxy_name(_b:binding)
 
-         rescue cx_esf_metadata_error=>lx_esf_metadata
+         rescue Cx_esf_metadata_error=>lx_esf_metadata
             raise cx_fatal_exception.new
 
 
@@ -1037,7 +1044,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #     redefinition .
    #
 
-   def if_esf_provider_access_i_retrieve_by_association(_i:nil,_e:nil,_b:nil)
+   def if_esf_provider_access_i_retrieve_by_association(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -1281,7 +1288,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
                   lo_lcp = @mo_adaptation_handler.get_lcp(If_fia_fav_production_doc::co_bo_name)
 
 
-               rescue cx_bsa_runtime=>lx_bsa_runtime
+               rescue Cx_bsa_runtime=>lx_bsa_runtime
                   raise cx_fatal_exception.new
 
 
@@ -1317,7 +1324,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
 
 
-               rescue cx_esf_core_service=>lx_esf_core_service
+               rescue Cx_esf_core_service=>lx_esf_core_service
                   raise cx_fatal_exception.new
 
 
@@ -1351,7 +1358,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
                   lo_lcp = @mo_adaptation_handler.get_lcp(If_fia_fav_sls_srv_doc::co_bo_name)
 
 
-               rescue cx_bsa_runtime=>lx_bsa_runtime
+               rescue Cx_bsa_runtime=>lx_bsa_runtime
                   raise cx_fatal_exception.new
 
 
@@ -1414,7 +1421,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
 
 
-               rescue cx_esf_core_service=>lx_esf_core_service
+               rescue Cx_esf_core_service=>lx_esf_core_service
                   raise cx_fatal_exception.new
 
 
@@ -1443,7 +1450,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
                   lo_lcp = @mo_adaptation_handler.get_lcp(If_fia_fav_purchasing_doc::co_bo_name)
 
 
-               rescue cx_bsa_runtime=>lx_bsa_runtime
+               rescue Cx_bsa_runtime=>lx_bsa_runtime
                   raise cx_fatal_exception.new
 
 
@@ -1543,7 +1550,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
 
 
-               rescue cx_esf_core_service=>lx_esf_core_service
+               rescue Cx_esf_core_service=>lx_esf_core_service
                   raise cx_fatal_exception.new
 
 
@@ -1572,7 +1579,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
                   lo_lcp = @mo_adaptation_handler.get_lcp(If_fia_fav_project::co_bo_name)
 
 
-               rescue cx_bsa_runtime=>lx_bsa_runtime
+               rescue Cx_bsa_runtime=>lx_bsa_runtime
                   raise cx_fatal_exception.new
 
 
@@ -1607,7 +1614,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
                   }, _b:binding)
 
 
-               rescue cx_esf_core_service=>lx_esf_core_service
+               rescue Cx_esf_core_service=>lx_esf_core_service
                   raise cx_fatal_exception.new
 
 
@@ -1704,7 +1711,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
                   lo_lcp = @mo_adaptation_handler.get_lcp(lv_bo_name)
 
 
-               rescue cx_bsa_runtime=>lx_bsa_runtime
+               rescue Cx_bsa_runtime=>lx_bsa_runtime
                   raise cx_fatal_exception.new
 
 
@@ -1730,7 +1737,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
                   }, _b:binding)
 
 
-               rescue cx_esf_core_service=>lx_esf_core_service
+               rescue Cx_esf_core_service=>lx_esf_core_service
                   raise cx_fatal_exception.new
 
 
@@ -1848,7 +1855,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #     redefinition .
    #
 
-   def if_esf_provider_access_i_retrieve_default_node_values(_i:nil,_e:nil,_b:nil)
+   def if_esf_provider_access_i_retrieve_default_node_values(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -1903,7 +1910,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #     redefinition .
    #
 
-   def if_esf_provider_access_i_retrieve_properties(_i:nil,_e:nil,_b:nil)
+   def if_esf_provider_access_i_retrieve_properties(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -1998,7 +2005,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
                   }, _b:binding)
 
 
-               rescue cx_esf_property_handler=>lx_esf_property_handler
+               rescue Cx_esf_property_handler=>lx_esf_property_handler
                   raise cx_fatal_exception.new
 
 
@@ -2013,7 +2020,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
                   }, _b:binding)
 
 
-               rescue cx_esf_property_handler=>lx_esf_property_handler
+               rescue Cx_esf_property_handler=>lx_esf_property_handler
                   raise cx_fatal_exception.new
 
 
@@ -2084,7 +2091,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
                         }, _b:binding)
 
 
-                     rescue cx_esf_property_handler=>lx_esf_property_handler
+                     rescue Cx_esf_property_handler=>lx_esf_property_handler
                         raise cx_fatal_exception.new
 
 
@@ -2133,7 +2140,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
                         #"#EC CI_LCP_LOOP  "No single BO node is being retrieved-on more than once
 
-                     rescue cx_esf_core_service=>lx_esf_core_service
+                     rescue Cx_esf_core_service=>lx_esf_core_service
                         raise cx_fatal_exception.new
 
 
@@ -2156,7 +2163,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
                               }, _b:binding)
 
 
-                           rescue cx_esf_property_handler=>lx_esf_property_handler
+                           rescue Cx_esf_property_handler=>lx_esf_property_handler
                               raise cx_fatal_exception.new
 
 
@@ -2219,7 +2226,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
                               }, _b:binding)
 
 
-                           rescue cx_esf_property_handler=>lx_esf_property_handler
+                           rescue Cx_esf_property_handler=>lx_esf_property_handler
                               raise cx_fatal_exception.new
 
 
@@ -2247,7 +2254,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
                      }, _b:binding)
 
 
-                  rescue cx_esf_property_handler=>lx_esf_property_handler
+                  rescue Cx_esf_property_handler=>lx_esf_property_handler
                      raise cx_fatal_exception.new
 
 
@@ -2311,7 +2318,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #     redefinition .
    #
 
-   def if_esf_provider_access_i_retrieve_root_node_id(_i:nil,_e:nil,_b:nil)
+   def if_esf_provider_access_i_retrieve_root_node_id(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -2369,7 +2376,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #     redefinition .
    #
 
-   def if_esf_provider_action_i_execute_action(_i:nil,_e:nil,_b:nil)
+   def if_esf_provider_action_i_execute_action(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -2451,7 +2458,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
                @mo_lcp_bo = @mo_adaptation_handler.get_lcp(@ms_readonly_eco_root.projection_bo_name)
 
 
-            rescue cx_bsa_runtime=>lx_bsa_runtime
+            rescue Cx_bsa_runtime=>lx_bsa_runtime
                raise cx_fatal_exception.new
 
 
@@ -2527,7 +2534,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
             end
 
 
-         rescue cx_a1fia_aar_create_qaf_eco=>lx_a1fia_aar_create_qaf_eco
+         rescue Cx_a1fia_aar_create_qaf_eco=>lx_a1fia_aar_create_qaf_eco
             Cl_a1fia_aar_util::create_message(_i:{
                "eo_message" => lo_message,
             }, _e:{
@@ -2541,7 +2548,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
                in_message_handler.add_message(lo_message)
 
 
-            rescue cx_esf_message_handler=>lx_esf_message_handler
+            rescue Cx_esf_message_handler=>lx_esf_message_handler
                raise cx_fatal_exception.new
 
 
@@ -2593,7 +2600,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
             end
 
 
-         rescue cx_esf_core_service=>lx_esf_core_service
+         rescue Cx_esf_core_service=>lx_esf_core_service
             raise cx_fatal_exception.new
 
 
@@ -2638,7 +2645,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
                }, _b:binding)
 
 
-            rescue cx_esf_core_service=>lx_esf_core_service
+            rescue Cx_esf_core_service=>lx_esf_core_service
                raise cx_fatal_exception.new
 
 
@@ -2753,7 +2760,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #     redefinition .
    #
 
-   def if_esf_provider_action_i_retrieve_default_action_param(_i:nil,_e:nil,_b:nil)
+   def if_esf_provider_action_i_retrieve_default_action_param(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -2787,7 +2794,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #     redefinition .
    #
 
-   def if_esf_provider_init_i_init(_i:nil,_e:nil,_b:nil)
+   def if_esf_provider_init_i_init(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -2813,7 +2820,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
          @mo_eco_descriptor = @mo_lcp_facade.get_bo_descriptor(in_bo_proxy_name:If_a1fia_aar_create_qaf_eco::co_bo_name)
 
 
-      rescue cx_esf_core_service=>lx_esf_core_service
+      rescue Cx_esf_core_service=>lx_esf_core_service
          raise cx_fatal_exception.new
 
 
@@ -2838,7 +2845,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #     redefinition .
    #
 
-   def if_esf_provider_interact_ctrl_i_do_post_processing(_i:nil,_e:nil,_b:nil)
+   def if_esf_provider_interact_ctrl_i_do_post_processing(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -2880,7 +2887,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #     redefinition .
    #
 
-   def if_esf_provider_subscription_i_on_bo_changed(_i:nil,_e:nil,_b:nil)
+   def if_esf_provider_subscription_i_on_bo_changed(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -2932,7 +2939,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #     redefinition .
    #
 
-   def if_esf_provider_transact_ctrl_i_on_after_cleanup_transaction(_i:nil,_e:nil,_b:nil)
+   def if_esf_provider_transact_ctrl_i_on_after_cleanup_transaction(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -2970,7 +2977,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #     redefinition .
    #
 
-   def if_esf_provider_transact_ctrl_i_on_after_save_transaction(_i:nil,_e:nil,_b:nil)
+   def if_esf_provider_transact_ctrl_i_on_after_save_transaction(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -3080,7 +3087,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #     redefinition .
    #
 
-   def if_esf_provider_transact_ctrl_i_on_before_save_transaction(_i:nil,_e:nil,_b:nil)
+   def if_esf_provider_transact_ctrl_i_on_before_save_transaction(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -3132,7 +3139,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #     redefinition .
    #
 
-   def if_esf_provider_value_set_i_retrieve_code_values(_i:nil,_e:nil,_b:nil)
+   def if_esf_provider_value_set_i_retrieve_code_values(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -3220,7 +3227,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
                      }, _b:binding)
 
 
-                  rescue cx_esf_core_service=>lx_esf_core_service
+                  rescue Cx_esf_core_service=>lx_esf_core_service
                      raise cx_fatal_exception.new
 
 
@@ -3278,7 +3285,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    # methods IF_ESF_PROVIDER_VALUE_SET~RETRIEVE_VALUE_SET
    #     redefinition .
 
-   def if_esf_provider_value_set_i_retrieve_value_set(_i:nil,_e:nil,_b:nil)
+   def if_esf_provider_value_set_i_retrieve_value_set(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -3475,7 +3482,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
                      }, _b:binding)
 
 
-                  rescue cx_esf_core_service=>lx_esf_core_service
+                  rescue Cx_esf_core_service=>lx_esf_core_service
                      raise cx_fatal_exception.new
 
 
@@ -3533,7 +3540,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #     redefinition .
    #
 
-   def get_sub_context(_i:nil,_e:nil,_b:nil)
+   def get_sub_context(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -3568,7 +3575,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    # methods GET_TASK_REGION_BO_DETAILS
    #     redefinition .
 
-   def get_task_region_bo_details(_i:nil,_e:nil,_b:nil)
+   def get_task_region_bo_details(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -3609,7 +3616,12 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #       !ET_ECO_MESSAGE type CM_ESI_ROOT=>TT_ESI_ROOT .
    #
 
-   def add_mapped_messages_int(io_message_handler:nil,_i:nil,_e:nil,_b:nil)
+   def add_mapped_messages_int(*_a,it_message:nil,io_message_handler:nil,_i:nil,_e:nil,_b:nil)
+      it_message=io_message_handler=nil
+      if _a && _a.size>0
+         it_message=_a[0]
+         io_message_handler=_a[1] if _a.size>1
+      end
 
 
       ###################################
@@ -3659,7 +3671,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
                io_message_handler.add_messages(et_eco_message)
 
 
-            rescue cx_esf_message_handler=>lx_esf_message_handler
+            rescue Cx_esf_message_handler=>lx_esf_message_handler
                raise cx_fatal_exception.new
 
 
@@ -3701,7 +3713,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #       !CT_MESSAGE_MAP type IF_BSA_CB_MESSAGE_MAPPING=>TT_MESSAGE_MAPPING .
    #
 
-   def adjust_messages_int(_i:nil,_e:nil,_b:nil)
+   def adjust_messages_int(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -3834,7 +3846,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #       value(RT_ENABLED) type SESF_BOOLEAN .
    #
 
-   def check_activate_enabled(in_node_ids:nil,_i:nil,_e:nil,_b:nil)
+   def check_activate_enabled(*_a,in_node_ids:nil,_i:nil,_e:nil,_b:nil)
+      in_node_ids=nil
+      if _a && _a.size>0
+         in_node_ids=_a[0]
+      end
 
 
       ###################################
@@ -3894,7 +3910,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
          end
 
 
-      rescue cx_esf_core_service=>lo_ex
+      rescue Cx_esf_core_service=>lo_ex
          raise cx_fatal_exception.new
 
 
@@ -3921,7 +3937,12 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #       !IO_MESSAGE_HANDLER type ref to IF_ESF_MESSAGE_HANDLER .
    #
 
-   def check_and_fill_sob_comp(io_message_handler:nil,_i:nil,_e:nil,_b:nil)
+   def check_and_fill_sob_comp(*_a,ir_root_modification:nil,io_message_handler:nil,_i:nil,_e:nil,_b:nil)
+      ir_root_modification=io_message_handler=nil
+      if _a && _a.size>0
+         ir_root_modification=_a[0]
+         io_message_handler=_a[1] if _a.size>1
+      end
 
 
       ###################################
@@ -4084,7 +4105,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #       value(RT_HAS_ERRORS) type SESF_BOOLEAN .
    #
 
-   def check_for_errors(in_messages:nil,_i:nil,_e:nil,_b:nil)
+   def check_for_errors(*_a,in_messages:nil,_i:nil,_e:nil,_b:nil)
+      in_messages=nil
+      if _a && _a.size>0
+         in_messages=_a[0]
+      end
 
 
       ###################################
@@ -4135,7 +4160,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #       !CT_MESSAGE type CM_ESI_ROOT=>TT_ESI_ROOT .
    #
 
-   def check_mandatory_attr_filled(_i:nil,_e:nil,_b:nil)
+   def check_mandatory_attr_filled(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -4178,7 +4203,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    # methods CLEAR_BUFFERS .
    #
 
-   def clear_buffers(_i:nil,_e:nil,_b:nil)
+   def clear_buffers(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -4225,7 +4250,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #       value(RT_AFFECTED_ASSOCIATIONS) type SESF_STRING_TAB .
    #
 
-   def derive_affected_associations(is_change_notification:nil,_i:nil,_e:nil,_b:nil)
+   def derive_affected_associations(*_a,is_change_notification:nil,_i:nil,_e:nil,_b:nil)
+      is_change_notification=nil
+      if _a && _a.size>0
+         is_change_notification=_a[0]
+      end
 
 
       ###################################
@@ -4310,7 +4339,13 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #       !CT_CHANGED_ATTRIBUTES type SESF_STRING_TAB .
    #
 
-   def extract_editable_non_init_attr(iv_bo_node_name:nil,_i:nil,_e:nil,_b:nil)
+   def extract_editable_non_init_attr(*_a,is_co_attr_struct:nil,is_node_data:nil,iv_bo_node_name:nil,_i:nil,_e:nil,_b:nil)
+      is_co_attr_struct=is_node_data=iv_bo_node_name=nil
+      if _a && _a.size>0
+         is_co_attr_struct=_a[0]
+         is_node_data=_a[1] if _a.size>1
+         iv_bo_node_name=_a[2] if _a.size>2
+      end
 
 
       ###################################
@@ -4374,7 +4409,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
                   #*                              property_name = if_esf_desc=>co_property_enabled ).
 
 
-               rescue cx_esf_metadata_error=>lx_esf_metadata_error
+               rescue Cx_esf_metadata_error=>lx_esf_metadata_error
                   raise cx_fatal_exception.new
 
 
@@ -4420,7 +4455,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #       value(RT_AFFECTED_CORE_NODES) type SESF_STRING_TAB .
    #
 
-   def get_affected_core_bo_nodes(is_change_notification:nil,_i:nil,_e:nil,_b:nil)
+   def get_affected_core_bo_nodes(*_a,is_change_notification:nil,_i:nil,_e:nil,_b:nil)
+      is_change_notification=nil
+      if _a && _a.size>0
+         is_change_notification=_a[0]
+      end
 
 
       ###################################
@@ -4530,7 +4569,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #       CX_A1FIA_AAR_CREATE_QAF_ECO .
    #
 
-   def get_bo_name_from_mdro_type(iv_mdro_type_code:nil,_i:nil,_e:nil,_b:nil)
+   def self.get_bo_name_from_mdro_type(*_a,iv_mdro_type_code:nil,_i:nil,_e:nil,_b:nil)
+      iv_mdro_type_code=nil
+      if _a && _a.size>0
+         iv_mdro_type_code=_a[0]
+      end
 
 
       ###################################
@@ -4634,7 +4677,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #       !ET_CORE_BO_ATTR_NAME type SESF_STRING_TAB .
    #
 
-   def get_eco_core_attr_pair_for_nod(iv_core_bo_node_name:nil,_i:nil,_e:nil,_b:nil)
+   def get_eco_core_attr_pair_for_nod(*_a,iv_core_bo_node_name:nil,_i:nil,_e:nil,_b:nil)
+      iv_core_bo_node_name=nil
+      if _a && _a.size>0
+         iv_core_bo_node_name=_a[0]
+      end
 
 
       ###################################
@@ -4695,7 +4742,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #       value(RT_ROOT_DEDICATED_ATTRIBUTES) type SESF_STRING_TAB .
    #
 
-   def get_root_dedicated_attr_names(_i:nil,_e:nil,_b:nil)
+   def get_root_dedicated_attr_names(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -4738,7 +4785,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #       !ET_MAPPED_REQ_ATTRIBUTES type SESF_STRING_TAB .
    #
 
-   def get_root_maped_attr_for_dedica(it_requested_attributes:nil,_i:nil,_e:nil,_b:nil)
+   def get_root_maped_attr_for_dedica(*_a,it_requested_attributes:nil,_i:nil,_e:nil,_b:nil)
+      it_requested_attributes=nil
+      if _a && _a.size>0
+         it_requested_attributes=_a[0]
+      end
 
 
       ###################################
@@ -4807,7 +4858,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #       value(RV_UUID) type SYSUUID_C32 .
    #
 
-   def get_uuid(_i:nil,_e:nil,_b:nil)
+   def self.get_uuid(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -4838,7 +4889,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
          rv_uuid = lr_uuid_generator.create_uuid_c32(_b:binding)
 
 
-      rescue cx_uuid_error=>lx_uuid_error
+      rescue Cx_uuid_error=>lx_uuid_error
          raise cx_fatal_exception.new
 
 
@@ -4869,7 +4920,16 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #       !IO_MESSAGE_HANDLER type ref to IF_ESF_MESSAGE_HANDLER .
    #
 
-   def handle_create_with_ref_actions(io_message_handler:nil,_i:nil,_e:nil,_b:nil)
+   def handle_create_with_ref_actions(*_a,iv_for_cancellation:nil,it_node_id:nil,it_referencing_node_elements:nil,io_change_handler:nil,iv_is_test_run:nil,io_message_handler:nil,_i:nil,_e:nil,_b:nil)
+      iv_for_cancellation=it_node_id=it_referencing_node_elements=io_change_handler=iv_is_test_run=io_message_handler=nil
+      if _a && _a.size>0
+         iv_for_cancellation=_a[0]
+         it_node_id=_a[1] if _a.size>1
+         it_referencing_node_elements=_a[2] if _a.size>2
+         io_change_handler=_a[3] if _a.size>3
+         iv_is_test_run=_a[4] if _a.size>4
+         io_message_handler=_a[5] if _a.size>5
+      end
 
 
       ###################################
@@ -4955,7 +5015,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
             end
 
 
-         rescue cx_esf_core_service=>lx_esf_core_service
+         rescue Cx_esf_core_service=>lx_esf_core_service
             raise cx_fatal_exception.new
 
 
@@ -5017,7 +5077,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
          }, _b:binding)
 
 
-      rescue cx_esf_core_service=>lx_esf_core_service
+      rescue Cx_esf_core_service=>lx_esf_core_service
          raise cx_fatal_exception.new
 
 
@@ -5067,7 +5127,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #       !CT_CHANGED_ATTR type SESF_STRING_TAB .
    #
 
-   def handle_dedicated_attr_modific(_i:nil,_e:nil,_b:nil)
+   def handle_dedicated_attr_modific(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -5127,7 +5187,12 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #       !IO_CHANGE_HANDLER type ref to IF_ESF_CHANGE_HANDLER .
    #
 
-   def handle_notifications(io_change_handler:nil,_i:nil,_e:nil,_b:nil)
+   def handle_notifications(*_a,is_change_notification:nil,io_change_handler:nil,_i:nil,_e:nil,_b:nil)
+      is_change_notification=io_change_handler=nil
+      if _a && _a.size>0
+         is_change_notification=_a[0]
+         io_change_handler=_a[1] if _a.size>1
+      end
 
 
       ###################################
@@ -5334,7 +5399,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
             #"in_create_key_handle = lv_eco_root_node_id_handle  "No handle currently as the create is always through CreateWithReference actions
 
-         rescue cx_esf_change_handler=>lx_esf_change_handler
+         rescue Cx_esf_change_handler=>lx_esf_change_handler
             raise cx_fatal_exception.new
 
 
@@ -5376,7 +5441,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
             }, _b:binding)
 
 
-         rescue cx_esf_sync_handler=>lx_esf_sync_handler
+         rescue Cx_esf_sync_handler=>lx_esf_sync_handler
             raise cx_fatal_exception.new
 
 
@@ -5449,7 +5514,14 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #       !CS_ECO_ROOT type IF_A1FIA_AAR_CREATE_QAF_ECO=>TY_ROOT optional .
    #
 
-   def handle_root_dedicated_fields(iv_mode_fill_dedicted_attr_val:nil,_i:nil,_e:nil,_b:nil)
+   def handle_root_dedicated_fields(*_a,it_requested_attributes:nil,iv_mode_get_all_dedicated_attr:nil,iv_mode_get_relevnt_maped_attr:nil,iv_mode_fill_dedicted_attr_val:nil,_i:nil,_e:nil,_b:nil)
+      it_requested_attributes=iv_mode_get_all_dedicated_attr=iv_mode_get_relevnt_maped_attr=iv_mode_fill_dedicted_attr_val=nil
+      if _a && _a.size>0
+         it_requested_attributes=_a[0]
+         iv_mode_get_all_dedicated_attr=_a[1] if _a.size>1
+         iv_mode_get_relevnt_maped_attr=_a[2] if _a.size>2
+         iv_mode_fill_dedicted_attr_val=_a[3] if _a.size>3
+      end
 
 
       ###################################
@@ -5484,7 +5556,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #       CX_A1FIA_AAR_CREATE_QAF_ECO .
    #
 
-   def init_buffers(_i:nil,_e:nil,_b:nil)
+   def init_buffers(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -5548,7 +5620,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    # methods POPULATE_ATTRIBUTE_MAP .
    #
 
-   def populate_attribute_map(_i:nil,_e:nil,_b:nil)
+   def populate_attribute_map(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -6297,7 +6369,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    # methods POPULATE_DEDICATED_ATTRIB .
    #
 
-   def populate_dedicated_attrib(_i:nil,_e:nil,_b:nil)
+   def populate_dedicated_attrib(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -6344,7 +6416,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #       CX_A1FIA_AAR_CREATE_QAF_ECO .
    #
 
-   def populate_eco_root_attr_names(is_co_attr_struct:nil,_i:nil,_e:nil,_b:nil)
+   def populate_eco_root_attr_names(*_a,is_co_attr_struct:nil,_i:nil,_e:nil,_b:nil)
+      is_co_attr_struct=nil
+      if _a && _a.size>0
+         is_co_attr_struct=_a[0]
+      end
 
 
       ###################################
@@ -6469,7 +6545,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #       CX_A1FIA_AAR_CREATE_QAF_ECO .
    #
 
-   def populate_run_specific_nodes(_i:nil,_e:nil,_b:nil)
+   def populate_run_specific_nodes(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -6533,7 +6609,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
          }
 
-      rescue cx_esf_metadata_error=>lx_esf_metadata_error
+      rescue Cx_esf_metadata_error=>lx_esf_metadata_error
          raise cx_fatal_exception.new
 
 
@@ -6566,7 +6642,13 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #       !EV_CORE_BO_ATTR_NAME type STRING .
    #
 
-   def prepare_core_val_help_retrieve(iv_eco_node_id:nil,_i:nil,_e:nil,_b:nil)
+   def prepare_core_val_help_retrieve(*_a,iv_eco_attr_name:nil,iv_eco_node_name:nil,iv_eco_node_id:nil,_i:nil,_e:nil,_b:nil)
+      iv_eco_attr_name=iv_eco_node_name=iv_eco_node_id=nil
+      if _a && _a.size>0
+         iv_eco_attr_name=_a[0]
+         iv_eco_node_name=_a[1] if _a.size>1
+         iv_eco_node_id=_a[2] if _a.size>2
+      end
 
 
       ###################################
@@ -6639,7 +6721,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
             }, _b:binding)
 
 
-         rescue cx_esf_core_service=>lx_esf_core_service
+         rescue Cx_esf_core_service=>lx_esf_core_service
             raise cx_fatal_exception.new
 
 
@@ -6673,7 +6755,12 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #       !ET_DATA_COMP_ACTIVATION_STAT type IF_FIA_SET_OF_BOOKS=>TT_COMPANY_ASSIGNMENT .
    #
 
-   def query_sob_by_comp_sob(it_requested_attr:nil,_i:nil,_e:nil,_b:nil)
+   def query_sob_by_comp_sob(*_a,it_selection_param:nil,it_requested_attr:nil,_i:nil,_e:nil,_b:nil)
+      it_selection_param=it_requested_attr=nil
+      if _a && _a.size>0
+         it_selection_param=_a[0]
+         it_requested_attr=_a[1] if _a.size>1
+      end
 
 
       ###################################
@@ -6696,7 +6783,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
             @mo_sob_lcp = @mo_adaptation_handler.get_lcp(If_fia_set_of_books::co_bo_name)
 
 
-         rescue cx_bsa_runtime=>lx_bsa_runtime
+         rescue Cx_bsa_runtime=>lx_bsa_runtime
             raise cx_fatal_exception.new
 
 
@@ -6731,7 +6818,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
          end
 
 
-      rescue cx_esf_core_service=>lx_esf_core_service
+      rescue Cx_esf_core_service=>lx_esf_core_service
          raise cx_fatal_exception.new
 
 
@@ -6757,7 +6844,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #       !IO_MESSAGE_HANDLER type ref to IF_ESF_MESSAGE_HANDLER .
    #
 
-   def raise_stop_message(io_message_handler:nil,_i:nil,_e:nil,_b:nil)
+   def raise_stop_message(*_a,io_message_handler:nil,_i:nil,_e:nil,_b:nil)
+      io_message_handler=nil
+      if _a && _a.size>0
+         io_message_handler=_a[0]
+      end
 
 
       ###################################
@@ -6790,7 +6881,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
          }, _b:binding)
 
 
-      rescue cx_esf_message_handler=>lx_message_handler
+      rescue Cx_esf_message_handler=>lx_message_handler
          raise cx_fatal_exception.new
 
 
@@ -6818,7 +6909,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #       value(OUT_VALUE_SET_NODE_IDS) type SESF_BO_NODE_ID_TAB .
    #
 
-   def restrict_projectid_value_set(in_selection_parameters:nil,_i:nil,_e:nil,_b:nil)
+   def restrict_projectid_value_set(*_a,in_selection_parameters:nil,_i:nil,_e:nil,_b:nil)
+      in_selection_parameters=nil
+      if _a && _a.size>0
+         in_selection_parameters=_a[0]
+      end
 
 
       ###################################
@@ -6872,7 +6967,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
          mo_pro_lcp = @mo_adaptation_handler.get_lcp('PRO_PROJECT')
 
 
-      rescue cx_bsa_runtime=>lx_bsa_runtime
+      rescue Cx_bsa_runtime=>lx_bsa_runtime
          raise cx_fatal_exception.new
 
 
@@ -6888,7 +6983,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
          }, _b:binding)
 
 
-      rescue cx_esf_core_service=>lx_esf_core_service
+      rescue Cx_esf_core_service=>lx_esf_core_service
          raise cx_fatal_exception.new
 
 
@@ -6900,7 +6995,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
             mo_pro_bco_lcp = @mo_adaptation_handler.get_lcp(If_pro_protype::co_bo_name)
 
 
-         rescue cx_bsa_runtime=>lx_bsa_runtime
+         rescue Cx_bsa_runtime=>lx_bsa_runtime
             raise cx_fatal_exception.new
 
 
@@ -6983,7 +7078,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
             }, _b:binding)
 
 
-         rescue cx_esf_core_service=>lx_esf_core_service
+         rescue Cx_esf_core_service=>lx_esf_core_service
             raise cx_fatal_exception.new
 
 
@@ -7014,7 +7109,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
                }
 
-            rescue cx_esf_core_service=>lx_esf_core_service
+            rescue Cx_esf_core_service=>lx_esf_core_service
                raise cx_fatal_exception.new
 
 
@@ -7031,7 +7126,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
             mo_pro_lcp = @mo_adaptation_handler.get_lcp('PRO_PROJECT')
 
 
-         rescue cx_bsa_runtime=>lx_bsa_runtime
+         rescue Cx_bsa_runtime=>lx_bsa_runtime
             raise cx_fatal_exception.new
 
 
@@ -7049,7 +7144,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
             }, _b:binding)
 
 
-         rescue cx_esf_core_service=>lx_esf_core_service
+         rescue Cx_esf_core_service=>lx_esf_core_service
             raise cx_fatal_exception.new
 
 
@@ -7082,7 +7177,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #       !ET_DATA_SOB_ROOT type IF_FIA_SET_OF_BOOKS=>TT_ROOT .
    #
 
-   def retrive_sob_root_id_by_node_id(in_node_ids:nil,_i:nil,_e:nil,_b:nil)
+   def retrive_sob_root_id_by_node_id(*_a,in_node_ids:nil,_i:nil,_e:nil,_b:nil)
+      in_node_ids=nil
+      if _a && _a.size>0
+         in_node_ids=_a[0]
+      end
 
 
       ###################################
@@ -7107,7 +7206,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
             @mo_sob_lcp = @mo_adaptation_handler.get_lcp(If_fia_set_of_books::co_bo_name)
 
 
-         rescue cx_bsa_runtime=>lx_bsa_runtime
+         rescue Cx_bsa_runtime=>lx_bsa_runtime
             raise cx_fatal_exception.new
 
 
@@ -7128,7 +7227,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
          }, _b:binding)
 
 
-      rescue cx_esf_core_service=>lx_esf_core_service
+      rescue Cx_esf_core_service=>lx_esf_core_service
          raise cx_fatal_exception.new
 
 
@@ -7156,7 +7255,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #       value(RV_ROOT_NODE_ID_EXISTS) type SESF_BOOLEAN .
    #
 
-   def root_node_id_exists(iv_root_node_id:nil,_i:nil,_e:nil,_b:nil)
+   def root_node_id_exists(*_a,iv_root_node_id:nil,_i:nil,_e:nil,_b:nil)
+      iv_root_node_id=nil
+      if _a && _a.size>0
+         iv_root_node_id=_a[0]
+      end
 
 
       ###################################
@@ -7189,7 +7292,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
          }, _b:binding)
 
 
-      rescue cx_esf_core_service=>lx_esf_core_service
+      rescue Cx_esf_core_service=>lx_esf_core_service
          raise cx_fatal_exception.new
 
 
@@ -7232,7 +7335,15 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #       !IV_ECO_NODE_ID type SESF_BO_NODE_ID .
    #
 
-   def set_attr_properties(iv_eco_node_id:nil,_i:nil,_e:nil,_b:nil)
+   def set_attr_properties(*_a,it_eco_attr_name:nil,io_property_handler:nil,iv_property_name:nil,iv_property_value:nil,iv_eco_node_id:nil,_i:nil,_e:nil,_b:nil)
+      it_eco_attr_name=io_property_handler=iv_property_name=iv_property_value=iv_eco_node_id=nil
+      if _a && _a.size>0
+         it_eco_attr_name=_a[0]
+         io_property_handler=_a[1] if _a.size>1
+         iv_property_name=_a[2] if _a.size>2
+         iv_property_value=_a[3] if _a.size>3
+         iv_eco_node_id=_a[4] if _a.size>4
+      end
 
 
       ###################################
@@ -7260,7 +7371,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
             }, _b:binding)
 
 
-         rescue cx_esf_property_handler=>lx_esf_property_handler
+         rescue Cx_esf_property_handler=>lx_esf_property_handler
             raise cx_fatal_exception.new
 
 
@@ -7290,7 +7401,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #       !CS_ECO_ROOT type IF_A1FIA_AAR_CREATE_QAF_ECO=>TY_ROOT .
    #
 
-   def set_root_dedicated_attributes(it_requested_attributes:nil,_i:nil,_e:nil,_b:nil)
+   def set_root_dedicated_attributes(*_a,it_requested_attributes:nil,_i:nil,_e:nil,_b:nil)
+      it_requested_attributes=nil
+      if _a && _a.size>0
+         it_requested_attributes=_a[0]
+      end
 
 
       ###################################
@@ -7364,7 +7479,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #       value(RS_NEW_MESSAGE_LOCATION) type CM_ESI_ROOT=>TY_MESSAGE_LOCATION .
    #
 
-   def translate_message_location(is_message_location:nil,_i:nil,_e:nil,_b:nil)
+   def translate_message_location(*_a,is_message_location:nil,_i:nil,_e:nil,_b:nil)
+      is_message_location=nil
+      if _a && _a.size>0
+         is_message_location=_a[0]
+      end
 
 
       ###################################
@@ -7457,7 +7576,13 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #       !IV_NODE_NAME type STRING .
    #
 
-   def set_node_n_assoc_read_only(iv_node_name:nil,_i:nil,_e:nil,_b:nil)
+   def set_node_n_assoc_read_only(*_a,io_property_handler:nil,it_node_ids:nil,iv_node_name:nil,_i:nil,_e:nil,_b:nil)
+      io_property_handler=it_node_ids=iv_node_name=nil
+      if _a && _a.size>0
+         io_property_handler=_a[0]
+         it_node_ids=_a[1] if _a.size>1
+         iv_node_name=_a[2] if _a.size>2
+      end
 
 
       ###################################
@@ -7540,7 +7665,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
          }
 
-      rescue cx_esf_metadata_error=>lx_esf_metadata_error
+      rescue Cx_esf_metadata_error=>lx_esf_metadata_error
          raise cx_fatal_exception.new
 
 
@@ -7549,7 +7674,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
          io_property_handler.set_properties(ls_properties)
 
 
-      rescue cx_esf_property_handler=>lx_esf_property_handler
+      rescue Cx_esf_property_handler=>lx_esf_property_handler
          raise cx_fatal_exception.new
 
 
@@ -7574,7 +7699,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    #     returning
    #       value(RV_IS_EDITABLE) type SYBOOLEAN .
 
-   def is_floorplan_editable(_i:nil,_e:nil,_b:nil)
+   def is_floorplan_editable(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -7618,7 +7743,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
    end
 
-   def if_bsa_cb_message_mapping_i_adjust_messages(_i:nil,_e:nil,_b:nil)
+   def if_bsa_cb_message_mapping_i_adjust_messages(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -7653,7 +7778,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
    end
 
-   def if_bsa_cb_path_i_resolve(_i:nil,_e:nil,_b:nil)
+   def if_bsa_cb_path_i_resolve(*_a,_i:nil,_e:nil,_b:nil)
 
 
       ###################################
@@ -7804,7 +7929,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
                end
 
 
-            rescue cx_sy_create_data_error
+            rescue Cx_sy_create_data_error
                clear(id:out_data)
                clear(id:out_links)
 
