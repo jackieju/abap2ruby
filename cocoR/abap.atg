@@ -43,6 +43,22 @@ PRAGMAS
 
 PRODUCTIONS
 
+    
+    AllowedKeywordsForTypeName = "DATA" | "MESSAGE" | "END" | "CREATE" | "KEY" |"ID"|"VALUE"|"DEFAULT"|"LENGTH"|"DECIMALS"|"BOXED"|"TYPE"
+                        |"SUFFIX" | "COMPONENTS" | "PARAMETERS" |"EXCEPTIONS" | "KIND" |"DELETE" | "ACTIVATION" .                           
+    
+    /* do not put keyword those may occur in start of line into this, unless you make sure it will never be used as an identifier */
+    AllowedKeywordsExclude = "DATA" | "REF" | "VALUE" | "PARAMETER". 
+    
+    AllowedKeywords =  AllowedKeywordsForTypeName  |"SORTED" | "STANDARD" | "PARAMETER". 
+    
+    TypeName = ( (identifier|AllowedKeywordsForTypeName)|("("(identifier|AllowedKeywordsForTypeName)")") ) {"=>" ( (identifier|AllowedKeywordsForTypeName)|("("(identifier|AllowedKeywordsForTypeName)")") ) } (. name=fixName(src()).)
+                            (.  
+                                             src(name)
+                              .)
+                                .
+
+
     Var = identifier (.re(fixName(prevString())).) | "DATA" "(" Name ")" (.src(lus).)| "FIELD-SYMBOL" "(" Name ")" (.src(lus).).
     
     Exps =  Expression{Expression} .
@@ -573,7 +589,7 @@ LoopStatement = "LOOP" (.params = {};stmts ="".)
 
 TypeDes = "TYPE"  
             (
-                         Expression  (.ret = VarType.new(lus.strip).) (
+                         TypeName  (.ret = VarType.new(lus.strip).) (
                                              ["LENGTH" Expression] ["DECIMALS" number] 
                                          |
                                               ( "READER"|"LOCATOR"|"LOB" "HANDLE" )
@@ -587,7 +603,7 @@ TypeDes = "TYPE"
                       | 
                           [ ("STANDARD" | "SORTED"| "HASHED") ] "TABLE" 
                        
-                          "OF" ["REF" "TO"] identifier (.ret = VarType.new(curString.strip).)
+                          "OF" ["REF" "TO"] TypeName(.ret = VarType.new(lus.strip).)
                           {
                               "WITH"
                               (
@@ -1015,7 +1031,7 @@ stREAD = "READ"
                          
                   
                  | 
-                     "INDEX" Name (.params["index"]=lus.)["USING" "KEY" ["("]identifier[")"] ] 
+                     "INDEX" Expression (.params["index"]=lus.)["USING" "KEY" ["("]identifier[")"] ] 
                )]
                
                [
@@ -1407,7 +1423,7 @@ stADD_CORRESPONDING = "ADD-CORRESPONDING" identifier "TO" identifier".".
 stALIASES = "ALIASES" identifier "FOR" Name ".".
 
 stASSERT = "ASSERT" [ ["ID" identifier (.cp[:id]=prevString.)["SUBKEY" identifier(.cp[:subkey]=prevString.)]] 
-         ["FIELDS" identifier (.cp[:fields]=lus.)] 
+         ["FIELDS" (.cp[:fields]=[].) identifier (.cp[:fields].push(prevString).) {identifier(.cp[:fields].push(prevString).)} ] 
          "CONDITION" ] LogExp (.cp[:o]=lus.) "." (.make.) .
 
 stASSIGN = "ASSIGN" (.params={}.)( 
@@ -1498,11 +1514,11 @@ CallMethod =  "METHOD"
                 "OF" identifier identifier ["=" identifier] 
              ) 
             {
-                ["PARAMETER-TABLE" identifier (.param_hash["PARAMETER-TABLE"]=prevString.) ] 
-                ["EXCEPTION-TABLE" identifier (. param_hash["EXCEPTION-TABLE"]=prevString .) ] 
-                ["EXPORTING" (. exporting = "{\n".){ identifier(.idn = prevString.) "=" Expression (.exporting+="\"#{idn}\" => #{lus},\n".)} (. exporting += "}".)  ] 
-                ["IMPORTING" (. importing = "{\n".) { identifier(.idn = prevString.) "=" Expression (.importing+="\"#{idn}\" => #{lus},\n".)} (. importing += "}".)  ] 
-                ["CHANGING" {identifier "=" Expression } (.param_hash["CHANGING"]=lus.) ] 
+                ["PARAMETER-TABLE" Name (.param_hash["PARAMETER-TABLE"]=lus.) ] 
+                ["EXCEPTION-TABLE" Name (. param_hash["EXCEPTION-TABLE"]=lus .) ] 
+                ["EXPORTING" (. exporting = "{\n".){ Name(.idn = lus.) "=" Expression (.exporting+="\"#{idn}\" => #{lus},\n".)} (. exporting += "}".)  ] 
+                ["IMPORTING" (. importing = "{\n".) { Name(.idn = lus.) "=" Expression (.importing+="\"#{idn}\" => #{lus},\n".)} (. importing += "}".)  ] 
+                ["CHANGING" (. changing = "{\n".) { Name(.idn = lus.) "=" Expression (.changing+="\"#{idn}\" => #{lus},\n".)} (. changing += "}".)  ] 
                 ["RECEIVING" Expression  (.param_hash["RECEIVING"]=lus.) ] 
                 ["NO" "FLUSH" (.param_hash["noflush"]=true.) ] 
                 ["QUEUE-ONLY" (.param_hash["QUEUE-ONLY"]=true.) ] 
@@ -1651,7 +1667,7 @@ stCREATE = "CREATE"(  "DATA" identifier (.varname=prevString.)[ "AREA" "HANDLE" 
                            | ("WITH" "EMPTY" "KEY") ] 
                            ["INITIAL" "SIZE" number]) ) ]*/
                  |  "OBJECT" identifier ["AREA" "HANDLE" identifier] 
-                   [ ["TYPE" identifier] 
+                   [ ["TYPE" TypeName] 
                       ["EXPORTING"  Expression{Expression} ] 
                       ["EXCEPTIONS" Expression{Expression}  ["OTHERS" "=" identifier]] ] 
                  | [ "TYPE" "("identifier")" 
@@ -2298,7 +2314,7 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
               
                 
                 
-  AddExp               =  MultExp     { ( "+"  | "-"  ) MultExp }    .
+  AddExp               =  MultExp     { ( "+"  | "-" | "&&"(.re("+").) ) MultExp }    .
 
   MultExp              =   CastExp  
  { ( "*"   | "/" | "DIV"  | "%"  | "MOD" | "**" ) CastExp }    .
@@ -2314,18 +2330,10 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
 					.
 
 
-
-  PostFixExp           =  (.no_space;r="".) Primary (. 
-                                                      pri = lus
-                                                      if @sym == C_EqualGreaterSym
-                                                          pri = to_ruby_const(pri)
-                                                      end
-                                                      r += pri
-                                                       .)
-                         { "[" [Expression] "]" (.r+="[#{lus}]".)
-                          | FunctionCall<r> (.
+  PostFix<A* r> =      {    "[" [Expression] "]" (.r+="[#{lus}]".)
+                          | ["#"] FunctionCall<r> (.
                               if r == "DATA"
-                                 r = lus[1..lus.size-2]
+                                 r = lus[1..lus.size-2]                              
                               else
                                   r+="#{lus}"
                               end
@@ -2344,7 +2352,22 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
   add_src(")") if br
   .)]*/ 
                          | "IS"(.s=".is".) ["NOT" (.s+="Not";.)] PredefinedConstant (.s+=lus;r+="#{s}()".)
-                         }   
+                         
+                         }  
+                         (. 
+                             no_space(false)
+                             if r != ""
+                                 src(r)
+                             end
+                        .)  .
+  PostFixExp           =  (.no_space;r="".) Primary (. 
+                                                      pri = lus
+                                                      if @sym == C_EqualGreaterSym
+                                                          pri = to_ruby_const(pri)
+                                                      end
+                                                      r += pri
+                                                       .)
+                          PostFix<r> (.r += lus.)
                          (. 
                              no_space(false)
                              if r != ""
@@ -2370,7 +2393,7 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
 
                               LogExp             =   (.no_comments().) LogLogANDExp   { ("||" | "OR"(.re("||").) | "EQUIV") LogLogANDExp } (.no_comments(false).)  .
 
-                              LogLogANDExp            =  LogInclORExp   { ("&&" | "AND"(.re("&&").)) LogInclORExp } .
+                              LogLogANDExp            =  LogInclORExp   { (/*"&&" |*/ "AND"(.re("&&").)) LogInclORExp } .
 
                               LogInclORExp            =  LogExclORExp   { "|" LogExclORExp }   .
 
@@ -2393,7 +2416,7 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
               
                 
                 
-                              LogAddExp               =  LogMultExp     { ( "+"  | "-"  ) LogMultExp }    .
+                              LogAddExp               =  LogMultExp     { ( "+"  | "-" | "&&"(.re("+").) ) LogMultExp }    .
 
                               LogMultExp              =   LogCastExp  
                              { ( "*"   | "/" | "DIV"  | "%"  | "MOD" | "**" ) LogCastExp }    .
@@ -2415,34 +2438,13 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
                                                                               pri = to_ruby_const(pri)
                                                                           end
                                                                           r += pri.)
-                                                     { "[" [Expression] "]"
-                                                      | FunctionCall<pri>(.
-                                                          if pri == "DATA"
-                                                              src(lus[1..lus.size-2])
-                                                          else
-                                                              src("#{pri}#{lus}")
-                                                          end
-                                                          .)
-                                                      /* | "~" identifier
-                                                      | "-" identifier*/
-                                                      | "->" identifier (.r+=".#{prevString}".)
-                                                      | "=>" identifier  (.r+="::#{to_ruby_const(prevString)}".)
-                                                      | "++" (.r+="++".)
-                                                      | "--"(.r+="--".)
-                                                    /*  | "IS"(.re(".is(");br = true.) ["NOT"(.back_src();re(".isnot(");_not=true.)] ["INITIAL"(.back_src();if _not 
-                              re(".isInit(")
-                              else
-                              re(".isNotInit(")
-                              end
-                              add_src(")") if br
-                              .)]*/ 
-                                                      | "IS"(.s=".is".) ["NOT" (.s+="Not";.)] PredefinedConstant (.s+=lus;r+="#{s}()".)
-                                                     }  (. 
-                             no_space(false)
-                             if r != ""
-                                 src(r)
-                             end
-                        .) .   
+                                                  PostFix<r>(.r += lus.)
+                                                      (. 
+                                                 no_space(false)
+                                                 if r != ""
+                                                     src(r)
+                                                 end
+                                            .) .   
   
                               LogPrimary              =  string1{string1}
                                                        | char 
@@ -2454,10 +2456,8 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
                                                        | "/" identifier {"/" identifier }*/
                                                           .                          
                               
-                              
-  AllowedKeywordsExclude = "DATA" . 
-  AllowedKeywords = "DATA" | "MESSAGE" | "END" | "CREATE" | "KEY" |"ID"|"VALUE"|"DEFAULT"|"LENGTH"|"DECIMALS"|"BOXED"|"TYPE"
-                          |"SUFFIX" | "COMPONENTS" | "PARAMETERS" |"EXCEPTIONS" | "KIND" |"DELETE" | "ACTIVATION" | "STANDARD" |"SORTED". 
+
+  
   FunctionCall<A *name>        =  "(" (.stop_autosrc;no_comments.)
   (
        {

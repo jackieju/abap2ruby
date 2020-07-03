@@ -227,6 +227,17 @@ a
 ENDMETHOD.
 ENDCLASS.
 HERE
+s12=<<HERE
+REPORT TEST.
+ *lv_service_call_info = in_association_name && '@' && in_source_node_name.
+ CALL METHOD ls_abap_mapping-ams_exec->bind_target
+   EXPORTING
+     parameter = if_bsa_metadata=>co_ams_parameter_names-out_data
+   CHANGING
+     data      = out_data.
+
+
+HERE
 $ar = []
 #def dump_testcase
     p "==>dump_testcase"
