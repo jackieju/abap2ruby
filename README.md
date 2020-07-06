@@ -14,6 +14,9 @@ The target of this project has 3 ties:
 2. You can run the ruby code translated from ABAP with default executor of this projects.
 3. You can extend or customize the executor to run the logic in your system.
 
+Since ABAP is still evolving, and has many trivial syntax which may not be implemented in the translator, so,  easy to extend is much more important. For example, WRITE keywords has some many parameters and functionalities, and some are not implemented or ignored currently, but it's very eash to implement in this translator. You will show see how easy to extend in following chapters.
+
+You can also the case for how to extend: [Case: How to extend WRITE keyword](https://github.com/jackieju/abap2ruby/wiki/Case:-How-to-extend-WRITE-keyword)
 
 Preparation
 ===
