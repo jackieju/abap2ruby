@@ -238,6 +238,37 @@ REPORT TEST.
 
 
 HERE
+s13=<<HERE
+REPORT TEST.
+IF mv_eco_root_node_id IS NOT INITIAL. "If the root of core BO is already created
+ENDIF.
+HERE
+s14=<<HERE
+REPORT TEST.
+IF lx_mapping_node->nodename CP |${ if_bsa_metadata=>co_ams_parameter_names-out_data }*|.
+ENDIF.
+HERE
+s15=<<HERE
+REPORT TEST.
+SORT <fs_adapted_update_notif>-affected_associations.
+DELETE ADJACENT DUPLICATES FROM <fs_adapted_update_notif>-affected_associations.
+
+TYPES  BEGIN OF lty_bo_invalidate.
+TYPES bo_name TYPE string.
+TYPES sync_type TYPE i.
+TYPES END OF lty_bo_invalidate.
+
+TYPES tt_sorted_action_info_mapping TYPE SORTED TABLE OF ty_action_info_mapping WITH UNIQUE KEY action_name
+    WITH NON-UNIQUE SORTED KEY ref COMPONENTS action_name_ref .
+
+HERE
+s16=<<HERE
+interface IF_BSA_METADATA  .
+  types:
+    tt_attribute_mapping_tab TYPE STANDARD TABLE OF ty_attribute_mapping_tab WITH DEFAULT
+KEY .
+ENDINTERFACE.
+HERE
 $ar = []
 #def dump_testcase
     p "==>dump_testcase"

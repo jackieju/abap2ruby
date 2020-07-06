@@ -41,6 +41,8 @@ def procName(name)
    end
    return name
 end
+
+
 def convertName(s)
 #    if @sym == C_# s.gsub("!", "").gsub("->", ".").gsub("-", "_1_").gsub("~", "_2_")
     if s.start_with?("/")
@@ -52,6 +54,7 @@ def convertName(s)
     #} 
     s = s.gsub("-", ".")
     s = s.gsub("~", "_i_").gsub("/", "::")
+    s = s.gsub(/<(.*?)>/, '\1')
 end
 
 def fixName(s)
@@ -199,6 +202,36 @@ class Parser < CParser
         p "init end"
         pclass
     end
+    
+    def convert_regex(s)
+          p "===>convert_regex:#{s}"
+        s = s.sub("|", "/")
+        s = s.sub(/.*\K\|/, "/")
+        p "===>convert_regex2:#{s}"
+        s.gsub!(/\$\{(.*?)\}/) {|m| 
+            p m.class
+            str = nil
+            m.scan(/\$\{(.*?)\}/){|m2|
+                p m2[0]
+                _scanner = Scanner.new(m2[0])
+                sc = @scanner
+                sy = @sym
+                @scanner = _scanner
+                Get()
+                Expression()
+                str = lus
+                @scanner = sc
+                @sym = sy
+                
+            }
+           
+            p "==>2:#{str}"
+            str = m if !str
+            "\#{#{str}}"
+         }
+         p "===>regex:#{s}"
+         return s
+    end
     # skip comments, because sometimes comment will break ruby syntax
     # e.g. if a = true # comment
     #         &&
@@ -286,6 +319,10 @@ class Parser < CParser
     # if stop auto append source, you cannot use method like back(), re() to manipulate the source generating processs
     def stop_autosrc
         @parse_stack.cur[:auto_append] = false
+    end
+    
+    def ignore_this_rule()
+        stop_autosrc
     end
     
     def start_autosrc
@@ -487,16 +524,24 @@ HERE
    #   @root_class.add_method(fn_name, "()", [], s, "")
    #end
     
-  
+   def currSym()
+       @scanner.currSym
+   end
+   def nextSym()
+       @scanner.nextSym
+   end
    def put_src_abap()
+       start = nextSym.pos
        no_comments
        #Expect(C_MODIFYSym)
        Get()
        while (@sym != C_PointSym && @sym != EOF_Sym )
            Get()
        end
+       pend = nextSym.pos
        no_comments(false)
        src("abap(\"#{src()}\")")
+         #src("abap(\"#{@scanner.buffer[start..pend-1]}\")")
    end
    
     def stMODIFY()

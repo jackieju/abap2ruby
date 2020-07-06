@@ -1,0 +1,41 @@
+{	patterns = (
+		{	name = 'keyword.source.cocor';
+			match = '\b(ANY|CHARACTERS|COMMENTS|COMPILER|CONTEXT|END|FROM|IF|IGNORE|IGNORECASE|NESTED|PRAGMAS|PRODUCTIONS|SYNC|TOKENS|TO|WEAK)\b';
+		},
+		{	name = 'string.quoted.double.source.cocor';
+			match = '"(\\.|[^\\"])*"';
+		},
+		{	name = 'constant.character.source.cocor';
+			match = '''(\\.|[^\\"])*?''';
+		},
+		{	name = 'comment.block.source.cocor';
+			begin = '\(\.';
+			end = '\.\)';
+			patterns = (
+				{	name = 'variable.parameter.source.cocor';
+					match = '.*?';
+				},
+			);
+		},
+		{	name = 'source.cocor';
+			begin = '<';
+			end = '>';
+			patterns = (
+				{	name = 'variable.parameter.source.cocor';
+					match = '.*?';
+				},
+			);
+		},
+		{	name = 'constant.language.source.cocor';
+			match = '=|\(|\)|\{|\}|\[|\]|\|';
+		},
+		{	name = 'comment.line.double-dash.source.cocor';
+			begin = '//';
+			end = '$\n';
+		},
+		{	name = 'comment.block.source.cocor';
+			begin = '/\*';
+			end = '\*/';
+		},
+	);
+}

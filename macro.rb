@@ -1916,7 +1916,8 @@ class Preprocessor < PreParser
                        else
                            while (@sym != C_EOF_Sym && @sym != C_CommaSym && @sym != C_PointSym)
                                p("3313:#{@sym}, #{curString}") 
-                               if @scanner.currSym.pos + @scanner.currSym.len< @scanner.nextSym.pos
+                               p("3314:#{@scanner.currSym.sym}:#{@scanner.currSym.pos }+#{@scanner.currSym.len} #{@scanner.nextSym.pos}")
+                               if @scanner.currSym.sym == C_CRLF_Sym ||@scanner.currSym.pos + @scanner.currSym.len< @scanner.nextSym.pos
                                    s += " "
                                end
                                s += curString()

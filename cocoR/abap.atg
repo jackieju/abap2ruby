@@ -9,9 +9,12 @@ CHARACTERS
   tab      = CHR(9) .
   eol      = CHR(10) .
   files    = letter + digit + ":\." .
+  
+  strings3 = CHR(32) .. CHR(255) - '|' .
   chars    = CHR(32) .. CHR(255) - '"' .
-  strings  = CHR(32) .. CHR(255) - "'".
-  strings1 = CHR(32) .. CHR(255) - '"' .	
+  strings  = CHR(32) .. CHR(255) - "'" .
+
+
   macros   = ANY - eol .
   space = CHR(32).
   idn      = letter + digit + "_" +"<"+">".
@@ -31,6 +34,7 @@ TOKENS
   hexnumber  = "0" ( "x" | "X" ) hexdigit { hexdigit } [ "U" | "u" | "L" | "l" ] .
   string1    = "'" { strings } "'" .
   char       = '"' [ "\\" ] chars '"' .
+  regex1     = "|" { strings3 } "|" .
   Colon      = ":" .
   space1     = space .
   identifier =   ["!"|"/"|"<"] ( "_" | letter)  { idn | ( ("~"|"-"|"->"|"/") ( idn |"*") )}.
@@ -43,16 +47,16 @@ PRAGMAS
 
 PRODUCTIONS
 
-    
-    AllowedKeywordsForTypeName = "DATA" | "MESSAGE" | "END" | "CREATE" | "KEY" |"ID"|"VALUE"|"DEFAULT"|"LENGTH"|"DECIMALS"|"BOXED"|"TYPE"
-                        |"SUFFIX" | "COMPONENTS" | "PARAMETERS" |"EXCEPTIONS" | "KIND" |"DELETE" | "ACTIVATION" .                           
+     /* Type name cannot include "REF"*/
+    AllowedKeywordsForTypeName = "DATA" | "VALUE" | "PARAMETER" | "TARGET" | "MESSAGE" | "END" | "CREATE" | "KEY" |"ID"|"DEFAULT"|"LENGTH"|"DECIMALS"|"BOXED"|"TYPE"
+                        |"SUFFIX" | "COMPONENTS" |"EXCEPTIONS" | "KIND" |"DELETE" | "ACTIVATION" .                           
     
     /* do not put keyword those may occur in start of line into this, unless you make sure it will never be used as an identifier */
-    AllowedKeywordsExclude = "DATA" | "REF" | "VALUE" | "PARAMETER". 
+    AllowedKeywordsExclude = "DATA" | "REF" | "VALUE" | "PARAMETER" | "TARGET". 
     
-    AllowedKeywords =  AllowedKeywordsForTypeName  |"SORTED" | "STANDARD" | "PARAMETER". 
+    AllowedKeywords =  AllowedKeywordsForTypeName  | "SORTED" | "STANDARD" | "REF" | "CHECK" . 
     
-    TypeName = ( (identifier|AllowedKeywordsForTypeName)|("("(identifier|AllowedKeywordsForTypeName)")") ) {"=>" ( (identifier|AllowedKeywordsForTypeName)|("("(identifier|AllowedKeywordsForTypeName)")") ) } (. name=fixName(src()).)
+    TypeName = ( (identifier|AllowedKeywordsForTypeName)|("("(string1|identifier|AllowedKeywordsForTypeName)")") ) {"=>" ( (identifier|AllowedKeywordsForTypeName)|("("(identifier|AllowedKeywordsForTypeName)")") ) } (. name=fixName(src()).)
                             (.  
                                              src(name)
                               .)
@@ -589,15 +593,14 @@ LoopStatement = "LOOP" (.params = {};stmts ="".)
 
 TypeDes = "TYPE"  
             (
-                         TypeName  (.ret = VarType.new(lus.strip).) (
+                     ["LINE" "OF"]     TypeName  (.ret = VarType.new(lus.strip).) (
                                              ["LENGTH" Expression] ["DECIMALS" number] 
                                          |
                                               ( "READER"|"LOCATOR"|"LOB" "HANDLE" )
                                          |
                                                /* identifier(.is('WRITER','LOCATOR').)*/ "FOR" ( "COLUMNS" identifier{identifier} ) 
-                                    )
-                      | 
-                          ["LINE" "OF"] identifier ["BOXED"]
+                                    )["BOXED"]
+                      
                       | 
                           "REF" "TO" (Expression|"DATA") (.ret = VarType.new(lus.strip).)
                       | 
@@ -630,20 +633,20 @@ TypeDes = "TYPE"
                  
 LikeDes =        "LIKE" 
                   (
-                      ["LINE" "OF"] identifier
-                     | "REF" "TO" identifier
+                      ["LINE" "OF"] TypeName
+                     | "REF" "TO" TypeName
                      |  
                          {
                               ["STANDARD"] "TABLE" 
                               |"SORTED" "TABLE"
                               |"HASHED" "TABLE"
                          } 
-                         "OF" ["REF" "TO"] identifier
+                         "OF" ["REF" "TO"] TypeName
                          [
                           
                                   "WITH" ["UNIQUE"|"NON-UNIQUE"] 
                                    {
-                                    "KEY" ["PRIMARY_KEY" ["ALIAS" identifier] "COMPONENTS"] {identifier} 
+                                    "KEY" ["PRIMARY_KEY" ["ALIAS" Name] "COMPONENTS"] Name{Name} 
                                    |
                                     "DEFAULT" "KEY"
                                    }
@@ -664,7 +667,7 @@ LikeDes =        "LIKE"
                          ["WITH" "HEADER" "LINE"]
                     
                       |  
-                     "RANGE" "OF" identifier ["INITIAL" "SIZE" number] ["WITH" "HEADER" "LINE"]
+                     "RANGE" "OF" Type (.ret = VarType.new(lus.strip).) ["INITIAL" "SIZE" number] ["WITH" "HEADER" "LINE"]
                                          
                    ).
  
@@ -750,7 +753,7 @@ WriteStatement =   (. param_hash = {} .) "WRITE"
          (. param_hash["col"] = curString().to_i .)
          ][ "(" (Expression | "*" | "**") ")" ]} [Expression] 
          (.
-             param_hash["s"] = popv
+             param_hash["s"] = lus
          .)
           {
               ["UNDER" identifier] 
@@ -1128,12 +1131,14 @@ Types_mesh_stmt =   "TYPES"  identifier (
  /*TypeOfStuct =  
                 {stINCLUDE|("TYPES" NameInVarDef["("number")"] (TypeDes|LikeDes) ["BOXED"]  ".")}
                "TYPES" "END" "OF" identifier.   
-                   .    */               
-stTYPES = "TYPES" (
+                   .    */         
+       
+stTYPES =  (.# ignore_this_rule .) "TYPES" (  
           "BEGIN" "OF"(
               "ENUM" identifier  ["STRUCTURE" identifier] 
                             ["BASE" "TYPE" identifier] "." 
-                "TYPES" identifier "VALUE" (Expression |"IS" "INITIAL"(.back();re(".init()").)){"," "TYPES" identifier "VALUE" (Expression |"IS" "INITIAL"(.back();re(".init()").))} 
+                "TYPES" identifier "VALUE" (Expression |"IS" "INITIAL"(.back();re(".init()").))
+                {"," "TYPES" identifier "VALUE" (Expression |"IS" "INITIAL"(.back();re(".init()").))} 
               "TYPES" "END" "OF" "ENUM" identifier ["STRUCTURE" identifier]
             | 
               "MESH" identifier"." 
@@ -1145,11 +1150,13 @@ stTYPES = "TYPES" (
        |
            "END" "OF" identifier
        |
-       NameInVarDef["("number")"] 
+           NameInVarDef["("number")"] 
                            (TypeDes|LikeDes)
          
          )       
-      "." .
+      "." 
+      (. src() .)
+      .
             
                  
   ForStatement         = "for"  "(" [ Expression ] ";"   [ Expression ]   ";"  [ Expression  ] ")" Statement .
@@ -2367,7 +2374,7 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
                                                       end
                                                       r += pri
                                                        .)
-                          PostFix<r> (.r += lus.)
+                          PostFix<r> (.r = lus.)
                          (. 
                              no_space(false)
                              if r != ""
@@ -2376,6 +2383,7 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
                         .) .   
   
   Primary              =  string1{string1}
+                           | regex1 (.src(convert_regex(prevString)).)
                            | "NEW"(.back().) Creator
                            | char 
                            | number 
@@ -2438,7 +2446,7 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
                                                                               pri = to_ruby_const(pri)
                                                                           end
                                                                           r += pri.)
-                                                  PostFix<r>(.r += lus.)
+                                                  PostFix<r>(.r = lus.)
                                                       (. 
                                                  no_space(false)
                                                  if r != ""
@@ -2447,11 +2455,13 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
                                             .) .   
   
                               LogPrimary              =  string1{string1}
+                                                      | regex1 (.src(convert_regex(prevString)).)
                                                        | char 
                                                        | number 
                                                        | "(" LogExp ")" 
                                                        | PredefinedConstant 
                                                        | NameInPrimary
+                                                       
                                                       /* | ["<"]identifier[">"] 
                                                        | "/" identifier {"/" identifier }*/
                                                           .                          
@@ -2497,7 +2507,7 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
   /*ActualParameters    =    Expression   { "," Expression   }      .*/
 
   AssignmentOperator   =    "="  | "*=" | "/=" | "%=" | "+=" | "-=" | "&="
-                         | "^=" | "|=" | "<<=" | ">>=" | "?="(.re("=").)   .
+                         | "^="  | "<<=" | ">>=" | "?="(.re("=").)   .
 
   UnaryOperator        =  "+" | /*MinusOperator |*/ "-" | "*" | "!" | "&" | "~" | "NOT"(.re("!").) |  "INSTANCE" "OF" | "IN"    .
 

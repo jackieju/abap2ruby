@@ -38,7 +38,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
 
 
-      lt_core_modification = nil # If_esf_provider_access::tt_modifications.new
+      lt_core_modification = nil # if_esf_provider_access = tt_modifications.new
 
       lr_attribute_map = nil # ty_attribute_map.new
 
@@ -65,9 +65,9 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       lv_clear_cost_id = nil # syboolean.new
 
-      lt_message = nil # Cm_esi_root::tt_esi_root.new
+      lt_message = nil # cm_esi_root = tt_esi_root.new
 
-      ls_change_notification = nil # If_esf_types::ty_change_notifications.new
+      ls_change_notification = nil # if_esf_types = ty_change_notifications.new
 
 
       lx_esf_core_service = nil # cx_esf_core_service.new
@@ -106,7 +106,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
             concatenate(ar:['IF_FIA_ACC_ADJUSTMENT_RUN=>TY_',lr_attribute_map.core_bo_node_name], into:lv_core_bo_node_type)
 
-            ls_core_modification.data = ( lv_core_bo_node_type ).new
+            ls_core_modification.data = lv_core_bo_node_type.new
 
 
             if lr_attribute_map.core_bo_node_id.isINITIAL()
@@ -114,7 +114,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
 
 
-               if lr_attribute_map.core_bo_node_name != If_fia_acc_adjustment_run::Co_bo_node.root
+               if lr_attribute_map.core_bo_node_name != If_fia_acc_adjustment_run::co_bo_node.root
                   ls_core_modification.node_id = get_uuid(_b:binding)
 
 
@@ -167,7 +167,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
                   clear(id:lt_node_id)
                   append(from:ls_core_modification.node_id, to:lt_node_id)
                   concatenate(ar:['IF_FIA_ACC_ADJUSTMENT_RUN=>TT_',ls_core_modification.bo_node_name], into:lv_core_bo_table_type)
-                  lr_table = ( lv_core_bo_table_type ).new
+                  lr_table = lv_core_bo_table_type.new
 
                   assign(to:lt_core_bo_defaulted_data)
                   @mo_lcp_bo.retrieve_default_node_values(_i:{
@@ -239,7 +239,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
          #"If this is create of the core BO Root itself and the ID is set as changed don't add to changed attr
 
-         if lr_attribute_map.core_bo_attr_name != If_fia_acc_adjustment_run::Co_attr.root.id.content
+         if lr_attribute_map.core_bo_attr_name != If_fia_acc_adjustment_run::co_attr.root.id.content
             append(from:lr_attribute_map.core_bo_attr_name, to:ls_core_modification.changed_attributes)
 
             assign(to:ls_core_bo_data)
@@ -259,7 +259,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
          #*     GR/IR Specific Check: Raise warning if recalculate all items is selected
 
 
-         if lv_eco_attr_name == If_a1fia_aar_create_qaf_eco::Co_attr.root.correction_run_indicator && is_eco_root.correction_run_indicator == abap_true
+         if lv_eco_attr_name == If_a1fia_aar_create_qaf_eco::co_attr.root.correction_run_indicator && is_eco_root.correction_run_indicator == abap_true
             if @ms_readonly_eco_root.purchase_doc_id.isINITIAL()
                cl_a1fia_aar_util.create_message(_i:{
                   "iv_message_class" => 'A1FIA_AAR_CREATE_QAF',
@@ -373,9 +373,9 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       lt_node_id = nil # sesf_bo_node_id_tab.new
 
-      lt_core_message = nil # Cm_esi_root::tt_esi_root.new
+      lt_core_message = nil # cm_esi_root = tt_esi_root.new
 
-      lt_core_message_aggregated = nil # Cm_esi_root::tt_esi_root.new
+      lt_core_message_aggregated = nil # cm_esi_root = tt_esi_root.new
 
       lx_esf_core_service = nil # cx_esf_core_service.new
 
@@ -407,7 +407,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       end
 
-      if in_bo_node_name != If_a1fia_aar_create_qaf_eco::Co_bo_node.root
+      if in_bo_node_name != If_a1fia_aar_create_qaf_eco::co_bo_node.root
          super.if_esf_provider_access_i_check(_e:{
             "in_bo_node_name" => "in_bo_node_name",
             "in_node_ids" => "in_node_ids",
@@ -548,9 +548,9 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       lt_changed_attributes = nil # sesf_string_tab.new
 
-      lt_sub_node_modify = nil # If_esf_provider_access::tt_modifications.new
+      lt_sub_node_modify = nil # if_esf_provider_access = tt_modifications.new
 
-      lt_modification = nil # If_esf_provider_access::tt_modifications.new
+      lt_modification = nil # if_esf_provider_access = tt_modifications.new
 
 
       lt_modification = in_modifications
@@ -563,8 +563,8 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       }
       read_table(id:lt_modification, index:1)
-      if sy.subrc == 0 && lr_modification.bo_node_name == If_fia_acc_adjustment_run::Co_bo_node.root
-         assert(o:lr_modification.change_mode == If_esf_provider_access::Co_change_mode_update)
+      if sy.subrc == 0 && lr_modification.bo_node_name == If_fia_acc_adjustment_run::co_bo_node.root
+         assert(o:lr_modification.change_mode == If_esf_provider_access::co_change_mode_update)
 
          begin
             if @mt_attribute_map.isINITIAL()
@@ -721,7 +721,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
 
 
-         lr_table = ( lv_core_bo_table_type ).new
+         lr_table = lv_core_bo_table_type.new
 
 
          assign(to:lt_core_bo_data)
@@ -767,7 +767,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
             if @mv_eco_root_node_id.isINITIAL()
                read_table(id:in_node_ids, into:mv_eco_root_node_id, index:1)
 
-               if root_node_id_exists == abap_false
+               if root_node_id_exists(@mv_eco_root_node_id) == abap_false
                   clear(id:@mv_eco_root_node_id)
 
 
@@ -866,7 +866,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
                   concatenate(ar:['if_fia_acc_adjustment_run=>tt_',lv_core_bo_node_name], into:lv_core_bo_table_type)
 
-                  lr_table = ( lv_core_bo_table_type ).new
+                  lr_table = lv_core_bo_table_type.new
 
 
                   assign(to:lt_core_bo_data)
@@ -941,7 +941,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
                #"Buffer root structure for use in associations
 
-               if lines > 0
+               if lines(lt_requested_attributes) > 0
                   loop(at:lt_requested_attributes, into:lv_eco_attr){
                      assign(to:lv_eco_attr_val)
 
@@ -1009,7 +1009,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
 
          end
-         if lv_parent_node_name == If_a1fia_aar_create_qaf_eco::Co_bo_node.root
+         if lv_parent_node_name == If_a1fia_aar_create_qaf_eco::co_bo_node.root
             loop(at:out_data){
                assign(to:lv_parent_node_id)
 
@@ -1058,9 +1058,9 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
 
 
-      lt_favpro_task = nil # If_fia_fav_project::tt_task.new
+      lt_favpro_task = nil # if_fia_fav_project = tt_task.new
 
-      ls_favpro_task = nil # If_fia_fav_project::ty_task.new
+      ls_favpro_task = nil # if_fia_fav_project = ty_task.new
 
       lv_bo_name = nil # string.new
 
@@ -1104,7 +1104,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
       clear(id:out_links)
       clear(id:out_data)
       clear(id:out_failed_source_node_ids)
-      if in_bo_node_name == If_a1fia_aar_create_qaf_eco::Co_bo_node.root
+      if in_bo_node_name == If_a1fia_aar_create_qaf_eco::co_bo_node.root
          lv_eco_node_name = in_association_name
 
 
@@ -1128,7 +1128,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
             lv_source_key_name = If_sp_bupa_template::co_key.root.internal_id
 
-            lr_source_key = If_sp_bupa_template::ty_key.root.internal_id.new
+            lr_source_key = if_sp_bupa_template = ty_key.root.internal_id.new
 
             assign(to:ls_source_key)
             ls_source_key = @ms_readonly_eco_root.business_partner_id
@@ -1140,7 +1140,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
             lv_source_key_name = Mom::if_organisational_centre::co_key.root.id
 
-            lr_source_key = Mom::if_organisational_centre::ty_key.root.id.new
+            lr_source_key = mom::if_organisational_centre = ty_key.root.id.new
 
             assign(to:ls_source_key)
             ls_source_key = @ms_readonly_eco_root.company_id
@@ -1152,7 +1152,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
             lv_source_key_name = Mom::if_organisational_centre::co_key.root.id
 
-            lr_source_key = Mom::if_organisational_centre::ty_key.root.id.new
+            lr_source_key = mom::if_organisational_centre = ty_key.root.id.new
 
             assign(to:ls_source_key)
             ls_source_key = @ms_readonly_eco_root.cost_centre_id
@@ -1164,7 +1164,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
             lv_source_key_name = Mom::if_organisational_centre::co_key.root.id
 
-            lr_source_key = Mom::if_organisational_centre::ty_key.root.id.new
+            lr_source_key = mom::if_organisational_centre = ty_key.root.id.new
 
             assign(to:ls_source_key)
             ls_source_key = @ms_readonly_eco_root.cust_ser_org_id
@@ -1176,7 +1176,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
             lv_source_key_name = If_fia_fixed_asset::co_key.root.key
 
-            lr_source_key = If_fia_fixed_asset::ty_key.root.key.new
+            lr_source_key = if_fia_fixed_asset = ty_key.root.key.new
 
             assign(to:ls_source_key)
             @ms_readonly_eco_root.fixed_asset_key.company_uuid.content = @ms_readonly_eco_root.acl_company_uuid.content
@@ -1190,7 +1190,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
             lv_source_key_name = If_sp_bupa_template::co_key.root.internal_id
 
-            lr_source_key = If_sp_bupa_template::ty_key.root.internal_id.new
+            lr_source_key = if_sp_bupa_template = ty_key.root.internal_id.new
 
             assign(to:ls_source_key)
             ls_source_key = @ms_readonly_eco_root.house_bank_id
@@ -1202,7 +1202,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
             lv_source_key_name = If_fia_asses_distr_rule::co_key.root.id
 
-            lr_source_key = If_fia_asses_distr_rule::ty_key.root.id.new
+            lr_source_key = if_fia_asses_distr_rule = ty_key.root.id.new
 
             assign(to:ls_source_key)
             ls_source_key = @ms_readonly_eco_root.ovh_assess_rule_id
@@ -1214,7 +1214,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
             lv_source_key_name = Mom::if_organisational_centre::co_key.root.id
 
-            lr_source_key = Mom::if_organisational_centre::ty_key.root.id.new
+            lr_source_key = mom::if_organisational_centre = ty_key.root.id.new
 
             assign(to:ls_source_key)
             ls_source_key = @ms_readonly_eco_root.permanent_establishment_id
@@ -1226,7 +1226,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
             lv_source_key_name = If_pro_project::co_key.root.project_id
 
-            lr_source_key = If_pro_project::ty_key.root.project_id.new
+            lr_source_key = if_pro_project = ty_key.root.project_id.new
 
             assign(to:ls_source_key)
             ls_source_key = @ms_readonly_eco_root.project_id
@@ -1238,7 +1238,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
             lv_source_key_name = Mom::if_organisational_centre::co_key.root.id
 
-            lr_source_key = Mom::if_organisational_centre::ty_key.root.id.new
+            lr_source_key = mom::if_organisational_centre = ty_key.root.id.new
 
             assign(to:ls_source_key)
             ls_source_key = @ms_readonly_eco_root.sales_organisation_id
@@ -1257,7 +1257,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
 
 
-               lr_source_key = If_fia_fav_cost_object::ty_key.root.key.new
+               lr_source_key = if_fia_fav_cost_object = ty_key.root.key.new
 
 
                assign(to:ls_source_key)
@@ -1277,7 +1277,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
             lv_source_key_name = If_fia_set_of_books::co_key.root.id
 
-            lr_source_key = If_fia_set_of_books::ty_key.root.id.new
+            lr_source_key = if_fia_set_of_books = ty_key.root.id.new
 
             assign(to:ls_source_key)
             ls_source_key = @ms_readonly_eco_root.set_of_books_id
@@ -1869,7 +1869,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
 
 
-      if in_bo_node_name != If_a1fia_aar_create_qaf_eco::Co_bo_node.root
+      if in_bo_node_name != If_a1fia_aar_create_qaf_eco::co_bo_node.root
          super.if_esf_provider_access_i_retrieve_default_node_values(_i:{
             "out_data" => out_data,
          }, _e:{
@@ -1930,12 +1930,12 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       lt_core_bo_attr_name = nil # sesf_string_tab.new
 
-      ls_property_scope = nil # If_esf_types::ty_property_scope.new
+      ls_property_scope = nil # if_esf_types = ty_property_scope.new
 
-      ls_property = nil # If_esf_types::ty_properties.new
+      ls_property = nil # if_esf_types = ty_properties.new
 
 
-      ls_node_elem_property = nil # If_esf_types::ty_node_element_property.new
+      ls_node_elem_property = nil # if_esf_types = ty_node_element_property.new
 
       lr_attr_map = nil # ty_attribute_map.new
 
@@ -1983,7 +1983,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
             end
 
             clear(id:lv_action_enabled)
-            if @ms_readonly_eco_root.processing_status.processing_status_code.isINITIAL() && is_floorplan_editable == abap_true
+            if @ms_readonly_eco_root.processing_status.processing_status_code.isINITIAL() && is_floorplan_editable(_b:binding) == abap_true
                lv_action_enabled = abap_true
 
 
@@ -2012,7 +2012,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
                end
 
             }
-            if is_floorplan_editable == abap_false
+            if is_floorplan_editable(_b:binding) == abap_false
                begin
                   in_property_handler.set_node_elem_update_enabled(_e:{
                      "in_bo_node_id" => "@mv_eco_root_node_id",
@@ -2043,7 +2043,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
                end
 
                loop(at:lt_requested_attributes, into:lv_eco_attr_name){
-                  if ( lv_eco_attr_name == If_a1fia_aar_create_qaf_eco::Co_attr.root.description.content )
+                  if ( lv_eco_attr_name == If_a1fia_aar_create_qaf_eco::co_attr.root.description.content )
                      next
 
 
@@ -2065,7 +2065,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
                   else
                      read_table(id:@mt_attribute_map)
-                     if lr_attr_map.is_dedicated == abap_true && lr_attr_map.dedicated_exit.is_editable == abap_false
+                     if lr_attr_map.is_dedicated == abap_true && lr_attr_map.dedicated_exit.is_editable(_b:binding) == abap_false
                         lv_is_read_only_attr = abap_true
 
 
@@ -2155,7 +2155,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
                         #"IF the property is for the core BO ROOT set it to ECO root as well
 
-                        if lr_attr_map.core_bo_node_name == If_fia_acc_adjustment_run::Co_bo_node.root
+                        if lr_attr_map.core_bo_node_name == If_fia_acc_adjustment_run::co_bo_node.root
                            begin
                               in_property_handler.set_node_elem_update_enabled(_e:{
                                  "in_bo_node_id" => "@mv_eco_root_node_id",
@@ -2206,7 +2206,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
                      #*               There could be other properties to be set for the fields even if the lv_all_read_only = abap_true
 
                      loop(at:ls_property.attribute_properties, into:ls_attr_property){
-                        if lv_attr_readonly_set == abap_true && ls_attr_property.property_name == If_esf_desc::Co_property_read_only
+                        if lv_attr_readonly_set == abap_true && ls_attr_property.property_name == If_esf_desc::co_property_read_only
                            next
 
 
@@ -2245,7 +2245,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
                   #"Field is not found in the mt_attribute_map
 
                }
-               if @ms_readonly_eco_root.mdro_type_code == If_ap_object_type_code_c::Gc_arpl_acc_for_cur_rem_run
+               if @ms_readonly_eco_root.mdro_type_code == If_ap_object_type_code_c::gc_arpl_acc_for_cur_rem_run
                   begin
                      in_property_handler.set_association_enabled(_e:{
                         "in_association_name" => "If_a1fia_aar_create_qaf_eco::co_assoc.root.fcre_root",
@@ -2277,7 +2277,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
                "in_property_scope" => "in_property_scope",
             }, _b:binding)
 
-            if is_floorplan_editable == abap_false
+            if is_floorplan_editable(_b:binding) == abap_false
                set_node_n_assoc_read_only(_e:{
                   "iv_node_name" => "in_bo_node_name",
                   "io_property_handler" => "in_property_handler",
@@ -2390,16 +2390,16 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
 
 
-      ls_change_notification = nil # If_esf_types::ty_change_notifications.new
+      ls_change_notification = nil # if_esf_types = ty_change_notifications.new
 
       #"#EC NEEDED
       lv_has_errors = nil # sesf_boolean.new
 
-      lt_message = nil # If_esf_lcp::ty_message_list.new
+      lt_message = nil # if_esf_lcp = ty_message_list.new
 
-      ls_eco_root = nil # If_a1fia_aar_create_qaf_eco::ty_root.new
+      ls_eco_root = nil # if_a1fia_aar_create_qaf_eco = ty_root.new
 
-      lt_eco_root = nil # If_a1fia_aar_create_qaf_eco::tt_root.new
+      lt_eco_root = nil # if_a1fia_aar_create_qaf_eco = tt_root.new
 
       lt_changed_attributes = nil # sesf_string_tab.new
 
@@ -2409,7 +2409,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       lx_bsa_runtime = nil # cx_bsa_runtime.new
 
-      ls_create_action_param = nil # If_a1fia_aar_create_qaf_eco::ty_action_p.root.create.new
+      ls_create_action_param = nil # if_a1fia_aar_create_qaf_eco = ty_action_p.root.create.new
 
       #"lv_ap_or_ar_code TYPE if_a1fia_aar_create_qaf_eco=>ty_action_p-root-create-ap_or_ar,
       lt_eco_root_node_id = nil # sesf_bo_node_id_tab.new
@@ -2425,7 +2425,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       lv_tab_count = nil # i.new
 
-      ls_create_notification = nil # If_esf_types::ty_create_notification.new
+      ls_create_notification = nil # if_esf_types = ty_create_notification.new
 
       ls_mdro_root_node_id = nil # sesf_bo_node_id.new
 
@@ -2433,7 +2433,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       lx_esf_core_service = nil # cx_esf_core_service.new
 
-      if in_action_name == If_a1fia_aar_create_qaf_eco::Co_action.root.create
+      if in_action_name == If_a1fia_aar_create_qaf_eco::co_action.root.create
          begin
             if @mv_eco_root_node_id.isNotINITIAL()
                raise cx_a1fia_aar_create_qaf_eco.new
@@ -2560,7 +2560,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
       elsif in_action_name == if_a1fia_aar_create_qaf_eco_i_co_action.root.execute || in_action_name == if_a1fia_aar_create_qaf_eco_i_co_action.root.compound_schedule
          lv_has_errors = abap_false
 
-         if lines != 1
+         if lines(in_node_ids) != 1
             raise cx_fatal_exception.new
 
 
@@ -2573,7 +2573,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
          @mv_call_after_save = in_action_name
 
-         if in_action_name == If_a1fia_aar_create_qaf_eco::Co_action.root.compound_schedule
+         if in_action_name == If_a1fia_aar_create_qaf_eco::co_action.root.compound_schedule
             @ms_action_parameters = in_action_parameters
 
 
@@ -2583,7 +2583,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
          end
 
          begin
-            if check_activate_enabled == abap_true
+            if check_activate_enabled(in_node_ids) == abap_true
                @mo_lcp_bo.execute_action(_i:{
                   "in_bo_node_name" => If_fia_acc_adjustment_run::co_bo_node.root,
                   "in_action_name" => If_fia_acc_adjustment_run::co_action.root.activate,
@@ -2607,7 +2607,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
          end
          add_mapped_messages_int(it_message:lt_message, io_message_handler:in_message_handler)
 
-         if check_for_errors == abap_true
+         if check_for_errors(lt_message) == abap_true
             clear(id:@mv_call_after_save)
 
             lv_has_errors = abap_true
@@ -2630,7 +2630,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
          #***************************************************************
 
-         if in_action_name == If_a1fia_aar_create_qaf_eco::Co_action.root.compound_schedule && lv_has_errors == abap_false
+         if in_action_name == If_a1fia_aar_create_qaf_eco::co_action.root.compound_schedule && lv_has_errors == abap_false
             clear(id:@mv_call_after_save)
 
             begin
@@ -2663,7 +2663,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
             end
 
 
-            if check_for_errors == abap_true
+            if check_for_errors(lt_message) == abap_true
                me.raise_stop_message(_e:{
                   "io_message_handler" => "in_message_handler",
                }, _b:binding)
@@ -2720,7 +2720,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
             end
 
 
-            if check_for_errors == abap_true
+            if check_for_errors(lt_message) == abap_true
                me.raise_stop_message(_e:{
                   "io_message_handler" => "in_message_handler",
                }, _b:binding)
@@ -2993,15 +2993,15 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       lv_rejected = nil # sesf_boolean.new
 
-      lt_change_notifications = nil # If_esf_types::ty_change_notifications.new
+      lt_change_notifications = nil # if_esf_types = ty_change_notifications.new
 
       #"#EC NEEDED
-      lt_message = nil # If_esf_lcp::ty_message_list.new
+      lt_message = nil # if_esf_lcp = ty_message_list.new
 
       ls_attribute_map = nil # ty_attribute_map.new
 
 
-      lt_eco_message = nil # Cm_esi_root::tt_esi_root.new
+      lt_eco_message = nil # cm_esi_root = tt_esi_root.new
 
       lo_esi_t100 = nil # cm_esi_t100.new
 
@@ -3010,7 +3010,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
       lv_rejected = in_rejected
 
       if lv_rejected.isINITIAL()
-         if @mv_call_after_save == If_a1fia_aar_create_qaf_eco::Co_action.root.execute
+         if @mv_call_after_save == If_a1fia_aar_create_qaf_eco::co_action.root.execute
             clear(id:@mv_call_after_save)
 
             if @mo_mdro_schedule_immediately.isBOUND()
@@ -3170,16 +3170,16 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       lv_bo_node_name = nil # string.new
 
-      lt_code_values = nil # If_esf_types::tt_code_values.new
+      lt_code_values = nil # if_esf_types = tt_code_values.new
 
 
       if @mv_eco_root_node_id.isNotINITIAL()
-         if in_bo_node_name == If_a1fia_aar_create_qaf_eco::Co_bo_node.root
+         if in_bo_node_name == If_a1fia_aar_create_qaf_eco::co_bo_node.root
             read_table(id:in_context_attributes, into:lv_context_attr, index:1)
 
             assert(id:a1fia_aar_create_qaf_eco, o:sy.subrc != 0 && ( in_context_parameters.isNotSUPPLIED() || in_context_parameters.isINITIAL() ))
 
-            if in_attribute_name == If_a1fia_aar_create_qaf_eco::Co_attr.root.assignment_type
+            if in_attribute_name == If_a1fia_aar_create_qaf_eco::co_attr.root.assignment_type
                Cl_fia_cost_object_type_util::get_cost_object_types_by_usage(_i:{
                   "et_cost_object_type" => lt_cost_object_type_list,
                }, _e:{
@@ -3313,7 +3313,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
       lx_esf_core_service = nil # cx_esf_core_service.new
 
       if @mv_eco_root_node_id.isNotINITIAL()
-         if in_bo_node_name == If_a1fia_aar_create_qaf_eco::Co_bo_node.root
+         if in_bo_node_name == If_a1fia_aar_create_qaf_eco::co_bo_node.root
             prepare_core_val_help_retrieve(_i:{
                "ev_core_bo_node_name" => lv_core_bo_node_name,
                "ev_core_bo_node_id" => lv_core_bo_node_id,
@@ -3328,7 +3328,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
 
             if lv_core_bo_node_id.isNotINITIAL()
-               if in_attribute_name == If_a1fia_aar_create_qaf_eco::Co_attr.root.project_id.content
+               if in_attribute_name == If_a1fia_aar_create_qaf_eco::co_attr.root.project_id.content
                   restrict_projectid_value_set(_e:{
                      "in_selection_parameters" => "in_selection_parameters",
                   }, _b:binding)
@@ -3637,7 +3637,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       lo_message = nil # cm_esi_root.new
 
-      lt_message_map = nil # If_bsa_cb_message_mapping::tt_message_mapping.new
+      lt_message_map = nil # if_bsa_cb_message_mapping = tt_message_mapping.new
 
 
       lx_esf_message_handler = nil # cx_esf_message_handler.new
@@ -3731,13 +3731,13 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       lo_source_for_copying = nil # cm_esi_root.new
 
-      ls_new_msg_origin_loc = nil # Cm_esi_root::ty_message_location.new
+      ls_new_msg_origin_loc = nil # cm_esi_root = ty_message_location.new
 
-      ls_new_msg_envr_location = nil # Cm_esi_root::ty_message_location.new
+      ls_new_msg_envr_location = nil # cm_esi_root = ty_message_location.new
 
       lr_location = nil # Cm_esi_root::ty_message_location.new
 
-      lt_new_msg_envr_location = nil # Cm_esi_root::tt_message_locations.new
+      lt_new_msg_envr_location = nil # cm_esi_root = tt_message_locations.new
 
       clear(id:et_eco_message)
       if @mv_eco_root_node_id.isINITIAL()
@@ -3866,11 +3866,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       lo_ex = nil # cx_esf_core_service.new
 
-      ls_property_scope = nil # If_esf_types::ty_property_scope.new
+      ls_property_scope = nil # if_esf_types = ty_property_scope.new
 
       lt_actions = nil # sesf_string_tab.new
 
-      lt_out_properties = nil # If_esf_types::ty_properties.new
+      lt_out_properties = nil # if_esf_types = ty_properties.new
 
       begin
          append(from:If_fia_acc_adjustment_run::co_action.root.activate, to:lt_actions)
@@ -3962,9 +3962,9 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       lv_partially_active_assgn = nil # sesf_boolean.new
 
-      lt_sob_id = nil # If_fia_set_of_books::tt_key.root.id.new
+      lt_sob_id = nil # if_fia_set_of_books = tt_key.root.id.new
 
-      lt_company_id = nil # Mom::if_organisational_centre::tt_key.root.id.new
+      lt_company_id = nil # mom::if_organisational_centre = tt_key.root.id.new
 
       assign(to:ls_eco_root)
       check( sy.subrc == 0 )
@@ -4026,7 +4026,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
             read_table(id:lt_sob_id)
 
             if sy.subrc != 0
-               if lines == 1
+               if lines(lt_sob_id) == 1
                   read_table(id:lt_sob_id, into:ls_eco_root.set_of_books_id, index:1)
 
 
@@ -4056,7 +4056,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
             read_table(id:lt_company_id)
             if sy.subrc != 0
-               if lines == 1
+               if lines(lt_company_id) == 1
                   read_table(id:lt_company_id, into:ls_eco_root.company_id, index:1)
 
 
@@ -4126,7 +4126,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
       rt_has_errors = abap_false
 
       loop(at:in_messages){
-         if msg.severity == Cm_root::Co_severity_error || msg.severity == Cm_root::Co_severity_abend
+         if msg.severity == Cm_root::co_severity_error || msg.severity == Cm_root::co_severity_abend
             rt_has_errors = abap_true
 
 
@@ -4473,15 +4473,15 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
 
 
-      ls_create_notify = nil # If_esf_types::ty_create_notification.new
+      ls_create_notify = nil # if_esf_types = ty_create_notification.new
 
-      ls_suc_create_notify = nil # If_esf_types::ty_suc_create_notification.new
+      ls_suc_create_notify = nil # if_esf_types = ty_suc_create_notification.new
 
-      ls_delete_notify = nil # If_esf_types::ty_delete_notification.new
+      ls_delete_notify = nil # if_esf_types = ty_delete_notification.new
 
-      ls_update_notify = nil # If_esf_types::ty_update_notification.new
+      ls_update_notify = nil # if_esf_types = ty_update_notification.new
 
-      ls_sync_notify = nil # If_esf_types::ty_sync_notifications.new
+      ls_sync_notify = nil # if_esf_types = ty_sync_notifications.new
 
       clear(id:rt_affected_core_nodes)
       loop(at:is_change_notification.create_notifications, into:ls_create_notify){
@@ -4823,7 +4823,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
 
 
-            if lines > 0
+            if lines(lt_mapped_eco_attr) > 0
                append(from:lines, to:et_mapped_req_attributes)
 
 
@@ -4945,32 +4945,32 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       lt_can_mdro_rt_node_id = nil # sesf_bo_node_id_tab.new
 
-      ls_can_mdro_root = nil # If_fia_acc_adjustment_run::ty_root.new
+      ls_can_mdro_root = nil # if_fia_acc_adjustment_run = ty_root.new
 
-      lt_can_mdro_root = nil # If_fia_acc_adjustment_run::tt_root.new
+      lt_can_mdro_root = nil # if_fia_acc_adjustment_run = tt_root.new
 
-      ls_can_mdro_descr = nil # If_fia_acc_adjustment_run::ty_description.new
+      ls_can_mdro_descr = nil # if_fia_acc_adjustment_run = ty_description.new
 
-      lt_can_mdro_descr = nil # If_fia_acc_adjustment_run::tt_description.new
+      lt_can_mdro_descr = nil # if_fia_acc_adjustment_run = tt_description.new
 
       lv_create_with_ref_action = nil # string.new
 
-      ls_eco_change_notify = nil # If_esf_types::ty_change_notifications.new
+      ls_eco_change_notify = nil # if_esf_types = ty_change_notifications.new
 
-      ls_change_notification = nil # If_esf_types::ty_change_notifications.new
+      ls_change_notification = nil # if_esf_types = ty_change_notifications.new
 
-      lt_message = nil # Cm_esi_root::tt_esi_root.new
+      lt_message = nil # cm_esi_root = tt_esi_root.new
 
-      ls_action_parameters_create = nil # If_fia_acc_adjustment_run::ty_action_p.root.create_with_reference.new
+      ls_action_parameters_create = nil # if_fia_acc_adjustment_run = ty_action_p.root.create_with_reference.new
 
-      ls_action_parameters_cancel = nil # If_fia_acc_adjustment_run::ty_action_p.root.create_with_ref_for_canc.new
+      ls_action_parameters_cancel = nil # if_fia_acc_adjustment_run = ty_action_p.root.create_with_ref_for_canc.new
 
 
-      ls_descr_assoc_param = nil # If_fia_acc_adjustment_run::ty_assoc_p.root.description.new
+      ls_descr_assoc_param = nil # if_fia_acc_adjustment_run = ty_assoc_p.root.description.new
 
       lx_esf_core_service = nil # cx_esf_core_service.new
 
-      assert(id:a1fia_aar_create_qaf_eco, o:lines == 1)
+      assert(id:a1fia_aar_create_qaf_eco, o:lines(it_referencing_node_elements) == 1)
       read_table(id:it_referencing_node_elements, into:ls_referencing_node_elements, index:1)
       if iv_for_cancellation == abap_true
          lv_create_with_ref_action = If_fia_acc_adjustment_run::co_action.root.create_with_ref_for_canc
@@ -5040,7 +5040,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
       else
          lv_create_with_ref_action = If_fia_acc_adjustment_run::co_action.root.create_with_reference
 
-         if ls_referencing_node_elements.bo_name == If_fia_set_of_books::Co_bo_name
+         if ls_referencing_node_elements.bo_name == If_fia_set_of_books::co_bo_name
             @ms_readonly_eco_root.is_period_end_close_triggered = abap_true
 
 
@@ -5219,7 +5219,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       lv_notify_sync = nil # sesf_boolean.new
 
-      lv_sync_scope = nil # If_esf_types::ty_scope.new
+      lv_sync_scope = nil # if_esf_types = ty_scope.new
 
       lv_node_name = nil # string.new
 
@@ -5229,7 +5229,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       lt_node_id = nil # sesf_bo_node_id_tab.new
 
-      lt_bo_root_data_dummy = nil # If_fia_acc_adjustment_run::tt_root.new
+      lt_bo_root_data_dummy = nil # if_fia_acc_adjustment_run = tt_root.new
 
       lx_esf_core_service = nil # cx_esf_core_service.new
 
@@ -5253,7 +5253,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
          abap("MODIFY mt_attribute_map FROM ls_attribute_map USING KEY core_bo_node_key TRANSPORTING core_bo_node_id WHERE core_bo_node_name = ls_suc_create_notify.bo_node_name")
 
 
-         if ls_suc_create_notify.bo_node_name == If_fia_acc_adjustment_run::Co_bo_node.root
+         if ls_suc_create_notify.bo_node_name == If_fia_acc_adjustment_run::co_bo_node.root
             lv_notify_create = abap_true
 
 
@@ -5282,7 +5282,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
          abap("MODIFY mt_attribute_map FROM ls_attribute_map USING KEY core_bo_node_key TRANSPORTING core_bo_node_id WHERE core_bo_node_name = ls_create_notify.bo_node_name")
 
 
-         if ls_create_notify.bo_node_name == If_fia_acc_adjustment_run::Co_bo_node.root
+         if ls_create_notify.bo_node_name == If_fia_acc_adjustment_run::co_bo_node.root
             lv_notify_create = abap_true
 
 
@@ -5409,7 +5409,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
       elsif lv_notify_update == abap_true
          lt_affected_associations = derive_affected_associations(is_change_notification)
 
-         if lines > 0
+         if lines(lt_affected_associations) > 0
             lv_associations_changed = abap_true
 
 
@@ -6599,7 +6599,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
             end
 
 
-            if lo_bo_node_desc.get_property_value == abap_true || lo_bo_node_desc.is_property_value_final == abap_false
+            if lo_bo_node_desc.get_property_value(property_name:If_esf_desc::co_property_enabled) == abap_true || lo_bo_node_desc.is_property_value_final(property_name:If_esf_desc::co_property_enabled) == abap_false
                append(from:lv_node_proxy_name, to:@mt_run_specific_node)
 
 
@@ -6677,10 +6677,10 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
       clear(id:ev_core_bo_node_id_is_handle)
       clear(id:ev_core_bo_node_name)
       check( @mv_eco_root_node_id.isNotINITIAL() && iv_eco_node_id == @mv_eco_root_node_id )
-      check( iv_eco_node_name == If_a1fia_aar_create_qaf_eco::Co_bo_node.root )
+      check( iv_eco_node_name == If_a1fia_aar_create_qaf_eco::co_bo_node.root )
       read_table(id:@mt_attribute_map, into:ls_attribute_map)
       check( sy.subrc == 0 && ls_attribute_map.is_dedicated == abap_false )
-      check( ls_attribute_map.core_bo_node_name != If_fia_acc_adjustment_run::Co_bo_node.root )
+      check( ls_attribute_map.core_bo_node_name != If_fia_acc_adjustment_run::co_bo_node.root )
       #"see the assumption in the below LCP call
       ev_core_bo_node_id = ls_attribute_map.core_bo_node_id
 
@@ -6703,7 +6703,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
          concatenate(ar:['IF_FIA_ACC_ADJUSTMENT_RUN=>TT_',ev_core_bo_node_name], into:lv_core_bo_table_type)
 
-         lr_table = ( lv_core_bo_table_type ).new
+         lr_table = lv_core_bo_table_type.new
 
 
          assign(to:lt_dummy_data)
@@ -6862,7 +6862,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
 
 
-      lt_message = nil # Cm_esi_root::tt_esi_root.new
+      lt_message = nil # cm_esi_root = tt_esi_root.new
 
       lx_message_handler = nil # cx_esf_message_handler.new
 
@@ -6943,9 +6943,9 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       lx_bsa_runtime = nil # cx_bsa_runtime.new
 
-      lt_pro_data = nil # If_pro_protype::tt_root.new
+      lt_pro_data = nil # if_pro_protype = tt_root.new
 
-      ls_pro_data = nil # If_pro_protype::ty_root.new
+      ls_pro_data = nil # if_pro_protype = ty_root.new
 
       #* first query the Pro_project BO with the in_selection_parameters (coming from the UI)
 
@@ -7275,7 +7275,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       lt_node_id = nil # sesf_bo_node_id_tab.new
 
-      lt_dummy_data = nil # If_fia_acc_adjustment_run::tt_root.new
+      lt_dummy_data = nil # if_fia_acc_adjustment_run = tt_root.new
 
       lt_failed_node_id = nil # sesf_bo_node_id_tab.new
 
@@ -7502,7 +7502,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
       lv_core_attr = nil # string.new
 
       clear(id:rs_new_message_location)
-      if is_message_location.bo_name == If_a1fia_aar_create_qaf_eco::Co_bo_name
+      if is_message_location.bo_name == If_a1fia_aar_create_qaf_eco::co_bo_name
          rs_new_message_location = is_message_location
 
 
@@ -7596,7 +7596,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
 
 
-      ls_properties = nil # If_esf_types::ty_properties.new
+      ls_properties = nil # if_esf_types = ty_properties.new
 
       lx_esf_property_handler = nil # cx_esf_property_handler.new
 
@@ -7637,7 +7637,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
 
             loop(at:lt_node_assoc_desc, into:lo_node_assoc_desc){
-               if lo_node_assoc_desc.is_property_value_final == abap_false
+               if lo_node_assoc_desc.is_property_value_final(property_name:If_esf_property_handler::esf_create_enabled) == abap_false
                   append(to:ls_properties.association_properties)
 
                   ls_assoc_property.association_name = lo_node_assoc_desc.get_proxy_name(_b:binding)
@@ -7794,7 +7794,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       ls_link = nil # sesf_association_link.new
 
-      lt_fia_fav_sls_srv_data = nil # If_fia_fav_sls_srv_doc::tt_root.new
+      lt_fia_fav_sls_srv_data = nil # if_fia_fav_sls_srv_doc = tt_root.new
 
       lr_fia_fav_sls_srv_data = nil # If_fia_fav_sls_srv_doc::ty_root.new
 
@@ -7811,11 +7811,11 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
       lv_bo_name = nil # string.new
 
-      lt_message = nil # Cm_esi_root::tt_esi_root.new
+      lt_message = nil # cm_esi_root = tt_esi_root.new
 
       lr_table_data = nil # data.new
 
-      lt_eco_message = nil # Cm_esi_root::tt_esi_root.new
+      lt_eco_message = nil # cm_esi_root = tt_esi_root.new
 
       clear(id:out_data)
       clear(id:out_links)
@@ -7865,7 +7865,7 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
 
 
                else
-                  lr_table_data = ( 'if_apcrm_ctd_template=>tt_root' ).new
+                  lr_table_data = 'if_apcrm_ctd_template=tt_root'.new
 
                   #":-( To avoid package error. Just for this we don't want to add it in A1FIA..CMN
                   assign(to:lt_data)
@@ -7979,9 +7979,9 @@ class Cl_a1fia_aar_create_qaf_eco < Cl_a1fia_common_eco
    @mo_mdro_schedule_immediately = nil # cl_ap_mdro_sched_immed_wait.new
    @mo_task_region_helper = nil # if_coutl_task_region_helper.new
    include If_a1fia_aar_create_qaf_eco
-   @ms_readonly_eco_root = nil # If_a1fia_aar_create_qaf_eco::ty_root.new
+   @ms_readonly_eco_root = nil # if_a1fia_aar_create_qaf_eco = ty_root.new
    @mt_attribute_map = nil # tt_attribute_map.new
-   @mt_eco_root_attributes = nil # WITH.new
+   @mt_eco_root_attributes = nil # string.new
    @mt_run_specific_node = nil # sesf_string_tab.new
    @ms_action_parameters = nil # a1fia_run_schedule_directly_ac.new
    @mv_call_after_save = nil # string.new

@@ -69,7 +69,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
 
 
-      lt_message = nil # Cm_esi_root::tt_esi_root.new
+      lt_message = nil # cm_esi_root = tt_esi_root.new
 
       lx_esf_core_service = nil # cx_esf_core_service.new
 
@@ -86,7 +86,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
          "out_failed_node_ids" => out_failed_node_ids,
       }, _b:binding)
 
-      if @mv_do_retrieve_check == abap_true && in_requested_image == If_esf_types::Co_image_transactional_buffer && lines != lines
+      if @mv_do_retrieve_check == abap_true && in_requested_image == If_esf_types::co_image_transactional_buffer && lines(out_failed_node_ids) != lines(in_node_ids)
          begin
             @mo_adaptation_handler.check(_i:{
                "out_messages" => lt_message,
@@ -161,7 +161,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
       begin
          if @mo_rnid_manager.mv_skip_rnid_manager == abap_true
-            if use_heuristic_for_rrnid == abap_true
+            if use_heuristic_for_rrnid(in_bo_node_name) == abap_true
                heuristic_rrnid(_i:{
                   "out_links" => out_links,
                }, _e:{
@@ -173,7 +173,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
 
 
-            elsif use_delegation_for_rrnid == abap_true
+            elsif use_delegation_for_rrnid(in_bo_node_name) == abap_true
                delegation_rrnid(_i:{
                   "out_links" => out_links,
                }, _e:{
@@ -183,7 +183,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
                }, _b:binding)
 
 
-            elsif use_callback_for_rrnid == abap_true
+            elsif use_callback_for_rrnid(in_bo_node_name) == abap_true
                callback_rrnid(_i:{
                   "out_links" => out_links,
                }, _e:{
@@ -211,7 +211,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
 
          else
-            if @mo_rnid_manager.is_skipped.isINITIAL()
+            if @mo_rnid_manager.is_skipped(iv_node_name:in_bo_node_name).isINITIAL()
                super.if_esf_provider_access_i_retrieve_root_node_id(_i:{
                   "out_links" => out_links,
                }, _e:{
@@ -223,7 +223,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
 
 
-            elsif use_heuristic_for_rrnid == abap_true
+            elsif use_heuristic_for_rrnid(in_bo_node_name) == abap_true
                heuristic_rrnid(_i:{
                   "out_links" => out_links,
                }, _e:{
@@ -233,7 +233,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
                }, _b:binding)
 
 
-            elsif use_delegation_for_rrnid == abap_true
+            elsif use_delegation_for_rrnid(in_bo_node_name) == abap_true
                delegation_rrnid(_i:{
                   "out_links" => out_links,
                }, _e:{
@@ -243,7 +243,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
                }, _b:binding)
 
 
-            elsif use_callback_for_rrnid == abap_true
+            elsif use_callback_for_rrnid(in_bo_node_name) == abap_true
                callback_rrnid(_i:{
                   "out_links" => out_links,
                }, _e:{
@@ -890,7 +890,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
       lv_node_id_determined = nil # boolean.new
 
-      ls_origin_location = nil # Cm_esi_root::ty_message_location.new
+      ls_origin_location = nil # cm_esi_root = ty_message_location.new
 
       lo_message = nil # cm_a1fia_common_eco.new
 
@@ -933,7 +933,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
 
 
-         if lines == 0
+         if lines(lt_out_failed_node_id) == 0
             lt_out_links = if_a1fia_common_eco_i_source_to_target_mapping(in_node_ids)
 
 
@@ -963,7 +963,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
 
          else
-            if if_a1fia_common_eco_i_check_root_node_existence == abap_true
+            if if_a1fia_common_eco_i_check_root_node_existence(iv_node_id:lv_node_id, iv_requested_image:in_requested_image) == abap_true
                loop(at:in_node_ids){
                   ls_link.source_node_id = ls_node_id
 
@@ -1095,7 +1095,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
          "out_links" => lt_out_links,
       }, _b:binding)
 
-      if lines > 0
+      if lines(lt_out_links) > 0
          rv_exists = abap_true
 
 
@@ -1178,9 +1178,9 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
 
       ls_msg = nil # symsg.new
 
-      ls_orig_loc = nil # Cm_esi_root::ty_message_location.new
+      ls_orig_loc = nil # cm_esi_root = ty_message_location.new
 
-      lt_out_messages = nil # Cm_esi_root::tt_esi_root.new
+      lt_out_messages = nil # cm_esi_root = tt_esi_root.new
 
       ls_orig_loc.bo_name = if_a1s_service_provider_eco_i_get_bo_name(_b:binding)
 
@@ -1262,7 +1262,7 @@ class Cl_a1fia_common_eco < Cl_a1s_service_provider_eco
    end
 
    @mo_provider_context = nil # if_esf_provider_context.new
-   @ms_execute_action_parameter = nil # If_a1fia_common_eco::ty_execute_action_parameter.new
+   @ms_execute_action_parameter = nil # if_a1fia_common_eco = ty_execute_action_parameter.new
    @mt_lcp_bo_node_name = nil # tt_lcp_bo_node_name.new
    @mt_callback_bo_node_name = nil # tt_heuristic_bo_node_name.new
    @mt_heuristic_bo_node_name = nil # tt_heuristic_bo_node_name.new

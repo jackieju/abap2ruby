@@ -23,7 +23,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
 
 
 
-      lt_messages = nil # If_esf_types::ty_messages.new
+      lt_messages = nil # if_esf_types = ty_messages.new
 
       lt_node_ids = nil # sesf_bo_node_id_tab.new
 
@@ -136,9 +136,9 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
 
 
 
-      lt_messages = nil # If_esf_types::ty_messages.new
+      lt_messages = nil # if_esf_types = ty_messages.new
 
-      lt_sync_notifications = nil # If_esf_types::tt_sync_notifications.new
+      lt_sync_notifications = nil # if_esf_types = tt_sync_notifications.new
 
       #"#EC NEEDED
       lx_bsa_runtime = nil # cx_bsa_runtime.new
@@ -163,7 +163,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
 
          put_messages(io_message_handler:in_message_handler, it_messages:lt_messages)
 
-         if in_buffer_sync_handler.isBOUND() && lines.isNotINITIAL()
+         if in_buffer_sync_handler.isBOUND() && lines(lt_sync_notifications).isNotINITIAL()
             in_buffer_sync_handler.notify_buffer_syncs(_i:{
                "in_sync_notifications" => lt_sync_notifications,
             }, _b:binding)
@@ -221,10 +221,10 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
 
 
 
-      lt_sync_notifications = nil # If_esf_types::tt_sync_notifications.new
+      lt_sync_notifications = nil # if_esf_types = tt_sync_notifications.new
 
       #"#EC NEEDED
-      lt_messages = nil # If_esf_types::ty_messages.new
+      lt_messages = nil # if_esf_types = ty_messages.new
 
       lt_node_id_for_task_search = nil # sesf_bo_node_id_tab.new
 
@@ -262,12 +262,12 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
             out_failed_source_node_ids = lt_failed_node_id
 
             loop(at:lt_failed_node_id){
-               abap("DELETE TABLE lt_existing_node_id FROM <ls_node_id>")
+               abap("DELETE TABLE lt_existing_node_id FROM ls_node_id")
 
                #"#EC CI_STDSEQ
 
             }
-            if lines > 0
+            if lines(lt_existing_node_id) > 0
                @mt_task_region_node_id = lt_existing_node_id
 
 
@@ -320,7 +320,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
 
             put_messages(io_message_handler:in_message_handler, it_messages:lt_messages)
 
-            if in_buffer_sync_handler.isBOUND() && lines.isNotINITIAL()
+            if in_buffer_sync_handler.isBOUND() && lines(lt_sync_notifications).isNotINITIAL()
                in_buffer_sync_handler.notify_buffer_syncs(_i:{
                   "in_sync_notifications" => lt_sync_notifications,
                }, _b:binding)
@@ -637,7 +637,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
       end
       super.if_esf_provider_interact_ctrl_i_do_post_processing(_b:binding)
 
-      if ( in_overruling_code.isSUPPLIED() && in_overruling_code == If_esf_types::Co_oc_in_ovs_phase )
+      if ( in_overruling_code.isSUPPLIED() && in_overruling_code == If_esf_types::co_oc_in_ovs_phase )
          lv_skip_check = abap_true
 
 
@@ -857,7 +857,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
 
       lo_message = nil # cm_esi_t100_adapter.new
 
-      ls_orig_loc = nil # Cm_esi_root::ty_message_location.new
+      ls_orig_loc = nil # cm_esi_root = ty_message_location.new
 
       ls_msg = nil # symsg.new
 
@@ -1084,10 +1084,10 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
       begin
          lo_association_descriptor = lo_root_node_descriptor.get_association_descriptor(association_proxy_name:@gc_task_association_name)
 
-         lr_bsa_primary_node = ( 'BSA_I_PRMRY_NODE' ).new
+         lr_bsa_primary_node = 'BSA_I_PRMRY_NODE'.new
 
          assign(to:ls_bsa_primary_node)
-         abap("SELECT SINGLE * FROM ( 'BSA_I_PRMRY_NODE' ) INTO <ls_bsa_primary_node> WHERE bo_name = iv_eco_name AND bo_node_name = ev_eco_root_node_name")
+         abap("SELECT SINGLE * FROM ( 'BSA_I_PRMRY_NODE' ) INTO ls_bsa_primary_node WHERE bo_name = iv_eco_name AND bo_node_name = ev_eco_root_node_name")
          #"#EC CI_DYNTAB
          if sy.subrc.isINITIAL()
             assign(to:lv_prmry_bo_name)
@@ -1216,10 +1216,10 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
 
       lo_message = nil # cm_esi_root.new
 
-      lt_messages_manager = nil # Cm_esi_root::tt_esi_root.new
+      lt_messages_manager = nil # cm_esi_root = tt_esi_root.new
 
       #"Messages for MessageManager
-      lt_messages_handler = nil # Cm_esi_root::tt_esi_root.new
+      lt_messages_handler = nil # cm_esi_root = tt_esi_root.new
 
       #"Messages for ESF Message Handler
       #*/Delegation at present not implemented
@@ -1242,7 +1242,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
 
       if @mv_notify_trans_error == abap_true || @mv_notify_any_error == abap_true
          loop(at:in_messages, into:lo_message){
-            if lo_message.severity == Cm_esi_root::Co_severity_error && lo_message.origin_location.bo_name == @mv_bo_name && ( @mv_notify_trans_error == abap_true && lo_message.lifetime == Cm_esi_root::Co_lifetime_transition || @mv_notify_any_error == abap_true )
+            if lo_message.severity == Cm_esi_root::co_severity_error && lo_message.origin_location.bo_name == @mv_bo_name && ( @mv_notify_trans_error == abap_true && lo_message.lifetime == Cm_esi_root::co_lifetime_transition || @mv_notify_any_error == abap_true )
                append(from:lo_message, to:lt_messages_handler)
 
 
@@ -1329,11 +1329,11 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
 
 
 
-      lt_messages = nil # Cm_esi_root::tt_esi_root.new
+      lt_messages = nil # cm_esi_root = tt_esi_root.new
 
-      lt_messages_handler = nil # Cm_esi_root::tt_esi_root.new
+      lt_messages_handler = nil # cm_esi_root = tt_esi_root.new
 
-      lt_messages_manager = nil # Cm_esi_root::tt_esi_root.new
+      lt_messages_manager = nil # cm_esi_root = tt_esi_root.new
 
       lx_exception = nil # cx_static_check.new
 
@@ -1359,7 +1359,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
 
 
                else
-                  if lo_message.lifetime == Cm_esi_root::Co_lifetime_transition
+                  if lo_message.lifetime == Cm_esi_root::co_lifetime_transition
                      clear(id:lo_message)
 
                      lo_message = lo_message.copy_with_new_location(new_origin_location:ls_location)
@@ -1635,7 +1635,7 @@ class Cl_a1s_service_provider_eco < Cl_bsa_service_provider_co
 
 
 
-      lt_messages = nil # Cm_esi_root::tt_esi_root.new
+      lt_messages = nil # cm_esi_root = tt_esi_root.new
 
       lx_exception = nil # cx_static_check.new
 
