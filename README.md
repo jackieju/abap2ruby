@@ -16,7 +16,7 @@ The target of this project has 3 ties:
 
 Since ABAP is still evolving, and has many trivial syntax which may not be implemented in the translator, so,  easy to extend is much more important. For example, WRITE keywords has some many parameters and functionalities, and some are not implemented or ignored currently, but it's very eash to implement in this translator. You will show see how easy to extend in following chapters.
 
-You can also the case for how to extend: [Case: How to extend WRITE keyword](https://github.com/jackieju/abap2ruby/wiki/Case:-How-to-extend-WRITE-keyword)
+You can also check the case for how to extend: [Case: How to extend WRITE keyword](https://github.com/jackieju/abap2ruby/wiki/Case:-How-to-extend-WRITE-keyword)
 
 Preparation
 ===
