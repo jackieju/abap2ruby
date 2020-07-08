@@ -3,6 +3,7 @@
 module Cl_a1fia_aar_create_qaf_eco::If_fia_set_of_books
 
 
+   module_function
    if_fia_set_of_books=If_fia_set_of_books
 
 end

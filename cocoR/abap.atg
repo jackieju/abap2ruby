@@ -54,7 +54,7 @@ PRODUCTIONS
     /* do not put keyword those may occur in start of line into this, unless you make sure it will never be used as an identifier */
     AllowedKeywordsExclude = "DATA" | "REF" | "VALUE" | "PARAMETER" | "TARGET". 
     
-    AllowedKeywords =  AllowedKeywordsForTypeName  | "SORTED" | "STANDARD" | "REF" | "CHECK" . 
+    AllowedKeywords =  AllowedKeywordsForTypeName  | "SORTED" | "STANDARD" | "REF" | "CHECK" | "EDIT". 
     
     TypeName = ( (identifier|AllowedKeywordsForTypeName)|("("(string1|identifier|AllowedKeywordsForTypeName)")") ) {"=>" ( (identifier|AllowedKeywordsForTypeName)|("("(identifier|AllowedKeywordsForTypeName)")") ) } (. name=fixName(src()).)
                             (.  
@@ -1155,7 +1155,7 @@ stTYPES =  (.# ignore_this_rule .) "TYPES" (
          
          )       
       "." 
-      (. src() .)
+      (. src("") .)
       .
             
                  
@@ -1358,13 +1358,13 @@ MethodsStatement =  ("METHODS" | "CLASS-METHODS" (.static=true.)) identifier["~"
                                       |  
                                           "REFERENCE" "(" identifier (.impar.push(prevString).)")" 
                                       |
-                                          identifier (.impar.push(prevString).)
+                                          identifier (.impar.push(prevString.downcase).)
                                   )
                                    Typing ["OPTIONAL"| "DEFAULT" Expression] 
                                  } 
                               ["PREFERRED" "PARAMETER" identifier] ] 
-                [ "EXPORTING" {
-                                  {"VALUE""("identifier")"|"REFERENCE" "("identifier")"|identifier} Typing 
+                [ "EXPORTING" (.exporting = [].){
+                                  {"VALUE""("identifier(.exporting.push(prevString).)")"|"REFERENCE" "("identifier(.exporting.push(prevString).)")"|identifier(.exporting.push(prevString).)} Typing 
                                  }
                                   ] 
                 [ "CHANGING"  {
@@ -1391,14 +1391,15 @@ MethodsStatement =  ("METHODS" | "CLASS-METHODS" (.static=true.)) identifier["~"
      
       args = nil
       if impar
-           args = impar.clone
+         
           for i in 0..impar.size-1
            impar[i] += ":nil"
           end
       else
           impar = []
       end
- 
+      
+       args = impar.clone
       impar.push("_i:nil")
       impar.push("_e:nil")
       impar.push("_b:nil")
@@ -1407,7 +1408,7 @@ MethodsStatement =  ("METHODS" | "CLASS-METHODS" (.static=true.)) identifier["~"
        if classdef
               dec = ""
               dec = "static" if static
-             classdef.add_method(fname, "(*_a,#{pars})", [], nil , dec, {:doc=>doc,:import=>args})
+             classdef.add_method(fname, "(*_a,#{pars})", [], nil , dec, {:doc=>doc,:import=>args, :export=>exporting})
        end 
   .)
    . 
@@ -1512,7 +1513,12 @@ CallMethod =  "METHOD"
         (. param_hash = {};name = "".)
         ( 
             (
-              MethodName(.name+=lus;name=procName(name).) {("->"|"=>") MethodName(.name+=".#{lus}".)}
+              MethodName(.mn1 = lus;name+=lus;name=procName(name).) {"=>" MethodName
+              (.
+                  mn2 = lus
+                  name+=".#{lus}"
+              .)
+              }
                
                 
                /*["("](string1(.name+=strInQuote(prevString).)|identifier(.name+=prevString;.))[")"] [ ("->"|"=>") ["("](string1(.name+="."+strInQuote(prevString).)| identifier(.name+="."+prevString.)) [")"] ]
@@ -1523,7 +1529,7 @@ CallMethod =  "METHOD"
             {
                 ["PARAMETER-TABLE" Name (.param_hash["PARAMETER-TABLE"]=lus.) ] 
                 ["EXCEPTION-TABLE" Name (. param_hash["EXCEPTION-TABLE"]=lus .) ] 
-                ["EXPORTING" (. exporting = "{\n".){ Name(.idn = lus.) "=" Expression (.exporting+="\"#{idn}\" => #{lus},\n".)} (. exporting += "}".)  ] 
+                ["EXPORTING" (. exporting = "{\n".){ Name(.idn = lus.) "=" Expression (.exporting+="\"#{idn}\" => \"#{lus}\",\n".)} (. exporting += "}".)  ] 
                 ["IMPORTING" (. importing = "{\n".) { Name(.idn = lus.) "=" Expression (.importing+="\"#{idn}\" => #{lus},\n".)} (. importing += "}".)  ] 
                 ["CHANGING" (. changing = "{\n".) { Name(.idn = lus.) "=" Expression (.changing+="\"#{idn}\" => #{lus},\n".)} (. changing += "}".)  ] 
                 ["RECEIVING" Expression  (.param_hash["RECEIVING"]=lus.) ] 
@@ -1536,6 +1542,12 @@ CallMethod =  "METHOD"
               
              
                # src("call_method(#{name1}.#{name2}, {#{params}})");
+                  if mn1.start_with?("super.") 
+                      mname = mn1.gsub("super.","")
+                      name = "super_method(#{current_ruby_scope.class_name}, :#{mname}).call"
+                  else
+                      
+                  end
                 src("#{name}(#{hash_to_params(params)})\n")
             .)
             .
@@ -1936,7 +1948,7 @@ stINSERT = "INSERT"
          .
 
 stINTERFACE = "INTERFACE" identifier (.
-    n = prevString;clsdef = ModuleDef.new(n);current_ruby_scope.add_module(clsdef);clsdef.add_src("#{n}=#{to_ruby_const(n)}\n")
+    n = prevString;clsdef = ModuleDef.new(n);current_ruby_scope.add_module(clsdef);clsdef.add_src("module_function\n#{n}=#{to_ruby_const(n)}\n")
     .)  (   ["PUBLIC"|"PRIVATE"|"PROTECTED"]  "." 
 
 (.in_scope(clsdef).)
@@ -1947,24 +1959,37 @@ stINTERFACE = "INTERFACE" identifier (.
   (.out_scope.)
 "ENDINTERFACE"  |   ("DEFERRED" ["PUBLIC"] | "LOAD" (.
                                                         cls = current_scope
-                                                        cls.add_src("include #{to_ruby_const(n)}\n")
-                                                        cp = current_scope
-                                                        out_scope
-                                                        load_file("#{n}")
-                                                        cls.add_require("#{n.downcase}.rb")
-                                                        in_scope(cp)
+                                                        if cls.class_name.downcase != n.downcase
+                                                            cls.add_src("include #{to_ruby_const(n)}\n")
+                                                            cp = current_scope
+                                                            out_scope
+                                                            load_file("#{n}")
+                                                            cls.add_require("#{n.downcase}.rb")
+                                                            in_scope(cp)
+                                                        end
                                                     .)
         )  
     ) ".".
 
 stINTERFACE_POOL = "INTERFACE-POOL"".".
 
-stINTERFACES = "INTERFACES" identifier 
+stINTERFACES = "INTERFACES" identifier (.n = prevString.)
   ["PARTIALLY" "IMPLEMENTED"] 
   ( ( ["ABSTRACT" "METHODS" identifier ] 
       ["FINAL" "METHODS" identifier ] ) 
     | ["ALL" "METHODS" ("ABSTRACT"|"FINAL")] ) 
-  ["DATA" "VALUES" Exps ]".".
+  ["DATA" "VALUES" Exps ]"."
+                                                      (.
+                                                          cls = current_scope
+                                                          cls.add_src("include #{to_ruby_const(n)}\n")
+                                                          cp = current_scope
+                                                          out_scope
+                                                          load_file("#{n}")
+                                                          cls.add_require("#{n.downcase}.rb")
+                                                          in_scope(cp)
+                                                      .)
+  
+  .
 
 stLEAVE = "LEAVE" (  
             "LIST-PROCESSING"
@@ -2337,18 +2362,29 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
 					.
 
 
-  PostFix<A* r> =      {    "[" [Expression] "]" (.r+="[#{lus}]".)
+  PostFix<A* r> =   (. n=r.)   {    "[" [Expression] "]" (.r+="[#{lus}]".)
                           | ["#"] FunctionCall<r> (.
                               if r == "DATA"
                                  r = lus[1..lus.size-2]                              
                               else
-                                  r+="#{lus}"
+                                  if n.start_with?("super.") 
+                                      mname = n.gsub("super.","")
+                                      r = "super_method(#{current_ruby_scope.class_name}, :#{mname}).call" 
+                                  else
+                                      r+="#{lus}"
+                                  end
                               end
                               .)
                         /*  | "~" identifier
                           | "-" identifier*/
-                          | "->" identifier (.r+=".#{prevString}".)
-                          | "=>" identifier  (.r+="::#{prevString}".)
+                        /* althgouth identifier include ->, but still need "->" in postfix, e.g. a->b()->c()*/
+                          | "->" identifier (.
+                                  r+=".#{prevString}"
+                              
+                              .)
+                          | "=>" identifier  (.
+                              r+="::#{to_ruby_const(prevString)}"
+                              .)
                           | "++" (.r+="++".)
                           | "--"(.r+="--".)
                         /*  | "IS"(.re(".is(");br = true.) ["NOT"(.back_src();re(".isnot(");_not=true.)] ["INITIAL"(.back_src();if _not 

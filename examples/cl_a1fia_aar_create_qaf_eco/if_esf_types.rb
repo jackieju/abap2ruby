@@ -3,6 +3,7 @@
 module Cl_a1fia_aar_create_qaf_eco::If_esf_types
 
 
+   module_function
    if_esf_types=If_esf_types
 
 end

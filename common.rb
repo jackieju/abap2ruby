@@ -61,11 +61,11 @@ def pdebug(s, stack=0)
     
 end
 
-def dump_one_as_ruby(v, module_name=nil)
-    pp "dump ruby for #{v.class_name}@#{v}, #{module_name}", 20
+def dump_one_as_ruby(_v, module_name=nil)
+    pp "dump ruby for #{_v.class_name}@#{_v}, #{module_name}", 20
    # pp "dump #{v.inspect}", 10
             s_methods =""
-            v.methods.each{|k,v|
+            _v.methods.each{|k,v|
                 p "#{k}, #{v[:decoration]}"
                 # p "       methods signature:#{k}"
                 # p "       methods name:#{v[:name]}"
@@ -78,39 +78,60 @@ def dump_one_as_ruby(v, module_name=nil)
                     method_name = "self.#{v[:name]}"
                 end
                 
+                pre = ""
                 if v[:src] == nil
+                    p "-===>444#{k}:#{v.inspect}"
                     v[:src] = "raise \"Not implemented\"\n"
-                end 
-            
-                if v[:src] #&& v[:src].strip != ""
-                    p "src:#{v[:src]}"
-                    pre = ""
+                else
+                  
                     #if v[:import]
                     #    v[:import].each{|vn|
                     #        pre +="#{vn} = nil\n"
                     #    }
-                    #end
-                    if v[:import]
-                        pre += v[:import].join("=")+"=nil\n"
-                        #pre += "_i_=#{v[:import]}\n"
-                        #pre +="if _a && _a.size>0
-                        #    _a.each_with_index{|a,i| _i_[i]=a}
-                        #end\n"
+                    #end
+                    if v[:others] 
+                        p "other:#{_v.class_name} #{method_name}:#{v[:others]}"
+                        if v[:others][:import]
+                            #pre += v[:others][:import].join("=")+"=nil\n"
+                            v[:others][:import].each{|i|
+                                pre += i.sub(":", "=")+";"
+                            }
+                            pre += "\n"
+                            
+                            #pre += "_i_=#{v[:import]}\n"
+                            #pre +="if _a && _a.size>0
+                            #    _a.each_with_index{|a,i| _i_[i]=a}
+                            #end\n"
                         
-                        pre += "if _a && _a.size>0\n"
-                        v[:import].each_with_index{|t,i|
-                            if i == 0
-                                pre += "#{t}=_a[0]\n"
-                            else
-                                pre += "#{t}=_a[#{i}] if _a.size>#{i}\n"
-                            end
-                        }
-                        pre += "end\n"
+                            pre += "if _a && _a.size>0\n"
+                            v[:others][:import].each_with_index{|t,i|
+                                t = t.split(":")[0]
+                                if i == 0
+                                    pre += "#{t}=_a[0]\n"
+                                else
+                                    pre += "#{t}=_a[#{i}] if _a.size>#{i}\n"
+                                end
+                            }
+                            pre += "end\n"
+                        end
+                        
+                        if v[:others][:export] && v[:others][:export].size >0
+                            p "export:#{v[:others][:export].inspect}" if v[:others][:export].size <2
+                            pre += v[:others][:export].join("=")+"=nil;\n"
+                        end
                         
                     end
+                end 
+            
+                if v[:src] #&& v[:src].strip != ""
+                    p "src:#{v[:src]}"
+
+                    
+                    
                     method_template =<<HERE
-                    #{v[:doc]}
+                    #{v[:others][:doc]}
                 def #{method_name}#{v[:head]}
+                   
                     #{pre}
                     #{v[:src]}
                 end
@@ -122,43 +143,43 @@ HERE
 
             }
             # p "==>methods:#{methods}"
-            class_name = v.class_name
+            class_name = _v.class_name
             includings = ""
-            v.includings.each{|inc|
+            _v.includings.each{|inc|
                 includings += "include #{inc}\n"
             }
             if class_name == "::"
                     class_name ="_global_"
                     class_template = <<HERE
                     #{s_methods}
-                    #{v.src}
+                    #{_v.src}
 HERE
             else
                 if (module_name && module_name != "")
                     class_name = "#{module_name}::#{class_name}"
                 end
                 requ = ""
-                v.require.each{|q|
+                _v.require.each{|q|
                     requ += "require_relative \"#{q}\"\n"
                 }
-                if v.class == ModuleDef
+                if _v.class == ModuleDef
                     class_template =<<HERE
                     #{requ}
                 module #{class_name}
                     #{includings}
                  #{s_methods}
-                 #{v.src}
+                 #{_v.src}
                 end
 HERE
                 else
                     
-                    if v.parent
+                    if _v.parent
                         class_template =<<HERE
                         #{requ}
-                class #{class_name} < #{v.parent}
+                class #{class_name} < #{_v.parent}
                     #{includings}
                 #{s_methods}
-                 #{v.src}
+                 #{_v.src}
                 end
 HERE
                     else
@@ -167,7 +188,7 @@ HERE
                 class #{class_name}
                     #{includings}
                  #{s_methods}
-                 #{v.src}
+                 #{_v.src}
                 end
 HERE
                     end

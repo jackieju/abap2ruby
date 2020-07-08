@@ -1,3 +1,4 @@
+require_relative "log.rb"
 #def var(variable_name)
 #    variable_module = Module.new do
 #      attr_accessor variable_name.to_sym
@@ -27,9 +28,21 @@ class Binding
   alias :s :local_variable_get
 end
 
+def _super(method, *arg)
+    # Parent.instance_method(:method).bind(self).call
+   # self.class.superclass.instance_method(method.to_sym).bind(self).call(*arg)
+   super_method(method.to_sym).call(*args)
+end
+
+def super_method(cls, method)
+ #   self.class.superclass.instance_method(method.to_sym).bind(self)#.call(*arg)
+    cls.superclass.instance_method(method.to_sym).bind(self)#.call(*arg)
+end
+
 
 def var(hash)
-    p "self:#{self.class}"
+  #  p "self:#{self.class}"
+     hash.transform_keys!{ |key| key.to_s.downcase }
     hash.each do |n, v|
       self.class.define_method(n) do
         instance_variable_get("@__#{n}")
@@ -219,6 +232,11 @@ def t2(_i:nil,_e:nil, _b:nil)
     _i.each{|k,v|eval("#{k}=v");varset(k, v)}
     _e.each{|k,v|v = _b.local_variable_get(v.to_sym);eval("#{k}=v");varset(k, v)}
       
+    p "v1:#{v1}"
+    case v1
+        when 1
+            p "---->ffff"
+    end
     p "33v2:#{v2}" 
     p "33v1:#{v1}" 
     v2 + 1

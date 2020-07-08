@@ -3,6 +3,7 @@
 module If_esf_types
 
 
+   module_function
    if_esf_types=If_esf_types
    module Co_context_parameter_names
       module_function

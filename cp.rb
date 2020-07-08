@@ -8,20 +8,35 @@ load 'log.rb'
 load 'common.rb'
 load 'cocoR/o/cparser.rb'
 
+# overwrite for abap, which doesn't have overloading
+class ModuleDef < Scope
+def method_signature(method_name, arg_number)
+    if IGNORECASE
+        method_name = method_name.downcase
+    end
+    p "--->3333method_signature:#{method_name}"
+    return "#{method_name}"
+end
+# alias_method :add_method_old, :add_method
+# def add_method(method_name, head, args, src, acc="public", others=nil)
+#     add_method_old(method_name.downcase, head, args, src, acc="public", others)
+# end
+end
+$included_files = {}
 def load_file(fname)
     p "load_file:#{fname}"
     fname = fname.upcase+".abap"
     # make sure include only once
-    if (@included_files[fname] == 1)
+    if ($included_files[fname] == 1)
         
     else
         dir = File.dirname($g_cur_parse_file)
         
         begin
             p "load file:#{dir+"/"+fname}"
-            
+            $included_files[fname] = 1
             parse_file(dir+"/"+fname, $preprocessor, false)
-            @included_files[fname] = 1
+            
         rescue Exception=>e
             p "load file failed. #{dir+"/"+fname}, #{pe(e)}"
         end
@@ -57,6 +72,7 @@ def convertName(s)
     s = s.gsub(/<(.*?)>/, '\1')
 end
 
+# remove enclosing <> and ()
 def fixName(s)
     s = s.gsub(/[<>\(\)]/, "")
 end
@@ -203,6 +219,28 @@ class Parser < CParser
         pclass
     end
     
+    def instant_parse(s)
+        p "instant_parse:#{s}"
+        s += " "
+        _scanner = Scanner.new(s)
+        # backup 
+        sc = @scanner
+        sy = @sym
+        _ps = @parse_stack
+        
+        # parse
+        @scanner = _scanner
+        @parse_stack = ParseStack.new
+        Get()
+        Expression()
+        str = lus
+        
+        # restore
+        @scanner = sc
+        @sym = sy
+         @parse_stack = _ps
+        return str
+    end
     def convert_regex(s)
           p "===>convert_regex:#{s}"
         s = s.sub("|", "/")
@@ -213,15 +251,7 @@ class Parser < CParser
             str = nil
             m.scan(/\$\{(.*?)\}/){|m2|
                 p m2[0]
-                _scanner = Scanner.new(m2[0])
-                sc = @scanner
-                sy = @sym
-                @scanner = _scanner
-                Get()
-                Expression()
-                str = lus
-                @scanner = sc
-                @sym = sy
+               str = instant_parse( m2[0])
                 
             }
            
@@ -286,6 +316,77 @@ class Parser < CParser
     def origin_src
         @scanner.buffer[@parse_stack.cur[:pos]..@scanner.nextSym.pos-1]
     end
+    
+    def parse_abap_method_signature(cmt)
+        cmt.scan(/<SIGNATURE>(.*?)<\/SIGNATURE>/mi){|m|
+            p m.inspect
+            method_name = nil
+            exporting = []
+            importing = []
+            
+            dec = ""
+            
+            m[0].each_line{|l|
+                if l.start_with?("* |")
+                    def_val = ""
+                    p "line:#{l}"
+                    if method_name == nil && l.downcase.index("method")
+                        l.scan(/Method\s+(.*?)$/i){|mm|
+                            p mm.inspect
+                            method_name = mm[0].strip
+                            p "method name:#{method_name}"
+                        }
+                    end
+                    l.scan(/\(\s*default\s*=(.*?)\s*\)/){|m2|
+                        s = m2[0]
+                        def_val = "="+instant_parse(m2[0]) if m2[0] && m2[0].strip != ""
+                    }
+                    l.scan(/\[(.*?)\]\s+(\w+)/){|mmm|
+                        p "arg name:#{mmm[1]}, #{mmm[0]}"
+                        n = mmm[1].strip.downcase
+                        if mmm[0].end_with?("-->")
+                            importing.push(n+def_val)
+                        elsif mmm[0].start_with?("<--")
+                            exporting.push(n+def_val)
+                        end
+                    }
+                end
+            }
+            if current_scope.is_a?(ModuleDef)
+                classdef = current_scope
+                
+                args = nil
+                if importing.size > 0
+                     args = importing.clone
+                    for i in 0..importing.size-1
+                        if importing[i].index("=")
+                            importing[i].sub!("=",":")
+                        else
+                         importing[i] += ":nil"
+                         end
+                    end
+     
+                end
+                import = importing.clone
+                import.push("_i:nil")
+                import.push("_e:nil")
+                import.push("_b:nil")
+                pars = import.join(",")
+                
+                if method_name
+                    p "add_method33:#{method_name}"
+                    method_name.scan(/[\-\>|\=\>](.*?)$/i){|m|
+                        method_name = m[0]
+                    }
+                    method_name = fixName(convertName(method_name))
+                     p "add_method34:#{method_name}"
+                    add_method(classdef, method_name.downcase, "(*_a,#{pars})", [], nil , dec, {:import=>importing, :export=>exporting})
+                end
+            end
+
+            
+        }
+    end
     def Get(ignore_crlf=true)
 
         if @parse_stack.cur[:auto_append]          
@@ -300,18 +401,33 @@ class Parser < CParser
         super
         
         if @sym == 0.6 # comment
-           
+            # keep current sym, in case for call for prevString()
+           sy = @scanner.currSym.clone
+        
+           comments = ""
+           while @sym == 0.6
+               ps("sym:#{@sym}, #{@scanner.nextSym.sym}")
+               comments += curString
+               super
+
+           end
+              @scanner.currSym = sy
+             p "cmt:#{comments}"
+             
+             parse_abap_method_signature(comments)
             if @parse_stack.cur[:auto_append]
                  #p "cmt:#{curString()}", 10
                  #p "#"+curString()+"|||\n"
                  #p @parse_stack.cur[:src].size
                  #p @parse_stack.cur[:src]
-                  @parse_stack.cur[:src].push("#"+curString()+"\n") if @parse_stack.cur[:no_comments]  == false
                  
-                  # keep current sym, in case for call for prevString()
-                 sy = @scanner.currSym.clone
-                 Get(ignore_crlf)
-                 @scanner.currSym = sy
+                 _cmt = ""
+                 comments.each_line(){|l| _cmt += "#"+l}
+                  @parse_stack.cur[:src].push(_cmt+"\n") if @parse_stack.cur[:no_comments]  == false
+                 
+              #    sy = @scanner.currSym.clone
+              #   Get(ignore_crlf)
+             #    @scanner.currSym = sy
              end
          end
           p @parse_stack.cur[:src]

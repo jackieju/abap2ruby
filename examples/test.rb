@@ -7,6 +7,7 @@ begin
 rescue Cx_bsa_runtime=>lx_bsa_runtime
 
 end
+require_relative "if_esf_types.rb"
 require_relative "cl_bsa_adaptation_handler_base.rb"
 
 require_relative "cl_bsa_adaptation_handler_co.rb"
@@ -20,7 +21,7 @@ require_relative "cl_a1fia_aar_create_qaf_eco.rb"
 require_relative "cl_a1fia_acproerr_qaf_eco.rb"
 
 require_relative "if_a1fia_aar_create_qaf_eco.rb"
-require_relative "if_esf_types.rb"
+
 
 require_relative "if_bsa_adaptation_handler.rb"
 

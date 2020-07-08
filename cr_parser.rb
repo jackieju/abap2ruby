@@ -5,8 +5,10 @@ def to_ruby_const(s)
     return a if s.size ==1
     return "#{a}#{s[1..s.size-1]}"
 end
-    
+
+# overwrite this for other language
 def method_signature(method_name, arg_number)
+    p "===>33334"
     if IGNORECASE
         method_name = method_name.downcase
     end
@@ -113,7 +115,7 @@ class ModuleDef < Scope
     # head: content in () in ruby code, including ()
     # will change it with new value if method already exists
     def add_method(method_name, head, args, src, acc="public", others=nil)
-        p "===>add_method1:#{method_name}, #{head}"
+        p "===>add_method1:#{class_name},#{method_name}, #{head}, #{others}", 10
         p "====>add_method2:#{src}"
         arg_number = args.size
         method_sig = method_signature(method_name, arg_number)
@@ -184,12 +186,21 @@ m[:src] = "" if m[:src] ==nil
                     method_desc[:decoration] += " #{v}"
                 end
             }
-            if others && others[:doc] && method_desc[:doc] == nil
-                method_desc[:doc] = others[:doc]
+            #if others && others[:doc] && method_desc[:doc] == nil
+            #    method_desc[:doc] = others[:doc]
+            #end
+            #if others && others[:import] && method_desc[:import] == nil
+            #    method_desc[:import] = others[:import]
+            #end           
+            if others  
+                if method_desc[:others] == nil
+                    method_desc[:others] = others 
+                else                     
+                    method_desc[:others][:doc] = others[:doc] if others[:doc]
+                    method_desc[:others][:import] = others[:import] if others[:import]
+                    method_desc[:others][:export] = others[:export] if others[:export]
+                end
             end
-            if others && others[:import] && method_desc[:import] == nil
-                method_desc[:import] = others[:import]
-            end            
         else
             @methods[method_sig]={
                 :name=>method_name,
@@ -202,12 +213,22 @@ m[:src] = "" if m[:src] ==nil
                 @methods[method_sig][:head] = default_method_head
             end
             
-            if @methods[method_sig][:doc] == nil && others && others[:doc]
-                @methods[method_sig][:doc] = others[:doc]
+            #if @methods[method_sig][:doc] == nil && others && others[:doc]
+            #    @methods[method_sig][:doc] = others[:doc]
+            #end
+            #if others && others[:import] && @methods[method_sig][:import] == nil
+            #    @methods[method_sig][:import] = others[:import]
+            #end     
+
+            if others  
+                if @methods[method_sig][:others] == nil
+                    @methods[method_sig][:others] = others 
+                else                     
+                    @methods[method_sig][:others][:doc] = others[:doc] if others[:doc]
+                    @methods[method_sig][:others][:import] = others[:doc] if others[:import]
+                    @methods[method_sig][:others][:export] = others[:doc] if others[:export]
+                end
             end
-            if others && others[:import] && @methods[method_sig][:import] == nil
-                @methods[method_sig][:import] = others[:import]
-            end     
         end
         
         p("method #{method_sig} added to #{self.class_name}@#{self}:#{@methods[method_sig].inspect} \n")
@@ -323,7 +344,7 @@ class CRParser
         @sym = 0
         @sstack = [] # scope stack
         @classdefs = {}
-        # p "haha"
+        
     end
     
     def current_scope(name=nil)
@@ -352,6 +373,7 @@ class CRParser
      #   p "==>in_scope0:#{name}, #{name.class_name}, #{name.inspect} ", 10
          p "==>cs2:#{name.inspect}"
         p "==>cs1:#{cs.inspect}"
+        p "==>cs3:#{name.class_name}@#{name.name}" if name.is_a?ModuleDef
         if name.class == String
             name = Scope.new(name)
             @sstack.push(name)

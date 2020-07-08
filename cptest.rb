@@ -253,7 +253,7 @@ REPORT TEST.
 SORT <fs_adapted_update_notif>-affected_associations.
 DELETE ADJACENT DUPLICATES FROM <fs_adapted_update_notif>-affected_associations.
 
-TYPES  BEGIN OF lty_bo_invalidate.
+TYPES BEGIN OF lty_bo_invalidate.
 TYPES bo_name TYPE string.
 TYPES sync_type TYPE i.
 TYPES END OF lty_bo_invalidate.
@@ -268,6 +268,30 @@ interface IF_BSA_METADATA  .
     tt_attribute_mapping_tab TYPE STANDARD TABLE OF ty_attribute_mapping_tab WITH DEFAULT
 KEY .
 ENDINTERFACE.
+HERE
+s17=<<HERE
+CLASS Abc IMPLEMENTATION.
+METHOD if_esf_provider_init~init.
+
+  CALL METHOD super->if_esf_provider_init~init
+    EXPORTING
+      in_provider_context         = in_provider_context
+      in_bo_name                  = in_bo_name
+    CHANGING
+      inout_preferred_trx_pattern = inout_preferred_trx_pattern.
+
+ENDMETHOD.                 
+ENDCLASS.
+HERE
+s18=<<HERE
+CLASS Abc IMPLEMENTATION.
+METHOD if_esf_provider_init~init.
+
+a = if_sample=>co_bo_node-root.
+
+ENDMETHOD.  
+
+ENDCLASS.
 HERE
 $ar = []
 #def dump_testcase
@@ -377,7 +401,7 @@ end # end of test
 
 
 #=end
-test()
+test(false)
 #dump_testcase
 p "$typedef:#{$typedef.inspect}"
 

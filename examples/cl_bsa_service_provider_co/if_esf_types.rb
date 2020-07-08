@@ -3,6 +3,7 @@
 module Cl_bsa_service_provider_co::If_esf_types
 
 
+   module_function
    if_esf_types=If_esf_types
 
 end

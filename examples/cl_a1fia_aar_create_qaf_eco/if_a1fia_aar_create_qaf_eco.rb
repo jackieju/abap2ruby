@@ -3,6 +3,7 @@
 module Cl_a1fia_aar_create_qaf_eco::If_a1fia_aar_create_qaf_eco
 
 
+   module_function
    if_a1fia_aar_create_qaf_eco=If_a1fia_aar_create_qaf_eco
 
 end

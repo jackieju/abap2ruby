@@ -713,6 +713,10 @@ class CScanner < CRScanner
             return C_EXCEPTIONSSym
          end
 
+         if EqualStr("EDIT")
+            return C_EDITSym
+         end
+
          if EqualStr("ENDFUNCTION")
             return C_ENDFUNCTIONSym
          end
@@ -771,10 +775,6 @@ class CScanner < CRScanner
 
          if EqualStr("ENVIRONMENT")
             return C_ENVIRONMENTSym
-         end
-
-         if EqualStr("EDIT")
-            return C_EDITSym
          end
 
          if EqualStr("ENDCASE")

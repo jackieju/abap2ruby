@@ -1,4 +1,5 @@
 set -e
+ruby translate.rb examples/IF_BSA_METADATA.abap -d examples/
 ruby translate.rb examples/CL_BSA_ADAPTATION_HANDLER_BASE.abap -d examples
 ruby translate.rb examples/CL_BSA_ADAPTATION_HANDLER_CO.abap -d examples
 ruby translate.rb examples/CL_BSA_FACTORY.abap -d examples
@@ -17,7 +18,7 @@ ruby translate.rb examples/IF_BSA_ADAPTATION_HANDLER.abap -d  examples
 ruby translate.rb examples/IF_ESF_TYPES.abap -d  examples
 
 
-
+ruby translate.rb examples1/sample.abap -d examples1
 
 #ruby translate.rb examples/cp_testcase.abap -d examples
 

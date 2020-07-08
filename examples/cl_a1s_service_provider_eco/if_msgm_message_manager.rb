@@ -3,6 +3,7 @@
 module Cl_a1s_service_provider_eco::If_msgm_message_manager
 
 
+   module_function
    if_msgm_message_manager=If_msgm_message_manager
 
 end
