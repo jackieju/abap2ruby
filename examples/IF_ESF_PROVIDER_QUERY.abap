@@ -1,0 +1,36 @@
+*"* components of interface IF_ESF_PROVIDER_QUERY
+interface IF_ESF_PROVIDER_QUERY
+  public .
+
+
+  types TY_AUTHORIZATION_CONTEXT type IF_ESF_TYPES=>TY_AUTHORIZATION_CONTEXT .
+  types TY_QUERY_OPTIONS type SESF_QUERY_OPTIONS .
+  types TY_SELECTION_PARAMETER type SESF_SELECTION_PARAMETER .
+  types:
+    tt_selection_parameters TYPE STANDARD TABLE OF
+       ty_selection_parameter WITH DEFAULT KEY .
+  types TY_QUERY_INFO type SESF_QUERY_INFO .
+
+  methods QUERY
+    importing
+      !IN_BO_NODE_NAME type STRING
+      !IN_QUERY_NAME type STRING
+      !IN_SELECTION_PARAMETERS type TT_SELECTION_PARAMETERS optional
+      !IN_QUERY_OPTIONS type TY_QUERY_OPTIONS
+      !IN_AUTHORIZATION_CONTEXT type TY_AUTHORIZATION_CONTEXT optional
+      !IN_MESSAGE_HANDLER type ref to IF_ESF_MESSAGE_HANDLER
+      !IN_FILL_DATA type SESF_BOOLEAN default SPACE
+      !IN_FILTER_NODE_IDS type SESF_BO_NODE_ID_TAB optional
+      !IN_REQUESTED_ATTRIBUTES type SESF_STRING_TAB optional
+      !IN_EXECUTE_OVER_SQL type SESF_BOOLEAN default SPACE
+    exporting
+      !OUT_NODE_IDS type SESF_BO_NODE_ID_TAB
+      !OUT_DATA type INDEX TABLE
+      !OUT_QUERY_INFO type TY_QUERY_INFO .
+  methods RETRIEVE_DEFAULT_QUERY_PARAM
+    importing
+      !IN_BO_NODE_NAME type STRING
+      !IN_QUERY_NAME type STRING
+    exporting
+      !OUT_SELECTION_PARAMETERS type SESF_SELECTION_PARAMETERS_TAB .
+endinterface.
