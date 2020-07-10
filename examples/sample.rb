@@ -26,7 +26,6 @@ class Sample < Sample_base
 
    def if_esf_provider_access_i_check(*_a,in_bo_node_name:nil,in_node_ids:nil,in_check_scope:nil,in_message_handler:nil,_i:nil,_e:nil,_b:nil)
 
-      in_bo_node_name=nil;in_node_ids=nil;in_check_scope=nil;in_message_handler=nil;
       if _a && _a.size>0
          in_bo_node_name=_a[0]
          in_node_ids=_a[1] if _a.size>1
@@ -202,7 +201,6 @@ class Sample < Sample_base
 
    def if_esf_provider_access_i_modify(*_a,in_change_handler:nil,in_message_handler:nil,in_modifications:nil,_i:nil,_e:nil,_b:nil)
 
-      in_change_handler=nil;in_message_handler=nil;in_modifications=nil;
       if _a && _a.size>0
          in_change_handler=_a[0]
          in_message_handler=_a[1] if _a.size>1
@@ -346,7 +344,7 @@ class Sample < Sample_base
 
    def if_esf_provider_access_i_retrieve(*_a,in_bo_node_name:nil,in_node_ids:nil,in_requested_image:If_esf_types::Co_image_transactional_buffer,in_edit_mode:nil,in_requested_attributes:nil,in_message_handler:nil,in_buffer_sync_handler:nil,_i:nil,_e:nil,_b:nil)
 
-      in_bo_node_name=nil;in_node_ids=nil;in_requested_image=If_esf_types::Co_image_transactional_buffer;in_edit_mode=nil;in_requested_attributes=nil;in_message_handler=nil;in_buffer_sync_handler=nil;
+      out_data=out_failed_node_ids=nil;
       if _a && _a.size>0
          in_bo_node_name=_a[0]
          in_node_ids=_a[1] if _a.size>1
@@ -356,7 +354,6 @@ class Sample < Sample_base
          in_message_handler=_a[5] if _a.size>5
          in_buffer_sync_handler=_a[6] if _a.size>6
       end
-      out_data=out_failed_node_ids=nil;
 
 
       ###################################
@@ -678,7 +675,6 @@ class Sample < Sample_base
 
          end
       else
-          
          super_method(Sample, :if_esf_provider_access_i_retrieve).call(_i:{
             "in_bo_node_name" => in_bo_node_name,
             "in_node_ids" => in_node_ids,
@@ -737,7 +733,6 @@ class Sample < Sample_base
 
    def if_esf_provider_init_i_init(*_a,in_provider_context:nil,in_bo_name:nil,inout_preferred_trx_pattern:If_esf_provider_init::Co_tp_save_and_continue,_i:nil,_e:nil,_b:nil)
 
-      in_provider_context=nil;in_bo_name=nil;inout_preferred_trx_pattern=If_esf_provider_init::Co_tp_save_and_continue;
       if _a && _a.size>0
          in_provider_context=_a[0]
          in_bo_name=_a[1] if _a.size>1
@@ -763,10 +758,10 @@ class Sample < Sample_base
 
       #"Get LCP facade
       @mo_lcp_facade = in_provider_context.get_lcp_facade(_b:binding)
-
+      p "222222"
       begin
          @mo_eco_descriptor = @mo_lcp_facade.get_bo_descriptor(in_bo_proxy_name:If_sample::Co_bo_name)
-
+         p " @mo_eco_descriptor:#{ @mo_eco_descriptor}"
 
       rescue Cx_esf_core_service=>lx_esf_core_service
          raise cx_fatal_exception.new
@@ -794,7 +789,6 @@ class Sample < Sample_base
 
    def if_esf_provider_interact_ctrl_i_do_post_processing(*_a,in_overruling_code:nil,inout_messages:nil,_i:nil,_e:nil,_b:nil)
 
-      in_overruling_code=nil;inout_messages=nil;
       if _a && _a.size>0
          in_overruling_code=_a[0]
          inout_messages=_a[1] if _a.size>1
@@ -840,7 +834,6 @@ class Sample < Sample_base
    #     redefinition .
 
    def get_sub_context(*_a,_i:nil,_e:nil,_b:nil)
-
 
       if _a && _a.size>0
       end

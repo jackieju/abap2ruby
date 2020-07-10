@@ -91,12 +91,18 @@ def dump_one_as_ruby(_v, module_name=nil)
                     #end
                     if v[:others] 
                         p "other:#{_v.class_name} #{method_name}:#{v[:others]}"
+                        # assign variable, since eval cannot create new local variable
+                        if v[:others][:export] && v[:others][:export].size >0
+                            p "export:#{v[:others][:export].inspect}" if v[:others][:export].size <2
+                            pre += v[:others][:export].join("=")+"=nil;\n"
+                        end
+                        
                         if v[:others][:import]
                             #pre += v[:others][:import].join("=")+"=nil\n"
-                            v[:others][:import].each{|i|
-                                pre += i.sub(":", "=")+";"
-                            }
-                            pre += "\n"
+                            #v[:others][:import].each{|i|
+                            #    pre += i.sub(":", "=")+";"
+                            #}
+                            #pre += "\n"
                             
                             #pre += "_i_=#{v[:import]}\n"
                             #pre +="if _a && _a.size>0
@@ -115,10 +121,7 @@ def dump_one_as_ruby(_v, module_name=nil)
                             pre += "end\n"
                         end
                         
-                        if v[:others][:export] && v[:others][:export].size >0
-                            p "export:#{v[:others][:export].inspect}" if v[:others][:export].size <2
-                            pre += v[:others][:export].join("=")+"=nil;\n"
-                        end
+
                         
                     end
                 end 

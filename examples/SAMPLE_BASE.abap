@@ -1,5 +1,9 @@
+
+
 class SAMPLE_BASE definition
   public
+  inheriting from BASE
+  
   create public .
 
 public section.

@@ -12583,7 +12583,7 @@ class CParser < CRRParser
                Expect(C_EqualSym)
                Expression()
 
-               exporting+="\"#{idn}\" => \"#{lus}\",\n";
+               exporting+="\"#{idn}\" => #{lus},\n";
 
             end
 
@@ -12605,7 +12605,7 @@ class CParser < CRRParser
                Expect(C_EqualSym)
                Expression()
 
-               importing+="\"#{idn}\" => #{lus},\n";
+               importing+="\"#{idn}\" => \"#{lus}\",\n";
 
             end
 

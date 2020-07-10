@@ -1529,8 +1529,8 @@ CallMethod =  "METHOD"
             {
                 ["PARAMETER-TABLE" Name (.param_hash["PARAMETER-TABLE"]=lus.) ] 
                 ["EXCEPTION-TABLE" Name (. param_hash["EXCEPTION-TABLE"]=lus .) ] 
-                ["EXPORTING" (. exporting = "{\n".){ Name(.idn = lus.) "=" Expression (.exporting+="\"#{idn}\" => \"#{lus}\",\n".)} (. exporting += "}".)  ] 
-                ["IMPORTING" (. importing = "{\n".) { Name(.idn = lus.) "=" Expression (.importing+="\"#{idn}\" => #{lus},\n".)} (. importing += "}".)  ] 
+                ["EXPORTING" (. exporting = "{\n".){ Name(.idn = lus.) "=" Expression (.exporting+="\"#{idn}\" => #{lus},\n".)} (. exporting += "}".)  ] 
+                ["IMPORTING" (. importing = "{\n".) { Name(.idn = lus.) "=" Expression (.importing+="\"#{idn}\" => \"#{lus}\",\n".)} (. importing += "}".)  ] 
                 ["CHANGING" (. changing = "{\n".) { Name(.idn = lus.) "=" Expression (.changing+="\"#{idn}\" => #{lus},\n".)} (. changing += "}".)  ] 
                 ["RECEIVING" Expression  (.param_hash["RECEIVING"]=lus.) ] 
                 ["NO" "FLUSH" (.param_hash["noflush"]=true.) ] 
