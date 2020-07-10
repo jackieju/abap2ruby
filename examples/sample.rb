@@ -758,10 +758,10 @@ class Sample < Sample_base
 
       #"Get LCP facade
       @mo_lcp_facade = in_provider_context.get_lcp_facade(_b:binding)
-      p "222222"
+
       begin
          @mo_eco_descriptor = @mo_lcp_facade.get_bo_descriptor(in_bo_proxy_name:If_sample::Co_bo_name)
-         p " @mo_eco_descriptor:#{ @mo_eco_descriptor}"
+
 
       rescue Cx_esf_core_service=>lx_esf_core_service
          raise cx_fatal_exception.new
