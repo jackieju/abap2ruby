@@ -293,6 +293,33 @@ ENDMETHOD.
 
 ENDCLASS.
 HERE
+s18=<<HERE
+CLASS Abc IMPLEMENTATION.
+  data:
+    BEGIN OF ms_current_account_types,
+  is_customer TYPE sesf_boolean,
+  is_supplier TYPE sesf_boolean,
+  is_tax_authority TYPE sesf_boolean,
+END OF ms_current_account_types .
+ENDCLASS.
+HERE
+s19=<<HERE
+REPORT D.
+IF cl_abap_aab_utilities=>is_active(
+    id                = 'A1FIA_ECO_ERROR'
+    mode_breakpoint   = 'X'
+    mode_logpoint     = 'X'
+    mode_assert_break = 'X'
+    mode_assert_dump  = 'X'
+    mode_assert_log   = 'X'
+  ) is not INITIAL.
+ENDIF.
+
+FIND FIRST OCCURRENCE OF in_action_name IN TABLE
+    mo_lcp_facade->get_bo_descriptor( in_bo_proxy_name = if_task=>co_bo_name
+    )->get_bo_node_descriptor( bo_node_proxy_name = if_task=>co_bo_node-root
+    )->get_action_proxy_names( ).
+HERE
 $ar = []
 #def dump_testcase
     p "==>dump_testcase"
@@ -401,7 +428,7 @@ end # end of test
 
 
 #=end
-test(false)
+test()
 #dump_testcase
 p "$typedef:#{$typedef.inspect}"
 

@@ -130,9 +130,12 @@ def dump_one_as_ruby(_v, module_name=nil)
                     p "src:#{v[:src]}"
 
                     
-                    
+                    doc = ""
+                    if v[:others] && v[:others][:doc]
+                        doc = v[:others][:doc]
+                    end
                     method_template =<<HERE
-                    #{v[:others][:doc]}
+                    #{doc}
                 def #{method_name}#{v[:head]}
                    
                     #{pre}

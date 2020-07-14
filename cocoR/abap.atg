@@ -48,11 +48,47 @@ PRAGMAS
 PRODUCTIONS
 
      /* Type name cannot include "REF"*/
-    AllowedKeywordsForTypeName = "DATA" | "VALUE" | "PARAMETER" | "PARAMETERS" | "TARGET" | "MESSAGE" | "END" | "CREATE" | "KEY" |"ID"|"DEFAULT"|"LENGTH"|"DECIMALS"|"BOXED"|"TYPE"
-                        |"SUFFIX" | "COMPONENTS" |"EXCEPTIONS" | "KIND" |"DELETE" | "ACTIVATION" .                           
+    AllowedKeywordsForTypeName = "DATA" | "VALUE" | "PARAMETER" | "PARAMETERS" | "TARGET" 
+                        | "MESSAGE" | "END" | "CREATE" | "KEY" |"ID"|"DEFAULT"|"LENGTH"|"DECIMALS"|"BOXED"|"TYPE"
+                        |"SUFFIX" | "COMPONENTS" |"EXCEPTIONS" | "KIND" |"DELETE" | "ACTIVATION" | "OF"
+                        |"EOF"|"REPORT"|"NO"|"PAGE"|"HEADING"|"DEFINING"|"DATABASE"|"REDUCED"|"FUNCTIONALITY"|"FUNCTION"|"ENDFUNCTION"|"ENDSELECT"|"FIELDS"|"DISTINCT"|"FROM"|"AS"|"USING"|"CLIENT"|"SPECIFIED"|"INNER"|"LEFT"|"RIGHT"|"OUTER"|"CROSS"|"JOIN"|"ON"
+                        |"ORDER"|"BY"|"PRIMARY"|"ASCENDING"|"DESCENDING"|"INTO"|"APPENDING"|"CORRESPONDING"|"TABLE"|"PACKAGE"|"SIZE"|"SELECT"|"SINGLE"|"FOR"|"UPDATE"|"ENTRIES"|"IN"|"WHERE"|"GROUP"|"HAVING"|"UNION"|"EXTENDED"|"RESULT"|"CREATING"
+                        |"READER"|"LOCATOR"|"COLUMNS"|"BLOB"|"CLOB"|"OFFSET"|"UP"|"TO"|"ROWS"|"BYPASSING"|"BUFFER"|"CONNECTION"|"WITH"|"ENDWITH"|"TABLES"|"MOVE"|"EXACT"|"PERCENTAGE"|"EXPANDING"|"NESTED"|"KEEPING"|"APPEND"|"INITIAL"|"LINE"|"ASSIGNING"
+                        |"CASTING"|"REFERENCE"|"CONCATENATE"|"CHARACTER"|"BYTE"|"MODE"|"SEPARATED"|"RESPECTING"|"BLANKS"|"SEARCH"|"STARTING"|"AT"|"ENDING"|"ABBREVIATED"|"AND"|"MARK"|"RAISE"|"EVENT"|"EXPORTING"|"RESUMABLE"|"EXCEPTION"|"NUMBER"|"DISPLAY"|"LIKE"
+                        |"RAISING"|"INDEX"|"TEXT"|"WITHOUT"|"MEMBERS"|"LOOP"|"TRANSPORTING"|"VERSION"|"SCREEN"|"ENDLOOP"|"LOB"|"HANDLE"|"HASHED"|"EMPTY"|"HEADER"|"UNIQUE"|"PRIMARY_KEY"|"ALIAS"|"STATICS"|"CONSTANTS"|"BEGIN"|"COMMON"|"PART"|"OCCURS"|"VALID"
+                        |"BETWEEN"|"IS"|"WRITE"|"UNDER"|"CENTERED"|"EXPONENT"|"CURRENCY"|"ROUND"|"UNIT"|"ENVIRONMENT"|"TIME"|"FORMAT"|"ZONE"|"STYLE"|"MASK"|"DDMMYY"|"MMDDYY"|"YYMMDD"|"CHECKBOX"|"ICON"|"SYMBOL"|"QUICKINFO"|"CONTINUE"|"CASE"|"WHEN"|"OR"|"OTHERS"|"ENDCASE"
+                        |"FIELD"|"DUMMY"|"OBJECT"|"USER"|"DATASET"|"ADJACENT"|"DUPLICATES"|"COMPARING"|"MEMORY"|"SHARED"|"VARYING"|"NEXT"|"DO"|"TIMES"|"ENDDO"|"OPTIONAL"|"EVENTS"|"MODIFY"|"CURRENT"|"CHANGE"|"ENDON"|"OPEN"|"CURSOR"|"HOLD"|"INPUT"|"OUTPUT"|"BINARY"
+                        |"ENCODING"|"SKIPPING"|"NATIVE"|"SMART"|"UNIX"|"WINDOWS"|"LINEFEED"|"LEGACY"|"BIG"|"LITTLE"|"ENDIAN"|"CODE"|"POSITION"|"FILTER"|"IGNORING"|"CONVERSION"|"ERRORS"|"REPLACEMENT"|"FETCH"|"BOUNDS"|"PROVIDE"|"INCLUDING"|"GAPS"|"ENDPROVIDE"|"READ"
+                        |"MAXIMUM"|"ACTUAL"|"WIDTH"|"TEXTPOOL"|"LANGUAGE"|"SORT"|"SUBMIT"|"VIA"|"PROGRAM"|"EQ"|"NE"|"CP"|"NP"|"GE"|"LT"|"LE"|"GT"|"NOT"|"FREE"|"SELECTIONS"|"LIST"|"SPOOL"|"ARCHIVE"|"DYNPRO"|"JOB"|"RETURN"|"TRY"|"CATCH"|"BEFORE"|"UNWIND"|"CLEANUP"
+                        |"ENDTRY"|"ASSOCIATION"|"TYPES"|"ENUM"|"STRUCTURE"|"BASE"|"MESH"|"SET"|"WHILE"|"VARY"|"ENDWHILE"|"TASK"|"NEW"|"BACKGROUND"|"SEPARATE"|"DESTINATION"|"CALLING"|"PERFORMING"|"IMPORTING"|"CHANGING"|"IF"|"ELSEIF"|"ELSE"|"ENDIF"|"CLASS"|"DEFINITION"
+                        |"DEFERRED"|"PUBLIC"|"PROTECTED"|"PRIVATE"|"INHERITING"|"ABSTRACT"|"FINAL"|"ENABLED"|"TESTING"|"RISK"|"LEVEL"|"CRITICAL"|"DANGEROUS"|"HARMLESS"|"DURATION"|"SHORT"|"MEDIUM"|"LONG"|"GLOBAL"|"FRIENDS"|"LOAD"|"IMPLEMENTATION"|"SECTION"|"ENDCLASS"
+                        |"METHOD"|"ENDMETHOD"|"ANY"|"METHODS"|"REDEFINITION"|"IGNORE"|"FAIL"|"PREFERRED"|"RETURNING"|"ADD"|"THEN"|"UNTIL"|"GIVING"|"ACCORDING"|"ALIASES"|"ASSERT"|"SUBKEY"|"CONDITION"|"ASSIGN"|"COMPONENT"|"INCREMENT"|"FIRST"|"LAST"|"ENDAT"|"BACK"|"CALL"
+                        |"DIALOG"|"SKIP"|"PROCEDURE"|"RECEIVING"|"FLUSH"|"TRANSACTION"|"OPTIONS"|"MESSAGES"|"TRANSFORMATION"|"OBJECTS"|"SOURCE"|"XML"|"AREA"|"BADI"|"CLEAR"|"NULL"|"CLOSE"|"COLLECT"|"COMMIT"|"WORK"|"WAIT"|"COMPUTE"|"CONDENSE"|"CONTROLS"|"TABLEVIEW"|"TABSTRIP"
+                        |"CONVERT"|"SORTABLE"|"STAMP"|"DAYLIGHT"|"SAVING"|"DEMAND"|"CONTEXT"|"DESCRIBE"|"DISTANCE"|"PAGES"|"DETAIL"|"DIVIDE"|"TITLE"|"BACKUP"|"EXIT"|"SQL"|"EXPORT"|"INTERNAL"|"COMPRESSION"|"OFF"|"EXTRACT"|"FIND"|"OCCURRENCE"|"OCCURRENCES"|"SUBSTRING"|"REGEX"
+                        |"MATCH"|"COUNT"|"RESULTS"|"SUBMATCHES"|"COLOR"|"COL_BACKGROUND"|"COL_HEADING"|"COL_NORMAL"|"COL_TOTAL"|"COL_KEY"|"COL_POSITIVE"|"COL_NEGATIVE"|"COL_GROUP"|"INTENSIFIED"|"INVERSE"|"HOTSPOT"|"FRAMES"|"RESET"|"GENERATE"|"SUBROUTINE"|"POOL"|"INCLUDE"
+                        |"GET"|"FILTERS"|"BIT"|"ATTRIBUTES"|"LOCALE"|"COUNTRY"|"MODIFIER"|"EXCLUDING"|"PROPERTY"|"RUN"|"HIDE"|"IMPORT"|"ACCEPTING"|"PADDING"|"TRUNCATION"|"BOUNDARIES"|"DIRECTORY"|"RENAMING"|"FOUND"|"INFOTYPES"|"PERSON"|"INITIALIZATION"|"INSERT"|"VALUES"
+                        |"DUPLICATE"|"KEYS"|"ENTRY"|"ARITHMETIC"|"UNICODE"|"ENABLING"|"INTERFACE"|"ENDINTERFACE"|"INTERFACES"|"PARTIALLY"|"IMPLEMENTED"|"LEAVE"|"LOCAL"|"MINIMUM"|"MODULE"|"ENDMODULE"|"MULTIPLY"|"SCROLLING"|"PRINT"|"NODES"|"OVERLAY"|"ONLY"|"PACK"|"OBLIGATORY"
+                        |"VISIBLE"|"LISTBOX"|"RADIOBUTTON"|"MODIF"|"LOWER"|"MATCHCODE"|"PATTERN"|"PERFORM"|"ROLLBACK"|"RANGES"|"RECEIVE"|"REFRESH"|"CONTROL"|"REJECT"|"REPLACE"|"RESERVE"|"RESUME"|"RETRY"|"SCROLL"|"COLUMN"|"PLACES"|"FORWARD"|"BACKWARD"|"INTERVALS"|"OPTION"
+                        |"SELECTION"|"LOW"|"HIGH"|"TAB"|"BLANK"|"FILE"|"HANDLER"|"INSTANCES"|"MARGIN"|"IMMEDIATELY"|"ANALYZER"|"CLOCK"|"RESOLUTION"|"TITLEBAR"|"SHIFT"|"CIRCULAR"|"DELETING"|"LEADING"|"TRAILING"|"STOP"|"SUBTRACT"|"SUM"|"SUMMARY"|"SUMMING"|"SUPPLY"|"SUPPRESS"
+                        |"SWITCHSTATES"|"DURING"|"TRANSFER"|"TRANSLATE"|"UPPER"|"TRUNCATE"|"ULINE"|"UNASSIGN"|"UNPACK"|"SECONDS"|"ASYNCHRONOUS"|"TASKS"|"MESSAGING"|"CHANNELS"|"PUSH"|"WINDOW"|"SPLIT"|"DIV"|"MOD"|"EQUIV"|"CO"|"CN"|"CA"|"NA"|"CS"|"NS"|"INSTANCE"|"BOUND"|"ASSIGNED"|"SUPPLIED"|"REQUESTED".                           
     
     /* do not put keyword those may occur in start of line into this, unless you make sure it will never be used as an identifier */
-    AllowedKeywordsExclude = "DATA" | "REF" | "VALUE" | "PARAMETER" | "TARGET" . 
+    AllowedKeywordsExclude = "DATA" | "REF" | "VALUE" | "PARAMETER" | "TARGET" | "ID" | "EOF"|"END"|"KEY"|"DEFAULT"|"LENGTH"|"DECIMALS"|"BOXED"|"SUFFIX"|"COMPONENTS"|"EXCEPTIONS"|"KIND"|"ACTIVATION"|"SORTED"|"STANDARD"|"EDIT"|"NODE"|"REPORT"|"NO"|"PAGE"|"HEADING"|"DEFINING"
+    |"DATABASE"|"REDUCED"|"FUNCTIONALITY"|"ENDFUNCTION"|"DISTINCT"|"FROM"|"AS"|"USING"|"CLIENT"|"SPECIFIED"|"INNER"|"LEFT"|"RIGHT"|"OUTER"|"CROSS"|"JOIN"|"ORDER"|"BY"|"PRIMARY"|"ASCENDING"|"DESCENDING"|"INTO"|"APPENDING"|"CORRESPONDING"|"OF"|"TABLE"|"PACKAGE"
+    |"SIZE"|"SINGLE"|"FOR"|"ALL"|"ENTRIES"|"IN"|"WHERE"|"GROUP"|"HAVING"|"UNION"|"EXTENDED"|"RESULT"|"CREATING"|"READER"|"LOCATOR"|"COLUMNS"|"OTHER"|"BLOB"|"CLOB"|"OFFSET"|"UP"|"TO"|"ROWS"|"BYPASSING"|"BUFFER"|"CONNECTION"|"ENDWITH"|"EXACT"|"PERCENTAGE"|"EXPANDING"
+    |"NESTED"|"KEEPING"|"INITIAL"|"LINE"|"ASSIGNING"|"CASTING"|"REFERENCE"|"CHARACTER"|"BYTE"|"MODE"|"SEPARATED"|"RESPECTING"|"BLANKS"|"STARTING"|"ENDING"|"ABBREVIATED"|"AND"|"MARK"|"EVENT"|"EXPORTING"|"RESUMABLE"|"EXCEPTION"|"NUMBER"|"DISPLAY"|"LIKE"|"RAISING"|"INDEX"
+    |"TEXT"|"WITHOUT"|"MEMBERS"|"TRANSPORTING"|"VERSION"|"SCREEN"|"ENDLOOP"|"LOB"|"HANDLE"|"HASHED"|"EMPTY"|"HEADER"|"UNIQUE"|"PRIMARY_KEY"|"ALIAS"|"RANGE"|"STATICS"|"BEGIN"|"COMMON"|"PART"|"OCCURS"|"VALID"|"BETWEEN"|"IS"|"UNDER"|"CENTERED"|"EXPONENT"|"CURRENCY"|"ROUND"
+    |"UNIT"|"ENVIRONMENT"|"TIME"|"ZONE"|"STYLE"|"MASK"|"DDMMYY"|"MMDDYY"|"YYMMDD"|"CHECKBOX"|"ICON"|"SYMBOL"|"QUICKINFO"|"WHEN"|"OR"|"OTHERS"|"ENDCASE"|"FIELD"|"DUMMY"|"OBJECT"|"USER"|"DATASET"|"ADJACENT"|"DUPLICATES"|"COMPARING"|"MEMORY"|"SHARED"|"VARYING"|"NEXT"
+    |"TIMES"|"ENDDO"|"OPTIONAL"|"CURRENT"|"CHANGE"|"ENDON"|"CURSOR"|"HOLD"|"OUTPUT"|"BINARY"|"ENCODING"|"SKIPPING"|"NATIVE"|"SMART"|"UNIX"|"WINDOWS"|"LINEFEED"|"LEGACY"|"BIG"|"LITTLE"|"ENDIAN"|"CODE"|"FILTER"|"IGNORING"|"CONVERSION"|"ERRORS"|"REPLACEMENT"|"BOUNDS"|"INCLUDING"
+    |"GAPS"|"ENDPROVIDE"|"ACTUAL"|"WIDTH"|"TEXTPOOL"|"LANGUAGE"|"VIA"|"EQ"|"NE"|"CP"|"NP"|"GE"|"LT"|"LE"|"GT"|"NOT"|"SELECTIONS"|"LIST"|"SPOOL"|"ARCHIVE"|"DYNPRO"|"JOB"|"BEFORE"|"UNWIND"|"CLEANUP"|"ENDTRY"|"ASSOCIATION"|"ENUM"|"STRUCTURE"|"BASE"|"MESH"|"VARY"|"ENDWHILE"|"TASK"
+    |"NEW"|"BACKGROUND"|"SEPARATE"|"DESTINATION"|"CALLING"|"PERFORMING"|"IMPORTING"|"CHANGING"|"ELSEIF"|"ELSE"|"ENDIF"|"DEFINITION"|"DEFERRED"|"PUBLIC"|"PROTECTED"|"PRIVATE"|"INHERITING"|"ABSTRACT"|"FINAL"|"ENABLED"|"TESTING"|"RISK"|"LEVEL"|"CRITICAL"|"DANGEROUS"|"HARMLESS"
+    |"DURATION"|"SHORT"|"MEDIUM"|"LONG"|"GLOBAL"|"FRIENDS"|"LOAD"|"IMPLEMENTATION"|"SECTION"|"ENDCLASS"|"ENDMETHOD"|"ANY"|"REDEFINITION"|"IGNORE"|"FAIL"|"PREFERRED"|"RETURNING"|"THEN"|"UNTIL"|"GIVING"|"ACCORDING"|"SUBKEY"|"CONDITION"|"COMPONENT"|"INCREMENT"
+    |"FIRST"|"LAST"|"ENDAT"|"DIALOG"|"PROCEDURE"|"RECEIVING"|"FLUSH"|"TRANSACTION"|"OPTIONS"|"MESSAGES"|"TRANSFORMATION"|"OBJECTS"|"SOURCE"|"XML"|"AREA"|"BADI"|"NULL"|"WORK"|"TABLEVIEW"|"TABSTRIP"|"SORTABLE"|"STAMP"|"DAYLIGHT"|"SAVING"|"CONTEXT"|"DISTANCE"|"PAGES"|"TITLE"|"BACKUP"
+    |"SQL"|"INTERNAL"|"COMPRESSION"|"OFF"|"OCCURRENCE"|"OCCURRENCES"|"SUBSTRING"|"REGEX"|"MATCH"|"COUNT"|"RESULTS"|"SUBMATCHES"|"COLOR"|"COL_BACKGROUND"|"COL_HEADING"|"COL_NORMAL"|"COL_TOTAL"|"COL_KEY"|"COL_POSITIVE"|"COL_NEGATIVE"|"COL_GROUP"|"INTENSIFIED"|"INVERSE"|"HOTSPOT"
+    |"FRAMES"|"RESET"|"SUBROUTINE"|"POOL"|"FILTERS"|"BIT"|"ATTRIBUTES"|"LOCALE"|"COUNTRY"|"MODIFIER"|"EXCLUDING"|"PROPERTY"|"RUN"|"ACCEPTING"|"PADDING"|"TRUNCATION"|"BOUNDARIES"|"DIRECTORY"|"RENAMING"|"FOUND"|"PERSON"|"VALUES"|"DUPLICATE"|"KEYS"|"ENTRY"|"ARITHMETIC"|"UNICODE"
+    |"ENABLING"|"ENDINTERFACE"|"PARTIALLY"|"IMPLEMENTED"|"ENDMODULE"|"SCROLLING"|"PRINT"|"ONLY"|"OBLIGATORY"|"VISIBLE"|"LISTBOX"|"RADIOBUTTON"|"MODIF"|"LOWER"|"MATCHCODE"|"PATTERN"|"CONTROL"|"COLUMN"|"PLACES"|"FORWARD"|"BACKWARD"|"INTERVALS"|"OPTION"|"SELECTION"|"LOW"|"HIGH"
+    |"TAB"|"BLANK"|"FILE"|"HANDLER"|"INSTANCES"|"MARGIN"|"IMMEDIATELY"|"ANALYZER"|"CLOCK"|"RESOLUTION"|"TITLEBAR"|"CIRCULAR"|"DELETING"|"LEADING"|"TRAILING"|"SWITCHSTATES"|"DURING"|"UPPER"|"SECONDS"|"ASYNCHRONOUS"|"TASKS"|"MESSAGING"|"CHANNELS"|"PUSH"|"DIV"|"MOD"|"EQUIV"|"CO"|"CN"|"CA"|
+    "NA"|"CS"|"NS"|"INSTANCE"|"BOUND"|"ASSIGNED"|"SUPPLIED"|"REQUESTED". 
     
     AllowedKeywords =  AllowedKeywordsForTypeName  | "SORTED" | "STANDARD" | "REF" | "CHECK" | "EDIT" | "NODE". 
     
@@ -524,17 +560,17 @@ stRAISE = "RAISE"
 .
 
 MessageStatement = "MESSAGE"
-         {(
-         
-         ( "ID" identifier "TYPE" identifier "NUMBER" number )
-        
-        | (string1 "TYPE" identifier)
-        | ( identifier [ ( "(" identifier ")" | (  "TYPE" identifier) ) ] ))} 
-         
+         {
+             (  
+                 ( "ID" identifier "TYPE" identifier "NUMBER" number )
+                | (string1 "TYPE" identifier)
+                | ( identifier [ ( "(" identifier ")" | (  "TYPE" identifier) ) ] )
+             )
+         } 
         [(
-        (["DISPLAY" "LIKE" identifier] 
-            ["RAISING" identifier] )
-        | ("INTO" string1)
+                (["DISPLAY" "LIKE" identifier] ["RAISING" identifier] )
+            | 
+                ("INTO" Name)
         )]
         ["WITH" identifier {identifier}] "." . 
 
@@ -633,14 +669,11 @@ TypeDes = "TYPE"
                  
 LikeDes =        "LIKE" 
                   (
-                      ["LINE" "OF"] TypeName
-                     | "REF" "TO" TypeName
+                         ["LINE" "OF"] TypeName
+                     | 
+                         "REF" "TO" TypeName
                      |  
-                         {
-                              ["STANDARD"] "TABLE" 
-                              |"SORTED" "TABLE"
-                              |"HASHED" "TABLE"
-                         } 
+                         [ ("STANDARD" | "SORTED"| "HASHED") ] "TABLE" 
                          "OF" ["REF" "TO"] TypeName
                          [
                           
@@ -679,17 +712,30 @@ VariableDefineStatement =  ("DATA"|"STATICS" | "CLASS-DATA" | "CONSTANTS" ) (.t=
                             if t == "CONSTANTS"
                   
                                     current_ruby_scope.add_src("module #{to_ruby_const(modname)}\nmodule_function\n")
+                            elsif t == "DATA"
+                                    in_scope("struct")
+                                    src("#{modname} = Struct.new(")
                             end
                         .)
                         |
                         "END" "OF" ("COMMON" "PART" NameInVarDef | NameInVarDef ["VALID" "BETWEEN" Expression "AND" Expression] )
                         (.
                             #out_scope
-                            current_ruby_scope.add_src("end\n")
+                            if t == "DATA"
+                                if current_scope.name == "struct"
+                                    src(").new\n")
+                                    out_scope
+                                end
+                            else
+                                current_ruby_scope.add_src("end\n")
+                            end
                         .)
                         | 
                         NameInVarDef (.name = lus
                             p "var name=#{name}"
+                            if t == "DATA" && current_scope.name == "struct"
+                                src(":#{name}")
+                            end
                             .){ "(" number  ")" } 
                     
                              ( TypeDes (. var_type = @lnv 
@@ -713,7 +759,7 @@ VariableDefineStatement =  ("DATA"|"STATICS" | "CLASS-DATA" | "CONSTANTS" ) (.t=
                                 current_ruby_scope.add_src("def #{name};#{value};  end\n")
                         
                             end
-                        else
+                        elsif !(t == "DATA" && current_scope.name == "struct") && name
                             current_scope.add_var(Variable.new(name, var_type)) 
                     
                             if var_type
@@ -1414,8 +1460,8 @@ MethodsStatement =  ("METHODS" | "CLASS-METHODS" (.static=true.)) identifier["~"
    . 
   
   /*** copy from convert_result ***/
-stADD = "ADD" identifier ( 
-          "TO" identifier
+stADD = "ADD" Expression ( 
+          "TO" Name
          |  
              ( 
                  "THEN" identifier "UNTIL" identifier 
@@ -1786,9 +1832,9 @@ stFIELD_SYMBOLS = "FIELD-SYMBOLS" identifier ( Typing | ( "STRUCTURE" identifier
 
 stFIELDS = "FIELDS" identifier".".
 
-stFIND = "FIND" [("FIRST" "OCCURRENCE")|("ALL" "OCCURRENCES") "OF"] 
-     (["SUBSTRING"] string1) | ("REGEX" string1) "IN" 
-     ( (["SECTION" ["OFFSET" number] [identifier(.is('LENGTH').) number] "OF"] identifier) 
+stFIND = "FIND" [("FIRST" "OCCURRENCE"|"ALL" "OCCURRENCES") "OF"] 
+     (["SUBSTRING"] Name) | ("REGEX" string1) "IN" 
+     ( (["SECTION" ["OFFSET" number] ["LENGTH" number] "OF"] Name) 
      | ("TABLE" identifier ["FROM" number ["OFFSET" number]] 
                    ["TO"   number ["OFFSET" number]]) ) 
      ["IN" ("CHARACTER"|"BYTE") "MODE"] 
