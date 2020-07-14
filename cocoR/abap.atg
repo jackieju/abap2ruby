@@ -48,13 +48,13 @@ PRAGMAS
 PRODUCTIONS
 
      /* Type name cannot include "REF"*/
-    AllowedKeywordsForTypeName = "DATA" | "VALUE" | "PARAMETER" | "TARGET" | "MESSAGE" | "END" | "CREATE" | "KEY" |"ID"|"DEFAULT"|"LENGTH"|"DECIMALS"|"BOXED"|"TYPE"
+    AllowedKeywordsForTypeName = "DATA" | "VALUE" | "PARAMETER" | "PARAMETERS" | "TARGET" | "MESSAGE" | "END" | "CREATE" | "KEY" |"ID"|"DEFAULT"|"LENGTH"|"DECIMALS"|"BOXED"|"TYPE"
                         |"SUFFIX" | "COMPONENTS" |"EXCEPTIONS" | "KIND" |"DELETE" | "ACTIVATION" .                           
     
     /* do not put keyword those may occur in start of line into this, unless you make sure it will never be used as an identifier */
-    AllowedKeywordsExclude = "DATA" | "REF" | "VALUE" | "PARAMETER" | "TARGET". 
+    AllowedKeywordsExclude = "DATA" | "REF" | "VALUE" | "PARAMETER" | "TARGET" . 
     
-    AllowedKeywords =  AllowedKeywordsForTypeName  | "SORTED" | "STANDARD" | "REF" | "CHECK" | "EDIT". 
+    AllowedKeywords =  AllowedKeywordsForTypeName  | "SORTED" | "STANDARD" | "REF" | "CHECK" | "EDIT" | "NODE". 
     
     TypeName = ( (identifier|AllowedKeywordsForTypeName)|("("(string1|identifier|AllowedKeywordsForTypeName)")") ) {"=>" ( (identifier|AllowedKeywordsForTypeName)|("("(identifier|AllowedKeywordsForTypeName)")") ) } (. name=fixName(src()).)
                             (.  
@@ -1120,7 +1120,7 @@ Association = "ASSOCIATION" identifier "TO" identifier "ON" identifier "=" ident
                                           { "AND" identifier "=" identifier }
                                           ["USING" "KEY" identifier] .
 
-Types_mesh_stmt =   "TYPES"  identifier ( 
+Types_mesh_stmt =   "TYPES"  NameInVarDef ( 
                   "TYPE" ["REF" "TO"] identifier 
                   | 
                   "LIKE" ["REF" "TO"] identifier    ) 
@@ -1369,7 +1369,7 @@ MethodsStatement =  ("METHODS" | "CLASS-METHODS" (.static=true.)) identifier["~"
                                   ] 
                 [ "CHANGING"  {
                               ("VALUE" "(" identifier ")" | "REFERENCE" "(" identifier ")" | identifier )
-                               Typing ["OPTIONAL"| "DEFAULT" identifier] 
+                               Typing ["OPTIONAL"| "DEFAULT" Expression] 
                                } ] 
                 [ "RETURNING" {"VALUE" "("identifier")"} Typing ] 
                 [

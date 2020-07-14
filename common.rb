@@ -62,7 +62,7 @@ def pdebug(s, stack=0)
 end
 
 def dump_one_as_ruby(_v, module_name=nil)
-    pp "dump ruby for #{_v.class_name}@#{_v}, #{module_name}", 20
+    #pp "dump ruby for #{_v.class_name}@#{_v}, #{module_name}", 20
    # pp "dump #{v.inspect}", 10
             s_methods =""
             _v.methods.each{|k,v|

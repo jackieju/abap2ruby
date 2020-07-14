@@ -552,9 +552,25 @@ def init_env(fname)
  
 end
 
-hide_p_in_file("scanner.rb")
-hide_p_in_file("macro.rb")
-p "Hidden_log_files=#{$Hidden_log_files}"
+
+# config log
+#hide_p_in_file("scanner.rb")
+#hide_p_in_file("macro.rb")
+#p "Hidden_log_files=#{$Hidden_log_files}"
+
+
+p "log_p:#{ENV["log_p"]}"
+if ENV["log_p"] == true || ENV["log_p"] == "true"
+    p "log enabled"
+    Log.config.log = true
+else
+    p "log disabled"
+    Log.config.log = false        
+    p "hahahahahha:#{Log.config.inspect}"
+    print "-----\n"
+    
+end
+
 
 # use gcc preprocess as preprocess
 $preprocessor = "my" 

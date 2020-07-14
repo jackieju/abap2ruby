@@ -1551,6 +1551,10 @@ class CScanner < CRScanner
 
 
       when 'N'
+         if EqualStr("NODE")
+            return C_NODESym
+         end
+
          if EqualStr("NO")
             return C_NOSym
          end
@@ -1653,10 +1657,6 @@ class CScanner < CRScanner
 
          if EqualStr("NO-DISPLAY")
             return C_NOMinusDISPLAYSym
-         end
-
-         if EqualStr("NODE")
-            return C_NODESym
          end
 
          if EqualStr("NO-EXTENSION")
@@ -1771,6 +1771,10 @@ class CScanner < CRScanner
             return C_PARAMETERSym
          end
 
+         if EqualStr("PARAMETERS")
+            return C_PARAMETERSSym
+         end
+
          if EqualStr("PAGE")
             return C_PAGESym
          end
@@ -1805,10 +1809,6 @@ class CScanner < CRScanner
 
          if EqualStr("PROGRAM")
             return C_PROGRAMSym
-         end
-
-         if EqualStr("PARAMETERS")
-            return C_PARAMETERSSym
          end
 
          if EqualStr("PERFORMING")

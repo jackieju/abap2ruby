@@ -33,12 +33,13 @@ def load_file(fname)
         dir = File.dirname($g_cur_parse_file)
         
         begin
-            p "load file:#{dir+"/"+fname}"
+            p "load file:#{dir+"/"+fname}", 30
             $included_files[fname] = 1
             parse_file(dir+"/"+fname, $preprocessor, false)
             
         rescue Exception=>e
-            p "load file failed. #{dir+"/"+fname}, #{pe(e)}"
+            p "load file failed. #{dir+"/"+fname}, #{pe(e, 100)}", 20
+            log_to_file("load file failed. #{dir+"/"+fname}, #{pe(e, 20)}", "missed_files")
         end
     end
 end

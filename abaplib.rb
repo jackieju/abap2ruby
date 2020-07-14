@@ -1,4 +1,5 @@
 require_relative "log.rb"
+Log.config.log=true
 #def var(variable_name)
 #    variable_module = Module.new do
 #      attr_accessor variable_name.to_sym
@@ -65,18 +66,18 @@ def var1(hash)
 end
 
 # util
-class Object
-    def method_missing(name, *args, &block) # :nodoc:
-        print "*****************************************\n"
-        print "* --->object #{self} miss method #{name}\n"
-        print "* Maybe it's not implemented ABAP function\n"
-        print "* You can implement '#{name}' according to the ABAP doc https://help.sap.com/doc/abapdocu_751_index_htm/7.51/en-US/index.htm\n"
-        print "*****************************************\n"
-        
-    #  (delegate || superclass.delegate).send(name, *args, &block)
-    super
-    end
-end
+#class Object
+#    def method_missing(name, *args, &block) # :nodoc:
+#        print "*****************************************\n"
+#        print "* --->object #{self} miss method #{name}\n"
+#        print "* Maybe it's not implemented ABAP function\n"
+#        print "* You can implement '#{name}' according to the ABAP doc https://help.sap.com/doc/abapdocu_751_index_htm/7.51/en-US/index.htm\n"
+#        print "*****************************************\n"
+#        p "", 20
+#    #  (delegate || superclass.delegate).send(name, *args, &block)
+#    super
+#    end
+#end
 
 ##
 # method for abap keyword
@@ -123,7 +124,7 @@ def call_method(name, exporting, importing)
     return r
 end
 
-
+=begin
 def test1(v1=nil, _i:, _e:)
    
     _i.each{|k,v| eval("#{k} = #{v}")} if _i
@@ -177,6 +178,9 @@ def __in__(_i:nil,_e:nil, _b:nil)
 end
 def __out__
 end
+
+
+
 def t(_i:nil,_e:nil, _b:nil)
     #__in__(_i:_i,_e:_e, _b:_b)
     var(_i) if _i
@@ -264,7 +268,7 @@ t3
 p "==>4:v2(#{v2.hash})=#{v2}"
 
 
-
+=end
 
 =begin
 def test1(v1, importing, exporting)
