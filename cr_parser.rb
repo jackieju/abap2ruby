@@ -429,7 +429,7 @@ class CRParser
     end
     
     def find_var(name, scope=nil)
-         p "find_var:#{name}", 10
+         p "find_var:#{name}", 20
         scope= current_scope  if !scope
         i = 1
         while scope 

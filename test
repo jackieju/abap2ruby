@@ -1,28 +1,33 @@
 set -e
-ruby translate.rb examples1/IF_BSA_METADATA.abap -d examples1/
-ruby translate.rb examples1/CL_BSA_ADAPTATION_HANDLER_BASE.abap -d examples1
-ruby translate.rb examples1/CL_BSA_ADAPTATION_HANDLER_CO.abap -d examples1
-ruby translate.rb examples1/CL_BSA_FACTORY.abap -d examples1
-ruby translate.rb examples1/CL_A1FIA_COMMON_ECO.abap -d examples1
-ruby translate.rb examples1/CL_A1S_SERVICE_PROVIDER_ECO.abap -d examples1
-ruby translate.rb examples1/CL_BSA_SERVICE_PROVIDER_CO.abap -d examples1
+#ruby translate.rb examples1/IF_BSA_METADATA.abap -d examples1/
+#ruby translate.rb examples1/CL_BSA_ADAPTATION_HANDLER_BASE.abap -d examples1
+#ruby translate.rb examples1/CL_BSA_ADAPTATION_HANDLER_CO.abap -d examples1
+#ruby translate.rb examples1/CL_BSA_FACTORY.abap -d examples1
+#ruby translate.rb examples1/CL_A1FIA_COMMON_ECO.abap -d examples1
+#ruby translate.rb examples1/CL_A1S_SERVICE_PROVIDER_ECO.abap -d examples1
+#ruby translate.rb examples1/CL_BSA_SERVICE_PROVIDER_CO.abap -d examples1
+#
+#ruby translate.rb examples1/sample1.abap -d examples1
+#ruby examples1/cl_a1fia_aar_create_qaf_eco.rb
+#ruby translate.rb examples1/sample2.abap -d examples1
+#ruby examples1/cl_a1fia_acproerr_qaf_eco.rb
+#
+#ruby translate.rb examples1/IF_A1FIA_AAR_CREATE_QAF_ECO.abap -d examples1
+#
+#ruby translate.rb examples1/IF_BSA_ADAPTATION_HANDLER.abap -d  examples1
+#ruby translate.rb examples1/IF_ESF_TYPES.abap -d  examples1
+#
+#
+#ruby translate.rb examples/sample.abap -d examples
 
-ruby translate.rb examples1/sample1.abap -d examples1
-ruby examples1/cl_a1fia_aar_create_qaf_eco.rb
-ruby translate.rb examples1/sample2.abap -d examples1
-ruby examples1/cl_a1fia_acproerr_qaf_eco.rb
-
-ruby translate.rb examples1/IF_A1FIA_AAR_CREATE_QAF_ECO.abap -d examples1
-
-ruby translate.rb examples1/IF_BSA_ADAPTATION_HANDLER.abap -d  examples1
-ruby translate.rb examples1/IF_ESF_TYPES.abap -d  examples1
-
-
-ruby translate.rb examples/sample.abap -d examples
-
-#ruby translate.rb examples1/cp_testcase.abap -d examples1
+#ruby translate.rb examples1/cp_testcase.abap -d examples1
 
 
 #ruby translate.rb cp_testcase.abap
 #ruby translate.rb abap/YCL*.txt
 #ruby translate.rb abap/YCL*.TXT
+
+
+
+ruby translate.rb examples/sample.abap -d examples
+ruby examples/test_sample.rb

@@ -290,7 +290,16 @@ METHOD if_esf_provider_init~init.
 a = if_sample=>co_bo_node-root.
 
 ENDMETHOD.  
-
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Instance Private Method CL_A1FIA_AAR_CREATE_QAF_ECO->EXTRACT_EDITABLE_NON_INIT_ATTR
+* +-------------------------------------------------------------------------------------------------+
+* | [--->] IS_CO_ATTR_STRUCT              TYPE        ANY
+* | [--->] IS_NODE_DATA                   TYPE        ANY
+* | [--->] IV_BO_NODE_NAME                TYPE        STRING
+* | [<-->] CT_CHANGED_ATTRIBUTES          TYPE        SESF_STRING_TAB
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+  METHOD extract_editable_non_init_attr.
+ENDMETHOD. 
 ENDCLASS.
 HERE
 s18=<<HERE
@@ -314,11 +323,14 @@ IF cl_abap_aab_utilities=>is_active(
     mode_assert_log   = 'X'
   ) is not INITIAL.
 ENDIF.
-
+IF lv_action_type = mc_action_task_bo_action.
+else.
 FIND FIRST OCCURRENCE OF in_action_name IN TABLE
+
     mo_lcp_facade->get_bo_descriptor( in_bo_proxy_name = if_task=>co_bo_name
     )->get_bo_node_descriptor( bo_node_proxy_name = if_task=>co_bo_node-root
     )->get_action_proxy_names( ).
+endif.
 HERE
 $ar = []
 #def dump_testcase
@@ -428,7 +440,7 @@ end # end of test
 
 
 #=end
-test()
+test(17)
 #dump_testcase
 p "$typedef:#{$typedef.inspect}"
 

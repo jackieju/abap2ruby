@@ -117,7 +117,7 @@ class Sample_base < BASE
             }, _b:binding)
 
 
-         rescue Cx_esf_core_service=>lx_esf_core_service
+         rescue Cx_esf_core_service,INTO,Lx_esf_core_service
             raise cx_fatal_exception.new
 
 
@@ -474,9 +474,13 @@ class Sample_base < BASE
 
 
 
-
       else
+
+
+
          rv_result = abap_false
+
+
 
 
 
@@ -529,9 +533,13 @@ class Sample_base < BASE
 
 
 
+         ELSE
 
-      else
+
+
          rv_result = abap_false
+
+
 
 
 
@@ -584,9 +592,13 @@ class Sample_base < BASE
 
 
 
-
       else
+
+
+
          rv_result = abap_false
+
+
 
 
 
@@ -697,12 +709,16 @@ class Sample_base < BASE
          end
 
 
+         ELSE
 
-      else
+
+
          mo_adaptation_handler.get_first_retrved_root_node_id(_i:{
             "ev_first_ret_data_root_node_id" => lv_node_id,
             "ev_first_root_id_determined" => lv_node_id_determined,
          }, _b:binding)
+
+
 
          if lv_node_id_determined == abap_false || ( lv_node_id.isINITIAL() && lv_node_id_determined == abap_true )
             ls_origin_location.bo_name = lv_bo_name
@@ -715,8 +731,13 @@ class Sample_base < BASE
 
 
 
+            ELSE
 
-         else
+
+            #* check if root node exists for this in_requested_image
+            #* if not out_links must be returned empty
+
+
             if if_sample_base_i_check_root_node_existence(iv_node_id:lv_node_id, iv_requested_image:in_requested_image) == abap_true
                loop(at:in_node_ids){
                   ls_link.source_node_id = ls_node_id
@@ -737,7 +758,9 @@ class Sample_base < BASE
 
 
 
+
          end
+
 
 
 
@@ -860,9 +883,13 @@ class Sample_base < BASE
 
 
 
+         ELSE
 
-      else
+
+
          rv_exists = abap_false
+
+
 
 
 
@@ -966,7 +993,7 @@ class Sample_base < BASE
          }, _b:binding)
 
 
-      rescue Cx_esf_message_handler=>lo_ex_message
+      rescue Cx_esf_message_handler,INTO,Lo_ex_message
          raise cx_fatal_exception.new
 
 
@@ -1090,8 +1117,8 @@ class Sample_base < BASE
                   "in_requested_image" => "in_requested_image",
                }, _b:binding)
 
+               ELSE
 
-            else
                mo_adaptation_handler.retrieve_root_node_id(_i:{
                   "out_links" => out_links,
                }, _e:{
@@ -1107,8 +1134,12 @@ class Sample_base < BASE
             #*-----------END of OLD implementation ----------*
 
 
+            ELSE
 
-         else
+
+            #* Nos: Test of the new RNID Buffer:
+
+
             if mo_rnid_manager.is_skipped(iv_node_name:in_bo_node_name).isINITIAL()
                super_method(Sample_base, :if_esf_provider_access_i_retrieve_root_node_id).call
 
@@ -1144,8 +1175,10 @@ class Sample_base < BASE
                   "in_requested_image" => "in_requested_image",
                }, _b:binding)
 
+               ELSE
 
-            else
+               #* Nos: New RRNID Handling --> Call super class instead of adaptation handler.
+
                super_method(Sample_base, :if_esf_provider_access_i_retrieve_root_node_id).call
 
 
@@ -1154,10 +1187,11 @@ class Sample_base < BASE
 
 
 
+
          end
 
 
-      rescue Cx_root=>lx_root
+      rescue Cx_root,INTO,Lx_root
          handle_error_adaptation_hdlr(ix_exception:lx_bsa_runtime)
 
          handle_error(ix_exception:lx_root)

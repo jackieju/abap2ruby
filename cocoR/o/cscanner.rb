@@ -385,10 +385,6 @@ class CScanner < CRScanner
             return C_CALLINGSym
          end
 
-         if EqualStr("CHANGING")
-            return C_CHANGINGSym
-         end
-
          if EqualStr("CLASS")
             return C_CLASSSym
          end
@@ -535,6 +531,10 @@ class CScanner < CRScanner
 
          if EqualStr("CLASS-DATA")
             return C_CLASSMinusDATASym
+         end
+
+         if EqualStr("CHANGING")
+            return C_CHANGINGSym
          end
 
          if EqualStr("CLASS-METHODS")
@@ -753,10 +753,6 @@ class CScanner < CRScanner
             return C_EVENTSym
          end
 
-         if EqualStr("EXPORTING")
-            return C_EXPORTINGSym
-         end
-
          if EqualStr("EXCEPTION")
             return C_EXCEPTIONSym
          end
@@ -891,6 +887,10 @@ class CScanner < CRScanner
 
          if EqualStr("EDIT")
             return C_EDITSym
+         end
+
+         if EqualStr("EXPORTING")
+            return C_EXPORTINGSym
          end
 
          if EqualStr("EXCEPTION-TABLE")
@@ -1083,10 +1083,6 @@ class CScanner < CRScanner
             return C_HANDLESym
          end
 
-         if EqualStr("HASHED")
-            return C_HASHEDSym
-         end
-
          if EqualStr("HEADER")
             return C_HEADERSym
          end
@@ -1113,6 +1109,10 @@ class CScanner < CRScanner
 
          if EqualStr("HANDLER")
             return C_HANDLERSym
+         end
+
+         if EqualStr("HASHED")
+            return C_HASHEDSym
          end
 
          if EqualStr("HELP-ID")
@@ -1145,10 +1145,6 @@ class CScanner < CRScanner
             return C_INSym
          end
 
-         if EqualStr("INITIAL")
-            return C_INITIALSym
-         end
-
          if EqualStr("INDEX")
             return C_INDEXSym
          end
@@ -1171,10 +1167,6 @@ class CScanner < CRScanner
 
          if EqualStr("INCLUDING")
             return C_INCLUDINGSym
-         end
-
-         if EqualStr("IMPORTING")
-            return C_IMPORTINGSym
          end
 
          if EqualStr("IF")
@@ -1255,6 +1247,14 @@ class CScanner < CRScanner
 
          if EqualStr("INSTANCE")
             return C_INSTANCESym
+         end
+
+         if EqualStr("INITIAL")
+            return C_INITIALSym
+         end
+
+         if EqualStr("IMPORTING")
+            return C_IMPORTINGSym
          end
 
          if EqualStr("INTERFACE-POOL")
@@ -1979,14 +1979,6 @@ class CScanner < CRScanner
             return C_REDEFINITIONSym
          end
 
-         if EqualStr("RETURNING")
-            return C_RETURNINGSym
-         end
-
-         if EqualStr("RECEIVING")
-            return C_RECEIVINGSym
-         end
-
          if EqualStr("REGEX")
             return C_REGEXSym
          end
@@ -2063,12 +2055,20 @@ class CScanner < CRScanner
             return C_RANGESym
          end
 
+         if EqualStr("RETURNING")
+            return C_RETURNINGSym
+         end
+
          if EqualStr("READ-ONLY")
             return C_READMinusONLYSym
          end
 
          if EqualStr("RIGHT-JUSTIFIED")
             return C_RIGHTMinusJUSTIFIEDSym
+         end
+
+         if EqualStr("RECEIVING")
+            return C_RECEIVINGSym
          end
 
 
@@ -2277,6 +2277,10 @@ class CScanner < CRScanner
             return C_STANDARDSym
          end
 
+         if EqualStr("STABLE")
+            return C_STABLESym
+         end
+
          if EqualStr("SELECTION-SCREEN")
             return C_SELECTIONMinusSCREENSym
          end
@@ -2325,14 +2329,6 @@ class CScanner < CRScanner
       when 'T'
          if EqualStr("TARGET")
             return C_TARGETSym
-         end
-
-         if EqualStr("TYPE")
-            return C_TYPESym
-         end
-
-         if EqualStr("TABLE")
-            return C_TABLESym
          end
 
          if EqualStr("TO")
@@ -2437,6 +2433,14 @@ class CScanner < CRScanner
 
          if EqualStr("TYPE-POOL")
             return C_TYPEMinusPOOLSym
+         end
+
+         if EqualStr("TABLE")
+            return C_TABLESym
+         end
+
+         if EqualStr("TYPE")
+            return C_TYPESym
          end
 
          if EqualStr("TOP-LINES")
@@ -2577,10 +2581,6 @@ class CScanner < CRScanner
             return C_WHERESym
          end
 
-         if EqualStr("WITH")
-            return C_WITHSym
-         end
-
          if EqualStr("WITHOUT")
             return C_WITHOUTSym
          end
@@ -2615,6 +2615,10 @@ class CScanner < CRScanner
 
          if EqualStr("WINDOW")
             return C_WINDOWSym
+         end
+
+         if EqualStr("WITH")
+            return C_WITHSym
          end
 
          if EqualStr("WITH-TITLE")

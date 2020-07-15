@@ -18,7 +18,10 @@ class Abc
 
 
 
-      a = If_sample::Co_bo_node.root
+      super_method(Abc, :if_esf_provider_init_i_init).call(_i:{
+         "in_provider_context" => in_provider_context,
+         "in_bo_name" => in_bo_name,
+      }, _b:binding)
 
 
 

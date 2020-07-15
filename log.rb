@@ -145,7 +145,7 @@ end
 
 def log(m, stack=0, showTime=false)
   #  print("Log.config.log:#{Log.config.log}\n")
-    return if Log.config.log == false
+    return if Log.config[:log] == false
     m = format_msg(m, "", stack, showTime)
     # puts m
     begin

@@ -562,10 +562,10 @@ end
 p "log_p:#{ENV["log_p"]}"
 if ENV["log_p"] == true || ENV["log_p"] == "true"
     p "log enabled"
-    Log.config.log = true
+    Log.config[:log] = true
 else
     p "log disabled"
-    Log.config.log = false        
+    Log.config[:log] = false        
     p "hahahahahha:#{Log.config.inspect}"
     print "-----\n"
     

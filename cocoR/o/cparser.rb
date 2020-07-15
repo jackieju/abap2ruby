@@ -46,9 +46,6 @@ class CParser < CRRParser
       when C_BOXEDSym
          Get()
 
-      when C_TYPESym
-         Get()
-
       when C_SUFFIXSym
          Get()
 
@@ -172,9 +169,6 @@ class CParser < CRRParser
       when C_CORRESPONDINGSym
          Get()
 
-      when C_TABLESym
-         Get()
-
       when C_PACKAGESym
          Get()
 
@@ -256,9 +250,6 @@ class CParser < CRRParser
       when C_CONNECTIONSym
          Get()
 
-      when C_WITHSym
-         Get()
-
       when C_ENDWITHSym
          Get()
 
@@ -284,9 +275,6 @@ class CParser < CRRParser
          Get()
 
       when C_APPENDSym
-         Get()
-
-      when C_INITIALSym
          Get()
 
       when C_LINESym
@@ -349,9 +337,6 @@ class CParser < CRRParser
       when C_EVENTSym
          Get()
 
-      when C_EXPORTINGSym
-         Get()
-
       when C_RESUMABLESym
          Get()
 
@@ -401,9 +386,6 @@ class CParser < CRRParser
          Get()
 
       when C_HANDLESym
-         Get()
-
-      when C_HASHEDSym
          Get()
 
       when C_EMPTYSym
@@ -829,12 +811,6 @@ class CParser < CRRParser
       when C_PERFORMINGSym
          Get()
 
-      when C_IMPORTINGSym
-         Get()
-
-      when C_CHANGINGSym
-         Get()
-
       when C_IFSym
          Get()
 
@@ -949,9 +925,6 @@ class CParser < CRRParser
       when C_PREFERREDSym
          Get()
 
-      when C_RETURNINGSym
-         Get()
-
       when C_ADDSym
          Get()
 
@@ -1010,9 +983,6 @@ class CParser < CRRParser
          Get()
 
       when C_PROCEDURESym
-         Get()
-
-      when C_RECEIVINGSym
          Get()
 
       when C_FLUSHSym
@@ -1616,7 +1586,7 @@ class CParser < CRRParser
          Get()
 
       else
-         GenError(710)
+         GenError(711)
 
       end
 
@@ -1645,9 +1615,6 @@ class CParser < CRRParser
          Get()
 
       when C_EOFSym
-         Get()
-
-      when C_ENDSym
          Get()
 
       when C_KEYSym
@@ -1683,9 +1650,6 @@ class CParser < CRRParser
       when C_SORTEDSym
          Get()
 
-      when C_STANDARDSym
-         Get()
-
       when C_EDITSym
          Get()
 
@@ -1714,9 +1678,6 @@ class CParser < CRRParser
          Get()
 
       when C_FUNCTIONALITYSym
-         Get()
-
-      when C_ENDFUNCTIONSym
          Get()
 
       when C_DISTINCTSym
@@ -1770,9 +1731,6 @@ class CParser < CRRParser
       when C_DESCENDINGSym
          Get()
 
-      when C_INTOSym
-         Get()
-
       when C_APPENDINGSym
          Get()
 
@@ -1780,9 +1738,6 @@ class CParser < CRRParser
          Get()
 
       when C_OFSym
-         Get()
-
-      when C_TABLESym
          Get()
 
       when C_PACKAGESym
@@ -1887,9 +1842,6 @@ class CParser < CRRParser
       when C_INITIALSym
          Get()
 
-      when C_LINESym
-         Get()
-
       when C_ASSIGNINGSym
          Get()
 
@@ -1956,9 +1908,6 @@ class CParser < CRRParser
       when C_RAISINGSym
          Get()
 
-      when C_INDEXSym
-         Get()
-
       when C_TEXTSym
          Get()
 
@@ -1975,9 +1924,6 @@ class CParser < CRRParser
          Get()
 
       when C_SCREENSym
-         Get()
-
-      when C_ENDLOOPSym
          Get()
 
       when C_LOBSym
@@ -2094,9 +2040,6 @@ class CParser < CRRParser
       when C_OTHERSSym
          Get()
 
-      when C_ENDCASESym
-         Get()
-
       when C_FIELDSym
          Get()
 
@@ -2136,9 +2079,6 @@ class CParser < CRRParser
       when C_TIMESSym
          Get()
 
-      when C_ENDDOSym
-         Get()
-
       when C_OPTIONALSym
          Get()
 
@@ -2146,9 +2086,6 @@ class CParser < CRRParser
          Get()
 
       when C_CHANGESym
-         Get()
-
-      when C_ENDONSym
          Get()
 
       when C_CURSORSym
@@ -2223,9 +2160,6 @@ class CParser < CRRParser
       when C_GAPSSym
          Get()
 
-      when C_ENDPROVIDESym
-         Get()
-
       when C_ACTUALSym
          Get()
 
@@ -2265,9 +2199,6 @@ class CParser < CRRParser
       when C_GTSym
          Get()
 
-      when C_NOTSym
-         Get()
-
       when C_SELECTIONSSym
          Get()
 
@@ -2295,9 +2226,6 @@ class CParser < CRRParser
       when C_CLEANUPSym
          Get()
 
-      when C_ENDTRYSym
-         Get()
-
       when C_ASSOCIATIONSym
          Get()
 
@@ -2314,9 +2242,6 @@ class CParser < CRRParser
          Get()
 
       when C_VARYSym
-         Get()
-
-      when C_ENDWHILESym
          Get()
 
       when C_TASKSym
@@ -2343,16 +2268,7 @@ class CParser < CRRParser
       when C_IMPORTINGSym
          Get()
 
-      when C_CHANGINGSym
-         Get()
-
-      when C_ELSEIFSym
-         Get()
-
       when C_ELSESym
-         Get()
-
-      when C_ENDIFSym
          Get()
 
       when C_DEFINITIONSym
@@ -2427,15 +2343,6 @@ class CParser < CRRParser
       when C_SECTIONSym
          Get()
 
-      when C_ENDCLASSSym
-         Get()
-
-      when C_ENDMETHODSym
-         Get()
-
-      when C_ANYSym
-         Get()
-
       when C_REDEFINITIONSym
          Get()
 
@@ -2481,16 +2388,10 @@ class CParser < CRRParser
       when C_LASTSym
          Get()
 
-      when C_ENDATSym
-         Get()
-
       when C_DIALOGSym
          Get()
 
       when C_PROCEDURESym
-         Get()
-
-      when C_RECEIVINGSym
          Get()
 
       when C_FLUSHSym
@@ -2718,16 +2619,10 @@ class CParser < CRRParser
       when C_ENABLINGSym
          Get()
 
-      when C_ENDINTERFACESym
-         Get()
-
       when C_PARTIALLYSym
          Get()
 
       when C_IMPLEMENTEDSym
-         Get()
-
-      when C_ENDMODULESym
          Get()
 
       when C_SCROLLINGSym
@@ -2908,7 +2803,7 @@ class CParser < CRRParser
          Get()
 
       else
-         GenError(711)
+         GenError(712)
 
       end
 
@@ -2932,7 +2827,6 @@ class CParser < CRRParser
          C_LENGTHSym,
          C_DECIMALSSym,
          C_BOXEDSym,
-         C_TYPESym,
          C_SUFFIXSym,
          C_COMPONENTSSym,
          C_EXCEPTIONSSym,
@@ -2974,7 +2868,6 @@ class CParser < CRRParser
          C_INTOSym,
          C_APPENDINGSym,
          C_CORRESPONDINGSym,
-         C_TABLESym,
          C_PACKAGESym,
          C_SIZESym,
          C_SELECTSym,
@@ -3002,7 +2895,6 @@ class CParser < CRRParser
          C_BYPASSINGSym,
          C_BUFFERSym,
          C_CONNECTIONSym,
-         C_WITHSym,
          C_ENDWITHSym,
          C_TABLESSym,
          C_MOVESym,
@@ -3012,7 +2904,6 @@ class CParser < CRRParser
          C_NESTEDSym,
          C_KEEPINGSym,
          C_APPENDSym,
-         C_INITIALSym,
          C_LINESym,
          C_ASSIGNINGSym,
          C_CASTINGSym,
@@ -3033,7 +2924,6 @@ class CParser < CRRParser
          C_MARKSym,
          C_RAISESym,
          C_EVENTSym,
-         C_EXPORTINGSym,
          C_RESUMABLESym,
          C_EXCEPTIONSym,
          C_NUMBERSym,
@@ -3051,7 +2941,6 @@ class CParser < CRRParser
          C_ENDLOOPSym,
          C_LOBSym,
          C_HANDLESym,
-         C_HASHEDSym,
          C_EMPTYSym,
          C_HEADERSym,
          C_UNIQUESym,
@@ -3193,8 +3082,6 @@ class CParser < CRRParser
          C_DESTINATIONSym,
          C_CALLINGSym,
          C_PERFORMINGSym,
-         C_IMPORTINGSym,
-         C_CHANGINGSym,
          C_IFSym,
          C_ELSEIFSym,
          C_ELSESym,
@@ -3233,7 +3120,6 @@ class CParser < CRRParser
          C_IGNORESym,
          C_FAILSym,
          C_PREFERREDSym,
-         C_RETURNINGSym,
          C_ADDSym,
          C_THENSym,
          C_UNTILSym,
@@ -3254,7 +3140,6 @@ class CParser < CRRParser
          C_DIALOGSym,
          C_SKIPSym,
          C_PROCEDURESym,
-         C_RECEIVINGSym,
          C_FLUSHSym,
          C_TRANSACTIONSym,
          C_OPTIONSSym,
@@ -3476,7 +3361,7 @@ class CParser < CRRParser
          Get()
 
       else
-         GenError(712)
+         GenError(713)
 
       end
 
@@ -3491,7 +3376,7 @@ class CParser < CRRParser
             if @sym>=C_DATASym&&@sym<=C_REQUESTEDSym
                AllowedKeywordsForTypeName()
             else
-               GenError(713)
+               GenError(714)
             end
 
          end
@@ -3508,7 +3393,7 @@ class CParser < CRRParser
                   if @sym>=C_DATASym&&@sym<=C_REQUESTEDSym
                      AllowedKeywordsForTypeName()
                   else
-                     GenError(714)
+                     GenError(715)
                   end
 
                end
@@ -3517,7 +3402,7 @@ class CParser < CRRParser
 
             Expect(C_RparenSym)
          else
-            GenError(715)
+            GenError(716)
          end
 
       end
@@ -3531,7 +3416,7 @@ class CParser < CRRParser
                if @sym>=C_DATASym&&@sym<=C_REQUESTEDSym
                   AllowedKeywordsForTypeName()
                else
-                  GenError(716)
+                  GenError(717)
                end
 
             end
@@ -3545,14 +3430,14 @@ class CParser < CRRParser
                   if @sym>=C_DATASym&&@sym<=C_REQUESTEDSym
                      AllowedKeywordsForTypeName()
                   else
-                     GenError(717)
+                     GenError(718)
                   end
 
                end
 
                Expect(C_RparenSym)
             else
-               GenError(718)
+               GenError(719)
             end
 
          end
@@ -3594,7 +3479,7 @@ class CParser < CRRParser
                src(lus);
 
             else
-               GenError(719)
+               GenError(720)
             end
 
          end
@@ -3605,13 +3490,35 @@ class CParser < CRRParser
    end
    def Name()
       _in_()
-      if @sym==C_identifierSym
-         Get()
-      else
-         if @sym>=C_DATASym&&@sym<=C_NODESym||@sym==C_CHECKSym
-            AllowedKeywords()
+      if @sym>=C_identifierSym&&@sym<=C_NODESym||@sym>=C_STANDARDSym&&@sym<=C_CHECKSym
+         if @sym==C_identifierSym
+            Get()
          else
-            GenError(720)
+            if @sym>=C_DATASym&&@sym<=C_NODESym||@sym>=C_STANDARDSym&&@sym<=C_CHECKSym
+               AllowedKeywords()
+            else
+               GenError(721)
+            end
+
+         end
+
+      else
+         if @sym==C_LparenSym
+            Get()
+            if @sym==C_identifierSym
+               Get()
+            else
+               if @sym>=C_DATASym&&@sym<=C_NODESym||@sym>=C_STANDARDSym&&@sym<=C_CHECKSym
+                  AllowedKeywords()
+               else
+                  GenError(722)
+               end
+
+            end
+
+            Expect(C_RparenSym)
+         else
+            GenError(723)
          end
 
       end
@@ -3630,7 +3537,7 @@ class CParser < CRRParser
    def Exps()
       _in_()
       Expression()
-      while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
+      while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
          Expression()
       end
 
@@ -3651,10 +3558,10 @@ class CParser < CRRParser
       if @sym==C_identifierSym
          Get()
       else
-         if @sym>=C_DATASym&&@sym<=C_NODESym||@sym==C_CHECKSym
+         if @sym>=C_DATASym&&@sym<=C_NODESym||@sym>=C_STANDARDSym&&@sym<=C_CHECKSym
             AllowedKeywords()
          else
-            GenError(721)
+            GenError(724)
          end
 
       end
@@ -3673,14 +3580,14 @@ class CParser < CRRParser
 
       no_comments;
 
-      if @sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym
+      if @sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_GTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym
          if @sym==C_identifierSym
             Get()
          else
-            if @sym>=C_DATASym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym
+            if @sym>=C_DATASym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_GTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym
                AllowedKeywordsExclude()
             else
-               GenError(722)
+               GenError(725)
             end
 
          end
@@ -3691,17 +3598,17 @@ class CParser < CRRParser
             if @sym==C_identifierSym
                Get()
             else
-               if @sym>=C_DATASym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym
+               if @sym>=C_DATASym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_GTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym
                   AllowedKeywordsExclude()
                else
-                  GenError(723)
+                  GenError(726)
                end
 
             end
 
             Expect(C_RparenSym)
          else
-            GenError(724)
+            GenError(727)
          end
 
       end
@@ -3752,7 +3659,7 @@ class CParser < CRRParser
             stTYPE_POOL()
 
          else
-            GenError(725)
+            GenError(728)
 
          end
 
@@ -3813,7 +3720,7 @@ class CParser < CRRParser
       end
 
       Expect(C_PointSym)
-      while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_TRYSym||@sym>=C_BEFORESym&&@sym<=C_LparenSym||@sym>=C_TYPEMinusPOOLSym&&@sym<=C_PointSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MOVEMinusCORRESPONDINGSym||@sym==C_CLASSMinusDATASym||@sym==C_AUTHORITYMinusCHECKSym||@sym==C_SELECTIONMinusSCREENSym||@sym==C_forSym||@sym>=C_returnSym&&@sym<=C_ADDMinusCORRESPONDINGSym||@sym==C_BREAKMinusPOINTSym||@sym>=C_CLASSMinusEVENTSSym&&@sym<=C_CLASSMinusPOOLSym||@sym>=C_DIVIDEMinusCORRESPONDINGSym&&@sym<=C_EDITORMinusCALLSym||@sym>=C_ENDMinusOFMinusPAGESym&&@sym<=C_ENDMinusOFMinusSELECTIONSym||@sym>=C_FIELDMinusGROUPSSym&&@sym<=C_FUNCTIONMinusPOOLSym||@sym==C_INTERFACEMinusPOOLSym||@sym>=C_LOADMinusOFMinusPROGRAMSym&&@sym<=C_NEWMinusLINESym||@sym==C_NEWMinusPAGESym||@sym==C_NEWMinusSECTIONSym||@sym==C_PRINTMinusCONTROLSym||@sym==C_SELECTMinusOPTIONSSym||@sym>=C_SUBTRACTMinusCORRESPONDINGSym&&@sym<=C_TESTMinusINJECTIONSym||@sym==C_TESTMinusSEAMSym||@sym==C_TOPMinusOFMinusPAGESym||@sym==C_TYPEMinusPOOLSSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
+      while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_MESSAGESym||@sym>=C_CREATESym&&@sym<=C_FUNCTIONSym||@sym>=C_ENDSELECTSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_APPENDSym||@sym>=C_ASSIGNINGSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_TIMESSym||@sym>=C_OPTIONALSym&&@sym<=C_CHANGESym||@sym>=C_OPENSym&&@sym<=C_GAPSSym||@sym>=C_READSym&&@sym<=C_TRYSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym>=C_ASSOCIATIONSym&&@sym<=C_VARYSym||@sym>=C_TASKSym&&@sym<=C_IFSym||@sym==C_ELSESym||@sym>=C_CLASSSym&&@sym<=C_SECTIONSym||@sym==C_METHODSym||@sym>=C_METHODSSym&&@sym<=C_LASTSym||@sym>=C_BACKSym&&@sym<=C_INTERFACESym||@sym>=C_INTERFACESSym&&@sym<=C_MODULESym||@sym>=C_MULTIPLYSym&&@sym<=C_RETURNINGSym||@sym>=C_CHECKSym&&@sym<=C_LparenSym||@sym>=C_TYPEMinusPOOLSym&&@sym<=C_PointSym||@sym==C_StarSym||@sym==C_TildeSym||@sym>=C_PlusSym&&@sym<=C_WITHSym||@sym==C_MOVEMinusCORRESPONDINGSym||@sym==C_CLASSMinusDATASym||@sym==C_AUTHORITYMinusCHECKSym||@sym==C_SELECTIONMinusSCREENSym||@sym==C_forSym||@sym>=C_returnSym&&@sym<=C_ADDMinusCORRESPONDINGSym||@sym==C_BREAKMinusPOINTSym||@sym>=C_CLASSMinusEVENTSSym&&@sym<=C_CLASSMinusPOOLSym||@sym>=C_DIVIDEMinusCORRESPONDINGSym&&@sym<=C_EDITORMinusCALLSym||@sym>=C_ENDMinusOFMinusPAGESym&&@sym<=C_ENDMinusOFMinusSELECTIONSym||@sym>=C_FIELDMinusGROUPSSym&&@sym<=C_FUNCTIONMinusPOOLSym||@sym==C_INTERFACEMinusPOOLSym||@sym>=C_LOADMinusOFMinusPROGRAMSym&&@sym<=C_NEWMinusLINESym||@sym==C_NEWMinusPAGESym||@sym==C_NEWMinusSECTIONSym||@sym==C_PRINTMinusCONTROLSym||@sym==C_SELECTMinusOPTIONSSym||@sym>=C_SUBTRACTMinusCORRESPONDINGSym&&@sym<=C_TESTMinusINJECTIONSym||@sym==C_TESTMinusSEAMSym||@sym==C_TOPMinusOFMinusPAGESym||@sym==C_TYPEMinusPOOLSSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
          Statement()
       end
 
@@ -3834,7 +3741,7 @@ class CParser < CRRParser
 
       src("");
 
-      while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_TRYSym||@sym>=C_BEFORESym&&@sym<=C_LparenSym||@sym>=C_TYPEMinusPOOLSym&&@sym<=C_PointSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MOVEMinusCORRESPONDINGSym||@sym==C_CLASSMinusDATASym||@sym==C_AUTHORITYMinusCHECKSym||@sym==C_SELECTIONMinusSCREENSym||@sym==C_forSym||@sym>=C_returnSym&&@sym<=C_ADDMinusCORRESPONDINGSym||@sym==C_BREAKMinusPOINTSym||@sym>=C_CLASSMinusEVENTSSym&&@sym<=C_CLASSMinusPOOLSym||@sym>=C_DIVIDEMinusCORRESPONDINGSym&&@sym<=C_EDITORMinusCALLSym||@sym>=C_ENDMinusOFMinusPAGESym&&@sym<=C_ENDMinusOFMinusSELECTIONSym||@sym>=C_FIELDMinusGROUPSSym&&@sym<=C_FUNCTIONMinusPOOLSym||@sym==C_INTERFACEMinusPOOLSym||@sym>=C_LOADMinusOFMinusPROGRAMSym&&@sym<=C_NEWMinusLINESym||@sym==C_NEWMinusPAGESym||@sym==C_NEWMinusSECTIONSym||@sym==C_PRINTMinusCONTROLSym||@sym==C_SELECTMinusOPTIONSSym||@sym>=C_SUBTRACTMinusCORRESPONDINGSym&&@sym<=C_TESTMinusINJECTIONSym||@sym==C_TESTMinusSEAMSym||@sym==C_TOPMinusOFMinusPAGESym||@sym==C_TYPEMinusPOOLSSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
+      while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_MESSAGESym||@sym>=C_CREATESym&&@sym<=C_FUNCTIONSym||@sym>=C_ENDSELECTSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_APPENDSym||@sym>=C_ASSIGNINGSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_TIMESSym||@sym>=C_OPTIONALSym&&@sym<=C_CHANGESym||@sym>=C_OPENSym&&@sym<=C_GAPSSym||@sym>=C_READSym&&@sym<=C_TRYSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym>=C_ASSOCIATIONSym&&@sym<=C_VARYSym||@sym>=C_TASKSym&&@sym<=C_IFSym||@sym==C_ELSESym||@sym>=C_CLASSSym&&@sym<=C_SECTIONSym||@sym==C_METHODSym||@sym>=C_METHODSSym&&@sym<=C_LASTSym||@sym>=C_BACKSym&&@sym<=C_INTERFACESym||@sym>=C_INTERFACESSym&&@sym<=C_MODULESym||@sym>=C_MULTIPLYSym&&@sym<=C_RETURNINGSym||@sym>=C_CHECKSym&&@sym<=C_LparenSym||@sym>=C_TYPEMinusPOOLSym&&@sym<=C_PointSym||@sym==C_StarSym||@sym==C_TildeSym||@sym>=C_PlusSym&&@sym<=C_WITHSym||@sym==C_MOVEMinusCORRESPONDINGSym||@sym==C_CLASSMinusDATASym||@sym==C_AUTHORITYMinusCHECKSym||@sym==C_SELECTIONMinusSCREENSym||@sym==C_forSym||@sym>=C_returnSym&&@sym<=C_ADDMinusCORRESPONDINGSym||@sym==C_BREAKMinusPOINTSym||@sym>=C_CLASSMinusEVENTSSym&&@sym<=C_CLASSMinusPOOLSym||@sym>=C_DIVIDEMinusCORRESPONDINGSym&&@sym<=C_EDITORMinusCALLSym||@sym>=C_ENDMinusOFMinusPAGESym&&@sym<=C_ENDMinusOFMinusSELECTIONSym||@sym>=C_FIELDMinusGROUPSSym&&@sym<=C_FUNCTIONMinusPOOLSym||@sym==C_INTERFACEMinusPOOLSym||@sym>=C_LOADMinusOFMinusPROGRAMSym&&@sym<=C_NEWMinusLINESym||@sym==C_NEWMinusPAGESym||@sym==C_NEWMinusSECTIONSym||@sym==C_PRINTMinusCONTROLSym||@sym==C_SELECTMinusOPTIONSSym||@sym>=C_SUBTRACTMinusCORRESPONDINGSym&&@sym<=C_TESTMinusINJECTIONSym||@sym==C_TESTMinusSEAMSym||@sym==C_TOPMinusOFMinusPAGESym||@sym==C_TYPEMinusPOOLSSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
          Statement()
       end
 
@@ -3875,7 +3782,7 @@ class CParser < CRRParser
                         if @sym==C_PRIVATESym
                            Get()
                         else
-                           GenError(726)
+                           GenError(729)
                         end
 
                      end
@@ -3921,7 +3828,7 @@ class CParser < CRRParser
                               if @sym==C_PRIVATESym
                                  Get()
                               else
-                                 GenError(727)
+                                 GenError(730)
                               end
 
                            end
@@ -3954,7 +3861,7 @@ class CParser < CRRParser
                                  if @sym==C_HARMLESSSym
                                     Get()
                                  else
-                                    GenError(728)
+                                    GenError(731)
                                  end
 
                               end
@@ -3977,7 +3884,7 @@ class CParser < CRRParser
                                  if @sym==C_LONGSym
                                     Get()
                                  else
-                                    GenError(729)
+                                    GenError(732)
                                  end
 
                               end
@@ -4020,13 +3927,13 @@ class CParser < CRRParser
          if @sym==C_IMPLEMENTATIONSym
             Get()
          else
-            GenError(730)
+            GenError(733)
          end
 
       end
 
       Expect(C_PointSym)
-      while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_TRYSym||@sym>=C_BEFORESym&&@sym<=C_LparenSym||@sym>=C_TYPEMinusPOOLSym&&@sym<=C_PointSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MOVEMinusCORRESPONDINGSym||@sym==C_CLASSMinusDATASym||@sym==C_AUTHORITYMinusCHECKSym||@sym==C_SELECTIONMinusSCREENSym||@sym==C_forSym||@sym>=C_returnSym&&@sym<=C_ADDMinusCORRESPONDINGSym||@sym==C_BREAKMinusPOINTSym||@sym>=C_CLASSMinusEVENTSSym&&@sym<=C_CLASSMinusPOOLSym||@sym>=C_DIVIDEMinusCORRESPONDINGSym&&@sym<=C_EDITORMinusCALLSym||@sym>=C_ENDMinusOFMinusPAGESym&&@sym<=C_ENDMinusOFMinusSELECTIONSym||@sym>=C_FIELDMinusGROUPSSym&&@sym<=C_FUNCTIONMinusPOOLSym||@sym==C_INTERFACEMinusPOOLSym||@sym>=C_LOADMinusOFMinusPROGRAMSym&&@sym<=C_NEWMinusLINESym||@sym==C_NEWMinusPAGESym||@sym==C_NEWMinusSECTIONSym||@sym==C_PRINTMinusCONTROLSym||@sym==C_SELECTMinusOPTIONSSym||@sym>=C_SUBTRACTMinusCORRESPONDINGSym&&@sym<=C_TESTMinusINJECTIONSym||@sym==C_TESTMinusSEAMSym||@sym==C_TOPMinusOFMinusPAGESym||@sym==C_TYPEMinusPOOLSSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
+      while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_MESSAGESym||@sym>=C_CREATESym&&@sym<=C_FUNCTIONSym||@sym>=C_ENDSELECTSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_APPENDSym||@sym>=C_ASSIGNINGSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_TIMESSym||@sym>=C_OPTIONALSym&&@sym<=C_CHANGESym||@sym>=C_OPENSym&&@sym<=C_GAPSSym||@sym>=C_READSym&&@sym<=C_TRYSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym>=C_ASSOCIATIONSym&&@sym<=C_VARYSym||@sym>=C_TASKSym&&@sym<=C_IFSym||@sym==C_ELSESym||@sym>=C_CLASSSym&&@sym<=C_SECTIONSym||@sym==C_METHODSym||@sym>=C_METHODSSym&&@sym<=C_LASTSym||@sym>=C_BACKSym&&@sym<=C_INTERFACESym||@sym>=C_INTERFACESSym&&@sym<=C_MODULESym||@sym>=C_MULTIPLYSym&&@sym<=C_RETURNINGSym||@sym>=C_CHECKSym&&@sym<=C_LparenSym||@sym>=C_TYPEMinusPOOLSym&&@sym<=C_PointSym||@sym==C_StarSym||@sym==C_TildeSym||@sym>=C_PlusSym&&@sym<=C_WITHSym||@sym==C_MOVEMinusCORRESPONDINGSym||@sym==C_CLASSMinusDATASym||@sym==C_AUTHORITYMinusCHECKSym||@sym==C_SELECTIONMinusSCREENSym||@sym==C_forSym||@sym>=C_returnSym&&@sym<=C_ADDMinusCORRESPONDINGSym||@sym==C_BREAKMinusPOINTSym||@sym>=C_CLASSMinusEVENTSSym&&@sym<=C_CLASSMinusPOOLSym||@sym>=C_DIVIDEMinusCORRESPONDINGSym&&@sym<=C_EDITORMinusCALLSym||@sym>=C_ENDMinusOFMinusPAGESym&&@sym<=C_ENDMinusOFMinusSELECTIONSym||@sym>=C_FIELDMinusGROUPSSym&&@sym<=C_FUNCTIONMinusPOOLSym||@sym==C_INTERFACEMinusPOOLSym||@sym>=C_LOADMinusOFMinusPROGRAMSym&&@sym<=C_NEWMinusLINESym||@sym==C_NEWMinusPAGESym||@sym==C_NEWMinusSECTIONSym||@sym==C_PRINTMinusCONTROLSym||@sym==C_SELECTMinusOPTIONSSym||@sym>=C_SUBTRACTMinusCORRESPONDINGSym&&@sym<=C_TESTMinusINJECTIONSym||@sym==C_TESTMinusSEAMSym||@sym==C_TOPMinusOFMinusPAGESym||@sym==C_TYPEMinusPOOLSSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
          if @sym>=C_PUBLICSym&&@sym<=C_PRIVATESym
             if @sym==C_PUBLICSym
                Get()
@@ -4037,7 +3944,7 @@ class CParser < CRRParser
                   if @sym==C_PRIVATESym
                      Get()
                   else
-                     GenError(731)
+                     GenError(734)
                   end
 
                end
@@ -4048,7 +3955,7 @@ class CParser < CRRParser
             Expect(C_PointSym)
          end
 
-         while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_TRYSym||@sym>=C_BEFORESym&&@sym<=C_LparenSym||@sym>=C_TYPEMinusPOOLSym&&@sym<=C_PointSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MOVEMinusCORRESPONDINGSym||@sym==C_CLASSMinusDATASym||@sym==C_AUTHORITYMinusCHECKSym||@sym==C_SELECTIONMinusSCREENSym||@sym==C_forSym||@sym>=C_returnSym&&@sym<=C_ADDMinusCORRESPONDINGSym||@sym==C_BREAKMinusPOINTSym||@sym>=C_CLASSMinusEVENTSSym&&@sym<=C_CLASSMinusPOOLSym||@sym>=C_DIVIDEMinusCORRESPONDINGSym&&@sym<=C_EDITORMinusCALLSym||@sym>=C_ENDMinusOFMinusPAGESym&&@sym<=C_ENDMinusOFMinusSELECTIONSym||@sym>=C_FIELDMinusGROUPSSym&&@sym<=C_FUNCTIONMinusPOOLSym||@sym==C_INTERFACEMinusPOOLSym||@sym>=C_LOADMinusOFMinusPROGRAMSym&&@sym<=C_NEWMinusLINESym||@sym==C_NEWMinusPAGESym||@sym==C_NEWMinusSECTIONSym||@sym==C_PRINTMinusCONTROLSym||@sym==C_SELECTMinusOPTIONSSym||@sym>=C_SUBTRACTMinusCORRESPONDINGSym&&@sym<=C_TESTMinusINJECTIONSym||@sym==C_TESTMinusSEAMSym||@sym==C_TOPMinusOFMinusPAGESym||@sym==C_TYPEMinusPOOLSSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
+         while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_MESSAGESym||@sym>=C_CREATESym&&@sym<=C_FUNCTIONSym||@sym>=C_ENDSELECTSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_APPENDSym||@sym>=C_ASSIGNINGSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_TIMESSym||@sym>=C_OPTIONALSym&&@sym<=C_CHANGESym||@sym>=C_OPENSym&&@sym<=C_GAPSSym||@sym>=C_READSym&&@sym<=C_TRYSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym>=C_ASSOCIATIONSym&&@sym<=C_VARYSym||@sym>=C_TASKSym&&@sym<=C_IFSym||@sym==C_ELSESym||@sym>=C_CLASSSym&&@sym<=C_SECTIONSym||@sym==C_METHODSym||@sym>=C_METHODSSym&&@sym<=C_LASTSym||@sym>=C_BACKSym&&@sym<=C_INTERFACESym||@sym>=C_INTERFACESSym&&@sym<=C_MODULESym||@sym>=C_MULTIPLYSym&&@sym<=C_RETURNINGSym||@sym>=C_CHECKSym&&@sym<=C_LparenSym||@sym>=C_TYPEMinusPOOLSym&&@sym<=C_PointSym||@sym==C_StarSym||@sym==C_TildeSym||@sym>=C_PlusSym&&@sym<=C_WITHSym||@sym==C_MOVEMinusCORRESPONDINGSym||@sym==C_CLASSMinusDATASym||@sym==C_AUTHORITYMinusCHECKSym||@sym==C_SELECTIONMinusSCREENSym||@sym==C_forSym||@sym>=C_returnSym&&@sym<=C_ADDMinusCORRESPONDINGSym||@sym==C_BREAKMinusPOINTSym||@sym>=C_CLASSMinusEVENTSSym&&@sym<=C_CLASSMinusPOOLSym||@sym>=C_DIVIDEMinusCORRESPONDINGSym&&@sym<=C_EDITORMinusCALLSym||@sym>=C_ENDMinusOFMinusPAGESym&&@sym<=C_ENDMinusOFMinusSELECTIONSym||@sym>=C_FIELDMinusGROUPSSym&&@sym<=C_FUNCTIONMinusPOOLSym||@sym==C_INTERFACEMinusPOOLSym||@sym>=C_LOADMinusOFMinusPROGRAMSym&&@sym<=C_NEWMinusLINESym||@sym==C_NEWMinusPAGESym||@sym==C_NEWMinusSECTIONSym||@sym==C_PRINTMinusCONTROLSym||@sym==C_SELECTMinusOPTIONSSym||@sym>=C_SUBTRACTMinusCORRESPONDINGSym&&@sym<=C_TESTMinusINJECTIONSym||@sym==C_TESTMinusSEAMSym||@sym==C_TOPMinusOFMinusPAGESym||@sym==C_TYPEMinusPOOLSSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
             Statement()
          end
 
@@ -4083,7 +3990,7 @@ class CParser < CRRParser
                   if @sym==C_PROTECTEDSym
                      Get()
                   else
-                     GenError(732)
+                     GenError(735)
                   end
 
                end
@@ -4131,7 +4038,7 @@ class CParser < CRRParser
                stTYPE_POOLS()
 
             else
-               GenError(733)
+               GenError(736)
 
             end
 
@@ -4165,13 +4072,13 @@ class CParser < CRRParser
                   end;
 
                else
-                  GenError(734)
+                  GenError(737)
                end
 
             end
 
          else
-            GenError(735)
+            GenError(738)
          end
 
       end
@@ -4201,7 +4108,7 @@ class CParser < CRRParser
             if @sym==C_DATASym||@sym>=C_STATICSSym&&@sym<=C_CONSTANTSSym||@sym==C_CLASSMinusDATASym
                VariableDefineStatement()
             else
-               GenError(736)
+               GenError(739)
             end
 
          end
@@ -4240,7 +4147,7 @@ class CParser < CRRParser
             Expect(C_TYPESSym)
             Expect(C_identifierSym)
             Expect(C_VALUESym)
-            if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
+            if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
                Expression()
             else
                if 1
@@ -4250,7 +4157,7 @@ class CParser < CRRParser
                   back();re(".init()");
 
                else
-                  GenError(737)
+                  GenError(740)
                end
 
             end
@@ -4260,7 +4167,7 @@ class CParser < CRRParser
                Expect(C_TYPESSym)
                Expect(C_identifierSym)
                Expect(C_VALUESym)
-               if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
+               if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
                   Expression()
                else
                   if 1
@@ -4270,7 +4177,7 @@ class CParser < CRRParser
                      back();re(".init()");
 
                   else
-                     GenError(738)
+                     GenError(741)
                   end
 
                end
@@ -4302,10 +4209,10 @@ class CParser < CRRParser
                Expect(C_MESHSym)
                Expect(C_identifierSym)
             else
-               if @sym>=C_identifierSym&&@sym<=C_TYPESSym||@sym>=C_STRUCTURESym&&@sym<=C_BASESym||@sym>=C_SETSym&&@sym<=C_NODESym||@sym==C_CHECKSym
+               if @sym>=C_identifierSym&&@sym<=C_TYPESSym||@sym>=C_STRUCTURESym&&@sym<=C_BASESym||@sym>=C_SETSym&&@sym<=C_NODESym||@sym>=C_STANDARDSym&&@sym<=C_CHECKSym
                   NameInVarDef()
                else
-                  GenError(739)
+                  GenError(742)
                end
 
             end
@@ -4318,7 +4225,7 @@ class CParser < CRRParser
             Expect(C_OFSym)
             Expect(C_identifierSym)
          else
-            if @sym>=C_identifierSym&&@sym<=C_MESSAGESym||@sym>=C_CREATESym&&@sym<=C_CONSTANTSSym||@sym>=C_COMMONSym&&@sym<=C_NODESym||@sym==C_CHECKSym
+            if @sym>=C_identifierSym&&@sym<=C_MESSAGESym||@sym>=C_CREATESym&&@sym<=C_CONSTANTSSym||@sym>=C_COMMONSym&&@sym<=C_NODESym||@sym>=C_STANDARDSym&&@sym<=C_CHECKSym
                NameInVarDef()
                if @sym==C_LparenSym
                   Get()
@@ -4332,13 +4239,13 @@ class CParser < CRRParser
                   if @sym==C_LIKESym
                      LikeDes()
                   else
-                     GenError(740)
+                     GenError(743)
                   end
 
                end
 
             else
-               GenError(741)
+               GenError(744)
             end
 
          end
@@ -4368,14 +4275,14 @@ class CParser < CRRParser
          Get()
 
       else
-         GenError(742)
+         GenError(745)
 
       end
 
 
       t=prevString.upcase;
 
-      if @sym>=C_identifierSym&&@sym<=C_NODESym||@sym==C_CHECKSym
+      if @sym>=C_identifierSym&&@sym<=C_NODESym||@sym>=C_STANDARDSym&&@sym<=C_CHECKSym
          if @sym==C_BEGINSym
             Get()
             Expect(C_OFSym)
@@ -4384,7 +4291,7 @@ class CParser < CRRParser
                Expect(C_PARTSym)
                NameInVarDef()
             else
-               if @sym>=C_identifierSym&&@sym<=C_BEGINSym||@sym>=C_PARTSym&&@sym<=C_NODESym||@sym==C_CHECKSym
+               if @sym>=C_identifierSym&&@sym<=C_BEGINSym||@sym>=C_PARTSym&&@sym<=C_NODESym||@sym>=C_STANDARDSym&&@sym<=C_CHECKSym
                   NameInVarDef()
 
                   modname=lus;
@@ -4399,7 +4306,7 @@ class CParser < CRRParser
                   end
 
                else
-                  GenError(743)
+                  GenError(746)
                end
 
             end
@@ -4423,7 +4330,7 @@ class CParser < CRRParser
                   Expect(C_PARTSym)
                   NameInVarDef()
                else
-                  if @sym>=C_identifierSym&&@sym<=C_BEGINSym||@sym>=C_PARTSym&&@sym<=C_NODESym||@sym==C_CHECKSym
+                  if @sym>=C_identifierSym&&@sym<=C_BEGINSym||@sym>=C_PARTSym&&@sym<=C_NODESym||@sym>=C_STANDARDSym&&@sym<=C_CHECKSym
                      NameInVarDef()
                      if @sym==C_VALIDSym
                         Get()
@@ -4434,7 +4341,7 @@ class CParser < CRRParser
                      end
 
                   else
-                     GenError(744)
+                     GenError(747)
                   end
 
                end
@@ -4452,7 +4359,7 @@ class CParser < CRRParser
                end;
 
             else
-               if @sym>=C_identifierSym&&@sym<=C_MESSAGESym||@sym>=C_CREATESym&&@sym<=C_CONSTANTSSym||@sym>=C_COMMONSym&&@sym<=C_NODESym||@sym==C_CHECKSym
+               if @sym>=C_identifierSym&&@sym<=C_MESSAGESym||@sym>=C_CREATESym&&@sym<=C_CONSTANTSSym||@sym>=C_COMMONSym&&@sym<=C_NODESym||@sym>=C_STANDARDSym&&@sym<=C_CHECKSym
                   NameInVarDef()
 
                   name = lus
@@ -4477,13 +4384,13 @@ class CParser < CRRParser
                      if @sym==C_LIKESym
                         LikeDes()
                      else
-                        GenError(745)
+                        GenError(748)
                      end
 
                   end
 
                else
-                  GenError(746)
+                  GenError(749)
                end
 
             end
@@ -4496,8 +4403,8 @@ class CParser < CRRParser
 
                value = nil;
 
-               while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
-                  if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
+               while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
+                  if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
                      Expression()
 
                      value = "" if value ==nil;value += lus;
@@ -4510,7 +4417,7 @@ class CParser < CRRParser
                         back_src();re(".init()");
 
                      else
-                        GenError(747)
+                        GenError(750)
                      end
 
                   end
@@ -4578,7 +4485,7 @@ class CParser < CRRParser
             src("#{name} = #{lus}");
 
          else
-            GenError(748)
+            GenError(751)
          end
 
       end
@@ -4610,7 +4517,6 @@ class CParser < CRRParser
          C_VALUESym,
          C_PARAMETERSym,
          C_TARGETSym,
-         C_ENDSym,
          C_KEYSym,
          C_IDSym,
          C_DEFAULTSym,
@@ -4632,7 +4538,6 @@ class CParser < CRRParser
          C_DATABASESym,
          C_REDUCEDSym,
          C_FUNCTIONALITYSym,
-         C_ENDFUNCTIONSym,
          C_DISTINCTSym,
          C_FROMSym,
          C_ASSym,
@@ -4650,10 +4555,8 @@ class CParser < CRRParser
          C_PRIMARYSym,
          C_ASCENDINGSym,
          C_DESCENDINGSym,
-         C_INTOSym,
          C_APPENDINGSym,
          C_CORRESPONDINGSym,
-         C_TABLESym,
          C_PACKAGESym,
          C_SIZESym,
          C_SINGLESym,
@@ -4685,8 +4588,6 @@ class CParser < CRRParser
          C_EXPANDINGSym,
          C_NESTEDSym,
          C_KEEPINGSym,
-         C_INITIALSym,
-         C_LINESym,
          C_ASSIGNINGSym,
          C_CASTINGSym,
          C_REFERENCESym,
@@ -4702,24 +4603,20 @@ class CParser < CRRParser
          C_ANDSym,
          C_MARKSym,
          C_EVENTSym,
-         C_EXPORTINGSym,
          C_RESUMABLESym,
          C_EXCEPTIONSym,
          C_NUMBERSym,
          C_DISPLAYSym,
          C_LIKESym,
          C_RAISINGSym,
-         C_INDEXSym,
          C_TEXTSym,
          C_WITHOUTSym,
          C_MEMBERSSym,
          C_TRANSPORTINGSym,
          C_VERSIONSym,
          C_SCREENSym,
-         C_ENDLOOPSym,
          C_LOBSym,
          C_HANDLESym,
-         C_HASHEDSym,
          C_EMPTYSym,
          C_HEADERSym,
          C_UNIQUESym,
@@ -4753,7 +4650,6 @@ class CParser < CRRParser
          C_WHENSym,
          C_ORSym,
          C_OTHERSSym,
-         C_ENDCASESym,
          C_FIELDSym,
          C_DUMMYSym,
          C_OBJECTSym,
@@ -4767,11 +4663,9 @@ class CParser < CRRParser
          C_VARYINGSym,
          C_NEXTSym,
          C_TIMESSym,
-         C_ENDDOSym,
          C_OPTIONALSym,
          C_CURRENTSym,
          C_CHANGESym,
-         C_ENDONSym,
          C_CURSORSym,
          C_HOLDSym,
          C_OUTPUTSym,
@@ -4796,7 +4690,6 @@ class CParser < CRRParser
          C_BOUNDSSym,
          C_INCLUDINGSym,
          C_GAPSSym,
-         C_ENDPROVIDESym,
          C_ACTUALSym,
          C_WIDTHSym,
          C_TEXTPOOLSym,
@@ -4820,14 +4713,12 @@ class CParser < CRRParser
          C_BEFORESym,
          C_UNWINDSym,
          C_CLEANUPSym,
-         C_ENDTRYSym,
          C_ASSOCIATIONSym,
          C_ENUMSym,
          C_STRUCTURESym,
          C_BASESym,
          C_MESHSym,
          C_VARYSym,
-         C_ENDWHILESym,
          C_TASKSym,
          C_NEWSym,
          C_BACKGROUNDSym,
@@ -4835,11 +4726,7 @@ class CParser < CRRParser
          C_DESTINATIONSym,
          C_CALLINGSym,
          C_PERFORMINGSym,
-         C_IMPORTINGSym,
-         C_CHANGINGSym,
-         C_ELSEIFSym,
          C_ELSESym,
-         C_ENDIFSym,
          C_DEFINITIONSym,
          C_DEFERREDSym,
          C_PUBLICSym,
@@ -4864,14 +4751,10 @@ class CParser < CRRParser
          C_LOADSym,
          C_IMPLEMENTATIONSym,
          C_SECTIONSym,
-         C_ENDCLASSSym,
-         C_ENDMETHODSym,
-         C_ANYSym,
          C_REDEFINITIONSym,
          C_IGNORESym,
          C_FAILSym,
          C_PREFERREDSym,
-         C_RETURNINGSym,
          C_THENSym,
          C_UNTILSym,
          C_GIVINGSym,
@@ -4882,10 +4765,8 @@ class CParser < CRRParser
          C_INCREMENTSym,
          C_FIRSTSym,
          C_LASTSym,
-         C_ENDATSym,
          C_DIALOGSym,
          C_PROCEDURESym,
-         C_RECEIVINGSym,
          C_FLUSHSym,
          C_TRANSACTIONSym,
          C_OPTIONSSym,
@@ -4961,10 +4842,8 @@ class CParser < CRRParser
          C_ARITHMETICSym,
          C_UNICODESym,
          C_ENABLINGSym,
-         C_ENDINTERFACESym,
          C_PARTIALLYSym,
          C_IMPLEMENTEDSym,
-         C_ENDMODULESym,
          C_SCROLLINGSym,
          C_PRINTSym,
          C_ONLYSym,
@@ -5026,12 +4905,16 @@ class CParser < CRRParser
          C_REQUESTEDSym,
          C_REFSym,
          C_SORTEDSym,
-         C_STANDARDSym,
          C_EDITSym,
          C_NODESym,
          C_ALLSym,
          C_OTHERSym,
+         C_INITIALSym,
+         C_EXPORTINGSym,
+         C_HASHEDSym,
          C_RANGESym,
+         C_IMPORTINGSym,
+         C_RETURNINGSym,
          C_LparenSym,
          C_StarSym,
          C_TildeSym,
@@ -5489,7 +5372,7 @@ class CParser < CRRParser
          stENDSELECT()
 
       else
-         GenError(749)
+         GenError(752)
 
       end
 
@@ -5506,7 +5389,7 @@ class CParser < CRRParser
       param_hash = {};
 
       Expect(C_WRITESym)
-      if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym>=C_STARTINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_PointSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_SlashSym||@sym>=C_NOMinusGAPSym&&@sym<=C_MMSlashDDSlashYYYYSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
+      if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym>=C_STARTINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_PointSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_SlashSym||@sym>=C_NOMinusGAPSym&&@sym<=C_MMSlashDDSlashYYYYSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
          while (@sym==C_numberSym||@sym==C_ATSym||@sym==C_LparenSym||@sym==C_SlashSym)
             if @sym==C_ATSym
                Get()
@@ -5525,7 +5408,7 @@ class CParser < CRRParser
 
             if @sym==C_LparenSym
                Get()
-               if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
+               if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
                   Expression()
                else
                   if 1
@@ -5534,7 +5417,7 @@ class CParser < CRRParser
                      if @sym==C_StarStarSym
                         Get()
                      else
-                        GenError(750)
+                        GenError(753)
                      end
 
                   end
@@ -5546,7 +5429,7 @@ class CParser < CRRParser
 
          end
 
-         if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
+         if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
             Expression()
          end
 
@@ -5574,7 +5457,7 @@ class CParser < CRRParser
                      if @sym==C_RIGHTMinusJUSTIFIEDSym
                         Get()
                      else
-                        GenError(751)
+                        GenError(754)
                      end
 
                   end
@@ -5627,7 +5510,7 @@ class CParser < CRRParser
                            end
 
                         else
-                           GenError(752)
+                           GenError(755)
                         end
 
                      end
@@ -5657,7 +5540,7 @@ class CParser < CRRParser
                      end
 
                   else
-                     GenError(753)
+                     GenError(756)
                   end
 
                end
@@ -5677,7 +5560,7 @@ class CParser < CRRParser
                         Expect(C_MASKSym)
                         Expect(C_stringD1Sym)
                      else
-                        GenError(754)
+                        GenError(757)
                      end
 
                   end
@@ -5711,7 +5594,7 @@ class CParser < CRRParser
                   Get()
 
                else
-                  GenError(755)
+                  GenError(758)
 
                end
 
@@ -5735,7 +5618,7 @@ class CParser < CRRParser
                   Get()
 
                else
-                  GenError(756)
+                  GenError(759)
 
                end
 
@@ -5758,7 +5641,7 @@ class CParser < CRRParser
                   Expect(C_identifierSym)
                   Expect(C_RparenSym)
                else
-                  GenError(757)
+                  GenError(760)
                end
 
             end
@@ -5775,7 +5658,7 @@ class CParser < CRRParser
                      if @sym==C_RIGHTMinusJUSTIFIEDSym
                         Get()
                      else
-                        GenError(758)
+                        GenError(761)
                      end
 
                   end
@@ -5826,7 +5709,7 @@ class CParser < CRRParser
                      end
 
                   else
-                     GenError(759)
+                     GenError(762)
                   end
 
                end
@@ -5866,7 +5749,7 @@ class CParser < CRRParser
                      Expect(C_MASKSym)
                      Expect(C_identifierSym)
                   else
-                     GenError(760)
+                     GenError(763)
                   end
 
                end
@@ -5898,7 +5781,7 @@ class CParser < CRRParser
                   Get()
 
                else
-                  GenError(761)
+                  GenError(764)
 
                end
 
@@ -5953,7 +5836,7 @@ class CParser < CRRParser
 
       stmt="";
 
-      while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_TRYSym||@sym>=C_BEFORESym&&@sym<=C_LparenSym||@sym>=C_TYPEMinusPOOLSym&&@sym<=C_PointSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MOVEMinusCORRESPONDINGSym||@sym==C_CLASSMinusDATASym||@sym==C_AUTHORITYMinusCHECKSym||@sym==C_SELECTIONMinusSCREENSym||@sym==C_forSym||@sym>=C_returnSym&&@sym<=C_ADDMinusCORRESPONDINGSym||@sym==C_BREAKMinusPOINTSym||@sym>=C_CLASSMinusEVENTSSym&&@sym<=C_CLASSMinusPOOLSym||@sym>=C_DIVIDEMinusCORRESPONDINGSym&&@sym<=C_EDITORMinusCALLSym||@sym>=C_ENDMinusOFMinusPAGESym&&@sym<=C_ENDMinusOFMinusSELECTIONSym||@sym>=C_FIELDMinusGROUPSSym&&@sym<=C_FUNCTIONMinusPOOLSym||@sym==C_INTERFACEMinusPOOLSym||@sym>=C_LOADMinusOFMinusPROGRAMSym&&@sym<=C_NEWMinusLINESym||@sym==C_NEWMinusPAGESym||@sym==C_NEWMinusSECTIONSym||@sym==C_PRINTMinusCONTROLSym||@sym==C_SELECTMinusOPTIONSSym||@sym>=C_SUBTRACTMinusCORRESPONDINGSym&&@sym<=C_TESTMinusINJECTIONSym||@sym==C_TESTMinusSEAMSym||@sym==C_TOPMinusOFMinusPAGESym||@sym==C_TYPEMinusPOOLSSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
+      while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_MESSAGESym||@sym>=C_CREATESym&&@sym<=C_FUNCTIONSym||@sym>=C_ENDSELECTSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_APPENDSym||@sym>=C_ASSIGNINGSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_TIMESSym||@sym>=C_OPTIONALSym&&@sym<=C_CHANGESym||@sym>=C_OPENSym&&@sym<=C_GAPSSym||@sym>=C_READSym&&@sym<=C_TRYSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym>=C_ASSOCIATIONSym&&@sym<=C_VARYSym||@sym>=C_TASKSym&&@sym<=C_IFSym||@sym==C_ELSESym||@sym>=C_CLASSSym&&@sym<=C_SECTIONSym||@sym==C_METHODSym||@sym>=C_METHODSSym&&@sym<=C_LASTSym||@sym>=C_BACKSym&&@sym<=C_INTERFACESym||@sym>=C_INTERFACESSym&&@sym<=C_MODULESym||@sym>=C_MULTIPLYSym&&@sym<=C_RETURNINGSym||@sym>=C_CHECKSym&&@sym<=C_LparenSym||@sym>=C_TYPEMinusPOOLSym&&@sym<=C_PointSym||@sym==C_StarSym||@sym==C_TildeSym||@sym>=C_PlusSym&&@sym<=C_WITHSym||@sym==C_MOVEMinusCORRESPONDINGSym||@sym==C_CLASSMinusDATASym||@sym==C_AUTHORITYMinusCHECKSym||@sym==C_SELECTIONMinusSCREENSym||@sym==C_forSym||@sym>=C_returnSym&&@sym<=C_ADDMinusCORRESPONDINGSym||@sym==C_BREAKMinusPOINTSym||@sym>=C_CLASSMinusEVENTSSym&&@sym<=C_CLASSMinusPOOLSym||@sym>=C_DIVIDEMinusCORRESPONDINGSym&&@sym<=C_EDITORMinusCALLSym||@sym>=C_ENDMinusOFMinusPAGESym&&@sym<=C_ENDMinusOFMinusSELECTIONSym||@sym>=C_FIELDMinusGROUPSSym&&@sym<=C_FUNCTIONMinusPOOLSym||@sym==C_INTERFACEMinusPOOLSym||@sym>=C_LOADMinusOFMinusPROGRAMSym&&@sym<=C_NEWMinusLINESym||@sym==C_NEWMinusPAGESym||@sym==C_NEWMinusSECTIONSym||@sym==C_PRINTMinusCONTROLSym||@sym==C_SELECTMinusOPTIONSSym||@sym>=C_SUBTRACTMinusCORRESPONDINGSym&&@sym<=C_TESTMinusINJECTIONSym||@sym==C_TESTMinusSEAMSym||@sym==C_TOPMinusOFMinusPAGESym||@sym==C_TYPEMinusPOOLSSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
          Statement()
 
          stmt+=lus;
@@ -5973,17 +5856,17 @@ class CParser < CRRParser
       _in_()
       Expect(C_forSym)
       Expect(C_LparenSym)
-      if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
+      if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
          Expression()
       end
 
       Expect(C_SemicolonSym)
-      if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
+      if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
          Expression()
       end
 
       Expect(C_SemicolonSym)
-      if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
+      if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
          Expression()
       end
 
@@ -6005,8 +5888,8 @@ class CParser < CRRParser
       exp = lus;
 
       Expect(C_PointSym)
-      if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_TRYSym||@sym>=C_BEFORESym&&@sym<=C_LparenSym||@sym>=C_TYPEMinusPOOLSym&&@sym<=C_PointSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MOVEMinusCORRESPONDINGSym||@sym==C_CLASSMinusDATASym||@sym==C_AUTHORITYMinusCHECKSym||@sym==C_SELECTIONMinusSCREENSym||@sym==C_forSym||@sym>=C_returnSym&&@sym<=C_ADDMinusCORRESPONDINGSym||@sym==C_BREAKMinusPOINTSym||@sym>=C_CLASSMinusEVENTSSym&&@sym<=C_CLASSMinusPOOLSym||@sym>=C_DIVIDEMinusCORRESPONDINGSym&&@sym<=C_EDITORMinusCALLSym||@sym>=C_ENDMinusOFMinusPAGESym&&@sym<=C_ENDMinusOFMinusSELECTIONSym||@sym>=C_FIELDMinusGROUPSSym&&@sym<=C_FUNCTIONMinusPOOLSym||@sym==C_INTERFACEMinusPOOLSym||@sym>=C_LOADMinusOFMinusPROGRAMSym&&@sym<=C_NEWMinusLINESym||@sym==C_NEWMinusPAGESym||@sym==C_NEWMinusSECTIONSym||@sym==C_PRINTMinusCONTROLSym||@sym==C_SELECTMinusOPTIONSSym||@sym>=C_SUBTRACTMinusCORRESPONDINGSym&&@sym<=C_TESTMinusINJECTIONSym||@sym==C_TESTMinusSEAMSym||@sym==C_TOPMinusOFMinusPAGESym||@sym==C_TYPEMinusPOOLSSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
-         while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_TRYSym||@sym>=C_BEFORESym&&@sym<=C_LparenSym||@sym>=C_TYPEMinusPOOLSym&&@sym<=C_PointSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MOVEMinusCORRESPONDINGSym||@sym==C_CLASSMinusDATASym||@sym==C_AUTHORITYMinusCHECKSym||@sym==C_SELECTIONMinusSCREENSym||@sym==C_forSym||@sym>=C_returnSym&&@sym<=C_ADDMinusCORRESPONDINGSym||@sym==C_BREAKMinusPOINTSym||@sym>=C_CLASSMinusEVENTSSym&&@sym<=C_CLASSMinusPOOLSym||@sym>=C_DIVIDEMinusCORRESPONDINGSym&&@sym<=C_EDITORMinusCALLSym||@sym>=C_ENDMinusOFMinusPAGESym&&@sym<=C_ENDMinusOFMinusSELECTIONSym||@sym>=C_FIELDMinusGROUPSSym&&@sym<=C_FUNCTIONMinusPOOLSym||@sym==C_INTERFACEMinusPOOLSym||@sym>=C_LOADMinusOFMinusPROGRAMSym&&@sym<=C_NEWMinusLINESym||@sym==C_NEWMinusPAGESym||@sym==C_NEWMinusSECTIONSym||@sym==C_PRINTMinusCONTROLSym||@sym==C_SELECTMinusOPTIONSSym||@sym>=C_SUBTRACTMinusCORRESPONDINGSym&&@sym<=C_TESTMinusINJECTIONSym||@sym==C_TESTMinusSEAMSym||@sym==C_TOPMinusOFMinusPAGESym||@sym==C_TYPEMinusPOOLSSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
+      if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_MESSAGESym||@sym>=C_CREATESym&&@sym<=C_FUNCTIONSym||@sym>=C_ENDSELECTSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_APPENDSym||@sym>=C_ASSIGNINGSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_TIMESSym||@sym>=C_OPTIONALSym&&@sym<=C_CHANGESym||@sym>=C_OPENSym&&@sym<=C_GAPSSym||@sym>=C_READSym&&@sym<=C_TRYSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym>=C_ASSOCIATIONSym&&@sym<=C_VARYSym||@sym>=C_TASKSym&&@sym<=C_IFSym||@sym==C_ELSESym||@sym>=C_CLASSSym&&@sym<=C_SECTIONSym||@sym==C_METHODSym||@sym>=C_METHODSSym&&@sym<=C_LASTSym||@sym>=C_BACKSym&&@sym<=C_INTERFACESym||@sym>=C_INTERFACESSym&&@sym<=C_MODULESym||@sym>=C_MULTIPLYSym&&@sym<=C_RETURNINGSym||@sym>=C_CHECKSym&&@sym<=C_LparenSym||@sym>=C_TYPEMinusPOOLSym&&@sym<=C_PointSym||@sym==C_StarSym||@sym==C_TildeSym||@sym>=C_PlusSym&&@sym<=C_WITHSym||@sym==C_MOVEMinusCORRESPONDINGSym||@sym==C_CLASSMinusDATASym||@sym==C_AUTHORITYMinusCHECKSym||@sym==C_SELECTIONMinusSCREENSym||@sym==C_forSym||@sym>=C_returnSym&&@sym<=C_ADDMinusCORRESPONDINGSym||@sym==C_BREAKMinusPOINTSym||@sym>=C_CLASSMinusEVENTSSym&&@sym<=C_CLASSMinusPOOLSym||@sym>=C_DIVIDEMinusCORRESPONDINGSym&&@sym<=C_EDITORMinusCALLSym||@sym>=C_ENDMinusOFMinusPAGESym&&@sym<=C_ENDMinusOFMinusSELECTIONSym||@sym>=C_FIELDMinusGROUPSSym&&@sym<=C_FUNCTIONMinusPOOLSym||@sym==C_INTERFACEMinusPOOLSym||@sym>=C_LOADMinusOFMinusPROGRAMSym&&@sym<=C_NEWMinusLINESym||@sym==C_NEWMinusPAGESym||@sym==C_NEWMinusSECTIONSym||@sym==C_PRINTMinusCONTROLSym||@sym==C_SELECTMinusOPTIONSSym||@sym>=C_SUBTRACTMinusCORRESPONDINGSym&&@sym<=C_TESTMinusINJECTIONSym||@sym==C_TESTMinusSEAMSym||@sym==C_TOPMinusOFMinusPAGESym||@sym==C_TYPEMinusPOOLSSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
+         while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_MESSAGESym||@sym>=C_CREATESym&&@sym<=C_FUNCTIONSym||@sym>=C_ENDSELECTSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_APPENDSym||@sym>=C_ASSIGNINGSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_TIMESSym||@sym>=C_OPTIONALSym&&@sym<=C_CHANGESym||@sym>=C_OPENSym&&@sym<=C_GAPSSym||@sym>=C_READSym&&@sym<=C_TRYSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym>=C_ASSOCIATIONSym&&@sym<=C_VARYSym||@sym>=C_TASKSym&&@sym<=C_IFSym||@sym==C_ELSESym||@sym>=C_CLASSSym&&@sym<=C_SECTIONSym||@sym==C_METHODSym||@sym>=C_METHODSSym&&@sym<=C_LASTSym||@sym>=C_BACKSym&&@sym<=C_INTERFACESym||@sym>=C_INTERFACESSym&&@sym<=C_MODULESym||@sym>=C_MULTIPLYSym&&@sym<=C_RETURNINGSym||@sym>=C_CHECKSym&&@sym<=C_LparenSym||@sym>=C_TYPEMinusPOOLSym&&@sym<=C_PointSym||@sym==C_StarSym||@sym==C_TildeSym||@sym>=C_PlusSym&&@sym<=C_WITHSym||@sym==C_MOVEMinusCORRESPONDINGSym||@sym==C_CLASSMinusDATASym||@sym==C_AUTHORITYMinusCHECKSym||@sym==C_SELECTIONMinusSCREENSym||@sym==C_forSym||@sym>=C_returnSym&&@sym<=C_ADDMinusCORRESPONDINGSym||@sym==C_BREAKMinusPOINTSym||@sym>=C_CLASSMinusEVENTSSym&&@sym<=C_CLASSMinusPOOLSym||@sym>=C_DIVIDEMinusCORRESPONDINGSym&&@sym<=C_EDITORMinusCALLSym||@sym>=C_ENDMinusOFMinusPAGESym&&@sym<=C_ENDMinusOFMinusSELECTIONSym||@sym>=C_FIELDMinusGROUPSSym&&@sym<=C_FUNCTIONMinusPOOLSym||@sym==C_INTERFACEMinusPOOLSym||@sym>=C_LOADMinusOFMinusPROGRAMSym&&@sym<=C_NEWMinusLINESym||@sym==C_NEWMinusPAGESym||@sym==C_NEWMinusSECTIONSym||@sym==C_PRINTMinusCONTROLSym||@sym==C_SELECTMinusOPTIONSSym||@sym>=C_SUBTRACTMinusCORRESPONDINGSym&&@sym<=C_TESTMinusINJECTIONSym||@sym==C_TESTMinusSEAMSym||@sym==C_TOPMinusOFMinusPAGESym||@sym==C_TYPEMinusPOOLSSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
             Statement()
 
             stmts += lus+"\n";
@@ -6025,8 +5908,8 @@ class CParser < CRRParser
          exp = lus;
 
          Expect(C_PointSym)
-         if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_TRYSym||@sym>=C_BEFORESym&&@sym<=C_LparenSym||@sym>=C_TYPEMinusPOOLSym&&@sym<=C_PointSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MOVEMinusCORRESPONDINGSym||@sym==C_CLASSMinusDATASym||@sym==C_AUTHORITYMinusCHECKSym||@sym==C_SELECTIONMinusSCREENSym||@sym==C_forSym||@sym>=C_returnSym&&@sym<=C_ADDMinusCORRESPONDINGSym||@sym==C_BREAKMinusPOINTSym||@sym>=C_CLASSMinusEVENTSSym&&@sym<=C_CLASSMinusPOOLSym||@sym>=C_DIVIDEMinusCORRESPONDINGSym&&@sym<=C_EDITORMinusCALLSym||@sym>=C_ENDMinusOFMinusPAGESym&&@sym<=C_ENDMinusOFMinusSELECTIONSym||@sym>=C_FIELDMinusGROUPSSym&&@sym<=C_FUNCTIONMinusPOOLSym||@sym==C_INTERFACEMinusPOOLSym||@sym>=C_LOADMinusOFMinusPROGRAMSym&&@sym<=C_NEWMinusLINESym||@sym==C_NEWMinusPAGESym||@sym==C_NEWMinusSECTIONSym||@sym==C_PRINTMinusCONTROLSym||@sym==C_SELECTMinusOPTIONSSym||@sym>=C_SUBTRACTMinusCORRESPONDINGSym&&@sym<=C_TESTMinusINJECTIONSym||@sym==C_TESTMinusSEAMSym||@sym==C_TOPMinusOFMinusPAGESym||@sym==C_TYPEMinusPOOLSSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
-            while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_TRYSym||@sym>=C_BEFORESym&&@sym<=C_LparenSym||@sym>=C_TYPEMinusPOOLSym&&@sym<=C_PointSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MOVEMinusCORRESPONDINGSym||@sym==C_CLASSMinusDATASym||@sym==C_AUTHORITYMinusCHECKSym||@sym==C_SELECTIONMinusSCREENSym||@sym==C_forSym||@sym>=C_returnSym&&@sym<=C_ADDMinusCORRESPONDINGSym||@sym==C_BREAKMinusPOINTSym||@sym>=C_CLASSMinusEVENTSSym&&@sym<=C_CLASSMinusPOOLSym||@sym>=C_DIVIDEMinusCORRESPONDINGSym&&@sym<=C_EDITORMinusCALLSym||@sym>=C_ENDMinusOFMinusPAGESym&&@sym<=C_ENDMinusOFMinusSELECTIONSym||@sym>=C_FIELDMinusGROUPSSym&&@sym<=C_FUNCTIONMinusPOOLSym||@sym==C_INTERFACEMinusPOOLSym||@sym>=C_LOADMinusOFMinusPROGRAMSym&&@sym<=C_NEWMinusLINESym||@sym==C_NEWMinusPAGESym||@sym==C_NEWMinusSECTIONSym||@sym==C_PRINTMinusCONTROLSym||@sym==C_SELECTMinusOPTIONSSym||@sym>=C_SUBTRACTMinusCORRESPONDINGSym&&@sym<=C_TESTMinusINJECTIONSym||@sym==C_TESTMinusSEAMSym||@sym==C_TOPMinusOFMinusPAGESym||@sym==C_TYPEMinusPOOLSSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
+         if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_MESSAGESym||@sym>=C_CREATESym&&@sym<=C_FUNCTIONSym||@sym>=C_ENDSELECTSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_APPENDSym||@sym>=C_ASSIGNINGSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_TIMESSym||@sym>=C_OPTIONALSym&&@sym<=C_CHANGESym||@sym>=C_OPENSym&&@sym<=C_GAPSSym||@sym>=C_READSym&&@sym<=C_TRYSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym>=C_ASSOCIATIONSym&&@sym<=C_VARYSym||@sym>=C_TASKSym&&@sym<=C_IFSym||@sym==C_ELSESym||@sym>=C_CLASSSym&&@sym<=C_SECTIONSym||@sym==C_METHODSym||@sym>=C_METHODSSym&&@sym<=C_LASTSym||@sym>=C_BACKSym&&@sym<=C_INTERFACESym||@sym>=C_INTERFACESSym&&@sym<=C_MODULESym||@sym>=C_MULTIPLYSym&&@sym<=C_RETURNINGSym||@sym>=C_CHECKSym&&@sym<=C_LparenSym||@sym>=C_TYPEMinusPOOLSym&&@sym<=C_PointSym||@sym==C_StarSym||@sym==C_TildeSym||@sym>=C_PlusSym&&@sym<=C_WITHSym||@sym==C_MOVEMinusCORRESPONDINGSym||@sym==C_CLASSMinusDATASym||@sym==C_AUTHORITYMinusCHECKSym||@sym==C_SELECTIONMinusSCREENSym||@sym==C_forSym||@sym>=C_returnSym&&@sym<=C_ADDMinusCORRESPONDINGSym||@sym==C_BREAKMinusPOINTSym||@sym>=C_CLASSMinusEVENTSSym&&@sym<=C_CLASSMinusPOOLSym||@sym>=C_DIVIDEMinusCORRESPONDINGSym&&@sym<=C_EDITORMinusCALLSym||@sym>=C_ENDMinusOFMinusPAGESym&&@sym<=C_ENDMinusOFMinusSELECTIONSym||@sym>=C_FIELDMinusGROUPSSym&&@sym<=C_FUNCTIONMinusPOOLSym||@sym==C_INTERFACEMinusPOOLSym||@sym>=C_LOADMinusOFMinusPROGRAMSym&&@sym<=C_NEWMinusLINESym||@sym==C_NEWMinusPAGESym||@sym==C_NEWMinusSECTIONSym||@sym==C_PRINTMinusCONTROLSym||@sym==C_SELECTMinusOPTIONSSym||@sym>=C_SUBTRACTMinusCORRESPONDINGSym&&@sym<=C_TESTMinusINJECTIONSym||@sym==C_TESTMinusSEAMSym||@sym==C_TOPMinusOFMinusPAGESym||@sym==C_TYPEMinusPOOLSSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
+            while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_MESSAGESym||@sym>=C_CREATESym&&@sym<=C_FUNCTIONSym||@sym>=C_ENDSELECTSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_APPENDSym||@sym>=C_ASSIGNINGSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_TIMESSym||@sym>=C_OPTIONALSym&&@sym<=C_CHANGESym||@sym>=C_OPENSym&&@sym<=C_GAPSSym||@sym>=C_READSym&&@sym<=C_TRYSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym>=C_ASSOCIATIONSym&&@sym<=C_VARYSym||@sym>=C_TASKSym&&@sym<=C_IFSym||@sym==C_ELSESym||@sym>=C_CLASSSym&&@sym<=C_SECTIONSym||@sym==C_METHODSym||@sym>=C_METHODSSym&&@sym<=C_LASTSym||@sym>=C_BACKSym&&@sym<=C_INTERFACESym||@sym>=C_INTERFACESSym&&@sym<=C_MODULESym||@sym>=C_MULTIPLYSym&&@sym<=C_RETURNINGSym||@sym>=C_CHECKSym&&@sym<=C_LparenSym||@sym>=C_TYPEMinusPOOLSym&&@sym<=C_PointSym||@sym==C_StarSym||@sym==C_TildeSym||@sym>=C_PlusSym&&@sym<=C_WITHSym||@sym==C_MOVEMinusCORRESPONDINGSym||@sym==C_CLASSMinusDATASym||@sym==C_AUTHORITYMinusCHECKSym||@sym==C_SELECTIONMinusSCREENSym||@sym==C_forSym||@sym>=C_returnSym&&@sym<=C_ADDMinusCORRESPONDINGSym||@sym==C_BREAKMinusPOINTSym||@sym>=C_CLASSMinusEVENTSSym&&@sym<=C_CLASSMinusPOOLSym||@sym>=C_DIVIDEMinusCORRESPONDINGSym&&@sym<=C_EDITORMinusCALLSym||@sym>=C_ENDMinusOFMinusPAGESym&&@sym<=C_ENDMinusOFMinusSELECTIONSym||@sym>=C_FIELDMinusGROUPSSym&&@sym<=C_FUNCTIONMinusPOOLSym||@sym==C_INTERFACEMinusPOOLSym||@sym>=C_LOADMinusOFMinusPROGRAMSym&&@sym<=C_NEWMinusLINESym||@sym==C_NEWMinusPAGESym||@sym==C_NEWMinusSECTIONSym||@sym==C_PRINTMinusCONTROLSym||@sym==C_SELECTMinusOPTIONSSym||@sym>=C_SUBTRACTMinusCORRESPONDINGSym&&@sym<=C_TESTMinusINJECTIONSym||@sym==C_TESTMinusSEAMSym||@sym==C_TOPMinusOFMinusPAGESym||@sym==C_TYPEMinusPOOLSSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
                Statement()
 
                stmts += lus;
@@ -6043,8 +5926,8 @@ class CParser < CRRParser
       if @sym==C_ELSESym
          Get()
          Expect(C_PointSym)
-         if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_TRYSym||@sym>=C_BEFORESym&&@sym<=C_LparenSym||@sym>=C_TYPEMinusPOOLSym&&@sym<=C_PointSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MOVEMinusCORRESPONDINGSym||@sym==C_CLASSMinusDATASym||@sym==C_AUTHORITYMinusCHECKSym||@sym==C_SELECTIONMinusSCREENSym||@sym==C_forSym||@sym>=C_returnSym&&@sym<=C_ADDMinusCORRESPONDINGSym||@sym==C_BREAKMinusPOINTSym||@sym>=C_CLASSMinusEVENTSSym&&@sym<=C_CLASSMinusPOOLSym||@sym>=C_DIVIDEMinusCORRESPONDINGSym&&@sym<=C_EDITORMinusCALLSym||@sym>=C_ENDMinusOFMinusPAGESym&&@sym<=C_ENDMinusOFMinusSELECTIONSym||@sym>=C_FIELDMinusGROUPSSym&&@sym<=C_FUNCTIONMinusPOOLSym||@sym==C_INTERFACEMinusPOOLSym||@sym>=C_LOADMinusOFMinusPROGRAMSym&&@sym<=C_NEWMinusLINESym||@sym==C_NEWMinusPAGESym||@sym==C_NEWMinusSECTIONSym||@sym==C_PRINTMinusCONTROLSym||@sym==C_SELECTMinusOPTIONSSym||@sym>=C_SUBTRACTMinusCORRESPONDINGSym&&@sym<=C_TESTMinusINJECTIONSym||@sym==C_TESTMinusSEAMSym||@sym==C_TOPMinusOFMinusPAGESym||@sym==C_TYPEMinusPOOLSSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
-            while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_TRYSym||@sym>=C_BEFORESym&&@sym<=C_LparenSym||@sym>=C_TYPEMinusPOOLSym&&@sym<=C_PointSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MOVEMinusCORRESPONDINGSym||@sym==C_CLASSMinusDATASym||@sym==C_AUTHORITYMinusCHECKSym||@sym==C_SELECTIONMinusSCREENSym||@sym==C_forSym||@sym>=C_returnSym&&@sym<=C_ADDMinusCORRESPONDINGSym||@sym==C_BREAKMinusPOINTSym||@sym>=C_CLASSMinusEVENTSSym&&@sym<=C_CLASSMinusPOOLSym||@sym>=C_DIVIDEMinusCORRESPONDINGSym&&@sym<=C_EDITORMinusCALLSym||@sym>=C_ENDMinusOFMinusPAGESym&&@sym<=C_ENDMinusOFMinusSELECTIONSym||@sym>=C_FIELDMinusGROUPSSym&&@sym<=C_FUNCTIONMinusPOOLSym||@sym==C_INTERFACEMinusPOOLSym||@sym>=C_LOADMinusOFMinusPROGRAMSym&&@sym<=C_NEWMinusLINESym||@sym==C_NEWMinusPAGESym||@sym==C_NEWMinusSECTIONSym||@sym==C_PRINTMinusCONTROLSym||@sym==C_SELECTMinusOPTIONSSym||@sym>=C_SUBTRACTMinusCORRESPONDINGSym&&@sym<=C_TESTMinusINJECTIONSym||@sym==C_TESTMinusSEAMSym||@sym==C_TOPMinusOFMinusPAGESym||@sym==C_TYPEMinusPOOLSSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
+         if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_MESSAGESym||@sym>=C_CREATESym&&@sym<=C_FUNCTIONSym||@sym>=C_ENDSELECTSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_APPENDSym||@sym>=C_ASSIGNINGSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_TIMESSym||@sym>=C_OPTIONALSym&&@sym<=C_CHANGESym||@sym>=C_OPENSym&&@sym<=C_GAPSSym||@sym>=C_READSym&&@sym<=C_TRYSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym>=C_ASSOCIATIONSym&&@sym<=C_VARYSym||@sym>=C_TASKSym&&@sym<=C_IFSym||@sym==C_ELSESym||@sym>=C_CLASSSym&&@sym<=C_SECTIONSym||@sym==C_METHODSym||@sym>=C_METHODSSym&&@sym<=C_LASTSym||@sym>=C_BACKSym&&@sym<=C_INTERFACESym||@sym>=C_INTERFACESSym&&@sym<=C_MODULESym||@sym>=C_MULTIPLYSym&&@sym<=C_RETURNINGSym||@sym>=C_CHECKSym&&@sym<=C_LparenSym||@sym>=C_TYPEMinusPOOLSym&&@sym<=C_PointSym||@sym==C_StarSym||@sym==C_TildeSym||@sym>=C_PlusSym&&@sym<=C_WITHSym||@sym==C_MOVEMinusCORRESPONDINGSym||@sym==C_CLASSMinusDATASym||@sym==C_AUTHORITYMinusCHECKSym||@sym==C_SELECTIONMinusSCREENSym||@sym==C_forSym||@sym>=C_returnSym&&@sym<=C_ADDMinusCORRESPONDINGSym||@sym==C_BREAKMinusPOINTSym||@sym>=C_CLASSMinusEVENTSSym&&@sym<=C_CLASSMinusPOOLSym||@sym>=C_DIVIDEMinusCORRESPONDINGSym&&@sym<=C_EDITORMinusCALLSym||@sym>=C_ENDMinusOFMinusPAGESym&&@sym<=C_ENDMinusOFMinusSELECTIONSym||@sym>=C_FIELDMinusGROUPSSym&&@sym<=C_FUNCTIONMinusPOOLSym||@sym==C_INTERFACEMinusPOOLSym||@sym>=C_LOADMinusOFMinusPROGRAMSym&&@sym<=C_NEWMinusLINESym||@sym==C_NEWMinusPAGESym||@sym==C_NEWMinusSECTIONSym||@sym==C_PRINTMinusCONTROLSym||@sym==C_SELECTMinusOPTIONSSym||@sym>=C_SUBTRACTMinusCORRESPONDINGSym&&@sym<=C_TESTMinusINJECTIONSym||@sym==C_TESTMinusSEAMSym||@sym==C_TOPMinusOFMinusPAGESym||@sym==C_TYPEMinusPOOLSSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
+            while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_MESSAGESym||@sym>=C_CREATESym&&@sym<=C_FUNCTIONSym||@sym>=C_ENDSELECTSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_APPENDSym||@sym>=C_ASSIGNINGSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_TIMESSym||@sym>=C_OPTIONALSym&&@sym<=C_CHANGESym||@sym>=C_OPENSym&&@sym<=C_GAPSSym||@sym>=C_READSym&&@sym<=C_TRYSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym>=C_ASSOCIATIONSym&&@sym<=C_VARYSym||@sym>=C_TASKSym&&@sym<=C_IFSym||@sym==C_ELSESym||@sym>=C_CLASSSym&&@sym<=C_SECTIONSym||@sym==C_METHODSym||@sym>=C_METHODSSym&&@sym<=C_LASTSym||@sym>=C_BACKSym&&@sym<=C_INTERFACESym||@sym>=C_INTERFACESSym&&@sym<=C_MODULESym||@sym>=C_MULTIPLYSym&&@sym<=C_RETURNINGSym||@sym>=C_CHECKSym&&@sym<=C_LparenSym||@sym>=C_TYPEMinusPOOLSym&&@sym<=C_PointSym||@sym==C_StarSym||@sym==C_TildeSym||@sym>=C_PlusSym&&@sym<=C_WITHSym||@sym==C_MOVEMinusCORRESPONDINGSym||@sym==C_CLASSMinusDATASym||@sym==C_AUTHORITYMinusCHECKSym||@sym==C_SELECTIONMinusSCREENSym||@sym==C_forSym||@sym>=C_returnSym&&@sym<=C_ADDMinusCORRESPONDINGSym||@sym==C_BREAKMinusPOINTSym||@sym>=C_CLASSMinusEVENTSSym&&@sym<=C_CLASSMinusPOOLSym||@sym>=C_DIVIDEMinusCORRESPONDINGSym&&@sym<=C_EDITORMinusCALLSym||@sym>=C_ENDMinusOFMinusPAGESym&&@sym<=C_ENDMinusOFMinusSELECTIONSym||@sym>=C_FIELDMinusGROUPSSym&&@sym<=C_FUNCTIONMinusPOOLSym||@sym==C_INTERFACEMinusPOOLSym||@sym>=C_LOADMinusOFMinusPROGRAMSym&&@sym<=C_NEWMinusLINESym||@sym==C_NEWMinusPAGESym||@sym==C_NEWMinusSECTIONSym||@sym==C_PRINTMinusCONTROLSym||@sym==C_SELECTMinusOPTIONSSym||@sym>=C_SUBTRACTMinusCORRESPONDINGSym&&@sym<=C_TESTMinusINJECTIONSym||@sym==C_TESTMinusSEAMSym||@sym==C_TOPMinusOFMinusPAGESym||@sym==C_TYPEMinusPOOLSSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
                Statement()
 
                stmts += lus;
@@ -6078,7 +5961,7 @@ class CParser < CRRParser
 
       replace_src("return");
 
-      if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
+      if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
          Expression()
       end
 
@@ -6104,7 +5987,7 @@ class CParser < CRRParser
       end
 
       Expect(C_PointSym)
-      while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_TRYSym||@sym>=C_BEFORESym&&@sym<=C_LparenSym||@sym>=C_TYPEMinusPOOLSym&&@sym<=C_PointSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MOVEMinusCORRESPONDINGSym||@sym==C_CLASSMinusDATASym||@sym==C_AUTHORITYMinusCHECKSym||@sym==C_SELECTIONMinusSCREENSym||@sym==C_forSym||@sym>=C_returnSym&&@sym<=C_ADDMinusCORRESPONDINGSym||@sym==C_BREAKMinusPOINTSym||@sym>=C_CLASSMinusEVENTSSym&&@sym<=C_CLASSMinusPOOLSym||@sym>=C_DIVIDEMinusCORRESPONDINGSym&&@sym<=C_EDITORMinusCALLSym||@sym>=C_ENDMinusOFMinusPAGESym&&@sym<=C_ENDMinusOFMinusSELECTIONSym||@sym>=C_FIELDMinusGROUPSSym&&@sym<=C_FUNCTIONMinusPOOLSym||@sym==C_INTERFACEMinusPOOLSym||@sym>=C_LOADMinusOFMinusPROGRAMSym&&@sym<=C_NEWMinusLINESym||@sym==C_NEWMinusPAGESym||@sym==C_NEWMinusSECTIONSym||@sym==C_PRINTMinusCONTROLSym||@sym==C_SELECTMinusOPTIONSSym||@sym>=C_SUBTRACTMinusCORRESPONDINGSym&&@sym<=C_TESTMinusINJECTIONSym||@sym==C_TESTMinusSEAMSym||@sym==C_TOPMinusOFMinusPAGESym||@sym==C_TYPEMinusPOOLSSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
+      while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_MESSAGESym||@sym>=C_CREATESym&&@sym<=C_FUNCTIONSym||@sym>=C_ENDSELECTSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_APPENDSym||@sym>=C_ASSIGNINGSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_TIMESSym||@sym>=C_OPTIONALSym&&@sym<=C_CHANGESym||@sym>=C_OPENSym&&@sym<=C_GAPSSym||@sym>=C_READSym&&@sym<=C_TRYSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym>=C_ASSOCIATIONSym&&@sym<=C_VARYSym||@sym>=C_TASKSym&&@sym<=C_IFSym||@sym==C_ELSESym||@sym>=C_CLASSSym&&@sym<=C_SECTIONSym||@sym==C_METHODSym||@sym>=C_METHODSSym&&@sym<=C_LASTSym||@sym>=C_BACKSym&&@sym<=C_INTERFACESym||@sym>=C_INTERFACESSym&&@sym<=C_MODULESym||@sym>=C_MULTIPLYSym&&@sym<=C_RETURNINGSym||@sym>=C_CHECKSym&&@sym<=C_LparenSym||@sym>=C_TYPEMinusPOOLSym&&@sym<=C_PointSym||@sym==C_StarSym||@sym==C_TildeSym||@sym>=C_PlusSym&&@sym<=C_WITHSym||@sym==C_MOVEMinusCORRESPONDINGSym||@sym==C_CLASSMinusDATASym||@sym==C_AUTHORITYMinusCHECKSym||@sym==C_SELECTIONMinusSCREENSym||@sym==C_forSym||@sym>=C_returnSym&&@sym<=C_ADDMinusCORRESPONDINGSym||@sym==C_BREAKMinusPOINTSym||@sym>=C_CLASSMinusEVENTSSym&&@sym<=C_CLASSMinusPOOLSym||@sym>=C_DIVIDEMinusCORRESPONDINGSym&&@sym<=C_EDITORMinusCALLSym||@sym>=C_ENDMinusOFMinusPAGESym&&@sym<=C_ENDMinusOFMinusSELECTIONSym||@sym>=C_FIELDMinusGROUPSSym&&@sym<=C_FUNCTIONMinusPOOLSym||@sym==C_INTERFACEMinusPOOLSym||@sym>=C_LOADMinusOFMinusPROGRAMSym&&@sym<=C_NEWMinusLINESym||@sym==C_NEWMinusPAGESym||@sym==C_NEWMinusSECTIONSym||@sym==C_PRINTMinusCONTROLSym||@sym==C_SELECTMinusOPTIONSSym||@sym>=C_SUBTRACTMinusCORRESPONDINGSym&&@sym<=C_TESTMinusINJECTIONSym||@sym==C_TESTMinusSEAMSym||@sym==C_TOPMinusOFMinusPAGESym||@sym==C_TYPEMinusPOOLSSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
          Statement()
       end
 
@@ -6120,8 +6003,8 @@ class CParser < CRRParser
 
       if @sym==C_ATSym
          Get()
-         if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
-            if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
+         if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
+            if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
                Expression()
 
                params[:at]=lus;
@@ -6155,7 +6038,7 @@ class CParser < CRRParser
                      Expect(C_FIELDSSym)
 
                   else
-                     GenError(762)
+                     GenError(765)
 
                   end
 
@@ -6172,7 +6055,7 @@ class CParser < CRRParser
                         Expect(C_identifierSym)
                         Expect(C_RparenSym)
                      else
-                        GenError(763)
+                        GenError(766)
                      end
 
                   end
@@ -6207,7 +6090,7 @@ class CParser < CRRParser
                   end
 
                else
-                  GenError(764)
+                  GenError(767)
                end
 
             end
@@ -6241,7 +6124,7 @@ class CParser < CRRParser
                   Expect(C_FIELDSSym)
 
                else
-                  GenError(765)
+                  GenError(768)
 
                end
 
@@ -6260,7 +6143,7 @@ class CParser < CRRParser
                   Expect(C_INTOSym)
                   Expect(C_identifierSym)
                else
-                  GenError(766)
+                  GenError(769)
                end
 
             end
@@ -6270,7 +6153,7 @@ class CParser < CRRParser
       end
 
       Expect(C_PointSym)
-      while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_TRYSym||@sym>=C_BEFORESym&&@sym<=C_LparenSym||@sym>=C_TYPEMinusPOOLSym&&@sym<=C_PointSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MOVEMinusCORRESPONDINGSym||@sym==C_CLASSMinusDATASym||@sym==C_AUTHORITYMinusCHECKSym||@sym==C_SELECTIONMinusSCREENSym||@sym==C_forSym||@sym>=C_returnSym&&@sym<=C_ADDMinusCORRESPONDINGSym||@sym==C_BREAKMinusPOINTSym||@sym>=C_CLASSMinusEVENTSSym&&@sym<=C_CLASSMinusPOOLSym||@sym>=C_DIVIDEMinusCORRESPONDINGSym&&@sym<=C_EDITORMinusCALLSym||@sym>=C_ENDMinusOFMinusPAGESym&&@sym<=C_ENDMinusOFMinusSELECTIONSym||@sym>=C_FIELDMinusGROUPSSym&&@sym<=C_FUNCTIONMinusPOOLSym||@sym==C_INTERFACEMinusPOOLSym||@sym>=C_LOADMinusOFMinusPROGRAMSym&&@sym<=C_NEWMinusLINESym||@sym==C_NEWMinusPAGESym||@sym==C_NEWMinusSECTIONSym||@sym==C_PRINTMinusCONTROLSym||@sym==C_SELECTMinusOPTIONSSym||@sym>=C_SUBTRACTMinusCORRESPONDINGSym&&@sym<=C_TESTMinusINJECTIONSym||@sym==C_TESTMinusSEAMSym||@sym==C_TOPMinusOFMinusPAGESym||@sym==C_TYPEMinusPOOLSSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
+      while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_MESSAGESym||@sym>=C_CREATESym&&@sym<=C_FUNCTIONSym||@sym>=C_ENDSELECTSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_APPENDSym||@sym>=C_ASSIGNINGSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_TIMESSym||@sym>=C_OPTIONALSym&&@sym<=C_CHANGESym||@sym>=C_OPENSym&&@sym<=C_GAPSSym||@sym>=C_READSym&&@sym<=C_TRYSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym>=C_ASSOCIATIONSym&&@sym<=C_VARYSym||@sym>=C_TASKSym&&@sym<=C_IFSym||@sym==C_ELSESym||@sym>=C_CLASSSym&&@sym<=C_SECTIONSym||@sym==C_METHODSym||@sym>=C_METHODSSym&&@sym<=C_LASTSym||@sym>=C_BACKSym&&@sym<=C_INTERFACESym||@sym>=C_INTERFACESSym&&@sym<=C_MODULESym||@sym>=C_MULTIPLYSym&&@sym<=C_RETURNINGSym||@sym>=C_CHECKSym&&@sym<=C_LparenSym||@sym>=C_TYPEMinusPOOLSym&&@sym<=C_PointSym||@sym==C_StarSym||@sym==C_TildeSym||@sym>=C_PlusSym&&@sym<=C_WITHSym||@sym==C_MOVEMinusCORRESPONDINGSym||@sym==C_CLASSMinusDATASym||@sym==C_AUTHORITYMinusCHECKSym||@sym==C_SELECTIONMinusSCREENSym||@sym==C_forSym||@sym>=C_returnSym&&@sym<=C_ADDMinusCORRESPONDINGSym||@sym==C_BREAKMinusPOINTSym||@sym>=C_CLASSMinusEVENTSSym&&@sym<=C_CLASSMinusPOOLSym||@sym>=C_DIVIDEMinusCORRESPONDINGSym&&@sym<=C_EDITORMinusCALLSym||@sym>=C_ENDMinusOFMinusPAGESym&&@sym<=C_ENDMinusOFMinusSELECTIONSym||@sym>=C_FIELDMinusGROUPSSym&&@sym<=C_FUNCTIONMinusPOOLSym||@sym==C_INTERFACEMinusPOOLSym||@sym>=C_LOADMinusOFMinusPROGRAMSym&&@sym<=C_NEWMinusLINESym||@sym==C_NEWMinusPAGESym||@sym==C_NEWMinusSECTIONSym||@sym==C_PRINTMinusCONTROLSym||@sym==C_SELECTMinusOPTIONSSym||@sym>=C_SUBTRACTMinusCORRESPONDINGSym&&@sym<=C_TESTMinusINJECTIONSym||@sym==C_TESTMinusSEAMSym||@sym==C_TOPMinusOFMinusPAGESym||@sym==C_TYPEMinusPOOLSSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
          Statement()
 
          stmts += lus+"\n";
@@ -6299,7 +6182,7 @@ class CParser < CRRParser
 
          re("when");ar=[];
 
-         if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
+         if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
             Expression()
 
             ar.push(lus);
@@ -6322,13 +6205,13 @@ class CParser < CRRParser
                re("", "else");
 
             else
-               GenError(767)
+               GenError(770)
             end
 
          end
 
          Expect(C_PointSym)
-         while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_TRYSym||@sym>=C_BEFORESym&&@sym<=C_LparenSym||@sym>=C_TYPEMinusPOOLSym&&@sym<=C_PointSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MOVEMinusCORRESPONDINGSym||@sym==C_CLASSMinusDATASym||@sym==C_AUTHORITYMinusCHECKSym||@sym==C_SELECTIONMinusSCREENSym||@sym==C_forSym||@sym>=C_returnSym&&@sym<=C_ADDMinusCORRESPONDINGSym||@sym==C_BREAKMinusPOINTSym||@sym>=C_CLASSMinusEVENTSSym&&@sym<=C_CLASSMinusPOOLSym||@sym>=C_DIVIDEMinusCORRESPONDINGSym&&@sym<=C_EDITORMinusCALLSym||@sym>=C_ENDMinusOFMinusPAGESym&&@sym<=C_ENDMinusOFMinusSELECTIONSym||@sym>=C_FIELDMinusGROUPSSym&&@sym<=C_FUNCTIONMinusPOOLSym||@sym==C_INTERFACEMinusPOOLSym||@sym>=C_LOADMinusOFMinusPROGRAMSym&&@sym<=C_NEWMinusLINESym||@sym==C_NEWMinusPAGESym||@sym==C_NEWMinusSECTIONSym||@sym==C_PRINTMinusCONTROLSym||@sym==C_SELECTMinusOPTIONSSym||@sym>=C_SUBTRACTMinusCORRESPONDINGSym&&@sym<=C_TESTMinusINJECTIONSym||@sym==C_TESTMinusSEAMSym||@sym==C_TOPMinusOFMinusPAGESym||@sym==C_TYPEMinusPOOLSSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
+         while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_MESSAGESym||@sym>=C_CREATESym&&@sym<=C_FUNCTIONSym||@sym>=C_ENDSELECTSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_APPENDSym||@sym>=C_ASSIGNINGSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_TIMESSym||@sym>=C_OPTIONALSym&&@sym<=C_CHANGESym||@sym>=C_OPENSym&&@sym<=C_GAPSSym||@sym>=C_READSym&&@sym<=C_TRYSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym>=C_ASSOCIATIONSym&&@sym<=C_VARYSym||@sym>=C_TASKSym&&@sym<=C_IFSym||@sym==C_ELSESym||@sym>=C_CLASSSym&&@sym<=C_SECTIONSym||@sym==C_METHODSym||@sym>=C_METHODSSym&&@sym<=C_LASTSym||@sym>=C_BACKSym&&@sym<=C_INTERFACESym||@sym>=C_INTERFACESSym&&@sym<=C_MODULESym||@sym>=C_MULTIPLYSym&&@sym<=C_RETURNINGSym||@sym>=C_CHECKSym&&@sym<=C_LparenSym||@sym>=C_TYPEMinusPOOLSym&&@sym<=C_PointSym||@sym==C_StarSym||@sym==C_TildeSym||@sym>=C_PlusSym&&@sym<=C_WITHSym||@sym==C_MOVEMinusCORRESPONDINGSym||@sym==C_CLASSMinusDATASym||@sym==C_AUTHORITYMinusCHECKSym||@sym==C_SELECTIONMinusSCREENSym||@sym==C_forSym||@sym>=C_returnSym&&@sym<=C_ADDMinusCORRESPONDINGSym||@sym==C_BREAKMinusPOINTSym||@sym>=C_CLASSMinusEVENTSSym&&@sym<=C_CLASSMinusPOOLSym||@sym>=C_DIVIDEMinusCORRESPONDINGSym&&@sym<=C_EDITORMinusCALLSym||@sym>=C_ENDMinusOFMinusPAGESym&&@sym<=C_ENDMinusOFMinusSELECTIONSym||@sym>=C_FIELDMinusGROUPSSym&&@sym<=C_FUNCTIONMinusPOOLSym||@sym==C_INTERFACEMinusPOOLSym||@sym>=C_LOADMinusOFMinusPROGRAMSym&&@sym<=C_NEWMinusLINESym||@sym==C_NEWMinusPAGESym||@sym==C_NEWMinusSECTIONSym||@sym==C_PRINTMinusCONTROLSym||@sym==C_SELECTMinusOPTIONSSym||@sym>=C_SUBTRACTMinusCORRESPONDINGSym&&@sym<=C_TESTMinusINJECTIONSym||@sym==C_TESTMinusSEAMSym||@sym==C_TOPMinusOFMinusPAGESym||@sym==C_TYPEMinusPOOLSSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
             Statement()
          end
 
@@ -6392,7 +6275,6 @@ class CParser < CRRParser
          C_PARAMETERSSym,
          C_TARGETSym,
          C_MESSAGESym,
-         C_ENDSym,
          C_CREATESym,
          C_KEYSym,
          C_IDSym,
@@ -6439,7 +6321,6 @@ class CParser < CRRParser
          C_INTOSym,
          C_APPENDINGSym,
          C_CORRESPONDINGSym,
-         C_TABLESym,
          C_PACKAGESym,
          C_SIZESym,
          C_SELECTSym,
@@ -6467,7 +6348,6 @@ class CParser < CRRParser
          C_BYPASSINGSym,
          C_BUFFERSym,
          C_CONNECTIONSym,
-         C_WITHSym,
          C_ENDWITHSym,
          C_TABLESSym,
          C_MOVESym,
@@ -6477,8 +6357,6 @@ class CParser < CRRParser
          C_NESTEDSym,
          C_KEEPINGSym,
          C_APPENDSym,
-         C_INITIALSym,
-         C_LINESym,
          C_ASSIGNINGSym,
          C_CASTINGSym,
          C_REFERENCESym,
@@ -6498,14 +6376,12 @@ class CParser < CRRParser
          C_MARKSym,
          C_RAISESym,
          C_EVENTSym,
-         C_EXPORTINGSym,
          C_RESUMABLESym,
          C_EXCEPTIONSym,
          C_NUMBERSym,
          C_DISPLAYSym,
          C_LIKESym,
          C_RAISINGSym,
-         C_INDEXSym,
          C_TEXTSym,
          C_MEMBERSSym,
          C_LOOPSym,
@@ -6514,7 +6390,6 @@ class CParser < CRRParser
          C_ENDLOOPSym,
          C_LOBSym,
          C_HANDLESym,
-         C_HASHEDSym,
          C_EMPTYSym,
          C_HEADERSym,
          C_UNIQUESym,
@@ -6656,8 +6531,6 @@ class CParser < CRRParser
          C_DESTINATIONSym,
          C_CALLINGSym,
          C_PERFORMINGSym,
-         C_IMPORTINGSym,
-         C_CHANGINGSym,
          C_IFSym,
          C_ELSEIFSym,
          C_ELSESym,
@@ -6689,13 +6562,11 @@ class CParser < CRRParser
          C_SECTIONSym,
          C_ENDCLASSSym,
          C_ENDMETHODSym,
-         C_ANYSym,
          C_METHODSSym,
          C_REDEFINITIONSym,
          C_IGNORESym,
          C_FAILSym,
          C_PREFERREDSym,
-         C_RETURNINGSym,
          C_ADDSym,
          C_THENSym,
          C_UNTILSym,
@@ -6715,7 +6586,6 @@ class CParser < CRRParser
          C_CALLSym,
          C_SKIPSym,
          C_PROCEDURESym,
-         C_RECEIVINGSym,
          C_FLUSHSym,
          C_OPTIONSSym,
          C_MESSAGESSym,
@@ -6916,18 +6786,24 @@ class CParser < CRRParser
          C_REQUESTEDSym,
          C_REFSym,
          C_SORTEDSym,
-         C_STANDARDSym,
          C_EDITSym,
          C_NODESym,
          C_ALLSym,
          C_OTHERSym,
+         C_INITIALSym,
+         C_EXPORTINGSym,
+         C_HASHEDSym,
          C_RANGESym,
+         C_IMPORTINGSym,
+         C_RETURNINGSym,
          C_CHECKSym,
          C_LparenSym,
          C_TYPEMinusPOOLSym,
          C_StarSym,
          C_TildeSym,
+         C_TABLESym,
          C_PlusSym,
+         C_WITHSym,
          C_MOVEMinusCORRESPONDINGSym,
          C_CLASSMinusDATASym,
          C_AUTHORITYMinusCHECKSym,
@@ -6970,7 +6846,7 @@ class CParser < CRRParser
          CallTransformation()
 
       else
-         GenError(768)
+         GenError(771)
 
       end
 
@@ -6998,7 +6874,7 @@ class CParser < CRRParser
       src("")
       in_scope("Method");
 
-      while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_TRYSym||@sym>=C_BEFORESym&&@sym<=C_LparenSym||@sym>=C_TYPEMinusPOOLSym&&@sym<=C_PointSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MOVEMinusCORRESPONDINGSym||@sym==C_CLASSMinusDATASym||@sym==C_AUTHORITYMinusCHECKSym||@sym==C_SELECTIONMinusSCREENSym||@sym==C_forSym||@sym>=C_returnSym&&@sym<=C_ADDMinusCORRESPONDINGSym||@sym==C_BREAKMinusPOINTSym||@sym>=C_CLASSMinusEVENTSSym&&@sym<=C_CLASSMinusPOOLSym||@sym>=C_DIVIDEMinusCORRESPONDINGSym&&@sym<=C_EDITORMinusCALLSym||@sym>=C_ENDMinusOFMinusPAGESym&&@sym<=C_ENDMinusOFMinusSELECTIONSym||@sym>=C_FIELDMinusGROUPSSym&&@sym<=C_FUNCTIONMinusPOOLSym||@sym==C_INTERFACEMinusPOOLSym||@sym>=C_LOADMinusOFMinusPROGRAMSym&&@sym<=C_NEWMinusLINESym||@sym==C_NEWMinusPAGESym||@sym==C_NEWMinusSECTIONSym||@sym==C_PRINTMinusCONTROLSym||@sym==C_SELECTMinusOPTIONSSym||@sym>=C_SUBTRACTMinusCORRESPONDINGSym&&@sym<=C_TESTMinusINJECTIONSym||@sym==C_TESTMinusSEAMSym||@sym==C_TOPMinusOFMinusPAGESym||@sym==C_TYPEMinusPOOLSSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
+      while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_MESSAGESym||@sym>=C_CREATESym&&@sym<=C_FUNCTIONSym||@sym>=C_ENDSELECTSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_APPENDSym||@sym>=C_ASSIGNINGSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_TIMESSym||@sym>=C_OPTIONALSym&&@sym<=C_CHANGESym||@sym>=C_OPENSym&&@sym<=C_GAPSSym||@sym>=C_READSym&&@sym<=C_TRYSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym>=C_ASSOCIATIONSym&&@sym<=C_VARYSym||@sym>=C_TASKSym&&@sym<=C_IFSym||@sym==C_ELSESym||@sym>=C_CLASSSym&&@sym<=C_SECTIONSym||@sym==C_METHODSym||@sym>=C_METHODSSym&&@sym<=C_LASTSym||@sym>=C_BACKSym&&@sym<=C_INTERFACESym||@sym>=C_INTERFACESSym&&@sym<=C_MODULESym||@sym>=C_MULTIPLYSym&&@sym<=C_RETURNINGSym||@sym>=C_CHECKSym&&@sym<=C_LparenSym||@sym>=C_TYPEMinusPOOLSym&&@sym<=C_PointSym||@sym==C_StarSym||@sym==C_TildeSym||@sym>=C_PlusSym&&@sym<=C_WITHSym||@sym==C_MOVEMinusCORRESPONDINGSym||@sym==C_CLASSMinusDATASym||@sym==C_AUTHORITYMinusCHECKSym||@sym==C_SELECTIONMinusSCREENSym||@sym==C_forSym||@sym>=C_returnSym&&@sym<=C_ADDMinusCORRESPONDINGSym||@sym==C_BREAKMinusPOINTSym||@sym>=C_CLASSMinusEVENTSSym&&@sym<=C_CLASSMinusPOOLSym||@sym>=C_DIVIDEMinusCORRESPONDINGSym&&@sym<=C_EDITORMinusCALLSym||@sym>=C_ENDMinusOFMinusPAGESym&&@sym<=C_ENDMinusOFMinusSELECTIONSym||@sym>=C_FIELDMinusGROUPSSym&&@sym<=C_FUNCTIONMinusPOOLSym||@sym==C_INTERFACEMinusPOOLSym||@sym>=C_LOADMinusOFMinusPROGRAMSym&&@sym<=C_NEWMinusLINESym||@sym==C_NEWMinusPAGESym||@sym==C_NEWMinusSECTIONSym||@sym==C_PRINTMinusCONTROLSym||@sym==C_SELECTMinusOPTIONSSym||@sym>=C_SUBTRACTMinusCORRESPONDINGSym&&@sym<=C_TESTMinusINJECTIONSym||@sym==C_TESTMinusSEAMSym||@sym==C_TOPMinusOFMinusPAGESym||@sym==C_TYPEMinusPOOLSSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
          Statement()
       end
 
@@ -7026,7 +6902,7 @@ class CParser < CRRParser
             static=true;
 
          else
-            GenError(769)
+            GenError(772)
          end
 
       end
@@ -7052,7 +6928,7 @@ class CParser < CRRParser
             if @sym==C_FINALSym
                Get()
             else
-               GenError(770)
+               GenError(773)
             end
 
          end
@@ -7070,7 +6946,7 @@ class CParser < CRRParser
 
             Expect(C_REDEFINITIONSym)
          else
-            if @sym==C_DEFAULTSym||@sym==C_EXCEPTIONSSym||@sym==C_EXPORTINGSym||@sym==C_RAISINGSym||@sym>=C_IMPORTINGSym&&@sym<=C_CHANGINGSym||@sym==C_RETURNINGSym||@sym==C_PointSym
+            if @sym==C_DEFAULTSym||@sym==C_EXCEPTIONSSym||@sym==C_RAISINGSym||@sym==C_EXPORTINGSym||@sym>=C_IMPORTINGSym&&@sym<=C_RETURNINGSym||@sym==C_PointSym||@sym==C_CHANGINGSym
                if @sym==C_DEFAULTSym
                   Get()
                   if @sym==C_IGNORESym
@@ -7079,7 +6955,7 @@ class CParser < CRRParser
                      if @sym==C_FAILSym
                         Get()
                      else
-                        GenError(771)
+                        GenError(774)
                      end
 
                   end
@@ -7124,7 +7000,7 @@ class CParser < CRRParser
                               impar.push(prevString.downcase);
 
                            else
-                              GenError(772)
+                              GenError(775)
                            end
 
                         end
@@ -7140,7 +7016,7 @@ class CParser < CRRParser
                               Get()
                               Expression()
                            else
-                              GenError(773)
+                              GenError(776)
                            end
 
                         end
@@ -7162,7 +7038,7 @@ class CParser < CRRParser
 
                   exporting = [];
 
-                  while (@sym==C_identifierSym||@sym==C_VALUESym||@sym==C_TYPESym||@sym==C_REFERENCESym||@sym==C_LIKESym)
+                  while (@sym==C_identifierSym||@sym==C_VALUESym||@sym==C_REFERENCESym||@sym==C_LIKESym||@sym==C_TYPESym)
                      while (@sym==C_identifierSym||@sym==C_VALUESym||@sym==C_REFERENCESym)
                         if @sym==C_VALUESym
                            Get()
@@ -7188,7 +7064,7 @@ class CParser < CRRParser
                                  exporting.push(prevString);
 
                               else
-                                 GenError(774)
+                                 GenError(777)
                               end
 
                            end
@@ -7220,7 +7096,7 @@ class CParser < CRRParser
                            if @sym==C_identifierSym
                               Get()
                            else
-                              GenError(775)
+                              GenError(778)
                            end
 
                         end
@@ -7236,7 +7112,7 @@ class CParser < CRRParser
                               Get()
                               Expression()
                            else
-                              GenError(776)
+                              GenError(779)
                            end
 
                         end
@@ -7272,7 +7148,7 @@ class CParser < CRRParser
                            if @sym==C_identifierSym
                               Get()
                            else
-                              GenError(777)
+                              GenError(780)
                            end
 
                         end
@@ -7287,7 +7163,7 @@ class CParser < CRRParser
                               if @sym==C_identifierSym
                                  Get()
                               else
-                                 GenError(778)
+                                 GenError(781)
                               end
 
                            end
@@ -7308,7 +7184,7 @@ class CParser < CRRParser
                         end
 
                      else
-                        GenError(779)
+                        GenError(782)
                      end
 
                   end
@@ -7373,7 +7249,7 @@ class CParser < CRRParser
             else
                if @sym==C_identifierSym
                   Get()
-                  if @sym==C_TYPESym||@sym==C_LparenSym
+                  if @sym==C_LparenSym||@sym==C_TYPESym
                      if @sym==C_LparenSym
                         Get()
                         Expect(C_identifierSym)
@@ -7383,7 +7259,7 @@ class CParser < CRRParser
                            Get()
                            Expect(C_identifierSym)
                         else
-                           GenError(780)
+                           GenError(783)
                         end
 
                      end
@@ -7391,7 +7267,7 @@ class CParser < CRRParser
                   end
 
                else
-                  GenError(781)
+                  GenError(784)
                end
 
             end
@@ -7401,7 +7277,7 @@ class CParser < CRRParser
       end
 
       if @sym==C_INTOSym||@sym==C_DISPLAYSym||@sym==C_RAISINGSym
-         if @sym==C_WITHSym||@sym==C_DISPLAYSym||@sym==C_RAISINGSym||@sym==C_PointSym
+         if @sym==C_DISPLAYSym||@sym==C_RAISINGSym||@sym==C_PointSym||@sym==C_WITHSym
             if @sym==C_DISPLAYSym
                Get()
                Expect(C_LIKESym)
@@ -7418,7 +7294,7 @@ class CParser < CRRParser
                Get()
                Name()
             else
-               GenError(782)
+               GenError(785)
             end
 
          end
@@ -7451,7 +7327,7 @@ class CParser < CRRParser
             if @sym==C_BYTESym
                Get()
             else
-               GenError(783)
+               GenError(786)
             end
 
          end
@@ -7493,7 +7369,7 @@ class CParser < CRRParser
          Get()
          Expect(C_LINESym)
       else
-         if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_LINESym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
+         if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_OTHERSym||@sym>=C_EXPORTINGSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
             Expression()
 
             #'LINES' or idf;
@@ -7523,7 +7399,7 @@ class CParser < CRRParser
             end
 
          else
-            GenError(784)
+            GenError(787)
          end
 
       end
@@ -7558,7 +7434,7 @@ class CParser < CRRParser
                Expect(C_INTOSym)
                Expect(C_identifierSym)
             else
-               GenError(785)
+               GenError(788)
             end
 
          end
@@ -7592,7 +7468,7 @@ class CParser < CRRParser
             end
 
          else
-            GenError(786)
+            GenError(789)
          end
 
       end
@@ -7606,7 +7482,7 @@ class CParser < CRRParser
                if @sym==C_BYTESym
                   Get()
                else
-                  GenError(787)
+                  GenError(790)
                end
 
             end
@@ -7627,7 +7503,7 @@ class CParser < CRRParser
          if @sym==C_EXPORTINGSym
             Get()
             Expression()
-            while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
+            while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
                Expression()
             end
 
@@ -7655,7 +7531,7 @@ class CParser < CRRParser
                         Expect(C_identifierSym)
                         Expect(C_RparenSym)
                      else
-                        if @sym>=EOF_Sym&&@sym<=C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_TARGETSym||@sym>=C_ENDSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_LparenSym||@sym>=C_TYPEMinusPOOLSym&&@sym<=C_PointSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MOVEMinusCORRESPONDINGSym||@sym==C_CLASSMinusDATASym||@sym==C_AUTHORITYMinusCHECKSym||@sym==C_SELECTIONMinusSCREENSym||@sym==C_forSym||@sym>=C_returnSym&&@sym<=C_ADDMinusCORRESPONDINGSym||@sym==C_BREAKMinusPOINTSym||@sym>=C_CLASSMinusEVENTSSym&&@sym<=C_CLASSMinusPOOLSym||@sym>=C_DIVIDEMinusCORRESPONDINGSym&&@sym<=C_EDITORMinusCALLSym||@sym>=C_ENDMinusOFMinusPAGESym&&@sym<=C_ENDMinusOFMinusSELECTIONSym||@sym>=C_FIELDMinusGROUPSSym&&@sym<=C_FUNCTIONMinusPOOLSym||@sym==C_INTERFACEMinusPOOLSym||@sym>=C_LOADMinusOFMinusPROGRAMSym&&@sym<=C_NEWMinusLINESym||@sym==C_NEWMinusPAGESym||@sym==C_NEWMinusSECTIONSym||@sym==C_PRINTMinusCONTROLSym||@sym==C_SELECTMinusOPTIONSSym||@sym>=C_SUBTRACTMinusCORRESPONDINGSym&&@sym<=C_TOPMinusOFMinusPAGESym||@sym==C_TYPEMinusPOOLSSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
+                        if @sym>=EOF_Sym&&@sym<=C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_TARGETSym||@sym>=C_CREATESym&&@sym<=C_APPENDSym||@sym>=C_ASSIGNINGSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_ENDMETHODSym||@sym>=C_METHODSSym&&@sym<=C_RETURNINGSym||@sym>=C_CHECKSym&&@sym<=C_LparenSym||@sym>=C_TYPEMinusPOOLSym&&@sym<=C_PointSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_TABLESym||@sym>=C_PlusSym&&@sym<=C_WITHSym||@sym==C_MOVEMinusCORRESPONDINGSym||@sym==C_CLASSMinusDATASym||@sym==C_AUTHORITYMinusCHECKSym||@sym==C_SELECTIONMinusSCREENSym||@sym==C_forSym||@sym>=C_returnSym&&@sym<=C_ADDMinusCORRESPONDINGSym||@sym==C_BREAKMinusPOINTSym||@sym>=C_CLASSMinusEVENTSSym&&@sym<=C_CLASSMinusPOOLSym||@sym>=C_DIVIDEMinusCORRESPONDINGSym&&@sym<=C_EDITORMinusCALLSym||@sym>=C_ENDMinusOFMinusPAGESym&&@sym<=C_ENDMinusOFMinusSELECTIONSym||@sym>=C_FIELDMinusGROUPSSym&&@sym<=C_FUNCTIONMinusPOOLSym||@sym==C_INTERFACEMinusPOOLSym||@sym>=C_LOADMinusOFMinusPROGRAMSym&&@sym<=C_NEWMinusLINESym||@sym==C_NEWMinusPAGESym||@sym==C_NEWMinusSECTIONSym||@sym==C_PRINTMinusCONTROLSym||@sym==C_SELECTMinusOPTIONSSym||@sym>=C_SUBTRACTMinusCORRESPONDINGSym&&@sym<=C_TOPMinusOFMinusPAGESym||@sym==C_TYPEMinusPOOLSSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
                            while (@sym==C_IDSym)
                               Get()
                               Expect(C_identifierSym)
@@ -7675,7 +7551,7 @@ class CParser < CRRParser
                            end
 
                         else
-                           GenError(788)
+                           GenError(791)
                         end
 
                      end
@@ -7685,7 +7561,7 @@ class CParser < CRRParser
                   if @sym==C_EXPORTINGSym
                      Get()
                      Expression()
-                     while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
+                     while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
                         Expression()
                      end
 
@@ -7695,7 +7571,7 @@ class CParser < CRRParser
                   if @sym==C_identifierSym
                      Get()
                   else
-                     GenError(789)
+                     GenError(792)
                   end
 
                end
@@ -7712,7 +7588,7 @@ class CParser < CRRParser
                src("raise #{prevString}\n");
 
             else
-               GenError(790)
+               GenError(793)
             end
 
          end
@@ -7736,7 +7612,7 @@ class CParser < CRRParser
             if @sym==C_QueryTOSym
                Get()
             else
-               GenError(791)
+               GenError(794)
             end
 
          end
@@ -7754,7 +7630,7 @@ class CParser < CRRParser
                if @sym==C_RIGHTSym
                   Get()
                else
-                  GenError(792)
+                  GenError(795)
                end
 
             end
@@ -7815,7 +7691,7 @@ class CParser < CRRParser
             end
 
          else
-            GenError(793)
+            GenError(796)
          end
 
       end
@@ -7875,7 +7751,7 @@ class CParser < CRRParser
          Get()
          Expect(C_identifierSym)
       else
-         if @sym==C_identifierSym||@sym==C_FROMSym||@sym>=C_USINGSym&&@sym<=C_CLIENTSym||@sym==C_ORDERSym||@sym==C_TABLESym||@sym==C_WHERESym||@sym>=C_UPSym&&@sym<=C_TOSym||@sym==C_CONNECTIONSym||@sym==C_LparenSym||@sym==C_PointSym
+         if @sym==C_identifierSym||@sym==C_FROMSym||@sym>=C_USINGSym&&@sym<=C_CLIENTSym||@sym==C_ORDERSym||@sym==C_WHERESym||@sym>=C_UPSym&&@sym<=C_TOSym||@sym==C_CONNECTIONSym||@sym==C_LparenSym||@sym==C_PointSym||@sym==C_TABLESym
             if @sym==C_identifierSym||@sym==C_FROMSym||@sym>=C_USINGSym&&@sym<=C_CLIENTSym||@sym==C_ORDERSym||@sym==C_WHERESym||@sym>=C_UPSym&&@sym<=C_TOSym||@sym==C_CONNECTIONSym||@sym==C_LparenSym||@sym==C_PointSym
                if @sym==C_FROMSym
                   Get()
@@ -7897,7 +7773,7 @@ class CParser < CRRParser
                               Expression()
                               Expect(C_RparenSym)
                            else
-                              GenError(794)
+                              GenError(797)
                            end
 
                         end
@@ -7919,7 +7795,7 @@ class CParser < CRRParser
                            if @sym==C_identifierSym
                               Get()
                            else
-                              GenError(795)
+                              GenError(798)
                            end
 
                         end
@@ -7979,7 +7855,7 @@ class CParser < CRRParser
                      end
 
                   else
-                     GenError(796)
+                     GenError(799)
                   end
 
                end
@@ -7989,7 +7865,7 @@ class CParser < CRRParser
                   Get()
                   Expect(C_identifierSym)
                else
-                  GenError(797)
+                  GenError(800)
                end
 
             end
@@ -8014,7 +7890,7 @@ class CParser < CRRParser
                                  Expect(C_identifierSym)
                                  Expect(C_RparenSym)
                               else
-                                 GenError(798)
+                                 GenError(801)
                               end
 
                            end
@@ -8035,7 +7911,7 @@ class CParser < CRRParser
                                     Expect(C_identifierSym)
                                     Expect(C_RparenSym)
                                  else
-                                    GenError(799)
+                                    GenError(802)
                                  end
 
                               end
@@ -8055,7 +7931,7 @@ class CParser < CRRParser
                            Expect(C_EqualSym)
                            Expect(C_identifierSym)
                         else
-                           GenError(800)
+                           GenError(803)
                         end
 
                      end
@@ -8083,7 +7959,7 @@ class CParser < CRRParser
                         end
 
                      else
-                        GenError(801)
+                        GenError(804)
                      end
 
                   end
@@ -8117,7 +7993,7 @@ class CParser < CRRParser
                               Get()
                               Expect(C_FIELDSSym)
                            else
-                              GenError(802)
+                              GenError(805)
                            end
 
                         end
@@ -8176,13 +8052,13 @@ class CParser < CRRParser
                                        Expect(C_IDSym)
                                        Expect(C_numberSym)
                                     else
-                                       GenError(803)
+                                       GenError(806)
                                     end
 
                                  end
 
                               else
-                                 GenError(804)
+                                 GenError(807)
                               end
 
                            end
@@ -8190,7 +8066,7 @@ class CParser < CRRParser
                         end
 
                      else
-                        GenError(805)
+                        GenError(808)
                      end
 
                   end
@@ -8249,7 +8125,7 @@ class CParser < CRRParser
                      end
 
                   else
-                     GenError(806)
+                     GenError(809)
                   end
 
                end
@@ -8284,7 +8160,7 @@ class CParser < CRRParser
                            Expect(C_INTOSym)
                            Expect(C_identifierSym)
                         else
-                           GenError(807)
+                           GenError(810)
                         end
 
                      end
@@ -8292,7 +8168,7 @@ class CParser < CRRParser
                   end
 
                else
-                  GenError(808)
+                  GenError(811)
                end
 
             end
@@ -8323,7 +8199,7 @@ class CParser < CRRParser
                LogExp()
                Expect(C_RparenSym)
             else
-               GenError(809)
+               GenError(812)
             end
 
          end
@@ -8344,7 +8220,7 @@ class CParser < CRRParser
                      Get()
                      Expect(C_PAGESym)
                   else
-                     GenError(810)
+                     GenError(813)
                   end
 
                end
@@ -8361,7 +8237,7 @@ class CParser < CRRParser
                Get()
                Expect(C_LINESym)
             else
-               GenError(811)
+               GenError(814)
             end
 
          end
@@ -8426,7 +8302,7 @@ class CParser < CRRParser
                Expression()
                Expect(C_RparenSym)
             else
-               GenError(812)
+               GenError(815)
             end
 
          end
@@ -8459,7 +8335,7 @@ class CParser < CRRParser
                if @sym==C_identifierSym
                   Get()
                else
-                  GenError(813)
+                  GenError(816)
                end
 
             end
@@ -8474,14 +8350,14 @@ class CParser < CRRParser
                Get()
                Expect(C_identifierSym)
             else
-               GenError(814)
+               GenError(817)
             end
 
          end
 
 
       else
-         GenError(815)
+         GenError(818)
 
       end
 
@@ -8535,7 +8411,7 @@ class CParser < CRRParser
          end
 
          Expect(C_SELECTSym)
-         if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
+         if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
             Expression()
             while (@sym==C_CommaSym)
                Get()
@@ -8566,7 +8442,7 @@ class CParser < CRRParser
                end
 
             else
-               GenError(816)
+               GenError(819)
             end
 
          end
@@ -8631,7 +8507,7 @@ class CParser < CRRParser
                   Expression()
                   Expect(C_RparenSym)
                else
-                  GenError(817)
+                  GenError(820)
                end
 
             end
@@ -8658,7 +8534,7 @@ class CParser < CRRParser
                Get()
 
             else
-               GenError(818)
+               GenError(821)
 
             end
 
@@ -8679,7 +8555,7 @@ class CParser < CRRParser
 
                         is('UTF-8');
 
-                        if @sym==C_WITHSym||@sym==C_SKIPPINGSym
+                        if @sym==C_SKIPPINGSym||@sym==C_WITHSym
                            if @sym==C_SKIPPINGSym
                               Get()
                            else
@@ -8688,7 +8564,7 @@ class CParser < CRRParser
                                  Expect(C_BYTEMinusORDERSym)
                                  Expect(C_MARKSym)
                               else
-                                 GenError(819)
+                                 GenError(822)
                               end
 
                            end
@@ -8699,7 +8575,7 @@ class CParser < CRRParser
                         if @sym==C_NONMinusUNICODESym
                            Get()
                         else
-                           GenError(820)
+                           GenError(823)
                         end
 
                      end
@@ -8723,7 +8599,7 @@ class CParser < CRRParser
                         Get()
 
                      else
-                        GenError(821)
+                        GenError(824)
 
                      end
 
@@ -8743,7 +8619,7 @@ class CParser < CRRParser
                               if @sym==C_LITTLESym
                                  Get()
                               else
-                                 GenError(822)
+                                 GenError(825)
                               end
 
                            end
@@ -8768,7 +8644,7 @@ class CParser < CRRParser
                                  if @sym==C_LITTLESym
                                     Get()
                                  else
-                                    GenError(823)
+                                    GenError(826)
                                  end
 
                               end
@@ -8799,7 +8675,7 @@ class CParser < CRRParser
                                  Get()
 
                               else
-                                 GenError(824)
+                                 GenError(827)
 
                               end
 
@@ -8807,13 +8683,13 @@ class CParser < CRRParser
                            end
 
                         else
-                           GenError(825)
+                           GenError(828)
                         end
 
                      end
 
                   else
-                     GenError(826)
+                     GenError(829)
                   end
 
                end
@@ -8854,7 +8730,7 @@ class CParser < CRRParser
             end
 
          else
-            GenError(827)
+            GenError(830)
          end
 
       end
@@ -8887,7 +8763,7 @@ class CParser < CRRParser
                end
 
             else
-               GenError(828)
+               GenError(831)
             end
 
          end
@@ -8914,13 +8790,13 @@ class CParser < CRRParser
                   end
 
                else
-                  GenError(829)
+                  GenError(832)
                end
 
             end
 
          else
-            GenError(830)
+            GenError(833)
          end
 
       end
@@ -9009,7 +8885,7 @@ class CParser < CRRParser
                      Expect(C_CURRENTSym)
                      Expect(C_PAGESym)
                   else
-                     GenError(831)
+                     GenError(834)
                   end
 
                end
@@ -9026,7 +8902,7 @@ class CParser < CRRParser
                Get()
                Expect(C_LINESym)
             else
-               GenError(832)
+               GenError(835)
             end
 
          end
@@ -9081,8 +8957,8 @@ class CParser < CRRParser
 
          params["id"]=lus;
 
-         while (@sym==C_FROMSym||@sym==C_INTOSym||@sym==C_WITHSym||@sym==C_ASSIGNINGSym||@sym==C_REFERENCESym||@sym==C_INDEXSym||@sym==C_TRANSPORTINGSym||@sym==C_BINARYSym)
-            if @sym==C_FROMSym||@sym==C_WITHSym||@sym==C_INDEXSym
+         while (@sym==C_FROMSym||@sym==C_INTOSym||@sym==C_ASSIGNINGSym||@sym==C_REFERENCESym||@sym==C_INDEXSym||@sym==C_TRANSPORTINGSym||@sym==C_BINARYSym||@sym==C_WITHSym)
+            if @sym==C_FROMSym||@sym==C_INDEXSym||@sym==C_WITHSym
                if @sym==C_FROMSym
                   Get()
                   Expect(C_identifierSym)
@@ -9127,7 +9003,7 @@ class CParser < CRRParser
                            Get()
                            Expression()
                         else
-                           GenError(833)
+                           GenError(836)
                         end
 
                      end
@@ -9168,7 +9044,7 @@ class CParser < CRRParser
                         end
 
                      else
-                        GenError(834)
+                        GenError(837)
                      end
 
                   end
@@ -9203,7 +9079,7 @@ class CParser < CRRParser
                               end
 
                            else
-                              GenError(835)
+                              GenError(838)
                            end
 
                         end
@@ -9225,7 +9101,7 @@ class CParser < CRRParser
                            end
 
                         else
-                           GenError(836)
+                           GenError(839)
                         end
 
                      end
@@ -9256,7 +9132,7 @@ class CParser < CRRParser
                   Expect(C_SEARCHSym)
 
                else
-                  GenError(837)
+                  GenError(840)
 
                end
 
@@ -9274,7 +9150,7 @@ class CParser < CRRParser
          Expect(C_identifierSym)
 
       else
-         GenError(838)
+         GenError(841)
 
       end
 
@@ -9292,14 +9168,32 @@ class CParser < CRRParser
       _in_()
       Expect(C_SORTSym)
       Expect(C_identifierSym)
-      if @sym==C_identifierSym
+      if @sym==C_STABLESym
          Get()
+      end
 
-         is('STABLE');
+      if @sym>=C_ASCENDINGSym&&@sym<=C_DESCENDINGSym
+         if @sym==C_ASCENDINGSym
+            Get()
+         else
+            if @sym==C_DESCENDINGSym
+               Get()
+            else
+               GenError(842)
+            end
+
+         end
 
       end
 
-      if @sym==C_ASSym||@sym==C_BYSym||@sym>=C_ASCENDINGSym&&@sym<=C_DESCENDINGSym||@sym==C_PointSym
+      if @sym==C_ASSym
+         Get()
+         Expect(C_TEXTSym)
+      end
+
+      if @sym==C_BYSym
+         Get()
+         Expression()
          if @sym>=C_ASCENDINGSym&&@sym<=C_DESCENDINGSym
             if @sym==C_ASCENDINGSym
                Get()
@@ -9307,7 +9201,7 @@ class CParser < CRRParser
                if @sym==C_DESCENDINGSym
                   Get()
                else
-                  GenError(839)
+                  GenError(843)
                end
 
             end
@@ -9319,9 +9213,8 @@ class CParser < CRRParser
             Expect(C_TEXTSym)
          end
 
-         if @sym==C_BYSym
-            Get()
-            Expect(C_identifierSym)
+         while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
+            Expression()
             if @sym>=C_ASCENDINGSym&&@sym<=C_DESCENDINGSym
                if @sym==C_ASCENDINGSym
                   Get()
@@ -9329,7 +9222,7 @@ class CParser < CRRParser
                   if @sym==C_DESCENDINGSym
                      Get()
                   else
-                     GenError(840)
+                     GenError(844)
                   end
 
                end
@@ -9339,49 +9232,6 @@ class CParser < CRRParser
             if @sym==C_ASSym
                Get()
                Expect(C_TEXTSym)
-            end
-
-            while (@sym==C_identifierSym)
-               Get()
-               if @sym>=C_ASCENDINGSym&&@sym<=C_DESCENDINGSym
-                  if @sym==C_ASCENDINGSym
-                     Get()
-                  else
-                     if @sym==C_DESCENDINGSym
-                        Get()
-                     else
-                        GenError(841)
-                     end
-
-                  end
-
-               end
-
-               if @sym==C_ASSym
-                  Get()
-                  Expect(C_TEXTSym)
-               end
-
-            end
-
-         end
-
-      else
-         if 1
-            if @sym==C_BYSym
-               Get()
-               Expect(C_LparenSym)
-               Expect(C_identifierSym)
-               Expect(C_RparenSym)
-            end
-
-         else
-            if 1
-               if @sym==C_BYSym
-                  Get()
-                  Expression()
-               end
-
             end
 
          end
@@ -9402,7 +9252,7 @@ class CParser < CRRParser
             Expect(C_identifierSym)
             Expect(C_RparenSym)
          else
-            GenError(842)
+            GenError(845)
          end
 
       end
@@ -9469,7 +9319,7 @@ class CParser < CRRParser
                Get()
 
             else
-               GenError(843)
+               GenError(846)
 
             end
 
@@ -9505,7 +9355,7 @@ class CParser < CRRParser
                   Get()
                   Expect(C_identifierSym)
                else
-                  GenError(844)
+                  GenError(847)
                end
 
             end
@@ -9531,7 +9381,7 @@ class CParser < CRRParser
          Expect(C_numberSym)
       end
 
-      if @sym==C_ANDSym||@sym==C_EXPORTINGSym||@sym==C_USERSym||@sym==C_VIASym||@sym==C_PointSym
+      if @sym==C_ANDSym||@sym==C_USERSym||@sym==C_VIASym||@sym==C_EXPORTINGSym||@sym==C_PointSym
          if @sym==C_EXPORTINGSym
             Get()
             Expect(C_LISTSym)
@@ -9595,7 +9445,7 @@ class CParser < CRRParser
 
       stmt_try="";stmt_catch="";
 
-      while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_TRYSym||@sym>=C_BEFORESym&&@sym<=C_LparenSym||@sym>=C_TYPEMinusPOOLSym&&@sym<=C_PointSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MOVEMinusCORRESPONDINGSym||@sym==C_CLASSMinusDATASym||@sym==C_AUTHORITYMinusCHECKSym||@sym==C_SELECTIONMinusSCREENSym||@sym==C_forSym||@sym>=C_returnSym&&@sym<=C_ADDMinusCORRESPONDINGSym||@sym==C_BREAKMinusPOINTSym||@sym>=C_CLASSMinusEVENTSSym&&@sym<=C_CLASSMinusPOOLSym||@sym>=C_DIVIDEMinusCORRESPONDINGSym&&@sym<=C_EDITORMinusCALLSym||@sym>=C_ENDMinusOFMinusPAGESym&&@sym<=C_ENDMinusOFMinusSELECTIONSym||@sym>=C_FIELDMinusGROUPSSym&&@sym<=C_FUNCTIONMinusPOOLSym||@sym==C_INTERFACEMinusPOOLSym||@sym>=C_LOADMinusOFMinusPROGRAMSym&&@sym<=C_NEWMinusLINESym||@sym==C_NEWMinusPAGESym||@sym==C_NEWMinusSECTIONSym||@sym==C_PRINTMinusCONTROLSym||@sym==C_SELECTMinusOPTIONSSym||@sym>=C_SUBTRACTMinusCORRESPONDINGSym&&@sym<=C_TESTMinusINJECTIONSym||@sym==C_TESTMinusSEAMSym||@sym==C_TOPMinusOFMinusPAGESym||@sym==C_TYPEMinusPOOLSSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
+      while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_MESSAGESym||@sym>=C_CREATESym&&@sym<=C_FUNCTIONSym||@sym>=C_ENDSELECTSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_APPENDSym||@sym>=C_ASSIGNINGSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_TIMESSym||@sym>=C_OPTIONALSym&&@sym<=C_CHANGESym||@sym>=C_OPENSym&&@sym<=C_GAPSSym||@sym>=C_READSym&&@sym<=C_TRYSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym>=C_ASSOCIATIONSym&&@sym<=C_VARYSym||@sym>=C_TASKSym&&@sym<=C_IFSym||@sym==C_ELSESym||@sym>=C_CLASSSym&&@sym<=C_SECTIONSym||@sym==C_METHODSym||@sym>=C_METHODSSym&&@sym<=C_LASTSym||@sym>=C_BACKSym&&@sym<=C_INTERFACESym||@sym>=C_INTERFACESSym&&@sym<=C_MODULESym||@sym>=C_MULTIPLYSym&&@sym<=C_RETURNINGSym||@sym>=C_CHECKSym&&@sym<=C_LparenSym||@sym>=C_TYPEMinusPOOLSym&&@sym<=C_PointSym||@sym==C_StarSym||@sym==C_TildeSym||@sym>=C_PlusSym&&@sym<=C_WITHSym||@sym==C_MOVEMinusCORRESPONDINGSym||@sym==C_CLASSMinusDATASym||@sym==C_AUTHORITYMinusCHECKSym||@sym==C_SELECTIONMinusSCREENSym||@sym==C_forSym||@sym>=C_returnSym&&@sym<=C_ADDMinusCORRESPONDINGSym||@sym==C_BREAKMinusPOINTSym||@sym>=C_CLASSMinusEVENTSSym&&@sym<=C_CLASSMinusPOOLSym||@sym>=C_DIVIDEMinusCORRESPONDINGSym&&@sym<=C_EDITORMinusCALLSym||@sym>=C_ENDMinusOFMinusPAGESym&&@sym<=C_ENDMinusOFMinusSELECTIONSym||@sym>=C_FIELDMinusGROUPSSym&&@sym<=C_FUNCTIONMinusPOOLSym||@sym==C_INTERFACEMinusPOOLSym||@sym>=C_LOADMinusOFMinusPROGRAMSym&&@sym<=C_NEWMinusLINESym||@sym==C_NEWMinusPAGESym||@sym==C_NEWMinusSECTIONSym||@sym==C_PRINTMinusCONTROLSym||@sym==C_SELECTMinusOPTIONSSym||@sym>=C_SUBTRACTMinusCORRESPONDINGSym&&@sym<=C_TESTMinusINJECTIONSym||@sym==C_TESTMinusSEAMSym||@sym==C_TOPMinusOFMinusPAGESym||@sym==C_TYPEMinusPOOLSSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
          Statement()
 
          stmt_try+=lus;
@@ -9612,7 +9462,7 @@ class CParser < CRRParser
             Expect(C_UNWINDSym)
          end
 
-         while (@sym>=C_identifierSym&&@sym<=C_NODESym||@sym==C_CHECKSym)
+         while (@sym>=C_identifierSym&&@sym<=C_NODESym||@sym>=C_STANDARDSym&&@sym<=C_LparenSym)
             Name()
 
             ar.push(to_ruby_const(lus));
@@ -9628,7 +9478,7 @@ class CParser < CRRParser
          end
 
          Expect(C_PointSym)
-         while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_TRYSym||@sym>=C_BEFORESym&&@sym<=C_LparenSym||@sym>=C_TYPEMinusPOOLSym&&@sym<=C_PointSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MOVEMinusCORRESPONDINGSym||@sym==C_CLASSMinusDATASym||@sym==C_AUTHORITYMinusCHECKSym||@sym==C_SELECTIONMinusSCREENSym||@sym==C_forSym||@sym>=C_returnSym&&@sym<=C_ADDMinusCORRESPONDINGSym||@sym==C_BREAKMinusPOINTSym||@sym>=C_CLASSMinusEVENTSSym&&@sym<=C_CLASSMinusPOOLSym||@sym>=C_DIVIDEMinusCORRESPONDINGSym&&@sym<=C_EDITORMinusCALLSym||@sym>=C_ENDMinusOFMinusPAGESym&&@sym<=C_ENDMinusOFMinusSELECTIONSym||@sym>=C_FIELDMinusGROUPSSym&&@sym<=C_FUNCTIONMinusPOOLSym||@sym==C_INTERFACEMinusPOOLSym||@sym>=C_LOADMinusOFMinusPROGRAMSym&&@sym<=C_NEWMinusLINESym||@sym==C_NEWMinusPAGESym||@sym==C_NEWMinusSECTIONSym||@sym==C_PRINTMinusCONTROLSym||@sym==C_SELECTMinusOPTIONSSym||@sym>=C_SUBTRACTMinusCORRESPONDINGSym&&@sym<=C_TESTMinusINJECTIONSym||@sym==C_TESTMinusSEAMSym||@sym==C_TOPMinusOFMinusPAGESym||@sym==C_TYPEMinusPOOLSSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
+         while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_MESSAGESym||@sym>=C_CREATESym&&@sym<=C_FUNCTIONSym||@sym>=C_ENDSELECTSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_APPENDSym||@sym>=C_ASSIGNINGSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_TIMESSym||@sym>=C_OPTIONALSym&&@sym<=C_CHANGESym||@sym>=C_OPENSym&&@sym<=C_GAPSSym||@sym>=C_READSym&&@sym<=C_TRYSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym>=C_ASSOCIATIONSym&&@sym<=C_VARYSym||@sym>=C_TASKSym&&@sym<=C_IFSym||@sym==C_ELSESym||@sym>=C_CLASSSym&&@sym<=C_SECTIONSym||@sym==C_METHODSym||@sym>=C_METHODSSym&&@sym<=C_LASTSym||@sym>=C_BACKSym&&@sym<=C_INTERFACESym||@sym>=C_INTERFACESSym&&@sym<=C_MODULESym||@sym>=C_MULTIPLYSym&&@sym<=C_RETURNINGSym||@sym>=C_CHECKSym&&@sym<=C_LparenSym||@sym>=C_TYPEMinusPOOLSym&&@sym<=C_PointSym||@sym==C_StarSym||@sym==C_TildeSym||@sym>=C_PlusSym&&@sym<=C_WITHSym||@sym==C_MOVEMinusCORRESPONDINGSym||@sym==C_CLASSMinusDATASym||@sym==C_AUTHORITYMinusCHECKSym||@sym==C_SELECTIONMinusSCREENSym||@sym==C_forSym||@sym>=C_returnSym&&@sym<=C_ADDMinusCORRESPONDINGSym||@sym==C_BREAKMinusPOINTSym||@sym>=C_CLASSMinusEVENTSSym&&@sym<=C_CLASSMinusPOOLSym||@sym>=C_DIVIDEMinusCORRESPONDINGSym&&@sym<=C_EDITORMinusCALLSym||@sym>=C_ENDMinusOFMinusPAGESym&&@sym<=C_ENDMinusOFMinusSELECTIONSym||@sym>=C_FIELDMinusGROUPSSym&&@sym<=C_FUNCTIONMinusPOOLSym||@sym==C_INTERFACEMinusPOOLSym||@sym>=C_LOADMinusOFMinusPROGRAMSym&&@sym<=C_NEWMinusLINESym||@sym==C_NEWMinusPAGESym||@sym==C_NEWMinusSECTIONSym||@sym==C_PRINTMinusCONTROLSym||@sym==C_SELECTMinusOPTIONSSym||@sym>=C_SUBTRACTMinusCORRESPONDINGSym&&@sym<=C_TESTMinusINJECTIONSym||@sym==C_TESTMinusSEAMSym||@sym==C_TOPMinusOFMinusPAGESym||@sym==C_TYPEMinusPOOLSSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
             Statement()
 
             stmt_catch+=lus;
@@ -9645,7 +9495,7 @@ class CParser < CRRParser
          end
 
          Expect(C_PointSym)
-         while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_TRYSym||@sym>=C_BEFORESym&&@sym<=C_LparenSym||@sym>=C_TYPEMinusPOOLSym&&@sym<=C_PointSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MOVEMinusCORRESPONDINGSym||@sym==C_CLASSMinusDATASym||@sym==C_AUTHORITYMinusCHECKSym||@sym==C_SELECTIONMinusSCREENSym||@sym==C_forSym||@sym>=C_returnSym&&@sym<=C_ADDMinusCORRESPONDINGSym||@sym==C_BREAKMinusPOINTSym||@sym>=C_CLASSMinusEVENTSSym&&@sym<=C_CLASSMinusPOOLSym||@sym>=C_DIVIDEMinusCORRESPONDINGSym&&@sym<=C_EDITORMinusCALLSym||@sym>=C_ENDMinusOFMinusPAGESym&&@sym<=C_ENDMinusOFMinusSELECTIONSym||@sym>=C_FIELDMinusGROUPSSym&&@sym<=C_FUNCTIONMinusPOOLSym||@sym==C_INTERFACEMinusPOOLSym||@sym>=C_LOADMinusOFMinusPROGRAMSym&&@sym<=C_NEWMinusLINESym||@sym==C_NEWMinusPAGESym||@sym==C_NEWMinusSECTIONSym||@sym==C_PRINTMinusCONTROLSym||@sym==C_SELECTMinusOPTIONSSym||@sym>=C_SUBTRACTMinusCORRESPONDINGSym&&@sym<=C_TESTMinusINJECTIONSym||@sym==C_TESTMinusSEAMSym||@sym==C_TOPMinusOFMinusPAGESym||@sym==C_TYPEMinusPOOLSSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
+         while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_MESSAGESym||@sym>=C_CREATESym&&@sym<=C_FUNCTIONSym||@sym>=C_ENDSELECTSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_APPENDSym||@sym>=C_ASSIGNINGSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_TIMESSym||@sym>=C_OPTIONALSym&&@sym<=C_CHANGESym||@sym>=C_OPENSym&&@sym<=C_GAPSSym||@sym>=C_READSym&&@sym<=C_TRYSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym>=C_ASSOCIATIONSym&&@sym<=C_VARYSym||@sym>=C_TASKSym&&@sym<=C_IFSym||@sym==C_ELSESym||@sym>=C_CLASSSym&&@sym<=C_SECTIONSym||@sym==C_METHODSym||@sym>=C_METHODSSym&&@sym<=C_LASTSym||@sym>=C_BACKSym&&@sym<=C_INTERFACESym||@sym>=C_INTERFACESSym&&@sym<=C_MODULESym||@sym>=C_MULTIPLYSym&&@sym<=C_RETURNINGSym||@sym>=C_CHECKSym&&@sym<=C_LparenSym||@sym>=C_TYPEMinusPOOLSym&&@sym<=C_PointSym||@sym==C_StarSym||@sym==C_TildeSym||@sym>=C_PlusSym&&@sym<=C_WITHSym||@sym==C_MOVEMinusCORRESPONDINGSym||@sym==C_CLASSMinusDATASym||@sym==C_AUTHORITYMinusCHECKSym||@sym==C_SELECTIONMinusSCREENSym||@sym==C_forSym||@sym>=C_returnSym&&@sym<=C_ADDMinusCORRESPONDINGSym||@sym==C_BREAKMinusPOINTSym||@sym>=C_CLASSMinusEVENTSSym&&@sym<=C_CLASSMinusPOOLSym||@sym>=C_DIVIDEMinusCORRESPONDINGSym&&@sym<=C_EDITORMinusCALLSym||@sym>=C_ENDMinusOFMinusPAGESym&&@sym<=C_ENDMinusOFMinusSELECTIONSym||@sym>=C_FIELDMinusGROUPSSym&&@sym<=C_FUNCTIONMinusPOOLSym||@sym==C_INTERFACEMinusPOOLSym||@sym>=C_LOADMinusOFMinusPROGRAMSym&&@sym<=C_NEWMinusLINESym||@sym==C_NEWMinusPAGESym||@sym==C_NEWMinusSECTIONSym||@sym==C_PRINTMinusCONTROLSym||@sym==C_SELECTMinusOPTIONSSym||@sym>=C_SUBTRACTMinusCORRESPONDINGSym&&@sym<=C_TESTMinusINJECTIONSym||@sym==C_TESTMinusSEAMSym||@sym==C_TOPMinusOFMinusPAGESym||@sym==C_TYPEMinusPOOLSSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
             Statement()
          end
 
@@ -9692,7 +9542,7 @@ class CParser < CRRParser
                      end
 
                   else
-                     GenError(845)
+                     GenError(848)
                   end
 
                end
@@ -9706,7 +9556,7 @@ class CParser < CRRParser
                   Expect(C_GIVINGSym)
                   Expect(C_identifierSym)
                else
-                  GenError(846)
+                  GenError(849)
                end
 
             end
@@ -9717,7 +9567,7 @@ class CParser < CRRParser
             end
 
          else
-            GenError(847)
+            GenError(850)
          end
 
       end
@@ -9800,7 +9650,7 @@ class CParser < CRRParser
 
       params={};
 
-      if @sym==C_TABLESym||@sym==C_LparenSym
+      if @sym==C_LparenSym||@sym==C_TABLESym
          if @sym==C_TABLESym
             Get()
             Expect(C_FIELDSym)
@@ -9817,7 +9667,7 @@ class CParser < CRRParser
             Expect(C_STRUCTURESym)
             Expect(C_identifierSym)
          else
-            if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_CORRESPONDINGSym||@sym>=C_PACKAGESym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_INCREMENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
+            if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_INCREMENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
                Expression()
                if @sym==C_INCREMENTSym||@sym==C_LparenSym||@sym==C_EqualGreaterSym||@sym==C_PlusSym||@sym==C_MinusGreaterSym
                   if @sym==C_TOSym||@sym==C_LparenSym||@sym==C_PlusSym
@@ -9840,19 +9690,19 @@ class CParser < CRRParser
                            if @sym==C_EqualGreaterSym
                               Get()
                            else
-                              GenError(848)
+                              GenError(851)
                            end
 
                         end
 
-                        if @sym>=C_identifierSym&&@sym<=C_NODESym||@sym==C_CHECKSym||@sym==C_StarSym
+                        if @sym>=C_identifierSym&&@sym<=C_NODESym||@sym>=C_STANDARDSym&&@sym<=C_LparenSym||@sym==C_StarSym
                            if @sym==C_StarSym
                               Get()
                            else
-                              if @sym>=C_identifierSym&&@sym<=C_NODESym||@sym==C_CHECKSym
+                              if @sym>=C_identifierSym&&@sym<=C_NODESym||@sym>=C_STANDARDSym&&@sym<=C_LparenSym
                                  Name()
                               else
-                                 GenError(849)
+                                 GenError(852)
                               end
 
                            end
@@ -9864,7 +9714,7 @@ class CParser < CRRParser
                            Get()
                            Expect(C_numberSym)
                         else
-                           GenError(850)
+                           GenError(853)
                         end
 
                      end
@@ -9874,7 +9724,7 @@ class CParser < CRRParser
                end
 
             else
-               GenError(851)
+               GenError(854)
             end
 
          end
@@ -9886,11 +9736,11 @@ class CParser < CRRParser
 
       params[:to]=lus;
 
-      if @sym==C_DECIMALSSym||@sym==C_TYPESym||@sym==C_CASTINGSym
+      if @sym==C_DECIMALSSym||@sym==C_CASTINGSym||@sym==C_TYPESym
          if @sym==C_CASTINGSym
             Get()
-            if @sym==C_DECIMALSSym||@sym==C_TYPESym||@sym==C_LIKESym
-               if @sym==C_DECIMALSSym||@sym==C_TYPESym||@sym==C_RANGESym||@sym==C_PointSym
+            if @sym==C_DECIMALSSym||@sym==C_LIKESym||@sym==C_TYPESym
+               if @sym==C_DECIMALSSym||@sym==C_RANGESym||@sym==C_PointSym||@sym==C_TYPESym
                   if @sym==C_TYPESym
                      Get()
                      if @sym==C_HANDLESym
@@ -9910,7 +9760,7 @@ class CParser < CRRParser
                      Get()
                      Expect(C_identifierSym)
                   else
-                     GenError(852)
+                     GenError(855)
                   end
 
                end
@@ -9918,7 +9768,7 @@ class CParser < CRRParser
             end
 
          else
-            if @sym==C_DECIMALSSym||@sym==C_TYPESym||@sym==C_RANGESym||@sym==C_PointSym
+            if @sym==C_DECIMALSSym||@sym==C_RANGESym||@sym==C_PointSym||@sym==C_TYPESym
                if @sym==C_TYPESym
                   Get()
                   Expect(C_identifierSym)
@@ -9930,7 +9780,7 @@ class CParser < CRRParser
                end
 
             else
-               GenError(853)
+               GenError(856)
             end
 
          end
@@ -9971,12 +9821,12 @@ class CParser < CRRParser
          Expect(C_identifierSym)
 
       else
-         GenError(854)
+         GenError(857)
 
       end
 
       Expect(C_PointSym)
-      while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_TRYSym||@sym>=C_BEFORESym&&@sym<=C_LparenSym||@sym>=C_TYPEMinusPOOLSym&&@sym<=C_PointSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MOVEMinusCORRESPONDINGSym||@sym==C_CLASSMinusDATASym||@sym==C_AUTHORITYMinusCHECKSym||@sym==C_SELECTIONMinusSCREENSym||@sym==C_forSym||@sym>=C_returnSym&&@sym<=C_ADDMinusCORRESPONDINGSym||@sym==C_BREAKMinusPOINTSym||@sym>=C_CLASSMinusEVENTSSym&&@sym<=C_CLASSMinusPOOLSym||@sym>=C_DIVIDEMinusCORRESPONDINGSym&&@sym<=C_EDITORMinusCALLSym||@sym>=C_ENDMinusOFMinusPAGESym&&@sym<=C_ENDMinusOFMinusSELECTIONSym||@sym>=C_FIELDMinusGROUPSSym&&@sym<=C_FUNCTIONMinusPOOLSym||@sym==C_INTERFACEMinusPOOLSym||@sym>=C_LOADMinusOFMinusPROGRAMSym&&@sym<=C_NEWMinusLINESym||@sym==C_NEWMinusPAGESym||@sym==C_NEWMinusSECTIONSym||@sym==C_PRINTMinusCONTROLSym||@sym==C_SELECTMinusOPTIONSSym||@sym>=C_SUBTRACTMinusCORRESPONDINGSym&&@sym<=C_TESTMinusINJECTIONSym||@sym==C_TESTMinusSEAMSym||@sym==C_TOPMinusOFMinusPAGESym||@sym==C_TYPEMinusPOOLSSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
+      while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_MESSAGESym||@sym>=C_CREATESym&&@sym<=C_FUNCTIONSym||@sym>=C_ENDSELECTSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_APPENDSym||@sym>=C_ASSIGNINGSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_TIMESSym||@sym>=C_OPTIONALSym&&@sym<=C_CHANGESym||@sym>=C_OPENSym&&@sym<=C_GAPSSym||@sym>=C_READSym&&@sym<=C_TRYSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym>=C_ASSOCIATIONSym&&@sym<=C_VARYSym||@sym>=C_TASKSym&&@sym<=C_IFSym||@sym==C_ELSESym||@sym>=C_CLASSSym&&@sym<=C_SECTIONSym||@sym==C_METHODSym||@sym>=C_METHODSSym&&@sym<=C_LASTSym||@sym>=C_BACKSym&&@sym<=C_INTERFACESym||@sym>=C_INTERFACESSym&&@sym<=C_MODULESym||@sym>=C_MULTIPLYSym&&@sym<=C_RETURNINGSym||@sym>=C_CHECKSym&&@sym<=C_LparenSym||@sym>=C_TYPEMinusPOOLSym&&@sym<=C_PointSym||@sym==C_StarSym||@sym==C_TildeSym||@sym>=C_PlusSym&&@sym<=C_WITHSym||@sym==C_MOVEMinusCORRESPONDINGSym||@sym==C_CLASSMinusDATASym||@sym==C_AUTHORITYMinusCHECKSym||@sym==C_SELECTIONMinusSCREENSym||@sym==C_forSym||@sym>=C_returnSym&&@sym<=C_ADDMinusCORRESPONDINGSym||@sym==C_BREAKMinusPOINTSym||@sym>=C_CLASSMinusEVENTSSym&&@sym<=C_CLASSMinusPOOLSym||@sym>=C_DIVIDEMinusCORRESPONDINGSym&&@sym<=C_EDITORMinusCALLSym||@sym>=C_ENDMinusOFMinusPAGESym&&@sym<=C_ENDMinusOFMinusSELECTIONSym||@sym>=C_FIELDMinusGROUPSSym&&@sym<=C_FUNCTIONMinusPOOLSym||@sym==C_INTERFACEMinusPOOLSym||@sym>=C_LOADMinusOFMinusPROGRAMSym&&@sym<=C_NEWMinusLINESym||@sym==C_NEWMinusPAGESym||@sym==C_NEWMinusSECTIONSym||@sym==C_PRINTMinusCONTROLSym||@sym==C_SELECTMinusOPTIONSSym||@sym>=C_SUBTRACTMinusCORRESPONDINGSym&&@sym<=C_TESTMinusINJECTIONSym||@sym==C_TESTMinusSEAMSym||@sym==C_TOPMinusOFMinusPAGESym||@sym==C_TYPEMinusPOOLSSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
          Statement()
       end
 
@@ -10003,7 +9853,7 @@ class CParser < CRRParser
                Expect(C_stringD1Sym)
                Expect(C_RparenSym)
             else
-               GenError(855)
+               GenError(858)
             end
 
          end
@@ -10070,7 +9920,7 @@ class CParser < CRRParser
                   if @sym==C_BYTESym
                      Get()
                   else
-                     GenError(856)
+                     GenError(859)
                   end
 
                end
@@ -10089,7 +9939,7 @@ class CParser < CRRParser
                params[:withnull]=true;
 
             else
-               GenError(857)
+               GenError(860)
             end
 
          end
@@ -10115,7 +9965,7 @@ class CParser < CRRParser
             Get()
             Expect(C_identifierSym)
          else
-            GenError(858)
+            GenError(861)
          end
 
       end
@@ -10182,7 +10032,7 @@ class CParser < CRRParser
             Get()
             Expect(C_identifierSym)
          else
-            GenError(859)
+            GenError(862)
          end
 
       end
@@ -10213,12 +10063,12 @@ class CParser < CRRParser
 
       params={:ar=>[]};
 
-      if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
+      if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
          Expression()
 
          params[:ar].push(lus);
 
-         while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
+         while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
             Expression()
 
             params[:ar].push(lus);
@@ -10234,7 +10084,7 @@ class CParser < CRRParser
             Expect(C_OFSym)
             Expect(C_identifierSym)
          else
-            GenError(860)
+            GenError(863)
          end
 
       end
@@ -10252,7 +10102,7 @@ class CParser < CRRParser
             if @sym==C_BYTESym
                Get()
             else
-               GenError(861)
+               GenError(864)
             end
 
          end
@@ -10304,7 +10154,7 @@ class CParser < CRRParser
             Get()
             Expect(C_PointSym)
          else
-            GenError(862)
+            GenError(865)
          end
 
       end
@@ -10403,7 +10253,7 @@ class CParser < CRRParser
             Expect(C_identifierSym)
          end
 
-         if @sym==C_TYPESym||@sym==C_LIKESym
+         if @sym==C_LIKESym||@sym==C_TYPESym
             if @sym==C_TYPESym
                TypeDes()
 
@@ -10414,7 +10264,7 @@ class CParser < CRRParser
                if @sym==C_LIKESym
                   LikeDes()
                else
-                  GenError(863)
+                  GenError(866)
                end
 
             end
@@ -10431,7 +10281,7 @@ class CParser < CRRParser
             Expect(C_identifierSym)
          end
 
-         if @sym==C_TYPESym||@sym==C_EXCEPTIONSSym||@sym==C_EXPORTINGSym
+         if @sym==C_EXCEPTIONSSym||@sym==C_EXPORTINGSym||@sym==C_TYPESym
             if @sym==C_TYPESym
                Get()
                TypeName()
@@ -10440,7 +10290,7 @@ class CParser < CRRParser
             if @sym==C_EXPORTINGSym
                Get()
                Expression()
-               while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
+               while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
                   Expression()
                end
 
@@ -10449,7 +10299,7 @@ class CParser < CRRParser
             if @sym==C_EXCEPTIONSSym
                Get()
                Expression()
-               while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
+               while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
                   Expression()
                end
 
@@ -10464,8 +10314,8 @@ class CParser < CRRParser
          end
 
 
-      when C_TYPESym,
-         C_PointSym,
+      when C_PointSym,
+         C_TYPESym,
          C_PARAMETERMinusTABLESym,
          C_EXCEPTIONMinusTABLESym
          if @sym==C_TYPESym||@sym>=C_PARAMETERMinusTABLESym&&@sym<=C_EXCEPTIONMinusTABLESym
@@ -10477,7 +10327,7 @@ class CParser < CRRParser
                if @sym==C_EXPORTINGSym
                   Get()
                   Expression()
-                  while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
+                  while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
                      Expression()
                   end
 
@@ -10486,7 +10336,7 @@ class CParser < CRRParser
                if @sym==C_EXCEPTIONSSym
                   Get()
                   Expression()
-                  while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
+                  while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
                      Expression()
                   end
 
@@ -10511,7 +10361,7 @@ class CParser < CRRParser
                   end
 
                else
-                  GenError(864)
+                  GenError(867)
                end
 
             end
@@ -10551,7 +10401,7 @@ class CParser < CRRParser
       _in_()
       Expect(C_DEMANDSym)
       Expression()
-      while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
+      while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
          Expression()
       end
 
@@ -10587,7 +10437,7 @@ class CParser < CRRParser
             if @sym==C_CHARACTERSym
                Get()
             else
-               GenError(865)
+               GenError(868)
             end
 
          end
@@ -10620,7 +10470,7 @@ class CParser < CRRParser
                if @sym==C_CHARACTERSym
                   Get()
                else
-                  GenError(866)
+                  GenError(869)
                end
 
             end
@@ -10664,7 +10514,7 @@ class CParser < CRRParser
                if @sym==C_PAGESSym
                   Get()
                else
-                  GenError(867)
+                  GenError(870)
                end
 
             end
@@ -10724,7 +10574,7 @@ class CParser < CRRParser
                   end
 
                else
-                  GenError(868)
+                  GenError(871)
                end
 
             end
@@ -10763,7 +10613,7 @@ class CParser < CRRParser
 
 
       else
-         GenError(869)
+         GenError(872)
 
       end
 
@@ -10822,7 +10672,7 @@ class CParser < CRRParser
                      Expect(C_INTOSym)
                      Expect(C_identifierSym)
                   else
-                     GenError(870)
+                     GenError(873)
                   end
 
                end
@@ -10830,7 +10680,7 @@ class CParser < CRRParser
             end
 
          else
-            GenError(871)
+            GenError(874)
          end
 
       end
@@ -10862,7 +10712,7 @@ class CParser < CRRParser
                Get()
                Expect(C_STEPMinusLOOPSym)
             else
-               GenError(872)
+               GenError(875)
             end
 
          end
@@ -10878,9 +10728,9 @@ class CParser < CRRParser
    def stEXPORT()
       _in_()
       Expect(C_EXPORTSym)
-      if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
+      if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
          Expression()
-         while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
+         while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
             Expression()
          end
 
@@ -10901,7 +10751,7 @@ class CParser < CRRParser
                Expect(C_identifierSym)
                Expect(C_RparenSym)
             else
-               GenError(873)
+               GenError(876)
             end
 
          end
@@ -10950,7 +10800,7 @@ class CParser < CRRParser
             if @sym==C_BUFFERSym
                Get()
             else
-               GenError(874)
+               GenError(877)
             end
 
          end
@@ -10973,7 +10823,7 @@ class CParser < CRRParser
          Expect(C_identifierSym)
 
       else
-         GenError(875)
+         GenError(878)
 
       end
 
@@ -10985,7 +10835,7 @@ class CParser < CRRParser
             if @sym==C_OFFSym
                Get()
             else
-               GenError(876)
+               GenError(879)
             end
 
          end
@@ -11013,7 +10863,7 @@ class CParser < CRRParser
       _in_()
       Expect(C_FIELDMinusSYMBOLSSym)
       Expect(C_identifierSym)
-      if @sym==C_TYPESym||@sym==C_LIKESym
+      if @sym==C_LIKESym||@sym==C_TYPESym
          Typing()
       else
          if @sym==C_STRUCTURESym
@@ -11022,7 +10872,7 @@ class CParser < CRRParser
             Expect(C_DEFAULTSym)
             Expect(C_identifierSym)
          else
-            GenError(877)
+            GenError(880)
          end
 
       end
@@ -11042,164 +10892,164 @@ class CParser < CRRParser
    end
    def stFIND()
       _in_()
-      if @sym==C_FINDSym
-         Get()
-         if @sym==C_FIRSTSym||@sym==C_ALLSym
-            if @sym==C_FIRSTSym
+      Expect(C_FINDSym)
+      if @sym==C_FIRSTSym||@sym==C_ALLSym
+         if @sym==C_FIRSTSym
+            Get()
+            Expect(C_OCCURRENCESym)
+         else
+            if @sym==C_ALLSym
                Get()
-               Expect(C_OCCURRENCESym)
+               Expect(C_OCCURRENCESSym)
             else
-               if @sym==C_ALLSym
-                  Get()
-                  Expect(C_OCCURRENCESSym)
-               else
-                  GenError(878)
-               end
-
+               GenError(881)
             end
 
-            Expect(C_OFSym)
          end
 
+         Expect(C_OFSym)
+      end
+
+      if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
          if @sym==C_SUBSTRINGSym
             Get()
          end
 
-         Name()
+         Expression()
       else
-         if @sym==C_REGEXSym
+         if 1
             Get()
             Expect(C_stringD1Sym)
-            Expect(C_INSym)
-            if @sym>=C_identifierSym&&@sym<=C_NODESym||@sym==C_CHECKSym
-               if @sym==C_SECTIONSym
-                  Get()
-                  if @sym==C_OFFSETSym
-                     Get()
-                     Expect(C_numberSym)
-                  end
-
-                  if @sym==C_LENGTHSym
-                     Get()
-                     Expect(C_numberSym)
-                  end
-
-                  Expect(C_OFSym)
-               end
-
-               Name()
-            else
-               if 1
-                  Get()
-                  Expect(C_identifierSym)
-                  if @sym==C_FROMSym
-                     Get()
-                     Expect(C_numberSym)
-                     if @sym==C_OFFSETSym
-                        Get()
-                        Expect(C_numberSym)
-                     end
-
-                  end
-
-                  if @sym==C_TOSym
-                     Get()
-                     Expect(C_numberSym)
-                     if @sym==C_OFFSETSym
-                        Get()
-                        Expect(C_numberSym)
-                     end
-
-                  end
-
-               else
-                  GenError(879)
-               end
-
-            end
-
-            if @sym==C_INSym
-               Get()
-               if @sym==C_CHARACTERSym
-                  Get()
-               else
-                  if @sym==C_BYTESym
-                     Get()
-                  else
-                     GenError(880)
-                  end
-
-               end
-
-               Expect(C_MODESym)
-            end
-
-            if @sym==C_RESPECTINGSym||@sym==C_IGNORINGSym
-               if @sym==C_RESPECTINGSym
-                  Get()
-               else
-                  if @sym==C_IGNORINGSym
-                     Get()
-                  else
-                     GenError(881)
-                  end
-
-               end
-
-               Expect(C_CASESym)
-            end
-
-            if @sym==C_MATCHSym
-               Get()
-               Expect(C_COUNTSym)
-               Expect(C_numberSym)
-            end
-
-            if @sym==C_MATCHSym||@sym==C_SUBMATCHESSym||@sym==C_PointSym
-               if @sym==C_MATCHSym
-                  Get()
-                  Expect(C_LINESym)
-                  Expect(C_numberSym)
-               end
-
-               if @sym==C_MATCHSym
-                  Get()
-                  Expect(C_OFFSETSym)
-                  Expect(C_numberSym)
-               end
-
-               if @sym==C_MATCHSym
-                  Get()
-                  Expect(C_identifierSym)
-
-                  is('LENGTH');
-
-                  Expect(C_numberSym)
-               end
-
-            else
-               if @sym==C_RESULTSSym
-                  if @sym==C_RESULTSSym
-                     Get()
-                     Expect(C_identifierSym)
-                  end
-
-               end
-
-            end
-
-            if @sym==C_SUBMATCHESSym
-               Get()
-               Expect(C_stringD1Sym)
-            end
-
-            Expect(C_PointSym)
          else
             GenError(882)
          end
 
       end
 
+      Expect(C_INSym)
+      if @sym>=C_identifierSym&&@sym<=C_NODESym||@sym>=C_STANDARDSym&&@sym<=C_LparenSym
+         if @sym==C_SECTIONSym
+            Get()
+            if @sym==C_OFFSETSym
+               Get()
+               Expect(C_numberSym)
+            end
+
+            if @sym==C_LENGTHSym
+               Get()
+               Expect(C_numberSym)
+            end
+
+            Expect(C_OFSym)
+         end
+
+         Name()
+      else
+         if @sym==C_TABLESym
+            Get()
+            Expression()
+            if @sym==C_FROMSym
+               Get()
+               Expect(C_numberSym)
+               if @sym==C_OFFSETSym
+                  Get()
+                  Expect(C_numberSym)
+               end
+
+            end
+
+            if @sym==C_TOSym
+               Get()
+               Expect(C_numberSym)
+               if @sym==C_OFFSETSym
+                  Get()
+                  Expect(C_numberSym)
+               end
+
+            end
+
+         else
+            GenError(883)
+         end
+
+      end
+
+      if @sym==C_INSym
+         Get()
+         if @sym==C_CHARACTERSym
+            Get()
+         else
+            if @sym==C_BYTESym
+               Get()
+            else
+               GenError(884)
+            end
+
+         end
+
+         Expect(C_MODESym)
+      end
+
+      if @sym==C_RESPECTINGSym||@sym==C_IGNORINGSym
+         if @sym==C_RESPECTINGSym
+            Get()
+         else
+            if @sym==C_IGNORINGSym
+               Get()
+            else
+               GenError(885)
+            end
+
+         end
+
+         Expect(C_CASESym)
+      end
+
+      if @sym==C_MATCHSym
+         Get()
+         Expect(C_COUNTSym)
+         Expect(C_numberSym)
+      end
+
+      if @sym==C_MATCHSym||@sym==C_SUBMATCHESSym||@sym==C_PointSym
+         if @sym==C_MATCHSym
+            Get()
+            Expect(C_LINESym)
+            Expect(C_numberSym)
+         end
+
+         if @sym==C_MATCHSym
+            Get()
+            Expect(C_OFFSETSym)
+            Expect(C_numberSym)
+         end
+
+         if @sym==C_MATCHSym
+            Get()
+            Expect(C_identifierSym)
+
+            is('LENGTH');
+
+            Expect(C_numberSym)
+         end
+
+      else
+         if @sym==C_RESULTSSym
+            if @sym==C_RESULTSSym
+               Get()
+               Expect(C_identifierSym)
+            end
+
+         end
+
+      end
+
+      if @sym==C_SUBMATCHESSym
+         Get()
+         Expect(C_stringD1Sym)
+      end
+
+      Expect(C_PointSym)
       _out_()
    end
    def stFORMAT()
@@ -11238,7 +11088,7 @@ class CParser < CRRParser
                o=lus;
 
             else
-               GenError(883)
+               GenError(886)
             end
 
          end
@@ -11349,7 +11199,7 @@ class CParser < CRRParser
          if @sym==C_FILTERSSym
             Get()
             Expression()
-            while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
+            while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
                Expression()
             end
 
@@ -11371,7 +11221,7 @@ class CParser < CRRParser
                   Get()
                   Expect(C_identifierSym)
                else
-                  GenError(884)
+                  GenError(887)
                end
 
             end
@@ -11418,7 +11268,7 @@ class CParser < CRRParser
                      if @sym==C_MEMORYSym
                         Get()
                      else
-                        GenError(885)
+                        GenError(888)
                      end
 
                   end
@@ -11464,7 +11314,7 @@ class CParser < CRRParser
                         if @sym==C_MEMORYSym
                            Get()
                         else
-                           GenError(886)
+                           GenError(889)
                         end
 
                      end
@@ -11476,7 +11326,7 @@ class CParser < CRRParser
                end
 
             else
-               GenError(887)
+               GenError(890)
             end
 
          end
@@ -11575,14 +11425,14 @@ class CParser < CRRParser
                Expect(C_FIELDSym)
                Expect(C_identifierSym)
             else
-               GenError(888)
+               GenError(891)
             end
 
          end
 
 
       else
-         GenError(889)
+         GenError(892)
 
       end
 
@@ -11599,8 +11449,8 @@ class CParser < CRRParser
    def stIMPORT()
       _in_()
       Expect(C_IMPORTSym)
-      if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
-         if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
+      if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
+         if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
             Exps()
          else
             if 1
@@ -11619,7 +11469,7 @@ class CParser < CRRParser
                   end
 
                else
-                  GenError(890)
+                  GenError(893)
                end
 
             end
@@ -11674,7 +11524,7 @@ class CParser < CRRParser
                   end
 
                else
-                  GenError(891)
+                  GenError(894)
                end
 
             end
@@ -11688,7 +11538,7 @@ class CParser < CRRParser
                if @sym==C_MEMORYSym
                   Get()
                else
-                  GenError(892)
+                  GenError(895)
                end
 
             end
@@ -11711,7 +11561,7 @@ class CParser < CRRParser
             Expect(C_identifierSym)
 
          else
-            GenError(893)
+            GenError(896)
 
          end
 
@@ -11761,7 +11611,7 @@ class CParser < CRRParser
                   end
 
                else
-                  GenError(894)
+                  GenError(897)
                end
 
             end
@@ -11805,7 +11655,7 @@ class CParser < CRRParser
             Expect(C_IDSym)
             Expect(C_identifierSym)
          else
-            GenError(895)
+            GenError(898)
          end
 
       end
@@ -11816,7 +11666,7 @@ class CParser < CRRParser
    def stINCLUDE()
       _in_()
       Expect(C_INCLUDESym)
-      if @sym==C_TYPESym||@sym==C_STRUCTURESym
+      if @sym==C_STRUCTURESym||@sym==C_TYPESym
          if @sym==C_TYPESym
             Get()
             Expect(C_identifierSym)
@@ -11825,7 +11675,7 @@ class CParser < CRRParser
                Get()
                Expect(C_identifierSym)
             else
-               GenError(896)
+               GenError(899)
             end
 
          end
@@ -11851,7 +11701,7 @@ class CParser < CRRParser
             end
 
          else
-            GenError(897)
+            GenError(900)
          end
 
       end
@@ -11916,7 +11766,7 @@ class CParser < CRRParser
 
       params={};
 
-      if @sym==C_identifierSym||@sym==C_INTOSym||@sym==C_TABLESym||@sym==C_INITIALSym||@sym==C_LparenSym||@sym==C_PointSym
+      if @sym==C_identifierSym||@sym==C_INTOSym||@sym==C_INITIALSym||@sym==C_LparenSym||@sym==C_PointSym||@sym==C_TABLESym
          if @sym==C_identifierSym||@sym==C_INITIALSym
             if @sym==C_INITIALSym
                Get()
@@ -11952,7 +11802,7 @@ class CParser < CRRParser
                      params[:id]=prevString;
 
                   else
-                     GenError(898)
+                     GenError(901)
                   end
 
                end
@@ -11961,7 +11811,7 @@ class CParser < CRRParser
 
          end
 
-         while (@sym==C_identifierSym||@sym==C_INTOSym||@sym==C_TABLESym||@sym==C_LparenSym)
+         while (@sym==C_identifierSym||@sym==C_INTOSym||@sym==C_LparenSym||@sym==C_TABLESym)
             if @sym==C_INTOSym
                Get()
             end
@@ -11992,7 +11842,7 @@ class CParser < CRRParser
                   end
 
                else
-                  GenError(899)
+                  GenError(902)
                end
 
             end
@@ -12007,7 +11857,7 @@ class CParser < CRRParser
                      Get()
                      Expect(C_SPECIFIEDSym)
                   else
-                     GenError(900)
+                     GenError(903)
                   end
 
                end
@@ -12024,7 +11874,7 @@ class CParser < CRRParser
                   if @sym==C_identifierSym
                      Get()
                   else
-                     GenError(901)
+                     GenError(904)
                   end
 
                end
@@ -12050,7 +11900,7 @@ class CParser < CRRParser
                      Expect(C_INTOSym)
                      Expect(C_identifierSym)
                   else
-                     GenError(902)
+                     GenError(905)
                   end
 
                end
@@ -12075,7 +11925,7 @@ class CParser < CRRParser
                      if @sym==C_SELECTSym
                         stSELECT()
                      else
-                        GenError(903)
+                        GenError(906)
                      end
 
                   end
@@ -12129,7 +11979,7 @@ class CParser < CRRParser
                            Expect(C_ENABLINGSym)
                            Expect(C_identifierSym)
                         else
-                           GenError(904)
+                           GenError(907)
                         end
 
                      end
@@ -12145,7 +11995,7 @@ class CParser < CRRParser
                      end
 
                   else
-                     GenError(905)
+                     GenError(908)
                   end
 
                end
@@ -12215,7 +12065,7 @@ class CParser < CRRParser
                   if @sym==C_FINALSym
                      Get()
                   else
-                     GenError(906)
+                     GenError(909)
                   end
 
                end
@@ -12287,7 +12137,7 @@ class CParser < CRRParser
             Expect(C_identifierSym)
 
          else
-            GenError(907)
+            GenError(910)
 
          end
 
@@ -12300,7 +12150,7 @@ class CParser < CRRParser
 
 
       else
-         GenError(908)
+         GenError(911)
 
       end
 
@@ -12402,7 +12252,7 @@ class CParser < CRRParser
             if @sym==C_SCROLLINGSym
                Get()
             else
-               GenError(909)
+               GenError(912)
             end
 
          end
@@ -12422,7 +12272,7 @@ class CParser < CRRParser
             if @sym==C_NOMinusTITLESym
                Get()
             else
-               GenError(910)
+               GenError(913)
             end
 
          end
@@ -12436,7 +12286,7 @@ class CParser < CRRParser
             if @sym==C_NOMinusHEADINGSym
                Get()
             else
-               GenError(911)
+               GenError(914)
             end
 
          end
@@ -12480,7 +12330,7 @@ class CParser < CRRParser
                Get()
                Expect(C_OFFSym)
             else
-               GenError(912)
+               GenError(915)
             end
 
          end
@@ -12548,14 +12398,14 @@ class CParser < CRRParser
 
                Expect(C_numberSym)
             else
-               GenError(913)
+               GenError(916)
             end
 
          end
 
       end
 
-      if @sym==C_TYPESym||@sym==C_LIKESym
+      if @sym==C_LIKESym||@sym==C_TYPESym
          if @sym==C_TYPESym
             Get()
             Expect(C_identifierSym)
@@ -12577,7 +12427,7 @@ class CParser < CRRParser
                end
 
             else
-               GenError(914)
+               GenError(917)
             end
 
          end
@@ -12593,7 +12443,7 @@ class CParser < CRRParser
                   if @sym==C_NOMinusDISPLAYSym
                      Get()
                   else
-                     GenError(915)
+                     GenError(918)
                   end
 
                end
@@ -12638,7 +12488,7 @@ class CParser < CRRParser
                      end
 
                   else
-                     GenError(916)
+                     GenError(919)
                   end
 
                end
@@ -12654,7 +12504,7 @@ class CParser < CRRParser
                   end
 
                else
-                  GenError(917)
+                  GenError(920)
                end
 
             end
@@ -12707,7 +12557,7 @@ class CParser < CRRParser
             if @sym==C_NODESym
                Get()
             else
-               GenError(918)
+               GenError(921)
             end
 
          end
@@ -12735,13 +12585,13 @@ class CParser < CRRParser
    def stPERFORM()
       _in_()
       Expect(C_PERFORMSym)
-      if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
-         if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
+      if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
+         if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
             Expression()
             if @sym==C_INSym
                Get()
                Expect(C_PROGRAMSym)
-               if @sym>=C_identifierSym&&@sym<=C_NODESym||@sym==C_CHECKSym
+               if @sym>=C_identifierSym&&@sym<=C_NODESym||@sym>=C_STANDARDSym&&@sym<=C_LparenSym
                   Name()
                end
 
@@ -12751,14 +12601,14 @@ class CParser < CRRParser
                end
 
             else
-               if @sym==C_USINGSym||@sym==C_TABLESSym||@sym>=C_CHANGINGSym&&@sym<=C_IFSym||@sym==C_PointSym
+               if @sym==C_USINGSym||@sym==C_TABLESSym||@sym==C_IFSym||@sym==C_PointSym||@sym==C_CHANGINGSym
                   if @sym==C_IFSym
                      Get()
                      Expect(C_FOUNDSym)
                   end
 
                else
-                  GenError(919)
+                  GenError(922)
                end
 
             end
@@ -12776,7 +12626,7 @@ class CParser < CRRParser
                if 1
                   Get()
                else
-                  GenError(920)
+                  GenError(923)
                end
 
             end
@@ -12795,7 +12645,7 @@ class CParser < CRRParser
          if @sym==C_USINGSym
             Get()
             Expression()
-            while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
+            while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
                Expression()
             end
 
@@ -12804,7 +12654,7 @@ class CParser < CRRParser
          if @sym==C_CHANGINGSym
             Get()
             Expression()
-            while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
+            while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
                Expression()
             end
 
@@ -12824,13 +12674,13 @@ class CParser < CRRParser
                if @sym==C_ROLLBACKSym
                   Get()
                else
-                  GenError(921)
+                  GenError(924)
                end
 
             end
 
          else
-            GenError(922)
+            GenError(925)
          end
 
       end
@@ -12931,7 +12781,7 @@ class CParser < CRRParser
 
       if @sym==C_EXCEPTIONSSym
          Get()
-         while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
+         while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
             Expression()
          end
 
@@ -12978,7 +12828,7 @@ class CParser < CRRParser
          Expect(C_SCREENSym)
          Expect(C_identifierSym)
       else
-         if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
+         if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
             Expression()
             if @sym==C_FROMSym
                Get()
@@ -12987,7 +12837,7 @@ class CParser < CRRParser
             end
 
          else
-            GenError(923)
+            GenError(926)
          end
 
       end
@@ -13020,7 +12870,7 @@ class CParser < CRRParser
                         Expect(C_OCCURRENCESSym)
                         Expect(C_OFSym)
                      else
-                        GenError(924)
+                        GenError(927)
                      end
 
                   end
@@ -13082,7 +12932,7 @@ class CParser < CRRParser
                         end
 
                      else
-                        GenError(925)
+                        GenError(928)
                      end
 
                   end
@@ -13097,7 +12947,7 @@ class CParser < CRRParser
                         if @sym==C_BYTESym
                            Get()
                         else
-                           GenError(926)
+                           GenError(929)
                         end
 
                      end
@@ -13112,7 +12962,7 @@ class CParser < CRRParser
                         if @sym==C_IGNORINGSym
                            Get()
                         else
-                           GenError(927)
+                           GenError(930)
                         end
 
                      end
@@ -13156,13 +13006,13 @@ class CParser < CRRParser
                         end
 
                      else
-                        GenError(928)
+                        GenError(931)
                      end
 
                   end
 
                else
-                  GenError(929)
+                  GenError(932)
                end
 
             end
@@ -13195,7 +13045,7 @@ class CParser < CRRParser
                      if @sym==C_BYTESym
                         Get()
                      else
-                        GenError(930)
+                        GenError(933)
                      end
 
                   end
@@ -13204,7 +13054,7 @@ class CParser < CRRParser
                end
 
             else
-               GenError(931)
+               GenError(934)
             end
 
          end
@@ -13224,7 +13074,7 @@ class CParser < CRRParser
                   if @sym==C_CHARACTERSym
                      Get()
                   else
-                     GenError(932)
+                     GenError(935)
                   end
 
                end
@@ -13241,7 +13091,7 @@ class CParser < CRRParser
             end
 
          else
-            GenError(933)
+            GenError(936)
          end
 
       end
@@ -13291,7 +13141,7 @@ class CParser < CRRParser
             Get()
             Expect(C_identifierSym)
          else
-            GenError(934)
+            GenError(937)
          end
 
       end
@@ -13316,7 +13166,7 @@ class CParser < CRRParser
                   if @sym==C_RIGHTSym
                      Get()
                   else
-                     GenError(935)
+                     GenError(938)
                   end
 
                end
@@ -13328,7 +13178,7 @@ class CParser < CRRParser
                end
 
             else
-               GenError(936)
+               GenError(939)
             end
 
          end
@@ -13350,7 +13200,7 @@ class CParser < CRRParser
                      Get()
                      Expect(C_numberSym)
                   else
-                     GenError(937)
+                     GenError(940)
                   end
 
                end
@@ -13370,7 +13220,7 @@ class CParser < CRRParser
                   if @sym==C_BACKWARDSym
                      Get()
                   else
-                     GenError(938)
+                     GenError(941)
                   end
 
                end
@@ -13381,7 +13231,7 @@ class CParser < CRRParser
                end
 
             else
-               GenError(939)
+               GenError(942)
             end
 
          end
@@ -13409,7 +13259,7 @@ class CParser < CRRParser
             if @sym==C_NOMinusDISPLAYSym
                Get()
             else
-               GenError(940)
+               GenError(943)
             end
 
          end
@@ -13496,7 +13346,7 @@ class CParser < CRRParser
                if @sym==C_HIGHSym
                   Get()
                else
-                  GenError(941)
+                  GenError(944)
                end
 
             end
@@ -13515,7 +13365,7 @@ class CParser < CRRParser
                if @sym==C_HIGHSym
                   Get()
                else
-                  GenError(942)
+                  GenError(945)
                end
 
             end
@@ -13560,7 +13410,7 @@ class CParser < CRRParser
             if @sym==C_NODESym
                Get()
             else
-               GenError(943)
+               GenError(946)
             end
 
          end
@@ -13617,7 +13467,7 @@ class CParser < CRRParser
             if @sym==C_OFFSym
                Get()
             else
-               GenError(944)
+               GenError(947)
             end
 
          end
@@ -13645,7 +13495,7 @@ class CParser < CRRParser
                      if @sym==C_MEMORYSym
                         Get()
                      else
-                        GenError(945)
+                        GenError(948)
                      end
 
                   end
@@ -13668,7 +13518,7 @@ class CParser < CRRParser
                         if @sym==C_MEMORYSym
                            Get()
                         else
-                           GenError(946)
+                           GenError(949)
                         end
 
                      end
@@ -13684,7 +13534,7 @@ class CParser < CRRParser
                   Get()
                   Expect(C_numberSym)
                else
-                  GenError(947)
+                  GenError(950)
                end
 
             end
@@ -13705,7 +13555,7 @@ class CParser < CRRParser
                   Expect(C_OFSym)
                   Expect(C_FILESym)
                else
-                  GenError(948)
+                  GenError(951)
                end
 
             end
@@ -13727,7 +13577,7 @@ class CParser < CRRParser
             if @sym==C_OFFSym
                Get()
             else
-               GenError(949)
+               GenError(952)
             end
 
          end
@@ -13745,7 +13595,7 @@ class CParser < CRRParser
                   Get()
                   Expect(C_INSTANCESSym)
                else
-                  GenError(950)
+                  GenError(953)
                end
 
             end
@@ -13767,7 +13617,7 @@ class CParser < CRRParser
             if @sym==C_OFFSym
                Get()
             else
-               GenError(951)
+               GenError(954)
             end
 
          end
@@ -13864,7 +13714,7 @@ class CParser < CRRParser
                if @sym==C_OFFSym
                   Get()
                else
-                  GenError(952)
+                  GenError(955)
                end
 
             end
@@ -13879,13 +13729,13 @@ class CParser < CRRParser
                   if @sym==C_LOWSym
                      Get()
                   else
-                     GenError(953)
+                     GenError(956)
                   end
 
                end
 
             else
-               GenError(954)
+               GenError(957)
             end
 
          end
@@ -13921,7 +13771,7 @@ class CParser < CRRParser
          Expect(C_identifierSym)
 
       else
-         GenError(955)
+         GenError(958)
 
       end
 
@@ -13945,7 +13795,7 @@ class CParser < CRRParser
                      Expect(C_TOSym)
                      Expect(C_stringD1Sym)
                   else
-                     GenError(956)
+                     GenError(959)
                   end
 
                end
@@ -13959,7 +13809,7 @@ class CParser < CRRParser
                   if @sym==C_RIGHTSym
                      Get()
                   else
-                     GenError(957)
+                     GenError(960)
                   end
 
                end
@@ -13983,13 +13833,13 @@ class CParser < CRRParser
                      Expect(C_TRAILINGSym)
                      Expect(C_stringD1Sym)
                   else
-                     GenError(958)
+                     GenError(961)
                   end
 
                end
 
             else
-               GenError(959)
+               GenError(962)
             end
 
          end
@@ -14004,7 +13854,7 @@ class CParser < CRRParser
             if @sym==C_BYTESym
                Get()
             else
-               GenError(960)
+               GenError(963)
             end
 
          end
@@ -14149,7 +13999,7 @@ class CParser < CRRParser
       Expect(C_TESTMinusINJECTIONSym)
       Expect(C_identifierSym)
       Expect(C_PointSym)
-      if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_TRYSym||@sym>=C_BEFORESym&&@sym<=C_LparenSym||@sym>=C_TYPEMinusPOOLSym&&@sym<=C_PointSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MOVEMinusCORRESPONDINGSym||@sym==C_CLASSMinusDATASym||@sym==C_AUTHORITYMinusCHECKSym||@sym==C_SELECTIONMinusSCREENSym||@sym==C_forSym||@sym>=C_returnSym&&@sym<=C_ADDMinusCORRESPONDINGSym||@sym==C_BREAKMinusPOINTSym||@sym>=C_CLASSMinusEVENTSSym&&@sym<=C_CLASSMinusPOOLSym||@sym>=C_DIVIDEMinusCORRESPONDINGSym&&@sym<=C_EDITORMinusCALLSym||@sym>=C_ENDMinusOFMinusPAGESym&&@sym<=C_ENDMinusOFMinusSELECTIONSym||@sym>=C_FIELDMinusGROUPSSym&&@sym<=C_FUNCTIONMinusPOOLSym||@sym==C_INTERFACEMinusPOOLSym||@sym>=C_LOADMinusOFMinusPROGRAMSym&&@sym<=C_NEWMinusLINESym||@sym==C_NEWMinusPAGESym||@sym==C_NEWMinusSECTIONSym||@sym==C_PRINTMinusCONTROLSym||@sym==C_SELECTMinusOPTIONSSym||@sym>=C_SUBTRACTMinusCORRESPONDINGSym&&@sym<=C_TESTMinusINJECTIONSym||@sym==C_TESTMinusSEAMSym||@sym==C_TOPMinusOFMinusPAGESym||@sym==C_TYPEMinusPOOLSSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
+      if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_MESSAGESym||@sym>=C_CREATESym&&@sym<=C_FUNCTIONSym||@sym>=C_ENDSELECTSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_APPENDSym||@sym>=C_ASSIGNINGSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_TIMESSym||@sym>=C_OPTIONALSym&&@sym<=C_CHANGESym||@sym>=C_OPENSym&&@sym<=C_GAPSSym||@sym>=C_READSym&&@sym<=C_TRYSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym>=C_ASSOCIATIONSym&&@sym<=C_VARYSym||@sym>=C_TASKSym&&@sym<=C_IFSym||@sym==C_ELSESym||@sym>=C_CLASSSym&&@sym<=C_SECTIONSym||@sym==C_METHODSym||@sym>=C_METHODSSym&&@sym<=C_LASTSym||@sym>=C_BACKSym&&@sym<=C_INTERFACESym||@sym>=C_INTERFACESSym&&@sym<=C_MODULESym||@sym>=C_MULTIPLYSym&&@sym<=C_RETURNINGSym||@sym>=C_CHECKSym&&@sym<=C_LparenSym||@sym>=C_TYPEMinusPOOLSym&&@sym<=C_PointSym||@sym==C_StarSym||@sym==C_TildeSym||@sym>=C_PlusSym&&@sym<=C_WITHSym||@sym==C_MOVEMinusCORRESPONDINGSym||@sym==C_CLASSMinusDATASym||@sym==C_AUTHORITYMinusCHECKSym||@sym==C_SELECTIONMinusSCREENSym||@sym==C_forSym||@sym>=C_returnSym&&@sym<=C_ADDMinusCORRESPONDINGSym||@sym==C_BREAKMinusPOINTSym||@sym>=C_CLASSMinusEVENTSSym&&@sym<=C_CLASSMinusPOOLSym||@sym>=C_DIVIDEMinusCORRESPONDINGSym&&@sym<=C_EDITORMinusCALLSym||@sym>=C_ENDMinusOFMinusPAGESym&&@sym<=C_ENDMinusOFMinusSELECTIONSym||@sym>=C_FIELDMinusGROUPSSym&&@sym<=C_FUNCTIONMinusPOOLSym||@sym==C_INTERFACEMinusPOOLSym||@sym>=C_LOADMinusOFMinusPROGRAMSym&&@sym<=C_NEWMinusLINESym||@sym==C_NEWMinusPAGESym||@sym==C_NEWMinusSECTIONSym||@sym==C_PRINTMinusCONTROLSym||@sym==C_SELECTMinusOPTIONSSym||@sym>=C_SUBTRACTMinusCORRESPONDINGSym&&@sym<=C_TESTMinusINJECTIONSym||@sym==C_TESTMinusSEAMSym||@sym==C_TOPMinusOFMinusPAGESym||@sym==C_TYPEMinusPOOLSSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
          Statements()
       end
 
@@ -14162,7 +14012,7 @@ class CParser < CRRParser
       Expect(C_TESTMinusSEAMSym)
       Expect(C_identifierSym)
       Expect(C_PointSym)
-      if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_TRYSym||@sym>=C_BEFORESym&&@sym<=C_LparenSym||@sym>=C_TYPEMinusPOOLSym&&@sym<=C_PointSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MOVEMinusCORRESPONDINGSym||@sym==C_CLASSMinusDATASym||@sym==C_AUTHORITYMinusCHECKSym||@sym==C_SELECTIONMinusSCREENSym||@sym==C_forSym||@sym>=C_returnSym&&@sym<=C_ADDMinusCORRESPONDINGSym||@sym==C_BREAKMinusPOINTSym||@sym>=C_CLASSMinusEVENTSSym&&@sym<=C_CLASSMinusPOOLSym||@sym>=C_DIVIDEMinusCORRESPONDINGSym&&@sym<=C_EDITORMinusCALLSym||@sym>=C_ENDMinusOFMinusPAGESym&&@sym<=C_ENDMinusOFMinusSELECTIONSym||@sym>=C_FIELDMinusGROUPSSym&&@sym<=C_FUNCTIONMinusPOOLSym||@sym==C_INTERFACEMinusPOOLSym||@sym>=C_LOADMinusOFMinusPROGRAMSym&&@sym<=C_NEWMinusLINESym||@sym==C_NEWMinusPAGESym||@sym==C_NEWMinusSECTIONSym||@sym==C_PRINTMinusCONTROLSym||@sym==C_SELECTMinusOPTIONSSym||@sym>=C_SUBTRACTMinusCORRESPONDINGSym&&@sym<=C_TESTMinusINJECTIONSym||@sym==C_TESTMinusSEAMSym||@sym==C_TOPMinusOFMinusPAGESym||@sym==C_TYPEMinusPOOLSSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
+      if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_MESSAGESym||@sym>=C_CREATESym&&@sym<=C_FUNCTIONSym||@sym>=C_ENDSELECTSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_APPENDSym||@sym>=C_ASSIGNINGSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_TIMESSym||@sym>=C_OPTIONALSym&&@sym<=C_CHANGESym||@sym>=C_OPENSym&&@sym<=C_GAPSSym||@sym>=C_READSym&&@sym<=C_TRYSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym>=C_ASSOCIATIONSym&&@sym<=C_VARYSym||@sym>=C_TASKSym&&@sym<=C_IFSym||@sym==C_ELSESym||@sym>=C_CLASSSym&&@sym<=C_SECTIONSym||@sym==C_METHODSym||@sym>=C_METHODSSym&&@sym<=C_LASTSym||@sym>=C_BACKSym&&@sym<=C_INTERFACESym||@sym>=C_INTERFACESSym&&@sym<=C_MODULESym||@sym>=C_MULTIPLYSym&&@sym<=C_RETURNINGSym||@sym>=C_CHECKSym&&@sym<=C_LparenSym||@sym>=C_TYPEMinusPOOLSym&&@sym<=C_PointSym||@sym==C_StarSym||@sym==C_TildeSym||@sym>=C_PlusSym&&@sym<=C_WITHSym||@sym==C_MOVEMinusCORRESPONDINGSym||@sym==C_CLASSMinusDATASym||@sym==C_AUTHORITYMinusCHECKSym||@sym==C_SELECTIONMinusSCREENSym||@sym==C_forSym||@sym>=C_returnSym&&@sym<=C_ADDMinusCORRESPONDINGSym||@sym==C_BREAKMinusPOINTSym||@sym>=C_CLASSMinusEVENTSSym&&@sym<=C_CLASSMinusPOOLSym||@sym>=C_DIVIDEMinusCORRESPONDINGSym&&@sym<=C_EDITORMinusCALLSym||@sym>=C_ENDMinusOFMinusPAGESym&&@sym<=C_ENDMinusOFMinusSELECTIONSym||@sym>=C_FIELDMinusGROUPSSym&&@sym<=C_FUNCTIONMinusPOOLSym||@sym==C_INTERFACEMinusPOOLSym||@sym>=C_LOADMinusOFMinusPROGRAMSym&&@sym<=C_NEWMinusLINESym||@sym==C_NEWMinusPAGESym||@sym==C_NEWMinusSECTIONSym||@sym==C_PRINTMinusCONTROLSym||@sym==C_SELECTMinusOPTIONSSym||@sym>=C_SUBTRACTMinusCORRESPONDINGSym&&@sym<=C_TESTMinusINJECTIONSym||@sym==C_TESTMinusSEAMSym||@sym==C_TOPMinusOFMinusPAGESym||@sym==C_TYPEMinusPOOLSSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
          Statements()
       end
 
@@ -14217,7 +14067,7 @@ class CParser < CRRParser
             if @sym==C_LOWERSym
                Get()
             else
-               GenError(961)
+               GenError(964)
             end
 
          end
@@ -14229,7 +14079,7 @@ class CParser < CRRParser
             Expect(C_stringD1Sym)
             Expect(C_PointSym)
          else
-            GenError(962)
+            GenError(965)
          end
 
       end
@@ -14251,7 +14101,7 @@ class CParser < CRRParser
             Expect(C_numberSym)
             Expect(C_PointSym)
          else
-            GenError(963)
+            GenError(966)
          end
 
       end
@@ -14340,7 +14190,7 @@ class CParser < CRRParser
                Get()
                Expect(C_SPECIFIEDSym)
             else
-               GenError(964)
+               GenError(967)
             end
 
          end
@@ -14379,13 +14229,13 @@ class CParser < CRRParser
                   Get()
                   Expect(C_identifierSym)
                else
-                  GenError(965)
+                  GenError(968)
                end
 
             end
 
          else
-            GenError(966)
+            GenError(969)
          end
 
       end
@@ -14448,7 +14298,7 @@ class CParser < CRRParser
 
             Expect(C_PointSym)
          else
-            GenError(967)
+            GenError(970)
          end
 
       end
@@ -14484,7 +14334,7 @@ class CParser < CRRParser
 
       end
 
-      if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_FIELDSSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_aggregateSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
+      if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_FIELDSSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_aggregateSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
          sqlFields()
          sqlFrom()
       else
@@ -14492,7 +14342,7 @@ class CParser < CRRParser
             sqlFrom()
             sqlFields()
          else
-            GenError(968)
+            GenError(971)
          end
 
       end
@@ -14521,23 +14371,23 @@ class CParser < CRRParser
                if @sym==C_identifierSym
                   Get()
                else
-                  if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_DATASym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
+                  if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_DATASym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
                      Expression()
                   else
-                     GenError(969)
+                     GenError(972)
                   end
 
                end
 
-               while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym>=C_StarSym&&@sym<=C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
+               while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym>=C_StarSym&&@sym<=C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
                   if @sym==C_CommaSym
                      Get()
                      Expect(C_identifierSym)
                   else
-                     if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
+                     if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
                         Expression()
                      else
-                        GenError(970)
+                        GenError(973)
                      end
 
                   end
@@ -14550,7 +14400,7 @@ class CParser < CRRParser
                   Expect(C_identifierSym)
                   Expect(C_RparenSym)
                else
-                  GenError(971)
+                  GenError(974)
                end
 
             end
@@ -14570,7 +14420,7 @@ class CParser < CRRParser
                if @sym==C_DISTINCTSym
                   Get()
                else
-                  GenError(972)
+                  GenError(975)
                end
 
             end
@@ -14602,7 +14452,7 @@ class CParser < CRRParser
                   if @sym==C_LOCATORSym
                      Get()
                   else
-                     GenError(973)
+                     GenError(976)
                   end
 
                end
@@ -14629,7 +14479,7 @@ class CParser < CRRParser
                            if @sym==C_CLOBSym
                               Get()
                            else
-                              GenError(974)
+                              GenError(977)
                            end
 
                         end
@@ -14638,7 +14488,7 @@ class CParser < CRRParser
 
                      Expect(C_COLUMNSSym)
                   else
-                     GenError(975)
+                     GenError(978)
                   end
 
                end
@@ -14649,7 +14499,7 @@ class CParser < CRRParser
                   Expect(C_identifierSym)
                   Expect(C_RparenSym)
                else
-                  GenError(976)
+                  GenError(979)
                end
 
             end
@@ -14681,7 +14531,7 @@ class CParser < CRRParser
       end
 
       Expect(C_PointSym)
-      while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_TRYSym||@sym>=C_BEFORESym&&@sym<=C_LparenSym||@sym>=C_TYPEMinusPOOLSym&&@sym<=C_PointSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MOVEMinusCORRESPONDINGSym||@sym==C_CLASSMinusDATASym||@sym==C_AUTHORITYMinusCHECKSym||@sym==C_SELECTIONMinusSCREENSym||@sym==C_forSym||@sym>=C_returnSym&&@sym<=C_ADDMinusCORRESPONDINGSym||@sym==C_BREAKMinusPOINTSym||@sym>=C_CLASSMinusEVENTSSym&&@sym<=C_CLASSMinusPOOLSym||@sym>=C_DIVIDEMinusCORRESPONDINGSym&&@sym<=C_EDITORMinusCALLSym||@sym>=C_ENDMinusOFMinusPAGESym&&@sym<=C_ENDMinusOFMinusSELECTIONSym||@sym>=C_FIELDMinusGROUPSSym&&@sym<=C_FUNCTIONMinusPOOLSym||@sym==C_INTERFACEMinusPOOLSym||@sym>=C_LOADMinusOFMinusPROGRAMSym&&@sym<=C_NEWMinusLINESym||@sym==C_NEWMinusPAGESym||@sym==C_NEWMinusSECTIONSym||@sym==C_PRINTMinusCONTROLSym||@sym==C_SELECTMinusOPTIONSSym||@sym>=C_SUBTRACTMinusCORRESPONDINGSym&&@sym<=C_TESTMinusINJECTIONSym||@sym==C_TESTMinusSEAMSym||@sym==C_TOPMinusOFMinusPAGESym||@sym==C_TYPEMinusPOOLSSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
+      while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_MESSAGESym||@sym>=C_CREATESym&&@sym<=C_FUNCTIONSym||@sym>=C_ENDSELECTSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_APPENDSym||@sym>=C_ASSIGNINGSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_TIMESSym||@sym>=C_OPTIONALSym&&@sym<=C_CHANGESym||@sym>=C_OPENSym&&@sym<=C_GAPSSym||@sym>=C_READSym&&@sym<=C_TRYSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym>=C_ASSOCIATIONSym&&@sym<=C_VARYSym||@sym>=C_TASKSym&&@sym<=C_IFSym||@sym==C_ELSESym||@sym>=C_CLASSSym&&@sym<=C_SECTIONSym||@sym==C_METHODSym||@sym>=C_METHODSSym&&@sym<=C_LASTSym||@sym>=C_BACKSym&&@sym<=C_INTERFACESym||@sym>=C_INTERFACESSym&&@sym<=C_MODULESym||@sym>=C_MULTIPLYSym&&@sym<=C_RETURNINGSym||@sym>=C_CHECKSym&&@sym<=C_LparenSym||@sym>=C_TYPEMinusPOOLSym&&@sym<=C_PointSym||@sym==C_StarSym||@sym==C_TildeSym||@sym>=C_PlusSym&&@sym<=C_WITHSym||@sym==C_MOVEMinusCORRESPONDINGSym||@sym==C_CLASSMinusDATASym||@sym==C_AUTHORITYMinusCHECKSym||@sym==C_SELECTIONMinusSCREENSym||@sym==C_forSym||@sym>=C_returnSym&&@sym<=C_ADDMinusCORRESPONDINGSym||@sym==C_BREAKMinusPOINTSym||@sym>=C_CLASSMinusEVENTSSym&&@sym<=C_CLASSMinusPOOLSym||@sym>=C_DIVIDEMinusCORRESPONDINGSym&&@sym<=C_EDITORMinusCALLSym||@sym>=C_ENDMinusOFMinusPAGESym&&@sym<=C_ENDMinusOFMinusSELECTIONSym||@sym>=C_FIELDMinusGROUPSSym&&@sym<=C_FUNCTIONMinusPOOLSym||@sym==C_INTERFACEMinusPOOLSym||@sym>=C_LOADMinusOFMinusPROGRAMSym&&@sym<=C_NEWMinusLINESym||@sym==C_NEWMinusPAGESym||@sym==C_NEWMinusSECTIONSym||@sym==C_PRINTMinusCONTROLSym||@sym==C_SELECTMinusOPTIONSSym||@sym>=C_SUBTRACTMinusCORRESPONDINGSym&&@sym<=C_TESTMinusINJECTIONSym||@sym==C_TESTMinusSEAMSym||@sym==C_TOPMinusOFMinusPAGESym||@sym==C_TYPEMinusPOOLSSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
          Statement()
       end
 
@@ -14708,11 +14558,11 @@ class CParser < CRRParser
          Get()
       end
 
-      while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_aggregateSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
+      while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_aggregateSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
          if @sym==C_StarSym
             Get()
          else
-            if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_TildeSym||@sym==C_aggregateSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
+            if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_TildeSym||@sym==C_aggregateSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
                sqlColumn()
                while (@sym==C_CommaSym)
                   Get()
@@ -14725,7 +14575,7 @@ class CParser < CRRParser
                   Expect(C_identifierSym)
                   Expect(C_RparenSym)
                else
-                  GenError(977)
+                  GenError(980)
                end
 
             end
@@ -14761,10 +14611,10 @@ class CParser < CRRParser
             Expect(C_identifierSym)
             Expect(C_RparenSym)
          else
-            if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_DATASym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
+            if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_DATASym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
                Expression()
             else
-               GenError(978)
+               GenError(981)
             end
 
          end
@@ -14805,7 +14655,7 @@ class CParser < CRRParser
                if @sym>=C_INNERSym&&@sym<=C_RIGHTSym||@sym>=C_CROSSSym&&@sym<=C_JOINSym
                   sqlJoin()
                else
-                  GenError(979)
+                  GenError(982)
                end
 
             end
@@ -14825,7 +14675,7 @@ class CParser < CRRParser
                end
 
             else
-               GenError(980)
+               GenError(983)
             end
 
          end
@@ -14855,7 +14705,7 @@ class CParser < CRRParser
                end
 
             else
-               GenError(981)
+               GenError(984)
             end
 
          end
@@ -14879,7 +14729,7 @@ class CParser < CRRParser
                if @sym==C_RIGHTSym
                   Get()
                else
-                  GenError(982)
+                  GenError(985)
                end
 
             end
@@ -14928,7 +14778,7 @@ class CParser < CRRParser
                   if @sym==C_DESCENDINGSym
                      Get()
                   else
-                     GenError(983)
+                     GenError(986)
                   end
 
                end
@@ -14945,7 +14795,7 @@ class CParser < CRRParser
                      if @sym==C_DESCENDINGSym
                         Get()
                      else
-                        GenError(984)
+                        GenError(987)
                      end
 
                   end
@@ -14960,7 +14810,7 @@ class CParser < CRRParser
                Expect(C_identifierSym)
                Expect(C_RparenSym)
             else
-               GenError(985)
+               GenError(988)
             end
 
          end
@@ -14977,13 +14827,13 @@ class CParser < CRRParser
          if @sym==C_APPENDINGSym
             Get()
          else
-            GenError(986)
+            GenError(989)
          end
 
       end
 
-      if @sym==C_identifierSym||@sym>=C_CORRESPONDINGSym&&@sym<=C_TABLESym||@sym==C_LparenSym
-         if @sym==C_identifierSym||@sym>=C_CORRESPONDINGSym&&@sym<=C_TABLESym
+      if @sym==C_identifierSym||@sym==C_CORRESPONDINGSym||@sym==C_LparenSym||@sym==C_TABLESym
+         if @sym==C_identifierSym||@sym==C_CORRESPONDINGSym||@sym==C_TABLESym
             if @sym==C_CORRESPONDINGSym
                Get()
                Expect(C_FIELDSSym)
@@ -15012,7 +14862,7 @@ class CParser < CRRParser
 
                Expect(C_RparenSym)
             else
-               GenError(987)
+               GenError(990)
             end
 
          end
@@ -15037,7 +14887,7 @@ class CParser < CRRParser
                end
 
             else
-               GenError(988)
+               GenError(991)
             end
 
          end
@@ -15091,9 +14941,9 @@ class CParser < CRRParser
       _in_()
       Expect(C_GROUPSym)
       Expect(C_BYSym)
-      if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
+      if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
          Expression()
-         while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
+         while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
             Expression()
          end
 
@@ -15115,7 +14965,7 @@ class CParser < CRRParser
          if 1
             Get()
          else
-            GenError(989)
+            GenError(992)
          end
 
       end
@@ -15127,7 +14977,7 @@ class CParser < CRRParser
             if @sym==C_DESCENDINGSym
                Get()
             else
-               GenError(990)
+               GenError(993)
             end
 
          end
@@ -15158,7 +15008,7 @@ class CParser < CRRParser
                   Expect(C_INTOSym)
                   Expect(C_identifierSym)
                else
-                  GenError(991)
+                  GenError(994)
                end
 
             end
@@ -15188,7 +15038,7 @@ class CParser < CRRParser
                if @sym==C_EQUIVSym
                   Get()
                else
-                  GenError(992)
+                  GenError(995)
                end
 
             end
@@ -15223,7 +15073,6 @@ class CParser < CRRParser
          C_LENGTHSym,
          C_DECIMALSSym,
          C_BOXEDSym,
-         C_TYPESym,
          C_SUFFIXSym,
          C_COMPONENTSSym,
          C_EXCEPTIONSSym,
@@ -15265,7 +15114,6 @@ class CParser < CRRParser
          C_INTOSym,
          C_APPENDINGSym,
          C_CORRESPONDINGSym,
-         C_TABLESym,
          C_PACKAGESym,
          C_SIZESym,
          C_SELECTSym,
@@ -15293,7 +15141,6 @@ class CParser < CRRParser
          C_BYPASSINGSym,
          C_BUFFERSym,
          C_CONNECTIONSym,
-         C_WITHSym,
          C_ENDWITHSym,
          C_TABLESSym,
          C_MOVESym,
@@ -15303,7 +15150,6 @@ class CParser < CRRParser
          C_NESTEDSym,
          C_KEEPINGSym,
          C_APPENDSym,
-         C_INITIALSym,
          C_LINESym,
          C_ASSIGNINGSym,
          C_CASTINGSym,
@@ -15324,7 +15170,6 @@ class CParser < CRRParser
          C_MARKSym,
          C_RAISESym,
          C_EVENTSym,
-         C_EXPORTINGSym,
          C_RESUMABLESym,
          C_EXCEPTIONSym,
          C_NUMBERSym,
@@ -15342,7 +15187,6 @@ class CParser < CRRParser
          C_ENDLOOPSym,
          C_LOBSym,
          C_HANDLESym,
-         C_HASHEDSym,
          C_EMPTYSym,
          C_HEADERSym,
          C_UNIQUESym,
@@ -15484,8 +15328,6 @@ class CParser < CRRParser
          C_DESTINATIONSym,
          C_CALLINGSym,
          C_PERFORMINGSym,
-         C_IMPORTINGSym,
-         C_CHANGINGSym,
          C_IFSym,
          C_ELSEIFSym,
          C_ELSESym,
@@ -15524,7 +15366,6 @@ class CParser < CRRParser
          C_IGNORESym,
          C_FAILSym,
          C_PREFERREDSym,
-         C_RETURNINGSym,
          C_ADDSym,
          C_THENSym,
          C_UNTILSym,
@@ -15545,7 +15386,6 @@ class CParser < CRRParser
          C_DIALOGSym,
          C_SKIPSym,
          C_PROCEDURESym,
-         C_RECEIVINGSym,
          C_FLUSHSym,
          C_TRANSACTIONSym,
          C_OPTIONSSym,
@@ -15779,7 +15619,7 @@ class CParser < CRRParser
                         Get()
                         Expect(C_HANDLESym)
                      else
-                        GenError(993)
+                        GenError(996)
                      end
 
                   end
@@ -15809,13 +15649,13 @@ class CParser < CRRParser
       when C_REFSym
          Get()
          Expect(C_TOSym)
-         if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
+         if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
             Expression()
          else
             if 1
                Get()
             else
-               GenError(994)
+               GenError(997)
             end
 
          end
@@ -15825,8 +15665,10 @@ class CParser < CRRParser
 
 
       when C_SORTEDSym,
-         C_STANDARDSym
-         if @sym==C_HASHEDSym||@sym>=C_SORTEDSym&&@sym<=C_STANDARDSym
+         C_HASHEDSym,
+         C_STANDARDSym,
+         C_TABLESym
+         if @sym==C_SORTEDSym||@sym==C_HASHEDSym||@sym==C_STANDARDSym
             if @sym==C_STANDARDSym
                Get()
             else
@@ -15836,7 +15678,7 @@ class CParser < CRRParser
                   if @sym==C_HASHEDSym
                      Get()
                   else
-                     GenError(995)
+                     GenError(998)
                   end
 
                end
@@ -15866,7 +15708,7 @@ class CParser < CRRParser
                   Get()
                   Expect(C_LINESym)
                else
-                  if @sym==C_KEYSym||@sym==C_DEFAULTSym||@sym==C_HASHEDSym||@sym==C_UNIQUESym||@sym==C_SORTEDSym||@sym==C_NONMinusUNIQUESym
+                  if @sym==C_KEYSym||@sym==C_DEFAULTSym||@sym==C_UNIQUESym||@sym==C_SORTEDSym||@sym==C_HASHEDSym||@sym==C_NONMinusUNIQUESym
                      if @sym==C_UNIQUESym||@sym==C_NONMinusUNIQUESym
                         if @sym==C_UNIQUESym
                            Get()
@@ -15874,21 +15716,21 @@ class CParser < CRRParser
                            if @sym==C_NONMinusUNIQUESym
                               Get()
                            else
-                              GenError(996)
+                              GenError(999)
                            end
 
                         end
 
                      end
 
-                     if @sym==C_HASHEDSym||@sym==C_SORTEDSym
+                     if @sym==C_SORTEDSym||@sym==C_HASHEDSym
                         if @sym==C_HASHEDSym
                            Get()
                         else
                            if @sym==C_SORTEDSym
                               Get()
                            else
-                              GenError(997)
+                              GenError(1000)
                            end
 
                         end
@@ -15908,7 +15750,7 @@ class CParser < CRRParser
                         end
 
                         Name()
-                        while (@sym>=C_identifierSym&&@sym<=C_NODESym||@sym==C_CHECKSym)
+                        while (@sym>=C_identifierSym&&@sym<=C_NODESym||@sym>=C_STANDARDSym&&@sym<=C_LparenSym)
                            Name()
                         end
 
@@ -15917,13 +15759,13 @@ class CParser < CRRParser
                            Get()
                            Expect(C_KEYSym)
                         else
-                           GenError(998)
+                           GenError(1001)
                         end
 
                      end
 
                   else
-                     GenError(999)
+                     GenError(1002)
                   end
 
                end
@@ -15972,7 +15814,7 @@ class CParser < CRRParser
                if @sym==C_CLOBSym
                   Get()
                else
-                  GenError(1000)
+                  GenError(1003)
                end
 
             end
@@ -15982,7 +15824,7 @@ class CParser < CRRParser
          Expect(C_COLUMNSSym)
 
       else
-         GenError(1001)
+         GenError(1004)
 
       end
 
@@ -16011,7 +15853,6 @@ class CParser < CRRParser
          C_LENGTHSym,
          C_DECIMALSSym,
          C_BOXEDSym,
-         C_TYPESym,
          C_SUFFIXSym,
          C_COMPONENTSSym,
          C_EXCEPTIONSSym,
@@ -16053,7 +15894,6 @@ class CParser < CRRParser
          C_INTOSym,
          C_APPENDINGSym,
          C_CORRESPONDINGSym,
-         C_TABLESym,
          C_PACKAGESym,
          C_SIZESym,
          C_SELECTSym,
@@ -16081,7 +15921,6 @@ class CParser < CRRParser
          C_BYPASSINGSym,
          C_BUFFERSym,
          C_CONNECTIONSym,
-         C_WITHSym,
          C_ENDWITHSym,
          C_TABLESSym,
          C_MOVESym,
@@ -16091,7 +15930,6 @@ class CParser < CRRParser
          C_NESTEDSym,
          C_KEEPINGSym,
          C_APPENDSym,
-         C_INITIALSym,
          C_LINESym,
          C_ASSIGNINGSym,
          C_CASTINGSym,
@@ -16112,7 +15950,6 @@ class CParser < CRRParser
          C_MARKSym,
          C_RAISESym,
          C_EVENTSym,
-         C_EXPORTINGSym,
          C_RESUMABLESym,
          C_EXCEPTIONSym,
          C_NUMBERSym,
@@ -16130,7 +15967,6 @@ class CParser < CRRParser
          C_ENDLOOPSym,
          C_LOBSym,
          C_HANDLESym,
-         C_HASHEDSym,
          C_EMPTYSym,
          C_HEADERSym,
          C_UNIQUESym,
@@ -16272,8 +16108,6 @@ class CParser < CRRParser
          C_DESTINATIONSym,
          C_CALLINGSym,
          C_PERFORMINGSym,
-         C_IMPORTINGSym,
-         C_CHANGINGSym,
          C_IFSym,
          C_ELSEIFSym,
          C_ELSESym,
@@ -16312,7 +16146,6 @@ class CParser < CRRParser
          C_IGNORESym,
          C_FAILSym,
          C_PREFERREDSym,
-         C_RETURNINGSym,
          C_ADDSym,
          C_THENSym,
          C_UNTILSym,
@@ -16333,7 +16166,6 @@ class CParser < CRRParser
          C_DIALOGSym,
          C_SKIPSym,
          C_PROCEDURESym,
-         C_RECEIVINGSym,
          C_FLUSHSym,
          C_TRANSACTIONSym,
          C_OPTIONSSym,
@@ -16548,8 +16380,10 @@ class CParser < CRRParser
          TypeName()
 
       when C_SORTEDSym,
-         C_STANDARDSym
-         if @sym==C_HASHEDSym||@sym>=C_SORTEDSym&&@sym<=C_STANDARDSym
+         C_HASHEDSym,
+         C_STANDARDSym,
+         C_TABLESym
+         if @sym==C_SORTEDSym||@sym==C_HASHEDSym||@sym==C_STANDARDSym
             if @sym==C_STANDARDSym
                Get()
             else
@@ -16559,7 +16393,7 @@ class CParser < CRRParser
                   if @sym==C_HASHEDSym
                      Get()
                   else
-                     GenError(1002)
+                     GenError(1005)
                   end
 
                end
@@ -16586,7 +16420,7 @@ class CParser < CRRParser
                      if @sym==C_NONMinusUNIQUESym
                         Get()
                      else
-                        GenError(1003)
+                        GenError(1006)
                      end
 
                   end
@@ -16607,7 +16441,7 @@ class CParser < CRRParser
                      end
 
                      Name()
-                     while (@sym>=C_identifierSym&&@sym<=C_NODESym||@sym==C_CHECKSym)
+                     while (@sym>=C_identifierSym&&@sym<=C_NODESym||@sym>=C_STANDARDSym&&@sym<=C_LparenSym)
                         Name()
                      end
 
@@ -16616,7 +16450,7 @@ class CParser < CRRParser
                         Get()
                         Expect(C_KEYSym)
                      else
-                        GenError(1004)
+                        GenError(1007)
                      end
 
                   end
@@ -16629,14 +16463,14 @@ class CParser < CRRParser
                   Expect(C_EMPTYSym)
                   Expect(C_KEYSym)
                else
-                  GenError(1005)
+                  GenError(1008)
                end
 
             end
 
          end
 
-         while (@sym==C_KEYSym||@sym==C_WITHSym||@sym==C_UNIQUESym||@sym==C_SORTEDSym||@sym==C_NONMinusUNIQUESym)
+         while (@sym==C_KEYSym||@sym==C_UNIQUESym||@sym==C_SORTEDSym||@sym==C_WITHSym||@sym==C_NONMinusUNIQUESym)
             if @sym==C_WITHSym
                Get()
                while (@sym==C_UNIQUESym)
@@ -16654,7 +16488,7 @@ class CParser < CRRParser
                            if @sym==C_NONMinusUNIQUESym
                               Get()
                            else
-                              GenError(1006)
+                              GenError(1009)
                            end
 
                         end
@@ -16672,7 +16506,7 @@ class CParser < CRRParser
                   end
 
                else
-                  GenError(1007)
+                  GenError(1010)
                end
 
             end
@@ -16713,7 +16547,7 @@ class CParser < CRRParser
 
 
       else
-         GenError(1008)
+         GenError(1011)
 
       end
 
@@ -16758,7 +16592,7 @@ class CParser < CRRParser
                      Get()
 
                   else
-                     GenError(1009)
+                     GenError(1012)
 
                   end
 
@@ -16770,7 +16604,7 @@ class CParser < CRRParser
                   if @sym==C_OFFSym
                      Get()
                   else
-                     GenError(1010)
+                     GenError(1013)
                   end
 
                end
@@ -16780,7 +16614,7 @@ class CParser < CRRParser
                   Get()
                   Expect(C_stringD1Sym)
                else
-                  GenError(1011)
+                  GenError(1014)
                end
 
             end
@@ -16797,7 +16631,7 @@ class CParser < CRRParser
                      if @sym==C_OFFSym
                         Get()
                      else
-                        GenError(1012)
+                        GenError(1015)
                      end
 
                   end
@@ -16807,7 +16641,7 @@ class CParser < CRRParser
                      Get()
                      Expression()
                   else
-                     GenError(1013)
+                     GenError(1016)
                   end
 
                end
@@ -16826,7 +16660,7 @@ class CParser < CRRParser
                      if @sym==C_OFFSym
                         Get()
                      else
-                        GenError(1014)
+                        GenError(1017)
                      end
 
                   end
@@ -16836,7 +16670,7 @@ class CParser < CRRParser
                      Get()
                      Expression()
                   else
-                     GenError(1015)
+                     GenError(1018)
                   end
 
                end
@@ -16855,7 +16689,7 @@ class CParser < CRRParser
                      if @sym==C_OFFSym
                         Get()
                      else
-                        GenError(1016)
+                        GenError(1019)
                      end
 
                   end
@@ -16865,7 +16699,7 @@ class CParser < CRRParser
                      Get()
                      Expression()
                   else
-                     GenError(1017)
+                     GenError(1020)
                   end
 
                end
@@ -16884,7 +16718,7 @@ class CParser < CRRParser
                      if @sym==C_OFFSym
                         Get()
                      else
-                        GenError(1018)
+                        GenError(1021)
                      end
 
                   end
@@ -16894,7 +16728,7 @@ class CParser < CRRParser
                      Get()
                      Expression()
                   else
-                     GenError(1019)
+                     GenError(1022)
                   end
 
                end
@@ -16913,7 +16747,7 @@ class CParser < CRRParser
                      if @sym==C_OFFSym
                         Get()
                      else
-                        GenError(1020)
+                        GenError(1023)
                      end
 
                   end
@@ -16923,7 +16757,7 @@ class CParser < CRRParser
                      Get()
                      Expression()
                   else
-                     GenError(1021)
+                     GenError(1024)
                   end
 
                end
@@ -16943,7 +16777,7 @@ class CParser < CRRParser
    def Statements()
       _in_()
       Statement()
-      while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_TRYSym||@sym>=C_BEFORESym&&@sym<=C_LparenSym||@sym>=C_TYPEMinusPOOLSym&&@sym<=C_PointSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MOVEMinusCORRESPONDINGSym||@sym==C_CLASSMinusDATASym||@sym==C_AUTHORITYMinusCHECKSym||@sym==C_SELECTIONMinusSCREENSym||@sym==C_forSym||@sym>=C_returnSym&&@sym<=C_ADDMinusCORRESPONDINGSym||@sym==C_BREAKMinusPOINTSym||@sym>=C_CLASSMinusEVENTSSym&&@sym<=C_CLASSMinusPOOLSym||@sym>=C_DIVIDEMinusCORRESPONDINGSym&&@sym<=C_EDITORMinusCALLSym||@sym>=C_ENDMinusOFMinusPAGESym&&@sym<=C_ENDMinusOFMinusSELECTIONSym||@sym>=C_FIELDMinusGROUPSSym&&@sym<=C_FUNCTIONMinusPOOLSym||@sym==C_INTERFACEMinusPOOLSym||@sym>=C_LOADMinusOFMinusPROGRAMSym&&@sym<=C_NEWMinusLINESym||@sym==C_NEWMinusPAGESym||@sym==C_NEWMinusSECTIONSym||@sym==C_PRINTMinusCONTROLSym||@sym==C_SELECTMinusOPTIONSSym||@sym>=C_SUBTRACTMinusCORRESPONDINGSym&&@sym<=C_TESTMinusINJECTIONSym||@sym==C_TESTMinusSEAMSym||@sym==C_TOPMinusOFMinusPAGESym||@sym==C_TYPEMinusPOOLSSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
+      while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_MESSAGESym||@sym>=C_CREATESym&&@sym<=C_FUNCTIONSym||@sym>=C_ENDSELECTSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_APPENDSym||@sym>=C_ASSIGNINGSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_TIMESSym||@sym>=C_OPTIONALSym&&@sym<=C_CHANGESym||@sym>=C_OPENSym&&@sym<=C_GAPSSym||@sym>=C_READSym&&@sym<=C_TRYSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym>=C_ASSOCIATIONSym&&@sym<=C_VARYSym||@sym>=C_TASKSym&&@sym<=C_IFSym||@sym==C_ELSESym||@sym>=C_CLASSSym&&@sym<=C_SECTIONSym||@sym==C_METHODSym||@sym>=C_METHODSSym&&@sym<=C_LASTSym||@sym>=C_BACKSym&&@sym<=C_INTERFACESym||@sym>=C_INTERFACESSym&&@sym<=C_MODULESym||@sym>=C_MULTIPLYSym&&@sym<=C_RETURNINGSym||@sym>=C_CHECKSym&&@sym<=C_LparenSym||@sym>=C_TYPEMinusPOOLSym&&@sym<=C_PointSym||@sym==C_StarSym||@sym==C_TildeSym||@sym>=C_PlusSym&&@sym<=C_WITHSym||@sym==C_MOVEMinusCORRESPONDINGSym||@sym==C_CLASSMinusDATASym||@sym==C_AUTHORITYMinusCHECKSym||@sym==C_SELECTIONMinusSCREENSym||@sym==C_forSym||@sym>=C_returnSym&&@sym<=C_ADDMinusCORRESPONDINGSym||@sym==C_BREAKMinusPOINTSym||@sym>=C_CLASSMinusEVENTSSym&&@sym<=C_CLASSMinusPOOLSym||@sym>=C_DIVIDEMinusCORRESPONDINGSym&&@sym<=C_EDITORMinusCALLSym||@sym>=C_ENDMinusOFMinusPAGESym&&@sym<=C_ENDMinusOFMinusSELECTIONSym||@sym>=C_FIELDMinusGROUPSSym&&@sym<=C_FUNCTIONMinusPOOLSym||@sym==C_INTERFACEMinusPOOLSym||@sym>=C_LOADMinusOFMinusPROGRAMSym&&@sym<=C_NEWMinusLINESym||@sym==C_NEWMinusPAGESym||@sym==C_NEWMinusSECTIONSym||@sym==C_PRINTMinusCONTROLSym||@sym==C_SELECTMinusOPTIONSSym||@sym>=C_SUBTRACTMinusCORRESPONDINGSym&&@sym<=C_TESTMinusINJECTIONSym||@sym==C_TESTMinusSEAMSym||@sym==C_TOPMinusOFMinusPAGESym||@sym==C_TYPEMinusPOOLSSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
          Statement()
       end
 
@@ -16960,7 +16794,7 @@ class CParser < CRRParser
          if @sym==C_DUMMYSym
             Get()
          else
-            GenError(1022)
+            GenError(1025)
          end
 
       end
@@ -16995,7 +16829,7 @@ class CParser < CRRParser
                Get()
                Expression()
             else
-               GenError(1023)
+               GenError(1026)
             end
 
          end
@@ -17008,7 +16842,7 @@ class CParser < CRRParser
       _in_()
       if @sym==C_TYPESym
          Get()
-         if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
+         if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_LINESym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
             if @sym==C_LINESym||@sym==C_REFSym
                if @sym==C_LINESym
                   Get()
@@ -17018,7 +16852,7 @@ class CParser < CRRParser
                      Get()
                      Expect(C_TOSym)
                   else
-                     GenError(1024)
+                     GenError(1027)
                   end
 
                end
@@ -17028,23 +16862,28 @@ class CParser < CRRParser
             if @sym==C_DATASym
                Get()
             else
-               if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym==C_identifierSym||@sym>=C_VALUESym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
+               if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym==C_identifierSym||@sym>=C_VALUESym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
                   Expression()
                else
-                  GenError(1025)
+                  GenError(1028)
                end
 
             end
 
          else
-            if 1
+            if @sym==C_INDEXSym||@sym==C_ANYSym||@sym==C_STANDARDSym
                if @sym==C_ANYSym
                   Get()
                else
                   if @sym==C_INDEXSym
                      Get()
                   else
-                     GenError(1026)
+                     if @sym==C_STANDARDSym
+                        Get()
+                     else
+                        GenError(1029)
+                     end
+
                   end
 
                end
@@ -17054,7 +16893,7 @@ class CParser < CRRParser
                end
 
             else
-               GenError(1027)
+               GenError(1030)
             end
 
          end
@@ -17063,7 +16902,7 @@ class CParser < CRRParser
          if @sym==C_LIKESym
             Get()
             if @sym==C_LINESym||@sym==C_REFSym
-               if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
+               if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_LINESym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
                   if @sym==C_LINESym
                      Get()
                      Expect(C_OFSym)
@@ -17074,7 +16913,7 @@ class CParser < CRRParser
                      Get()
                      Expect(C_TOSym)
                   else
-                     GenError(1028)
+                     GenError(1031)
                   end
 
                end
@@ -17083,7 +16922,7 @@ class CParser < CRRParser
 
             Expression()
          else
-            GenError(1029)
+            GenError(1032)
          end
 
       end
@@ -17113,7 +16952,7 @@ class CParser < CRRParser
             end
 
          else
-            GenError(1030)
+            GenError(1033)
          end
 
       end
@@ -17182,7 +17021,7 @@ class CParser < CRRParser
 
             Expect(C_identifierSym)
          else
-            GenError(1031)
+            GenError(1034)
          end
 
       end
@@ -17198,9 +17037,9 @@ class CParser < CRRParser
       _in_()
       if @sym==C_FUNCTIONSym
          Get()
-         Expect(C_identifierSym)
+         Name()
          if @sym==C_INSym||@sym==C_STARTINGSym||@sym==C_DESTINATIONSym
-            if @sym>=EOF_Sym&&@sym<=C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_LparenSym||@sym>=C_TYPEMinusPOOLSym&&@sym<=C_PointSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MOVEMinusCORRESPONDINGSym||@sym==C_CLASSMinusDATASym||@sym==C_AUTHORITYMinusCHECKSym||@sym==C_SELECTIONMinusSCREENSym||@sym==C_forSym||@sym>=C_returnSym&&@sym<=C_ADDMinusCORRESPONDINGSym||@sym==C_BREAKMinusPOINTSym||@sym>=C_CLASSMinusEVENTSSym&&@sym<=C_CLASSMinusPOOLSym||@sym>=C_DIVIDEMinusCORRESPONDINGSym&&@sym<=C_EDITORMinusCALLSym||@sym>=C_ENDMinusOFMinusPAGESym&&@sym<=C_ENDMinusOFMinusSELECTIONSym||@sym>=C_FIELDMinusGROUPSSym&&@sym<=C_FUNCTIONMinusPOOLSym||@sym==C_INTERFACEMinusPOOLSym||@sym>=C_LOADMinusOFMinusPROGRAMSym&&@sym<=C_NEWMinusLINESym||@sym==C_NEWMinusPAGESym||@sym==C_NEWMinusSECTIONSym||@sym==C_PRINTMinusCONTROLSym||@sym==C_SELECTMinusOPTIONSSym||@sym>=C_SUBTRACTMinusCORRESPONDINGSym&&@sym<=C_TOPMinusOFMinusPAGESym||@sym==C_TYPEMinusPOOLSSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
+            if @sym>=EOF_Sym&&@sym<=C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_MESSAGESym||@sym>=C_CREATESym&&@sym<=C_APPENDSym||@sym>=C_ASSIGNINGSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_ENDMETHODSym||@sym>=C_METHODSSym&&@sym<=C_RETURNINGSym||@sym>=C_CHECKSym&&@sym<=C_LparenSym||@sym>=C_TYPEMinusPOOLSym&&@sym<=C_PointSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_TABLESym||@sym>=C_PlusSym&&@sym<=C_WITHSym||@sym==C_MOVEMinusCORRESPONDINGSym||@sym==C_CLASSMinusDATASym||@sym==C_AUTHORITYMinusCHECKSym||@sym==C_SELECTIONMinusSCREENSym||@sym==C_forSym||@sym==C_CHANGINGSym||@sym>=C_returnSym&&@sym<=C_ADDMinusCORRESPONDINGSym||@sym==C_BREAKMinusPOINTSym||@sym>=C_CLASSMinusEVENTSSym&&@sym<=C_CLASSMinusPOOLSym||@sym>=C_DIVIDEMinusCORRESPONDINGSym&&@sym<=C_EDITORMinusCALLSym||@sym>=C_ENDMinusOFMinusPAGESym&&@sym<=C_ENDMinusOFMinusSELECTIONSym||@sym>=C_FIELDMinusGROUPSSym&&@sym<=C_FUNCTIONMinusPOOLSym||@sym==C_INTERFACEMinusPOOLSym||@sym>=C_LOADMinusOFMinusPROGRAMSym&&@sym<=C_NEWMinusLINESym||@sym==C_NEWMinusPAGESym||@sym==C_NEWMinusSECTIONSym||@sym==C_PRINTMinusCONTROLSym||@sym==C_SELECTMinusOPTIONSSym||@sym>=C_SUBTRACTMinusCORRESPONDINGSym&&@sym<=C_TOPMinusOFMinusPAGESym||@sym==C_TYPEMinusPOOLSSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
                while (@sym==C_INSym)
                   Get()
                   Expect(C_UPDATESym)
@@ -17211,7 +17050,7 @@ class CParser < CRRParser
                if 1
                   while (@sym==C_INSym||@sym==C_STARTINGSym||@sym==C_DESTINATIONSym)
                      if @sym==C_INSym||@sym==C_STARTINGSym
-                        if @sym>=EOF_Sym&&@sym<=C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_LparenSym||@sym>=C_TYPEMinusPOOLSym&&@sym<=C_PointSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MOVEMinusCORRESPONDINGSym||@sym==C_CLASSMinusDATASym||@sym==C_AUTHORITYMinusCHECKSym||@sym==C_SELECTIONMinusSCREENSym||@sym==C_forSym||@sym>=C_returnSym&&@sym<=C_ADDMinusCORRESPONDINGSym||@sym==C_BREAKMinusPOINTSym||@sym>=C_CLASSMinusEVENTSSym&&@sym<=C_CLASSMinusPOOLSym||@sym>=C_DIVIDEMinusCORRESPONDINGSym&&@sym<=C_EDITORMinusCALLSym||@sym>=C_ENDMinusOFMinusPAGESym&&@sym<=C_ENDMinusOFMinusSELECTIONSym||@sym>=C_FIELDMinusGROUPSSym&&@sym<=C_FUNCTIONMinusPOOLSym||@sym==C_INTERFACEMinusPOOLSym||@sym>=C_LOADMinusOFMinusPROGRAMSym&&@sym<=C_NEWMinusLINESym||@sym==C_NEWMinusPAGESym||@sym==C_NEWMinusSECTIONSym||@sym==C_PRINTMinusCONTROLSym||@sym==C_SELECTMinusOPTIONSSym||@sym>=C_SUBTRACTMinusCORRESPONDINGSym&&@sym<=C_TOPMinusOFMinusPAGESym||@sym==C_TYPEMinusPOOLSSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
+                        if @sym>=EOF_Sym&&@sym<=C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_MESSAGESym||@sym>=C_CREATESym&&@sym<=C_APPENDSym||@sym>=C_ASSIGNINGSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_ENDMETHODSym||@sym>=C_METHODSSym&&@sym<=C_RETURNINGSym||@sym>=C_CHECKSym&&@sym<=C_LparenSym||@sym>=C_TYPEMinusPOOLSym&&@sym<=C_PointSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_TABLESym||@sym>=C_PlusSym&&@sym<=C_WITHSym||@sym==C_MOVEMinusCORRESPONDINGSym||@sym==C_CLASSMinusDATASym||@sym==C_AUTHORITYMinusCHECKSym||@sym==C_SELECTIONMinusSCREENSym||@sym==C_forSym||@sym==C_CHANGINGSym||@sym>=C_returnSym&&@sym<=C_ADDMinusCORRESPONDINGSym||@sym==C_BREAKMinusPOINTSym||@sym>=C_CLASSMinusEVENTSSym&&@sym<=C_CLASSMinusPOOLSym||@sym>=C_DIVIDEMinusCORRESPONDINGSym&&@sym<=C_EDITORMinusCALLSym||@sym>=C_ENDMinusOFMinusPAGESym&&@sym<=C_ENDMinusOFMinusSELECTIONSym||@sym>=C_FIELDMinusGROUPSSym&&@sym<=C_FUNCTIONMinusPOOLSym||@sym==C_INTERFACEMinusPOOLSym||@sym>=C_LOADMinusOFMinusPROGRAMSym&&@sym<=C_NEWMinusLINESym||@sym==C_NEWMinusPAGESym||@sym==C_NEWMinusSECTIONSym||@sym==C_PRINTMinusCONTROLSym||@sym==C_SELECTMinusOPTIONSSym||@sym>=C_SUBTRACTMinusCORRESPONDINGSym&&@sym<=C_TOPMinusOFMinusPAGESym||@sym==C_TYPEMinusPOOLSSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
                            while (@sym==C_STARTINGSym)
                               Get()
                               Expect(C_NEWSym)
@@ -17234,7 +17073,7 @@ class CParser < CRRParser
                               end
 
                            else
-                              GenError(1032)
+                              GenError(1035)
                            end
 
                         end
@@ -17257,7 +17096,7 @@ class CParser < CRRParser
                      end
 
                   else
-                     GenError(1033)
+                     GenError(1036)
                   end
 
                end
@@ -17267,7 +17106,7 @@ class CParser < CRRParser
          end
 
          if @sym==C_ONSym||@sym>=C_CALLINGSym&&@sym<=C_PERFORMINGSym
-            if @sym>=EOF_Sym&&@sym<=C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_LparenSym||@sym>=C_TYPEMinusPOOLSym&&@sym<=C_PointSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MOVEMinusCORRESPONDINGSym||@sym==C_CLASSMinusDATASym||@sym==C_AUTHORITYMinusCHECKSym||@sym==C_SELECTIONMinusSCREENSym||@sym==C_forSym||@sym>=C_returnSym&&@sym<=C_ADDMinusCORRESPONDINGSym||@sym==C_BREAKMinusPOINTSym||@sym>=C_CLASSMinusEVENTSSym&&@sym<=C_CLASSMinusPOOLSym||@sym>=C_DIVIDEMinusCORRESPONDINGSym&&@sym<=C_EDITORMinusCALLSym||@sym>=C_ENDMinusOFMinusPAGESym&&@sym<=C_ENDMinusOFMinusSELECTIONSym||@sym>=C_FIELDMinusGROUPSSym&&@sym<=C_FUNCTIONMinusPOOLSym||@sym==C_INTERFACEMinusPOOLSym||@sym>=C_LOADMinusOFMinusPROGRAMSym&&@sym<=C_NEWMinusLINESym||@sym==C_NEWMinusPAGESym||@sym==C_NEWMinusSECTIONSym||@sym==C_PRINTMinusCONTROLSym||@sym==C_SELECTMinusOPTIONSSym||@sym>=C_SUBTRACTMinusCORRESPONDINGSym&&@sym<=C_TOPMinusOFMinusPAGESym||@sym==C_TYPEMinusPOOLSSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
+            if @sym>=EOF_Sym&&@sym<=C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_MESSAGESym||@sym>=C_CREATESym&&@sym<=C_APPENDSym||@sym>=C_ASSIGNINGSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_ENDMETHODSym||@sym>=C_METHODSSym&&@sym<=C_RETURNINGSym||@sym>=C_CHECKSym&&@sym<=C_LparenSym||@sym>=C_TYPEMinusPOOLSym&&@sym<=C_PointSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_TABLESym||@sym>=C_PlusSym&&@sym<=C_WITHSym||@sym==C_MOVEMinusCORRESPONDINGSym||@sym==C_CLASSMinusDATASym||@sym==C_AUTHORITYMinusCHECKSym||@sym==C_SELECTIONMinusSCREENSym||@sym==C_forSym||@sym==C_CHANGINGSym||@sym>=C_returnSym&&@sym<=C_ADDMinusCORRESPONDINGSym||@sym==C_BREAKMinusPOINTSym||@sym>=C_CLASSMinusEVENTSSym&&@sym<=C_CLASSMinusPOOLSym||@sym>=C_DIVIDEMinusCORRESPONDINGSym&&@sym<=C_EDITORMinusCALLSym||@sym>=C_ENDMinusOFMinusPAGESym&&@sym<=C_ENDMinusOFMinusSELECTIONSym||@sym>=C_FIELDMinusGROUPSSym&&@sym<=C_FUNCTIONMinusPOOLSym||@sym==C_INTERFACEMinusPOOLSym||@sym>=C_LOADMinusOFMinusPROGRAMSym&&@sym<=C_NEWMinusLINESym||@sym==C_NEWMinusPAGESym||@sym==C_NEWMinusSECTIONSym||@sym==C_PRINTMinusCONTROLSym||@sym==C_SELECTMinusOPTIONSSym||@sym>=C_SUBTRACTMinusCORRESPONDINGSym&&@sym<=C_TOPMinusOFMinusPAGESym||@sym==C_TYPEMinusPOOLSSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
                while (@sym==C_CALLINGSym)
                   Get()
                   Expect(C_identifierSym)
@@ -17285,14 +17124,14 @@ class CParser < CRRParser
                   Expect(C_OFSym)
                   Expect(C_TASKSym)
                else
-                  GenError(1034)
+                  GenError(1037)
                end
 
             end
 
          end
 
-         while (@sym==C_EXCEPTIONSSym||@sym==C_TABLESSym||@sym==C_EXPORTINGSym||@sym>=C_IMPORTINGSym&&@sym<=C_CHANGINGSym)
+         while (@sym==C_EXCEPTIONSSym||@sym==C_TABLESSym||@sym==C_EXPORTINGSym||@sym==C_IMPORTINGSym||@sym==C_CHANGINGSym)
             if @sym==C_EXPORTINGSym
                Get()
                while (@sym==C_identifierSym)
@@ -17402,7 +17241,7 @@ class CParser < CRRParser
 
             Expect(C_PointSym)
          else
-            GenError(1035)
+            GenError(1038)
          end
 
       end
@@ -17421,7 +17260,7 @@ class CParser < CRRParser
          if @sym==C_EXPORTINGSym
             Get()
             Expression()
-            while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
+            while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
                Expression()
             end
 
@@ -17430,7 +17269,7 @@ class CParser < CRRParser
          if @sym==C_IMPORTINGSym
             Get()
             Expression()
-            while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
+            while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
                Expression()
             end
 
@@ -17439,7 +17278,7 @@ class CParser < CRRParser
          if @sym==C_CHANGINGSym
             Get()
             Expression()
-            while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
+            while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
                Expression()
             end
 
@@ -17452,7 +17291,7 @@ class CParser < CRRParser
 
          if @sym==C_EXCEPTIONSSym
             Get()
-            while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
+            while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
                Expression()
             end
 
@@ -17503,7 +17342,7 @@ class CParser < CRRParser
                end
 
             else
-               GenError(1036)
+               GenError(1039)
             end
 
          end
@@ -17545,7 +17384,7 @@ class CParser < CRRParser
       if @sym==C_EXPORTINGSym
          Get()
          Expression()
-         while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
+         while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
             Expression()
          end
 
@@ -17554,7 +17393,7 @@ class CParser < CRRParser
       if @sym==C_IMPORTINGSym
          Get()
          Expression()
-         while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
+         while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
             Expression()
          end
 
@@ -17563,7 +17402,7 @@ class CParser < CRRParser
       if @sym==C_CHANGINGSym
          Get()
          Expression()
-         while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
+         while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
             Expression()
          end
 
@@ -17572,7 +17411,7 @@ class CParser < CRRParser
       if @sym==C_TABLESSym
          Get()
          Expression()
-         while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
+         while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
             Expression()
          end
 
@@ -17580,7 +17419,7 @@ class CParser < CRRParser
 
       if @sym==C_EXCEPTIONSSym
          Get()
-         while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
+         while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
             Expression()
          end
 
@@ -17617,17 +17456,17 @@ class CParser < CRRParser
             if @sym==C_identifierSym
                Get()
             else
-               GenError(1037)
+               GenError(1040)
             end
 
          end
 
       end
 
-      if @sym>=EOF_Sym&&@sym<=C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_LparenSym||@sym>=C_TYPEMinusPOOLSym&&@sym<=C_PointSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MOVEMinusCORRESPONDINGSym||@sym==C_CLASSMinusDATASym||@sym==C_AUTHORITYMinusCHECKSym||@sym==C_SELECTIONMinusSCREENSym||@sym==C_forSym||@sym>=C_returnSym&&@sym<=C_ADDMinusCORRESPONDINGSym||@sym==C_BREAKMinusPOINTSym||@sym>=C_CLASSMinusEVENTSSym&&@sym<=C_CLASSMinusPOOLSym||@sym>=C_DIVIDEMinusCORRESPONDINGSym&&@sym<=C_EDITORMinusCALLSym||@sym>=C_ENDMinusOFMinusPAGESym&&@sym<=C_ENDMinusOFMinusSELECTIONSym||@sym>=C_FIELDMinusGROUPSSym&&@sym<=C_FUNCTIONMinusPOOLSym||@sym==C_INTERFACEMinusPOOLSym||@sym>=C_LOADMinusOFMinusPROGRAMSym&&@sym<=C_NEWMinusLINESym||@sym==C_NEWMinusPAGESym||@sym==C_NEWMinusSECTIONSym||@sym==C_PRINTMinusCONTROLSym||@sym==C_SELECTMinusOPTIONSSym||@sym>=C_SUBTRACTMinusCORRESPONDINGSym&&@sym<=C_TOPMinusOFMinusPAGESym||@sym==C_TYPEMinusPOOLSSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
+      if @sym>=EOF_Sym&&@sym<=C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_MESSAGESym||@sym>=C_CREATESym&&@sym<=C_APPENDSym||@sym>=C_ASSIGNINGSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_ENDMETHODSym||@sym>=C_METHODSSym&&@sym<=C_RETURNINGSym||@sym>=C_CHECKSym&&@sym<=C_LparenSym||@sym>=C_TYPEMinusPOOLSym&&@sym<=C_PointSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_TABLESym||@sym>=C_PlusSym&&@sym<=C_WITHSym||@sym==C_MOVEMinusCORRESPONDINGSym||@sym==C_CLASSMinusDATASym||@sym==C_AUTHORITYMinusCHECKSym||@sym==C_SELECTIONMinusSCREENSym||@sym==C_forSym||@sym>=C_returnSym&&@sym<=C_ADDMinusCORRESPONDINGSym||@sym==C_BREAKMinusPOINTSym||@sym>=C_CLASSMinusEVENTSSym&&@sym<=C_CLASSMinusPOOLSym||@sym>=C_DIVIDEMinusCORRESPONDINGSym&&@sym<=C_EDITORMinusCALLSym||@sym>=C_ENDMinusOFMinusPAGESym&&@sym<=C_ENDMinusOFMinusSELECTIONSym||@sym>=C_FIELDMinusGROUPSSym&&@sym<=C_FUNCTIONMinusPOOLSym||@sym==C_INTERFACEMinusPOOLSym||@sym>=C_LOADMinusOFMinusPROGRAMSym&&@sym<=C_NEWMinusLINESym||@sym==C_NEWMinusPAGESym||@sym==C_NEWMinusSECTIONSym||@sym==C_PRINTMinusCONTROLSym||@sym==C_SELECTMinusOPTIONSSym||@sym>=C_SUBTRACTMinusCORRESPONDINGSym&&@sym<=C_TOPMinusOFMinusPAGESym||@sym==C_TYPEMinusPOOLSSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
          if @sym==C_EXPORTINGSym
             Get()
-            while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
+            while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
                Expression()
             end
 
@@ -17635,7 +17474,7 @@ class CParser < CRRParser
 
          if @sym==C_IMPORTINGSym
             Get()
-            while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
+            while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
                Expression()
             end
 
@@ -17649,7 +17488,7 @@ class CParser < CRRParser
             end
 
          else
-            GenError(1038)
+            GenError(1041)
          end
 
       end
@@ -17688,12 +17527,12 @@ class CParser < CRRParser
             end
 
          else
-            GenError(1039)
+            GenError(1042)
          end
 
       end
 
-      while (@sym==C_NOSym||@sym==C_EXPORTINGSym||@sym>=C_IMPORTINGSym&&@sym<=C_CHANGINGSym||@sym==C_RECEIVINGSym||@sym>=C_PARAMETERMinusTABLESym&&@sym<=C_EXCEPTIONMinusTABLESym||@sym==C_QUEUEMinusONLYSym)
+      while (@sym==C_NOSym||@sym==C_EXPORTINGSym||@sym==C_IMPORTINGSym||@sym==C_CHANGINGSym||@sym>=C_PARAMETERMinusTABLESym&&@sym<=C_EXCEPTIONMinusTABLESym||@sym>=C_RECEIVINGSym&&@sym<=C_QUEUEMinusONLYSym)
          if @sym==C_PARAMETERMinusTABLESym
             Get()
             Name()
@@ -17715,7 +17554,7 @@ class CParser < CRRParser
 
             exporting = "{\n";
 
-            while (@sym>=C_identifierSym&&@sym<=C_NODESym||@sym==C_CHECKSym)
+            while (@sym>=C_identifierSym&&@sym<=C_NODESym||@sym>=C_STANDARDSym&&@sym<=C_LparenSym)
                Name()
 
                idn = lus;
@@ -17737,7 +17576,7 @@ class CParser < CRRParser
 
             importing = "{\n";
 
-            while (@sym>=C_identifierSym&&@sym<=C_NODESym||@sym==C_CHECKSym)
+            while (@sym>=C_identifierSym&&@sym<=C_NODESym||@sym>=C_STANDARDSym&&@sym<=C_LparenSym)
                Name()
 
                idn = lus;
@@ -17759,7 +17598,7 @@ class CParser < CRRParser
 
             changing = "{\n";
 
-            while (@sym>=C_identifierSym&&@sym<=C_NODESym||@sym==C_CHECKSym)
+            while (@sym>=C_identifierSym&&@sym<=C_NODESym||@sym>=C_STANDARDSym&&@sym<=C_LparenSym)
                Name()
 
                idn = lus;
@@ -17873,7 +17712,7 @@ class CParser < CRRParser
          if @sym==C_WITHOUTSym
             Get()
             Expect(C_AUTHORITYMinusCHECKSym)
-            if @sym>=EOF_Sym&&@sym<=C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_LparenSym||@sym>=C_TYPEMinusPOOLSym&&@sym<=C_PointSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MOVEMinusCORRESPONDINGSym||@sym==C_CLASSMinusDATASym||@sym==C_AUTHORITYMinusCHECKSym||@sym==C_SELECTIONMinusSCREENSym||@sym==C_forSym||@sym>=C_returnSym&&@sym<=C_ADDMinusCORRESPONDINGSym||@sym==C_BREAKMinusPOINTSym||@sym>=C_CLASSMinusEVENTSSym&&@sym<=C_CLASSMinusPOOLSym||@sym>=C_DIVIDEMinusCORRESPONDINGSym&&@sym<=C_EDITORMinusCALLSym||@sym>=C_ENDMinusOFMinusPAGESym&&@sym<=C_ENDMinusOFMinusSELECTIONSym||@sym>=C_FIELDMinusGROUPSSym&&@sym<=C_FUNCTIONMinusPOOLSym||@sym==C_INTERFACEMinusPOOLSym||@sym>=C_LOADMinusOFMinusPROGRAMSym&&@sym<=C_NEWMinusLINESym||@sym==C_NEWMinusPAGESym||@sym==C_NEWMinusSECTIONSym||@sym==C_PRINTMinusCONTROLSym||@sym==C_SELECTMinusOPTIONSSym||@sym>=C_SUBTRACTMinusCORRESPONDINGSym&&@sym<=C_TOPMinusOFMinusPAGESym||@sym==C_TYPEMinusPOOLSSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
+            if @sym>=EOF_Sym&&@sym<=C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_MESSAGESym||@sym>=C_CREATESym&&@sym<=C_APPENDSym||@sym>=C_ASSIGNINGSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_ENDMETHODSym||@sym>=C_METHODSSym&&@sym<=C_RETURNINGSym||@sym>=C_CHECKSym&&@sym<=C_LparenSym||@sym>=C_TYPEMinusPOOLSym&&@sym<=C_PointSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_TABLESym||@sym>=C_PlusSym&&@sym<=C_WITHSym||@sym==C_MOVEMinusCORRESPONDINGSym||@sym==C_CLASSMinusDATASym||@sym==C_AUTHORITYMinusCHECKSym||@sym==C_SELECTIONMinusSCREENSym||@sym==C_forSym||@sym>=C_returnSym&&@sym<=C_ADDMinusCORRESPONDINGSym||@sym==C_BREAKMinusPOINTSym||@sym>=C_CLASSMinusEVENTSSym&&@sym<=C_CLASSMinusPOOLSym||@sym>=C_DIVIDEMinusCORRESPONDINGSym&&@sym<=C_EDITORMinusCALLSym||@sym>=C_ENDMinusOFMinusPAGESym&&@sym<=C_ENDMinusOFMinusSELECTIONSym||@sym>=C_FIELDMinusGROUPSSym&&@sym<=C_FUNCTIONMinusPOOLSym||@sym==C_INTERFACEMinusPOOLSym||@sym>=C_LOADMinusOFMinusPROGRAMSym&&@sym<=C_NEWMinusLINESym||@sym==C_NEWMinusPAGESym||@sym==C_NEWMinusSECTIONSym||@sym==C_PRINTMinusCONTROLSym||@sym==C_SELECTMinusOPTIONSSym||@sym>=C_SUBTRACTMinusCORRESPONDINGSym&&@sym<=C_TOPMinusOFMinusPAGESym||@sym==C_TYPEMinusPOOLSSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
                if @sym==C_ANDSym
                   Get()
                   Expect(C_SKIPSym)
@@ -17886,7 +17725,7 @@ class CParser < CRRParser
                   if @sym==C_USINGSym
                      Get()
                      Expect(C_identifierSym)
-                     if @sym>=EOF_Sym&&@sym<=C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_LparenSym||@sym>=C_TYPEMinusPOOLSym&&@sym<=C_PointSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MOVEMinusCORRESPONDINGSym||@sym==C_CLASSMinusDATASym||@sym==C_AUTHORITYMinusCHECKSym||@sym==C_SELECTIONMinusSCREENSym||@sym==C_forSym||@sym>=C_returnSym&&@sym<=C_ADDMinusCORRESPONDINGSym||@sym==C_BREAKMinusPOINTSym||@sym>=C_CLASSMinusEVENTSSym&&@sym<=C_CLASSMinusPOOLSym||@sym>=C_DIVIDEMinusCORRESPONDINGSym&&@sym<=C_EDITORMinusCALLSym||@sym>=C_ENDMinusOFMinusPAGESym&&@sym<=C_ENDMinusOFMinusSELECTIONSym||@sym>=C_FIELDMinusGROUPSSym&&@sym<=C_FUNCTIONMinusPOOLSym||@sym==C_INTERFACEMinusPOOLSym||@sym>=C_LOADMinusOFMinusPROGRAMSym&&@sym<=C_NEWMinusLINESym||@sym==C_NEWMinusPAGESym||@sym==C_NEWMinusSECTIONSym||@sym==C_PRINTMinusCONTROLSym||@sym==C_SELECTMinusOPTIONSSym||@sym>=C_SUBTRACTMinusCORRESPONDINGSym&&@sym<=C_TOPMinusOFMinusPAGESym||@sym==C_TYPEMinusPOOLSSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
+                     if @sym>=EOF_Sym&&@sym<=C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_MESSAGESym||@sym>=C_CREATESym&&@sym<=C_APPENDSym||@sym>=C_ASSIGNINGSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_ENDMETHODSym||@sym>=C_METHODSSym&&@sym<=C_RETURNINGSym||@sym>=C_CHECKSym&&@sym<=C_LparenSym||@sym>=C_TYPEMinusPOOLSym&&@sym<=C_PointSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_TABLESym||@sym>=C_PlusSym&&@sym<=C_WITHSym||@sym==C_MOVEMinusCORRESPONDINGSym||@sym==C_CLASSMinusDATASym||@sym==C_AUTHORITYMinusCHECKSym||@sym==C_SELECTIONMinusSCREENSym||@sym==C_forSym||@sym>=C_returnSym&&@sym<=C_ADDMinusCORRESPONDINGSym||@sym==C_BREAKMinusPOINTSym||@sym>=C_CLASSMinusEVENTSSym&&@sym<=C_CLASSMinusPOOLSym||@sym>=C_DIVIDEMinusCORRESPONDINGSym&&@sym<=C_EDITORMinusCALLSym||@sym>=C_ENDMinusOFMinusPAGESym&&@sym<=C_ENDMinusOFMinusSELECTIONSym||@sym>=C_FIELDMinusGROUPSSym&&@sym<=C_FUNCTIONMinusPOOLSym||@sym==C_INTERFACEMinusPOOLSym||@sym>=C_LOADMinusOFMinusPROGRAMSym&&@sym<=C_NEWMinusLINESym||@sym==C_NEWMinusPAGESym||@sym==C_NEWMinusSECTIONSym||@sym==C_PRINTMinusCONTROLSym||@sym==C_SELECTMinusOPTIONSSym||@sym>=C_SUBTRACTMinusCORRESPONDINGSym&&@sym<=C_TOPMinusOFMinusPAGESym||@sym==C_TYPEMinusPOOLSSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
                         if @sym==C_MODESym
                            Get()
                            Expect(C_stringD1Sym)
@@ -17918,13 +17757,13 @@ class CParser < CRRParser
                   end
 
                else
-                  GenError(1040)
+                  GenError(1043)
                end
 
             end
 
          else
-            GenError(1041)
+            GenError(1044)
          end
 
       end
@@ -17938,8 +17777,8 @@ class CParser < CRRParser
          Name()
          if @sym==C_PARAMETERSSym
             Get()
-            if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
-               while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
+            if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
+               while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
                   Expression()
                end
 
@@ -17949,7 +17788,7 @@ class CParser < CRRParser
                   Expect(C_identifierSym)
                   Expect(C_RparenSym)
                else
-                  GenError(1042)
+                  GenError(1045)
                end
 
             end
@@ -17958,8 +17797,8 @@ class CParser < CRRParser
 
          if @sym==C_OBJECTSSym
             Get()
-            if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
-               while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
+            if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
+               while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
                   Expression()
                end
 
@@ -17969,7 +17808,7 @@ class CParser < CRRParser
                   Expect(C_identifierSym)
                   Expect(C_RparenSym)
                else
-                  GenError(1043)
+                  GenError(1046)
                end
 
             end
@@ -17978,7 +17817,7 @@ class CParser < CRRParser
 
          if @sym==C_OPTIONSSym
             Get()
-            while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
+            while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
                Expression()
             end
 
@@ -17988,9 +17827,9 @@ class CParser < CRRParser
          Expect(C_XMLSym)
          Expect(C_identifierSym)
       else
-         if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_MESSAGESSym||@sym>=C_OBJECTSSym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
-            if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
-               while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
+         if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_MESSAGESSym||@sym>=C_OBJECTSSym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
+            if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
+               while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
                   Expression()
                end
 
@@ -18007,9 +17846,9 @@ class CParser < CRRParser
             Expect(C_XMLSym)
             Expect(C_identifierSym)
          else
-            if @sym==EOF_Sym||@sym==C_PARAMETERSSym||@sym==C_MESSAGESym||@sym==C_CREATESym||@sym==C_DELETESym||@sym==C_FUNCTIONSym||@sym>=C_ENDSELECTSym&&@sym<=C_FIELDSSym||@sym==C_ONSym||@sym==C_SELECTSym||@sym==C_UPDATESym||@sym==C_WITHSym||@sym>=C_TABLESSym&&@sym<=C_MOVESym||@sym==C_APPENDSym||@sym==C_CONCATENATESym||@sym==C_SEARCHSym||@sym==C_ATSym||@sym==C_RAISESym||@sym==C_LOOPSym||@sym==C_CONSTANTSSym||@sym==C_WRITESym||@sym==C_FORMATSym||@sym>=C_CONTINUESym&&@sym<=C_CASESym||@sym==C_DOSym||@sym>=C_EVENTSSym&&@sym<=C_MODIFYSym||@sym==C_OPENSym||@sym==C_INPUTSym||@sym==C_POSITIONSym||@sym==C_FETCHSym||@sym==C_PROVIDESym||@sym>=C_READSym&&@sym<=C_MAXIMUMSym||@sym>=C_SORTSym&&@sym<=C_SUBMITSym||@sym==C_PROGRAMSym||@sym==C_FREESym||@sym>=C_RETURNSym&&@sym<=C_CATCHSym||@sym==C_TYPESSym||@sym>=C_SETSym&&@sym<=C_WHILESym||@sym==C_IFSym||@sym==C_CLASSSym||@sym==C_METHODSym||@sym==C_METHODSSym||@sym==C_ADDSym||@sym>=C_ALIASESSym&&@sym<=C_ASSERTSym||@sym==C_ASSIGNSym||@sym>=C_BACKSym&&@sym<=C_CALLSym||@sym==C_SKIPSym||@sym==C_CLEARSym||@sym>=C_CLOSESym&&@sym<=C_COMMITSym||@sym>=C_WAITSym&&@sym<=C_CONTROLSSym||@sym==C_CONVERTSym||@sym==C_DEMANDSym||@sym==C_DESCRIBESym||@sym>=C_DETAILSym&&@sym<=C_DIVIDESym||@sym==C_EXITSym||@sym==C_EXPORTSym||@sym>=C_EXTRACTSym&&@sym<=C_FINDSym||@sym==C_GENERATESym||@sym>=C_INCLUDESym&&@sym<=C_GETSym||@sym>=C_HIDESym&&@sym<=C_IMPORTSym||@sym==C_INFOTYPESSym||@sym>=C_INITIALIZATIONSym&&@sym<=C_INSERTSym||@sym==C_INTERFACESym||@sym==C_INTERFACESSym||@sym>=C_LEAVESym&&@sym<=C_MODULESym||@sym==C_MULTIPLYSym||@sym>=C_NODESSym&&@sym<=C_OVERLAYSym||@sym==C_PACKSym||@sym>=C_PERFORMSym&&@sym<=C_REFRESHSym||@sym>=C_REJECTSym&&@sym<=C_SCROLLSym||@sym==C_SHIFTSym||@sym>=C_STOPSym&&@sym<=C_SUPPRESSSym||@sym>=C_TRANSFERSym&&@sym<=C_TRANSLATESym||@sym>=C_TRUNCATESym&&@sym<=C_UNPACKSym||@sym>=C_WINDOWSym&&@sym<=C_SPLITSym||@sym==C_CHECKSym||@sym>=C_TYPEMinusPOOLSym&&@sym<=C_PointSym||@sym==C_MOVEMinusCORRESPONDINGSym||@sym==C_CLASSMinusDATASym||@sym==C_AUTHORITYMinusCHECKSym||@sym==C_SELECTIONMinusSCREENSym||@sym==C_forSym||@sym>=C_returnSym&&@sym<=C_ADDMinusCORRESPONDINGSym||@sym==C_BREAKMinusPOINTSym||@sym>=C_CLASSMinusEVENTSSym&&@sym<=C_CLASSMinusPOOLSym||@sym>=C_DIVIDEMinusCORRESPONDINGSym&&@sym<=C_EDITORMinusCALLSym||@sym>=C_ENDMinusOFMinusPAGESym&&@sym<=C_ENDMinusOFMinusSELECTIONSym||@sym>=C_FIELDMinusGROUPSSym&&@sym<=C_FUNCTIONMinusPOOLSym||@sym==C_INTERFACEMinusPOOLSym||@sym>=C_LOADMinusOFMinusPROGRAMSym&&@sym<=C_NEWMinusLINESym||@sym==C_NEWMinusPAGESym||@sym==C_NEWMinusSECTIONSym||@sym==C_PRINTMinusCONTROLSym||@sym==C_SELECTMinusOPTIONSSym||@sym>=C_SUBTRACTMinusCORRESPONDINGSym&&@sym<=C_TOPMinusOFMinusPAGESym||@sym==C_TYPEMinusPOOLSSym
-               if @sym>=EOF_Sym&&@sym<=C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_LparenSym||@sym>=C_TYPEMinusPOOLSym&&@sym<=C_PointSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MOVEMinusCORRESPONDINGSym||@sym==C_CLASSMinusDATASym||@sym==C_AUTHORITYMinusCHECKSym||@sym==C_SELECTIONMinusSCREENSym||@sym==C_forSym||@sym>=C_returnSym&&@sym<=C_ADDMinusCORRESPONDINGSym||@sym==C_BREAKMinusPOINTSym||@sym>=C_CLASSMinusEVENTSSym&&@sym<=C_CLASSMinusPOOLSym||@sym>=C_DIVIDEMinusCORRESPONDINGSym&&@sym<=C_EDITORMinusCALLSym||@sym>=C_ENDMinusOFMinusPAGESym&&@sym<=C_ENDMinusOFMinusSELECTIONSym||@sym>=C_FIELDMinusGROUPSSym&&@sym<=C_FUNCTIONMinusPOOLSym||@sym==C_INTERFACEMinusPOOLSym||@sym>=C_LOADMinusOFMinusPROGRAMSym&&@sym<=C_NEWMinusLINESym||@sym==C_NEWMinusPAGESym||@sym==C_NEWMinusSECTIONSym||@sym==C_PRINTMinusCONTROLSym||@sym==C_SELECTMinusOPTIONSSym||@sym>=C_SUBTRACTMinusCORRESPONDINGSym&&@sym<=C_TOPMinusOFMinusPAGESym||@sym==C_TYPEMinusPOOLSSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
-                  while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
+            if @sym==EOF_Sym||@sym==C_PARAMETERSSym||@sym==C_MESSAGESym||@sym==C_CREATESym||@sym==C_DELETESym||@sym>=C_FUNCTIONSym&&@sym<=C_FIELDSSym||@sym==C_ONSym||@sym==C_INTOSym||@sym==C_SELECTSym||@sym==C_UPDATESym||@sym>=C_TABLESSym&&@sym<=C_MOVESym||@sym==C_APPENDSym||@sym==C_CONCATENATESym||@sym==C_SEARCHSym||@sym==C_ATSym||@sym==C_RAISESym||@sym==C_LOOPSym||@sym==C_ENDLOOPSym||@sym==C_CONSTANTSSym||@sym==C_WRITESym||@sym==C_FORMATSym||@sym>=C_CONTINUESym&&@sym<=C_CASESym||@sym==C_ENDCASESym||@sym==C_DOSym||@sym==C_ENDDOSym||@sym>=C_EVENTSSym&&@sym<=C_MODIFYSym||@sym>=C_ENDONSym&&@sym<=C_OPENSym||@sym==C_INPUTSym||@sym==C_POSITIONSym||@sym==C_FETCHSym||@sym==C_PROVIDESym||@sym>=C_ENDPROVIDESym&&@sym<=C_MAXIMUMSym||@sym>=C_SORTSym&&@sym<=C_SUBMITSym||@sym==C_PROGRAMSym||@sym==C_FREESym||@sym>=C_RETURNSym&&@sym<=C_CATCHSym||@sym==C_ENDTRYSym||@sym==C_TYPESSym||@sym>=C_SETSym&&@sym<=C_WHILESym||@sym==C_ENDWHILESym||@sym>=C_IFSym&&@sym<=C_ELSEIFSym||@sym>=C_ENDIFSym&&@sym<=C_CLASSSym||@sym>=C_ENDCLASSSym&&@sym<=C_ENDMETHODSym||@sym==C_METHODSSym||@sym==C_ADDSym||@sym>=C_ALIASESSym&&@sym<=C_ASSERTSym||@sym==C_ASSIGNSym||@sym>=C_ENDATSym&&@sym<=C_CALLSym||@sym==C_SKIPSym||@sym==C_CLEARSym||@sym>=C_CLOSESym&&@sym<=C_COMMITSym||@sym>=C_WAITSym&&@sym<=C_CONTROLSSym||@sym==C_CONVERTSym||@sym==C_DEMANDSym||@sym==C_DESCRIBESym||@sym>=C_DETAILSym&&@sym<=C_DIVIDESym||@sym==C_EXITSym||@sym==C_EXPORTSym||@sym>=C_EXTRACTSym&&@sym<=C_FINDSym||@sym==C_GENERATESym||@sym>=C_INCLUDESym&&@sym<=C_GETSym||@sym>=C_HIDESym&&@sym<=C_IMPORTSym||@sym==C_INFOTYPESSym||@sym>=C_INITIALIZATIONSym&&@sym<=C_INSERTSym||@sym>=C_INTERFACESym&&@sym<=C_INTERFACESSym||@sym>=C_LEAVESym&&@sym<=C_MULTIPLYSym||@sym>=C_NODESSym&&@sym<=C_OVERLAYSym||@sym==C_PACKSym||@sym>=C_PERFORMSym&&@sym<=C_REFRESHSym||@sym>=C_REJECTSym&&@sym<=C_SCROLLSym||@sym==C_SHIFTSym||@sym>=C_STOPSym&&@sym<=C_SUPPRESSSym||@sym>=C_TRANSFERSym&&@sym<=C_TRANSLATESym||@sym>=C_TRUNCATESym&&@sym<=C_UNPACKSym||@sym>=C_WINDOWSym&&@sym<=C_SPLITSym||@sym==C_CHECKSym||@sym>=C_TYPEMinusPOOLSym&&@sym<=C_PointSym||@sym==C_TABLESym||@sym==C_WITHSym||@sym==C_MOVEMinusCORRESPONDINGSym||@sym==C_CLASSMinusDATASym||@sym==C_AUTHORITYMinusCHECKSym||@sym==C_SELECTIONMinusSCREENSym||@sym==C_forSym||@sym>=C_returnSym&&@sym<=C_ADDMinusCORRESPONDINGSym||@sym==C_BREAKMinusPOINTSym||@sym>=C_CLASSMinusEVENTSSym&&@sym<=C_CLASSMinusPOOLSym||@sym>=C_DIVIDEMinusCORRESPONDINGSym&&@sym<=C_EDITORMinusCALLSym||@sym>=C_ENDMinusOFMinusPAGESym&&@sym<=C_ENDMinusOFMinusSELECTIONSym||@sym>=C_FIELDMinusGROUPSSym&&@sym<=C_FUNCTIONMinusPOOLSym||@sym==C_INTERFACEMinusPOOLSym||@sym>=C_LOADMinusOFMinusPROGRAMSym&&@sym<=C_NEWMinusLINESym||@sym==C_NEWMinusPAGESym||@sym==C_NEWMinusSECTIONSym||@sym==C_PRINTMinusCONTROLSym||@sym==C_SELECTMinusOPTIONSSym||@sym>=C_SUBTRACTMinusCORRESPONDINGSym&&@sym<=C_TOPMinusOFMinusPAGESym||@sym==C_TYPEMinusPOOLSSym
+               if @sym>=EOF_Sym&&@sym<=C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_MESSAGESym||@sym>=C_CREATESym&&@sym<=C_APPENDSym||@sym>=C_ASSIGNINGSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_ENDMETHODSym||@sym>=C_METHODSSym&&@sym<=C_RETURNINGSym||@sym>=C_CHECKSym&&@sym<=C_LparenSym||@sym>=C_TYPEMinusPOOLSym&&@sym<=C_PointSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_TABLESym||@sym>=C_PlusSym&&@sym<=C_WITHSym||@sym==C_MOVEMinusCORRESPONDINGSym||@sym==C_CLASSMinusDATASym||@sym==C_AUTHORITYMinusCHECKSym||@sym==C_SELECTIONMinusSCREENSym||@sym==C_forSym||@sym>=C_returnSym&&@sym<=C_ADDMinusCORRESPONDINGSym||@sym==C_BREAKMinusPOINTSym||@sym>=C_CLASSMinusEVENTSSym&&@sym<=C_CLASSMinusPOOLSym||@sym>=C_DIVIDEMinusCORRESPONDINGSym&&@sym<=C_EDITORMinusCALLSym||@sym>=C_ENDMinusOFMinusPAGESym&&@sym<=C_ENDMinusOFMinusSELECTIONSym||@sym>=C_FIELDMinusGROUPSSym&&@sym<=C_FUNCTIONMinusPOOLSym||@sym==C_INTERFACEMinusPOOLSym||@sym>=C_LOADMinusOFMinusPROGRAMSym&&@sym<=C_NEWMinusLINESym||@sym==C_NEWMinusPAGESym||@sym==C_NEWMinusSECTIONSym||@sym==C_PRINTMinusCONTROLSym||@sym==C_SELECTMinusOPTIONSSym||@sym>=C_SUBTRACTMinusCORRESPONDINGSym&&@sym<=C_TOPMinusOFMinusPAGESym||@sym==C_TYPEMinusPOOLSSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
+                  while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
                      Expression()
                   end
 
@@ -18029,7 +17868,7 @@ class CParser < CRRParser
                end
 
             else
-               GenError(1044)
+               GenError(1047)
             end
 
          end
@@ -18053,7 +17892,7 @@ class CParser < CRRParser
                name=prevString;
 
             else
-               GenError(1045)
+               GenError(1048)
             end
 
          end
@@ -18073,14 +17912,14 @@ class CParser < CRRParser
                   name=prevString;
 
                else
-                  GenError(1046)
+                  GenError(1049)
                end
 
             end
 
             Expect(C_RparenSym)
          else
-            GenError(1047)
+            GenError(1050)
          end
 
       end
@@ -18100,7 +17939,7 @@ class CParser < CRRParser
             if @sym==C_GreaterGreaterSym
                Get()
             else
-               GenError(1048)
+               GenError(1051)
             end
 
          end
@@ -18151,7 +17990,7 @@ class CParser < CRRParser
 
 
       else
-         GenError(1049)
+         GenError(1052)
 
       end
 
@@ -18173,7 +18012,7 @@ class CParser < CRRParser
                   re("+");
 
                else
-                  GenError(1050)
+                  GenError(1053)
                end
 
             end
@@ -18210,7 +18049,7 @@ class CParser < CRRParser
             Get()
 
          else
-            GenError(1051)
+            GenError(1054)
 
          end
 
@@ -18226,7 +18065,7 @@ class CParser < CRRParser
    end
    def UnaryExp()
       _in_()
-      if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym
+      if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_GTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym
          PostFixExp()
       else
          if @sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym
@@ -18236,18 +18075,18 @@ class CParser < CRRParser
                if @sym==C_MinusMinusSym
                   Get()
                else
-                  GenError(1052)
+                  GenError(1055)
                end
 
             end
 
             UnaryExp()
          else
-            if @sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym==C_AndSym||@sym==C_BangSym
+            if @sym==C_NOTSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym==C_AndSym||@sym==C_BangSym
                UnaryOperator()
                CastExp()
             else
-               GenError(1053)
+               GenError(1056)
             end
 
          end
@@ -18319,7 +18158,7 @@ class CParser < CRRParser
          Get()
 
       else
-         GenError(1054)
+         GenError(1057)
 
       end
 
@@ -18335,7 +18174,7 @@ class CParser < CRRParser
 
          when C_LbrackSym
             Get()
-            if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
+            if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
                Expression()
             end
 
@@ -18412,7 +18251,7 @@ class CParser < CRRParser
 
 
          else
-            GenError(1055)
+            GenError(1058)
 
          end
 
@@ -18433,8 +18272,8 @@ class CParser < CRRParser
 
       stop_autosrc;no_comments;
 
-      if @sym==C_EXCEPTIONSSym||@sym==C_EXPORTINGSym||@sym>=C_IMPORTINGSym&&@sym<=C_CHANGINGSym||@sym==C_RECEIVINGSym||@sym==C_RparenSym
-         while (@sym==C_EXCEPTIONSSym||@sym==C_EXPORTINGSym||@sym>=C_IMPORTINGSym&&@sym<=C_CHANGINGSym||@sym==C_RECEIVINGSym)
+      if @sym==C_EXCEPTIONSSym||@sym==C_EXPORTINGSym||@sym==C_IMPORTINGSym||@sym==C_RparenSym||@sym==C_CHANGINGSym||@sym==C_RECEIVINGSym
+         while (@sym==C_EXCEPTIONSSym||@sym==C_EXPORTINGSym||@sym==C_IMPORTINGSym||@sym==C_CHANGINGSym||@sym==C_RECEIVINGSym)
             if @sym==C_EXPORTINGSym
                Get()
 
@@ -18563,11 +18402,11 @@ class CParser < CRRParser
          src("(#{hash_to_params(params)})");
 
       else
-         if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_COMPONENTSSym||@sym==C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym==C_EVENTSym||@sym>=C_RESUMABLESym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_PERFORMINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym==C_PROCEDURESym||@sym>=C_FLUSHSym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
+         if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_COMPONENTSSym||@sym==C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_INITIALSym||@sym>=C_HASHEDSym&&@sym<=C_RANGESym||@sym==C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym
 
             s="";e={};
 
-            while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
+            while (@sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym||@sym==C_AndSym||@sym==C_BangSym)
                ShiftExp()
 
                a = lus;s+=lus;
@@ -18627,7 +18466,7 @@ class CParser < CRRParser
          Get()
 
       else
-         GenError(1056)
+         GenError(1059)
 
       end
 
@@ -18668,11 +18507,11 @@ class CParser < CRRParser
          Expression()
          Expect(C_RparenSym)
 
-      when C_INITIALSym,
-         C_BOUNDSym,
+      when C_BOUNDSym,
          C_ASSIGNEDSym,
          C_SUPPLIEDSym,
-         C_REQUESTEDSym
+         C_REQUESTEDSym,
+         C_INITIALSym
          PredefinedConstant()
 
       when C_identifierSym,
@@ -18680,7 +18519,6 @@ class CParser < CRRParser
          C_VALUESym,
          C_PARAMETERSym,
          C_TARGETSym,
-         C_ENDSym,
          C_KEYSym,
          C_IDSym,
          C_DEFAULTSym,
@@ -18702,7 +18540,6 @@ class CParser < CRRParser
          C_DATABASESym,
          C_REDUCEDSym,
          C_FUNCTIONALITYSym,
-         C_ENDFUNCTIONSym,
          C_DISTINCTSym,
          C_FROMSym,
          C_ASSym,
@@ -18720,10 +18557,8 @@ class CParser < CRRParser
          C_PRIMARYSym,
          C_ASCENDINGSym,
          C_DESCENDINGSym,
-         C_INTOSym,
          C_APPENDINGSym,
          C_CORRESPONDINGSym,
-         C_TABLESym,
          C_PACKAGESym,
          C_SIZESym,
          C_SINGLESym,
@@ -18755,7 +18590,6 @@ class CParser < CRRParser
          C_EXPANDINGSym,
          C_NESTEDSym,
          C_KEEPINGSym,
-         C_LINESym,
          C_ASSIGNINGSym,
          C_CASTINGSym,
          C_REFERENCESym,
@@ -18771,24 +18605,20 @@ class CParser < CRRParser
          C_ANDSym,
          C_MARKSym,
          C_EVENTSym,
-         C_EXPORTINGSym,
          C_RESUMABLESym,
          C_EXCEPTIONSym,
          C_NUMBERSym,
          C_DISPLAYSym,
          C_LIKESym,
          C_RAISINGSym,
-         C_INDEXSym,
          C_TEXTSym,
          C_WITHOUTSym,
          C_MEMBERSSym,
          C_TRANSPORTINGSym,
          C_VERSIONSym,
          C_SCREENSym,
-         C_ENDLOOPSym,
          C_LOBSym,
          C_HANDLESym,
-         C_HASHEDSym,
          C_EMPTYSym,
          C_HEADERSym,
          C_UNIQUESym,
@@ -18823,7 +18653,6 @@ class CParser < CRRParser
          C_WHENSym,
          C_ORSym,
          C_OTHERSSym,
-         C_ENDCASESym,
          C_FIELDSym,
          C_DUMMYSym,
          C_OBJECTSym,
@@ -18837,11 +18666,9 @@ class CParser < CRRParser
          C_VARYINGSym,
          C_NEXTSym,
          C_TIMESSym,
-         C_ENDDOSym,
          C_OPTIONALSym,
          C_CURRENTSym,
          C_CHANGESym,
-         C_ENDONSym,
          C_CURSORSym,
          C_HOLDSym,
          C_OUTPUTSym,
@@ -18866,7 +18693,6 @@ class CParser < CRRParser
          C_BOUNDSSym,
          C_INCLUDINGSym,
          C_GAPSSym,
-         C_ENDPROVIDESym,
          C_ACTUALSym,
          C_WIDTHSym,
          C_TEXTPOOLSym,
@@ -18880,7 +18706,6 @@ class CParser < CRRParser
          C_LTSym,
          C_LESym,
          C_GTSym,
-         C_NOTSym,
          C_SELECTIONSSym,
          C_LISTSym,
          C_SPOOLSym,
@@ -18890,25 +18715,19 @@ class CParser < CRRParser
          C_BEFORESym,
          C_UNWINDSym,
          C_CLEANUPSym,
-         C_ENDTRYSym,
          C_ASSOCIATIONSym,
          C_ENUMSym,
          C_STRUCTURESym,
          C_BASESym,
          C_MESHSym,
          C_VARYSym,
-         C_ENDWHILESym,
          C_TASKSym,
          C_BACKGROUNDSym,
          C_SEPARATESym,
          C_DESTINATIONSym,
          C_CALLINGSym,
          C_PERFORMINGSym,
-         C_IMPORTINGSym,
-         C_CHANGINGSym,
-         C_ELSEIFSym,
          C_ELSESym,
-         C_ENDIFSym,
          C_DEFINITIONSym,
          C_DEFERREDSym,
          C_PUBLICSym,
@@ -18933,14 +18752,10 @@ class CParser < CRRParser
          C_LOADSym,
          C_IMPLEMENTATIONSym,
          C_SECTIONSym,
-         C_ENDCLASSSym,
-         C_ENDMETHODSym,
-         C_ANYSym,
          C_REDEFINITIONSym,
          C_IGNORESym,
          C_FAILSym,
          C_PREFERREDSym,
-         C_RETURNINGSym,
          C_THENSym,
          C_UNTILSym,
          C_GIVINGSym,
@@ -18951,10 +18766,8 @@ class CParser < CRRParser
          C_INCREMENTSym,
          C_FIRSTSym,
          C_LASTSym,
-         C_ENDATSym,
          C_DIALOGSym,
          C_PROCEDURESym,
-         C_RECEIVINGSym,
          C_FLUSHSym,
          C_TRANSACTIONSym,
          C_OPTIONSSym,
@@ -19030,10 +18843,8 @@ class CParser < CRRParser
          C_ARITHMETICSym,
          C_UNICODESym,
          C_ENABLINGSym,
-         C_ENDINTERFACESym,
          C_PARTIALLYSym,
          C_IMPLEMENTEDSym,
-         C_ENDMODULESym,
          C_SCROLLINGSym,
          C_PRINTSym,
          C_ONLYSym,
@@ -19091,16 +18902,19 @@ class CParser < CRRParser
          C_INSTANCESym,
          C_REFSym,
          C_SORTEDSym,
-         C_STANDARDSym,
          C_EDITSym,
          C_NODESym,
          C_ALLSym,
          C_OTHERSym,
-         C_RANGESym
+         C_EXPORTINGSym,
+         C_HASHEDSym,
+         C_RANGESym,
+         C_IMPORTINGSym,
+         C_RETURNINGSym
          NameInPrimary()
 
       else
-         GenError(1057)
+         GenError(1060)
 
       end
 
@@ -19199,7 +19013,7 @@ class CParser < CRRParser
                Get()
 
             else
-               GenError(1058)
+               GenError(1061)
 
             end
 
@@ -19217,7 +19031,7 @@ class CParser < CRRParser
             Expect(C_ANDSym)
             LogRelationExp()
          else
-            GenError(1059)
+            GenError(1062)
          end
 
       end
@@ -19303,7 +19117,7 @@ class CParser < CRRParser
             Get()
 
          else
-            GenError(1060)
+            GenError(1063)
 
          end
 
@@ -19325,7 +19139,7 @@ class CParser < CRRParser
             if @sym==C_GreaterGreaterSym
                Get()
             else
-               GenError(1061)
+               GenError(1064)
             end
 
          end
@@ -19351,7 +19165,7 @@ class CParser < CRRParser
                   re("+");
 
                else
-                  GenError(1062)
+                  GenError(1065)
                end
 
             end
@@ -19388,7 +19202,7 @@ class CParser < CRRParser
             Get()
 
          else
-            GenError(1063)
+            GenError(1066)
 
          end
 
@@ -19404,7 +19218,7 @@ class CParser < CRRParser
    end
    def LogUnaryExp()
       _in_()
-      if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym==C_ENDSym||@sym>=C_KEYSym&&@sym<=C_BOXEDSym||@sym>=C_SUFFIXSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym==C_ENDFUNCTIONSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_CONNECTIONSym||@sym==C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_INITIALSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_NEXTSym||@sym>=C_TIMESSym&&@sym<=C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_ENDONSym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_ENDPROVIDESym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_NOTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym>=C_VARYSym&&@sym<=C_CHANGINGSym||@sym>=C_ELSEIFSym&&@sym<=C_ENDIFSym||@sym>=C_DEFINITIONSym&&@sym<=C_ENDCLASSSym||@sym>=C_ENDMETHODSym&&@sym<=C_ANYSym||@sym>=C_REDEFINITIONSym&&@sym<=C_RETURNINGSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_ENDATSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym==C_ENDINTERFACESym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym==C_ENDMODULESym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RANGESym||@sym==C_LparenSym
+      if @sym==C_numberSym||@sym>=C_stringD1Sym&&@sym<=C_regexD1Sym||@sym>=C_identifierSym&&@sym<=C_PARAMETERSym||@sym==C_TARGETSym||@sym>=C_KEYSym&&@sym<=C_KINDSym||@sym>=C_ACTIVATIONSym&&@sym<=C_FUNCTIONALITYSym||@sym>=C_DISTINCTSym&&@sym<=C_JOINSym||@sym>=C_ORDERSym&&@sym<=C_DESCENDINGSym||@sym>=C_APPENDINGSym&&@sym<=C_SIZESym||@sym>=C_SINGLESym&&@sym<=C_FORSym||@sym>=C_ENTRIESSym&&@sym<=C_ENDWITHSym||@sym>=C_EXACTSym&&@sym<=C_KEEPINGSym||@sym>=C_ASSIGNINGSym&&@sym<=C_REFERENCESym||@sym>=C_CHARACTERSym&&@sym<=C_BLANKSSym||@sym==C_STARTINGSym||@sym>=C_ENDINGSym&&@sym<=C_MARKSym||@sym>=C_EVENTSym&&@sym<=C_RAISINGSym||@sym>=C_TEXTSym&&@sym<=C_MEMBERSSym||@sym>=C_TRANSPORTINGSym&&@sym<=C_SCREENSym||@sym>=C_LOBSym&&@sym<=C_STATICSSym||@sym>=C_BEGINSym&&@sym<=C_ISSym||@sym>=C_UNDERSym&&@sym<=C_TIMESym||@sym>=C_ZONESym&&@sym<=C_QUICKINFOSym||@sym>=C_WHENSym&&@sym<=C_OTHERSSym||@sym>=C_FIELDSym&&@sym<=C_NEXTSym||@sym==C_TIMESSym||@sym==C_OPTIONALSym||@sym>=C_CURRENTSym&&@sym<=C_CHANGESym||@sym>=C_CURSORSym&&@sym<=C_HOLDSym||@sym>=C_OUTPUTSym&&@sym<=C_CODESym||@sym>=C_FILTERSym&&@sym<=C_REPLACEMENTSym||@sym==C_BOUNDSSym||@sym>=C_INCLUDINGSym&&@sym<=C_GAPSSym||@sym>=C_ACTUALSym&&@sym<=C_LANGUAGESym||@sym==C_VIASym||@sym>=C_EQSym&&@sym<=C_GTSym||@sym>=C_SELECTIONSSym&&@sym<=C_JOBSym||@sym>=C_BEFORESym&&@sym<=C_CLEANUPSym||@sym==C_ASSOCIATIONSym||@sym>=C_ENUMSym&&@sym<=C_MESHSym||@sym==C_VARYSym||@sym>=C_TASKSym&&@sym<=C_PERFORMINGSym||@sym==C_ELSESym||@sym>=C_DEFINITIONSym&&@sym<=C_SECTIONSym||@sym>=C_REDEFINITIONSym&&@sym<=C_PREFERREDSym||@sym>=C_THENSym&&@sym<=C_ACCORDINGSym||@sym>=C_SUBKEYSym&&@sym<=C_CONDITIONSym||@sym>=C_COMPONENTSym&&@sym<=C_LASTSym||@sym==C_DIALOGSym||@sym>=C_PROCEDURESym&&@sym<=C_BADISym||@sym==C_NULLSym||@sym==C_WORKSym||@sym>=C_TABLEVIEWSym&&@sym<=C_TABSTRIPSym||@sym>=C_SORTABLESym&&@sym<=C_SAVINGSym||@sym==C_CONTEXTSym||@sym>=C_DISTANCESym&&@sym<=C_PAGESSym||@sym>=C_TITLESym&&@sym<=C_BACKUPSym||@sym==C_SQLSym||@sym>=C_INTERNALSym&&@sym<=C_OFFSym||@sym>=C_OCCURRENCESym&&@sym<=C_RESETSym||@sym>=C_SUBROUTINESym&&@sym<=C_POOLSym||@sym>=C_FILTERSSym&&@sym<=C_RUNSym||@sym>=C_ACCEPTINGSym&&@sym<=C_FOUNDSym||@sym==C_PERSONSym||@sym>=C_VALUESSym&&@sym<=C_ENABLINGSym||@sym>=C_PARTIALLYSym&&@sym<=C_IMPLEMENTEDSym||@sym>=C_SCROLLINGSym&&@sym<=C_PRINTSym||@sym==C_ONLYSym||@sym>=C_OBLIGATORYSym&&@sym<=C_PATTERNSym||@sym==C_CONTROLSym||@sym>=C_COLUMNSym&&@sym<=C_TITLEBARSym||@sym>=C_CIRCULARSym&&@sym<=C_TRAILINGSym||@sym>=C_SWITCHSTATESSym&&@sym<=C_DURINGSym||@sym==C_UPPERSym||@sym>=C_SECONDSSym&&@sym<=C_PUSHSym||@sym>=C_DIVSym&&@sym<=C_RETURNINGSym||@sym==C_LparenSym
          LogPostFixExp()
       else
          if @sym>=C_PlusPlusSym&&@sym<=C_MinusMinusSym
@@ -19414,18 +19228,18 @@ class CParser < CRRParser
                if @sym==C_MinusMinusSym
                   Get()
                else
-                  GenError(1064)
+                  GenError(1067)
                end
 
             end
 
             LogUnaryExp()
          else
-            if @sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym==C_AndSym||@sym==C_BangSym
+            if @sym==C_NOTSym||@sym==C_StarSym||@sym==C_TildeSym||@sym==C_PlusSym||@sym==C_MinusSym||@sym==C_AndSym||@sym==C_BangSym
                UnaryOperator()
                LogCastExp()
             else
-               GenError(1065)
+               GenError(1068)
             end
 
          end
@@ -19488,11 +19302,11 @@ class CParser < CRRParser
          LogExp()
          Expect(C_RparenSym)
 
-      when C_INITIALSym,
-         C_BOUNDSym,
+      when C_BOUNDSym,
          C_ASSIGNEDSym,
          C_SUPPLIEDSym,
-         C_REQUESTEDSym
+         C_REQUESTEDSym,
+         C_INITIALSym
          PredefinedConstant()
 
       when C_identifierSym,
@@ -19500,7 +19314,6 @@ class CParser < CRRParser
          C_VALUESym,
          C_PARAMETERSym,
          C_TARGETSym,
-         C_ENDSym,
          C_KEYSym,
          C_IDSym,
          C_DEFAULTSym,
@@ -19522,7 +19335,6 @@ class CParser < CRRParser
          C_DATABASESym,
          C_REDUCEDSym,
          C_FUNCTIONALITYSym,
-         C_ENDFUNCTIONSym,
          C_DISTINCTSym,
          C_FROMSym,
          C_ASSym,
@@ -19540,10 +19352,8 @@ class CParser < CRRParser
          C_PRIMARYSym,
          C_ASCENDINGSym,
          C_DESCENDINGSym,
-         C_INTOSym,
          C_APPENDINGSym,
          C_CORRESPONDINGSym,
-         C_TABLESym,
          C_PACKAGESym,
          C_SIZESym,
          C_SINGLESym,
@@ -19575,7 +19385,6 @@ class CParser < CRRParser
          C_EXPANDINGSym,
          C_NESTEDSym,
          C_KEEPINGSym,
-         C_LINESym,
          C_ASSIGNINGSym,
          C_CASTINGSym,
          C_REFERENCESym,
@@ -19591,24 +19400,20 @@ class CParser < CRRParser
          C_ANDSym,
          C_MARKSym,
          C_EVENTSym,
-         C_EXPORTINGSym,
          C_RESUMABLESym,
          C_EXCEPTIONSym,
          C_NUMBERSym,
          C_DISPLAYSym,
          C_LIKESym,
          C_RAISINGSym,
-         C_INDEXSym,
          C_TEXTSym,
          C_WITHOUTSym,
          C_MEMBERSSym,
          C_TRANSPORTINGSym,
          C_VERSIONSym,
          C_SCREENSym,
-         C_ENDLOOPSym,
          C_LOBSym,
          C_HANDLESym,
-         C_HASHEDSym,
          C_EMPTYSym,
          C_HEADERSym,
          C_UNIQUESym,
@@ -19643,7 +19448,6 @@ class CParser < CRRParser
          C_WHENSym,
          C_ORSym,
          C_OTHERSSym,
-         C_ENDCASESym,
          C_FIELDSym,
          C_DUMMYSym,
          C_OBJECTSym,
@@ -19657,11 +19461,9 @@ class CParser < CRRParser
          C_VARYINGSym,
          C_NEXTSym,
          C_TIMESSym,
-         C_ENDDOSym,
          C_OPTIONALSym,
          C_CURRENTSym,
          C_CHANGESym,
-         C_ENDONSym,
          C_CURSORSym,
          C_HOLDSym,
          C_OUTPUTSym,
@@ -19686,7 +19488,6 @@ class CParser < CRRParser
          C_BOUNDSSym,
          C_INCLUDINGSym,
          C_GAPSSym,
-         C_ENDPROVIDESym,
          C_ACTUALSym,
          C_WIDTHSym,
          C_TEXTPOOLSym,
@@ -19700,7 +19501,6 @@ class CParser < CRRParser
          C_LTSym,
          C_LESym,
          C_GTSym,
-         C_NOTSym,
          C_SELECTIONSSym,
          C_LISTSym,
          C_SPOOLSym,
@@ -19710,14 +19510,12 @@ class CParser < CRRParser
          C_BEFORESym,
          C_UNWINDSym,
          C_CLEANUPSym,
-         C_ENDTRYSym,
          C_ASSOCIATIONSym,
          C_ENUMSym,
          C_STRUCTURESym,
          C_BASESym,
          C_MESHSym,
          C_VARYSym,
-         C_ENDWHILESym,
          C_TASKSym,
          C_NEWSym,
          C_BACKGROUNDSym,
@@ -19725,11 +19523,7 @@ class CParser < CRRParser
          C_DESTINATIONSym,
          C_CALLINGSym,
          C_PERFORMINGSym,
-         C_IMPORTINGSym,
-         C_CHANGINGSym,
-         C_ELSEIFSym,
          C_ELSESym,
-         C_ENDIFSym,
          C_DEFINITIONSym,
          C_DEFERREDSym,
          C_PUBLICSym,
@@ -19754,14 +19548,10 @@ class CParser < CRRParser
          C_LOADSym,
          C_IMPLEMENTATIONSym,
          C_SECTIONSym,
-         C_ENDCLASSSym,
-         C_ENDMETHODSym,
-         C_ANYSym,
          C_REDEFINITIONSym,
          C_IGNORESym,
          C_FAILSym,
          C_PREFERREDSym,
-         C_RETURNINGSym,
          C_THENSym,
          C_UNTILSym,
          C_GIVINGSym,
@@ -19772,10 +19562,8 @@ class CParser < CRRParser
          C_INCREMENTSym,
          C_FIRSTSym,
          C_LASTSym,
-         C_ENDATSym,
          C_DIALOGSym,
          C_PROCEDURESym,
-         C_RECEIVINGSym,
          C_FLUSHSym,
          C_TRANSACTIONSym,
          C_OPTIONSSym,
@@ -19851,10 +19639,8 @@ class CParser < CRRParser
          C_ARITHMETICSym,
          C_UNICODESym,
          C_ENABLINGSym,
-         C_ENDINTERFACESym,
          C_PARTIALLYSym,
          C_IMPLEMENTEDSym,
-         C_ENDMODULESym,
          C_SCROLLINGSym,
          C_PRINTSym,
          C_ONLYSym,
@@ -19912,16 +19698,19 @@ class CParser < CRRParser
          C_INSTANCESym,
          C_REFSym,
          C_SORTEDSym,
-         C_STANDARDSym,
          C_EDITSym,
          C_NODESym,
          C_ALLSym,
          C_OTHERSym,
-         C_RANGESym
+         C_EXPORTINGSym,
+         C_HASHEDSym,
+         C_RANGESym,
+         C_IMPORTINGSym,
+         C_RETURNINGSym
          NameInPrimary()
 
       else
-         GenError(1066)
+         GenError(1069)
 
       end
 

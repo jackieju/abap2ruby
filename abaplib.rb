@@ -1,5 +1,5 @@
 require_relative "log.rb"
-Log.config.log=true
+Log.config[:log]=true
 #def var(variable_name)
 #    variable_module = Module.new do
 #      attr_accessor variable_name.to_sym

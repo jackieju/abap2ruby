@@ -65,8 +65,9 @@ def dump_one_as_ruby(_v, module_name=nil)
     #pp "dump ruby for #{_v.class_name}@#{_v}, #{module_name}", 20
    # pp "dump #{v.inspect}", 10
             s_methods =""
+            p "-----333:#{_v.class_name}, #{_v.methods.keys.inspect}"
             _v.methods.each{|k,v|
-                p "#{k}, #{v[:decoration]}"
+                p "====>method:#{k}, #{v[:decoration]}"
                 # p "       methods signature:#{k}"
                 # p "       methods name:#{v[:name]}"
                 # p "       src:#{v[:src]}" 

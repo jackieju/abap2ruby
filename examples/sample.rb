@@ -75,7 +75,7 @@ class Sample < Sample_base
          lv_is_node_upd_enabled = lo_node_desc.get_property_value(property_name:If_esf_desc::Co_property_update_enabled)
          lv_is_upd_enabled_final = lo_node_desc.is_property_value_final(property_name:If_esf_desc::Co_property_update_enabled)
 
-      rescue Cx_esf_metadata_error=>lx_esf_metadata_error
+      rescue Cx_esf_metadata_error,INTO,DATA, lx_esf_metadata_error
          raise cx_fatal_exception.new
 
 
@@ -146,7 +146,7 @@ class Sample < Sample_base
 
                #"#EC CI_LCP_LOOP  "No single BO node is being checked-on more than once
 
-            rescue Cx_esf_core_service=>lx_esf_core_service
+            rescue Cx_esf_core_service,INTO,Lx_esf_core_service
                raise cx_fatal_exception.new
 
 
@@ -156,7 +156,7 @@ class Sample < Sample_base
 
          }
 
-      rescue Cx_a1fia_aar_create_qaf_eco=>lx_a1fia_aar_create_qaf_eco
+      rescue Cx_a1fia_aar_create_qaf_eco,INTO,Lx_a1fia_aar_create_qaf_eco
          Cl_a1fia_aar_util::Create_message(_i:{
             "eo_message" => lo_message,
          }, _e:{
@@ -170,7 +170,7 @@ class Sample < Sample_base
             in_message_handler.add_message(lo_message)
 
 
-         rescue Cx_esf_message_handler=>lx_esf_message_handler
+         rescue Cx_esf_message_handler,INTO,Lx_esf_message_handler
             raise cx_fatal_exception.new
 
 
@@ -287,7 +287,7 @@ class Sample < Sample_base
             }, _b:binding)
 
 
-         rescue Cx_a1fia_aar_create_qaf_eco=>lx_a1fia_aar_create_qaf_eco
+         rescue Cx_a1fia_aar_create_qaf_eco,INTO,Lx_a1fia_aar_create_qaf_eco
             Cl_a1fia_aar_util::Create_message(_i:{
                "eo_message" => lo_message,
             }, _e:{
@@ -301,7 +301,7 @@ class Sample < Sample_base
                in_message_handler.add_message(lo_message)
 
 
-            rescue Cx_esf_message_handler=>lx_esf_message_handler
+            rescue Cx_esf_message_handler,INTO,Lx_esf_message_handler
                raise cx_fatal_exception.new
 
 
@@ -423,7 +423,7 @@ class Sample < Sample_base
             }, _b:binding)
 
 
-         rescue Cx_esf_core_service=>lx_esf_core_service
+         rescue Cx_esf_core_service,INTO,Lx_esf_core_service
             raise cx_fatal_exception.new
 
 
@@ -574,7 +574,7 @@ class Sample < Sample_base
 
                      #"#EC CI_LCP_LOOP  "No single BO node is being retrieved on more than once
 
-                  rescue Cx_esf_core_service=>lx_esf_core_service
+                  rescue Cx_esf_core_service,INTO,Lx_esf_core_service
                      raise cx_fatal_exception.new
 
 
@@ -640,25 +640,32 @@ class Sample < Sample_base
 
                   }
 
+                  ELSE
 
-               else
+
+
                   @ms_readonly_eco_root = ls_eco_root_data
+
+
 
 
 
                end
 
 
+               ELSE
 
-            else
+
+
                clear(id:out_data)
+
 
 
             end
 
             #"IF out_failed_node_ids IS INITIAL.
 
-         rescue Cx_a1fia_aar_create_qaf_eco=>lx_a1fia_aar_create_qaf_eco
+         rescue Cx_a1fia_aar_create_qaf_eco,INTO,Lx_a1fia_aar_create_qaf_eco
             clear(id:out_data)
             append(from:lines, to:out_failed_node_ids)
             Cl_a1fia_aar_util::Create_message(_i:{
@@ -674,7 +681,9 @@ class Sample < Sample_base
 
 
          end
-      else
+         WHEN
+         OTHERS
+
          super_method(Sample, :if_esf_provider_access_i_retrieve).call(_i:{
             "in_bo_node_name" => in_bo_node_name,
             "in_node_ids" => in_node_ids,
@@ -691,7 +700,7 @@ class Sample < Sample_base
          begin
             lv_parent_node_name = @mo_eco_descriptor.get_bo_node_descriptor(bo_node_proxy_name:in_bo_node_name).get_parent_bo_node_descriptor(_b:binding).get_proxy_name(_b:binding)
 
-         rescue Cx_esf_metadata_error=>lx_esf_metadata
+         rescue Cx_esf_metadata_error,INTO,DATA, lx_esf_metadata
             raise cx_fatal_exception.new
 
 
@@ -763,7 +772,7 @@ class Sample < Sample_base
          @mo_eco_descriptor = @mo_lcp_facade.get_bo_descriptor(in_bo_proxy_name:If_sample::Co_bo_name)
 
 
-      rescue Cx_esf_core_service=>lx_esf_core_service
+      rescue Cx_esf_core_service,INTO,DATA, lx_esf_core_service
          raise cx_fatal_exception.new
 
 
