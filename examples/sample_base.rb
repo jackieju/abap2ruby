@@ -223,7 +223,7 @@ class Sample_base < BASE
 
       abap("insert iv_bo_node_name into TABLE mt_callback_bo_node_name")
       if mo_rnid_manager .isBOUND()
-         mo_rnid_manager.exclude(iv_node_name = iv_bo_node_name)
+         mo_rnid_manager.exclude(iv_node_name:iv_bo_node_name)
 
 
 
@@ -272,7 +272,7 @@ class Sample_base < BASE
 
       abap("insert iv_bo_node_name into TABLE mt_heuristic_bo_node_name")
       if mo_rnid_manager .isBOUND()
-         mo_rnid_manager.include(iv_node_name = iv_bo_node_name)
+         mo_rnid_manager.include(iv_node_name:iv_bo_node_name)
 
 
 
@@ -333,7 +333,7 @@ class Sample_base < BASE
 
       abap("INSERT ls_lcp_bo_node_name INTO TABLE mt_lcp_bo_node_name")
       if mo_rnid_manager .isBOUND()
-         mo_rnid_manager.exclude(iv_node_name = iv_bo_node_name)
+         mo_rnid_manager.exclude(iv_node_name:iv_bo_node_name)
 
 
 
@@ -677,7 +677,7 @@ class Sample_base < BASE
       lv_bo_name = if_a1s_service_provider_eco_i_get_bo_name(_b:binding)
 
       if in_bo_node_name == lv_root_node_name
-         lrt_core_bo_out_data = @mo_provider_context.get_lcp_facade(_b:binding).get_bo_node_table_container(in_bo_name = lv_bo_name,in_bo_node_name = lv_root_node_name)
+         lrt_core_bo_out_data = @mo_provider_context.get_lcp_facade(_b:binding).get_bo_node_table_container(in_bo_name:lv_bo_name, in_bo_node_name:lv_root_node_name)
 
 
 
@@ -738,7 +738,7 @@ class Sample_base < BASE
             #* if not out_links must be returned empty
 
 
-            if if_sample_base_i_check_root_node_existence(iv_node_id = lv_node_id,iv_requested_image = in_requested_image) == abap_true
+            if if_sample_base_i_check_root_node_existence(iv_node_id:lv_node_id, iv_requested_image:in_requested_image) == abap_true
                loop(at:in_node_ids){
                   ls_link.source_node_id = ls_node_id
 
@@ -984,7 +984,7 @@ class Sample_base < BASE
 
       ls_msg.msgid = 'A1FIA_ACCOUNTING'
 
-      lo_message = Cm_esi_t100_adapter::Create(symptom = Cl_esi_message_symptom_code::Co_bo_inconsistency,lifetime = Cm_esi_root::Co_lifetime_transition,origin_location = ls_orig_loc,symsg = ls_msg)
+      lo_message = Cm_esi_t100_adapter::Create(symptom:Cl_esi_message_symptom_code::Co_bo_inconsistency, lifetime:Cm_esi_root::Co_lifetime_transition, origin_location:ls_orig_loc, symsg:ls_msg)
 
       append(from:lo_message, to:lt_out_messages)
       begin
@@ -1140,7 +1140,7 @@ class Sample_base < BASE
             #* Nos: Test of the new RNID Buffer:
 
 
-            if mo_rnid_manager.is_skipped(iv_node_name = in_bo_node_name) .isINITIAL()
+            if mo_rnid_manager.is_skipped(iv_node_name:in_bo_node_name) .isINITIAL()
                super_method(Sample_base, :if_esf_provider_access_i_retrieve_root_node_id).call
 
 
@@ -1192,9 +1192,9 @@ class Sample_base < BASE
 
 
       rescue Cx_root=>lx_root
-         handle_error_adaptation_hdlr(ix_exception = lx_bsa_runtime)
+         handle_error_adaptation_hdlr(ix_exception:lx_bsa_runtime)
 
-         handle_error(ix_exception = lx_root)
+         handle_error(ix_exception:lx_root)
 
 
       end

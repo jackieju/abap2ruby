@@ -71,9 +71,9 @@ class Sample < Sample_base
       end
 
       begin
-         lo_node_desc = @mo_eco_descriptor.get_bo_node_descriptor(bo_node_proxy_name = in_bo_node_name)
-         lv_is_node_upd_enabled = lo_node_desc.get_property_value(property_name = If_esf_desc::Co_property_update_enabled)
-         lv_is_upd_enabled_final = lo_node_desc.is_property_value_final(property_name = If_esf_desc::Co_property_update_enabled)
+         lo_node_desc = @mo_eco_descriptor.get_bo_node_descriptor(bo_node_proxy_name:in_bo_node_name)
+         lv_is_node_upd_enabled = lo_node_desc.get_property_value(property_name:If_esf_desc::Co_property_update_enabled)
+         lv_is_upd_enabled_final = lo_node_desc.is_property_value_final(property_name:If_esf_desc::Co_property_update_enabled)
 
       rescue Cx_esf_metadata_error=>lx_esf_metadata_error
          raise cx_fatal_exception.new
@@ -177,7 +177,7 @@ class Sample < Sample_base
          end
 
       end
-      add_mapped_messages_int(it_message = lt_core_message_aggregated,io_message_handler = in_message_handler)
+      add_mapped_messages_int(it_message:lt_core_message_aggregated, io_message_handler:in_message_handler)
 
 
 
@@ -271,7 +271,7 @@ class Sample < Sample_base
             ls_eco_root.node_id = @mv_eco_root_node_id
 
             abap("DELETE lr_modification.changed_attributes WHERE table_line CP '*SCHEME*ID'")
-            check_and_fill_sob_comp(ir_root_modification = lr_modification,io_message_handler = in_message_handler)
+            check_and_fill_sob_comp(ir_root_modification:lr_modification, io_message_handler:in_message_handler)
 
             handle_dedicated_attr_modific(_c:{
                "cs_root" => ls_eco_root,
@@ -698,7 +698,7 @@ class Sample < Sample_base
          }, _b:binding)
 
          begin
-            lv_parent_node_name = @mo_eco_descriptor.get_bo_node_descriptor(bo_node_proxy_name = in_bo_node_name).get_parent_bo_node_descriptor(_b:binding).get_proxy_name(_b:binding)
+            lv_parent_node_name = @mo_eco_descriptor.get_bo_node_descriptor(bo_node_proxy_name:in_bo_node_name).get_parent_bo_node_descriptor(_b:binding).get_proxy_name(_b:binding)
 
          rescue Cx_esf_metadata_error=>lx_esf_metadata
             raise cx_fatal_exception.new
@@ -769,7 +769,7 @@ class Sample < Sample_base
       @mo_lcp_facade = in_provider_context.get_lcp_facade(_b:binding)
 
       begin
-         @mo_eco_descriptor = @mo_lcp_facade.get_bo_descriptor(in_bo_proxy_name = If_sample::Co_bo_name)
+         @mo_eco_descriptor = @mo_lcp_facade.get_bo_descriptor(in_bo_proxy_name:If_sample::Co_bo_name)
 
 
       rescue Cx_esf_core_service=>lx_esf_core_service
