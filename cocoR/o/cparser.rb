@@ -5952,7 +5952,7 @@ class CParser < CRRParser
    def stWHILE()
       _in_()
       Expect(C_WHILESym)
-      Expression()
+      LogExp()
       while (@sym==C_VARYSym)
          Get()
          Expect(C_identifierSym)
@@ -17969,7 +17969,7 @@ class CParser < CRRParser
    end
    def LogANDExp()
       _in_()
-      InclORExp()
+      LogNOTExp()
       while (@sym==C_ANDSym||@sym==C_AndAndSym)
          if @sym==C_AndAndSym
             Get()
@@ -17985,9 +17985,21 @@ class CParser < CRRParser
 
          end
 
-         InclORExp()
+         LogNOTExp()
       end
 
+      _out_()
+   end
+   def LogNOTExp()
+      _in_()
+      if @sym==C_NOTSym
+         Get()
+
+         re("!");
+
+      end
+
+      InclORExp()
       _out_()
    end
    def InclORExp()
@@ -18591,7 +18603,6 @@ class CParser < CRRParser
 
 
                l = lut
-               p "====>55:#{l.inspect}"
                if l.size == 3 && l[1] == "="
                   s += "#{l[0]} = #{l[2]},"
                   e[l[0]] = l[2]
@@ -19090,15 +19101,27 @@ class CParser < CRRParser
    end
    def LogLogANDExp()
       _in_()
-      LogInclORExp()
+      LogLogNOTExp()
       while (@sym==C_ANDSym)
          Get()
 
          re("&&");
 
-         LogInclORExp()
+         LogLogNOTExp()
       end
 
+      _out_()
+   end
+   def LogLogNOTExp()
+      _in_()
+      if @sym==C_NOTSym
+         Get()
+
+         re("!");
+
+      end
+
+      LogInclORExp()
       _out_()
    end
    def LogInclORExp()
@@ -19134,7 +19157,7 @@ class CParser < CRRParser
    def LogEqualExp()
       _in_()
       LogRelationExp()
-      if @sym==C_FIELDSSym||@sym==C_ORDERSym||@sym==C_APPENDINGSym||@sym==C_FORSym||@sym>=C_WHERESym&&@sym<=C_EXTENDEDSym||@sym==C_CREATINGSym||@sym>=C_OFFSETSym&&@sym<=C_UPSym||@sym==C_BYPASSINGSym||@sym==C_CONNECTIONSym||@sym==C_ANDSym||@sym==C_LIKESym||@sym==C_BETWEENSym||@sym==C_ORSym||@sym>=C_EQSym&&@sym<=C_NESym||@sym==C_EQUIVSym||@sym>=C_LparenSym&&@sym<=C_RparenSym||@sym==C_PointSym||@sym==C_INTOSym||@sym==C_EqualSym||@sym==C_BarBarSym||@sym>=C_BarSym&&@sym<=C_LessGreaterSym
+      if @sym==C_FIELDSSym||@sym==C_ORDERSym||@sym==C_APPENDINGSym||@sym==C_FORSym||@sym>=C_WHERESym&&@sym<=C_EXTENDEDSym||@sym==C_CREATINGSym||@sym>=C_OFFSETSym&&@sym<=C_UPSym||@sym==C_BYPASSINGSym||@sym==C_CONNECTIONSym||@sym==C_ANDSym||@sym==C_LIKESym||@sym==C_BETWEENSym||@sym==C_ORSym||@sym>=C_EQSym&&@sym<=C_NESym||@sym==C_VARYSym||@sym==C_EQUIVSym||@sym>=C_LparenSym&&@sym<=C_RparenSym||@sym==C_PointSym||@sym==C_INTOSym||@sym==C_EqualSym||@sym==C_BarBarSym||@sym>=C_BarSym&&@sym<=C_LessGreaterSym
          while (@sym==C_LIKESym||@sym>=C_EQSym&&@sym<=C_NESym||@sym==C_EqualSym||@sym==C_LessGreaterSym)
             case @sym
 

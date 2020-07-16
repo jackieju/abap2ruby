@@ -1229,7 +1229,7 @@ stUPDATE = "UPDATE" Expression
            ( "FROM" identifier|("TABLE" identifier) )
        )".".
        
-stWHILE = "WHILE" Expression 
+stWHILE = "WHILE" LogExp 
       {
           "VARY" identifier "FROM" identifier "NEXT" identifier ["RANGE" Expression] 
       }"." 
@@ -2390,7 +2390,9 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
 
   LogORExp             =  LogANDExp   { ("||" | "OR"(.re("or").) | "EQUIV"(.re("or").)) LogANDExp }  .
 
-  LogANDExp            =  InclORExp   { ("&&" | "AND"(.re("and").)) InclORExp } .
+  LogANDExp            =  LogNOTExp   { ("&&" | "AND"(.re("and").)) LogNOTExp } .
+  
+  LogNOTExp = ["NOT"(.re("!").)] InclORExp.
 
   InclORExp            =  ExclORExp   { "|" ExclORExp }   .
 
@@ -2503,10 +2505,12 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
                               /* abap logicexp is conditional */
                             
 
-                              LogExp             =   (.no_comments().) LogLogANDExp   { ("||" | "OR"(.re("||").) | "EQUIV") LogLogANDExp } (.no_comments(false).)  .
-
-                              LogLogANDExp            =  LogInclORExp   { (/*"&&" |*/ "AND"(.re("&&").)) LogInclORExp } .
-
+                              LogExp             =   (.no_comments().)  LogLogANDExp   { ("||" | "OR"(.re("||").) | "EQUIV") LogLogANDExp } (.no_comments(false).)  .
+                             
+                              LogLogANDExp            =  LogLogNOTExp   { (/*"&&" |*/ "AND"(.re("&&").)) LogLogNOTExp } .
+  
+                              LogLogNOTExp = ["NOT"(.re("!").)] LogInclORExp.
+                              
                               LogInclORExp            =  LogExclORExp   { "|" LogExclORExp }   .
 
                               LogExclORExp            =  LogANDExp2      { "^" LogANDExp2 }    .
@@ -2599,7 +2603,7 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
      {Expression
          (.
              l = lut
-             if l.size == 3 && l[1] == "=="
+             if l.size == 3 && l[1] == "="
                  s += "#{l[0]} = #{l[2]},"
                  e[l[0]] = l[2]
              else

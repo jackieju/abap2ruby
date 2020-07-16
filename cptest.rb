@@ -335,6 +335,8 @@ endif.
 a(b->p=>t = c->a=>y->a).
 aq(b->p=>t <> c->a=>y->a).
 
+ WHILE NOT lv_predecessor_path_id IS INITIAL.
+ ENDWHILE.
 HERE
 $ar = []
 #def dump_testcase
