@@ -117,13 +117,13 @@ class Sample_base < BASE
             }, _b:binding)
 
 
-         rescue Cx_esf_core_service,INTO,Lx_esf_core_service
+         rescue Cx_esf_core_service=>lx_esf_core_service
             raise cx_fatal_exception.new
 
 
          end
 
-         if lt_message.isNotINITIAL()
+         if lt_message .isNotINITIAL()
             mo_message_manager.add_messages(lt_message)
 
 
@@ -222,7 +222,7 @@ class Sample_base < BASE
 
 
       abap("insert iv_bo_node_name into TABLE mt_callback_bo_node_name")
-      if mo_rnid_manager.isBOUND()
+      if mo_rnid_manager .isBOUND()
          mo_rnid_manager.exclude(iv_node_name:iv_bo_node_name)
 
 
@@ -271,7 +271,7 @@ class Sample_base < BASE
 
 
       abap("insert iv_bo_node_name into TABLE mt_heuristic_bo_node_name")
-      if mo_rnid_manager.isBOUND()
+      if mo_rnid_manager .isBOUND()
          mo_rnid_manager.include(iv_node_name:iv_bo_node_name)
 
 
@@ -332,7 +332,7 @@ class Sample_base < BASE
       ls_lcp_bo_node_name.core_bo_node_name = iv_core_bo_node_name
 
       abap("INSERT ls_lcp_bo_node_name INTO TABLE mt_lcp_bo_node_name")
-      if mo_rnid_manager.isBOUND()
+      if mo_rnid_manager .isBOUND()
          mo_rnid_manager.exclude(iv_node_name:iv_bo_node_name)
 
 
@@ -720,7 +720,7 @@ class Sample_base < BASE
 
 
 
-         if lv_node_id_determined == abap_false || ( lv_node_id.isINITIAL() && lv_node_id_determined == abap_true )
+         if lv_node_id_determined == abap_false || ( lv_node_id .isINITIAL() && lv_node_id_determined == abap_true )
             ls_origin_location.bo_name = lv_bo_name
 
 
@@ -818,7 +818,7 @@ class Sample_base < BASE
       lo_lcp = nil # if_esf_lcp.new
 
       read_table(id:@mt_lcp_bo_node_name)
-      assert(o:ls_lcp_bo_node_name.isASSIGNED())
+      assert(o:ls_lcp_bo_node_name .isASSIGNED())
       lo_lcp = mo_adaptation_handler.get_lcp(ls_lcp_bo_node_name.core_bo_name)
 
       lo_lcp.retrieve_root_node_id(_i:{
@@ -993,7 +993,7 @@ class Sample_base < BASE
          }, _b:binding)
 
 
-      rescue Cx_esf_message_handler,INTO,Lo_ex_message
+      rescue Cx_esf_message_handler=>lo_ex_message
          raise cx_fatal_exception.new
 
 
@@ -1140,7 +1140,7 @@ class Sample_base < BASE
             #* Nos: Test of the new RNID Buffer:
 
 
-            if mo_rnid_manager.is_skipped(iv_node_name:in_bo_node_name).isINITIAL()
+            if mo_rnid_manager.is_skipped(iv_node_name:in_bo_node_name) .isINITIAL()
                super_method(Sample_base, :if_esf_provider_access_i_retrieve_root_node_id).call
 
 
@@ -1191,7 +1191,7 @@ class Sample_base < BASE
          end
 
 
-      rescue Cx_root,INTO,Lx_root
+      rescue Cx_root=>lx_root
          handle_error_adaptation_hdlr(ix_exception:lx_bsa_runtime)
 
          handle_error(ix_exception:lx_root)
@@ -1254,7 +1254,7 @@ class Sample_base < BASE
 
       @ms_execute_action_parameter.referencing_node_elements = in_referencing_node_elements
 
-      if ! in_action_parameters.isINITIAL()
+      if ! in_action_parameters .isINITIAL()
 
 
          assign(to:lv_action_parameters)

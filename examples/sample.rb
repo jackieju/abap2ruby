@@ -63,7 +63,7 @@ class Sample < Sample_base
 
       lx_a1fia_aar_create_qaf_eco = nil # cx_a1fia_aar_create_qaf_eco.new
 
-      if @mv_eco_root_node_id.isINITIAL()
+      if @mv_eco_root_node_id .isINITIAL()
          return
 
 
@@ -75,7 +75,7 @@ class Sample < Sample_base
          lv_is_node_upd_enabled = lo_node_desc.get_property_value(property_name:If_esf_desc::Co_property_update_enabled)
          lv_is_upd_enabled_final = lo_node_desc.is_property_value_final(property_name:If_esf_desc::Co_property_update_enabled)
 
-      rescue Cx_esf_metadata_error,INTO,DATA, lx_esf_metadata_error
+      rescue Cx_esf_metadata_error=>lx_esf_metadata_error
          raise cx_fatal_exception.new
 
 
@@ -99,7 +99,7 @@ class Sample < Sample_base
       end
 
       begin
-         if @mt_attribute_map.isINITIAL()
+         if @mt_attribute_map .isINITIAL()
             init_buffers(_b:binding)
 
 
@@ -121,7 +121,7 @@ class Sample < Sample_base
             end
 
 
-            if lr_attribute_map.core_bo_node_id.isINITIAL()
+            if lr_attribute_map.core_bo_node_id .isINITIAL()
                next
 
 
@@ -146,7 +146,7 @@ class Sample < Sample_base
 
                #"#EC CI_LCP_LOOP  "No single BO node is being checked-on more than once
 
-            rescue Cx_esf_core_service,INTO,Lx_esf_core_service
+            rescue Cx_esf_core_service=>lx_esf_core_service
                raise cx_fatal_exception.new
 
 
@@ -156,7 +156,7 @@ class Sample < Sample_base
 
          }
 
-      rescue Cx_a1fia_aar_create_qaf_eco,INTO,Lx_a1fia_aar_create_qaf_eco
+      rescue Cx_a1fia_aar_create_qaf_eco=>lx_a1fia_aar_create_qaf_eco
          Cl_a1fia_aar_util::Create_message(_i:{
             "eo_message" => lo_message,
          }, _e:{
@@ -170,7 +170,7 @@ class Sample < Sample_base
             in_message_handler.add_message(lo_message)
 
 
-         rescue Cx_esf_message_handler,INTO,Lx_esf_message_handler
+         rescue Cx_esf_message_handler=>lx_esf_message_handler
             raise cx_fatal_exception.new
 
 
@@ -248,7 +248,7 @@ class Sample < Sample_base
          assert(o:lr_modification.change_mode == If_esf_provider_access::Co_change_mode_update)
 
          begin
-            if @mt_attribute_map.isINITIAL()
+            if @mt_attribute_map .isINITIAL()
                init_buffers(_b:binding)
 
 
@@ -257,7 +257,7 @@ class Sample < Sample_base
 
             end
 
-            if @mv_eco_root_node_id.isINITIAL()
+            if @mv_eco_root_node_id .isINITIAL()
                raise cx_a1fia_aar_create_qaf_eco.new
 
 
@@ -287,7 +287,7 @@ class Sample < Sample_base
             }, _b:binding)
 
 
-         rescue Cx_a1fia_aar_create_qaf_eco,INTO,Lx_a1fia_aar_create_qaf_eco
+         rescue Cx_a1fia_aar_create_qaf_eco=>lx_a1fia_aar_create_qaf_eco
             Cl_a1fia_aar_util::Create_message(_i:{
                "eo_message" => lo_message,
             }, _e:{
@@ -301,7 +301,7 @@ class Sample < Sample_base
                in_message_handler.add_message(lo_message)
 
 
-            rescue Cx_esf_message_handler,INTO,Lx_esf_message_handler
+            rescue Cx_esf_message_handler=>lx_esf_message_handler
                raise cx_fatal_exception.new
 
 
@@ -313,7 +313,7 @@ class Sample < Sample_base
 
       end
 
-      if lt_sub_node_modify.isNotINITIAL()
+      if lt_sub_node_modify .isNotINITIAL()
          super_method(Sample, :if_esf_provider_access_i_modify).call
 
 
@@ -423,7 +423,7 @@ class Sample < Sample_base
             }, _b:binding)
 
 
-         rescue Cx_esf_core_service,INTO,Lx_esf_core_service
+         rescue Cx_esf_core_service=>lx_esf_core_service
             raise cx_fatal_exception.new
 
 
@@ -438,7 +438,7 @@ class Sample < Sample_base
       case in_bo_node_name
       when If_sample::Co_bo_node.root
          begin
-            if @mt_attribute_map.isINITIAL()
+            if @mt_attribute_map .isINITIAL()
                init_buffers(_b:binding)
 
 
@@ -451,7 +451,7 @@ class Sample < Sample_base
 
             lv_request_has_valid_node_id = abap_false
 
-            if @mv_eco_root_node_id.isINITIAL()
+            if @mv_eco_root_node_id .isINITIAL()
                read_table(id:in_node_ids, into:mv_eco_root_node_id, index:1)
 
                if root_node_id_exists(@mv_eco_root_node_id) == abap_false
@@ -466,7 +466,7 @@ class Sample < Sample_base
 
             end
 
-            if @mv_eco_root_node_id.isNotINITIAL()
+            if @mv_eco_root_node_id .isNotINITIAL()
                abap("DELETE out_failed_node_ids WHERE table_line = mv_eco_root_node_id")
 
 
@@ -487,7 +487,7 @@ class Sample < Sample_base
             if lv_request_has_valid_node_id == abap_true
                append(to:out_data)
 
-               if in_requested_attributes.isNotINITIAL()
+               if in_requested_attributes .isNotINITIAL()
                   lt_eco_req_attr = in_requested_attributes
 
 
@@ -517,7 +517,7 @@ class Sample < Sample_base
                   clear(id:lv_core_bo_node_id)
 
                   loop(at:@mt_attribute_map){
-                     if lt_requested_attributes.isNotINITIAL()
+                     if lt_requested_attributes .isNotINITIAL()
                         read_table(id:lt_requested_attributes)
 
                         if sy.subrc != 0
@@ -543,7 +543,7 @@ class Sample < Sample_base
 
                   }
 
-                  if lt_requested_core_attr.isINITIAL()
+                  if lt_requested_core_attr .isINITIAL()
                      next
 
 
@@ -574,7 +574,7 @@ class Sample < Sample_base
 
                      #"#EC CI_LCP_LOOP  "No single BO node is being retrieved on more than once
 
-                  rescue Cx_esf_core_service,INTO,Lx_esf_core_service
+                  rescue Cx_esf_core_service=>lx_esf_core_service
                      raise cx_fatal_exception.new
 
 
@@ -665,7 +665,7 @@ class Sample < Sample_base
 
             #"IF out_failed_node_ids IS INITIAL.
 
-         rescue Cx_a1fia_aar_create_qaf_eco,INTO,Lx_a1fia_aar_create_qaf_eco
+         rescue Cx_a1fia_aar_create_qaf_eco=>lx_a1fia_aar_create_qaf_eco
             clear(id:out_data)
             append(from:lines, to:out_failed_node_ids)
             Cl_a1fia_aar_util::Create_message(_i:{
@@ -700,7 +700,7 @@ class Sample < Sample_base
          begin
             lv_parent_node_name = @mo_eco_descriptor.get_bo_node_descriptor(bo_node_proxy_name:in_bo_node_name).get_parent_bo_node_descriptor(_b:binding).get_proxy_name(_b:binding)
 
-         rescue Cx_esf_metadata_error,INTO,DATA, lx_esf_metadata
+         rescue Cx_esf_metadata_error=>lx_esf_metadata
             raise cx_fatal_exception.new
 
 
@@ -772,7 +772,7 @@ class Sample < Sample_base
          @mo_eco_descriptor = @mo_lcp_facade.get_bo_descriptor(in_bo_proxy_name:If_sample::Co_bo_name)
 
 
-      rescue Cx_esf_core_service,INTO,DATA, lx_esf_core_service
+      rescue Cx_esf_core_service=>lx_esf_core_service
          raise cx_fatal_exception.new
 
 

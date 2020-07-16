@@ -52,12 +52,12 @@ PRODUCTIONS
                         | "MESSAGE" | "END" | "CREATE" | "KEY" |"ID"|"DEFAULT"|"LENGTH"|"DECIMALS"|"BOXED"
                         |"SUFFIX" | "COMPONENTS" |"EXCEPTIONS" | "KIND" |"DELETE" | "ACTIVATION" | "OF"
                         |"EOF"|"REPORT"|"NO"|"PAGE"|"HEADING"|"DEFINING"|"DATABASE"|"REDUCED"|"FUNCTIONALITY"|"FUNCTION"|"ENDFUNCTION"|"ENDSELECT"|"FIELDS"|"DISTINCT"|"FROM"|"AS"|"USING"|"CLIENT"|"SPECIFIED"|"INNER"|"LEFT"|"RIGHT"|"OUTER"|"CROSS"|"JOIN"|"ON"
-                        |"ORDER"|"BY"|"PRIMARY"|"ASCENDING"|"DESCENDING"|"INTO"|"APPENDING"|"CORRESPONDING"|"PACKAGE"|"SIZE"|"SELECT"|"SINGLE"|"FOR"|"UPDATE"|"ENTRIES"|"IN"|"WHERE"|"GROUP"|"HAVING"|"UNION"|"EXTENDED"|"RESULT"|"CREATING"
-                        |"READER"|"LOCATOR"|"COLUMNS"|"BLOB"|"CLOB"|"OFFSET"|"UP"|"TO"|"ROWS"|"BYPASSING"|"BUFFER"|"CONNECTION"|"ENDWITH"|"TABLES"|"MOVE"|"EXACT"|"PERCENTAGE"|"EXPANDING"|"NESTED"|"KEEPING"|"APPEND"|"LINE"|"ASSIGNING"
-                        |"CASTING"|"REFERENCE"|"CONCATENATE"|"CHARACTER"|"BYTE"|"MODE"|"SEPARATED"|"RESPECTING"|"BLANKS"|"SEARCH"|"STARTING"|"AT"|"ENDING"|"ABBREVIATED"|"AND"|"MARK"|"RAISE"|"EVENT"|"RESUMABLE"|"EXCEPTION"|"NUMBER"|"DISPLAY"|"LIKE"
-                        |"RAISING"|"INDEX"|"TEXT"|"WITHOUT"|"MEMBERS"|"LOOP"|"TRANSPORTING"|"VERSION"|"SCREEN"|"ENDLOOP"|"LOB"|"HANDLE"|"EMPTY"|"HEADER"|"UNIQUE"|"PRIMARY_KEY"|"ALIAS"|"STATICS"|"CONSTANTS"|"BEGIN"|"COMMON"|"PART"|"OCCURS"|"VALID"
+                        |"ORDER"|"BY"|"PRIMARY"|"ASCENDING"|"DESCENDING"|"APPENDING"|"CORRESPONDING"|"PACKAGE"|"SIZE"|"SELECT"|"SINGLE"|"FOR"|"UPDATE"|"ENTRIES"|"IN"|"WHERE"|"GROUP"|"HAVING"|"UNION"|"EXTENDED"|"RESULT"|"CREATING"
+                        |"READER"|"LOCATOR"|"COLUMNS"|"BLOB"|"CLOB"|"OFFSET"|"UP"|"TO"|"ROWS"|"BYPASSING"|"BUFFER"|"CONNECTION"|"ENDWITH"|"TABLES"|"MOVE"|"EXACT"|"PERCENTAGE"|"EXPANDING"|"NESTED"|"KEEPING"|"APPEND"|"LINE"
+                        |"CASTING"|"CONCATENATE"|"CHARACTER"|"BYTE"|"MODE"|"SEPARATED"|"RESPECTING"|"BLANKS"|"SEARCH"|"STARTING"|"AT"|"ENDING"|"ABBREVIATED"|"AND"|"MARK"|"RAISE"|"EVENT"|"RESUMABLE"|"EXCEPTION"|"NUMBER"|"DISPLAY"|"LIKE"
+                        |"RAISING"|"INDEX"|"TEXT"|"WITHOUT"|"MEMBERS"|"LOOP"|"VERSION"|"SCREEN"|"ENDLOOP"|"LOB"|"HANDLE"|"EMPTY"|"HEADER"|"UNIQUE"|"PRIMARY_KEY"|"ALIAS"|"STATICS"|"CONSTANTS"|"BEGIN"|"COMMON"|"PART"|"OCCURS"|"VALID"
                         |"BETWEEN"|"IS"|"WRITE"|"UNDER"|"CENTERED"|"EXPONENT"|"CURRENCY"|"ROUND"|"UNIT"|"ENVIRONMENT"|"TIME"|"FORMAT"|"ZONE"|"STYLE"|"MASK"|"DDMMYY"|"MMDDYY"|"YYMMDD"|"CHECKBOX"|"ICON"|"SYMBOL"|"QUICKINFO"|"CONTINUE"|"CASE"|"WHEN"|"OR"|"OTHERS"|"ENDCASE"
-                        |"FIELD"|"DUMMY"|"OBJECT"|"USER"|"DATASET"|"ADJACENT"|"DUPLICATES"|"COMPARING"|"MEMORY"|"SHARED"|"VARYING"|"NEXT"|"DO"|"TIMES"|"ENDDO"|"OPTIONAL"|"EVENTS"|"MODIFY"|"CURRENT"|"CHANGE"|"ENDON"|"OPEN"|"CURSOR"|"HOLD"|"INPUT"|"OUTPUT"|"BINARY"
+                        |"FIELD"|"DUMMY"|"OBJECT"|"USER"|"DATASET"|"ADJACENT"|"DUPLICATES"|"COMPARING"|"MEMORY"|"SHARED"|"VARYING"|"NEXT"|"DO"|"TIMES"|"ENDDO"|"OPTIONAL"|"EVENTS"|"MODIFY"|"CURRENT"|"CHANGE"|"ENDON"|"OPEN"|"CURSOR"|"HOLD"|"INPUT"|"OUTPUT"
                         |"ENCODING"|"SKIPPING"|"NATIVE"|"SMART"|"UNIX"|"WINDOWS"|"LINEFEED"|"LEGACY"|"BIG"|"LITTLE"|"ENDIAN"|"CODE"|"POSITION"|"FILTER"|"IGNORING"|"CONVERSION"|"ERRORS"|"REPLACEMENT"|"FETCH"|"BOUNDS"|"PROVIDE"|"INCLUDING"|"GAPS"|"ENDPROVIDE"|"READ"
                         |"MAXIMUM"|"ACTUAL"|"WIDTH"|"TEXTPOOL"|"LANGUAGE"|"SORT"|"SUBMIT"|"VIA"|"PROGRAM"|"EQ"|"NE"|"CP"|"NP"|"GE"|"LT"|"LE"|"GT"|"NOT"|"FREE"|"SELECTIONS"|"LIST"|"SPOOL"|"ARCHIVE"|"DYNPRO"|"JOB"|"RETURN"|"TRY"|"CATCH"|"BEFORE"|"UNWIND"|"CLEANUP"
                         |"ENDTRY"|"ASSOCIATION"|"TYPES"|"ENUM"|"STRUCTURE"|"BASE"|"MESH"|"SET"|"WHILE"|"VARY"|"ENDWHILE"|"TASK"|"NEW"|"BACKGROUND"|"SEPARATE"|"DESTINATION"|"CALLING"|"PERFORMING"|"IF"|"ELSEIF"|"ELSE"|"ENDIF"|"CLASS"|"DEFINITION"
@@ -94,7 +94,7 @@ PRODUCTIONS
     |"TAB"|"BLANK"|"FILE"|"HANDLER"|"INSTANCES"|"MARGIN"|"IMMEDIATELY"|"ANALYZER"|"CLOCK"|"RESOLUTION"|"TITLEBAR"|"CIRCULAR"|"DELETING"|"LEADING"|"TRAILING"|"SWITCHSTATES"|"DURING"|"UPPER"|"SECONDS"|"ASYNCHRONOUS"|"TASKS"|"MESSAGING"|"CHANNELS"|"PUSH"|"DIV"|"MOD"|"EQUIV"|"CO"|"CN"|"CA"|
     "NA"|"CS"|"NS"|"INSTANCE"|"BOUND"|"ASSIGNED"|"SUPPLIED"|"REQUESTED". 
     
-    AllowedKeywords =  AllowedKeywordsForTypeName  | "SORTED" | "STANDARD" | "REF" | "CHECK" | "EDIT" | "NODE". 
+    AllowedKeywords =  AllowedKeywordsForTypeName  | "SORTED" | "STANDARD" | "REF" | "CHECK" | "EDIT" | "NODE" | "TYPE". 
     
     TypeName = ( (identifier|AllowedKeywordsForTypeName)|("("(string1|identifier|AllowedKeywordsForTypeName)")") ) {"=>" ( (identifier|AllowedKeywordsForTypeName)|("("(identifier|AllowedKeywordsForTypeName)")") ) } (. name=fixName(src()).)
                             (.  
@@ -112,14 +112,17 @@ PRODUCTIONS
                                              src(name)
                               .)
                                 .
-                                
+         
+/*    FullName = Name {"=>" Name} .*/
+                           
     Name = (
                 (identifier|AllowedKeywords)
             | 
-                ("("(identifier|AllowedKeywords)")")
+               ("("(identifier|AllowedKeywords)")")
+     
            )  (. name=fixName(src()).)
                             (.  
-                                                        #  name = lus
+                                                   
                                                          name = procName(name)
                                                          src(name)
                               .)
@@ -1084,11 +1087,11 @@ stREAD = "READ"
                     ("FROM" identifier (.params["from"]=prevString.)["USING" "KEY" ["("] identifier [")"]]) 
                  |
                       "WITH" ["TABLE"] "KEY" 
-                      ["("]identifier[")"] ("COMPONENTS" | "=" Expression ){ ["("]identifier[")"] "=" Expression } 
+                      Name ("COMPONENTS" | "=" Expression ){ Name "=" Expression } 
                          
                   
                  | 
-                     "INDEX" Expression (.params["index"]=lus.)["USING" "KEY" ["("]identifier[")"] ] 
+                     "INDEX" Expression (.params["index"]=lus.)["USING" "KEY" Name ] 
                )]
                
                [
@@ -1234,7 +1237,7 @@ stWHILE = "WHILE" Expression
 "ENDWHILE"".".
 
        
-  CallFunction = "FUNCTION" Name 
+  CallFunction = "FUNCTION" (Name|string1) 
               [ {"IN" "UPDATE" "TASK"} 
                | 
                    {
@@ -2378,11 +2381,11 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
       
 
       
-  /*Expression           =  Conditional { AssignmentOperator Expression   }  .*/
-  /* abap expression dosn't include conditional or relationexp, because in abap "=" can be assignment and comparison */
-  Expression          =  ShiftExp { AssignmentOperator ShiftExp   } .
+  Expression           =  Conditional { AssignmentOperator Expression   }  .
+  /* abap expression dosn't include conditional or relationexp, because in abap "=" can be assignment and comparison 
+  Expression          =  ShiftExp { AssignmentOperator ShiftExp   } .*/
   
-  /* abap logicexp is conditional 
+  /* abap logicexp is conditional */
   Conditional          =  LogORExp  .
 
   LogORExp             =  LogANDExp   { ("||" | "OR"(.re("or").) | "EQUIV"(.re("or").)) LogANDExp }  .
@@ -2396,15 +2399,17 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
   ANDExp               =  EqualExp    { "&" EqualExp }    .
 
   EqualExp             =  RelationExp (
-                              { ( "=" (.re("==").)| "EQ"(.re("==").)| "<>" (.re("!=").)| "NE"(.re("!=").)  | "LIKE" ) RelationExp } 
+                              { ( /*"=" (.re("==").)| */"EQ"(.re("==").)| "<>" (.re("!=").)| "NE"(.re("!=").)  | "LIKE" ) RelationExp } 
                           |
                              ["NOT"] "BETWEEN" RelationExp "AND" RelationExp
+                          | 
+                              "IS"(.s=".is".) ["NOT" (.s+="Not";.)] PredefinedConstant (.s+=lus;r="#{s}()";src(r).)
                           )  
   .
 
   RelationExp          =    ShiftExp    { 
                               ( "<" | "LT"  | ">" | "GT" | "<=" | "LE" | ">=" | "GE" | "CO" | "CN" | "CA" | "NA" | "CS" | "NS" | "CP" | "NP" |"BYTE-CO" | "BYTE-CN" | "BYTE-CA" | "BYTE-NA" | "BYTE-CS" | "BYTE-NS" )  
-                               ShiftExp   }   .*/
+                               ShiftExp   }   .
 
   ShiftExp             =  AddExp      { ( "<<" | ">>" ) AddExp }       .
               
@@ -2420,7 +2425,7 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
 
 
   UnaryExp             =  PostFixExp
-                         | ( "++" | "--" ) UnaryExp
+                        /* | ( "++" | "--" ) UnaryExp*/
                          | UnaryOperator CastExp 	
                             
 					.
@@ -2449,8 +2454,8 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
                           | "=>" identifier  (.
                               r+="::#{to_ruby_const(prevString)}"
                               .)
-                          | "++" (.r+="++".)
-                          | "--"(.r+="--".)
+                         /* | "++" (.r+="++".)
+                          | "--"(.r+="--".)*/
                         /*  | "IS"(.re(".is(");br = true.) ["NOT"(.back_src();re(".isnot(");_not=true.)] ["INITIAL"(.back_src();if _not 
   re(".isInit(")
   else
@@ -2458,7 +2463,6 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
   end
   add_src(")") if br
   .)]*/ 
-                         | "IS"(.s=".is".) ["NOT" (.s+="Not";.)] PredefinedConstant (.s+=lus;r+="#{s}()".)
                          
                          }  
                          (. 
@@ -2513,6 +2517,9 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
                                                           { ( "=" (.re("==").)| "EQ"(.re("==").)| "<>" (.re("!=").)| "NE"(.re("!=").)  | "LIKE" ) LogRelationExp } 
                                                       |
                                                          ["NOT"] "BETWEEN" LogRelationExp "AND" LogRelationExp
+                                                      |
+                                                          "IS"(.back();s=".is".) ["NOT" (.back();s+="Not";.)] PredefinedConstant (.back();s+=lus;r="#{s}()";add_src(r).)
+                                                      
                                                       )  
                               .
 
@@ -2588,7 +2595,20 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
        .)
   |
        (.s="";e={}.) 
-       {  ShiftExp(. a = lus;s+=lus;.)[ "=" Expression  (.e[a]=lus.) ] (.s+=",".)}
+     /*  {  ShiftExp (. a = lus;s+=lus;.)[ "=" Expression  (.e[a]=lus.) ] (.s+=",".)}*/
+     {Expression
+         (.
+             l = lut
+             if l.size == 3 && l[1] == "=="
+                 s += "#{l[0]} = #{l[2]},"
+                 e[l[0]] = l[2]
+             else
+                 s += "#{lus},"
+             end
+             
+             
+             .)
+      }
        (.
            if e.keys.size>0
                src("(#{hash_to_params(e)})")

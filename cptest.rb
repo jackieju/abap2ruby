@@ -331,6 +331,10 @@ FIND FIRST OCCURRENCE OF in_action_name IN TABLE
     )->get_bo_node_descriptor( bo_node_proxy_name = if_task=>co_bo_node-root
     )->get_action_proxy_names( ).
 endif.
+
+a(b->p=>t = c->a=>y->a).
+aq(b->p=>t <> c->a=>y->a).
+
 HERE
 $ar = []
 #def dump_testcase
@@ -440,7 +444,7 @@ end # end of test
 
 
 #=end
-test(17)
+test()
 #dump_testcase
 p "$typedef:#{$typedef.inspect}"
 

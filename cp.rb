@@ -154,7 +154,7 @@ end
 # stack for parsing
 # every function for unterminator will have on _in() and out()
 class ParseStack
-    attr_accessor :cur
+    attr_accessor :cur, :last_unterminator_src
     def initialize()
         _in
         @last_pop_v = "" # last popuped value
@@ -188,7 +188,7 @@ class ParseStack
         end
         return ""
     end
-
+    
     # pop stack value
     def popv
         r = @last_pop_v 
@@ -313,6 +313,9 @@ class Parser < CParser
     end
     def lus
         @parse_stack.lus
+    end
+    def lut
+        @parse_stack.last_unterminator_src
     end
     def origin_src
         @scanner.buffer[@parse_stack.cur[:pos]..@scanner.nextSym.pos-1]
