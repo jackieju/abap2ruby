@@ -1924,20 +1924,25 @@ stGET = "GET"(
        "BADI"  identifier ["FILTERS" Expression{Expression} ]  
        | ( identifier "TYPE" "("identifier")" 
               [ ("FILTERS" Exps ) 
-              | ("FILTER-TABLE" identifier)] ) 
-              ["CONTEXT" identifier] 
+           | 
+              ("FILTER-TABLE" identifier)] 
+         ) 
+         ["CONTEXT" identifier] 
        |  "BIT" number "OF" string1 "INTO" identifier 
-       |  "CURSOR" ( ( "FIELD" identifier 
-                ["VALUE" string1] 
-                [identifier(.is('LENGTH').) number] 
-                [["DISPLAY"|"MEMORY"] "OFFSET" number] 
-                ["LINE" number] 
-                ["AREA" identifier] ) 
-                | ( "LINE" number 
-                ["VALUE" string1] 
-                [identifier(.is('LENGTH').) number] 
-                [["DISPLAY"|"MEMORY"] "OFFSET" number] ) ) |  "DATASET" identifier ["POSITION" number] ["ATTRIBUTES" identifier] |  "LOCALE" "LANGUAGE" identifier "COUNTRY" string1 "MODIFIER" string1 |  "PARAMETER" "ID" identifier "FIELD" identifier |  "PF-STATUS" string1 ["PROGRAM" identifier] ["EXCLUDING" identifier] |  "PROPERTY" "OF" identifier identifier "=" identifier ["NO" "FLUSH"] ["QUEUE-ONLY"] 
-                                ["EXPORTING" Exps ] |  "REFERENCE" "OF" identifier "INTO" identifier |  "RUN" "TIME" "FIELD" identifier |  ("TIME" (["FIELD" identifier] |   "STAMP" "FIELD" identifier) )) ".".
+       |  "CURSOR" (
+                        ( "FIELD" identifier ["VALUE" string1] ["LENGTH" number]  [["DISPLAY"|"MEMORY"] "OFFSET" number] ["LINE" number]  ["AREA" identifier] ) 
+                    | 
+                        ( "LINE" number ["VALUE" string1]["LENGTH" number] [["DISPLAY"|"MEMORY"] "OFFSET" number] )
+                   )
+       |  "DATASET" identifier ["POSITION" number] ["ATTRIBUTES" identifier] 
+       |  "LOCALE" "LANGUAGE" identifier "COUNTRY" string1 "MODIFIER" string1 
+       |  "PARAMETER" "ID" (identifier|string1) "FIELD" identifier 
+       |  "PF-STATUS" string1 ["PROGRAM" identifier] ["EXCLUDING" identifier] 
+       |  "PROPERTY" "OF" identifier identifier "=" identifier ["NO" "FLUSH"] ["QUEUE-ONLY"]["EXPORTING" Exps ] 
+       |  "REFERENCE" "OF" identifier "INTO" identifier 
+       |  "RUN" "TIME" "FIELD" identifier 
+       |  ("TIME" (["FIELD" identifier] |   "STAMP" "FIELD" identifier) )
+       ) ".".
 
 stHIDE = "HIDE" identifier".".
 
