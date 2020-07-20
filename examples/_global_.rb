@@ -4,28 +4,13 @@ def d()
 
 
 
-   if Cl_abap_aab_utilities::Is_active(id:'A1FIA_ECO_ERROR', mode_breakpoint:'X', mode_logpoint:'X', mode_assert_break:'X', mode_assert_dump:'X', mode_assert_log:'X') .isNotINITIAL()
+   #*if <LS_TEXT_ELEMENT>-DS_NODE_ELEMENT->*-BO_NODE_ELEMENT_EL_PATH_IN_KEY = rsd_node-DS_TEXT_NODE->*-LANGUAGE_EL_PATH.
+   #*  concatenate '''' sy-langu '''' into value.     "language field
+   #*else.
+   #*  concatenate '''' LS_VL-CODE '''' into value.
+   #*endif.
 
-
-   end
-
-   if lv_action_type == mc_action_task_bo_action
-   else
-
-
-
-      FIND FIRST OCCURRENCE OF in_action_name IN TABLE mo_lcp_facade.get_bo_descriptor(in_bo_proxy_name:If_task::Co_bo_name).get_bo_node_descriptor(bo_node_proxy_name:If_task::Co_bo_node.root).get_action_proxy_names(_b:binding)
-
-
-
-   end
-
-   a(B.p::T:C.a::Y.a)
-
-   aq(B.p::T != C.a::Y.a)
-
-   WHILE ! lv_predecessor_path_id .isINITIAL()
-   ENDWHILE
+   check( lines(lt_node_ids) == 1 )
 
 end
 

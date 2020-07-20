@@ -338,6 +338,15 @@ aq(b->p=>t <> c->a=>y->a).
  WHILE NOT lv_predecessor_path_id IS INITIAL.
  ENDWHILE.
 HERE
+s20=<<HERE
+REPORT D.
+*if <LS_TEXT_ELEMENT>-DS_NODE_ELEMENT->*-BO_NODE_ELEMENT_EL_PATH_IN_KEY = rsd_node-DS_TEXT_NODE->*-LANGUAGE_EL_PATH.
+*  concatenate '''' sy-langu '''' into value.     "language field
+*else.
+*  concatenate '''' LS_VL-CODE '''' into value.
+*endif.
+CHECK lines( lt_node_ids ) EQ 1.
+HERE
 $ar = []
 #def dump_testcase
     p "==>dump_testcase"

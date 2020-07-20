@@ -13,7 +13,7 @@ CHARACTERS
   strings3 = CHR(32) .. CHR(255) - '|' .
   chars    = CHR(32) .. CHR(255) - '"' .
   strings  = CHR(32) .. CHR(255) - "'" .
-
+  strings2  = CHR(32) .. CHR(255) - "`" .
 
   macros   = ANY - eol .
   space = CHR(32).
@@ -32,7 +32,7 @@ TOKENS
            
   number     = digit { digit } [ "U" | "u" | "L" | "l" ] .
   hexnumber  = "0" ( "x" | "X" ) hexdigit { hexdigit } [ "U" | "u" | "L" | "l" ] .
-  string1    = "'" { strings } "'" .
+  string1    = "'" { strings } "'"  |  "`" { strings2 } "`"  .
   char       = '"' [ "\\" ] chars '"' .
   regex1     = "|" { strings3 } "|" .
   Colon      = ":" .
@@ -92,7 +92,7 @@ PRODUCTIONS
     |"FRAMES"|"RESET"|"SUBROUTINE"|"POOL"|"FILTERS"|"BIT"|"ATTRIBUTES"|"LOCALE"|"COUNTRY"|"MODIFIER"|"EXCLUDING"|"PROPERTY"|"RUN"|"ACCEPTING"|"PADDING"|"TRUNCATION"|"BOUNDARIES"|"DIRECTORY"|"RENAMING"|"FOUND"|"PERSON"|"VALUES"|"DUPLICATE"|"KEYS"|"ENTRY"|"ARITHMETIC"|"UNICODE"
     |"ENABLING"|"PARTIALLY"|"IMPLEMENTED"|"SCROLLING"|"PRINT"|"ONLY"|"OBLIGATORY"|"VISIBLE"|"LISTBOX"|"RADIOBUTTON"|"MODIF"|"LOWER"|"MATCHCODE"|"PATTERN"|"CONTROL"|"COLUMN"|"PLACES"|"FORWARD"|"BACKWARD"|"INTERVALS"|"OPTION"|"SELECTION"|"LOW"|"HIGH"
     |"TAB"|"BLANK"|"FILE"|"HANDLER"|"INSTANCES"|"MARGIN"|"IMMEDIATELY"|"ANALYZER"|"CLOCK"|"RESOLUTION"|"TITLEBAR"|"CIRCULAR"|"DELETING"|"LEADING"|"TRAILING"|"SWITCHSTATES"|"DURING"|"UPPER"|"SECONDS"|"ASYNCHRONOUS"|"TASKS"|"MESSAGING"|"CHANNELS"|"PUSH"|"DIV"|"MOD"|"EQUIV"|"CO"|"CN"|"CA"|
-    "NA"|"CS"|"NS"|"INSTANCE"|"BOUND"|"ASSIGNED"|"SUPPLIED"|"REQUESTED". 
+    "NA"|"CS"|"NS"|"INSTANCE"|"BOUND"|"ASSIGNED"|"SUPPLIED"|"REQUESTED"|"LINES". 
     
     AllowedKeywords =  AllowedKeywordsForTypeName  | "SORTED" | "STANDARD" | "REF" | "CHECK" | "EDIT" | "NODE" | "TYPE". 
     
@@ -103,7 +103,8 @@ PRODUCTIONS
                                 .
 
 
-    Var = identifier (.re(fixName(prevString())).) | "DATA" "(" Name ")" (.src(lus).)| "FIELD-SYMBOL" "(" Name ")" (.src(lus).).
+   /* Var = Name (.re(fixName(prevString())).) | "DATA" "(" Name ")" (.src(lus).)| "FIELD-SYMBOL" "(" Name ")" (.src(lus).).*/
+   Var = Expression.
     
     Exps =  Expression{Expression} .
     
@@ -474,7 +475,7 @@ stMOVE =  "MOVE"
 stMOVE_CORRESPONDING = "MOVE-CORRESPONDING"  ["EXACT"]
              ( Var(.cp[:o]=lus.) "TO" Var (.cp[:to]=lus.)["EXPANDING" "NESTED" "TABLES"] 
             |  Var (.cp[:o]=lus.) "TO" Var (.cp[:to]=lus.) ["EXPANDING" "NESTED" "TABLES"] 
-                                                  ["KEEPING" "TARGET" Var(.is('LINES').)] 
+                                                  ["KEEPING" "TARGET" Var] 
              ) "."
              (.
                 make()
@@ -496,8 +497,11 @@ stAPPEND = "APPEND" (. params = {} .) (
     
      .
  
-stCONCATENATE = "CONCATENATE" (.params={:ar=>[]}.)( Expression (. params[:ar].push(lus).) {Expression(. params[:ar].push(lus).)}
-             | identifier(.is('LINES').) "OF" identifier
+stCONCATENATE = "CONCATENATE" (.params={:ar=>[]}.)
+             ( 
+                 Expression (. params[:ar].push(lus).) {Expression(. params[:ar].push(lus).)}
+                 |
+                 "LINES" "OF" identifier
              )
              "INTO" Var (. params[:into]=lus.) 
              ["IN" ("CHARACTER"|"BYTE") "MODE"] 
@@ -606,7 +610,7 @@ LoopStatement = "LOOP" (.params = {};stmts ="".)
                        Expression (.params[:at]=lus.) [( 
                                    "INTO" Expression  (.params[:into]=lus.)
                                  |  "ASSIGNING" Var ["CASTING"] 
-                                 |  "REFERENCE" "INTO" identifier 
+                                 |  "REFERENCE" "INTO" Expression (.params[:into]=lus.)
                                  |  "TRANSPORTING" "NO" "FIELDS" 
                                   )]
                           [ "USING" "KEY" (identifier|"("identifier")" )] 
@@ -1790,14 +1794,14 @@ stDESCRIBE = "DESCRIBE"
                       ["EDIT" "MASK" identifier]
               |
                  "LIST" ( 
-                              ("NUMBER" "OF" (identifier(.is('LINES').)|"PAGES") Expression) 
+                              ("NUMBER" "OF" (Expression|"PAGES") Expression) 
                           | 
                               "LINE" Expression "PAGE" Expression 
                           | 
                               (
                                 "PAGE" Expression ["LINE-SIZE" Expression] 
                                 ["LINE-COUNT" Expression] 
-                                [identifier(.is('LINES').) Expression] 
+                                [Expression Expression] 
                                 ["FIRST-LINE" Expression] 
                                 ["TOP-LINES" Expression] 
                                 ["TITLE-LINES" Expression] 
@@ -1807,7 +1811,7 @@ stDESCRIBE = "DESCRIBE"
                         ) 
                         ["INDEX" identifier]
             |   
-                "TABLE" identifier { ["KIND" identifier] [identifier(.is('LINES').) Expression] ["OCCURS" Expression] }
+                "TABLE" identifier { ["KIND" identifier] [Expression Expression] ["OCCURS" Expression] }
     ) ".".
 
 stDETAIL = "DETAIL"".".
@@ -1851,10 +1855,11 @@ stFIELD_SYMBOLS = "FIELD-SYMBOLS" identifier ( Typing | ( "STRUCTURE" identifier
 stFIELDS = "FIELDS" identifier".".
 
 stFIND = "FIND" [("FIRST" "OCCURRENCE"|"ALL" "OCCURRENCES") "OF"] 
-     (["SUBSTRING"] Expression | "REGEX" string1) "IN" 
+     (["SUBSTRING"] ShiftExp | "REGEX" string1)
+     "IN" 
      (
          (["SECTION" ["OFFSET" number] ["LENGTH" number] "OF"] Name) 
-     | 
+       | 
          ("TABLE" Expression ["FROM" number ["OFFSET" number]] 
                    ["TO"   number ["OFFSET" number]]) 
      ) 
@@ -1989,7 +1994,7 @@ stINSERT = "INSERT"
         [
             (  
                  ("INITIAL" "LINE") 
-               | (identifier(.is('LINES').) "OF" identifier ["FROM" identifier] ["TO" identifier] ["USING" "KEY" Name]) 
+               | (Expression "OF" identifier ["FROM" identifier] ["TO" identifier] ["USING" "KEY" Name]) 
                | identifier(.params[:id]=prevString.)
             ) 
         ]
@@ -2200,7 +2205,7 @@ stREPLACE = "REPLACE"(  ( ( [("FIRST" "OCCURRENCE")|("ALL" "OCCURRENCES" "OF")]
         ["IN" ("BYTE"|"CHARACTER") "MODE"] 
         [identifier(.is('LENGTH').) number] ) ".".
 
-stRESERVE = "RESERVE" number identifier(.is('LINES').)".".
+stRESERVE = "RESERVE" number Expression".".
 
 stRESUME = "RESUME"".".
 
@@ -2247,7 +2252,7 @@ stSET = "SET"(
                   |  
                       "BIT" number "OF" string1 ["TO" identifier]
                   |  
-                      "BLANK" identifier(.is('LINES').) ("ON"|"OFF") 
+                      "BLANK" Expression ("ON"|"OFF") 
                   |  
                       "COUNTRY" string1 
                   |  
@@ -2414,9 +2419,20 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
                           )  
   .
 
-  RelationExp          =    ShiftExp    { 
-                              ( "<" | "LT"  | ">" | "GT" | "<=" | "LE" | ">=" | "GE" | "CO" | "CN" | "CA" | "NA" | "CS" | "NS" | "CP" | "NP" |"BYTE-CO" | "BYTE-CN" | "BYTE-CA" | "BYTE-NA" | "BYTE-CS" | "BYTE-NS" )  
-                               ShiftExp   }   .
+  RelationExp          =    ShiftExp (. r = lus .)   { 
+                              ( "IN" | "<" | "LT"  | ">" | "GT" | "<=" | "LE" | ">=" | "GE" | "CO" | "CN" | "CA" | "NA" | "CS" | "NS" | "CP" | "NP" |"BYTE-CO" | "BYTE-CN" | "BYTE-CA" | "BYTE-NA" | "BYTE-CS" | "BYTE-NS" )  
+                              (.op = prevString().)
+                               ShiftExp   
+                               (.
+                                   exp2 = lus
+                                   if op == "IN"
+                                      r = "IN(#{exp2}, #{r})"
+                                   else
+                                     r +=" #{op} #{exp}"
+                                   end
+                               .)
+                                }   
+                                (. src(r).).
 
   ShiftExp             =  AddExp      { ( "<<" | ">>" ) AddExp }       .
               
@@ -2440,7 +2456,7 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
 
   PostFix<A* r> =   (. n=r.)   {    "[" [Expression] "]" (.r+="[#{lus}]".)
                           | ["#"] FunctionCall<r> (.
-                              if r == "DATA"
+                              if r == "DATA" || r == "FIELD-SYMBOL"
                                  r = lus[1..lus.size-2]                              
                               else
                                   if n.start_with?("super.") 
@@ -2533,7 +2549,7 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
                               .
 
                              LogRelationExp          =    LogShiftExp   { (.br=false.)
-                                                          ( "<" | "LT"  | ">" | "GT" | "<=" | "LE" | ">=" | "GE" | "CO" | "CN" | "CA" | "NA" | "CS" | "NS" | "CP" | "NP"(.re(".include?(");br=true;.) |"BYTE-CO" | "BYTE-CN" | "BYTE-CA" | "BYTE-NA" | "BYTE-CS" | "BYTE-NS" )  
+                                                          ( "IN" | "<" | "LT"  | ">" | "GT" | "<=" | "LE" | ">=" | "GE" | "CO" | "CN" | "CA" | "NA" | "CS" | "NS" | "CP" | "NP"(.re(".include?(");br=true;.) |"BYTE-CO" | "BYTE-CN" | "BYTE-CA" | "BYTE-NA" | "BYTE-CS" | "BYTE-NS" )  
                                                            LogShiftExp (. re("#{lus})") if br.)  }   .
 
                               LogShiftExp             =  LogAddExp      { ( "<<" | ">>" ) LogAddExp }       .
@@ -2550,7 +2566,7 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
 
 
                               LogUnaryExp             =  LogPostFixExp
-                                                     | ( "++" | "--" ) LogUnaryExp
+                                                   /*  | ( "++" | "--" ) LogUnaryExp*/
                                                      | UnaryOperator LogCastExp 	
                             
                             					.
@@ -2622,11 +2638,9 @@ stSPLIT = "SPLIT" identifier "AT" Expression "INTO"
            if e.keys.size>0
                src("(#{hash_to_params(e)})")
            else
-               if name == "DATA"
-                  src("(#{s[0..s.size-2]})")
-              else
+
                    src("(#{s[0..s.size-2]})")
-              end
+              
            end
        .)
    ) ")"     

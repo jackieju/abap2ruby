@@ -548,13 +548,13 @@ C_RANGESym = 543 # "RANGE"
 C_BINARYSym = 544 # "BINARY" 
 C_IMPORTINGSym = 545 # "IMPORTING" 
 C_RETURNINGSym = 546 # "RETURNING" 
-C_STANDARDSym = 547 # "STANDARD" 
-C_CHECKSym = 548 # "CHECK" 
-C_TYPESym = 549 # "TYPE" 
-C_LparenSym = 550 # "(" 
-C_RparenSym = 551 # ")" 
-C_EqualGreaterSym = 552 # "=>" 
-C_FIELDMinusSYMBOLSym = 553 # "FIELD-SYMBOL" 
+C_LINESSym = 547 # "LINES" 
+C_STANDARDSym = 548 # "STANDARD" 
+C_CHECKSym = 549 # "CHECK" 
+C_TYPESym = 550 # "TYPE" 
+C_LparenSym = 551 # "(" 
+C_RparenSym = 552 # ")" 
+C_EqualGreaterSym = 553 # "=>" 
 C_TYPEMinusPOOLSym = 554 # "TYPE-POOL" 
 C_PointSym = 555 # "." 
 C_LINEMinusSIZESym = 556 # "LINE-SIZE" 
@@ -697,21 +697,19 @@ C_GreaterGreaterSym = 692 # ">>"
 C_MinusSym = 693 # "-" 
 C_PercentSym = 694 # "%" 
 C_HashSym = 695 # "#" 
-C_PlusPlusSym = 696 # "++" 
-C_MinusMinusSym = 697 # "--" 
-C_StarEqualSym = 698 # "*=" 
-C_SlashEqualSym = 699 # "/=" 
-C_PercentEqualSym = 700 # "%=" 
-C_PlusEqualSym = 701 # "+=" 
-C_MinusEqualSym = 702 # "-=" 
-C_AndEqualSym = 703 # "&=" 
-C_UparrowEqualSym = 704 # "^=" 
-C_LessLessEqualSym = 705 # "<<=" 
-C_GreaterGreaterEqualSym = 706 # ">>=" 
-C_QueryEqualSym = 707 # "?=" 
-C_BangSym = 708 # "!" 
-No_Sym = 709 # not 
-C_PreProcessorSym = 710 # PreProcessor 
+C_StarEqualSym = 696 # "*=" 
+C_SlashEqualSym = 697 # "/=" 
+C_PercentEqualSym = 698 # "%=" 
+C_PlusEqualSym = 699 # "+=" 
+C_MinusEqualSym = 700 # "-=" 
+C_AndEqualSym = 701 # "&=" 
+C_UparrowEqualSym = 702 # "^=" 
+C_LessLessEqualSym = 703 # "<<=" 
+C_GreaterGreaterEqualSym = 704 # ">>=" 
+C_QueryEqualSym = 705 # "?=" 
+C_BangSym = 706 # "!" 
+No_Sym = 707 # not 
+C_PreProcessorSym = 708 # PreProcessor 
 
 
 MAXT =	No_Sym 	# Max Terminals */
@@ -1266,13 +1264,13 @@ SYMS=[
 "BINARY",
 "IMPORTING",
 "RETURNING",
+"LINES",
 "STANDARD",
 "CHECK",
 "TYPE",
 "(",
 ")",
 "=>",
-"FIELD-SYMBOL",
 "TYPE-POOL",
 ".",
 "LINE-SIZE",
@@ -1415,8 +1413,6 @@ SYMS=[
 "-",
 "%",
 "#",
-"++",
-"--",
 "*=",
 "/=",
 "%=",

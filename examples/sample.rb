@@ -152,7 +152,7 @@ class Sample < Sample_base
 
             end
 
-            append(from:lines, to:lt_core_message_aggregated)
+            append(from:LINES, to:lt_core_message_aggregated)
 
          }
 
@@ -236,7 +236,7 @@ class Sample < Sample_base
 
       lt_modification = in_modifications
 
-      loop(at:lt_modification){
+      loop(at:lt_modification, into:lr_modification){
          append(from:lr_modification.*, to:lt_sub_node_modify)
 
          abap("DELETE lt_modification")
@@ -452,7 +452,7 @@ class Sample < Sample_base
             lv_request_has_valid_node_id = abap_false
 
             if @mv_eco_root_node_id .isINITIAL()
-               read_table(id:in_node_ids, into:mv_eco_root_node_id, index:1)
+               read_table(id:in_node_ids, into:@mv_eco_root_node_id, index:1)
 
                if root_node_id_exists(@mv_eco_root_node_id) == abap_false
                   clear(id:@mv_eco_root_node_id)
@@ -516,7 +516,7 @@ class Sample < Sample_base
 
                   clear(id:lv_core_bo_node_id)
 
-                  loop(at:@mt_attribute_map){
+                  loop(at:@mt_attribute_map, into:lr_attribute_map){
                      if lt_requested_attributes .isNotINITIAL()
                         read_table(id:lt_requested_attributes)
 
@@ -667,7 +667,7 @@ class Sample < Sample_base
 
          rescue Cx_a1fia_aar_create_qaf_eco=>lx_a1fia_aar_create_qaf_eco
             clear(id:out_data)
-            append(from:lines, to:out_failed_node_ids)
+            append(from:LINES, to:out_failed_node_ids)
             Cl_a1fia_aar_util::Create_message(_i:{
                "eo_message" => lo_message,
             }, _e:{
