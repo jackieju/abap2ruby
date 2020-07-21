@@ -342,10 +342,11 @@ class Scanner <  CRRScanner
       end
      
      if @ch=='"'
+         NextCh()
          while (@ch && @ch.to_byte != EOF_CHAR && @ch.to_byte != LF_CHAR && @ch.to_byte != 13)
-             NextCh()
-          #   p "===>Comment6:#{@ch} #{@ch.to_byte} #{@ch.to_byte != LF_CHAR}"
+             p "===>Comment6:#{@ch} #{@ch.to_byte} #{@ch.to_byte != LF_CHAR}"
             @nextSym.Len+=1 if @ch.to_byte != EOF_CHAR
+             NextCh()
          end
          return 1
      end

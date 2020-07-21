@@ -144,7 +144,7 @@ class Sample < Sample_base
                   "in_check_scope" => "in_check_scope",
                }, _b:binding)
 
-               #"#EC CI_LCP_LOOP  "No single BO node is being checked-on more than once
+               #"#EC CI_LCP_LOOP  "No single BO node is being checked-on more than onc
 
             rescue Cx_esf_core_service=>lx_esf_core_service
                raise cx_fatal_exception.new
@@ -278,7 +278,7 @@ class Sample < Sample_base
                "ct_changed_attr" => lr_modification.changed_attributes,
             }, _b:binding)
 
-            #"Create or update the core BO nodes
+            #"Create or update the core BO node
             modify_core_bo_from_eco_root(_e:{
                "it_changed_attributes" => "lr_modification.changed_attributes",
                "is_eco_root" => "ls_eco_root",
@@ -572,7 +572,7 @@ class Sample < Sample_base
                         "in_requested_attributes" => "lt_requested_core_attr",
                      }, _b:binding)
 
-                     #"#EC CI_LCP_LOOP  "No single BO node is being retrieved on more than once
+                     #"#EC CI_LCP_LOOP  "No single BO node is being retrieved on more than onc
 
                   rescue Cx_esf_core_service=>lx_esf_core_service
                      raise cx_fatal_exception.new
@@ -626,7 +626,7 @@ class Sample < Sample_base
                }, _b:binding)
 
 
-               #"Buffer root structure for use in associations
+               #"Buffer root structure for use in association
 
                if lines(lt_requested_attributes) > 0
                   loop(at:lt_requested_attributes, into:lv_eco_attr){
@@ -663,7 +663,7 @@ class Sample < Sample_base
 
             end
 
-            #"IF out_failed_node_ids IS INITIAL.
+            #"IF out_failed_node_ids IS INITIAL
 
          rescue Cx_a1fia_aar_create_qaf_eco=>lx_a1fia_aar_create_qaf_eco
             clear(id:out_data)
@@ -765,7 +765,7 @@ class Sample < Sample_base
          "in_bo_name" => in_bo_name,
       }, _b:binding)
 
-      #"Get LCP facade
+      #"Get LCP facad
       @mo_lcp_facade = in_provider_context.get_lcp_facade(_b:binding)
 
       begin

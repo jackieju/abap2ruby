@@ -502,7 +502,8 @@ class CRParser
 
     def dump_pos(pos=@scanner.buffPos, lines = 5)
         pos=@scanner.buffPos if pos == nil
-            
+        
+        p("current file:#{$g_cur_parse_file}")
         p("start dump pos:#{pos},#{@scanner.buffer[pos..pos+100]}", 5)
         lino = get_lineno_by_pos(pos)+1
         

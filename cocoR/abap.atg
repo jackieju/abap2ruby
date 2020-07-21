@@ -108,7 +108,7 @@ PRODUCTIONS
     
     Exps =  Expression{Expression} .
     
-    NameInVarDef =  (identifier|AllowedKeywords)  (. name=fixName(src()).)
+    NameInVarDef =  (identifier|AllowedKeywords|"REFERENCE")  (. name=fixName(src()).)
                             (.  
                                              src(name)
                               .)
@@ -505,7 +505,7 @@ stCONCATENATE = "CONCATENATE" (.params={:ar=>[]}.)
              )
              "INTO" Var (. params[:into]=lus.) 
              ["IN" ("CHARACTER"|"BYTE") "MODE"] 
-             ["SEPARATED" "BY" string1] 
+             ["SEPARATED" "BY" Name] 
              ["RESPECTING" "BLANKS"] "."
              
              (.

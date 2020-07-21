@@ -3471,7 +3471,12 @@ class CParser < CRRParser
          if @sym>=C_DATASym&&@sym<=C_NODESym||@sym>=C_STANDARDSym&&@sym<=C_TYPESym
             AllowedKeywords()
          else
-            GenError(718)
+            if @sym==C_REFERENCESym
+               Get()
+            else
+               GenError(718)
+            end
+
          end
 
       end
@@ -4165,7 +4170,7 @@ class CParser < CRRParser
                Expect(C_MESHSym)
                Expect(C_identifierSym)
             else
-               if @sym>=C_identifierSym&&@sym<=C_TYPESSym||@sym>=C_STRUCTURESym&&@sym<=C_BASESym||@sym>=C_SETSym&&@sym<=C_NODESym||@sym>=C_STANDARDSym&&@sym<=C_TYPESym
+               if @sym>=C_identifierSym&&@sym<=C_TYPESSym||@sym>=C_STRUCTURESym&&@sym<=C_BASESym||@sym>=C_SETSym&&@sym<=C_NODESym||@sym==C_REFERENCESym||@sym>=C_STANDARDSym&&@sym<=C_TYPESym
                   NameInVarDef()
                else
                   GenError(739)
@@ -4181,7 +4186,7 @@ class CParser < CRRParser
             Expect(C_OFSym)
             Expect(C_identifierSym)
          else
-            if @sym>=C_identifierSym&&@sym<=C_MESSAGESym||@sym>=C_CREATESym&&@sym<=C_CONSTANTSSym||@sym>=C_COMMONSym&&@sym<=C_NODESym||@sym>=C_STANDARDSym&&@sym<=C_TYPESym
+            if @sym>=C_identifierSym&&@sym<=C_MESSAGESym||@sym>=C_CREATESym&&@sym<=C_CONSTANTSSym||@sym>=C_COMMONSym&&@sym<=C_NODESym||@sym==C_REFERENCESym||@sym>=C_STANDARDSym&&@sym<=C_TYPESym
                NameInVarDef()
                if @sym==C_LparenSym
                   Get()
@@ -4238,7 +4243,7 @@ class CParser < CRRParser
 
       t=prevString.upcase;
 
-      if @sym>=C_identifierSym&&@sym<=C_NODESym||@sym>=C_STANDARDSym&&@sym<=C_TYPESym
+      if @sym>=C_identifierSym&&@sym<=C_NODESym||@sym==C_REFERENCESym||@sym>=C_STANDARDSym&&@sym<=C_TYPESym
          if @sym==C_BEGINSym
             Get()
             Expect(C_OFSym)
@@ -4247,7 +4252,7 @@ class CParser < CRRParser
                Expect(C_PARTSym)
                NameInVarDef()
             else
-               if @sym>=C_identifierSym&&@sym<=C_BEGINSym||@sym>=C_PARTSym&&@sym<=C_NODESym||@sym>=C_STANDARDSym&&@sym<=C_TYPESym
+               if @sym>=C_identifierSym&&@sym<=C_BEGINSym||@sym>=C_PARTSym&&@sym<=C_NODESym||@sym==C_REFERENCESym||@sym>=C_STANDARDSym&&@sym<=C_TYPESym
                   NameInVarDef()
 
                   modname=lus;
@@ -4286,7 +4291,7 @@ class CParser < CRRParser
                   Expect(C_PARTSym)
                   NameInVarDef()
                else
-                  if @sym>=C_identifierSym&&@sym<=C_BEGINSym||@sym>=C_PARTSym&&@sym<=C_NODESym||@sym>=C_STANDARDSym&&@sym<=C_TYPESym
+                  if @sym>=C_identifierSym&&@sym<=C_BEGINSym||@sym>=C_PARTSym&&@sym<=C_NODESym||@sym==C_REFERENCESym||@sym>=C_STANDARDSym&&@sym<=C_TYPESym
                      NameInVarDef()
                      if @sym==C_VALIDSym
                         Get()
@@ -4315,7 +4320,7 @@ class CParser < CRRParser
                end;
 
             else
-               if @sym>=C_identifierSym&&@sym<=C_MESSAGESym||@sym>=C_CREATESym&&@sym<=C_CONSTANTSSym||@sym>=C_COMMONSym&&@sym<=C_NODESym||@sym>=C_STANDARDSym&&@sym<=C_TYPESym
+               if @sym>=C_identifierSym&&@sym<=C_MESSAGESym||@sym>=C_CREATESym&&@sym<=C_CONSTANTSSym||@sym>=C_COMMONSym&&@sym<=C_NODESym||@sym==C_REFERENCESym||@sym>=C_STANDARDSym&&@sym<=C_TYPESym
                   NameInVarDef()
 
                   name = lus
@@ -10040,7 +10045,7 @@ class CParser < CRRParser
       if @sym==C_SEPARATEDSym
          Get()
          Expect(C_BYSym)
-         Expect(C_stringD1Sym)
+         Name()
       end
 
       if @sym==C_RESPECTINGSym

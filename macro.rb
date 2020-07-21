@@ -2157,6 +2157,7 @@ class Preprocessor < PreParser
     def dump_pos(pos=@scanner.buffPos, lines = 5)
         pos=@scanner.buffPos if pos == nil
             
+        p("current file:#{$g_cur_parse_file}")
         p("start dump pos in macro.rb:pos #{pos}, buf size #{@scanner.buffer.size}, line #{@scanner.currLine}, saved line #{@saved_line}#{@scanner.buffer[pos..pos+100]}", 5)
         lino = get_lineno_by_pos(pos)+1
         lino += @saved_line
