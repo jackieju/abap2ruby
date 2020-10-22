@@ -32,6 +32,11 @@ ruby translate.rb cp_testcase.abap
 
 cp_testcase.abap can also be any abap source file.
 
+At the end of output, you will see the list of output files:
+
+![Screen Shot 2020-10-22 at 7 09 32 PM](https://user-images.githubusercontent.com/53884/96864115-855e4900-149a-11eb-8c08-4912d975e5ad.png)
+
+
 Global functions are generated in _global.rb.
 
 Classes will be generated in <class_name>.rb.
