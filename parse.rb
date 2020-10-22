@@ -1,4 +1,4 @@
-load 'macro.rb'
+require 'macro.rb'
 load 'cp.rb'
 #load 'preprocessor.rb'
 

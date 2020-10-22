@@ -3901,7 +3901,6 @@ class CScanner < CRScanner
 
    end
 
-   @@STATE0
 
 
 
@@ -3910,5 +3909,4 @@ class CScanner < CRScanner
 
 
 
-   @szName
 end
